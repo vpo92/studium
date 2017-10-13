@@ -1,0 +1,68 @@
+{
+  "name": "react-redux-material_ui-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for React + Redux + Material UI + ES6 syntax application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server -d --hot --inline --progress --colors",
+    "start-all": "webpack-dev-server --public 192.168.1.16:8080 --host 0.0.0.0 -d --hot --inline --progress --colors",
+    "build": "webpack --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanabe/react-redux-material_ui-boilerplate.git"
+  },
+  "keywords": [
+    "React",
+    "webpack",
+    "Redux",
+    "Bable",
+    "ES6"
+  ],
+  "author": "https://github.com/takanabe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/takanabe/react-redux-material_ui-boilerplate/issues"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.7.1",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "fbjs": "^0.8.5",
+    "history": "4.6.3",
+    "material-ui": "^0.19.3",
+    "muicss": "^0.9.26",
+    "react": "^15.4.0",
+    "react-addons-create-fragment": "^15.3.2",
+    "react-addons-pure-render-mixin": "^15.3.2",
+    "react-addons-transition-group": "^15.3.2",
+    "react-addons-update": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-hot-loader": "^1.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "5.0.0-alpha.6",
+    "react-tap-event-plugin": "^2.0.0",
+    "redux": "^3.6.0"
+  }
+}
