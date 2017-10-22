@@ -30,7 +30,7 @@ type State = {
   discipline: number
 };
 
-class AdvanceSearch extends Component<void, State> {
+class AdvanceSearch extends Component<{}, State> {
   constructor() {
     super();
     this.state = {

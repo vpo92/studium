@@ -4,7 +4,6 @@ import Toggle from 'material-ui/Toggle';
 import MenuItem from 'material-ui/MenuItem';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-
 const data={
   "variantes":{
     "label":"Variantes du nom",

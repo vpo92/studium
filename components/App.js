@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, PropTypes } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,24 +9,21 @@ import Footer from '../components/Footer';
 import { Switch, Route, Link } from 'react-router-dom';
 
 //Pages
-import SideMenu from '../containers/SideMenu';
-import HomePage from '../containers/HomePage';
-import IndexPage from '../containers/IndexPage';
-import SearchPage from '../containers/SearchPage';
-import ContactPage from '../containers/ContactPage';
-import HelpPage from '../containers/HelpPage';
-import ProfilPage from '../containers/ProfilPage';
-import LoginPage from '../containers/LoginPage';
-import DetailPage from '../containers/DetailPage';
+import SideMenu from '../components/SideMenu/SideMenu.component';
+import HomePage from '../components/HomePage';
+import IndexPage from '../components/IndexPage';
+import SearchPage from '../containers/SearchPage/SearchPage.container';
+import ContactPage from '../components/ContactPage';
+import HelpPage from '../components/HelpPage';
+import ProfilPage from '../components/ProfilPage';
+import LoginPage from '../components/LoginPage';
+import DetailPage from '../components/DetailPage';
 
-// For Customization Options, edit  or use
-// './src/material_ui_raw_theme_file.jsx' as a template.
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import theme from '../src/material_ui_raw_theme_file'
 
-class App extends Component {
+class App extends Component<{}, {}> {
   render() {
-    const { todos, actions } = this.props;
     return (
       <div>
         <MuiThemeProvider muiTheme={theme}>

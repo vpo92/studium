@@ -7,7 +7,7 @@ class HomePage extends Component {
     return (
     <div>
       <h1>Projet Studium Parisiense</h1>
-      <div className="app-text-center"><img src="containers/HomePage/img/header.png"/></div>
+      <div className="app-text-center"><img src="components/HomePage/img/header.png"/></div>
       <div className="app-text-big">
         <p>
         Développée dans le cadre du projet Studium Parisiense , l’un des axes de recherche du programme européen «Signs and States» dirigé par Jean-Philippe Genet et financé par l’European Research Council, la base de données prosopographique Studium Parisiense est consacrée aux membres des écoles et de l’université de Paris entre le XIIe et le XVIe siècle. Les quelque 15 000 fiches qui la composent contiennent des informations biographiques et bibliographiques relatives, entre autres, aux professeurs, aux étudiants et aux suppôts de l’Université.
@@ -20,11 +20,11 @@ class HomePage extends Component {
         </p>
       </div>
       <Divider />
-      <img src="containers/HomePage/img/univ_paris1.jpg" className="app-home-sponsor-img"/>
-      <img src="containers/HomePage/img/lamop.jpg" className="app-home-sponsor-img"/>
-      <img src="containers/HomePage/img/cnrs.jpg" className="app-home-sponsor-img"/>
-      <img src="containers/HomePage/img/erc_logo.png" className="app-home-sponsor-img"/>
-      <img src="containers/HomePage/img/Logo_Hastec.jpg" className="app-home-sponsor-img"/>
+      <img src="components/HomePage/img/univ_paris1.jpg" className="app-home-sponsor-img"/>
+      <img src="components/HomePage/img/lamop.jpg" className="app-home-sponsor-img"/>
+      <img src="components/HomePage/img/cnrs.jpg" className="app-home-sponsor-img"/>
+      <img src="components/HomePage/img/erc_logo.png" className="app-home-sponsor-img"/>
+      <img src="components/HomePage/img/Logo_Hastec.jpg" className="app-home-sponsor-img"/>
     </div>
     );
   }
