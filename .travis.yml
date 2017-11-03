@@ -3,8 +3,7 @@ sudo: required
 
 language: node_js
 node_js:
-  - "iojs"
-  - "8"
+  - "node"
 
 addons:
   sonarcloud:
@@ -13,8 +12,8 @@ addons:
 jdk:
   - oraclejdk8
 script:
-  - npm run-script build
   - sonar-scanner
+  - npm run build
 cache:
   directories:
     - '$HOME/.sonar/cache'
