@@ -1,17 +1,16 @@
 {
-  "name": "react-redux-material_ui-boilerplate",
+  "name": "studium",
   "version": "1.0.0",
-  "description": "A boilerplate for React + Redux + Material UI + ES6 syntax application",
+  "description": "Studium front application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
-    "start-all": "webpack-dev-server --public 192.168.1.16:8080 --host 0.0.0.0 -d --hot --inline --progress --colors",
     "build": "webpack --progress --colors"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/takanabe/react-redux-material_ui-boilerplate.git"
+    "url": "https://github.com/vpo92/studium.git"
   },
   "keywords": [
     "React",
@@ -20,12 +19,7 @@
     "Bable",
     "ES6"
   ],
-  "author": "https://github.com/takanabe",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/takanabe/react-redux-material_ui-boilerplate/issues"
-  },
-  "homepage": "",
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
