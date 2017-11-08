@@ -1,0 +1,377 @@
+{"prosop": {"person": {
+    "income": {"income": {
+        "data": {
+            "place": "Reims",
+            "content": [
+                "Il touche une pension annuelle de 200 livres tournois grâce à son bénéfice à",
+                "."
+            ]
+        },
+        "source": [
+            "SULLIVAN Theol. : I p. 321-322.",
+            "EUBEL: 2, p. 144 et note 5."
+        ]
+    }},
+    "works": {
+        "note": "Oeuvres écrites en latin :",
+        "works": {
+            "note": "Auteur actif dans le champ religieux :",
+            "field": "religious",
+            "work": {
+                "manuscripts": {"data": "MS. Paris, B. Mazarine 145, f. 366."},
+                "incipit": {
+                    "data": "Inc. : \"Respexit dominus ad Abel et ad munera eius. . . \".",
+                    "comment": {"data": "Mentionné dans le MS. Paris, B. Mazarine 145, f. 366."}
+                },
+                "date-place": {"data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1473
+                    }},
+                    "content": [
+                        "Écrit en",
+                        "."
+                    ]
+                }},
+                "language": {"data": "Latin"},
+                "title": {
+                    "data": "&Principium super librum Genesis&",
+                    "source": [
+                        "SULLIVAN Theol. : I p. 321-322.",
+                        "STEGMÜLLER Bible: 2, p. 7."
+                    ]
+                },
+                "order": 1
+            }
+        },
+        "comment": {"data": "Recension en cours."}
+    },
+    "bibliography": {
+        "usualBook": [
+            {"data": "DHGE: 1, p. 69 (par R. COULON) ;"},
+            {"data": "EUBEL: 2, p. 144 et n. 5 ;"},
+            {"data": "FEG: III p. 229 (RM 1540) ;"},
+            {"data": "KAEPPELI: I, p. 3 ;"},
+            {"data": "QUETIF et ECHARD: I, p. 210 ;"},
+            {"data": "STEGMÜLLER Bible: 2, p. 7 ;"},
+            {"data": "SULLIVAN Theol. : I p. 321-322."}
+        ],
+        "bibref": {"data": "STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Anne Tournieroux, dernière mise à jour 17/07/2015)."},
+        "individualBook": [
+            {"data": "KAEPELLI (T.), \"Lecteurs de la Bible à Saint-Jacques de Paris (1454-1522)\", &AFP&, 28, 1958, p. 301-302 ;"},
+            {"data": "MARTIN (H.), &Les ordres mendiants en Bretagne (vers 1230-vers 1530): pauvreté volontaire et prédication à la fin du Moyen Age&, Paris, 1975, p. 130, 165, 229 ;"},
+            {"data": "MARTIN (H.), &Le métier de prédicateur à la fin du Moyen Âge 1350-1520&, Paris, 1988, p. 682 ;"},
+            {"data": "MEYER (A. de), &La congrégation de Hollande, ou La réforme dominicaine en territoire bourguignon, 1465-1515&, Liège, 1947, p. 267."}
+        ],
+        "source": {"data": "MS. Paris, BnF lat. 5657-A, f. 25v, 26r."}
+    },
+    "ecclesiasticalCareer": {
+        "regularChurch": {
+            "data": {
+                "dates": {"date": {
+                    "type": "circa",
+                    "content": 1470
+                }},
+                "place": "Redon",
+                "content": [
+                    "Dominicain : couvent (dominicain) de",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        },
+        "secularBenefices": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Évêque",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Dionysias"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1483
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1494
+                        }}
+                    },
+                    "place": "Arabie",
+                    "content": [
+                        "Évêque de",
+                        "en",
+                        ",",
+                        ";"
+                    ]
+                },
+                "source": [
+                    "SULLIVAN Theol. : I p. 321-322.",
+                    "FEG: III p. 229 (RM 1540)."
+                ]
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "LAVAL",
+                        "ptitle": {
+                            "text_before": "archevêque",
+                            "text_after": "",
+                            "see": "Pierre de  LAVAL",
+                            "empty_word": "de",
+                            "content": "Reims"
+                        },
+                        "first_name": "Pierre de",
+                        "qualif": "archevêque de",
+                        "content": "Pierre de LAVAL, archevêque de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1483
+                    }},
+                    "content": [
+                        "Vicaire épiscopal de",
+                        "en",
+                        "."
+                    ]
+                },
+                "comment": {"data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1489
+                    }},
+                    "place": "Laval",
+                    "content": [
+                        "Le 25 juillet",
+                        ", il consacre l'église des dominicains à",
+                        "."
+                    ]
+                }},
+                "source": [
+                    "SULLIVAN Theol. : I p. 321-322.",
+                    "FEG: III p. 229 (RM 1540).",
+                    "SULLIVAN Theol. : I p. 321-322.",
+                    "DHGE: 1, p. 69."
+                ]
+            }
+        ],
+        "hierarchicalPosition": {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1476
+                }},
+                "place": [
+                    "Rennes",
+                    "Paris"
+                ],
+                "content": [
+                    "Frère du couvent (dominicain) de",
+                    "en",
+                    "désireux de retourner à",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        }
+    },
+    "orality": {"sermon": [
+        {"data": {
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1476
+            }},
+            "place": "Rennes",
+            "content": [
+                "Prêche deux fois à",
+                "en",
+                ";"
+            ]
+        }},
+        {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1480
+                }},
+                "place": "Compiègne",
+                "content": [
+                    "Prêche les sermons du Carême à",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        }
+    ]},
+    "geo-origin": {
+        "birthplace": {
+            "data": {
+                "place": [
+                    {
+                        "annexe": "Saint-Brieuc",
+                        "content": "Bretagne"
+                    },
+                    "Saint-Brieuc"
+                ],
+                "content": [
+                    "(",
+                    ")."
+                ]
+            },
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        },
+        "diocese": {
+            "data": {
+                "ptitle": {
+                    "text_before": "?Diocèse",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Saint-Brieuc"
+                },
+                "content": [
+                    "?Diocèse de",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        }
+    },
+    "label": {
+        "datesOfLife": {
+            "data": "%  -1494%",
+            "comment": {"data": "Il meurt le 24 janvier."},
+            "source": "SULLIVAN Theol. : I p. 321-322."
+        },
+        "description": {"data": "Dominicain"},
+        "personID": {"data": 3},
+        "variant-name": [
+            {
+                "data": {"pname": {
+                    "last_name": "SANCTO BRIOCO",
+                    "first_name": "Abel de",
+                    "qualif": "",
+                    "content": "Abel de SANCTO BRIOCO"
+                }},
+                "source": "SULLIVAN Theol. : I p. 321-322."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "SANCTO BRIOCO",
+                    "first_name": "Abel de",
+                    "qualif": "",
+                    "content": "Abel de SANCTO BRIOCO"
+                }},
+                "source": "SULLIVAN Theol. : I p. 321-322."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "SAINT-BRIEUC",
+                    "first_name": "Abel de",
+                    "qualif": "",
+                    "content": "Abel de SAINT-BRIEUC"
+                }},
+                "source": "SULLIVAN Theol. : I p. 321-322."
+            }
+        ],
+        "usage-name": {"data": "ABEL de Sancto Brioco"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1473
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1494
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1473
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1478
+                }}
+            },
+            "place": "Paris",
+            "content": "."
+        }},
+        "grade": [
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1478
+                    }},
+                    "content": [
+                        "Licencié en théologie (Paris) (le 27 janvier)",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "Il est classé 15/18."}
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1478
+                    }},
+                    "content": [
+                        "Docteur en théologie (Paris) (le 14 décembre)",
+                        "."
+                    ]
+                },
+                "source": [
+                    "SULLIVAN Theol. : I p. 321-322.",
+                    "MS. Paris, BnF lat. 5657-A, f. 25v, 26r."
+                ]
+            }
+        ]
+    },
+    "professionalCareer": {"universityFunction": {
+        "data": {
+            "ptitle": {
+                "text_before": "Bible",
+                "text_after": "",
+                "empty_word": "à",
+                "content": "Saint-Jacques"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1473
+            }},
+            "place": "Paris",
+            "content": [
+                "Lecteur de la Bible à",
+                "de",
+                "en",
+                "."
+            ]
+        },
+        "source": "SULLIVAN Theol. : I p. 321-322."
+    }},
+    "type": "Univ-Paris"
+}}}

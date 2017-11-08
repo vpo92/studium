@@ -1,0 +1,36 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {"usualBook": {"data": "AUP: II 928 17 941 15 948 31 4 968 43"}},
+    "label": {
+        "description": {"data": "?"},
+        "personID": {"data": 5},
+        "variant-name": [
+            {"data": {"pname": {
+                "last_name": "HAERLEM",
+                "first_name": "Abraham",
+                "qualif": "",
+                "content": "Abraham HAERLEM"
+            }}},
+            {"data": {"pname": {
+                "last_name": "HARLEM",
+                "first_name": "Abraham",
+                "qualif": "",
+                "content": "Abraham HARLEM"
+            }}},
+            {"data": {"pname": {
+                "last_name": "HERLEM",
+                "first_name": "Abraham",
+                "qualif": "",
+                "content": "Abraham HERLEM"
+            }}}
+        ],
+        "usage-name": {"data": "ABRAHAM Haerlem"},
+        "statut": {"data": "?"},
+        "datesOfActivity": {"data": "%     -    %"}
+    },
+    "formation": {"university": {"data": {
+        "place": "Paris",
+        "content": "?"
+    }}},
+    "type": "Univ-Paris"
+}}}

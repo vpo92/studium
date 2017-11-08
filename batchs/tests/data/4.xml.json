@@ -1,0 +1,232 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": [
+            {"data": "AUP: II 928 17, 941 15, 948 31, 968 43, 1013"},
+            {"data": "AUP: III 25 45 n.2, 26 20, 94 31, 100 38, 103 40, 45, 106 5, 111 44, 112 2, 124 23, 26, 127 40, 129 39, 148 48"},
+            {"data": "AUP: VI 331 11 n.4 ; 351 24, 353 32, 378 11 n.5, 388 11, 432 31, 446 3 14"}
+        ],
+        "individualBook": {"data": "SPIRGATIS (M.), Personalverzeichnis der Pariser Universität von 1464 und die darin aufgeführten Handschriften-und Pergamenthändler, &Beihefte zum Zentralblatt für Bibliothekswesen&, Leipzig, I, 1888, p. 1-52 (accessible sur http://www.archive/org)."}
+    },
+    "geo-origin": {
+        "birthplace": {"data": {
+            "place": [
+                {
+                    "annexe": "Haarlem",
+                    "content": "Pays-Bas"
+                },
+                "Haarlem"
+            ],
+            "content": [
+                "(",
+                ")."
+            ]
+        }},
+        "diocese": {"data": {
+            "ptitle": {
+                "text_before": "Diocèse",
+                "text_after": "",
+                "empty_word": "d'",
+                "content": "Utrecht"
+            },
+            "content": [
+                "Diocèse d'",
+                "."
+            ]
+        }}
+    },
+    "label": {
+        "description": {"data": "Maître ès arts."},
+        "personID": {"data": 4},
+        "dateMedianActivity": {"data": {"dates": {"date": {
+            "certitude": true,
+            "type": "single",
+            "content": 1465
+        }}}},
+        "variant-name": [
+            {"data": {
+                "pname": [
+                    {
+                        "last_name": "ALBERTI",
+                        "first_name": "Abraham",
+                        "qualif": "",
+                        "content": "Abraham ALBERTI"
+                    },
+                    {
+                        "last_name": "HARLEM",
+                        "first_name": "Abraham de",
+                        "qualif": "",
+                        "content": "Abraham de HARLEM"
+                    },
+                    {
+                        "last_name": "HAERLEM",
+                        "first_name": "Abraham de",
+                        "qualif": "",
+                        "content": "Abraham de HAERLEM"
+                    }
+                ],
+                "content": [
+                    ",",
+                    ","
+                ]
+            }},
+            {"data": {"pname": {
+                "last_name": "ALBERTI",
+                "first_name": "Habraam",
+                "qualif": "",
+                "content": "Habraam ALBERTI"
+            }}}
+        ],
+        "usage-name": {"data": "ABRAHAM Alberti"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1460
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1470
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {
+            "data": {
+                "ptitle": {
+                    "text_before": "Nation",
+                    "text_after": "",
+                    "empty_word": "",
+                    "content": "Anglo-allemande"
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "type": "before",
+                        "content": 1460
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1464
+                    }}
+                },
+                "place": {
+                    "annexe": "Nation Anglo-allemande",
+                    "content": "Paris"
+                },
+                "content": [
+                    "(Nation",
+                    ")",
+                    "."
+                ]
+            },
+            "comment": {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1464
+                }},
+                "content": [
+                    "Déjà maître, il est un des membres de l'université s'acquittant d'une taxe entre le 6 février et le 20 février",
+                    "pour financer une ambassade à la cour royale."
+                ]
+            }},
+            "source": "SPIRGATIS (M.), Personalverzeichnis der Pariser Universität von 1464 und die darin aufgeführten Handschriften-und Pergamenthändler, &Beihefte zum Zentralblatt für Bibliothekswesen&, Leipzig, I, 1888, p. 1-52 à la p. 37 (accessible sur http://www.archive/org)."
+        },
+        "grade": [
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1460
+                    }},
+                    "content": [
+                        "Bachelier ès arts (Paris)",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "\"Habraam Alberti, Trajectensis dyocesis, cujus bursa V sol., III lib. et XV sol.\"."},
+                "source": "AUP: II 928 17 ; cf. AUP: VI 331 11."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1461
+                    }},
+                    "content": [
+                        "Licencié ès arts (Paris)",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "\"Cujus bursa valet V sol. 1 lib. V sol.\"."},
+                "source": [
+                    "AUP: II 941 15.",
+                    "AUP: VI 351 24."
+                ]
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1461
+                    }},
+                    "content": [
+                        "Maître ès arts (Paris)",
+                        "."
+                    ]
+                },
+                "comment": {"data": "\"Cujus bursa valet V sol. 1 lib. V sol.\"."},
+                "source": "AUP: VI 353 48."
+            }
+        ]
+    },
+    "professionalCareer": {
+        "universityFunction": {
+            "data": {
+                "ptitle": {
+                    "text_before": "Nation",
+                    "text_after": "",
+                    "empty_word": "",
+                    "content": "Allemande"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1463
+                }},
+                "content": [
+                    "Procureur de la Nation",
+                    "(7 avril et 5 mai) ;"
+                ]
+            },
+            "source": "AUP: II 948 31."
+        },
+        "Lawyer": {
+            "data": {
+                "ptitle": {
+                    "text_before": "Nation",
+                    "text_after": "",
+                    "empty_word": "",
+                    "content": "Allemande"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1468
+                }},
+                "content": [
+                    "Receveur de la Nation",
+                    "."
+                ]
+            },
+            "source": "AUP: III 94, 31 et AUP VI: 446 3 14."
+        }
+    },
+    "type": "Univ-Paris"
+}}}

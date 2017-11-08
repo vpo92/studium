@@ -1,0 +1,47 @@
+{
+  "name": "studium",
+  "version": "1.0.0",
+  "description": "Studium application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server -d --hot --inline --progress --colors",
+    "build": "webpack --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vpo92/studium.git"
+  },
+  "keywords": [
+    "React",
+    "webpack",
+    "Redux",
+    "Bable",
+    "ES6"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.7.1",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
+    "flow-bin": "^0.57.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "dependencies": {}
+}

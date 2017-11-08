@@ -1,0 +1,51 @@
+{"prosop": {"person": {
+    "works": {
+        "note": "Oeuvres écrites en latin :",
+        "works": {
+            "note": "Auteur actif dans le champ rhétorique :",
+            "field": "philologic",
+            "work": {
+                "manuscripts": {"data": "MS. Firenze, BLM 25 sin. 4, fol. 1-6 ;"},
+                "incipit": {"data": "Inc. : \"Dilectissimo amico suo A. Frater B salutem...\"."},
+                "date-place": {"data": "?"},
+                "title": {"data": "&Ars dictaminis&"},
+                "order": 1
+            }
+        }
+    },
+    "bibliography": {
+        "usualBook": {"data": "GLORIEUX MA 47"},
+        "individualBook": {"data": "LANGLOIS (C.-V.), &Notices et extraits...&, 35, 410."}
+    },
+    "ecclesiasticalCareer": "",
+    "label": {
+        "description": {"data": "Frère"},
+        "personID": {"data": 6},
+        "variant-name": {"data": {"pname": "Frater B."}},
+        "usage-name": {"data": "B. Frater"},
+        "statut": {"data": "Incertain ?"},
+        "datesOfActivity": [
+            {"data": {"dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1275
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1275
+                }}
+            }}},
+            {"data": "Datation arbitraire."}
+        ]
+    },
+    "formation": {"university": {
+        "data": {
+            "place": "Paris",
+            "content": "."
+        },
+        "comment": {"data": "Frère, sans qu'il soit possible de savoir de quel ordre."}
+    }},
+    "type": "Univ-Paris"
+}}}

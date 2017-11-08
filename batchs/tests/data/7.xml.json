@@ -1,0 +1,106 @@
+{"prosop": {"person": {
+    "works": {"note": "Production textuelle : pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": {"data": "AUP: III, 381 7, 415 28, 416 1 ;"},
+        "individualBook": {"data": "AUP: VI, 549 23, 562 23 43."}
+    },
+    "geo-origin": {
+        "birthplace": {"data": {
+            "place": [
+                {
+                    "annexe": "Alkmaar",
+                    "content": "Pays-Bas"
+                },
+                "Alkmaar"
+            ],
+            "content": [
+                "(",
+                ")."
+            ]
+        }},
+        "diocese": {"data": "Diocèse d'Utrecht."}
+    },
+    "label": {
+        "description": {"data": "Maître ès arts"},
+        "personID": {"data": 7},
+        "variant-name": {"data": "Absalon de ALCMARIA"},
+        "usage-name": {"data": "ABSALON de Alcmaria"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1478
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1479
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "dates": {"date": {
+                "type": "before",
+                "content": 1478
+            }},
+            "place": {
+                "annexe": "Nation Anglo-allemande",
+                "content": "Paris"
+            },
+            "content": [
+                "(Nation Anglo-allemande)",
+                "."
+            ]
+        }},
+        "grade": [
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1478
+                    }},
+                    "content": [
+                        "Bachelier ès arts (Paris)",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "\"... cujus bursa valet nichil\" (le Liber Receptorum ajoute \"I lib. VI sol.\")."},
+                "source": "Référence: AUP: III, 381 7 et AUP: VI, 549 23."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1479
+                    }},
+                    "content": [
+                        "Licencié ès arts (Paris) en",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "\"... cujus bursa valet nichil\" (le Liber Receptorum ajoute \"VI sol.\") ; il figure parmi les licenciés qui inceptent."},
+                "source": "AUP: III, 415 28 et AUP: VI 562 23."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1479
+                    }},
+                    "content": [
+                        "Maître ès arts (Paris) en",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "II lib. VI sol.\"."},
+                "source": "AUP: VI, 562 43."
+            }
+        ]
+    },
+    "type": "Univ-Paris"
+}}}

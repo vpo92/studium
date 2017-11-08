@@ -1,0 +1,54 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {"usualBook": {"data": "CUP: IV n°2028."}},
+    "label": {
+        "description": {"data": "Notaire"},
+        "personID": {"data": 1},
+        "variant-name": {
+            "data": {"pname": {
+                "last_name": "FIDELIS",
+                "first_name": "A.",
+                "qualif": "",
+                "content": "A. FIDELIS"
+            }},
+            "source": "CUP: IV n°2028."
+        },
+        "usage-name": {"data": "A. Fidelis"},
+        "statut": {"data": "Extérieur"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1414
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1414
+            }}
+        }}}
+    },
+    "professionalCareer": {"Lawyer": {
+        "data": {
+            "pname": {
+                "last_name": "JEAN XXIII",
+                "qualif": "",
+                "content": "JEAN XXIII"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1414
+            }},
+            "place": "Bologne",
+            "content": [
+                "Notaire, souscripteur d'un acte de",
+                "émis à",
+                "en",
+                "."
+            ]
+        },
+        "source": "CUP: IV n°2028."
+    }},
+    "type": "Univ-Paris"
+}}}

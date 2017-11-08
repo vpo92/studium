@@ -1,0 +1,91 @@
+{"prosop": {"person": {
+    "works": {
+        "note": "Oeuvres écrites en latin :",
+        "works": {
+            "note": "Auteur actif dans le champ de la grammaire :",
+            "field": "philologic",
+            "work": {
+                "manuscripts": [
+                    {"data": "MS. Bruges, StB 537, f. 72-98v ;"},
+                    {"data": "MS. Laon, BM 465 ;"},
+                    {"data": "MS. London, BL Cotton Cleopatra B VI ;"},
+                    {"data": "MS. London, BL Harley 2464 :"},
+                    {"data": "MS. Metz, BM 169 ;"},
+                    {"data": "MS. Oxford, Bodl. Libr. Canon. misc. 489 ;"},
+                    {"data": "MS. Oxford, Bodl. Libr. Laud misc. 707 ;"},
+                    {"data": "MS. Paris, BnF lat. 15462."}
+                ],
+                "modernEdition": {"data": "In FIERVILLE (Ch.), Paris, 1886."},
+                "incipit": {"data": "Inc. : \"Ut ad sapientiam per grammaticam venire possimus...\"."},
+                "date-place": {"data": "?"},
+                "title": {"data": "&Notulae in grammaticam&"},
+                "order": 1
+            }
+        }
+    },
+    "bibliography": {
+        "usualBook": {"data": "GLORIEUX MA 77"},
+        "bibref": [
+            {"data": "MIRABILE (MEL) : http://www.mirabileweb.it/"},
+            {"data": "STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Jean-Philippe Genet, dernière mise à jour 16/09/2015)."}
+        ],
+        "individualBook": {"data": "FIERVILLE (Ch.), &Une grammaire latine inédite du XIIIe siècle&, Paris, 1886."}
+    },
+    "label": {
+        "description": {"data": "Magister"},
+        "personID": {"data": 2},
+        "variant-name": [
+            {"data": {"pname": {
+                "last_name": "CAESAR",
+                "qualif": "",
+                "content": "CAESAR"
+            }}},
+            {"data": "CÉSAR"}
+        ],
+        "usage-name": {"data": "CAESAR"},
+        "statut": {"data": "Extérieur"},
+        "datesOfActivity": {
+            "data": {"dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1250
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1250
+                }}
+            }},
+            "comment": {"data": "Date estimée."}
+        }
+    },
+    "formation": {
+        "university": {"data": "?"},
+        "grade": {
+            "data": "?Maître ès arts.",
+            "comment": {"data": {
+                "pname": [
+                    {
+                        "last_name": "GLORIEUX",
+                        "first_name": "Palémon",
+                        "qualif": "",
+                        "content": "Palémon GLORIEUX"
+                    },
+                    {
+                        "last_name": "ISOLELLA",
+                        "first_name": "Petrus",
+                        "qualif": "",
+                        "content": "Petrus ISOLELLA"
+                    }
+                ],
+                "content": [
+                    "Selon",
+                    ", il s'agirait peut-être de",
+                    "?"
+                ]
+            }}
+        }
+    },
+    "type": "Univ-Paris"
+}}}

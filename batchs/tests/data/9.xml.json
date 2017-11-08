@@ -1,0 +1,223 @@
+{"prosop": {"person": {
+    "works": {
+        "note": "Œuvres écrites en latin :",
+        "works": {
+            "note": "Auteur actif dans le champ religieux :",
+            "field": "religious",
+            "work": {
+                "manuscripts": [
+                    {"data": "MS. Paris, BnF lat. 583, f. 59-86 ;"},
+                    {"data": "MS. Paris, BnF lat. 14525, f. 117-233 ;"},
+                    {"data": "MS. Paris, BnF lat. 14859, f. 225 sq. ;"},
+                    {"data": "MS. Paris, BnF lat. 14883, f. 125-130 ;"},
+                    {"data": "MS. Paris, BnF lat. 14925, f. 130 ;"},
+                    {"data": "MS. Paris, BnF lat. 14936 ;"},
+                    {"data": "MS. Trier, StB. 318, f. 1-94 ;"},
+                    {"data": "MS. Trier, StB. 320, f. 2-152 ;"},
+                    {"data": "MS. Troyes, BM 1749."}
+                ],
+                "modernEdition": {"data": "In &P.L.&, CCXI, col. 8-294."},
+                "incipit": {"data": "Inc. : \"Hodie, fratres dilectisismi, sermo politus et plenus devotionis suave murmuraret in cordibus vestris... \"."},
+                "date-place": {"data": "?"},
+                "title": {"data": "&Sermones (51)&"},
+                "editionBefore1700": [
+                    {"data": {
+                        "dates": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1534
+                        }},
+                        "place": "Cologne",
+                        "content": [
+                            "Ed.",
+                            ";"
+                        ]
+                    }},
+                    {"data": {
+                        "dates": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1605
+                        }},
+                        "place": "Milan",
+                        "content": [
+                            "Ed.",
+                            "."
+                        ]
+                    }}
+                ],
+                "order": 1
+            }
+        }
+    },
+    "bibliography": {
+        "usualBook": [
+            {"data": "DHGE: (U. ROUZIES) ;"},
+            {"data": "HLF: XVI 451 ;"},
+            {"data": "SCHNEYER: I, p. 37-39."}
+        ],
+        "bibref": {"data": "STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Jean-Philippe Genet, dernière mise à jour 17/07/2015)."},
+        "individualBook": [
+            {"data": "CHATILLON (J.), De Guillaume de Champeau à Thomas Gallus, &R.M.A.L.&, VIII, 1952, 265 ;"},
+            {"data": "COURCELLE (P.), La culture antique d'Absalon de Saint-Victor, &Journal des Savants&, IV (4), 1972, 270-291 ;"},
+            {"data": "POIREL (D.), L\u2019école de Saint-Victor au Moyen Âge : bilan d\u2019un demi-siècle historiographique, &Bibliothèque de l\u2019école des chartes&, CLVI, 1998, 187-207 ;"},
+            {"data": "THOME (A.), &Die Sermones festivales des Absalon von Sprigiersbach in ihrem dogmatischen Gehalt und ihrer theol.geschchtl. Bedeutung&, Trèves, 1952 ;"}
+        ]
+    },
+    "ecclesiasticalCareer": {
+        "regularChurch": {"data": {
+            "ptitle": {
+                "text_before": "Chanoine régulier",
+                "text_after": "Saint-Victor",
+                "empty_word": "de",
+                "content": "Paris"
+            },
+            "dates": {
+                "fromDate": {"date": {"type": null}},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1193
+                }}
+            },
+            "content": [
+                "Chanoine régulier de",
+                "(Saint-Victor)",
+                "."
+            ]
+        }},
+        "hierarchicalPosition": {
+            "data": {
+                "ptitle": {
+                    "text_before": "diocèse",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Trèves"
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1193
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1196
+                    }}
+                },
+                "place": {
+                    "annexe": "diocèse de Trèves",
+                    "content": "Springiersbach"
+                },
+                "content": [
+                    "Abbé de",
+                    "(diocèse de",
+                    ")",
+                    ";"
+                ]
+            },
+            "comment": {"data": {
+                "pname": {
+                    "last_name": "ABASALON",
+                    "ptitle": {
+                        "text_before": "abbé",
+                        "text_after": "Saint-Victor",
+                        "see": " ABASALON",
+                        "empty_word": "de",
+                        "content": "Paris"
+                    },
+                    "qualif": "abbé de",
+                    "content": [
+                        "ABASALON, abbé de",
+                        "(Saint-Victor)"
+                    ]
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1198
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1203
+                    }}
+                },
+                "content": [
+                    "Il doit être distingue de",
+                    "en",
+                    "."
+                ]
+            }},
+            "source": "POIREL, p. 201-202."
+        }
+    },
+    "label": {
+        "datesOfLife": {"data": {"dates": {
+            "fromDate": {"date": {"type": null}},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1196
+            }}
+        }}},
+        "description": {"data": "Chanoine de Saint-Victor"},
+        "personID": {"data": 9},
+        "variant-name": [
+            {"data": {
+                "pname": {
+                    "last_name": "SAINT-VICTOR",
+                    "first_name": "Absalon de",
+                    "qualif": "",
+                    "content": "Absalon de SAINT-VICTOR"
+                },
+                "content": ","
+            }},
+            {"data": {"pname": {
+                "last_name": "SPRIGIERSBACH",
+                "first_name": "Absalon von",
+                "qualif": "",
+                "content": "Absalon von SPRIGIERSBACH"
+            }}}
+        ],
+        "usage-name": {"data": "ABSALON de Sancto Victore"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1190
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1196
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "place": "Paris",
+            "content": "."
+        }},
+        "grade": {
+            "data": "Magister à Saint-Victor ;",
+            "comment": {"data": {
+                "pname": {
+                    "last_name": "HEISTERBACH",
+                    "first_name": "Césaire de",
+                    "qualif": "",
+                    "content": "Césaire de HEISTERBACH"
+                },
+                "content": [
+                    "D\u2019après le témoignage de",
+                    "(&Dialogus miraculorum&, IV, 89) ;"
+                ]
+            }},
+            "source": "POIREL, p. 201-202."
+        }
+    },
+    "type": "Univ-Paris"
+}}}

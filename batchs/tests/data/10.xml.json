@@ -1,0 +1,107 @@
+{"prosop": {"person": {
+    "committee": {"committeeOfTheUniversity": {
+        "data": {
+            "pname": {
+                "last_name": "LULL",
+                "first_name": "Raymond",
+                "qualif": "",
+                "content": "Raymond LULL"
+            },
+            "ptitle": [
+                {
+                    "text_before": "l'Official",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Paris"
+                },
+                {
+                    "text_before": "roi",
+                    "text_after": "",
+                    "empty_word": "d'",
+                    "content": "Aragon"
+                }
+            ],
+            "dates": [
+                {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1676
+                }},
+                {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1328
+                }},
+                {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1369
+                }}
+            ],
+            "place": "Paris",
+            "content": [
+                "Membre d'un groupe de quarante maître et étudiants qui, à la demande de",
+                ", viennent jurer devant l'Official de",
+                "que la doctrine de ce dernier est \"bonne, utile et nécessaire\"; comme &Sententia definitiva in favorem pietatis et doctrinae b. Raymundi Lullii&, elle a été imprimée à",
+                "en",
+                "(mais meilleur texte dans ROSSELLO, &Obras rimadas de Ramon Lull&, Palma, 1859, p. 77). Le texte est cependant suspect pour le &Chartularium& du fait de la présence parmi les quarante de deux Servites parisiens alors que la maison parisienne de l'ordre n'a été fondée qu'en",
+                ". Les membres déclarent : \"quod ipsi a dicto magistro Raymundo Lull audiverunt per aliqua tempora artem seu scientiam, quam dicitur fecisse seu adinvenisse idem magister Raymundus, que quidem ars seu scientia sic incipit : \"Deus cum tua gratia, sapientia et amore incipit ars brevis que est imago artis generalis, que sic intitulatur : Deus cum tua summa perfectione incipit ars generalis ultima. Ratio quare fecimus istam artem brevem est, ut ars magna facilius sciatur, nam scita ista arte predicta et etiam alie artes de facili poterunt addisci\". Et sic terminatur : « Ad honorem et laudem Dei et publice utililatis finivit Raymundus hunc librum Pisis in monasterio S. Dominici [Donnini?], in mense Januario, anno MCCCVII Incarnationis Domini nostri Jhesu Christi\". Asseruerunt etiaim dicti magistri et omnes alii, ut predicitur, per eorum juramenta coram prefatis juralis nostris, quod dicta ars seu scientia erat bona, utilis, et necessaria, prout ipsi poterant perpendere seu etiam judicare; et quod in ea nihil erat contra fidein catholicam, seu etiam dicte fidei repugnantia; multa autem ad sustentationem dicte fidei et pro ipsa facientia in dicta scientia seu arte, ut dicebant, poterant inveniri\". Le texte était cependant tenu pour authentique par la chancellerie du roi d'",
+                "en",
+                ", ce qui peut malgré tout inciter à le tenir pour authentique ; si c'est un faux, il semblerait plutôt que ce soit un faux parisien, ce qui peut donner quelque crédibilité à la liste des noms qu'elle contient."
+            ]
+        },
+        "source": "CUP: II 141 (n° 679)."
+    }},
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {"usualBook": {"data": "CUP: II 141 (n° 679)."}},
+    "ecclesiasticalCareer": {"regularChurch": {
+        "data": {
+            "ptitle": {
+                "text_before": "S.M. couvent",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Paris"
+            },
+            "content": [
+                "Ord. Serv. S.M. (couvent de",
+                ") ?"
+            ]
+        },
+        "source": "CUP: II 141 (n° 679)."
+    }},
+    "geo-origin": {"birthplace": {"data": {
+        "place": "Italie",
+        "content": "?"
+    }}},
+    "label": {
+        "description": {"data": "Servite"},
+        "personID": {"data": 10},
+        "variant-name": {
+            "data": {"pname": {
+                "last_name": "ACCURSIUS",
+                "qualif": "",
+                "content": "ACCURSIUS"
+            }},
+            "source": "CUP: II 141 (n° 679)."
+        },
+        "usage-name": {"data": "ACCURSIUS"},
+        "statut": {"data": "Incertain"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1310
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1310
+            }}
+        }}}
+    },
+    "formation": {"university": {"data": {
+        "place": "Paris",
+        "content": "?"
+    }}},
+    "type": "Univ-Paris"
+}}}

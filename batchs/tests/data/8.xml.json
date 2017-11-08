@@ -1,0 +1,719 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": [
+            {"data": "CUP: I 42-4"},
+            {"data": "DHGE (A. TAYLOR)"},
+            {"data": "JØRGENSEN (E.), &Catalogus Codicum Latinorum Medii Ævi Bibliothecæ Regiæ Hafniensis&, Copenhague, 1926"}
+        ],
+        "individualBook": [
+            {"data": "BIRKEBÆK (F.), CHRISTENSEN (T.), SKOVGAARD-PETERSEN (I.) éd., &Absalon, fædrelandetsfader&, Roskilde, 1996;"},
+            {"data": "MUNK-OLSEN (B.), \"Trois étudiants danois à Paris au XIIe siècle\", dans LECOUTEUX (C.) éd., &Hugur. Mélanges d'histoire, de littérature et de mythologie offerts à Régis Boyer&, Paris, 1997, p. 87-96."}
+        ],
+        "source": {"data": "GERTZ (M. C.) éd., &Vitae sanctorum Danorum&, Copenhague, 1908-1912;"}
+    },
+    "ecclesiasticalCareer": {
+        "churchPositions": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Évêque",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Roskilde"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1158
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1191
+                        }}
+                    },
+                    "content": [
+                        "Évêque de",
+                        ";"
+                    ]
+                },
+                "comment": {"data": {
+                    "dates": [
+                        {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1191
+                        }},
+                        {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1162
+                        }},
+                        {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1171
+                        }}
+                    ],
+                    "ptitle": [
+                        {
+                            "text_before": "l'Église",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Scanie"
+                        },
+                        {
+                            "text_before": "l'Église",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Sjælland"
+                        }
+                    ],
+                    "place": "Lund",
+                    "content": [
+                        "il cumule ce siège avec l'archevêché de",
+                        "jusqu'en",
+                        "; à son initiative, sont publiées les constitutions ecclésiastiques de l'Église de",
+                        ",",
+                        ", et de l'Église de",
+                        ",",
+                        ";"
+                    ]
+                }}
+            },
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Archevêque",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Lund"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1178
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1201
+                        }}
+                    },
+                    "content": [
+                        "Archevêque de",
+                        "."
+                    ]
+                },
+                "comment": {"data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1187
+                    }},
+                    "content": [
+                        "il tient un synode provincial,",
+                        "."
+                    ]
+                }}
+            }
+        ],
+        "DutiesPope": {"data": {
+            "pname": {
+                "last_name": "ALEXANDRE III",
+                "qualif": "",
+                "content": "ALEXANDRE III"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1179
+            }},
+            "place": [
+                "Danemark",
+                "Suède"
+            ],
+            "content": [
+                "Légat pontifical d'",
+                "en",
+                "et en",
+                ",",
+                "."
+            ]
+        }}
+    },
+    "Varia": {"varia": {"data": {
+        "place": "Copenhague",
+        "content": [
+            "Fondateur de",
+            "."
+        ]
+    }}},
+    "geo-origin": {"birthplace": {"data": {
+        "place": [
+            {
+                "annexe": "Sjælland Fjenneslev",
+                "content": "Danemark"
+            },
+            {
+                "annexe": "Fjenneslev",
+                "content": "Sjælland"
+            },
+            "Fjenneslev"
+        ],
+        "content": [
+            "(",
+            "(",
+            "))."
+        ]
+    }}},
+    "possessionOfBooks": {"book": [
+        {"possession": {"data": {
+            "pname": {
+                "last_name": "VALÈRE MAXIME",
+                "qualif": "",
+                "content": "VALÈRE MAXIME"
+            },
+            "ptitle": {
+                "text_before": "l'abbaye",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Sorø"
+            },
+            "place": "Sjælland",
+            "content": [
+                "Possède un manuscrit de",
+                "à l'abbaye de",
+                "(",
+                "): perdu;"
+            ]
+        }}},
+        {"possession": {"data": {
+            "pname": {
+                "last_name": "JUSTINUS",
+                "qualif": "",
+                "content": "JUSTINUS"
+            },
+            "content": [
+                "Possède",
+                ", &Epitoma historiarum Philippicarum Pompei Trogi&: MS. Copenhague, KB, GKS 450 folio, f.1-129v, &ca& 1200;"
+            ]
+        }}},
+        {"donation": {"data": {
+            "pname": {
+                "last_name": "VALÈRE MAXIME",
+                "qualif": "",
+                "content": "VALÈRE MAXIME"
+            },
+            "ptitle": {
+                "text_before": "l'abbaye",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Sorø"
+            },
+            "place": "Sjælland",
+            "content": [
+                "Donne un manuscrit de",
+                "à l'abbaye de",
+                "(",
+                "): perdu;"
+            ]
+        }}},
+        {"donation": {
+            "data": {
+                "pname": {
+                    "last_name": "JUSTINUS",
+                    "qualif": "",
+                    "content": "JUSTINUS"
+                },
+                "ptitle": {
+                    "text_before": "l'abbaye",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Sorø"
+                },
+                "place": "Sjælland",
+                "content": [
+                    "Donne un manuscrit de",
+                    ", &Epitoma historiarum Philippicarum Pompei Trogi&, à l'abbaye de",
+                    "(",
+                    "): MS. Copenhague, KB, GKS 450 folio, fol.1-129v, &ca& 1200"
+                ]
+            },
+            "comment": {"data": "&Liber sancte Marie de Sora per manum domni Absalonis archiepiscopi&"},
+            "source": "JØRGENSEN, &Catalogus...&, p. 325."
+        }}
+    ]},
+    "label": {
+        "datesOfLife": {
+            "data": {"dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "circa",
+                    "content": 1128
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1201
+                }}
+            }},
+            "comment": {"data": {
+                "ptitle": {
+                    "text_before": "l'abbaye",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Sorø"
+                },
+                "content": [
+                    "il est mort le 21 mars 1201 et inhumé à l'abbaye de",
+                    "."
+                ]
+            }}
+        },
+        "description": {"data": "Archevêque de Lund"},
+        "personID": {"data": 8},
+        "variant-name": [
+            {"data": {"pname": {
+                "last_name": "LUND",
+                "first_name": "Absalon de",
+                "qualif": "",
+                "content": "Absalon de LUND"
+            }}},
+            {"data": {"pname": {
+                "last_name": "ABSALON A",
+                "qualif": "ssersen",
+                "content": "ABSALON Assersen"
+            }}}
+        ],
+        "usage-name": {"data": "ABSALON de Lund"},
+        "statut": {"data": "Incertain"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1146
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1201
+            }}
+        }}}
+    },
+    "formation": {"university": [
+        {"data": {
+            "ptitle": {
+                "text_before": "abbaye",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Sainte-Geneviève"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "type": "before",
+                    "content": 1146
+                }},
+                "toDate": {"date": {
+                    "type": "after",
+                    "content": 1156
+                }}
+            },
+            "place": {
+                "annexe": "abbaye de Sainte-Geneviève?",
+                "content": "Paris"
+            },
+            "content": [
+                "(abbaye de",
+                "?),",
+                "."
+            ]
+        }},
+        {
+            "data": "&[...] cum Parisius studendi gracia moraretur&.",
+            "source": "&Vitae sanctorum Danorum&, p. 320."
+        }
+    ]},
+    "type": "Univ-Paris",
+    "politicalCareer": {"politicalPositions": [
+        {
+            "data": {
+                "pname": {
+                    "last_name": "VALDEMAR I",
+                    "ptitle": {
+                        "text_before": "roi",
+                        "text_after": "",
+                        "see": " VALDEMAR I",
+                        "empty_word": "de",
+                        "content": "Danemark"
+                    },
+                    "qualif": "er roi de",
+                    "content": "VALDEMAR Ier, roi de"
+                },
+                "content": [
+                    "Principal conseiller de",
+                    ";"
+                ]
+            },
+            "comment": {"data": {
+                "pname": [
+                    {
+                        "last_name": "ALEXANDRE III",
+                        "qualif": "",
+                        "content": "ALEXANDRE III"
+                    },
+                    {
+                        "last_name": "VICTOR IV",
+                        "qualif": "",
+                        "content": "VICTOR IV"
+                    }
+                ],
+                "content": [
+                    "rôle dans le schisme entre",
+                    "et",
+                    ";"
+                ]
+            }}
+        },
+        {"data": "Chef des armées danoises contre les Wendes."}
+    ]},
+    "travel": [
+        {"data": {
+            "dates": {
+                "fromDate": {"date": {
+                    "type": "before",
+                    "content": 1146
+                }},
+                "toDate": {"date": {
+                    "type": "after",
+                    "content": 1156
+                }}
+            },
+            "place": [
+                "France",
+                "Paris"
+            ],
+            "content": [
+                "Séjour (motifs culturels), en",
+                ", à",
+                ",",
+                "."
+            ]
+        }},
+        {"data": {
+            "place": "pays des Wendes",
+            "content": [
+                "Expéditions militaires considérées comme des croisades, dans le",
+                ", %1158-11%"
+            ]
+        }},
+        {"data": {
+            "ptitle": {
+                "text_before": "concile",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Dôle"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1162
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1163
+                }}
+            },
+            "place": "Empire",
+            "content": [
+                "Séjour (motifs ecclésiastiques) dans l'",
+                ", au concile de",
+                ","
+            ]
+        }}
+    ],
+    "relationelInsertion": {
+        "familyNetwork": [
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "ASSER S",
+                        "qualif": "kjalmsen Rig",
+                        "content": "ASSER Skjalmsen Rig"
+                    },
+                    "content": [
+                        "Son père est",
+                        ";"
+                    ]
+                },
+                "type": "père"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "INGER E",
+                        "qualif": "riksdatter",
+                        "content": "INGER Eriksdatter"
+                    },
+                    "content": [
+                        "Sa mère est",
+                        ";"
+                    ]
+                },
+                "type": "mère"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "ERIK",
+                        "ptitle": {
+                            "text_before": "jarl",
+                            "text_after": "",
+                            "see": " ERIK=",
+                            "empty_word": "de",
+                            "content": "Falster"
+                        },
+                        "qualif": "de=Västergötland  jarl de",
+                        "content": "ERIK de Västergötland,  jarl de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1145
+                    }},
+                    "content": [
+                        "Son grand-père maternel est",
+                        ", \u2020",
+                        ";"
+                    ]
+                },
+                "type": "père grand-père"
+            },
+            {
+                "data": {
+                    "pname": [
+                        {
+                            "last_name": "CECILIA K",
+                            "qualif": "nudsdatter",
+                            "content": "CECILIA Knudsdatter"
+                        },
+                        {
+                            "last_name": "KNUD",
+                            "first_name": "saint",
+                            "qualif": "",
+                            "content": "saint KNUD"
+                        }
+                    ],
+                    "content": [
+                        "Sa grand-mère maternelle est",
+                        ", fille de",
+                        ";"
+                    ]
+                },
+                "type": "mère fille"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "ESBERN S",
+                        "qualif": "nare",
+                        "content": "ESBERN Snare"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1204
+                    }},
+                    "content": [
+                        "Son frère est",
+                        ", \u2020",
+                        ";"
+                    ]
+                },
+                "type": "frère"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "SUNE S",
+                        "qualif": "kjalmsen",
+                        "content": "SUNE Skjalmsen"
+                    },
+                    "content": [
+                        "Son oncle paternel est",
+                        ";"
+                    ]
+                },
+                "type": "oncle"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "PETRUS S",
+                        "ptitle": {
+                            "text_before": "évêque",
+                            "text_after": "",
+                            "see": " PETRUS S",
+                            "empty_word": "de",
+                            "content": "Roskilde"
+                        },
+                        "qualif": "unonis évêque de",
+                        "content": "PETRUS Sunonis, évêque de"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1192
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1214
+                        }}
+                    },
+                    "content": [
+                        "Son cousin germain est",
+                        ",",
+                        ";"
+                    ]
+                },
+                "type": "cousin"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "ANDREAS S",
+                        "ptitle": {
+                            "text_before": "archevêque",
+                            "text_after": "",
+                            "see": " ANDREAS S",
+                            "empty_word": "de",
+                            "content": "Lund"
+                        },
+                        "qualif": "unonis archevêque de",
+                        "content": "ANDREAS Sunonis, archevêque de"
+                    },
+                    "content": [
+                        "Son cousin germain est",
+                        ", %1201-1228;"
+                    ]
+                },
+                "type": "cousin"
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "SUNE E",
+                        "qualif": "bbesen",
+                        "content": "SUNE Ebbesen"
+                    },
+                    "content": [
+                        "Son &cognatus& est",
+                        "."
+                    ]
+                },
+                "source": "DD: 1re série, II, n° 128, 130."
+            }
+        ],
+        "socialClassOrigin": {
+            "data": "Haute noblesse.",
+            "comment": {"data": {
+                "ptitle": {
+                    "text_before": "royaume",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Danemark"
+                },
+                "content": [
+                    "il appartenait à une des familles les plus puissantes du royaume de",
+                    ", les HVIDE."
+                ]
+            }}
+        },
+        "friends": [
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "GUILLAUME",
+                        "qualif": "",
+                        "content": "GUILLAUME"
+                    },
+                    "ptitle": [
+                        {
+                            "text_before": "régulier",
+                            "text_after": "abbaye",
+                            "empty_word": "de",
+                            "content": "Sainte-Geneviève"
+                        },
+                        {
+                            "text_before": "abbé",
+                            "text_after": "monastère",
+                            "empty_word": "de",
+                            "content": "Saint-Thomas-du-Paraclet"
+                        }
+                    ],
+                    "place": [
+                        "Paris",
+                        {
+                            "annexe": "Sjælland",
+                            "content": "Eskilsø"
+                        },
+                        "Sjælland"
+                    ],
+                    "content": [
+                        "Ami de",
+                        ", chanoine régulier de",
+                        "(abbaye), à",
+                        ", puis abbé de",
+                        "(monastère), à",
+                        "(",
+                        ");"
+                    ]
+                },
+                "source": "&Vitae sanctorum Danorum&, p. 320. &Epistolae abbatis Willelmi de Paraclito&, DS: 1re série, III, 2;"
+            },
+            {"data": {
+                "pname": {
+                    "last_name": "ÉTIENNE DE TOURNAI",
+                    "qualif": "",
+                    "content": "ÉTIENNE DE TOURNAI"
+                },
+                "ptitle": {
+                    "text_before": "abbé",
+                    "text_after": "abbaye",
+                    "empty_word": "de",
+                    "content": "Sainte-Geneviève"
+                },
+                "content": [
+                    "Ami de",
+                    ", abbé de",
+                    "(abbaye);"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "VALDEMAR I",
+                    "qualif": "er",
+                    "content": "VALDEMAR Ier"
+                },
+                "ptitle": {
+                    "text_before": "roi",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Danemark"
+                },
+                "content": [
+                    "Ami du",
+                    ", roi de",
+                    ", avec lequel il a été élevé."
+                ]
+            }}
+        ]
+    }
+}}}
