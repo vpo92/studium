@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import { Provider } from 'react-redux';
 import { ConnectedRouter as Router} from 'react-router-redux';
-import App from '../components/App';
-import configureStore from '../store/configureStore';
+import App from './components/App';
+import style from './main.css';
+import configureStore from './store/configureStore';
 import createHistory from 'history/createBrowserHistory';
 
 //Needed for React Developer Tools
@@ -19,8 +20,8 @@ injectTapEventPlugin();
 const store = configureStore({
   search: {
     keyWord: '',
-    result: []
-  }
+    result: [],
+  },
 });
 const history = createHistory();
 
