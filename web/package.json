@@ -46,7 +46,7 @@
     "classnames": "^2.2.5",
     "fbjs": "^0.8.5",
     "history": "4.6.3",
-    "material-ui": "next",
+    "material-ui": "^0.19.3",
     "muicss": "^0.9.26",
     "react": "^15.4.0",
     "react-addons-create-fragment": "^15.3.2",
