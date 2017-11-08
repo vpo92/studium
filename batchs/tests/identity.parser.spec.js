@@ -1,17 +1,12 @@
 'use strict';
 
-var should = require('chai').should;
-var expect = require('chai').expect;
-var assert = require('chai').assert;
-var IndentityParser = require('../src/identity.parser');
+const should = require('chai').should;
+const expect = require('chai').expect;
+const assert = require('chai').assert;
+const IndentityParser = require('../src/identity.parser');
 
 describe('indentity.parser.findProperty', function(){
 
-  before(function (done) {
-      //load data from file
-      console.log("Init tests");
-      done();
-  });
   describe("indentity.parser.findProperty",function(){
       it("should return null if no value att all", function(done){
         expect(IndentityParser.findProperty(null,null)).to.be.a('null');
@@ -36,7 +31,7 @@ describe('indentity.parser.findProperty', function(){
         expect(IndentityParser.findProperty({'prop':'value'},"prop")).to.equals('value');
         expect(IndentityParser.findProperty({'level1':{'level2':'value'}},"level1.level2")).to.equals('value');
         expect(IndentityParser.findProperty({'level1':{'level-2':'value'}},"level1.level-2")).to.equals('value');
-        var j = {'level1':{'level2':{'level3':'value'}}};
+        const j = {'level1':{'level2':{'level3':'value'}}};
         expect(IndentityParser.findProperty(j,"level1.level2.level3")).to.equals('value');
         expect(IndentityParser.findProperty(j,"level1.level2")).to.eql({'level3':'value'});
         done();
@@ -53,7 +48,7 @@ describe('indentity.parser.findProperty', function(){
       it("should parse data correctly", function(done){
 
 
-        var ex1 = {"dates": {
+        const ex1 = {"dates": {
                 "fromDate": {"date": {
                     "certitude": true,
                     "type": "circa",
@@ -67,14 +62,14 @@ describe('indentity.parser.findProperty', function(){
             }};
         expect(IndentityParser.parseDates(ex1)).to.eql({'from':'1128','to':'1201'});
 
-        var ex2 = "%  -1494%";
+        const ex2 = "%  -1494%";
         expect(IndentityParser.parseDates(ex2)).to.eql({'from':'%','to':'1494%'});
 
-        var ex3 = "%     -    %";
+        const ex3 = "%     -    %";
         expect(IndentityParser.parseDates(ex3)).to.eql({'from':'%','to':'%'});
 
 
-        var ex4 = {"dates": {
+        const ex4 = {"dates": {
             "fromDate": {"date": {"type": null}},
             "toDate": {"date": {
                 "certitude": true,
@@ -96,10 +91,10 @@ describe('indentity.parser.findProperty', function(){
           done();
         });
         it("should parse data correctly", function(done){
-          var ex1 = "CÉSAR";
+          const ex1 = "CÉSAR";
           expect(IndentityParser.parseName(ex1)).to.eql({"value":"CÉSAR"});
 
-          var ex2 ={"pname": {
+          const ex2 ={"pname": {
                   "last_name": "CAESAR",
                   "qualif": "",
                   "content": "CAESAR"
@@ -119,7 +114,7 @@ describe('indentity.parser.findProperty', function(){
           done();
         });
         it("should parse data correctly", function(done){
-          var ex1 = {
+          const ex1 = {
               "data": {"pname": {
                   "last_name": "FIDELIS",
                   "first_name": "A.",
@@ -129,7 +124,7 @@ describe('indentity.parser.findProperty', function(){
               "source": "CUP: IV n°2028."
           };
           expect(IndentityParser.parseNameVariant(ex1)).to.eql([{"value":"A. FIDELIS"}]);
-          var ex2 = [
+          const ex2 = [
               {"data": {"pname": {
                   "last_name": "CAESAR",
                   "qualif": "",
@@ -154,7 +149,7 @@ describe('indentity.parser.findProperty', function(){
       it("should return a value if value exists", function(done){
         expect(IndentityParser.buildIdentity({})).to.eql({gender:{"value":"male"}});
 
-        var json = {"prosop": {"person": {
+        const json = {"prosop": {"person": {
             "label": {
                 "description": {"data": "Notaire"},
                 "personID": {"data": 1},
@@ -225,7 +220,7 @@ describe('indentity.parser.findProperty', function(){
               }
             }}}};
 
-        var expected = {
+        const expected = {
             name:{"value": "A. Fidelis"},
             description:{"value":"Notaire"},
             gender:{"value":"female"},
