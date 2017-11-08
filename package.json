@@ -39,6 +39,7 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
+    "testResultsProcessor": "jest-sonar-reporter",
+    "collectCoverage":true
   }
 }
