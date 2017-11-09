@@ -131,6 +131,8 @@ class IndentityParser{
           case 'Incertain':
             status = 'unconfirmed';
             break;
+          default:
+            status = 'other';
         }
         identity.status = {'value':status};
       }

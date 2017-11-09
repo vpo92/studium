@@ -1,0 +1,18 @@
+{
+  "name": "studium-batch",
+  "version": "1.0.0",
+  "description": "Studium batch application",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server -d --hot --inline --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vpo92/studium.git"
+  },
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "mongodb": "^2.2.33"
+  }
+}
