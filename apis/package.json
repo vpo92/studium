@@ -1,0 +1,20 @@
+{
+  "name": "studium-api",
+  "version": "0.0.1",
+  "description": "API for Studium Prosopography",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha "
+  },
+  "author": "vpo92",
+  "dependencies": {
+    "body-parser": "^1.5.2",
+    "composable-middleware": "^0.3.0",
+    "cors": "~2.7.1",
+    "errorhandler": "^1.1.1",
+    "expect": "^21.2.1",
+    "express": "^4.16.2",
+    "method-override": "^2.1.2",
+    "mongodb": "^2.2.33"
+  }
+}
