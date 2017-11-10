@@ -5,7 +5,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const cors = require('cors');
 
-const db = require('./db')
+const db = require('./src/common/db')
 
 
 //Conf
