@@ -36,7 +36,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "mongodb": "^2.2.33"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",
