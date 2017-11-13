@@ -13,7 +13,7 @@ describe('prosopography.controller', function(){
           json : (data) => {
             console.log(data);
             expect(data.error).to.eql('error retriving connexion to database');
-          }
+          },
         }
         controller.findAll(null,res);
         expect(res.statusCode).to.eql(500);

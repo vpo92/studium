@@ -19,7 +19,7 @@ const processFile = (db,fileName) => {
     let item = convertStringToJSON(readXMLFile(fileName));
     const p = {
       "reference":parser.buildReference(item),
-      "identity":parser.buildIdentity(item)
+      "identity":parser.buildIdentity(item),
     }
     MongoImporter.importProsopography(db,p)
       .then(function(){

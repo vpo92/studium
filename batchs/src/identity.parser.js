@@ -23,12 +23,12 @@ class IndentityParser{
       if(json.dates){
         res = {
           'from': json.dates.fromDate.date.content?(json.dates.fromDate.date.content).toString():"%",
-          'to': json.dates.toDate.date.content?(json.dates.toDate.date.content).toString():"%"
+          'to': json.dates.toDate.date.content?(json.dates.toDate.date.content).toString():"%",
         };
       }else if(typeof json === "string"){
         res = {
           'from': json.split('-')[0].trim(),
-          'to': json.split('-')[1].trim()
+          'to': json.split('-')[1].trim(),
         };
       }
     }

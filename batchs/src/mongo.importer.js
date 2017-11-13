@@ -15,33 +15,5 @@ module.exports = {
         reject("missing params");
       }
     });
-  }
+  },
 }
-
-
-
-/**
-
-var connectMongo = () =>{
-  return new Promise(function (resolve,reject){
-    MongoClient.connect("mongodb://localhost/studium", function(error, db) {
-        if (error){
-          reject(error);
-        }
-        resolve(db);
-    });
-  });
-}
-
-var saveProsopographyToMongo = (db,item) =>{
-  return new Promise(function (resolve,reject){
-    db.collection("prosopography").insert(item, null, function (error, results) {
-        if (error){
-         reject(error);
-       }else{
-         resolve(results);
-       }
-    });
-  });
-}
-*/

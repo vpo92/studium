@@ -12,7 +12,7 @@ describe('controller.util', function(){
       let res = {
         json : (data) => {
           expect(res.statusCode).to.eql(500);
-        }
+        },
       }
       util.handleError(res)(null);
       done();
@@ -23,7 +23,7 @@ describe('controller.util', function(){
         json : (data) => {
           expect(res.statusCode).to.eql(500);
           expect(data).to.eql({error:'coucou'});
-        }
+        },
       }
       util.handleError(res)('coucou');
       done();
@@ -38,7 +38,7 @@ describe('controller.util', function(){
         json : (data) => {
           expect(res.statusCode).to.eql(200);
           expect(data).to.eql(null);
-        }
+        },
       }
       util.handleData(res)(null);
       done();
@@ -49,7 +49,7 @@ describe('controller.util', function(){
         json : (data) => {
           expect(res.statusCode).to.eql(200);
           expect(data).to.eql('coucou');
-        }
+        },
       }
       util.handleData(res)('coucou');
       done();
