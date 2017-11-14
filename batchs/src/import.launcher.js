@@ -3,6 +3,9 @@ const parser = require('./identity.parser');
 const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
 
+const enableMongo = false;
+let errors = [];
+
 const readXMLFile = (fileName) => {
   return fs.readFileSync(fileName,'utf-8');
 }
@@ -17,25 +20,30 @@ const handleErrors = (error) => {
 
 const processFile = (db,fileName) => {
     let item = convertStringToJSON(readXMLFile(fileName));
-    const p = {
-      "reference":parser.buildReference(item),
-      "identity":parser.buildIdentity(item),
-    }
-    MongoImporter.importProsopography(db,p)
-      .then(function(){
-        console.log("Done importing");
-      })
-      .catch(function(err){
-        console.error(err);
-      })
-    //console.log(p);
-    //return p;
+    try{
+      const p = {
+        "reference":parser.buildReference(item),
+        "identity":parser.buildIdentity(item),
+      }
+      if(enableMongo){
+        MongoImporter.importProsopography(db,p)
+          .then(function(){
+            console.log("Done importing");
+          })
+          .catch(function(err){
+            console.error(err);
+          })
+      }
+  }catch(e){
+    console.error(e);
+    errors.push(fileName,e);
+  }
 };
 
 
 //const path = "/Users/vincent/Desktop/JSON";
-const path = "/Users/vincent/projects/studium/batchs/tests/data/";
-//const path = "./tests/data";
+//const path = "/Users/vincent/projects/studium/batchs/tests/data/";
+const path = "./batchs/tests/data";
 
 
 MongoClient.connect("mongodb://localhost/studium")
@@ -45,6 +53,8 @@ MongoClient.connect("mongodb://localhost/studium")
         console.log(file);
         processFile(db,path+"/"+file);
       });
+      console.log("Nb errors:"+errors.length);
+      console.log(errors);
       db.close();
     });
   })

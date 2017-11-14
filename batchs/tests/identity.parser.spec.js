@@ -45,6 +45,7 @@ describe('indentity.parser.findProperty', function(){
         expect(IndentityParser.parseDates("")).to.be.a('null');
         done();
       });
+
       it("should parse data correctly", function(done){
 
 
@@ -78,6 +79,32 @@ describe('indentity.parser.findProperty', function(){
             }}
         }};
         expect(IndentityParser.parseDates(ex4)).to.eql({'from':'%','to':'1312'});
+
+        const ex5 = {"dates": {"date": {
+            "certitude": true,
+            "type": "single",
+            "content": 1302
+        }}};
+
+        expect(IndentityParser.parseDates(ex5)).to.eql({'from':'1302','to':'1302'});
+
+        const ex6 = {"dates": {"toDate": {"date": {
+            "certitude": false,
+            "type": "single",
+            "content": 1424
+        }}}}
+
+        expect(IndentityParser.parseDates(ex6)).to.eql({'from':'%','to':'1424'});
+
+        const ex7 = {"dates": {"fromDate": {"date": {
+            "certitude": false,
+            "type": "single",
+            "content": 1424
+        }}}}
+
+        expect(IndentityParser.parseDates(ex7)).to.eql({'from':'1424','to':'%'});
+
+        expect(IndentityParser.parseDates("?")).to.be.a('null');
 
         done();
       });
