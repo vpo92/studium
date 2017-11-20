@@ -1,4 +1,5 @@
 *.DS_STORE*
+node_modules
 web/node_modules
 *web/docker*
 batchs/node_modules

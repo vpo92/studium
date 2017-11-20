@@ -41,6 +41,6 @@
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",
-    "collectCoverage":true
+    "collectCoverage": true
   }
 }

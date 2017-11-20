@@ -33,5 +33,6 @@ export const searchByKeyWord = async (keyWord: string) => {
 
 // Call API here
 async function fetchSearchByKeyword(keyword: string) {
-  return results;
+  const result = await fetch('http://localhost:3000/prosopography');
+  return result.json();
 }

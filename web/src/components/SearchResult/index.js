@@ -26,14 +26,13 @@ function slugify(text)
 
 const ResultRow = (row) => {
   return (
-    <TableRow key={row.id}>
-      <TableRowColumn key={row.id}>{row.id}</TableRowColumn>
-      <TableRowColumn key={row.id}>{row.name}</TableRowColumn>
-      <TableRowColumn key={row.id}>{row.mediane}</TableRowColumn>
-      <TableRowColumn key={row.id}>{row.status}</TableRowColumn>
-      <TableRowColumn key={row.id}>{row.origine}</TableRowColumn>
-      <TableRowColumn key={row.id}>
-        <Link to={"/fiches/"+ slugify(row.name+" "+row.id).toLowerCase()}>Voir</Link>
+    <TableRow key={row.reference}>
+      <TableRowColumn key={row.reference}>{row.reference}</TableRowColumn>
+      <TableRowColumn key={row.reference}>{row.identity.name.value}</TableRowColumn>
+      <TableRowColumn key={row.reference}>{row.identity.status.value}</TableRowColumn>
+      <TableRowColumn key={row.reference}>{row.identity.description.value}</TableRowColumn>
+      <TableRowColumn key={row.reference}>
+        <Link to={"/fiches/"+ slugify(row.identity.name.value+" "+row.reference).toLowerCase()}>Voir</Link>
       </TableRowColumn>
     </TableRow>
   );
