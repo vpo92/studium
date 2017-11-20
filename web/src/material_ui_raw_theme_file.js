@@ -1,6 +1,5 @@
-import { fade } from 'material-ui/utils/colorManipulator'
-import * as Colors from 'material-ui/styles/colors';
-import { spacing, getMuiTheme } from 'material-ui/styles';
+import * as Colors from 'material-ui/colors';
+import { spacing, createMuiTheme } from 'material-ui/styles';
 
 const rawBaseTheme = {
   ...spacing,
@@ -16,9 +15,8 @@ const rawBaseTheme = {
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
     borderColor: Colors.grey300,
-    disabledColor: fade(Colors.darkBlack, 0.3),
   },
 };
 
 //Theme must be wrapped in funciton getMuiTheme
-export default getMuiTheme(rawBaseTheme);
+export default createMuiTheme(rawBaseTheme);

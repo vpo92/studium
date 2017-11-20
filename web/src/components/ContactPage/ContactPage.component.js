@@ -1,11 +1,15 @@
-import React, { PropTypes, Component } from 'react';
+// @flow
+
+import React, { Component } from 'react';
 import Divider from 'material-ui/Divider';
+import injectSheet from 'react-jss';
 
-class ContactPage extends Component {
+import style from './ContactPage.style';
 
+class ContactPage extends Component<{classes: any}> {
   render() {
     return (
-    <div className="app-text-big">
+    <div className={this.props.classes.container}>
       <h1>Équipe</h1>
       <Divider />
       <p>Directeurs du projet :	Jean-Philippe GENET et Thierry KOUAME.</p>
@@ -21,4 +25,4 @@ class ContactPage extends Component {
   }
 }
 
-export default ContactPage;
+export default injectSheet(style)(ContactPage);

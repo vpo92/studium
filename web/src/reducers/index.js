@@ -2,10 +2,10 @@
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import search from './Search/search.reducer';
+import studium from './Studium/studium.reducer';
 
 const rootReducer = combineReducers({
-  search,
+  studium,
   router: routerReducer,
 });
 

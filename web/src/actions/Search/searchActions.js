@@ -1,7 +1,6 @@
 // @flow
 
 import {
-  type Profile,
   type Search,
   type SearchAction,
 } from '../../actions/Search/searchTypes';

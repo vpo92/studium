@@ -1,33 +1,16 @@
 // @flow
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import Toggle from 'material-ui/Toggle';
+import Button from 'material-ui/Button';
+import Switch from 'material-ui/Switch';
 
-import SearchResult from '../../components/SearchResult';
+import SearchResult from '../../components/SearchResult/SearchResult.component';
 import AdvancedSearch from './AdvancedSearch.component';
-import { searchByKeyWord } from '../../services/searchService';
-import { type Search } from '../../actions/Search/searchTypes';
+import injectSheet from 'react-jss';
 
-type State = {
-  status: number,
-  grade: number,
-  discipline: number,
-  advancesearch: boolean,
-  activateCompleteSearchFeature: boolean,
-  search: {
-    keyWord: string,
-  }
-}
-
-type Props = {
-  handleKeyWordSearch: Function,
-  search: Search
-}
+import { type State, type Props } from './SearchPage.types';
+import styles from './SearchPage.style';
 
 class SearchPage extends Component<Props, State> {
   constructor(props: Props) {
@@ -44,7 +27,7 @@ class SearchPage extends Component<Props, State> {
     };
   }
 
-  handleSearchField = (event: Event) => {
+  handleSearchField = (event: SyntheticInputEvent<HTMLElement>) => {
     const {target} = event;
     if (target instanceof HTMLInputElement) {
       this.setState({search: {...this.state.search, keyWord: target.value}});
@@ -55,27 +38,29 @@ class SearchPage extends Component<Props, State> {
     this.props.handleKeyWordSearch(this.state.search.keyWord);
   }
 
-  handleToogleChange = (event: Event, index: number, value: string) => {
+  handleToogleChange = () => {
     this.setState({ advancesearch: !this.state.advancesearch });
   };
 
   render() {
     return (
-      <div>
+      <div className={this.props.classes.container}>
         <h1>Rechercher une fiche</h1>
         <TextField
-          floatingLabelText="Saisissez un mot clé"
+          helperText="Saisissez un mot clé"
           className="app-search-field"
           value={this.state.search.keyWord}
           onChange={this.handleSearchField}
         />
-        <RaisedButton label="Rechercher" primary={true} onClick={this.handleSearch} />
+        <Button raised color="primary" onClick={this.handleSearch} >
+          Rechercher
+        </Button>
         {this.state.activateCompleteSearchFeature ? (
           <div>
             <div className="app-search-toggle">
-              <Toggle
-                label="Recherche avancée"
-                value={this.state.advancesearch}
+              <Switch
+                aria-label="Recherche avancée"
+                checked={this.state.advancesearch}
                 onClick={this.handleToogleChange}
               />
             </div>
@@ -89,4 +74,4 @@ class SearchPage extends Component<Props, State> {
   }
 }
 
-export default SearchPage;
+export default injectSheet(styles)(SearchPage);

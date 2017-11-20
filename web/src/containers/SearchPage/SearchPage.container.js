@@ -7,7 +7,7 @@ import { searchByKeyWord } from '../../services/searchService';
 
 const mapStateToProps = (state) => {
     return {
-      search: state.search,
+      search: state.studium.search,
     };
   }
 

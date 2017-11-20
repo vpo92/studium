@@ -5,8 +5,6 @@ import {
   type Search,
 } from '../../actions/Search/searchTypes';
 
-type SearchActions = SearchAction;
-
 const searchReducer = (
   state: { search: Search } = {
     search: {
@@ -18,7 +16,21 @@ const searchReducer = (
 ) => {
   switch (action.type) {
     case 'SEARCH':
-      return action.search;
+      return {
+        ...state,
+        search: action.search,
+      };
+    case 'TOGGLE_SIDE_MENU':
+      return {
+        ...state,
+        showSideMenu: action.showSideMenu,
+      };
+    case 'CHANGE_PAGE':
+      return {
+        ...state,
+        showSideMenu: false,
+        currentPage: action.newPage,
+      };
     default:
       return state;
   }

@@ -3,6 +3,7 @@
 [include]
 
 [libs]
+web/node_modules/jss/flow-typed
 
 [lints]
 

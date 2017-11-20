@@ -21,12 +21,6 @@ body {
   height: 70px;
   margin: 10px;
 }
-.app-text-center{
-  text-align: center;
-}
-.app-toolbar{
-  background-color: none;
-}
 .app-search-field{
   margin-right: 3em;
 }
@@ -49,14 +43,6 @@ body {
 .app-detail-topic-label{
     font-weight: bold;
     color:rgb(63, 81, 181);
-}
-/* different techniques for iPad screening */
-@media only screen and (max-width: 1024px){
-  /* For portrait layouts only */
-  .app-drawer{
-    visibility: collapse;
-    display: none;
-  }
 }
 
 @media only screen and (min-width: 1024px){

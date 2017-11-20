@@ -1,28 +1,10 @@
 // @flow
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-
-const status = [
-  'Maître',
-  'Gradué',
-  'Étudiant',
-  'Suppôt',
-  'Extérieur',
-  'Incertain',
-];
-const grade = [
-  'Magister',
-  'Docteur',
-  'Maître',
-  'Licencié',
-  'Bachelier',
-  'Étudiant',
-];
+import Select from 'material-ui/Select';
+import { MenuItem } from 'material-ui/Menu';
 
 type State = {
   status: number,
@@ -60,33 +42,33 @@ class AdvanceSearch extends Component<{}, State> {
           Médiane d'activité Ou Début et Fin d'activité
           <Divider />
           <h4>Cursus</h4>
-          <SelectField
-            floatingLabelText="Status"
+          <Select
+            helperText="Status"
             value={this.state.status}
             onChange={this.handleStatusChange}
           >
             <MenuItem value={0} primaryText="Never" />
             <MenuItem value={1} primaryText="Every Night" />
             <MenuItem value={2} primaryText="Weeknights" />
-          </SelectField>
-          <SelectField
-            floatingLabelText="Grade obtenu"
+          </Select>
+          <Select
+            helperText="Grade obtenu"
             value={this.state.grade}
             onChange={this.handleGradeChange}
           >
             <MenuItem value={0} primaryText="Never" />
             <MenuItem value={1} primaryText="Every Night" />
             <MenuItem value={2} primaryText="Weeknights" />
-          </SelectField>
-          <SelectField
-            floatingLabelText="Discipline"
+          </Select>
+          <Select
+            helperText="Discipline"
             value={this.state.discipline}
             onChange={this.handleDisciplineChange}
           >
             <MenuItem value={0} primaryText="Never" />
             <MenuItem value={1} primaryText="Every Night" />
             <MenuItem value={2} primaryText="Weeknights" />
-          </SelectField>
+          </Select>
           <Divider />
           Biographie :
           <Divider />

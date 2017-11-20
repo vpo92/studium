@@ -6,18 +6,17 @@ type Status = 'Maître' |
   'Suppôt' |
   'Extérieur' |
   'Incertain';
-type Grade = 'Magister' |
-  'Docteur' |
-  'Maître' |
-  'Licencié' |
-  'Bachelier' |
-  'Étudiant';
 export type Profile = {
-  id: string,
-  name: string,
-  mediane: string,
-  status: Status,
-  origine: string
+  _id: string,
+  reference: string,
+  identity: {
+    id: string,
+    name: string,
+    description: string,
+    mediane: string,
+    status: Status,
+    origine: string,
+  },
 };
 export type Search = { keyWord: string, result: Profile[] };
 
