@@ -16,26 +16,40 @@ import { Switch, Route, Link } from 'react-router-dom';
 //FIXME : use a lib instead
 function slugify(text)
 {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+  if(text){
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-')           // Replace spaces with -
+      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+      .replace(/^-+/, '')             // Trim - from start of text
+      .replace(/-+$/, '');            // Trim - from end of text
+  }else{
+    return "";
+  }
+}
+
+const GetValue = (data) => {
+  if(data){
+    return data.value;
+  }else{
+    return "";
+  }
 }
 
 const ResultRow = (row) => {
-  return (
-    <TableRow key={row.reference}>
-      <TableRowColumn key={row.reference}>{row.reference}</TableRowColumn>
-      <TableRowColumn key={row.reference}>{row.identity.name.value}</TableRowColumn>
-      <TableRowColumn key={row.reference}>{row.identity.status.value}</TableRowColumn>
-      <TableRowColumn key={row.reference}>{row.identity.description.value}</TableRowColumn>
-      <TableRowColumn key={row.reference}>
-        <Link to={"/fiches/"+ slugify(row.identity.name.value+" "+row.reference).toLowerCase()}>Voir</Link>
+    return row.identity?(
+    <TableRow key={row._id}>
+      <TableRowColumn key={row._id}>{row.reference}</TableRowColumn>
+      <TableRowColumn key={row._id}>{GetValue(row.identity.name)}</TableRowColumn>
+      <TableRowColumn key={row._id}>{GetValue(row.identity.status)}</TableRowColumn>
+      <TableRowColumn key={row._id}>{GetValue(row.identity.description)}</TableRowColumn>
+      <TableRowColumn >
+        <Link to={"/fiches/"+ slugify(GetValue(row.identity.name)+"-"+row.reference).toLowerCase()}>Voir</Link>
       </TableRowColumn>
     </TableRow>
-  );
+  ):
+  (<TableRow>Error</TableRow>)
+
 };
 
 class SearchResult extends Component {

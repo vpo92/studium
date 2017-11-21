@@ -8,7 +8,7 @@ exports.findAll = function(req, res) {
   console.log("findAll");
   let lDB = db.get();
   if(lDB){
-    db.get().collection("prosopography").find().toArray()
+    db.get().collection("prosopography").find().limit(20).toArray()
     .then(util.handleData(res))
     .catch(util.handleError(res));
   }else{
@@ -22,7 +22,7 @@ exports.textSearch = function(req, res) {
   console.log("textSearch");
   let lDB = db.get();
   if(lDB){
-    lDB.collection("prosopography").find({"$text":{"$search":req.params.searchText}}).toArray()
+    lDB.collection("prosopography").find({"$text":{"$search":req.params.searchText}}).limit(20).toArray()
     .then(util.handleData(res))
     .catch(util.handleError(res));
   }else{
