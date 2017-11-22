@@ -55,7 +55,12 @@ MongoClient.connect("mongodb://localhost/studium")
       });
       console.log("Nb errors:"+errors.length);
       console.log(errors);
-      db.close();
+      if(enableMongo){
+        MongoImporter.createIndex(db)
+          .then(db.close());
+      }else {
+        db.close();
+      }
     });
   })
   .catch(function(err){
