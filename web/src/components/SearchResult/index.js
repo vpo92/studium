@@ -29,17 +29,17 @@ function slugify(text)
 }
 
 const GetValue = (data) => {
-  if(data){
-    return data.value;
+  if(data!=null && data.value!=null &&  (typeof data.value === 'string')){
+    return <div>{data.value.toString()}</div>
   }else{
-    return "";
+    return <div></div>
   }
 }
 
 const ResultRow = (row) => {
     return row.identity?(
     <TableRow key={row._id}>
-      <TableRowColumn key={row._id}>{row.reference}</TableRowColumn>
+      <TableRowColumn key={row._id}><div>{row.reference}</div></TableRowColumn>
       <TableRowColumn key={row._id}>{GetValue(row.identity.name)}</TableRowColumn>
       <TableRowColumn key={row._id}>{GetValue(row.identity.status)}</TableRowColumn>
       <TableRowColumn key={row._id}>{GetValue(row.identity.description)}</TableRowColumn>
@@ -48,7 +48,13 @@ const ResultRow = (row) => {
       </TableRowColumn>
     </TableRow>
   ):
-  (<TableRow>Error</TableRow>)
+  (<TableRow key={row._id}>
+    <TableRowColumn>Error</TableRowColumn>
+    <TableRowColumn>Error</TableRowColumn>
+    <TableRowColumn>Error</TableRowColumn>
+    <TableRowColumn>Error</TableRowColumn>
+    <TableRowColumn>Error</TableRowColumn>
+  </TableRow>)
 
 };
 
