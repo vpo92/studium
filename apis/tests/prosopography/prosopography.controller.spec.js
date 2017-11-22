@@ -1,9 +1,9 @@
 'use strict';
 
-const should = require('chai').should;
-const expect = require('chai').expect;
-const assert = require('chai').assert;
-const controller = require('../../src/prosopography/prosopography.controller');
+let should = require('chai').should;
+let expect = require('chai').expect;
+let assert = require('chai').assert;
+let controller = require('../../src/prosopography/prosopography.controller');
 
 describe('prosopography.controller', function(){
 
@@ -19,10 +19,9 @@ describe('prosopography.controller', function(){
         expect(res.statusCode).to.eql(500);
         done();
       });
-      /**
       it("should work with valid db", function(done){
-          fail('not yes implemented');
-          done()
-      });*/
+        fail("not yet implemented");
+        done();
+      });
   });
 });
