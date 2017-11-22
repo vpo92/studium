@@ -1,0 +1,124 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {"usualBook": {"data": "GOROCHOV: p.716."}},
+    "label": {
+        "description": {"data": {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "place": "Paris",
+            "content": [
+                "Boursier artien au collège de",
+                "à",
+                "."
+            ]
+        }},
+        "personID": {"data": 10424},
+        "variant-name": [
+            {"data": {"pname": {
+                "last_name": "SAINT YON",
+                "first_name": "Petrus de",
+                "qualif": "",
+                "content": "Petrus de SAINT YON"
+            }}},
+            {
+                "data": {"pname": {
+                    "last_name": "SAINT YON",
+                    "first_name": "Pierre de",
+                    "qualif": "",
+                    "content": "Pierre de SAINT YON"
+                }},
+                "source": "GOROCHOV: p.716."
+            }
+        ],
+        "usage-name": {"data": "PETRUS de Saint Yon"},
+        "statut": {"data": "Étudiant"},
+        "datesOfActivity": {
+            "data": {"dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }}
+            }},
+            "source": "GOROCHOV: p.716."
+        }
+    },
+    "formation": {
+        "university": {"data": {
+            "ptitle": {
+                "text_before": "Collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }}
+            },
+            "place": {
+                "annexe": "Collège de Navarre",
+                "content": "Paris"
+            },
+            "content": [
+                "(Collège de",
+                ")",
+                "."
+            ]
+        }},
+        "individualInformation": {
+            "data": {
+                "ptitle": {
+                    "text_before": "collège",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Navarre"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }},
+                "place": "Paris",
+                "content": [
+                    "Boursier artien au collège de",
+                    "à",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.716."
+        },
+        "grade": {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1315
+                }},
+                "content": [
+                    " Étudiant ès arts (Paris)",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.716."
+        }
+    },
+    "type": "Univ-Paris"
+}}}

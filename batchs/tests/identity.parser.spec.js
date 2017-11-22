@@ -166,6 +166,53 @@ describe('indentity.parser.findProperty', function(){
 
 
 
+  describe("indentity.parser.parseDescription",function(){
+      it("should return null if no value att all", function(done){
+        expect(IndentityParser.parseDescription(null)).to.be.a('null');
+        expect(IndentityParser.parseDescription("")).to.be.a('null');
+        done();
+      });
+
+      it("should return a value if value exists", function(done){
+
+        const ex1 = {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "content": [
+                "Boursier artien au collège de",
+                "."
+            ]
+        };
+
+        expect(IndentityParser.parseDescription(ex1)).to.eql({"value":"Boursier artien au collège de Navarre"});
+
+        const ex2 = {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "place": "Paris",
+            "content": [
+                "Boursier artien au collège de",
+                "à",
+                "."
+            ]
+        };
+        expect(IndentityParser.parseDescription(ex2)).to.eql({"value":"Boursier artien au collège de Navarre à Paris"});
+
+        done();
+
+
+      })
+  });
+
+
   describe("indentity.parser.buildIdentity",function(){
       it("should return null if no value att all", function(done){
         expect(IndentityParser.buildIdentity(null)).to.be.a('null');

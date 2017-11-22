@@ -1,0 +1,104 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": {"data": "GOROCHOV (N.), \"Les maîtres parisiens et la genèse de l'Université (1200-1231)\", dans &Cahiers de recherches médiévales&, 18, 2009, p. 72."},
+        "individualBook": {"data": "PARAVICINI-BAGLIANI (A.), &Cardinali di Curia e familiae cardinalizie dal 1227 al 1254&, Padoue, 1972, pp. 213-217."}
+    },
+    "label": {
+        "description": {"data": {
+            "dates": {"date": {
+                "type": "circa",
+                "content": 1230
+            }},
+            "content": [
+                "Maître parisien",
+                "."
+            ]
+        }},
+        "personID": {"data": 15347},
+        "variant-name": [
+            {
+                "data": {"pname": {
+                    "last_name": "BAR-SUR-AUBE",
+                    "first_name": "Pierre de",
+                    "qualif": "",
+                    "content": "Pierre de BAR-SUR-AUBE"
+                }},
+                "source": [
+                    "GOROCHOV (N.), \"Les maîtres parisiens et la genèse de l'Université (1200-1231)\", dans &Cahiers de recherches médiévales&, 18, 2009, p. 72 ;",
+                    "PARAVICINI-BAGLIANI (A.), &Cardinali di Curia e familiae cardinalizie dal 1227 al 1254&, Padoue, 1972, pp. 213-217."
+                ]
+            },
+            {"data": {"pname": {
+                "last_name": "BAR",
+                "first_name": "Pierre de",
+                "qualif": "",
+                "content": "Pierre de BAR"
+            }}}
+        ],
+        "usage-name": {"data": "PETRUS de Bar-Sur-Aube"},
+        "statut": {"data": "?Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "type": "before",
+                "content": 1230
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "circa",
+                "content": 1230
+            }}
+        }}}
+    },
+    "formation": {"university": {"data": {
+        "dates": {
+            "fromDate": {"date": {
+                "type": "before",
+                "content": 1230
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "circa",
+                "content": 1230
+            }}
+        },
+        "place": "Paris",
+        "content": "."
+    }}},
+    "professionalCareer": {"universityFunction": {
+        "data": {
+            "dates": {"date": {
+                "type": "circa",
+                "content": 1230
+            }},
+            "content": [
+                "Maître parisien",
+                "."
+            ]
+        },
+        "source": [
+            "GOROCHOV (N.), \"Les maîtres parisiens et la genèse de l'Université (1200-1231)\", dans &Cahiers de recherches médiévales&, 18, 2009, p. 72 ;",
+            "PARAVICINI-BAGLIANI (A.), &Cardinali di Curia e familiae cardinalizie dal 1227 al 1254&, Padoue, 1972, pp. 213-217."
+        ]
+    }},
+    "type": "Univ-Paris",
+    "relationelInsertion": {"familyNetwork": {
+        "data": {
+            "ptitle": {
+                "text_before": "comtes",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Bar-sur-Aube"
+            },
+            "content": [
+                "Membre de la famille des comtes de",
+                "."
+            ]
+        },
+        "source": [
+            "GOROCHOV (N.), \"Les maîtres parisiens et la genèse de l'Université (1200-1231)\", dans &Cahiers de recherches médiévales&, 18, 2009, p. 72 ;",
+            "PARAVICINI-BAGLIANI (A.), &Cardinali di Curia e familiae cardinalizie dal 1227 al 1254&, Padoue, 1972, pp. 213-217."
+        ],
+        "type": "famille"
+    }}
+}}}

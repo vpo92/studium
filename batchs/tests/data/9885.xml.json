@@ -1,0 +1,216 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": [
+            {"data": "GOROCHOV: p.698-699, 720 ;"},
+            {"data": "LAUNOI: p.93."}
+        ],
+        "source": [
+            {"data": "Città del Vaticano, ASV Reg. Suppl. n°35, f.333 ;"},
+            {"data": "MS. Paris, B. Mazarine 917."}
+        ]
+    },
+    "ecclesiasticalCareer": {"churchPositions": {
+        "data": {
+            "ptitle": {
+                "text_before": "diocèse",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Châlons-en-Champagne"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1362
+            }},
+            "content": [
+                "Curé dans le diocèse de",
+                "en",
+                "."
+            ]
+        },
+        "source": "GOROCHOV: p.698-699."
+    }},
+    "geo-origin": {
+        "birthplace": {"data": {
+            "place": [
+                {
+                    "annexe": "Champagne",
+                    "content": "France"
+                },
+                "Champagne"
+            ],
+            "content": [
+                "(",
+                ")."
+            ]
+        }},
+        "diocese": {
+            "data": {
+                "ptitle": {
+                    "text_before": "Diocèse",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Châlons-en-Champagne"
+                },
+                "content": [
+                    "Diocèse de",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.698-699."
+        }
+    },
+    "possessionOfBooks": {"book": {"donation": {
+        "data": {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1385
+            }},
+            "content": [
+                "Il a légué à la bibliothèque du collège de",
+                "le MS. Paris, B. Mazarine 917 (&Lectura Sententiarum magistri Ade de Vodromo, abbreviata per magistrum Heynricum de Hoyta&), remis en",
+                "par ses exécuteurs testamentaires."
+            ]
+        },
+        "source": "GOROCHOV: p.698-699."
+    }}},
+    "label": {
+        "description": {"data": {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "content": [
+                "Boursier artien au collège de",
+                "."
+            ]
+        }},
+        "personID": {"data": 9885},
+        "variant-name": [
+            {
+                "data": {"pname": {
+                    "last_name": "HUSSON",
+                    "first_name": "Petrus",
+                    "qualif": "de SANTO MEDARDO",
+                    "content": "Petrus HUSSON de SANTO MEDARDO"
+                }},
+                "source": "GOROCHOV: p.698-699."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "SAINT-MÉDARD",
+                    "first_name": "Pierre de",
+                    "qualif": "",
+                    "content": "Pierre de SAINT-MÉDARD"
+                }},
+                "source": "GOROCHOV: p.698-699."
+            }
+        ],
+        "usage-name": {"data": "PETRUS Husson de Sancto Medardo"},
+        "statut": {"data": "Gradué"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1352
+            }},
+            "toDate": {"date": {
+                "type": "before",
+                "content": 1385
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "ptitle": {
+                "text_before": "Collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1352
+                }},
+                "toDate": {"date": {
+                    "type": "before",
+                    "content": 1362
+                }}
+            },
+            "place": {
+                "annexe": "Collège de Navarre",
+                "content": "Paris"
+            },
+            "content": [
+                "(Collège de",
+                "),",
+                "."
+            ]
+        }},
+        "individualInformation": {
+            "data": {
+                "ptitle": {
+                    "text_before": "collège",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Navarre"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1352
+                }},
+                "place": "Paris",
+                "content": [
+                    "Boursier artien au collège de",
+                    "à",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.698-699."
+        },
+        "grade": [
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1352
+                    }},
+                    "content": [
+                        "Étudiant ès arts (Paris)",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.698-699."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "type": "before",
+                        "content": 1362
+                    }},
+                    "content": [
+                        "Licencié ès arts (Paris)",
+                        "."
+                    ]
+                },
+                "source": "GOROCHOV: p.698-699."
+            }
+        ]
+    },
+    "type": "Univ-Paris"
+}}}

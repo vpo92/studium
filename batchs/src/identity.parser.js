@@ -78,6 +78,27 @@ class IndentityParser{
     return res;
   }
 
+  static parseDescription(data){
+    let res = null;
+    if(data){
+      if(typeof data === "string"){
+        res = {'value':data};
+      }else{
+        if(data.content){
+          let s = data.content[0];
+          if(data.ptitle){
+            s += " "+data.ptitle.content;
+          }
+          if(data.place){
+            s+=" à "+data.place;
+          }
+          res = {'value':s};
+        }
+      }
+    }
+    return res;
+  }
+
   static buildReference(json){
     return IndentityParser.findProperty(json,"prosop.person.label.personID.data");
   }
@@ -97,7 +118,7 @@ class IndentityParser{
 
       let description =  IndentityParser.findProperty(json,"prosop.person.label.description.data");
       if(description){
-        identity.description = {'value':description};
+        identity.description = IndentityParser.parseDescription(description);
       }
 
       let datesOfLife = IndentityParser.findProperty(json,"prosop.person.label.datesOfLife.data");
@@ -120,6 +141,8 @@ class IndentityParser{
       let gender =  IndentityParser.findProperty(json,"prosop.person.label.sex.data")?"female":"male";
       identity.gender = {'value':gender};
 
+
+      //FIXME : 15347 tab ?? 9885 10424
       let status =  IndentityParser.findProperty(json,"prosop.person.label.statut.data");
       if(status){
         switch (status) {
