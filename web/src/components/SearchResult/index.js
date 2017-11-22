@@ -69,9 +69,8 @@ class SearchResult extends Component {
               <TableRow>
                 <TableHeaderColumn>Référence</TableHeaderColumn>
                 <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Mediane</TableHeaderColumn>
-                <TableHeaderColumn>Status</TableHeaderColumn>
-                <TableHeaderColumn>Origine</TableHeaderColumn>
+                <TableHeaderColumn>Statut</TableHeaderColumn>
+                <TableHeaderColumn>Description</TableHeaderColumn>
                 <TableHeaderColumn>Action</TableHeaderColumn>
               </TableRow>
             </TableHeader>
