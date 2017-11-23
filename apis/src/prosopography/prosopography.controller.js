@@ -42,5 +42,5 @@ exports.findByReference = function(req, res) {
       res.statusCode = 200;
       res.json(results);
     })
-    .catch(handleError(res));
+    .catch(util.handleError(res));
 };
