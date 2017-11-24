@@ -19,9 +19,5 @@ describe('prosopography.controller', function(){
         expect(res.statusCode).to.eql(500);
         done();
       });
-      it("should work with valid db", function(done){
-        fail("not yet implemented");
-        done();
-      });
   });
 });
