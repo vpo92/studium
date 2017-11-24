@@ -1,3 +1,5 @@
+const UtilParser = require('./util.parser');
+
 class IndentityParser{
 
   static findProperty(json, propertyName){
@@ -7,7 +9,7 @@ class IndentityParser{
         if(props.length === 1){
           return json[propertyName];
         }else{
-          return IndentityParser.findProperty(json[props[0]],props.slice(1).join('.'));
+          return UtilParser.findProperty(json[props[0]],props.slice(1).join('.'));
         }
       }else{
         return null;
@@ -23,13 +25,13 @@ class IndentityParser{
       if(json.dates){
         if(json.dates.date){
           res = {
-            'from': IndentityParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
-            'to': IndentityParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
+            'from': UtilParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
+            'to': UtilParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
           }
         }else{
           res = {
-            'from': IndentityParser.findProperty(json,'dates.fromDate.date.content')?(json.dates.fromDate.date.content).toString():"%",
-            'to': IndentityParser.findProperty(json,'dates.toDate.date.content')?(json.dates.toDate.date.content).toString():"%",
+            'from': UtilParser.findProperty(json,'dates.fromDate.date.content')?(json.dates.fromDate.date.content).toString():"%",
+            'to': UtilParser.findProperty(json,'dates.toDate.date.content')?(json.dates.toDate.date.content).toString():"%",
           }
         }
 
@@ -51,7 +53,7 @@ class IndentityParser{
       if(typeof json === "string"){
         res = {'value':json};
       }else{
-        if(IndentityParser.findProperty(json,"pname.content")){
+        if(UtilParser.findProperty(json,"pname.content")){
           res = {'value':json.pname.content};
         }
       }
@@ -100,33 +102,33 @@ class IndentityParser{
   }
 
   static buildReference(json){
-    return IndentityParser.findProperty(json,"prosop.person.label.personID.data");
+    return UtilParser.findProperty(json,"prosop.person.label.personID.data");
   }
 
   static buildIdentity(json){
     if(json){
       let identity = {};
-      let name = IndentityParser.findProperty(json,"prosop.person.label.usage-name.data");
+      let name = UtilParser.findProperty(json,"prosop.person.label.usage-name.data");
       if(name){
         identity.name = {'value':name};
       }
 
-      let nameVariant = IndentityParser.findProperty(json,"prosop.person.label.variant-name");
+      let nameVariant = UtilParser.findProperty(json,"prosop.person.label.variant-name");
       if(nameVariant){
         identity.nameVariant = IndentityParser.parseNameVariant(nameVariant);
       }
 
-      let description =  IndentityParser.findProperty(json,"prosop.person.label.description.data");
+      let description =  UtilParser.findProperty(json,"prosop.person.label.description.data");
       if(description){
         identity.description = IndentityParser.parseDescription(description);
       }
 
-      let datesOfLife = IndentityParser.findProperty(json,"prosop.person.label.datesOfLife.data");
+      let datesOfLife = UtilParser.findProperty(json,"prosop.person.label.datesOfLife.data");
       if(datesOfLife){
         identity.datesOfLife = IndentityParser.parseDates(datesOfLife);
       }
 
-      let datesOfActivity = IndentityParser.findProperty(json,"prosop.person.label.datesOfActivity.data");
+      let datesOfActivity = UtilParser.findProperty(json,"prosop.person.label.datesOfActivity.data");
       if(datesOfActivity){
         identity.datesOfActivity = IndentityParser.parseDates(datesOfActivity);
       }
@@ -137,13 +139,13 @@ class IndentityParser{
       //data source for mapping of gender ???
       //si rien, c'est un homme, sinon f c(est une femme. paragraphe 1h)
       //ada margarita ... fiche n°16
-      console.log(IndentityParser.findProperty(json,"prosop.person.label"));
-      let gender =  IndentityParser.findProperty(json,"prosop.person.label.sex.data")?"female":"male";
+      console.log(UtilParser.findProperty(json,"prosop.person.label"));
+      let gender =  UtilParser.findProperty(json,"prosop.person.label.sex.data")?"female":"male";
       identity.gender = {'value':gender};
 
 
       //FIXME : 15347 tab ?? 9885 10424
-      let status =  IndentityParser.findProperty(json,"prosop.person.label.statut.data");
+      let status =  UtilParser.findProperty(json,"prosop.person.label.statut.data");
       if(status){
         switch (status) {
           case 'Extérieur':
