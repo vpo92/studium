@@ -4,6 +4,11 @@ const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
 
 const enableMongo = false;
+
+//const path = "/Users/vincent/Desktop/JSON";
+//const path = "/Users/vincent/projects/studium/batchs/tests/data/";
+const path = "./batchs/tests/data";
+
 let errors = [];
 
 const readXMLFile = (fileName) => {
@@ -39,12 +44,6 @@ const processFile = (db,fileName) => {
     errors.push(fileName,e);
   }
 };
-
-
-//const path = "/Users/vincent/Desktop/JSON";
-//const path = "/Users/vincent/projects/studium/batchs/tests/data/";
-const path = "./batchs/tests/data";
-
 
 MongoClient.connect("mongodb://localhost/studium")
   .then(function(db){
