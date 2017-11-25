@@ -1,12 +1,12 @@
 const fs = require('fs');
 const parser = require('./identity.parser');
+const OriginParser = require('./origin.parser');
 const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
 
 const enableMongo = false;
 
 //const path = "/Users/vincent/Desktop/JSON";
-//const path = "/Users/vincent/projects/studium/batchs/tests/data/";
 const path = "./batchs/tests/data";
 
 let errors = [];
@@ -29,6 +29,7 @@ const processFile = (db,fileName) => {
       const p = {
         "reference":parser.buildReference(item),
         "identity":parser.buildIdentity(item),
+        "origin":OriginParser.buildOrigin(item),
       }
       if(enableMongo){
         MongoImporter.importProsopography(db,p)
@@ -49,7 +50,6 @@ MongoClient.connect("mongodb://localhost/studium")
   .then(function(db){
     fs.readdir(path, function(err,files){
       files.map((file) => {
-        console.log(file);
         processFile(db,path+"/"+file);
       });
       console.log("Nb errors:"+errors.length);
