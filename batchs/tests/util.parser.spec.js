@@ -38,5 +38,27 @@ describe('util.parser', function(){
       });
   });
 
+  describe("indentity.parser.parseName",function(){
+      it("should return null if no value att all", function(done){
+        expect(UtilParser.parseName(null)).to.be.a('null');
+        expect(UtilParser.parseName({})).to.be.a('null');
+        expect(UtilParser.parseName("")).to.be.a('null');
+        done();
+      });
+      it("should parse data correctly", function(done){
+        const ex1 = "CÉSAR";
+        expect(UtilParser.parseName(ex1)).to.eql({"value":"CÉSAR"});
+
+        const ex2 ={"pname": {
+                "last_name": "CAESAR",
+                "qualif": "",
+                "content": "CAESAR"
+            }};
+        expect(UtilParser.parseName(ex2)).to.eql({"value":"CAESAR"});
+
+        done();
+      });
+    });
+
 
 });

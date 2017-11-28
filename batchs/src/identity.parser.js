@@ -2,23 +2,6 @@ const UtilParser = require('./util.parser');
 
 class IndentityParser{
 
-  static findProperty(json, propertyName){
-    if(json && propertyName){
-      let props = propertyName.split('.');
-      if(json[props[0]]){
-        if(props.length === 1){
-          return json[propertyName];
-        }else{
-          return UtilParser.findProperty(json[props[0]],props.slice(1).join('.'));
-        }
-      }else{
-        return null;
-      }
-    }else{
-      return null;
-    }
-  }
-
   static parseDates(json){
     let res = null;
     if(json){
@@ -47,33 +30,19 @@ class IndentityParser{
     return res;
   }
 
-  static parseName(json){
-    let res = null;
-    if(json){
-      if(typeof json === "string"){
-        res = {'value':json};
-      }else{
-        if(UtilParser.findProperty(json,"pname.content")){
-          res = {'value':json.pname.content};
-        }
-      }
-    }
-    return res;
-  }
-
   static parseNameVariant(json){
     let res = null;
     if(json){
       if(json instanceof Array){
         res = json.map( item => {
           if(item.data){
-            return IndentityParser.parseName(item.data); // {'value':item.data.pname.content});
+            return UtilParser.parseName(item.data); // {'value':item.data.pname.content});
           }
           return;
         });
       }else{
         if(json.data){
-          res = [IndentityParser.parseName(json.data)];
+          res = [UtilParser.parseName(json.data)];
         }
       }
     }
@@ -110,7 +79,7 @@ class IndentityParser{
       let identity = {};
       let name = UtilParser.findProperty(json,"prosop.person.label.usage-name.data");
       if(name){
-        identity.name = {'value':name};
+        identity.name = UtilParser.parseName(name);
       }
 
       let nameVariant = UtilParser.findProperty(json,"prosop.person.label.variant-name");
