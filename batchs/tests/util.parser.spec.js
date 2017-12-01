@@ -56,6 +56,23 @@ describe('util.parser', function(){
             }};
         expect(UtilParser.parseName(ex2)).to.eql({"value":"CAESAR"});
 
+        const ex3 = {"pname": [
+            {
+                "last_name": "CECILIA K",
+                "qualif": "nudsdatter",
+                "content": "CECILIA Knudsdatter"
+            },
+            {
+                "last_name": "KNUD",
+                "first_name": "saint",
+                "qualif": "",
+                "content": "saint KNUD"
+            }
+        ]};
+        let res3 = UtilParser.parseName(ex3);
+        console.log(res3);
+        expect(res3).to.eql({"value":"CECILIA Knudsdatter, saint KNUD"});
+
         done();
       });
     });

@@ -25,6 +25,8 @@ class UtilParser{
       }else{
         if(UtilParser.findProperty(json,"pname.content")){
           res = {'value':json.pname.content};
+        }else if(json.pname && json.pname instanceof Array){
+          res = {'value' : json.pname.map(item => {return item.content}).join(', ')};
         }
       }
     }
