@@ -46,6 +46,32 @@ const processFile = (db,fileName) => {
   }
 };
 
+const doImport = db => {
+  fs.readdir(path, function(err,files){
+    files.map((file) => {
+      processFile(db,path+"/"+file);
+    });
+    console.log("Nb errors:"+errors.length);
+    console.log(errors);
+    if(enableMongo){
+      MongoImporter.createIndex(db)
+        .then(db.close());
+    }
+  });
+};
+
+if(enableMongo){
+  MongoClient.connect("mongodb://localhost/studium")
+    .then(doImport)
+    .catch(function(err){
+      console.error(err);
+    });
+}else{
+  //FIXME trycatch
+  doImport();
+}
+
+/**
 MongoClient.connect("mongodb://localhost/studium")
   .then(function(db){
     fs.readdir(path, function(err,files){
@@ -65,3 +91,4 @@ MongoClient.connect("mongodb://localhost/studium")
   .catch(function(err){
     console.error(err);
   });
+*/
