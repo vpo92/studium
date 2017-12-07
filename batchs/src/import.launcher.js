@@ -92,3 +92,13 @@ MongoClient.connect("mongodb://localhost/studium")
     console.error(err);
   });
 */
+
+
+/*priorité :
+3 relationelInsertion
+5b -> universite frequente, nation
+5e ->
+7b  -> universite d'enseignement
+20 -> 60 oeuvre / production textuel
+6b/6d -> carriere eclisiaticeu
+*/

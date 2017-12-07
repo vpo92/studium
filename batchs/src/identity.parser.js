@@ -2,6 +2,8 @@ const UtilParser = require('./util.parser');
 
 class IndentityParser{
 
+//FIXME : rangeInformation
+
   static parseDates(json){
     let res = null;
     if(json){

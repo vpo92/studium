@@ -24,7 +24,11 @@ class UtilParser{
         res = {'value':json};
       }else{
         if(UtilParser.findProperty(json,"pname.content")){
-          res = {'value':json.pname.content};
+          let val = json.pname.content;
+          if(UtilParser.findProperty(json,"pname.ptitle.content")){
+            val+=' '+json.pname.ptitle.content;
+          }
+          res = {'value':val};
         }else if(json.pname && json.pname instanceof Array){
           res = {'value' : json.pname.map(item => {return item.content}).join(', ')};
         }

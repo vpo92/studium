@@ -73,6 +73,59 @@ describe('util.parser', function(){
         console.log(res3);
         expect(res3).to.eql({"value":"CECILIA Knudsdatter, saint KNUD"});
 
+        let ex4 = {
+            "pname": {
+                "last_name": "CHARLES",
+                "ptitle": {
+                    "text_before": "duc",
+                    "text_after": "",
+                    "see": " CHARLES",
+                    "empty_word": "d'",
+                    "content": "Alençon"
+                },
+                "qualif": "duc d'",
+                "content": "CHARLES, duc d'"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1344
+            }},
+            "content": [
+                "Familier de",
+                ", en",
+                "."
+            ]
+        };
+
+        let res4 = UtilParser.parseName(ex4);
+        console.log(res4);
+        expect(res4).to.eql({"value":"CHARLES, duc d' Alençon"});
+
+
+        let ex5 = {
+            "pname": {
+                "last_name": "VALDEMAR I",
+                "qualif": "er",
+                "content": "VALDEMAR Ier"
+            },
+            "ptitle": {
+                "text_before": "roi",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Danemark"
+            },
+            "content": [
+                "Ami du",
+                ", roi de",
+                ", avec lequel il a été élevé."
+            ]
+        };
+
+        let res5 = UtilParser.parseName(ex5);
+        console.log(res5);
+        expect(res5).to.eql({"value":"VALDEMAR Ier"});
+
         done();
       });
     });

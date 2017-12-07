@@ -19,11 +19,11 @@ describe('relational.parser', function(){
 
     it("should return null if wrong value", function(done){
       expect(RelationalParser.parseFamilyNetwork({})).to.eql(null);
+      expect(RelationalParser.parseFamilyNetwork([])).to.be.a('null');
       done();
     });
 
     it("should return a value if value exists", function(done){
-      expect(RelationalParser.parseFamilyNetwork([])).to.eql([]);
 
       let ex1 = [{
           "data": {
@@ -94,7 +94,7 @@ describe('relational.parser', function(){
         "type":"father"
       },
       {
-        "name":{"value":"ERIK de Västergötland,  jarl de"},
+        "name":{"value":"ERIK de Västergötland,  jarl de Falster"},
         "type":"grandfather"
       }];
 
@@ -356,12 +356,12 @@ describe('relational.parser', function(){
       let exp6 = [
         {"name":{"value":"ASSER Skjalmsen Rig"},"type":"father"},
         {"name":{"value":"INGER Eriksdatter"},"type":"mother"},
-        {"name":{"value":"ERIK de Västergötland,  jarl de"},"type":"grandfather"},
+        {"name":{"value":"ERIK de Västergötland,  jarl de Falster"},"type":"grandfather"},
         {"name":{"value":"CECILIA Knudsdatter, saint KNUD"},"type":"grandmother"},
         {"name":{"value":"ESBERN Snare"},"type":"brother"},
         {"name":{"value":"SUNE Skjalmsen"},"type":"uncle"},
-        {"name":{"value":"PETRUS Sunonis, évêque de"},"type":"cousin"},
-        {"name":{"value":"ANDREAS Sunonis, archevêque de"},"type":"cousin"},
+        {"name":{"value":"PETRUS Sunonis, évêque de Roskilde"},"type":"cousin"},
+        {"name":{"value":"ANDREAS Sunonis, archevêque de Lund"},"type":"cousin"},
         {"name":{"value":"SUNE Ebbesen"},"type":"other"},
       ];
 
@@ -372,6 +372,418 @@ describe('relational.parser', function(){
 
     });
   });
+
+
+
+  describe("relational.parser.parseFriends",function(){
+      it("should return null if no value att all", function(done){
+        expect(RelationalParser.parseFriends(null)).to.be.a('null');
+        expect(RelationalParser.parseFriends("")).to.be.a('null');
+        expect(RelationalParser.parseFriends({})).to.be.a('null');
+        expect(RelationalParser.parseFriends([])).to.be.a('null');
+        done();
+      });
+
+      it("should return a value if value exists", function(done){
+
+        let ex1 = [
+            {"data": {
+                "pname": {
+                    "last_name": "MONTREUIL",
+                    "first_name": "Jean de",
+                    "qualif": "",
+                    "content": "Jean de MONTREUIL"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "CLAMANGES",
+                    "first_name": "Nicolas de",
+                    "qualif": "",
+                    "content": "Nicolas de CLAMANGES"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "GERSON",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean GERSON"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "MACHET",
+                    "first_name": "Gérard",
+                    "qualif": "",
+                    "content": "Gérard MACHET"
+                },
+                "content": [
+                    "Ami de",
+                    "."
+                ]
+            }}
+        ];
+
+        let exp1 = [
+          {"name":{"value":"Jean de MONTREUIL"}, "type":"friend"},
+          {"name":{"value":"Nicolas de CLAMANGES"}, "type":"friend"},
+          {"name":{"value":"Jean GERSON"}, "type":"friend"},
+          {"name":{"value":"Gérard MACHET"}, "type":"friend"},
+        ];
+
+        let res1 = RelationalParser.parseFriends(ex1);
+        console.log(res1);
+        expect(res1).to.eql(exp1);
+
+        done();
+      });
+  });
+
+  describe("relational.parser.parseRelations",function(){
+      it("should return null if no value att all", function(done){
+        expect(RelationalParser.parseFriends(null)).to.be.a('null');
+        expect(RelationalParser.parseFriends("")).to.be.a('null');
+        expect(RelationalParser.parseFriends({})).to.be.a('null');
+        expect(RelationalParser.parseFriends([])).to.be.a('null');
+        done();
+      });
+
+      it("should return a value if value exists", function(done){
+        let ex1 = {
+            "data": {
+                "pname": {
+                    "last_name": "CHARLES",
+                    "ptitle": {
+                        "text_before": "duc",
+                        "text_after": "",
+                        "see": " CHARLES",
+                        "empty_word": "d'",
+                        "content": "Alençon"
+                    },
+                    "qualif": "duc d'",
+                    "content": "CHARLES, duc d'"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1344
+                }},
+                "content": [
+                    "Familier de",
+                    ", en",
+                    "."
+                ]
+            },
+            "source": "COURTENAY, &Parisian Scholars ...&, p.196."
+        };
+
+        let exp1 = [
+          {"name":{"value":"CHARLES, duc d' Alençon"}}
+        ];
+
+        let res1 = RelationalParser.parseRelations(ex1);
+        console.log(res1);
+        expect(res1).to.eql(exp1);
+
+        let ex2 = [
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1394
+                    }},
+                    "content": [
+                        "Familier de",
+                        ",",
+                        ";"
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1394
+                    }},
+                    "content": [
+                        "Il apparaît en",
+                        "comme comme bachelier en théologie et familier de",
+                        "."
+                    ]
+                }},
+                "source": [
+                    "SULLIVAN Theol.: II p.131-133.",
+                    "GOROCHOV: p.410, n.19, 469 et 728."
+                ]
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1403
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1405
+                        }}
+                    },
+                    "content": [
+                        "Aumônier de",
+                        ", entre",
+                        ";"
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1405
+                    }},
+                    "content": [
+                        "Il apparaît en",
+                        "dans une supplique qui le décrit comme aumônier et confesseur de",
+                        "."
+                    ]
+                }},
+                "source": [
+                    "SULLIVAN Theol.: II p.131-133.",
+                    "GOROCHOV: p.728."
+                ]
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1403
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1405
+                        }}
+                    },
+                    "content": [
+                        "Confesseur de",
+                        ", entre",
+                        ";"
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": {
+                        "last_name": "LOUIS II",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " LOUIS II",
+                            "empty_word": "de",
+                            "content": "Bourbon"
+                        },
+                        "qualif": "duc de",
+                        "content": "LOUIS II, duc de"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1405
+                    }},
+                    "content": [
+                        "Il apparaît en",
+                        "dans une supplique qui le décrit comme aumônier et confesseur de",
+                        "."
+                    ]
+                }},
+                "source": [
+                    "SULLIVAN Theol.: II p.131-133.",
+                    "GOROCHOV: p.728."
+                ]
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "CHARLES VII",
+                        "ptitle": {
+                            "text_before": "roi",
+                            "text_after": "",
+                            "see": " CHARLES VII",
+                            "empty_word": "de",
+                            "content": "France"
+                        },
+                        "qualif": "roi de",
+                        "content": "CHARLES VII, roi de"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1420
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1426
+                        }}
+                    },
+                    "content": [
+                        "Service de",
+                        ",",
+                        ";"
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": {
+                        "last_name": "CANTELLA",
+                        "first_name": "Petrus de",
+                        "qualif": "",
+                        "content": "Petrus de CANTELLA"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1420
+                    }},
+                    "place": "Languedoc",
+                    "content": [
+                        "Au service du dauphin comme conseiller,",
+                        "l'accompagne en voyage dans le",
+                        ", et reçoit comme dédommagement la somme de 100 livres tournois en février",
+                        "."
+                    ]
+                }},
+                "source": "SULLIVAN Theol.: II p.131-133."
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "CHARLES VII",
+                        "ptitle": {
+                            "text_before": "roi",
+                            "text_after": "",
+                            "see": " CHARLES VII",
+                            "empty_word": "de",
+                            "content": "France"
+                        },
+                        "qualif": "roi de",
+                        "content": "CHARLES VII, roi de"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1420
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1426
+                        }}
+                    },
+                    "content": [
+                        "Confesseur de",
+                        ",",
+                        "."
+                    ]
+                },
+                "source": "SULLIVAN Theol.: II p.131-133."
+            }
+        ];
+
+        let exp2 = [
+          {"name":{"value":"LOUIS II, duc de Bourbon"}},
+          {"name":{"value":"LOUIS II, duc de Bourbon"}},
+          {"name":{"value":"LOUIS II, duc de Bourbon"}},
+          {"name":{"value":"CHARLES VII, roi de France"}},
+          {"name":{"value":"CHARLES VII, roi de France"}},
+        ];
+
+        let res2 = RelationalParser.parseRelations(ex2);
+        console.log(res2);
+        expect(res2).to.eql(exp2);
+        done();
+
+      });
+    });
+
+
+
+
 
   describe("relational.parser.parseSocialClassOrigin",function(){
       it("should return null if no value att all", function(done){
@@ -448,47 +860,6 @@ describe('relational.parser', function(){
                 }}
             },
             "friends": [
-                {
-                    "data": {
-                        "pname": {
-                            "last_name": "GUILLAUME",
-                            "qualif": "",
-                            "content": "GUILLAUME"
-                        },
-                        "ptitle": [
-                            {
-                                "text_before": "régulier",
-                                "text_after": "abbaye",
-                                "empty_word": "de",
-                                "content": "Sainte-Geneviève"
-                            },
-                            {
-                                "text_before": "abbé",
-                                "text_after": "monastère",
-                                "empty_word": "de",
-                                "content": "Saint-Thomas-du-Paraclet"
-                            }
-                        ],
-                        "place": [
-                            "Paris",
-                            {
-                                "annexe": "Sjælland",
-                                "content": "Eskilsø"
-                            },
-                            "Sjælland"
-                        ],
-                        "content": [
-                            "Ami de",
-                            ", chanoine régulier de",
-                            "(abbaye), à",
-                            ", puis abbé de",
-                            "(monastère), à",
-                            "(",
-                            ");"
-                        ]
-                    },
-                    "source": "&Vitae sanctorum Danorum&, p. 320. &Epistolae abbatis Willelmi de Paraclito&, DS: 1re série, III, 2;"
-                },
                 {"data": {
                     "pname": {
                         "last_name": "ÉTIENNE DE TOURNAI",
@@ -507,24 +878,7 @@ describe('relational.parser', function(){
                         "(abbaye);"
                     ]
                 }},
-                {"data": {
-                    "pname": {
-                        "last_name": "VALDEMAR I",
-                        "qualif": "er",
-                        "content": "VALDEMAR Ier"
-                    },
-                    "ptitle": {
-                        "text_before": "roi",
-                        "text_after": "",
-                        "empty_word": "de",
-                        "content": "Danemark"
-                    },
-                    "content": [
-                        "Ami du",
-                        ", roi de",
-                        ", avec lequel il a été élevé."
-                    ]
-                }}
+
             ]
         }
       }}};
@@ -533,6 +887,7 @@ describe('relational.parser', function(){
             {"name":{"value":"ASSER Skjalmsen Rig"},"type":"father"},
           ],
           "socialClassOrigin" : {"value":"Haute noblesse."},
+          "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}]
         };
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);
