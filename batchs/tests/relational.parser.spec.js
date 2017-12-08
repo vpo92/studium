@@ -1196,7 +1196,54 @@ describe('relational.parser', function(){
                             ]
                         },
                         "source": "AUP: I 79 34."
-                    }]
+                    }],
+                    "regularCorrespondence": {
+                        "data": {
+                            "pname": {
+                                "last_name": "CLAMANGES",
+                                "first_name": "Nicolas de",
+                                "qualif": "",
+                                "content": "Nicolas de CLAMANGES"
+                            },
+                            "dates": {
+                                "fromDate": {"date": {
+                                    "certitude": true,
+                                    "type": "circa",
+                                    "content": 1408
+                                }},
+                                "toDate": {"date": {
+                                    "certitude": true,
+                                    "type": "single",
+                                    "content": 1411
+                                }}
+                            },
+                            "content": [
+                                "Correspondance avec",
+                                "."
+                            ]
+                        },
+                        "comment": {"data": {
+                            "pname": {
+                                "last_name": "CLAMANGES",
+                                "first_name": "Nicolas de",
+                                "qualif": "",
+                                "content": "Nicolas de CLAMANGES"
+                            },
+                            "dates": {"date": {
+                                "certitude": true,
+                                "type": "single",
+                                "content": 1410
+                            }},
+                            "content": [
+                                "lui fait parvenir son traité &De fructu heremi&, rédigé en",
+                                "."
+                            ]
+                        }},
+                        "source": [
+                            "GOROCHOV: p.688.",
+                            "SULLIVAN Theol.: II p.441-443."
+                        ]
+                    }
         }
       }}};
 
@@ -1214,7 +1261,8 @@ describe('relational.parser', function(){
           "politicalRelationships" : [{"value":"Partisan de la primauté du concile sur le pape ;"},{"value":"Partisan de LOUIS d'Orléans ."}],
           "professionalRelationships": [{"value":"Pas apprécié de Louis d'ANJOU mort en 1384 ;"},{"value":"Protecteur de Jean GERSON qui le seconde dans son poste de chancelier ;"}],
           "willExecutor" : [{"value":"Exécuteur testamentaire de Jean COURTECUISSE en 1424 ."}],
-          "studentProfessorRelationships":[{"value":"Son maître est Johannes de SABURGO pour le baccalauréat."}]
+          "studentProfessorRelationships":[{"value":"Son maître est Johannes de SABURGO pour le baccalauréat."}],
+          "connectionsWith":[{"value":"Correspondance avec Nicolas de CLAMANGES ."}]
         };
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);
@@ -1227,6 +1275,7 @@ describe('relational.parser', function(){
         expect(res1.professionalRelationships).to.deep.eql(expected.professionalRelationships);
         expect(res1.willExecutor).to.deep.eql(expected.willExecutor);
         expect(res1.studentProfessorRelationships).to.deep.eql(expected.studentProfessorRelationships);
+        expect(res1.connectionsWith).to.deep.eql(expected.connectionsWith);
 
         expect(res1).to.deep.eql(expected);
         done();

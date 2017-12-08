@@ -125,6 +125,8 @@ class RelationalParser{
     let res = null;
     if(data && data instanceof Array && data.length > 0){
       res = data.map(RelationalParser.parseGenericData);
+    }else if(data){
+      res = [RelationalParser.parseGenericData(data)];
     }
     return res
   }
@@ -190,6 +192,12 @@ class RelationalParser{
         relationalI.controversyOrDebates = RelationalParser.parseControversyOrDebates(controversyOrDebates);
       }
       //connectionsWith	[SimpleInformation{...}] : not found
+
+
+      let connectionsWith = UtilParser.findProperty(json,"prosop.person.relationelInsertion.regularCorrespondence");
+      if(connectionsWith){
+        relationalI.connectionsWith = RelationalParser.parseGenericDataOrArray(connectionsWith);
+      }
 
       let memberOfGroups = UtilParser.findProperty(json,"prosop.person.relationelInsertion.specificGroup");
       if(memberOfGroups){
