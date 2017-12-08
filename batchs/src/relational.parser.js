@@ -146,7 +146,7 @@ class RelationalParser{
       res+=" "+item.data.content[1];
       if(UtilParser.findProperty(item,"data.dates.date.content"))
         res+=" "+item.data.dates.date.content;
-      if(item.data.content[2] && item.data.content[2])
+      if(item.data.content[2])
         res+=" "+item.data.content[2];
       res = {"value":res};
     }
