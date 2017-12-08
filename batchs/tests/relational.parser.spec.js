@@ -817,6 +817,127 @@ describe('relational.parser', function(){
   });
 
 
+  describe("relational.parser.parseControversyOrDebates",function(){
+      it("should return null if no value att all", function(done){
+        expect(RelationalParser.parseControversyOrDebates(null)).to.be.a('null');
+        expect(RelationalParser.parseControversyOrDebates("")).to.be.a('null');
+        expect(RelationalParser.parseControversyOrDebates({})).to.be.a('null');
+        expect(RelationalParser.parseControversyOrDebates([])).to.be.a('null');
+        done();
+      });
+
+      it("should return a value if value exists", function(done){
+
+        let ex1 = [
+            {"data": {
+                "pname": {
+                    "last_name": "AUBRIOT",
+                    "first_name": "Hugues",
+                    "qualif": "prévôt de Paris",
+                    "content": "Hugues AUBRIOT, prévôt de Paris"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1381
+                }},
+                "content": [
+                    "Impliqué dans la lutte contre",
+                    "en",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "BLANCHART",
+                        "ptitle": {
+                            "text_before": "l'",
+                            "text_after": "",
+                            "see": "Jean  BLANCHART",
+                            "empty_word": "",
+                            "content": "Université"
+                        },
+                        "first_name": "Jean",
+                        "qualif": "chancelier de l'",
+                        "content": "Jean BLANCHART, chancelier de l'"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1385
+                    }},
+                    "content": [
+                        "Impliqué dans une polémique avec",
+                        "en",
+                        "sur le coût élevés des diplômes imposés par ce dernier ;"
+                    ]
+                },
+                "comment": {"data": "Il le force à démissionner."}
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "MONZON",
+                        "first_name": "Juan de",
+                        "qualif": "dominicain aragonais",
+                        "content": "Juan de MONZON, dominicain aragonais"
+                    },
+                    "dates": {"date": {
+                        "type": "circa",
+                        "content": 1385
+                    }},
+                    "content": [
+                        "Impliqué dans une polémique avec",
+                        ", contempteur de l'Immaculée Conception",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "Il persuade le roi de se séparer de ce dernier comme aumônier et prend ainsi sa place."}
+            },
+            {"data": {
+                "pname": {
+                    "last_name": "HUS",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean HUS"
+                },
+                "content": [
+                    "Impliqué dans la condamnation de",
+                    "dont la doctrine lui semble menacer les fondements mêmes de l'Eglise comme de la société."
+                ]
+            }}
+        ];
+
+        let exp1 = [
+          {"value":"Impliqué dans la lutte contre Hugues AUBRIOT, prévôt de Paris en 1381 ;"},
+          {"value":"Impliqué dans une polémique avec Jean BLANCHART, chancelier de l' Université en 1385 sur le coût élevés des diplômes imposés par ce dernier ;"},
+          {"value":"Impliqué dans une polémique avec Juan de MONZON, dominicain aragonais , contempteur de l'Immaculée Conception 1385 ;"},
+          {"value":"Impliqué dans la condamnation de Jean HUS dont la doctrine lui semble menacer les fondements mêmes de l'Eglise comme de la société."},
+        ];
+        console.log(RelationalParser.parseControversyOrDebates([ex1[0]]));
+        expect(RelationalParser.parseControversyOrDebates([ex1[0]])).to.deep.eq([exp1[0]]);
+        console.log(RelationalParser.parseControversyOrDebates([ex1[1]]));
+        expect(RelationalParser.parseControversyOrDebates([ex1[1]])).to.deep.eq([exp1[1]]);
+        console.log(RelationalParser.parseControversyOrDebates([ex1[2]]));
+        expect(RelationalParser.parseControversyOrDebates([ex1[2]])).to.deep.eq([exp1[2]]);
+        console.log(RelationalParser.parseControversyOrDebates([ex1[3]]));
+        expect(RelationalParser.parseControversyOrDebates([ex1[3]])).to.deep.eq([exp1[3]]);
+
+        let res1 = RelationalParser.parseControversyOrDebates(ex1);
+        console.log(res1);
+        expect(res1).to.deep.eq(exp1);
+        done();
+
+      });
+  });
+
+/**
+
+
+  */
+
+
   describe("relational.parser.buildRelationalInsertion",function(){
       it("should return null if no value att all", function(done){
         expect(RelationalParser.buildRelationalInsertion(null)).to.be.a('null');
@@ -879,7 +1000,26 @@ describe('relational.parser', function(){
                     ]
                 }},
 
-            ]
+            ],
+            "polemic": [
+                {"data": {
+                    "pname": {
+                        "last_name": "AUBRIOT",
+                        "first_name": "Hugues",
+                        "qualif": "prévôt de Paris",
+                        "content": "Hugues AUBRIOT, prévôt de Paris"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1381
+                    }},
+                    "content": [
+                        "Impliqué dans la lutte contre",
+                        "en",
+                        ";"
+                    ]
+                }}]
         }
       }}};
         const expected = {
@@ -887,7 +1027,8 @@ describe('relational.parser', function(){
             {"name":{"value":"ASSER Skjalmsen Rig"},"type":"father"},
           ],
           "socialClassOrigin" : {"value":"Haute noblesse."},
-          "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}]
+          "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}],
+          "controversyOrDebates": [{"value":"Impliqué dans la lutte contre Hugues AUBRIOT, prévôt de Paris en 1381 ;"}],
         };
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);

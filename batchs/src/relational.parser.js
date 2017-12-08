@@ -121,7 +121,27 @@ class RelationalParser{
 
   }
 
-  //friends
+  //controversyOrDebates	[SimpleInformation{...}]
+  static parseControversyOrDebates(data){
+    let res = null;
+    if(data && data instanceof Array && data.length > 0){
+      res = data.map(item => {
+
+        let r = item.data.content[0];
+        if(UtilParser.findProperty(item,"data.pname.content"))
+          r+=" "+UtilParser.parseName(item.data).value;
+        r+=" "+item.data.content[1];
+        if(UtilParser.findProperty(item,"data.dates.date.content"))
+          r+=" "+item.data.dates.date.content;
+        if(item.data.content[2] && item.data.content[2])
+          r+=" "+item.data.content[2];
+
+        return ({"value":r});
+      });
+    }
+    return res;
+  }
+
 
 //"relationelInsertion" part
 
@@ -152,7 +172,10 @@ class RelationalParser{
       }
 
       //controversyOrDebates	[SimpleInformation{...}]
-
+      let controversyOrDebates = UtilParser.findProperty(json,"prosop.person.relationelInsertion.polemic");
+      if(controversyOrDebates){
+        relationalI.controversyOrDebates = RelationalParser.parseControversyOrDebates(controversyOrDebates);
+      }
       //connectionsWith	[SimpleInformation{...}]
 
       //memberOfGroups	[SimpleInformation{...}]

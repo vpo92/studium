@@ -1,0 +1,781 @@
+{"prosop": {"person": {
+    "works": {
+        "note": "Oeuvres écrites en latin :",
+        "comment": [
+            {"data": "Recension non établie."},
+            {"data": "170 ouvrages ou opuscules."}
+        ]
+    },
+    "bibliography": {
+        "usualBook": [
+            {"data": "AUP: I pp.607 n.4, 707 n.1, 708 n.2 ;"},
+            {"data": "DLF: p.1155-1157 ;"},
+            {"data": "GOROCHOV: pp. 580 et 721."}
+        ],
+        "individualBook": {"data": "GUENEE (B.), &Entre l'Eglise et l'Etat. Quatre vies de prélats français à la fin du Moyen Age&, Paris, 1987, pp. 125-299."}
+    },
+    "ecclesiasticalCareer": {"churchPositions": [
+        {"data": {
+            "ptitle": {
+                "text_before": "Chanoine",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Noyon"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1381
+            }},
+            "content": [
+                "Chanoine de",
+                ";"
+            ]
+        }},
+        {"data": {
+            "ptitle": {
+                "text_before": "Evêque",
+                "text_after": "",
+                "empty_word": "du",
+                "content": "Puy"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1395
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1396
+                }}
+            },
+            "content": [
+                "Evêque du",
+                "en",
+                ";"
+            ]
+        }},
+        {"data": {
+            "ptitle": {
+                "text_before": "Evêque",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Cambrai"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1396
+            }},
+            "content": [
+                "Evêque de",
+                "en",
+                ";"
+            ]
+        }},
+        {"data": {
+            "ptitle": {
+                "text_before": "Cardinal",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Cambrai"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1411
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1420
+                }}
+            },
+            "content": [
+                "Cardinal de",
+                "en",
+                ";"
+            ]
+        }}
+    ]},
+    "geo-origin": {
+        "birthplace": {"data": {
+            "place": [
+                {
+                    "annexe": "Compiègne",
+                    "content": "France"
+                },
+                "Compiègne"
+            ],
+            "content": [
+                "(",
+                ")"
+            ]
+        }},
+        "goIn_Out": [
+            {"data": {
+                "pname": {
+                    "last_name": "ANJOU",
+                    "first_name": "Louis d'",
+                    "qualif": "",
+                    "content": "Louis d'ANJOU"
+                },
+                "dates": [
+                    {"date": {
+                        "type": "circa",
+                        "content": 1381
+                    }},
+                    {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1384
+                    }}
+                ],
+                "place": "Paris",
+                "content": [
+                    "Il quitte",
+                    "en",
+                    "et revient en",
+                    "après la mort de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1408
+                }},
+                "place": "Cambrai",
+                "content": [
+                    "En",
+                    ", il se réfugie à",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1418
+                }},
+                "place": [
+                    "Constance",
+                    "Avignon"
+                ],
+                "content": [
+                    "En avril",
+                    ", il quitte",
+                    "pour",
+                    "."
+                ]
+            }}
+        ]
+    },
+    "label": {
+        "datesOfLife": {
+            "data": {"dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1352
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1420
+                }}
+            }},
+            "comment": {"data": {
+                "place": [
+                    "Avignon",
+                    "Cambrai"
+                ],
+                "content": [
+                    "Il meurt le 9 août à",
+                    "et est inhumé dans le tombeau qu'il s'est fait construire à la cathédrale de",
+                    "."
+                ]
+            }}
+        },
+        "description": {"data": "Maître en théologie"},
+        "personID": {"data": 10016},
+        "variant-name": [
+            {"data": {"pname": {
+                "last_name": "ALLIACO",
+                "first_name": "Petrus de",
+                "qualif": "",
+                "content": "Petrus de ALLIACO"
+            }}},
+            {"data": {"pname": {
+                "last_name": "AILLY",
+                "first_name": "Pierre d'",
+                "qualif": "",
+                "content": "Pierre d'AILLY"
+            }}},
+            {"data": {"pname": {
+                "last_name": "MARGUERITE",
+                "first_name": "Pierre",
+                "qualif": "",
+                "content": "Pierre MARGUERITE"
+            }}}
+        ],
+        "usage-name": {"data": "PETRUS de Alliaco"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1364
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1420
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "ptitle": {
+                "text_before": "Collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1364
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1389
+                }}
+            },
+            "place": {
+                "annexe": "Collège de Navarre",
+                "content": "Paris"
+            },
+            "content": [
+                "(Collège de",
+                ")",
+                "."
+            ]
+        }},
+        "individualInformation": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Navarre"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1364
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1368
+                        }}
+                    },
+                    "place": "Paris",
+                    "content": [
+                        "Boursier artien du collège de",
+                        "à",
+                        ",",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.721."
+            },
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Navarre"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1368
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1381
+                        }}
+                    },
+                    "place": "Paris",
+                    "content": [
+                        "Boursier en théologie du collège de",
+                        "à",
+                        ",",
+                        "."
+                    ]
+                },
+                "source": [
+                    "GOROCHOV: p.721.",
+                    "GOROCHOV: p.580."
+                ]
+            }
+        ],
+        "grade": [
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1367
+                }},
+                "content": [
+                    "Licencié ès arts (Paris)",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1368
+                }},
+                "content": [
+                    " Étudiant en théologie (Paris)",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1375
+                }},
+                "content": [
+                    "Bachelier en théologie (Paris)",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1381
+                }},
+                "content": [
+                    "Licencié en théologie (Paris)",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "dates": {"date": {
+                    "type": "circa",
+                    "content": 1381
+                }},
+                "content": [
+                    "Maître en théologie (Paris)",
+                    "."
+                ]
+            }}
+        ]
+    },
+    "professionalCareer": {
+        "diplomacy": {"data": {
+            "ptitle": {
+                "text_before": "concile",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Pise"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1409
+            }},
+            "content": [
+                "Participe au concile de",
+                "en",
+                "."
+            ]
+        }},
+        "universityFunction": [
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1413
+                }},
+                "place": "Allemagne",
+                "content": [
+                    "Légat du pape en",
+                    "en",
+                    "."
+                ]
+            }},
+            {"data": {
+                "ptitle": {
+                    "text_before": "faculté",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "théologie"
+                },
+                "dates": {"date": {
+                    "type": "before",
+                    "content": 1381
+                }},
+                "place": "Paris",
+                "content": [
+                    "Maître régent de la faculté de",
+                    "de",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Navarre"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1384
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1389
+                        }}
+                    },
+                    "place": "Paris",
+                    "content": [
+                        "Grand maître du collège de",
+                        "à",
+                        ",",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.580."
+            },
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1381
+                }},
+                "content": [
+                    "Délégué par l'Université de Paris auprès du roi et de ses oncles pour défendre la tenue d'un concile afin de régler la question du Grand Schisme en",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "CLEMENT VII",
+                    "qualif": "",
+                    "content": "CLEMENT VII"
+                },
+                "ptitle": {
+                    "text_before": "l'",
+                    "text_after": "",
+                    "empty_word": "",
+                    "content": "Université"
+                },
+                "place": "Paris",
+                "content": [
+                    "Chancelier de l'",
+                    "de",
+                    "nommé par",
+                    "."
+                ]
+            }}
+        ],
+        "religiousFunctions": [
+            {"data": {
+                "pname": {
+                    "last_name": "CHARLES VI",
+                    "ptitle": {
+                        "text_before": "roi",
+                        "text_after": "",
+                        "see": " CHARLES VI",
+                        "empty_word": "de",
+                        "content": "France"
+                    },
+                    "qualif": "roi de",
+                    "content": "CHARLES VI, roi de"
+                },
+                "content": [
+                    "Confesseur de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "CHARLES VI",
+                    "ptitle": {
+                        "text_before": "roi",
+                        "text_after": "",
+                        "see": " CHARLES VI",
+                        "empty_word": "de",
+                        "content": "France"
+                    },
+                    "qualif": "roi de",
+                    "content": "CHARLES VI, roi de"
+                },
+                "dates": {"date": {
+                    "type": "circa",
+                    "content": 1385
+                }},
+                "content": [
+                    "Aumônier de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "LOUIS",
+                    "qualif": "d'Orléans",
+                    "content": "LOUIS d'Orléans"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1403
+                }},
+                "content": [
+                    "Ambassadeur de",
+                    "auprès de BENOIT XIII$ pour aller porter le message du roi en",
+                    "."
+                ]
+            }}
+        ]
+    },
+    "type": "Univ-Paris",
+    "relationelInsertion": {
+        "familyNetwork": {
+            "data": {
+                "pname": {
+                    "last_name": "AILLY",
+                    "first_name": "Pierre d'",
+                    "qualif": "",
+                    "content": "Pierre d'AILLY"
+                },
+                "content": [
+                    "Son neveu est",
+                    "."
+                ]
+            },
+            "type": "neveu"
+        },
+        "politicalLinks": [
+            {"data": "Partisan de la primauté du concile sur le pape ;"},
+            {"data": {
+                "pname": {
+                    "last_name": "LOUIS",
+                    "qualif": "d'Orléans",
+                    "content": "LOUIS d'Orléans"
+                },
+                "content": [
+                    "Partisan de",
+                    "."
+                ]
+            }}
+        ],
+        "socialClassOrigin": {"data": "Son père est boucher."},
+        "professionalLinks": [
+            {"data": {
+                "pname": {
+                    "last_name": "ANJOU",
+                    "first_name": "Louis d'",
+                    "qualif": "",
+                    "content": "Louis d'ANJOU"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1384
+                }},
+                "content": [
+                    "Pas apprécié de",
+                    "mort en",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "GERSON",
+                        "first_name": "Jean",
+                        "qualif": "",
+                        "content": "Jean GERSON"
+                    },
+                    "content": [
+                        "Protecteur de",
+                        "qui le seconde dans son poste de chancelier ;"
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": {
+                        "last_name": "LA TREMOILLE",
+                        "first_name": "Louis de",
+                        "qualif": "",
+                        "content": "Louis de LA TREMOILLE"
+                    },
+                    "ptitle": {
+                        "text_before": "l'évêché",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Cambrai"
+                    },
+                    "content": [
+                        "Il n'est pas apprécié par le duc de Bourgogne car son candidat pour l'évêché de",
+                        "a été écarté."
+                    ]
+                }}
+            }
+        ],
+        "polemic": [
+            {"data": {
+                "pname": {
+                    "last_name": "AUBRIOT",
+                    "first_name": "Hugues",
+                    "qualif": "prévôt de Paris",
+                    "content": "Hugues AUBRIOT, prévôt de Paris"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1381
+                }},
+                "content": [
+                    "Impliqué dans la lutte contre",
+                    "en",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "BLANCHART",
+                        "ptitle": {
+                            "text_before": "l'",
+                            "text_after": "",
+                            "see": "Jean  BLANCHART",
+                            "empty_word": "",
+                            "content": "Université"
+                        },
+                        "first_name": "Jean",
+                        "qualif": "chancelier de l'",
+                        "content": "Jean BLANCHART, chancelier de l'"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1385
+                    }},
+                    "content": [
+                        "Impliqué dans une polémique avec",
+                        "en",
+                        "sur le coût élevés des diplômes imposés par ce dernier ;"
+                    ]
+                },
+                "comment": {"data": "Il le force à démissionner."}
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "MONZON",
+                        "first_name": "Juan de",
+                        "qualif": "dominicain aragonais",
+                        "content": "Juan de MONZON, dominicain aragonais"
+                    },
+                    "dates": {"date": {
+                        "type": "circa",
+                        "content": 1385
+                    }},
+                    "content": [
+                        "Impliqué dans une polémique avec",
+                        ", contempteur de l'Immaculée Conception",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "Il persuade le roi de se séparer de ce dernier comme aumônier et prend ainsi sa place."}
+            },
+            {"data": {
+                "pname": {
+                    "last_name": "HUS",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean HUS"
+                },
+                "content": [
+                    "Impliqué dans la condamnation de",
+                    "dont la doctrine lui semble menacer les fondements mêmes de l'Eglise comme de la société."
+                ]
+            }}
+        ],
+        "friends": [
+            {"data": {
+                "pname": {
+                    "last_name": "MONTREUIL",
+                    "first_name": "Jean de",
+                    "qualif": "",
+                    "content": "Jean de MONTREUIL"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "CLAMANGES",
+                    "first_name": "Nicolas de",
+                    "qualif": "",
+                    "content": "Nicolas de CLAMANGES"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "GERSON",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean GERSON"
+                },
+                "content": [
+                    "Ami de",
+                    ";"
+                ]
+            }},
+            {"data": {
+                "pname": {
+                    "last_name": "MACHET",
+                    "first_name": "Gérard",
+                    "qualif": "",
+                    "content": "Gérard MACHET"
+                },
+                "content": [
+                    "Ami de",
+                    "."
+                ]
+            }}
+        ]
+    }
+}}}
