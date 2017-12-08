@@ -191,33 +191,31 @@ class RelationalParser{
       }
       //connectionsWith	[SimpleInformation{...}] : not found
 
-      //memberOfGroups	[SimpleInformation{...}] : not found
       let memberOfGroups = UtilParser.findProperty(json,"prosop.person.relationelInsertion.specificGroup");
       if(memberOfGroups){
         relationalI.memberOfGroups = RelationalParser.parseGenericDataOrArray(memberOfGroups);
       }
 
-      //politicalRelationships	[SimpleInformation{...}]
       let politicalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.politicalLinks");
       if(politicalRelationships){
         relationalI.politicalRelationships = RelationalParser.parseGenericDataOrArray(politicalRelationships);
       }
 
-
-      //professionalRelationships	[SimpleInformation{...}]
       let professionalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.professionalLinks");
       if(professionalRelationships){
         relationalI.professionalRelationships = RelationalParser.parseGenericDataOrArray(professionalRelationships);
       }
 
-
-      //willExecutor	SimpleInformation{...}
       let executor = UtilParser.findProperty(json,"prosop.person.relationelInsertion.executor");
       if(executor){
         relationalI.willExecutor = RelationalParser.parseGenericDataOrArray(executor);
       }
 
-      //studentProfessorRelationships
+      let studentProfessorRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.student-professor");
+      if(studentProfessorRelationships){
+        relationalI.studentProfessorRelationships = RelationalParser.parseGenericDataOrArray(studentProfessorRelationships);
+      }
+
 
 
       return relationalI;

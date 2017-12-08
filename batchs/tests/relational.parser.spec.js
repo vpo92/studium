@@ -816,7 +816,6 @@ describe('relational.parser', function(){
 
   });
 
-
   describe("relational.parser.parseControversyOrDebates",function(){
       it("should return null if no value att all", function(done){
         expect(RelationalParser.parseControversyOrDebates(null)).to.be.a('null');
@@ -1181,7 +1180,23 @@ describe('relational.parser', function(){
                         ]
                     },
                     "source": "GOROCHOV: p.599-600."
-                }]
+                }],
+                "student-professor":[
+                    {
+                        "data": {
+                            "pname": {
+                                "last_name": "SABURGO",
+                                "first_name": "Johannes de",
+                                "qualif": "",
+                                "content": "Johannes de SABURGO"
+                            },
+                            "content": [
+                                "Son maître est",
+                                "pour le baccalauréat."
+                            ]
+                        },
+                        "source": "AUP: I 79 34."
+                    }]
         }
       }}};
 
@@ -1198,7 +1213,8 @@ describe('relational.parser', function(){
           "memberOfGroups":[{"value":"Partisan du pape BENOÎT XIII ;"},{"value":"?Partisan des Armagnacs ."}],
           "politicalRelationships" : [{"value":"Partisan de la primauté du concile sur le pape ;"},{"value":"Partisan de LOUIS d'Orléans ."}],
           "professionalRelationships": [{"value":"Pas apprécié de Louis d'ANJOU mort en 1384 ;"},{"value":"Protecteur de Jean GERSON qui le seconde dans son poste de chancelier ;"}],
-          "willExecutor" : [{"value":"Exécuteur testamentaire de Jean COURTECUISSE en 1424 ."}]
+          "willExecutor" : [{"value":"Exécuteur testamentaire de Jean COURTECUISSE en 1424 ."}],
+          "studentProfessorRelationships":[{"value":"Son maître est Johannes de SABURGO pour le baccalauréat."}]
         };
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);
@@ -1206,11 +1222,12 @@ describe('relational.parser', function(){
         expect(res1.personalServicesRelationship).to.deep.eql(expected.personalServicesRelationship);
         expect(res1.friends).to.deep.eql(expected.friends);
         expect(res1.controversyOrDebates).to.deep.eql(expected.controversyOrDebates);
-        console.log(res1.memberOfGroups);
         expect(res1.memberOfGroups).to.deep.eql(expected.memberOfGroups);
         expect(res1.politicalRelationships).to.deep.eql(expected.politicalRelationships);
         expect(res1.professionalRelationships).to.deep.eql(expected.professionalRelationships);
         expect(res1.willExecutor).to.deep.eql(expected.willExecutor);
+        expect(res1.studentProfessorRelationships).to.deep.eql(expected.studentProfessorRelationships);
+
         expect(res1).to.deep.eql(expected);
         done();
       });
