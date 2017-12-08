@@ -932,10 +932,41 @@ describe('relational.parser', function(){
       });
   });
 
-/**
 
+  describe("relational.parser.parsePolitical",function(){
+      it("should return null if no value att all", function(done){
+        expect(RelationalParser.parsePolitical(null)).to.be.a('null');
+        expect(RelationalParser.parsePolitical("")).to.be.a('null');
+        expect(RelationalParser.parsePolitical({})).to.be.a('null');
+        expect(RelationalParser.parsePolitical([])).to.be.a('null');
+        done();
+      });
 
-  */
+      it("should return a value if value exists", function(done){
+        let ex1 = [
+            {"data": "Partisan de la primauté du concile sur le pape ;"},
+            {"data": {
+                "pname": {
+                    "last_name": "LOUIS",
+                    "qualif": "d'Orléans",
+                    "content": "LOUIS d'Orléans"
+                },
+                "content": [
+                    "Partisan de",
+                    "."
+                ]
+            }}
+        ];
+        let exp1 = [
+          {"value":"Partisan de la primauté du concile sur le pape ;"},
+          {"value":"Partisan de LOUIS d'Orléans ."}];
+        let res1 = RelationalParser.parsePolitical(ex1);
+        console.log(res1);
+        expect(res1).to.deep.eq(exp1);
+        done();
+
+      });
+    });
 
 
   describe("relational.parser.buildRelationalInsertion",function(){
@@ -980,6 +1011,33 @@ describe('relational.parser', function(){
                     ]
                 }}
             },
+            "personalServicesRelationship":{
+                "data": {
+                    "pname": {
+                        "last_name": "CHARLES",
+                        "ptitle": {
+                            "text_before": "duc",
+                            "text_after": "",
+                            "see": " CHARLES",
+                            "empty_word": "d'",
+                            "content": "Alençon"
+                        },
+                        "qualif": "duc d'",
+                        "content": "CHARLES, duc d'"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1344
+                    }},
+                    "content": [
+                        "Familier de",
+                        ", en",
+                        "."
+                    ]
+                },
+                "source": "COURTENAY, &Parisian Scholars ...&, p.196."
+            },
             "friends": [
                 {"data": {
                     "pname": {
@@ -1019,16 +1077,35 @@ describe('relational.parser', function(){
                         "en",
                         ";"
                     ]
-                }}]
+                }}],
+                "politicalLinks":[
+                    {"data": "Partisan de la primauté du concile sur le pape ;"},
+                    {"data": {
+                        "pname": {
+                            "last_name": "LOUIS",
+                            "qualif": "d'Orléans",
+                            "content": "LOUIS d'Orléans"
+                        },
+                        "content": [
+                            "Partisan de",
+                            "."
+                        ]
+                    }}
+                ]
         }
       }}};
+
+      //FIXME personalServicesRelationship
+
         const expected = {
           "familyNetwork": [
             {"name":{"value":"ASSER Skjalmsen Rig"},"type":"father"},
           ],
           "socialClassOrigin" : {"value":"Haute noblesse."},
+          "personalServicesRelationship":[{"name":{"value":"CHARLES, duc d' Alençon"}}],
           "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}],
           "controversyOrDebates": [{"value":"Impliqué dans la lutte contre Hugues AUBRIOT, prévôt de Paris en 1381 ;"}],
+          "politicalRelationships" : [{"value":"Partisan de la primauté du concile sur le pape ;"},{"value":"Partisan de LOUIS d'Orléans ."}],
         };
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);
