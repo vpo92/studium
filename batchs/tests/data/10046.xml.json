@@ -1,0 +1,681 @@
+{"prosop": {"person": {
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": [
+            {"data": "AUP: II c.532 25 6, 542 13, 593 37 6, 596 5, 639 29 32, 655 29, 712 21 3, 815 31 4, 825 10 ;"},
+            {"data": "CUP: IV, p.83, 331 ;"},
+            {"data": "FEG: III p.464 (RM 80) ;"},
+            {"data": "GOROCHOV: p.599-600 ;"},
+            {"data": "LAUNOI: p.209, 928."}
+        ],
+        "source": [
+            {"data": "Città del Vaticano, ASV Reg. Vat n°331, f.320-321v ;"},
+            {"data": "Città del Vaticano, ASV Reg. suppl. n°135, f.239v-240 ;"},
+            {"data": "Città del Vaticano, ASV Reg. suppl. n°142, f.82 ;"},
+            {"data": "FAUQUEMBERGUE (C. de), &Journal de Clément de Fauquembergue, greffier du Parlement de Paris, 1417-1435&, éd. TUETEY (A.) et LECAILLE (H.), III, Paris, 1903, p.114-116 ;"},
+            {"data": "Paris, AN X1a 1480, f.329v-340 ;"},
+            {"data": "Paris, AN H3 2785 ;"},
+            {"data": "MS. Langres, BM 54, f.37v-77v ;"},
+            {"data": "MS. Reims, BM 1773, f.213v, Pr. 7."}
+        ]
+    },
+    "ecclesiasticalCareer": {"churchPositions": [
+        {
+            "data": {
+                "ptitle": [
+                    {
+                        "text_before": "l'église",
+                        "text_after": "",
+                        "empty_word": "",
+                        "content": "Saint-Pierre"
+                    },
+                    {
+                        "text_before": "",
+                        "text_after": "",
+                        "empty_word": "",
+                        "content": "Langres"
+                    }
+                ],
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1404
+                }},
+                "content": [
+                    "Chapelain de l'église",
+                    "à",
+                    "en",
+                    ";"
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        },
+        {
+            "data": {
+                "ptitle": {
+                    "text_before": "chapitre",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Langres"
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1414
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1450
+                    }}
+                },
+                "content": [
+                    "Chanoine prébendé au chapitre de",
+                    "entre",
+                    "au moins ;"
+                ]
+            },
+            "source": [
+                "GOROCHOV: p.599-600.",
+                "FEG: III p.464 (RM 80)."
+            ]
+        },
+        {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1418
+                }},
+                "place": "Paris",
+                "content": [
+                    "Candidat à un canonicat à",
+                    "en",
+                    ";"
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        },
+        {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1418
+                }},
+                "place": "Langres",
+                "content": [
+                    "Candidat à la dignité de chantre à",
+                    "en",
+                    ";"
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        },
+        {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1420
+                }},
+                "place": "Langres",
+                "content": [
+                    "Curé d'une paroisse à",
+                    "en",
+                    ";"
+                ]
+            },
+            "comment": {"data": {
+                "pname": {
+                    "last_name": "ROEDER",
+                    "first_name": "Mathieu",
+                    "qualif": "",
+                    "content": "Mathieu ROEDER"
+                },
+                "ptitle": [
+                    {
+                        "text_before": "collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Navarre"
+                    },
+                    {
+                        "text_before": "",
+                        "text_after": "",
+                        "empty_word": "",
+                        "content": "Langres"
+                    }
+                ],
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1420
+                }},
+                "content": [
+                    ", ancien boursier du collège de",
+                    "et nommé évêque de",
+                    "en",
+                    ", résigne cette cure en sa faveur."
+                ]
+            }},
+            "source": "GOROCHOV: p.599-600."
+        },
+        {
+            "data": {
+                "ptitle": {
+                    "text_before": "prébendé",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Reims"
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1423
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1432
+                    }}
+                },
+                "content": [
+                    "Chanoine prébendé de",
+                    "en",
+                    ";"
+                ]
+            },
+            "source": [
+                "GOROCHOV: p.599-600.",
+                "FEG: III p.464 (RM 80)."
+            ]
+        },
+        {
+            "data": {
+                "ptitle": [
+                    {
+                        "text_before": "Prévôt",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Saint-Germain"
+                    },
+                    {
+                        "text_before": "diocèse",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Reims"
+                    }
+                ],
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1432
+                }},
+                "place": {
+                    "annexe": "diocèse de Reims",
+                    "content": "Montfaucon"
+                },
+                "content": [
+                    "Prévôt de",
+                    "de",
+                    "(diocèse de",
+                    ") en",
+                    ";"
+                ]
+            },
+            "source": [
+                "GOROCHOV: p.599-600.",
+                "FEG: III p.464 (RM 80)."
+            ]
+        },
+        {
+            "data": {
+                "ptitle": {
+                    "text_before": "Doyen",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Beauvais"
+                },
+                "dates": {
+                    "fromDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1432
+                    }},
+                    "toDate": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1439
+                    }}
+                },
+                "content": [
+                    "Doyen de",
+                    "entre",
+                    ";"
+                ]
+            },
+            "source": "FEG: III p.464 (RM 80)."
+        },
+        {
+            "data": {
+                "ptitle": {
+                    "text_before": "Chanoine",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Beauvais"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1439
+                }},
+                "content": [
+                    "Chanoine de",
+                    "en",
+                    ";"
+                ]
+            },
+            "source": "FEG: III p.464 (RM 80)."
+        },
+        {
+            "data": {
+                "ptitle": {
+                    "text_before": "Chantre",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Beauvais"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1439
+                }},
+                "content": [
+                    "Chantre de",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "FEG: III p.464 (RM 80)."
+        }
+    ]},
+    "geo-origin": {"diocese": {
+        "data": {
+            "ptitle": {
+                "text_before": "Diocèse",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Langres"
+            },
+            "content": [
+                "Diocèse de",
+                "."
+            ]
+        },
+        "source": [
+            "GOROCHOV: p.599-600.",
+            "FEG: III p.464 (RM 80)."
+        ]
+    }},
+    "possessionOfBooks": {"book": {"leg": {
+        "data": {
+            "ptitle": {
+                "text_before": "l'abbaye",
+                "text_after": "",
+                "empty_word": "",
+                "content": "Saint-Victor"
+            },
+            "place": "Paris",
+            "content": [
+                "Il a légué une quinzaine de manuscrits à l'abbaye",
+                "de",
+                ", essentiellement des évangiles et des livres de droit: les MS. Paris, B. Arsenal 139, 526, 682, 684, les MS. Paris, B. Mazarine 100, 1314 et les MS. Paris, BnF lat. 789, 14240, 10400, 14244, 14257, 14350, 14424 et 14622."
+            ]
+        },
+        "source": "GOROCHOV: p.599-600."
+    }}},
+    "label": {
+        "datesOfLife": {
+            "data": {"dates": {
+                "fromDate": {"date": {"type": null}},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1456
+                }}
+            }},
+            "comment": {"data": {
+                "ptitle": {
+                    "text_before": "l'abbaye",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Saint-Victor"
+                },
+                "content": [
+                    "Il est enterré dans l'abbaye de",
+                    "."
+                ]
+            }},
+            "source": "GOROCHOV: p.599-600."
+        },
+        "description": {"data": {
+            "ptitle": {
+                "text_before": "collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Navarre"
+            },
+            "content": [
+                "Maître des grammairiens au collège de",
+                "."
+            ]
+        }},
+        "personID": {"data": 10046},
+        "variant-name": [
+            {
+                "data": {"pname": {
+                    "last_name": "BRENA",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de BRENA"
+                }},
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "BRENNE",
+                    "first_name": "Pierre de",
+                    "qualif": "",
+                    "content": "Pierre de BRENNE"
+                }},
+                "source": "GOROCHOV: p.599-600."
+            }
+        ],
+        "usage-name": {"data": "PETRUS de Brena"},
+        "statut": {"data": "Maître"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1404
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1456
+            }}
+        }}}
+    },
+    "formation": {
+        "university": {"data": {
+            "ptitle": {
+                "text_before": "Collège",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Dormans"
+            },
+            "dates": {
+                "fromDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1404
+                }},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1448
+                }}
+            },
+            "place": {
+                "annexe": "Collège de Dormans",
+                "content": "Paris"
+            },
+            "content": [
+                "(Collège de",
+                ")",
+                "."
+            ]
+        }},
+        "individualInformation": {
+            "data": {
+                "ptitle": {
+                    "text_before": "collège",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Dormans"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1406
+                }},
+                "place": "Paris",
+                "content": [
+                    "Admis comme hôte ou boursier au collège de",
+                    "à",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        },
+        "grade": [
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1404
+                    }},
+                    "content": [
+                        "Maître ès arts (Paris)",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1404
+                    }},
+                    "content": [
+                        "Étudiant en droit canon (Paris)",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1418
+                    }},
+                    "content": [
+                        "Licencié en droit canon (Paris)",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {
+                    "dates": {"date": {
+                        "type": "before",
+                        "content": 1437
+                    }},
+                    "content": [
+                        "Docteur en droit canon (Paris)",
+                        "."
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            }
+        ]
+    },
+    "professionalCareer": {
+        "diplomacy": [
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "CLAMANGES",
+                        "first_name": "Nicolas de",
+                        "qualif": "",
+                        "content": "Nicolas de CLAMANGES"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1412
+                    }},
+                    "place": "Paris",
+                    "content": [
+                        "Chargé de porter par",
+                        "un traité qu'il vient de composer sur la simonie à",
+                        "en",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "CHARLES VII",
+                        "ptitle": {
+                            "text_before": "roi",
+                            "text_after": "",
+                            "see": " CHARLES VII",
+                            "empty_word": "de",
+                            "content": "France"
+                        },
+                        "qualif": "roi de",
+                        "content": "CHARLES VII, roi de"
+                    },
+                    "ptitle": {
+                        "text_before": "l'Université",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Paris"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1442
+                    }},
+                    "content": [
+                        "Membre de l'ambassade déléguée par l'Université de",
+                        ", auprès de",
+                        ", en",
+                        "."
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            }
+        ],
+        "universityFunction": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Navarre"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1411
+                    }},
+                    "place": "Paris",
+                    "content": [
+                        "Maître des grammairiens au collège de",
+                        "à",
+                        "en",
+                        ";"
+                    ]
+                },
+                "source": "GOROCHOV: p.599-600."
+            },
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "faculté",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "décret"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1437
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1448
+                        }}
+                    },
+                    "place": "Paris",
+                    "content": [
+                        "Maître régent de la faculté de",
+                        "à",
+                        "en",
+                        "."
+                    ]
+                },
+                "source": [
+                    "GOROCHOV: p.599-600.",
+                    "FEG: III p.464 (RM 80)."
+                ]
+            }
+        ]
+    },
+    "type": "Univ-Paris",
+    "relationelInsertion": {
+        "executor": {
+            "data": {
+                "pname": {
+                    "last_name": "COURTECUISSE",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean COURTECUISSE"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1424
+                }},
+                "content": [
+                    "Exécuteur testamentaire de",
+                    "en",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        },
+        "friends": {
+            "data": {
+                "pname": {
+                    "last_name": "COURTECUISSE",
+                    "first_name": "Jean",
+                    "qualif": "",
+                    "content": "Jean COURTECUISSE"
+                },
+                "content": [
+                    "Ami de",
+                    "."
+                ]
+            },
+            "source": "GOROCHOV: p.599-600."
+        }
+    }
+}}}

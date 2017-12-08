@@ -121,6 +121,14 @@ class RelationalParser{
 
   }
 
+  static parseGenericDataOrArray(data){
+    let res = null;
+    if(data && data instanceof Array && data.length > 0){
+      res = data.map(RelationalParser.parseGenericData);
+    }
+    return res
+  }
+
   static parseGenericData(item){
     let res = null;
     if(typeof item.data === 'string'){
@@ -147,18 +155,6 @@ class RelationalParser{
     }
     return res;
   }
-
-static parsePolitical(data){
-  let res = null;
-  if(data && data instanceof Array && data.length > 0){
-    res = data.map(RelationalParser.parseGenericData);
-  }
-  return res
-}
-
-
-//"relationelInsertion" part
-
 
   static buildRelationalInsertion(json){
     if(json){
@@ -196,13 +192,22 @@ static parsePolitical(data){
       //politicalRelationships	[SimpleInformation{...}]
       let politicalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.politicalLinks");
       if(politicalRelationships){
-        relationalI.politicalRelationships = RelationalParser.parsePolitical(politicalRelationships);
+        relationalI.politicalRelationships = RelationalParser.parseGenericDataOrArray(politicalRelationships);
       }
 
 
       //professionalRelationships	[SimpleInformation{...}]
+      let professionalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.professionalLinks");
+      if(professionalRelationships){
+        relationalI.professionalRelationships = RelationalParser.parseGenericDataOrArray(professionalRelationships);
+      }
+
 
       //willExecutor	SimpleInformation{...}
+      let executor = UtilParser.findProperty(json,"prosop.person.relationelInsertion.executor");
+      if(executor){
+        relationalI.willExecutor = RelationalParser.parseGenericDataOrArray(executor);
+      }
 
       //studentProfessorRelationships
 

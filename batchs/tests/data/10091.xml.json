@@ -1,0 +1,712 @@
+{"prosop": {"person": {
+    "committee": {"committeeOfTheUniversity": {
+        "data": {
+            "ptitle": {
+                "text_before": "l'Université",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Paris"
+            },
+            "dates": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1476
+            }},
+            "content": [
+                "Nommé par l'Université de",
+                "à une commission universitaire chargée de rencontrer le chancelier royal, 7 décembre",
+                "."
+            ]
+        },
+        "source": [
+            "SULLIVAN Theol.: II p. 187-188 ;",
+            "AUP: IV c. 32."
+        ]
+    }},
+    "works": {"note": "Pas d'œuvres connues."},
+    "bibliography": {
+        "usualBook": [
+            {"data": "AUP: IV c. 19, 32, 40, 42, 81, 95, 151 et passim ;"},
+            {"data": "SULLIVAN Theol.: II p. 187-188."}
+        ],
+        "bibref": {"data": "STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ : Rédaction : Claire Priol-Hoogland, dernière mise à jour 01/04/2014."},
+        "individualBook": [
+            {"data": {
+                "place": "",
+                "content": "FRANKLIN (A.), &La Sorbonne : ses origines, sa bibliothèque, les débuts de l'imprimerie à Paris et la succession de Richelieu d'après les documents inédits&, Paris, 1875, p. 229 ;"
+            }},
+            {"data": "KALUZA (Z.), \"Les débuts de l'Albertisme tardif\", dans &Albertus Magnus und des Albertismus Deutsche philosophische Kultur des Mittelalters&, Leyde, 1995, p. 287 ;"},
+            {"data": "MARICHAL (R.), &Le livre des prieurs de Sorbonne (1431-1485): texte critique avec introduction, notes et index&, Paris, 1987, p. 155, 156, 167, 204, 212 et 213 ;"},
+            {"data": "SPIRGATIS (M.), &Personalverzeichnis der Pariser Universität von 1464 und die darin aufgeführten Handschriften- und Pergamenthändler&, Leipzig, 1988, p. 24 ;"},
+            {"data": "VIELLIARD (J.), &Le Registre de prêt de la bibliothèque du collège de Sorbonne, 1402-1536&, Paris, 2000, p. 436-440 et 662."}
+        ],
+        "source": {"data": "MS. Paris, BnF lat. 5657-A, f. 24v."}
+    },
+    "geo-origin": {
+        "birthplace": {"data": {
+            "place": "Flandres",
+            "content": "."
+        }},
+        "diocese": {
+            "data": {
+                "ptitle": {
+                    "text_before": "Diocèse",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Thérouanne"
+                },
+                "content": [
+                    "Diocèse de",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol.: II p. 187-188."
+        }
+    },
+    "possessionOfBooks": {"book": {"lending": {
+        "data": {
+            "ptitle": [
+                {
+                    "text_before": "bibliothèque",
+                    "text_after": "",
+                    "empty_word": "de la",
+                    "content": "Sorbonne"
+                },
+                {
+                    "text_before": "appartenant",
+                    "text_after": "",
+                    "empty_word": "à la",
+                    "content": "Sorbonne"
+                }
+            ],
+            "dates": [
+                {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1465
+                }},
+                {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1478
+                }}
+            ],
+            "content": [
+                "Apparaît dans le registre de bibliothèque de la",
+                "le 17 octobre",
+                ": ses clés et livres, appartenant à la",
+                ", sont retournés le 29 octobre",
+                "."
+            ]
+        },
+        "source": "SULLIVAN Theol.: II p. 187-188."
+    }}},
+    "label": {
+        "datesOfLife": {
+            "data": {"dates": {
+                "fromDate": {"date": {"type": null}},
+                "toDate": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1478
+                }}
+            }},
+            "comment": {"data": {
+                "pname": [
+                    {
+                        "last_name": "BRULE",
+                        "first_name": "Reginaldus de",
+                        "qualif": "",
+                        "content": "Reginaldus de BRULE"
+                    },
+                    {
+                        "last_name": "CROCO",
+                        "first_name": "Petrus de",
+                        "qualif": "",
+                        "content": "Petrus de CROCO"
+                    }
+                ],
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1478
+                }},
+                "content": [
+                    "Décède avant le 28 octobre",
+                    ", date à laquelle",
+                    "cherche les chambres de la maison  derrière la chapelle laissées vacantes par la mort de",
+                    "."
+                ]
+            }},
+            "source": "SULLIVAN Theol.: II p. 187-188."
+        },
+        "description": {"data": {
+            "ptitle": {
+                "text_before": "Nation",
+                "text_after": "",
+                "empty_word": "de",
+                "content": "Picardie"
+            },
+            "content": [
+                "Régent de la Nation de",
+                "."
+            ]
+        }},
+        "personID": {"data": 10091},
+        "variant-name": [
+            {
+                "data": {"pname": {
+                    "last_name": "CROCO",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROCO"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "CROC",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROC"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "CROLC",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROLC"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "CROLCO",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROLCO"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "CROQ",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROQ"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {"pname": {
+                    "last_name": "CROQUO",
+                    "first_name": "Petrus de",
+                    "qualif": "",
+                    "content": "Petrus de CROQUO"
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            }
+        ],
+        "usage-name": {"data": "PETRUS de Croco"},
+        "statut": {"data": "Gradué"},
+        "datesOfActivity": {"data": {"dates": {
+            "fromDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1472
+            }},
+            "toDate": {"date": {
+                "certitude": true,
+                "type": "single",
+                "content": 1478
+            }}
+        }}}
+    },
+    "formation": {
+        "university": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Sorbonne"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1465
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1477
+                        }}
+                    },
+                    "place": {
+                        "annexe": "Collège de Sorbonne",
+                        "content": "Paris"
+                    },
+                    "content": [
+                        "(Collège de",
+                        ")",
+                        ";"
+                    ]
+                },
+                "comment": [
+                    {"data": {
+                        "ptitle": {
+                            "text_before": "Collège",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Sorbonne"
+                        },
+                        "dates": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1465
+                        }},
+                        "content": [
+                            "Commence le processus d'admission au Collège de",
+                            "en",
+                            "entre le 26 mai et le 9 juillet ;"
+                        ]
+                    }},
+                    {"data": {
+                        "pname": {
+                            "last_name": "GUNDISALVUS",
+                            "qualif": "",
+                            "content": "GUNDISALVUS"
+                        },
+                        "ptitle": {
+                            "text_before": "Collège",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Sorbonne"
+                        },
+                        "dates": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1477
+                        }},
+                        "content": [
+                            "Sa dernière apparition, comme membre actif dans les affaires du Collège de",
+                            ", date du 26 février",
+                            ", lorsqu'il était un des \"socii\" opposé à l'admission du magister",
+                            "\"ad societatem\"."
+                        ]
+                    }}
+                ],
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Nation",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Picardie"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "type": "before",
+                            "content": 1472
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1478
+                        }}
+                    },
+                    "place": {
+                        "annexe": "Nation de Picardie",
+                        "content": "Paris"
+                    },
+                    "content": [
+                        "(Nation de",
+                        ")",
+                        "."
+                    ]
+                },
+                "comment": [
+                    {"data": "S'acquitte d'une taxe de 2 sous pour financer une ambassade universitaire à la cour royale, début %1464 ;"},
+                    {"data": {
+                        "dates": {
+                            "fromDate": {"date": {
+                                "certitude": true,
+                                "type": "single",
+                                "content": 1476
+                            }},
+                            "toDate": {"date": {
+                                "certitude": true,
+                                "type": "single",
+                                "content": 1478
+                            }}
+                        },
+                        "ptitle": [
+                            {
+                                "text_before": "Faculté",
+                                "text_after": "",
+                                "empty_word": "des",
+                                "content": "Arts"
+                            },
+                            {
+                                "text_before": "",
+                                "text_after": "",
+                                "empty_word": "",
+                                "content": "Paris"
+                            }
+                        ],
+                        "content": [
+                            "Entre",
+                            ", son nom est fréquemment mentionné dans le &Liber procuratorum nationis Picardae& dans des assemblées de la nation, de la Faculté des",
+                            "et des assemblées de l'Université de",
+                            "."
+                        ]
+                    }}
+                ],
+                "source": [
+                    "SPIRGATIS 24.",
+                    "SULLIVAN Theol.: II p. 187-188 ;",
+                    "AUP: IV passim."
+                ]
+            }
+        ],
+        "grade": {
+            "data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1472
+                }},
+                "content": [
+                    "Licencié en théologie (Paris) (15 février)",
+                    "."
+                ]
+            },
+            "comment": [
+                {"data": "Il est classé 20/21 ;"},
+                {"data": "Rien n'indique un grade de maître."}
+            ],
+            "source": "SULLIVAN Theol.: II p. 187-188."
+        }
+    },
+    "professionalCareer": {
+        "diplomacy": [
+            {
+                "data": {
+                    "ptitle": [
+                        {
+                            "text_before": "Nation",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Picardie"
+                        },
+                        {
+                            "text_before": "",
+                            "text_after": "",
+                            "empty_word": "",
+                            "content": "Arts"
+                        },
+                        {
+                            "text_before": "",
+                            "text_after": "",
+                            "empty_word": "",
+                            "content": "Paris"
+                        }
+                    ],
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1476
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1478
+                        }}
+                    },
+                    "content": [
+                        "Assiste à des assemblées de la Nation de",
+                        ", de la Faculté des",
+                        "et des assemblées de l'Université de",
+                        ",",
+                        ";"
+                    ]
+                },
+                "comment": {"data": "Son nom est fréquemment mentionné dans le &Liber procuratorum nationis Picardae& à cette période."},
+                "source": [
+                    "SULLIVAN Theol.: II p. 187-188 ;",
+                    "AUP: IV passim."
+                ]
+            },
+            {
+                "data": {
+                    "pname": [
+                        {
+                            "last_name": "BOVART",
+                            "first_name": "Petrus",
+                            "qualif": "",
+                            "content": "Petrus BOVART"
+                        },
+                        {
+                            "last_name": "CROCO",
+                            "first_name": "Petrus de",
+                            "qualif": "",
+                            "content": "Petrus de CROCO"
+                        },
+                        {
+                            "last_name": "CROCO",
+                            "first_name": "Petrus de",
+                            "qualif": "",
+                            "content": "Petrus de CROCO"
+                        },
+                        {
+                            "last_name": "BUTLTEL",
+                            "first_name": "Johannes",
+                            "qualif": "",
+                            "content": "Johannes BUTLTEL"
+                        }
+                    ],
+                    "ptitle": {
+                        "text_before": "Collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Sorbonne"
+                    },
+                    "content": [
+                        "Lors d'une assemblée du Collège de",
+                        ", les \"socii\" apprennent que",
+                        ", neveu et exécuteur testamentaire de",
+                        ", était entré subrepticement dans le collège et emportait ses biens, dont certains avaient été légués par",
+                        "lui-même au collège et dont certains étaient des livres initialement légués par",
+                        "au collège."
+                    ]
+                },
+                "comment": {"data": {
+                    "pname": [
+                        {
+                            "last_name": "QUENTINI",
+                            "first_name": "Johannes",
+                            "qualif": "",
+                            "content": "Johannes QUENTINI"
+                        },
+                        {
+                            "last_name": "CROCO",
+                            "first_name": "Petrus",
+                            "qualif": "",
+                            "content": "Petrus CROCO"
+                        },
+                        {
+                            "last_name": "BOVART",
+                            "first_name": "Petrus",
+                            "qualif": "",
+                            "content": "Petrus BOVART"
+                        }
+                    ],
+                    "content": [
+                        "Les \"socii\" chargent",
+                        ", confesseur de",
+                        ", de rencontrer",
+                        "pour rendre compte des méfaits subis par le collège."
+                    ]
+                }},
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            }
+        ],
+        "universityFunction": [
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Collège",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Sorbonne"
+                    },
+                    "dates": {
+                        "fromDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1466
+                        }},
+                        "toDate": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1467
+                        }}
+                    },
+                    "content": [
+                        "Procureur du Collège de",
+                        ", probablement",
+                        ";"
+                    ]
+                },
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "Nation",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Picardie"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1476
+                    }},
+                    "content": [
+                        "Régent de la Nation de",
+                        ",",
+                        ";"
+                    ]
+                },
+                "source": [
+                    "SULLIVAN Theol.: II p. 187-188 ;",
+                    "AUP: IV c. 19."
+                ]
+            },
+            {"data": {
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1477
+                }},
+                "content": [
+                    "Candidat à la régence et aux écoles, 10 octobre",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1478
+                    }},
+                    "content": [
+                        "Candidat à la régence et aux écoles, 3 octobre",
+                        ";"
+                    ]
+                },
+                "source": [
+                    "SULLIVAN Theol.: II p. 187-188 ;",
+                    "AUP: IV c. 81 et 151."
+                ]
+            },
+            {"data": {
+                "ptitle": {
+                    "text_before": "diocèse",
+                    "text_after": "",
+                    "empty_word": "de",
+                    "content": "Thérouanne"
+                },
+                "dates": {"date": {
+                    "certitude": true,
+                    "type": "single",
+                    "content": 1476
+                }},
+                "content": [
+                    "Un des \"examinatores in cameris et superioris temptaminis\" pour le diocèse de",
+                    "à la fin décembre",
+                    ";"
+                ]
+            }},
+            {
+                "data": {
+                    "ptitle": {
+                        "text_before": "diocèse",
+                        "text_after": "",
+                        "empty_word": "de",
+                        "content": "Thérouanne"
+                    },
+                    "dates": {"date": {
+                        "certitude": true,
+                        "type": "single",
+                        "content": 1477
+                    }},
+                    "content": [
+                        "Un des \"examinatores in cameris et superioris temptaminis\" pour le diocèse de",
+                        "à la fin décembre",
+                        "."
+                    ]
+                },
+                "source": [
+                    "SULLIVAN Theol.: II p. 187-188 ;",
+                    "AUP: IV c. 40, 42 et 95."
+                ]
+            }
+        ]
+    },
+    "type": "Univ-Paris",
+    "relationelInsertion": {
+        "familyNetwork": {
+            "data": {
+                "pname": {
+                    "last_name": "BOVART",
+                    "first_name": "Petrus",
+                    "qualif": "",
+                    "content": "Petrus BOVART"
+                },
+                "content": [
+                    "Son neveu est",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol.: II p. 187-188.",
+            "type": "neveu"
+        },
+        "personalServiceRelationship": {
+            "data": {
+                "pname": {
+                    "last_name": "QUENTINI",
+                    "first_name": "Johannes",
+                    "qualif": "",
+                    "content": "Johannes QUENTINI"
+                },
+                "content": [
+                    "Son confesseur est",
+                    "."
+                ]
+            },
+            "source": "SULLIVAN Theol.: II p. 187-188."
+        },
+        "executor": [
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "BOVART",
+                        "first_name": "Petrus",
+                        "qualif": "",
+                        "content": "Petrus BOVART"
+                    },
+                    "content": [
+                        "Son exécuteur testamentaire est",
+                        "."
+                    ]
+                },
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            },
+            {
+                "data": {
+                    "pname": {
+                        "last_name": "QUENTINI",
+                        "first_name": "Johannes",
+                        "qualif": "",
+                        "content": "Johannes QUENTINI"
+                    },
+                    "content": [
+                        "Son exécuteur testamentaire est",
+                        "."
+                    ]
+                },
+                "source": "SULLIVAN Theol.: II p. 187-188."
+            }
+        ]
+    }
+}}}
