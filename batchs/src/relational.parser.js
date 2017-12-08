@@ -135,8 +135,12 @@ class RelationalParser{
       res = {"value":item.data};
     }else{
       res = item.data.content[0];
-      if(UtilParser.findProperty(item,"data.pname.content"))
+      if(UtilParser.findProperty(item,"data.pname.content")){
         res+=" "+UtilParser.parseName(item.data).value;
+      }else if(UtilParser.findProperty(item,"data.ptitle.content")){
+        res+=" "+item.data.ptitle.content;
+      }
+
       res+=" "+item.data.content[1];
       if(UtilParser.findProperty(item,"data.dates.date.content"))
         res+=" "+item.data.dates.date.content;
@@ -188,6 +192,10 @@ class RelationalParser{
       //connectionsWith	[SimpleInformation{...}] : not found
 
       //memberOfGroups	[SimpleInformation{...}] : not found
+      let memberOfGroups = UtilParser.findProperty(json,"prosop.person.relationelInsertion.specificGroup");
+      if(memberOfGroups){
+        relationalI.memberOfGroups = RelationalParser.parseGenericDataOrArray(memberOfGroups);
+      }
 
       //politicalRelationships	[SimpleInformation{...}]
       let politicalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.politicalLinks");

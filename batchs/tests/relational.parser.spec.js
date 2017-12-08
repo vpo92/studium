@@ -1023,6 +1023,59 @@ describe('relational.parser', function(){
                 }},
 
             ],
+            "specificGroup": [
+                {
+                    "data": {
+                        "pname": {
+                            "last_name": "BENOÎT XIII",
+                            "qualif": "",
+                            "content": "BENOÎT XIII"
+                        },
+                        "content": [
+                            "Partisan du pape",
+                            ";"
+                        ]
+                    },
+                    "comment": {"data": {
+                        "ptitle": {
+                            "text_before": "l'Université",
+                            "text_after": "",
+                            "empty_word": "de",
+                            "content": "Paris"
+                        },
+                        "dates": {"date": {
+                            "certitude": true,
+                            "type": "single",
+                            "content": 1408
+                        }},
+                        "content": [
+                            "En raison de ce soutien, l'Université de",
+                            "cherche sans doute à le sanctionner en",
+                            "."
+                        ]
+                    }},
+                    "source": "SULLIVAN Theol.: II p.131-133."
+                },
+                {
+                    "data": {
+                        "ptitle": {
+                            "text_before": "?Partisan",
+                            "text_after": "",
+                            "empty_word": "des",
+                            "content": "Armagnacs"
+                        },
+                        "content": [
+                            "?Partisan des",
+                            "."
+                        ]
+                    },
+                    "comment": {"data": "Les relations entretenues avec certains d'entre eux pourraient amener à penser qu'il serait lui même un de leur partisan. Par conséquent certains maîtres de l'Université vont voter pour sa condamnation."},
+                    "source": [
+                        "SULLIVAN Theol.: II p.131-133.",
+                        "CUP: IV p.272 (2001), 274 (2003) et 279 (2012)."
+                    ]
+                }
+            ],
             "polemic": [
                 {"data": {
                     "pname": {
@@ -1142,6 +1195,7 @@ describe('relational.parser', function(){
           "personalServicesRelationship":[{"name":{"value":"CHARLES, duc d' Alençon"}}],
           "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}],
           "controversyOrDebates": [{"value":"Impliqué dans la lutte contre Hugues AUBRIOT, prévôt de Paris en 1381 ;"}],
+          "memberOfGroups":[{"value":"Partisan du pape BENOÎT XIII ;"},{"value":"?Partisan des Armagnacs ."}],
           "politicalRelationships" : [{"value":"Partisan de la primauté du concile sur le pape ;"},{"value":"Partisan de LOUIS d'Orléans ."}],
           "professionalRelationships": [{"value":"Pas apprécié de Louis d'ANJOU mort en 1384 ;"},{"value":"Protecteur de Jean GERSON qui le seconde dans son poste de chancelier ;"}],
           "willExecutor" : [{"value":"Exécuteur testamentaire de Jean COURTECUISSE en 1424 ."}]
@@ -1149,6 +1203,14 @@ describe('relational.parser', function(){
         let res1 = RelationalParser.buildRelationalInsertion(json);
         expect(res1.socialClassOrigin).to.deep.eql(expected.socialClassOrigin);
         expect(res1.familyNetwork).to.deep.eql(expected.familyNetwork);
+        expect(res1.personalServicesRelationship).to.deep.eql(expected.personalServicesRelationship);
+        expect(res1.friends).to.deep.eql(expected.friends);
+        expect(res1.controversyOrDebates).to.deep.eql(expected.controversyOrDebates);
+        console.log(res1.memberOfGroups);
+        expect(res1.memberOfGroups).to.deep.eql(expected.memberOfGroups);
+        expect(res1.politicalRelationships).to.deep.eql(expected.politicalRelationships);
+        expect(res1.professionalRelationships).to.deep.eql(expected.professionalRelationships);
+        expect(res1.willExecutor).to.deep.eql(expected.willExecutor);
         expect(res1).to.deep.eql(expected);
         done();
       });
