@@ -6,7 +6,7 @@ import App from './components/App';
 // eslint-disable-next-line no-unused-vars
 import style from './main.css';
 import configureStore from './store/configureStore';
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory';
 
 //Needed for React Developer Tools
 window.React = React;
