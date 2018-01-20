@@ -27,15 +27,16 @@
     "chai": "^4.1.2",
     "eslint": "^3.7.1",
     "eslint-loader": "^1.5.0",
-    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-flowtype": "^2.41.0",
     "eslint-plugin-react": "^6.3.0",
     "file-loader": "^0.9.0",
-    "flow-bin": "^0.60.1",
+    "flow-bin": "^0.63.1",
     "jest": "^21.2.1",
     "jest-sonar-reporter": "^1.3.0"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",
     "collectCoverage": true
-  }
+  },
+  "dependencies": {}
 }
