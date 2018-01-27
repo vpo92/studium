@@ -18,9 +18,17 @@ export type Profile = {
     origine: string,
   },
 };
+
+export type Prosopography = Profile;
+
 export type Search = { keyWord: string, result: Profile[] };
 
 export type SearchAction = {
   type: 'SEARCH',
   search: Search
+};
+
+export type ShowProsopographyAction = {
+  type: 'SHOW_PROSOPOGRAPHY',
+  prosopography: Prosopography,
 };

@@ -8,7 +8,13 @@ import { slugify, getValue } from './utils';
 
 import { type Profile } from '../../actions/Search/searchTypes';
 
-const ResultRow = (row: Profile) => {
+export type Props = {
+  profile: Profile,
+  showItem: (itemId: string) => void,
+}
+
+const ResultRow = (props: Props) => {
+  const row = props.profile;
   return row.identity?(
     <TableRow key={row._id}>
       <TableCell>{row.reference}</TableCell>
@@ -16,7 +22,7 @@ const ResultRow = (row: Profile) => {
       <TableCell>{getValue(row.identity.status)}</TableCell>
       <TableCell>{getValue(row.identity.description)}</TableCell>
       <TableCell >
-        <Link to={"/fiches/"+ slugify(getValue(row.identity.name)+"-"+row.reference).toLowerCase()}>Voir</Link>
+        <Link onClick={() => props.showItem(row._id)} to={"/fiches/"+ slugify(getValue(row.identity.name)+"-"+row.reference).toLowerCase()}>Voir</Link>
       </TableCell>
     </TableRow>
   ):

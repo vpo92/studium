@@ -1,5 +1,4 @@
 'use strict';
-let MongoClient = require("mongodb").MongoClient;
 let util = require("../common/controller.util");
 let db = require("../common/db");
 
@@ -36,7 +35,7 @@ exports.textSearch = function(req, res) {
 exports.findByReference = function(req, res) {
   console.log("findByReference reference:"+req.params.reference);
   //db.collection("prosopography").find({"prosop.person.label.usage-name.data":{ $regex : /^A/ ,$options: '-i' }}).toArray(function (error, results) {
-  db.get().collection("prosopography").find({"reference":parseInt(req.params.reference)}).toArray()
+  db.get().collection("prosopography").findOne({"reference":parseInt(req.params.reference)})
     .then(function(results){
       console.log(results);
       res.statusCode = 200;

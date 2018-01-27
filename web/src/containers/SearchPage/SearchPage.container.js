@@ -2,8 +2,10 @@
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+
 import SearchPage from '../../components/SearchPage/SearchPage.component';
-import { searchByKeyWord } from '../../services/searchService';
+import { fetchSearchByKeyword } from '../../services/searchService';
+import { search } from '../../actions/Search/searchActions';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,8 +15,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch =>
   ({
-    handleKeyWordSearch: async (keyWord) => {
-      return dispatch(await searchByKeyWord(keyWord));
+    handleKeyWordSearch: async (keyWord: string) => {
+      const result = await fetchSearchByKeyword(keyWord);
+      return dispatch(search({ keyWord, result }));
     },
   });
 

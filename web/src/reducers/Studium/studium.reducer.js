@@ -2,17 +2,30 @@
 
 import {
   type SearchAction,
+  type ShowProsopographyAction,
   type Search,
 } from '../../actions/Search/searchTypes';
 
-const searchReducer = (
-  state: { search: Search } = {
-    search: {
-      keyWord: '',
-      result: [],
-    },
+import {
+  type SideMenuAction,
+  type ChangePageAction,
+} from '../../actions/Menu/menuTypes';
+
+type StudiumAction = SearchAction | SideMenuAction | ChangePageAction | ShowProsopographyAction;
+
+type StudiumStore = {
+  showSideMenu: boolean,
+  currentPage: string,
+  search?: Search,
+  currentItem?: Object,
+}
+
+const studiumReducer = (
+  state: StudiumStore = {
+    showSideMenu: false,
+    currentPage: 'Accueil',
   },
-  action: SearchAction
+  action: StudiumAction
 ) => {
   switch (action.type) {
     case 'SEARCH':
@@ -31,9 +44,14 @@ const searchReducer = (
         showSideMenu: false,
         currentPage: action.newPage,
       };
+    case 'SHOW_PROSOPOGRAPHY':
+      return {
+        ...state,
+        currentItem: action.prosopography,
+      }
     default:
       return state;
   }
 };
 
-export default searchReducer;
+export default studiumReducer;

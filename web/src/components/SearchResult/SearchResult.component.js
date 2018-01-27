@@ -6,7 +6,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import Tabs, { Tab } from 'material-ui/Tabs';
 import injectSheet from 'react-jss';
 
-import ResultRow from './ResultRow.component';
+import ResultRow from '../ResultRow/ResultRow.component';
 import styles from './SearchResult.style';
 
 import { type Profile } from '../../actions/Search/searchTypes';
@@ -14,6 +14,7 @@ import { type Profile } from '../../actions/Search/searchTypes';
 type Props = {
   data: Profile[],
   classes: any,
+  showItem: (itemId: string) => void,
 };
 
 type State = {
@@ -47,7 +48,9 @@ class SearchResult extends Component<Props, State> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.data.map(ResultRow)}
+            {this.props.data.map((item) => (
+              <ResultRow key={item._id} showItem={this.props.showItem} profile={item} />
+            ))}
           </TableBody>
         </Table>
         <AppBar position="static" color="default">

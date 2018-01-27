@@ -1,14 +1,15 @@
 // @flow
 
-import { search } from '../actions/Search/searchActions';
-
-export const searchByKeyWord = async (keyWord: string) => {
-  const result = await fetchSearchByKeyword(keyWord);
-  return search({ keyWord, result });
-};
+import { type Profile } from '../actions/Search/searchTypes';
+import { type Prosopography } from '../actions/Search/searchTypes';
 
 // Call API here
-async function fetchSearchByKeyword(keyword: string) {
+export async function fetchSearchByKeyword(keyword: string): Promise<Profile[]> {
   const result = await fetch(`http://localhost:3000/prosopography/search/${keyword}`);
+  return result.json();
+}
+
+export async function fetchProsopographyById(itemId: string): Promise<Prosopography> {
+  const result = await fetch(`http://localhost:3000/prosopography/${itemId}`);
   return result.json();
 }

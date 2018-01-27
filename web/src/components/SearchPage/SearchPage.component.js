@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Switch from 'material-ui/Switch';
 
-import SearchResult from '../../components/SearchResult/SearchResult.component';
+import SearchResult from '../../containers/SearchResult/SearchResult.container';
 import AdvancedSearch from './AdvancedSearch.component';
 import injectSheet from 'react-jss';
 
