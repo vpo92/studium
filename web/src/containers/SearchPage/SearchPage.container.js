@@ -8,22 +8,21 @@ import { fetchSearchByKeyword } from '../../services/searchService';
 import { search } from '../../actions/Search/searchActions';
 
 const mapStateToProps = (state) => {
-    return {
-      search: state.studium.search,
-    };
-  }
+  return {
+    search: state.studium.search,
+  };
+}
 
 const mapDispatchToProps = dispatch =>
-  ({
-    handleKeyWordSearch: async (keyWord: string) => {
-      const result = await fetchSearchByKeyword(keyWord);
-      return dispatch(search({ keyWord, result }));
-    },
-  });
-
+({
+  handleKeyWordSearch: async (keyWord: string) => {
+    const result = await fetchSearchByKeyword(keyWord);
+    return dispatch(search({ keyWord, result }));
+  },
+});
 
 /** **********************
- * Exports              *
- ************************
- */
+* Exports              *
+************************
+*/
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPage));

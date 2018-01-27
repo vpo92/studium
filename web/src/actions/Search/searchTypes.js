@@ -11,7 +11,9 @@ export type Profile = {
   reference: string,
   identity: {
     id: string,
-    name: string,
+    name: {
+      value: string,
+    },
     description: string,
     mediane: string,
     status: Status,
@@ -28,7 +30,16 @@ export type SearchAction = {
   search: Search
 };
 
-export type ShowProsopographyAction = {
-  type: 'SHOW_PROSOPOGRAPHY',
+export type GetProsopographyAction = {
+  type: 'GET_PROSOPOGRAPHY',
   prosopography: Prosopography,
+};
+
+
+export type GetProsopographiesByFirstLetterAction = {
+  type: 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  prosopographiesByFirstLetter: {
+    letter: string,
+    prosopographies: Prosopography[],
+  },
 };

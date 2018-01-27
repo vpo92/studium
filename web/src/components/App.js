@@ -8,13 +8,13 @@ import Footer from '../components/Footer/Footer.component';
 import Header from '../containers/Header/Header.container';
 import SideMenu from '../containers/SideMenu/SideMenu.container';
 import HomePage from '../components/HomePage/HomePage.component';
-import IndexPage from '../components/IndexPage/IndexPage.component';
+import IndexPage from '../containers/IndexPage/IndexPage.container';
 import SearchPage from '../containers/SearchPage/SearchPage.container';
 import ContactPage from '../components/ContactPage/ContactPage.component';
 import HelpPage from '../components/HelpPage/HelpPage.component';
 import ProfilPage from '../components/ProfilPage/ProfilPage.component';
 import LoginPage from '../components/LoginPage/LoginPage.component';
-import DetailPage from '../containers/DetailPage/DetailPage.container';
+import DetailPage from '../components/DetailPage/DetailPage.component';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import theme from '../material_ui_raw_theme_file'

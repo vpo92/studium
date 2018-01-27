@@ -6,15 +6,13 @@ import { withRouter } from 'react-router';
 import DetailPage from '../../components/DetailPage/DetailPage.component';
 
 const mapStateToProps = (state) => {
-    return {
-      prosopography: state.studium.currentItem,
-    };
-  }
-
-
+  return {
+    prosopography: state.studium.currentItem,
+  };
+}
 
 /** **********************
- * Exports              *
- ************************
- */
+* Exports              *
+************************
+*/
 export default withRouter(connect(mapStateToProps, null)(DetailPage));

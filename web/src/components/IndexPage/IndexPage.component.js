@@ -6,40 +6,44 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import injectSheet from 'react-jss';
 
-import data from './data';
 import styles from './IndexPage.style';
 
-const Row = (row) => {
-  return (
-    <ListItem key={row.id}>
-      <ListItemText primary={row.lastname+" "+row.name} secondary="Jan 10, 2014" />
-    </ListItem>
-  );
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+import { type Prosopography } from '../../actions/Search/searchTypes';
+
+type Props = {
+  getProposographiesByFirstLetter: (letter: string) => void,
+  proposographiesByFirstLetter: {
+    letter: string,
+    prosopographies: Prosopography[],
+  },
+  classes: any,
 }
 
 type State = {
-  value: number,
+  letter: string,
+  prosopographies: Prosopography[],
 }
 
-class IndexPage extends Component<{classes: any}, State> {
+class IndexPage extends Component<Props, State> {
 
-  constructor() {
+  constructor(props: Props) {
     super();
-    this.state = {
-      value: 0,
-    };
+    props.getProposographiesByFirstLetter('A');
   }
 
-  handleChange = (event, value) => {
-    this.setState({ value });
+  handleChange = async (event, value) => {
+    this.props.getProposographiesByFirstLetter(value);
   };
+
   render() {
     return (
       <div className={this.props.classes.container}>
         <h1>Index</h1>
         <AppBar position="static" color="default">
           <Tabs
-            value={this.state.value}
+            value={this.props.proposographiesByFirstLetter ? this.props.proposographiesByFirstLetter.letter : 'A'}
             indicatorColor="primary"
             textColor="primary"
             scrollable
@@ -47,36 +51,17 @@ class IndexPage extends Component<{classes: any}, State> {
             onChange={this.handleChange}
             className={this.props.classes.tabs}
             >
-              <Tab label="A"/>
-              <Tab label="B"/>
-              <Tab label="C"/>
-              <Tab label="D"/>
-              <Tab label="E"/>
-              <Tab label="F"/>
-              <Tab label="G"/>
-              <Tab label="H"/>
-              <Tab label="I"/>
-              <Tab label="J"/>
-              <Tab label="K"/>
-              <Tab label="L"/>
-              <Tab label="M"/>
-              <Tab label="N"/>
-              <Tab label="O"/>
-              <Tab label="P"/>
-              <Tab label="Q"/>
-              <Tab label="R"/>
-              <Tab label="S"/>
-              <Tab label="T"/>
-              <Tab label="U"/>
-              <Tab label="V"/>
-              <Tab label="W"/>
-              <Tab label="X"/>
-              <Tab label="Y"/>
-              <Tab label="Z"/>
+              {alphabet.map((letter) => (
+                <Tab key={letter} label={letter} value={letter} />
+              ))}
             </Tabs>
           </AppBar>
           <List>
-            {data.map(Row)}
+            {this.props.proposographiesByFirstLetter ? this.props.proposographiesByFirstLetter.prosopographies.map(prosopography => (
+              <ListItem key={prosopography._id}>
+                <ListItemText primary={prosopography.identity.name.value} />
+              </ListItem>
+            )) : null}
           </List>
         </div>
       );

@@ -4,7 +4,8 @@ import {
   type Search,
   type Prosopography,
   type SearchAction,
-  type ShowProsopographyAction,
+  type GetProsopographyAction,
+  type GetProsopographiesByFirstLetterAction,
 } from '../../actions/Search/searchTypes';
 
 export const search: (search: Search) => SearchAction = search => ({
@@ -12,7 +13,15 @@ export const search: (search: Search) => SearchAction = search => ({
   search,
 });
 
-export const showProsopography: Prosopography => ShowProsopographyAction = prosopography => ({
-  type: 'SHOW_PROSOPOGRAPHY',
+export const getProsopography: Prosopography => GetProsopographyAction = prosopography => ({
+  type: 'GET_PROSOPOGRAPHY',
   prosopography,
+});
+
+export const getProsopographiesByFirstLetter: (string, Prosopography[]) => GetProsopographiesByFirstLetterAction = (letter: string, prosopographiesByFirstLetter: Prosopography[]) => ({
+  type: 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  prosopographiesByFirstLetter: {
+    letter,
+    prosopographies: prosopographiesByFirstLetter,
+  },
 });
