@@ -27,7 +27,23 @@ exports.textSearch = function(req, res) {
   }else{
     util.handleError(res)('error retriving connexion to database');
   }
+};
 
+
+// Retrieve a list of prosopography by letter
+exports.indexSearch = function(req, res) {
+  console.log("indexSearch");
+  const letter = req.params.letter;
+  const regex = new RegExp(`^${letter}`,"g");
+  let lDB = db.get();
+  if(lDB){
+    lDB.collection("prosopography").find({"identity.name.value":{ $regex : regex ,$options: '-i' }}).limit(0).toArray()
+    //lDB.collection("prosopography").find().limit(50).toArray()
+    .then(util.handleData(res))
+    .catch(util.handleError(res));
+  }else{
+    util.handleError(res)('error retriving connexion to database');
+  }
 };
 
 
