@@ -22,7 +22,7 @@ class SideMenu extends Component<Props> {
     return (
       <Drawer
         open={this.props.showSideMenu}
-        onRequestClose={() => this.props.handleSideMenu(false)}
+        onClose={() => this.props.handleSideMenu(false)}
         className="app-drawer"
         width={400}
       >
