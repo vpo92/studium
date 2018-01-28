@@ -7,22 +7,14 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-// const styles = {
-//   toolbar: {
-//     backgroundColor: "none",
-//     color:"#fff",
-//   },
-// };
-
 type Props = {
   handleSideMenu: (openSideMenu: boolean) => void,
   showSideMenu: boolean,
-  currentPage: string,
-}
+  currentPageTitle: string,
+};
 
 class Header extends Component<Props> {
-
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
   }
 
@@ -31,11 +23,17 @@ class Header extends Component<Props> {
       <header className="header">
         <AppBar>
           <Toolbar>
-            <IconButton onClick={() => this.props.handleSideMenu(!this.props.showSideMenu)} color="contrast" aria-label="Menu">
-              <MenuIcon/>
+            <IconButton
+              onClick={() =>
+                this.props.handleSideMenu(!this.props.showSideMenu)
+              }
+              color="contrast"
+              aria-label="Menu"
+            >
+              <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit">
-              {this.props.currentPage}
+              {this.props.currentPageTitle}
             </Typography>
           </Toolbar>
         </AppBar>

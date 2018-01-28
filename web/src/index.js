@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter as Router} from 'react-router-redux';
+import { ConnectedRouter as Router } from 'react-router-redux';
 import App from './components/App';
 // eslint-disable-next-line no-unused-vars
 import style from './main.css';
@@ -18,7 +18,7 @@ const store = configureStore({
       result: [],
     },
     showSideMenu: false,
-    currentPage: 'Accueil',
+    currentPageTitle: 'Accueil',
   },
 });
 const history = createHistory();
@@ -29,5 +29,5 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

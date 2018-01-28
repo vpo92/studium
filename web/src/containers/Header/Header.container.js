@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Header from '../../components/Header/Header.component';
 import { toggleSideMenu } from '../../actions/Menu/menuActions';
+import { getTitleFromPathname } from '../../components/App';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     showSideMenu: state.studium.showSideMenu,
-    currentPage: state.studium.currentPage,
+    currentPageTitle: getTitleFromPathname(ownProps.location.pathname),
   };
-}
+};
 
-const mapDispatchToProps = dispatch =>
-({
-  handleSideMenu: (openSideMenu) => {
+const mapDispatchToProps = dispatch => ({
+  handleSideMenu: openSideMenu => {
     return dispatch(toggleSideMenu(openSideMenu));
   },
 });
 
 /** **********************
-* Exports              *
-************************
-*/
+ * Exports              *
+ ************************
+ */
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
