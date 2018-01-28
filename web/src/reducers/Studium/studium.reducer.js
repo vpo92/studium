@@ -12,14 +12,19 @@ import {
   type ChangePageAction,
 } from '../../actions/Menu/menuTypes';
 
-type StudiumAction = SearchAction | SideMenuAction | ChangePageAction | GetProsopographyAction | GetProsopographiesByFirstLetterAction;
+type StudiumAction =
+  | SearchAction
+  | SideMenuAction
+  | ChangePageAction
+  | GetProsopographyAction
+  | GetProsopographiesByFirstLetterAction;
 
 type StudiumStore = {
   showSideMenu: boolean,
   currentPage: string,
   search?: Search,
-  currentItem?: Object,
-}
+  prosopographyDetails?: Object,
+};
 
 const studiumReducer = (
   state: StudiumStore = {
@@ -45,16 +50,16 @@ const studiumReducer = (
         showSideMenu: false,
         currentPage: action.newPage,
       };
-    case 'GET_PROSOPOGRAPHY':
+    case 'GET_PROSOPOGRAPHY_DETAILS':
       return {
         ...state,
-        currentItem: action.prosopography,
-      }
+        prosopographyDetails: action.prosopography,
+      };
     case 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER':
       return {
         ...state,
         prosopographiesByFirstLetter: action.prosopographiesByFirstLetter,
-      }
+      };
     default:
       return state;
   }

@@ -14,10 +14,10 @@ import ContactPage from '../components/ContactPage/ContactPage.component';
 import HelpPage from '../components/HelpPage/HelpPage.component';
 import ProfilPage from '../components/ProfilPage/ProfilPage.component';
 import LoginPage from '../components/LoginPage/LoginPage.component';
-import DetailPage from '../components/DetailPage/DetailPage.component';
+import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import theme from '../material_ui_raw_theme_file'
+import theme from '../material_ui_raw_theme_file';
 
 class App extends Component<{}> {
   render() {
@@ -26,7 +26,7 @@ class App extends Component<{}> {
         <MuiThemeProvider theme={theme}>
           <div>
             <SideMenu />
-            <Header/>
+            <Header />
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/index" component={IndexPage} />
@@ -35,7 +35,7 @@ class App extends Component<{}> {
               <Route path="/aide" component={HelpPage} />
               <Route path="/profil" component={ProfilPage} />
               <Route path="/login" component={LoginPage} />
-              <Route path="/fiches/:id" component={DetailPage} />
+              <Route path="/fiches/:id" component={DetailsPage} />
             </Switch>
             <Footer />
           </div>
