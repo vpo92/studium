@@ -54,15 +54,16 @@ type State = {
 };
 
 class IndexPage extends Component<Props, State> {
+  defaultLetter = 'A';
+
   constructor(props: Props) {
     super();
-    const defaultLetter = 'A';
     if (!props.proposographiesByFirstLetter) {
-      props.getProposographiesByFirstLetter(defaultLetter);
+      props.getProposographiesByFirstLetter(this.defaultLetter);
     }
   }
 
-  handleChange = async (event, value) => {
+  handleChange = (event, value) => {
     this.props.getProposographiesByFirstLetter(value);
   };
 
@@ -75,7 +76,7 @@ class IndexPage extends Component<Props, State> {
             value={
               this.props.proposographiesByFirstLetter
                 ? this.props.proposographiesByFirstLetter.letter
-                : 'A'
+                : this.defaultLetter
             }
             indicatorColor="primary"
             textColor="primary"
