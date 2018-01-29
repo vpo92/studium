@@ -15,6 +15,7 @@
     "expect": "^21.2.1",
     "express": "^4.16.2",
     "method-override": "^2.1.2",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.34",
+    "winston": "^2.4.0"
   }
 }

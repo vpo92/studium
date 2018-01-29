@@ -1,10 +1,10 @@
 'use strict';
 
-const path = require('path');
+const prosopography = require('./src/prosopography');
 
 module.exports = function(app) {
 
   // Insert routes below
-  app.use('/prosopography', require('./src/prosopography'));
+  app.use('/prosopography', prosopography);
 
 };
