@@ -9,13 +9,14 @@ import Typography from 'material-ui/Typography';
 import { MenuList } from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import logo from './img/logo_par.png';
+import { getMenuLinks } from '../App';
 
 import MenuLink from '../../containers/SideMenu/MenuLink.container';
 
 type Props = {
   showSideMenu: boolean,
   handleSideMenu: (openSideMenu: boolean) => void,
-}
+};
 
 class SideMenu extends Component<Props> {
   render() {
@@ -38,11 +39,9 @@ class SideMenu extends Component<Props> {
         </div>
         <Divider />
         <MenuList>
-          <MenuLink title='Accueil' url='/' />
-          <MenuLink title='Recherche' url='/recherche' />
-          <MenuLink title='Index' url='/index' />
-          <MenuLink title='Contact' url='/contact' />
-          <MenuLink title='Aide' url='/aide' />
+          {getMenuLinks().map(link => (
+            <MenuLink key={link.path} title={link.title} url={link.path} />
+          ))}
         </MenuList>
       </Drawer>
     );

@@ -6,6 +6,6 @@ const contactPageStyle = {
   container: {
     ...sharedStyle.page,
   },
-}
+};
 
 export default contactPageStyle;

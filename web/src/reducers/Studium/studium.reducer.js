@@ -2,7 +2,8 @@
 
 import {
   type SearchAction,
-  type ShowProsopographyAction,
+  type GetProsopographyAction,
+  type GetProsopographiesByFirstLetterAction,
   type Search,
 } from '../../actions/Search/searchTypes';
 
@@ -11,19 +12,24 @@ import {
   type ChangePageAction,
 } from '../../actions/Menu/menuTypes';
 
-type StudiumAction = SearchAction | SideMenuAction | ChangePageAction | ShowProsopographyAction;
+type StudiumAction =
+  | SearchAction
+  | SideMenuAction
+  | ChangePageAction
+  | GetProsopographyAction
+  | GetProsopographiesByFirstLetterAction;
 
 type StudiumStore = {
   showSideMenu: boolean,
-  currentPage: string,
+  currentPageTitle: string,
   search?: Search,
-  currentItem?: Object,
-}
+  prosopographyDetails?: Object,
+};
 
 const studiumReducer = (
   state: StudiumStore = {
     showSideMenu: false,
-    currentPage: 'Accueil',
+    currentPageTitle: 'Accueil',
   },
   action: StudiumAction
 ) => {
@@ -42,13 +48,18 @@ const studiumReducer = (
       return {
         ...state,
         showSideMenu: false,
-        currentPage: action.newPage,
+        currentPageTitle: action.newPage,
       };
-    case 'SHOW_PROSOPOGRAPHY':
+    case 'GET_PROSOPOGRAPHY_DETAILS':
       return {
         ...state,
-        currentItem: action.prosopography,
-      }
+        prosopographyDetails: action.prosopography,
+      };
+    case 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER':
+      return {
+        ...state,
+        prosopographiesByFirstLetter: action.prosopographiesByFirstLetter,
+      };
     default:
       return state;
   }

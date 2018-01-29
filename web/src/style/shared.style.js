@@ -9,7 +9,9 @@ export type sharedStyleType = {
     fontSize: string,
     lineHeight: string,
   },
-}
+};
+
+export const primaryColorCode = '#3f51b5';
 
 export const sharedStyle = {
   page: {

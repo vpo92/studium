@@ -6,12 +6,12 @@ import injectSheet from 'react-jss';
 
 import { styles, type stylesType } from './Footer.style';
 
-class Footer extends Component<{classes: stylesType}> {
+class Footer extends Component<{ classes: stylesType }> {
   render() {
     return (
       <footer className={this.props.classes.footer}>
-        <Divider/>
-        <div className="app-text-center">2017 - Studium</div>
+        <Divider />
+        <div className="app-text-center">2018 - Studium</div>
       </footer>
     );
   }

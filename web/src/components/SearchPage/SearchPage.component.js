@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Switch from 'material-ui/Switch';
 
-import SearchResult from '../../containers/SearchResult/SearchResult.container';
+import SearchResult from '../SearchResult/SearchResult.component';
 import AdvancedSearch from './AdvancedSearch.component';
 import injectSheet from 'react-jss';
 
@@ -16,9 +16,6 @@ class SearchPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      status: 1,
-      grade: 1,
-      discipline: 1,
       advancesearch: false,
       activateCompleteSearchFeature: false,
       search: {
@@ -28,15 +25,17 @@ class SearchPage extends Component<Props, State> {
   }
 
   handleSearchField = (event: SyntheticInputEvent<HTMLElement>) => {
-    const {target} = event;
+    const { target } = event;
     if (target instanceof HTMLInputElement) {
-      this.setState({search: {...this.state.search, keyWord: target.value}});
+      this.setState({
+        search: { ...this.state.search, keyWord: target.value },
+      });
     }
-  }
+  };
 
   handleSearch = () => {
     this.props.handleKeyWordSearch(this.state.search.keyWord);
-  }
+  };
 
   handleToogleChange = () => {
     this.setState({ advancesearch: !this.state.advancesearch });
@@ -52,7 +51,7 @@ class SearchPage extends Component<Props, State> {
           value={this.state.search.keyWord}
           onChange={this.handleSearchField}
         />
-        <Button raised color="primary" onClick={this.handleSearch} >
+        <Button raised color="primary" onClick={this.handleSearch}>
           Rechercher
         </Button>
         {this.state.activateCompleteSearchFeature ? (
