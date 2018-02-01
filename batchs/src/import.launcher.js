@@ -1,13 +1,14 @@
 const fs = require('fs');
 const parser = require('./identity.parser');
 const OriginParser = require('./origin.parser');
+const RelationalParser = require('./relational.parser');
 const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
 
-const enableMongo = false;
+const enableMongo = true;
 
-//const path = "/Users/vincent/Desktop/JSON";
-const path = "./batchs/tests/data";
+const path = "/Users/vincent/Desktop/JSON";
+//const path = "./batchs/tests/data";
 
 let errors = [];
 
@@ -30,6 +31,7 @@ const processFile = (db,fileName) => {
         "reference":parser.buildReference(item),
         "identity":parser.buildIdentity(item),
         "origin":OriginParser.buildOrigin(item),
+        "relationalInsertion":RelationalParser.buildRelationalInsertion(item),
       }
       if(enableMongo){
         MongoImporter.importProsopography(db,p)

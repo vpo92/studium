@@ -384,7 +384,7 @@ describe('relational.parser', function(){
         done();
       });
 
-      it("should return a value if value exists", function(done){
+      it("should return a value with an array if value exists", function(done){
 
         let ex1 = [
             {"data": {
@@ -447,6 +447,29 @@ describe('relational.parser', function(){
         let res1 = RelationalParser.parseFriends(ex1);
         console.log(res1);
         expect(res1).to.eql(exp1);
+
+        done();
+      });
+
+      it("should return a value with a single object if value exists", function(done){
+        let ex2 = {"data": {
+            "pname": {
+                "last_name": "BONIFACE VIII",
+                "qualif": "",
+                "content": "BONIFACE VIII"
+            },
+            "content": [
+                "Conseiller de",
+                "."
+            ]
+        }};
+        let exp2 = [
+          {"name":{"value":"BONIFACE VIII"}, "type":"friend"},
+        ];
+        let res2 = RelationalParser.parseFriends(ex2);
+        console.log(res2);
+        //FIXME : KO
+        expect(res2).to.eql(exp2);
 
         done();
       });
@@ -974,7 +997,7 @@ describe('relational.parser', function(){
                     ]
                 }}
             },
-            "personalServicesRelationship":{
+            "personalServiceRelationship":{
                 "data": {
                     "pname": {
                         "last_name": "CHARLES",
@@ -1246,8 +1269,6 @@ describe('relational.parser', function(){
                     }
         }
       }}};
-
-      //FIXME personalServicesRelationship
 
         const expected = {
           "familyNetwork": [

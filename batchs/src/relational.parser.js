@@ -61,6 +61,9 @@ const relationType = {
   "père grand-père" : "grandfather",
   "cousin" : "cousin",
   "mère fille" : "grandmother",
+  "fille":"daughter",
+  "fils":"son",
+  "femme":"wife",
 };
 
 class RelationalParser{
@@ -83,6 +86,7 @@ class RelationalParser{
 
   static parseRelations(data){
     let res = null;
+
     //must be a tab
     if(data){
       if(data instanceof Array && data.length > 0){
@@ -97,15 +101,20 @@ class RelationalParser{
     return res;
   }
 
+  //FIXME : Enemy ?
   static parseFriends(data){
     let res = null;
     //must be a tab
-    if(data && data instanceof Array && data.length > 0){
-      res = data.map(item => {
-        //data & type
-        let type = relationType[item.type]?relationType[item.type]:"other";
-        return ({"name":UtilParser.parseName(item.data),"type":"friend"});
-      });
+
+    if(data && data!=={} && data!==[]){
+      if(data instanceof Array && data.length > 0){
+        res = data.map(item => {
+          //data & type
+          return ({"name":UtilParser.parseName(item.data),"type":"friend"});
+        });
+      }else if(data.data){
+        res = [({"name":UtilParser.parseName(data.data),"type":"friend"})];
+      }
     }
     return res;
   }
@@ -177,7 +186,7 @@ class RelationalParser{
         relationalI.socialClassOrigin = RelationalParser.parseSocialClassOrigin(socialClassOrigin.data);;
       }
 
-      let personalServicesRelationship = UtilParser.findProperty(json,"prosop.person.relationelInsertion.personalServicesRelationship");
+      let personalServicesRelationship = UtilParser.findProperty(json,"prosop.person.relationelInsertion.personalServiceRelationship");
       if(personalServicesRelationship){
         relationalI.personalServicesRelationship = RelationalParser.parseRelations(personalServicesRelationship);
       }
