@@ -1,0 +1,14 @@
+FROM node:8.1
+
+# Create app directory
+RUN mkdir -p /app
+WORKDIR /app
+
+COPY build /app/
+
+EXPOSE 8080
+
+# Install node modules
+RUN npm install
+
+CMD node server.js

@@ -1,11 +1,11 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+import path from 'path';
+import nodeExternals from 'webpack-node-externals';
 
 const config = {
   entry: './src/server.js',
 
   target: 'node',
-  externals: [nodeExternals({ modulesDir: '../node_modules' })],
+  externals: [nodeExternals({ modulesDir: './node_modules' })],
 
   output: {
     path: path.resolve(__dirname, './docker/build'),

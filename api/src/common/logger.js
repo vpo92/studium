@@ -10,13 +10,8 @@ let transports = [
     name: 'ALL-FILE',
     filename: 'api-combined.log',
   }),
+  new winston.transports.Console({ prettyPrint: true, showLevel: 'debug' }),
 ];
-
-if (process.env.NODE_ENV !== 'production') {
-  transports.push(
-    new winston.transports.Console({ prettyPrint: true, showLevel: 'debug' })
-  );
-}
 
 const logger = new winston.Logger({
   level: 'info',

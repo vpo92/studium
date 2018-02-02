@@ -21,6 +21,8 @@ app.use('/', routes);
 let server_port = app.get('port');
 let server_ip_address = '0.0.0.0';
 
+logger.info('runnning server on 3000');
+
 db.connect('mongodb://localhost:27017/studium', function(err) {
   if (err) {
     logger.error(err);
