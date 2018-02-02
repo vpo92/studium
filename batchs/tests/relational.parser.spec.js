@@ -1276,7 +1276,7 @@ describe('relational.parser', function(){
           ],
           "socialClassOrigin" : {"value":"Haute noblesse."},
           "personalServicesRelationship":[{"name":{"value":"CHARLES, duc d' Alençon"}}],
-          "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}, "type": "friend"}],
+          "friends" : [{"name":{"value":"ÉTIENNE DE TOURNAI"}}],
           "controversyOrDebates": [{"value":"Impliqué dans la lutte contre Hugues AUBRIOT, prévôt de Paris en 1381 ;"}],
           "memberOfGroups":[{"value":"Partisan du pape BENOÎT XIII ;"},{"value":"?Partisan des Armagnacs ."}],
           "politicalRelationships" : [{"value":"Partisan de la primauté du concile sur le pape ;"},{"value":"Partisan de LOUIS d'Orléans ."}],

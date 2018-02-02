@@ -5,10 +5,10 @@ const RelationalParser = require('./relational.parser');
 const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
 
-const enableMongo = true;
+const enableMongo = false;
 
-const path = "/Users/vincent/Desktop/JSON";
-//const path = "./batchs/tests/data";
+//const path = "/Users/vincent/Desktop/JSON";
+const path = "./batchs/tests/data";
 
 let errors = [];
 

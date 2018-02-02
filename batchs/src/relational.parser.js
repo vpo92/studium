@@ -193,9 +193,9 @@ class RelationalParser{
 
       let friends = UtilParser.findProperty(json,"prosop.person.relationelInsertion.friends");
       if(friends){
-        relationalI.friends = RelationalParser.parseFriends(friends);
+        relationalI.friends = RelationalParser.parseRelations(friends);
       }
-
+      
       let controversyOrDebates = UtilParser.findProperty(json,"prosop.person.relationelInsertion.polemic");
       if(controversyOrDebates){
         relationalI.controversyOrDebates = RelationalParser.parseControversyOrDebates(controversyOrDebates);
