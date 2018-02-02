@@ -41,6 +41,15 @@ export type Profile = {
     mediane?: string,
     origine?: string,
   },
+  origin: {
+    birthPlace: {
+      value: string,
+    },
+     diosese: {
+       value: string,
+     },
+     movesInOutParis: [],
+  }
 };
 
 export type Prosopography = Profile;
