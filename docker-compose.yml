@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  studium_api:
+    image: studium_api
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+      - studium_web
+    depends_on:
+      - mongodb
+  studium_web:
+    image: studium_public
+    ports:
+      - "3001:3001"
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
