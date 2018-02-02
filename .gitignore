@@ -2,7 +2,9 @@
 node_modules
 web/node_modules
 batchs/node_modules
-apis/node_modules
+api/node_modules
+api/docker/build
+web/docker/build
 static
 *.log*
 test-report.xml
