@@ -1,33 +1,39 @@
-const MongoClient = require('mongodb').MongoClient
+import { MongoClient } from 'mongodb';
 
 let state = {
   db: null,
-}
+};
 
-exports.connect = function(url, done) {
+function connect(url, done) {
   if (state.db) {
     return done();
-  }else{
-    MongoClient.connect(url, function(err, db) {
+  } else {
+    MongoClient.connect(url, (err, db) => {
       if (err) {
-        return done(err)
+        return done(err);
       }
-      state.db = db
+      state.db = db;
       return done();
-    })
+    });
   }
 }
 
-exports.get = function() {
-  return state.db
+function get() {
+  return state.db;
 }
 
-exports.close = function(done) {
+function close(done) {
   if (state.db) {
-    state.db.close(function(err, result) {
-      state.db = null
-      state.mode = null
-      done(err)
-    })
+    state.db.close(err => {
+      state.db = null;
+      state.mode = null;
+      done(err);
+    });
   }
 }
+
+module.exports = {
+  connect,
+  get,
+  close,
+};
