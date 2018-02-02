@@ -47,7 +47,7 @@ class RelationalInsertion extends Component<Props> {
     const { relationalInsertion } = this.props;
     //FIXME : stringify...
     return (
-      relationalInsertion && JSON.stringify(this.props.relationalInsertion)!=="{}"?
+      relationalInsertion?
       <div>
         <SimpleInformation
           label="Classe sociale d'origine"

@@ -4,6 +4,7 @@ const OriginParser = require('./origin.parser');
 const RelationalParser = require('./relational.parser');
 const MongoClient = require('mongodb').MongoClient
 const MongoImporter = require('../src/mongo.importer');
+const OmitEmpty = require('omit-empty');
 
 const enableMongo = false;
 
@@ -33,8 +34,9 @@ const processFile = (db,fileName) => {
         "origin":OriginParser.buildOrigin(item),
         "relationalInsertion":RelationalParser.buildRelationalInsertion(item),
       }
+      let prosopography = OmitEmpty(p);
       if(enableMongo){
-        MongoImporter.importProsopography(db,p)
+        MongoImporter.importProsopography(db,prosopography)
           .then(function(){
             console.log("Done importing");
           })

@@ -9,7 +9,7 @@ import SimpleListInformation from './SimpleListInformation.component';
 
 const Origin = (props: any) => {
     //FIXME : stringify...
-    return (props.origin && JSON.stringify(props.origin)!=="{}"?
+    return (props.origin?
       <div>
         <SimpleInformation
           label="Lieu de naissance"

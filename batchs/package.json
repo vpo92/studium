@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "omit-empty": "^0.4.1"
   }
 }
