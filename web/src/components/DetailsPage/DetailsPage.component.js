@@ -35,13 +35,6 @@ class DetailsPage extends Component<Props,State> {
     };
   }
 
-  handleChangeTab = (e,newVal) => {
-    this.setState({
-      currentTab : newVal,
-    });
-  }
-
-
   handleChange = panel => (event, expanded) => {
     this.setState({
       currentTab: expanded ? panel : "false",
@@ -94,28 +87,5 @@ class DetailsPage extends Component<Props,State> {
   }
 }
 
-/**
-Tab version
-<AppBar position="static" color="default">
-  <Tabs
-    value={this.state.currentTab}
-    indicatorColor="primary"
-    textColor="primary"
-    scrollable
-    scrollButtons="on"
-    onChange={this.handleChange}
-    className={this.props.classes.tabs}
-  >
-    <Tab key="identity" label="Carte d'identité" value="identity" />
-    <Tab key="origin" label="Origine" value="origin" />
-    <Tab key="relation" label="Relations" value="relation" />
-  </Tabs>
-</AppBar>
-{this.state.currentTab === "identity" && <Typography component="div" style={{ padding: 8 * 3 }}><Identity identity={prosopography.identity} /></Typography>}
-{this.state.currentTab === "origin" && <Typography component="div" style={{ padding: 8 * 3 }}><Origin origin={prosopography.origin} /></Typography>}
-{this.state.currentTab === "relation" && <Typography component="div" style={{ padding: 8 * 3 }}><RelationalInsertion relationalInsertion={prosopography.relationalInsertion} /></Typography>}
-
-
-*/
 
 export default injectSheet(styles)(DetailsPage);

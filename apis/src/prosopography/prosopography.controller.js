@@ -30,7 +30,7 @@ const textSearch = function(req, res) {
       .collection('prosopography')
       .find(
         { $text: { $search: req.params.searchText } },
-        { score: { $meta: 'textScore' } }
+        { score: { $meta: 'textScore' },'reference':true,'identity':true}
       )
       .sort({ score: { $meta: 'textScore' } })
       .limit(50)
@@ -51,7 +51,7 @@ const indexSearch = function(req, res) {
   if (lDB) {
     lDB
       .collection('prosopography')
-      .find({ 'identity.name.value': { $regex: regex, $options: '-i' } })
+      .find({ 'identity.name.value': { $regex: regex, $options: '-i' } },{'reference':true,'identity':true})
       .limit(0)
       .toArray()
       //lDB.collection("prosopography").find().limit(50).toArray()

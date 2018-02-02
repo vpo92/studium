@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import { Link } from 'react-router-dom';
 import injectSheet from 'react-jss';
 
 import styles from './IndexPage.style';
@@ -95,7 +96,8 @@ class IndexPage extends Component<Props, State> {
             ? this.props.proposographiesByFirstLetter.prosopographies.map(
                 prosopography => (
                   <ListItem key={prosopography._id}>
-                    <ListItemText primary={prosopography.identity.name.value} />
+                    <ListItemText primary={prosopography.identity.name.value}/>
+                    <Link to={`/fiches/${prosopography.reference}`}>Détails</Link>
                   </ListItem>
                 )
               )

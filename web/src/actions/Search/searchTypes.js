@@ -1,29 +1,25 @@
 // @flow
 
-type Status =
-  | 'Maître'
-  | 'Gradué'
-  | 'Étudiant'
-  | 'Suppôt'
-  | 'Extérieur'
-  | 'Incertain'
-  | 'external';
+export type Metadata = {
+  source: string,
+  comment: string,
+  link: string,
+  certain: boolean
+}
+
+export type SimpleInformation = {
+  value: string,
+  metadata: Metadata
+}
+
 export type Profile = {
   _id: string,
   reference: string,
   identity: {
     id: string,
-    name: {
-      value: string,
-    },
-    description?: {
-      value: string,
-    },
-    nameVariant: [
-      {
-        value: string,
-      },
-    ],
+    name: SimpleInformation,
+    description: SimpleInformation,
+    nameVariant: [SimpleInformation],
     datesOfLife: {
       from: string,
       to: string,
@@ -35,20 +31,28 @@ export type Profile = {
     gender?: {
       value: 'male' | 'female',
     },
-    status?: {
-      value: Status,
-    },
-    mediane?: string,
-    origine?: string,
+    status: SimpleInformation,
+    mediane: SimpleInformation,
+    origine: SimpleInformation,
   },
   origin: {
-    birthPlace: {
-      value: string,
-    },
-     diosese: {
-       value: string,
-     },
+    birthPlace: SimpleInformation,
+     diosese: SimpleInformation,
      movesInOutParis: [],
+  },
+  relationalInsertion: {
+      socialClassOrigin: SimpleInformation,
+      familyNetwork: [],
+      personalSocialClass: SimpleInformation,
+      personalServicesRelationship: [],
+      friendsOrEnemies: [],
+      controversyOrDebates: [],
+      connectionsWith: [],
+      memberOfGroups: [],
+      politicalRelationships: [],
+      professionalRelationships: [],
+      willExecutor: SimpleInformation,
+      studentProfessorRelationships: []
   }
 };
 
