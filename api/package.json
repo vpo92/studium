@@ -6,7 +6,10 @@
   "scripts": {
     "test": "mocha",
     "start": "babel-watch ./src/server.js -w .",
-    "build": "../node_modules/.bin/webpack -p"
+    "build": "../node_modules/.bin/webpack -p",
+    "docker:build": "docker build -t studium-api docker -f docker/Dockerfile.api",
+    "docker:push": "./docker/tag_push.sh",
+    "release": "yarn build && yarn docker:build && yarn docker:push"
   },
   "author": "vpo92",
   "devDependencies": {
