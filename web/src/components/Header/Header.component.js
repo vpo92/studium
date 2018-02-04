@@ -27,7 +27,6 @@ class Header extends Component<Props> {
               onClick={() =>
                 this.props.handleSideMenu(!this.props.showSideMenu)
               }
-              color="contrast"
               aria-label="Menu"
             >
               <MenuIcon />
