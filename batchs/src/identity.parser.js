@@ -1,30 +1,36 @@
 const UtilParser = require('./util.parser');
 
-class IndentityParser{
+class IndentityParser {
+  //FIXME : rangeInformation
 
-//FIXME : rangeInformation
-
-  static parseDates(json){
+  static parseDates(json) {
     let res = null;
-    if(json){
-      if(json.dates){
-        if(json.dates.date){
+    if (json) {
+      if (json.dates) {
+        if (json.dates.date) {
           res = {
-            'from': UtilParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
-            'to': UtilParser.findProperty(json,'dates.date.content')?(json.dates.date.content).toString():"%",
-          }
-        }else{
+            from: UtilParser.findProperty(json, 'dates.date.content')
+              ? json.dates.date.content.toString()
+              : '%',
+            to: UtilParser.findProperty(json, 'dates.date.content')
+              ? json.dates.date.content.toString()
+              : '%',
+          };
+        } else {
           res = {
-            'from': UtilParser.findProperty(json,'dates.fromDate.date.content')?(json.dates.fromDate.date.content).toString():"%",
-            'to': UtilParser.findProperty(json,'dates.toDate.date.content')?(json.dates.toDate.date.content).toString():"%",
-          }
+            from: UtilParser.findProperty(json, 'dates.fromDate.date.content')
+              ? json.dates.fromDate.date.content.toString()
+              : '%',
+            to: UtilParser.findProperty(json, 'dates.toDate.date.content')
+              ? json.dates.toDate.date.content.toString()
+              : '%',
+          };
         }
-
-      }else if(typeof json === "string"){
-        if(json.indexOf("-") > 0){
+      } else if (typeof json === 'string') {
+        if (json.indexOf('-') > 0) {
           res = {
-            'from': json.split('-')[0].trim(),
-            'to': json.split('-')[1].trim(),
+            from: json.split('-')[0].trim(),
+            to: json.split('-')[1].trim(),
           };
         }
       }
@@ -32,18 +38,18 @@ class IndentityParser{
     return res;
   }
 
-  static parseNameVariant(json){
+  static parseNameVariant(json) {
     let res = null;
-    if(json){
-      if(json instanceof Array){
-        res = json.map( item => {
-          if(item.data){
+    if (json) {
+      if (json instanceof Array) {
+        res = json.map(item => {
+          if (item.data) {
             return UtilParser.parseName(item.data); // {'value':item.data.pname.content});
           }
           return;
         });
-      }else{
-        if(json.data){
+      } else {
+        if (json.data) {
           res = [UtilParser.parseName(json.data)];
         }
       }
@@ -51,56 +57,71 @@ class IndentityParser{
     return res;
   }
 
-  static parseDescription(data){
+  static parseDescription(data) {
     let res = null;
-    if(data){
-      if(typeof data === "string"){
-        res = {'value':data};
-      }else{
-        if(data.content){
+    if (data) {
+      if (typeof data === 'string') {
+        res = { value: data };
+      } else {
+        if (data.content) {
           let s = data.content[0];
-          if(data.ptitle){
-            s += " "+data.ptitle.content;
+          if (data.ptitle) {
+            s += ' ' + data.ptitle.content;
           }
-          if(data.place){
-            s+=" à "+data.place;
+          if (data.place) {
+            s += ' à ' + data.place;
           }
-          res = {'value':s};
+          res = { value: s };
         }
       }
     }
     return res;
   }
 
-  static buildReference(json){
-    return UtilParser.findProperty(json,"prosop.person.label.personID.data");
+  static buildReference(json) {
+    return UtilParser.findProperty(json, 'prosop.person.label.personID.data');
   }
 
-  static buildIdentity(json){
-    if(json){
+  static buildIdentity(json) {
+    if (json) {
       let identity = {};
-      let name = UtilParser.findProperty(json,"prosop.person.label.usage-name.data");
-      if(name){
+      let name = UtilParser.findProperty(
+        json,
+        'prosop.person.label.usage-name.data'
+      );
+      if (name) {
         identity.name = UtilParser.parseName(name);
       }
 
-      let nameVariant = UtilParser.findProperty(json,"prosop.person.label.variant-name");
-      if(nameVariant){
+      let nameVariant = UtilParser.findProperty(
+        json,
+        'prosop.person.label.variant-name'
+      );
+      if (nameVariant) {
         identity.nameVariant = IndentityParser.parseNameVariant(nameVariant);
       }
 
-      let description =  UtilParser.findProperty(json,"prosop.person.label.description.data");
-      if(description){
+      let description = UtilParser.findProperty(
+        json,
+        'prosop.person.label.description.data'
+      );
+      if (description) {
         identity.description = IndentityParser.parseDescription(description);
       }
 
-      let datesOfLife = UtilParser.findProperty(json,"prosop.person.label.datesOfLife.data");
-      if(datesOfLife){
+      let datesOfLife = UtilParser.findProperty(
+        json,
+        'prosop.person.label.datesOfLife.data'
+      );
+      if (datesOfLife) {
         identity.datesOfLife = IndentityParser.parseDates(datesOfLife);
       }
 
-      let datesOfActivity = UtilParser.findProperty(json,"prosop.person.label.datesOfActivity.data");
-      if(datesOfActivity){
+      let datesOfActivity = UtilParser.findProperty(
+        json,
+        'prosop.person.label.datesOfActivity.data'
+      );
+      if (datesOfActivity) {
         identity.datesOfActivity = IndentityParser.parseDates(datesOfActivity);
       }
 
@@ -110,14 +131,17 @@ class IndentityParser{
       //data source for mapping of gender ???
       //si rien, c'est un homme, sinon f c(est une femme. paragraphe 1h)
       //ada margarita ... fiche n°16
-      console.log(UtilParser.findProperty(json,"prosop.person.label"));
-      let gender =  UtilParser.findProperty(json,"prosop.person.label.sex.data")?"female":"male";
-      identity.gender = {'value':gender};
-
+      let gender = UtilParser.findProperty(json, 'prosop.person.label.sex.data')
+        ? 'female'
+        : 'male';
+      identity.gender = { value: gender };
 
       //FIXME : 15347 tab ?? 9885 10424
-      let status =  UtilParser.findProperty(json,"prosop.person.label.statut.data");
-      if(status){
+      let status = UtilParser.findProperty(
+        json,
+        'prosop.person.label.statut.data'
+      );
+      if (status) {
         switch (status) {
           case 'Extérieur':
             status = 'external';
@@ -140,14 +164,13 @@ class IndentityParser{
           default:
             status = 'other';
         }
-        identity.status = {'value':status};
+        identity.status = { value: status };
       }
       return identity;
-    }else{
+    } else {
       return null;
     }
   }
-
 }
 
 module.exports = IndentityParser;

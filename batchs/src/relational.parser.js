@@ -1,246 +1,235 @@
 const UtilParser = require('./util.parser');
 
-/**
-
-RelationalInsertion{
-socialClassOrigin	SimpleInformation{...}
-familyNetwork	[
-Family Network
-
-{
-name	string
-reference	integer
-type	string
-Enum:
-[ father, sister, brother, mother, other ]
-metadata	Metadata{...}
-}]
-personalSocialClass	SimpleInformation{...}
-personalServicesRelationship	[
-
-SimpleInformation{...}]
-friendsOrEnemies	[
-Known enemies and friends
-
-{
-value	string
-type	string
-Enum:
-[ friend, enemy ]
-metadata	Metadata{...}
-}]
-controversyOrDebates	[SimpleInformation{...}]
-connectionsWith	[SimpleInformation{...}]
-memberOfGroups	[SimpleInformation{...}]
-politicalRelationships	[SimpleInformation{...}]
-professionalRelationships	[SimpleInformation{...}]
-willExecutor	SimpleInformation{...}
-studentProfessorRelationships	[
-
-{
-value	string
-type	string
-Enum:
-[ student, professor ]
-metadata	Metadata{...}
-}]
-}
-
-*/
-
 //FIXME : check business rule
 const relationType = {
-  "mère" : "mother",
-  "père" : "father",
-  "frère" : "brother",
-  "soeur" : "sister",
-  "sœur" : "sister",
-  "oncle" : "uncle",
-  "tante" : "aunt",
-  "grand-père" : "grandfather",
-  "père grand-père" : "grandfather",
-  "cousin" : "cousin",
-  "mère fille" : "grandmother",
-  "fille":"daughter",
-  "fils":"son",
-  "femme":"wife",
+  mère: 'mother',
+  père: 'father',
+  frère: 'brother',
+  soeur: 'sister',
+  sœur: 'sister',
+  oncle: 'uncle',
+  tante: 'aunt',
+  'grand-père': 'grandfather',
+  'père grand-père': 'grandfather',
+  cousin: 'cousin',
+  'mère fille': 'grandmother',
+  fille: 'daughter',
+  fils: 'son',
+  femme: 'wife',
 };
 
-class RelationalParser{
-
-
-
+class RelationalParser {
   //familyNetwork
-  static parseFamilyNetwork(data){
+  static parseFamilyNetwork(data) {
     let res = null;
     //must be a tab
-    if(data && data instanceof Array && data.length > 0){
+    if (data && data instanceof Array && data.length > 0) {
       res = data.map(item => {
         //data & type
-        let type = relationType[item.type]?relationType[item.type]:"other";
-        return ({"name":UtilParser.parseName(item.data),"type":type});
+        let type = relationType[item.type] ? relationType[item.type] : 'other';
+        return { name: UtilParser.parseName(item.data), type: type };
       });
     }
     return res;
   }
 
-  static parseRelations(data){
+  static parseRelations(data) {
     let res = null;
-
-    //must be a tab
-    if(data){
-      if(data instanceof Array && data.length > 0){
+    if (data) {
+      if (data instanceof Array && data.length > 0) {
         res = data.map(item => {
           //data
-          return ({"name":UtilParser.parseName(item.data)});
+          return { name: UtilParser.parseName(item.data) };
         });
-      }else{
-        res = [{"name":UtilParser.parseName(data.data)}];
+      } else {
+        res = [{ name: UtilParser.parseName(data.data) }];
       }
     }
     return res;
   }
 
   //FIXME : Enemy ?
-  static parseFriends(data){
+  static parseFriends(data) {
     let res = null;
-    //must be a tab
-
-    if(data && data!=={} && data!==[]){
-      if(data instanceof Array && data.length > 0){
+    if (data && data !== {} && data !== []) {
+      if (data instanceof Array && data.length > 0) {
         res = data.map(item => {
           //data & type
-          return ({"name":UtilParser.parseName(item.data),"type":"friend"});
+          return { name: UtilParser.parseName(item.data), type: 'friend' };
         });
-      }else if(data.data){
-        res = [({"name":UtilParser.parseName(data.data),"type":"friend"})];
+      } else if (data.data) {
+        res = [{ name: UtilParser.parseName(data.data), type: 'friend' }];
       }
     }
     return res;
   }
 
-
-  //socialClassOrigin
-  static parseSocialClassOrigin(data){
+  static parseSocialClassOrigin(data) {
     let res = null;
-    if(data && typeof data === 'string'){
-      return {"value":data};
+    if (data && typeof data === 'string') {
+      return { value: data };
     }
     return res;
-
   }
 
-  static parseGenericDataOrArray(data){
+  static parseGenericDataOrArray(data) {
     let res = null;
-    if(data && data instanceof Array && data.length > 0){
+    if (data && data instanceof Array && data.length > 0) {
       res = data.map(RelationalParser.parseGenericData);
-    }else if(data){
+    } else if (data) {
       res = [RelationalParser.parseGenericData(data)];
     }
-    return res
+    return res;
   }
 
-  static parseGenericData(item){
+  static parseGenericData(item) {
     let res = null;
-    if(typeof item.data === 'string'){
-      res = {"value":item.data};
-    }else{
+    if (typeof item.data === 'string') {
+      res = { value: item.data };
+    } else {
       res = item.data.content[0];
-      if(UtilParser.findProperty(item,"data.pname.content")){
-        res+=" "+UtilParser.parseName(item.data).value;
-      }else if(UtilParser.findProperty(item,"data.ptitle.content")){
-        res+=" "+item.data.ptitle.content;
+      if (UtilParser.findProperty(item, 'data.pname.content')) {
+        res += ' ' + UtilParser.parseName(item.data).value;
+      } else if (UtilParser.findProperty(item, 'data.ptitle.content')) {
+        res += ' ' + item.data.ptitle.content;
       }
 
-      res+=" "+item.data.content[1];
-      if(UtilParser.findProperty(item,"data.dates.date.content"))
-        res+=" "+item.data.dates.date.content;
-      if(item.data.content[2])
-        res+=" "+item.data.content[2];
-      res = {"value":res};
+      res += ' ' + item.data.content[1];
+      if (UtilParser.findProperty(item, 'data.dates.date.content'))
+        res += ' ' + item.data.dates.date.content;
+      if (item.data.content[2]) res += ' ' + item.data.content[2];
+      res = { value: res };
     }
     return res;
   }
 
   //controversyOrDebates	[SimpleInformation{...}]
-  static parseControversyOrDebates(data){
+  static parseControversyOrDebates(data) {
     let res = null;
-    if(data && data instanceof Array && data.length > 0){
+    if (data && data instanceof Array && data.length > 0) {
       res = data.map(RelationalParser.parseGenericData);
     }
     return res;
   }
 
-  static buildRelationalInsertion(json){
-    if(json){
+  static buildRelationalInsertion(json) {
+    if (json) {
       let relationalI = {};
 
-      let familyNetwork = UtilParser.findProperty(json,"prosop.person.relationelInsertion.familyNetwork");
+      let familyNetwork = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.familyNetwork'
+      );
 
-      if(familyNetwork){
-        relationalI.familyNetwork = RelationalParser.parseFamilyNetwork(familyNetwork);
+      if (familyNetwork) {
+        relationalI.familyNetwork = RelationalParser.parseFamilyNetwork(
+          familyNetwork
+        );
       }
-      let socialClassOrigin = UtilParser.findProperty(json,"prosop.person.relationelInsertion.socialClassOrigin");
+      let socialClassOrigin = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.socialClassOrigin'
+      );
 
-      if(socialClassOrigin){
-        relationalI.socialClassOrigin = RelationalParser.parseSocialClassOrigin(socialClassOrigin.data);;
+      if (socialClassOrigin) {
+        relationalI.socialClassOrigin = RelationalParser.parseSocialClassOrigin(
+          socialClassOrigin.data
+        );
       }
 
-      let personalServicesRelationship = UtilParser.findProperty(json,"prosop.person.relationelInsertion.personalServiceRelationship");
-      if(personalServicesRelationship){
-        relationalI.personalServicesRelationship = RelationalParser.parseRelations(personalServicesRelationship);
+      let personalServicesRelationship = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.personalServiceRelationship'
+      );
+      if (personalServicesRelationship) {
+        relationalI.personalServicesRelationship = RelationalParser.parseRelations(
+          personalServicesRelationship
+        );
       }
 
-      let friends = UtilParser.findProperty(json,"prosop.person.relationelInsertion.friends");
-      if(friends){
+      let friends = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.friends'
+      );
+      if (friends) {
         relationalI.friends = RelationalParser.parseRelations(friends);
       }
-      
-      let controversyOrDebates = UtilParser.findProperty(json,"prosop.person.relationelInsertion.polemic");
-      if(controversyOrDebates){
-        relationalI.controversyOrDebates = RelationalParser.parseControversyOrDebates(controversyOrDebates);
+
+      let controversyOrDebates = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.polemic'
+      );
+      if (controversyOrDebates) {
+        relationalI.controversyOrDebates = RelationalParser.parseControversyOrDebates(
+          controversyOrDebates
+        );
       }
       //connectionsWith	[SimpleInformation{...}] : not found
 
-
-      let connectionsWith = UtilParser.findProperty(json,"prosop.person.relationelInsertion.regularCorrespondence");
-      if(connectionsWith){
-        relationalI.connectionsWith = RelationalParser.parseGenericDataOrArray(connectionsWith);
+      let connectionsWith = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.regularCorrespondence'
+      );
+      if (connectionsWith) {
+        relationalI.connectionsWith = RelationalParser.parseGenericDataOrArray(
+          connectionsWith
+        );
       }
 
-      let memberOfGroups = UtilParser.findProperty(json,"prosop.person.relationelInsertion.specificGroup");
-      if(memberOfGroups){
-        relationalI.memberOfGroups = RelationalParser.parseGenericDataOrArray(memberOfGroups);
+      let memberOfGroups = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.specificGroup'
+      );
+      if (memberOfGroups) {
+        relationalI.memberOfGroups = RelationalParser.parseGenericDataOrArray(
+          memberOfGroups
+        );
       }
 
-      let politicalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.politicalLinks");
-      if(politicalRelationships){
-        relationalI.politicalRelationships = RelationalParser.parseGenericDataOrArray(politicalRelationships);
+      let politicalRelationships = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.politicalLinks'
+      );
+      if (politicalRelationships) {
+        relationalI.politicalRelationships = RelationalParser.parseGenericDataOrArray(
+          politicalRelationships
+        );
       }
 
-      let professionalRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.professionalLinks");
-      if(professionalRelationships){
-        relationalI.professionalRelationships = RelationalParser.parseGenericDataOrArray(professionalRelationships);
+      let professionalRelationships = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.professionalLinks'
+      );
+      if (professionalRelationships) {
+        relationalI.professionalRelationships = RelationalParser.parseGenericDataOrArray(
+          professionalRelationships
+        );
       }
 
-      let executor = UtilParser.findProperty(json,"prosop.person.relationelInsertion.executor");
-      if(executor){
-        relationalI.willExecutor = RelationalParser.parseGenericDataOrArray(executor);
+      let executor = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.executor'
+      );
+      if (executor) {
+        relationalI.willExecutor = RelationalParser.parseGenericDataOrArray(
+          executor
+        );
       }
 
-      let studentProfessorRelationships = UtilParser.findProperty(json,"prosop.person.relationelInsertion.student-professor");
-      if(studentProfessorRelationships){
-        relationalI.studentProfessorRelationships = RelationalParser.parseGenericDataOrArray(studentProfessorRelationships);
+      let studentProfessorRelationships = UtilParser.findProperty(
+        json,
+        'prosop.person.relationelInsertion.student-professor'
+      );
+      if (studentProfessorRelationships) {
+        relationalI.studentProfessorRelationships = RelationalParser.parseGenericDataOrArray(
+          studentProfessorRelationships
+        );
       }
-
-
-
       return relationalI;
-    }else{
+    } else {
       return null;
     }
   }
-
 }
 
 module.exports = RelationalParser;
