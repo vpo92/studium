@@ -1,11 +1,13 @@
+// @flow
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import cors from 'cors';
 
 import routes from './routes/routes';
-import db from './common/db';
-import logger from './common/logger';
+import db from './utils/db';
+import logger from './utils/logger';
 
 const app = express();
 
@@ -17,19 +19,26 @@ app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
+app.use(errorHandler);
 
-let server_port = app.get('port');
-let server_ip_address = '0.0.0.0';
+const server_port = app.get('port');
+const server_ip_address = '0.0.0.0';
 
 logger.info('runnning server on 3000');
 
-db.connect(`mongodb://${process.env.BASE_URL}:27017/studium`, function(err) {
+if (!process.env.BASE_URL) {
+  throw new Error('Could not initialize server : unknown base url.');
+}
+
+const environment = process.env.NODE_ENV || '';
+
+db.connect(`mongodb://${process.env.BASE_URL}:27017/studium`, (err) => {
   if (err) {
     logger.error(err);
     process.exit(1);
   } else {
     app.listen(server_port, server_ip_address, function() {
-      logger.info('process.env.NODE_ENV:' + process.env.NODE_ENV + ':');
+      logger.info(`NODE_ENV: ${environment}`);
       logger.info(
         'studium-api listening on ' +
           server_ip_address +
@@ -39,3 +48,8 @@ db.connect(`mongodb://${process.env.BASE_URL}:27017/studium`, function(err) {
     });
   }
 });
+
+// eslint-disable-next-line
+function errorHandler(err, req, res, next) {
+  res.status(500).send({ error: err.message });
+}

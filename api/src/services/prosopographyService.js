@@ -1,40 +1,33 @@
-import util from '../common/controller.util';
-import db from '../common/db';
-import logger from '../common/logger';
+// @flow
 
-function findAll(res) {
-  logger.info('findAll');
-  db
+import db from '../utils/db';
+import { type Prosopography } from '../../types/Prosopography';
+
+async function findAll(): Promise<Prosopography[]> {
+  return await db
     .get()
     .collection('prosopography')
     .find()
     .limit(50)
-    .toArray()
-    .then(util.handleData(res))
-    .catch(util.handleError(res));
+    .toArray();
 }
 
-function textSearch(req, res) {
-  logger.info('textSearch');
-  db
+async function textSearch(searchText: string): Promise<Prosopography[]> {
+  return await db
     .get()
     .collection('prosopography')
     .find(
-      { $text: { $search: req.params.searchText } },
+      { $text: { $search: searchText } },
       { score: { $meta: 'textScore' }, reference: true, identity: true }
     )
     .sort({ score: { $meta: 'textScore' } })
     .limit(50)
-    .toArray()
-    .then(util.handleData(res))
-    .catch(util.handleError(res));
+    .toArray();
 }
 
-function indexSearch(req, res) {
-  logger.info('indexSearch');
-  const letter = req.params.letter;
+function indexSearch(letter: string): Promise<Prosopography[]> {
   const regex = new RegExp(`^${letter}`, 'g');
-  db
+  return db
     .get()
     .collection('prosopography')
     .find(
@@ -42,23 +35,14 @@ function indexSearch(req, res) {
       { reference: true, identity: true }
     )
     .limit(0)
-    .toArray()
-    .then(util.handleData(res))
-    .catch(util.handleError(res));
+    .toArray();
 }
 
-function findByReference(req, res) {
-  logger.info('findByReference reference:' + req.params.reference);
+function findByReference(reference: string): Promise<Prosopography> {
   return db
     .get()
     .collection('prosopography')
-    .findOne({ reference: parseInt(req.params.reference) })
-    .then(function(results) {
-      logger.info(results);
-      res.statusCode = 200;
-      res.json(results);
-    })
-    .catch(util.handleError(res));
+    .findOne({ reference: parseInt(reference) });
 }
 
 /** *********************

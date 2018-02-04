@@ -1,8 +1,9 @@
 // @flow
 
+import { type Prosopography } from '../../../../api/types/Prosopography';
+
 import {
   type Search,
-  type Prosopography,
   type SearchAction,
   type GetProsopographyAction,
   type GetProsopographiesByFirstLetterAction,

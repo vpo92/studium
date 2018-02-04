@@ -38,7 +38,7 @@ const alphabet = [
   'Z',
 ];
 
-import { type Prosopography } from '../../actions/Search/searchTypes';
+import { type Prosopography } from '../../../../api/types/Prosopography';
 
 type Props = {
   getProposographiesByFirstLetter: (letter: string) => void,
@@ -96,8 +96,10 @@ class IndexPage extends Component<Props, State> {
             ? this.props.proposographiesByFirstLetter.prosopographies.map(
                 prosopography => (
                   <ListItem key={prosopography._id}>
-                    <ListItemText primary={prosopography.identity.name.value}/>
-                    <Link to={`/fiches/${prosopography.reference}`}>Détails</Link>
+                    <ListItemText primary={prosopography.identity.name.value} />
+                    <Link to={`/fiches/${prosopography.reference}`}>
+                      Détails
+                    </Link>
                   </ListItem>
                 )
               )

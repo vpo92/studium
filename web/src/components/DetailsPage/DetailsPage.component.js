@@ -8,11 +8,14 @@ import styles from './DetailsPage.style';
 import Identity from './Identity.component';
 import Origin from './Origin.component';
 import RelationalInsertion from './Relation.component';
-import ExpansionPanel, {ExpansionPanelSummary,ExpansionPanelDetails} from 'material-ui/ExpansionPanel';
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+} from 'material-ui/ExpansionPanel';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Typography from 'material-ui/Typography';
 
-import { type Prosopography } from '../../actions/Search/searchTypes';
+import { type Prosopography } from '../../../../api/types/Prosopography';
 
 type Props = {
   classes: any,
@@ -25,19 +28,18 @@ type State = {
   currentTab: string,
 };
 
-class DetailsPage extends Component<Props,State> {
-
+class DetailsPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     props.getDetails(props.reference);
     this.state = {
-      currentTab: "identity",
+      currentTab: 'identity',
     };
   }
 
   handleChange = panel => (event, expanded) => {
     this.setState({
-      currentTab: expanded ? panel : "false",
+      currentTab: expanded ? panel : 'false',
     });
   };
 
@@ -50,42 +52,74 @@ class DetailsPage extends Component<Props,State> {
         </p>
         {prosopography ? (
           <div>
-            <Typography type="display2" className={this.props.classes.title}>{prosopography.identity.name.value}</Typography>
-            <a name="fiche"></a>
-            <br/>
-            <ExpansionPanel expanded={this.state.currentTab === 'identity'} onChange={this.handleChange("identity")}>
+            <Typography type="display2" className={this.props.classes.title}>
+              {prosopography.identity.name.value}
+            </Typography>
+            <a name="fiche" />
+            <br />
+            <ExpansionPanel
+              expanded={this.state.currentTab === 'identity'}
+              onChange={this.handleChange('identity')}
+            >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography type="headline" className={this.props.classes.primaryColor}>Carte d'identité</Typography>
+                <Typography
+                  type="headline"
+                  className={this.props.classes.primaryColor}
+                >
+                  Carte d'identité
+                </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}><Identity identity={prosopography.identity} /></Typography>
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                  <Identity identity={prosopography.identity} />
+                </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
-            <ExpansionPanel expanded={this.state.currentTab === 'origin'} onChange={this.handleChange("origin")}>
+            <ExpansionPanel
+              expanded={this.state.currentTab === 'origin'}
+              onChange={this.handleChange('origin')}
+            >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography type="headline" className={this.props.classes.primaryColor}>Origine</Typography>
+                <Typography
+                  type="headline"
+                  className={this.props.classes.primaryColor}
+                >
+                  Origine
+                </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}><Origin origin={prosopography.origin} /></Typography>
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                  <Origin origin={prosopography.origin} />
+                </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
-            <ExpansionPanel expanded={this.state.currentTab === 'relation'} onChange={this.handleChange("relation")}>
+            <ExpansionPanel
+              expanded={this.state.currentTab === 'relation'}
+              onChange={this.handleChange('relation')}
+            >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography type="headline" className={this.props.classes.primaryColor}>Relations</Typography>
+                <Typography
+                  type="headline"
+                  className={this.props.classes.primaryColor}
+                >
+                  Relations
+                </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}><RelationalInsertion relationalInsertion={prosopography.relationalInsertion} /></Typography>
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                  <RelationalInsertion
+                    relationalInsertion={prosopography.relationalInsertion}
+                  />
+                </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-
           </div>
         ) : null}
       </div>
     );
   }
 }
-
 
 export default injectSheet(styles)(DetailsPage);

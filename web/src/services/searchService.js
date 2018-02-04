@@ -1,12 +1,11 @@
 // @flow
 
-import { type Profile } from '../actions/Search/searchTypes';
-import { type Prosopography } from '../actions/Search/searchTypes';
+import { type Prosopography } from '../../../api/types/Prosopography';
 
 const baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
 export async function fetchSearchByKeyword(
   keyword: string
-): Promise<Profile[]> {
+): Promise<Prosopography[]> {
   const result = await fetch(`${baseUrl}/prosopography/search/${keyword}`);
   return result.json();
 }

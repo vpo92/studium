@@ -12,10 +12,10 @@ import injectSheet from 'react-jss';
 import ResultRow from './ResultRow/ResultRow.component';
 import styles from './SearchResult.style';
 
-import { type Profile } from '../../actions/Search/searchTypes';
+import { type Prosopography } from '../../../../api/types/Prosopography';
 
 type Props = {
-  data: Profile[],
+  data: Prosopography[],
   classes: any,
 };
 

@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import { TableCell, TableRow } from 'material-ui/Table';
 
 import { getValue } from './utils';
-
-import { type Profile } from '../../../actions/Search/searchTypes';
+import { type Prosopography } from '../../../../../api/types/Prosopography';
 
 export type Props = {
-  profile: Profile,
+  profile: Prosopography,
 };
 
 const ResultRow = (props: Props) => {
