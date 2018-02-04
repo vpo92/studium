@@ -2,6 +2,7 @@
 
 import {
   type SearchAction,
+  type SnackbarAction,
   type GetProsopographyAction,
   type GetProsopographiesByFirstLetterAction,
   type Search,
@@ -15,6 +16,7 @@ import {
 type StudiumAction =
   | SearchAction
   | SideMenuAction
+  | SnackbarAction
   | ChangePageAction
   | GetProsopographyAction
   | GetProsopographiesByFirstLetterAction;
@@ -37,10 +39,18 @@ const studiumReducer = (
         ...state,
         search: action.search,
       };
-    case 'TOGGLE_SIDE_MENU':
+    case 'SHOW_SIDE_MENU':
       return {
         ...state,
         showSideMenu: action.showSideMenu,
+      };
+    case 'SHOW_SNACKBAR':
+      return {
+        ...state,
+        error: {
+          message: action.error.message,
+          status: action.error.status,
+        },
       };
     case 'CHANGE_PAGE':
       return {

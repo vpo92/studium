@@ -1,7 +1,7 @@
 // @flow
 
 export type SideMenuAction = {
-  type: 'TOGGLE_SIDE_MENU',
+  type: 'SHOW_SIDE_MENU',
   showSideMenu: boolean,
 };
 

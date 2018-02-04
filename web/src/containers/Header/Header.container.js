@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Header from '../../components/Header/Header.component';
-import { toggleSideMenu } from '../../actions/Menu/menuActions';
+import { showSideMenu } from '../../actions/Menu/menuActions';
 import { getTitleFromPathname } from '../../components/App';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   handleSideMenu: openSideMenu => {
-    return dispatch(toggleSideMenu(openSideMenu));
+    return dispatch(showSideMenu(openSideMenu));
   },
 });
 

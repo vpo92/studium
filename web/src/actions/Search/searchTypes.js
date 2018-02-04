@@ -21,3 +21,11 @@ export type GetProsopographiesByFirstLetterAction = {
     prosopographies: Prosopography[],
   },
 };
+
+export type SnackbarAction = {
+  type: 'SHOW_SNACKBAR',
+  error: {
+    status: boolean,
+    message: string,
+  },
+};

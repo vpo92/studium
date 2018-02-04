@@ -24,7 +24,7 @@ body {
 .app-search-field{
   margin-right: 3em;
 }
-.app-search-toggle{
+.app-search-show{
   max-width: 250px;
 }
 .app-search-paginator{

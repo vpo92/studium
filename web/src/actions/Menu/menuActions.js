@@ -5,12 +5,14 @@ import {
   type ChangePageAction,
 } from '../../actions/Menu/menuTypes';
 
-export const toggleSideMenu: ((showSideMenu: boolean) => SideMenuAction) = showSideMenu => ({
-  type: 'TOGGLE_SIDE_MENU',
+export const showSideMenu: (
+  showSideMenu: boolean
+) => SideMenuAction = showSideMenu => ({
+  type: 'SHOW_SIDE_MENU',
   showSideMenu,
 });
 
-export const changePage: ((newPage: string) => ChangePageAction) = newPage => ({
+export const changePage: (newPage: string) => ChangePageAction = newPage => ({
   type: 'CHANGE_PAGE',
   newPage,
 });

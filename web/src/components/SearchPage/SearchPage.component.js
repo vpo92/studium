@@ -56,7 +56,7 @@ class SearchPage extends Component<Props, State> {
         </Button>
         {this.state.activateCompleteSearchFeature ? (
           <div>
-            <div className="app-search-toggle">
+            <div className="app-search-show">
               <Switch
                 aria-label="Recherche avancée"
                 checked={this.state.advancesearch}

@@ -11,13 +11,13 @@ type Props = {
   url: string,
   title: string,
   currentPageTitle: string,
-  toggleSideMenu: () => void,
+  showSideMenu: () => void,
   classes: any,
 };
 
 const MenuLink = (props: Props) => (
   <MenuItem
-    onClick={() => props.toggleSideMenu()}
+    onClick={() => props.showSideMenu()}
     component={Link}
     to={props.url}
     disabled={props.currentPageTitle === props.title}

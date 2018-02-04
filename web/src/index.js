@@ -17,6 +17,9 @@ const store = configureStore({
       keyWord: '',
       result: [],
     },
+    error: {
+      status: false,
+    },
     showSideMenu: false,
   },
 });
