@@ -2,7 +2,7 @@ import util from '../common/controller.util';
 import db from '../common/db';
 import logger from '../common/logger';
 
-function findAll(req, res) {
+function findAll(res) {
   logger.info('findAll');
   db
     .get()
@@ -21,7 +21,7 @@ function textSearch(req, res) {
     .collection('prosopography')
     .find(
       { $text: { $search: req.params.searchText } },
-      { score: { $meta: 'textScore' },'reference':true,'identity':true}
+      { score: { $meta: 'textScore' }, reference: true, identity: true }
     )
     .sort({ score: { $meta: 'textScore' } })
     .limit(50)
@@ -37,7 +37,10 @@ function indexSearch(req, res) {
   db
     .get()
     .collection('prosopography')
-    .find({ 'identity.name.value': { $regex: regex, $options: '-i' } },{'reference':true,'identity':true})
+    .find(
+      { 'identity.name.value': { $regex: regex, $options: '-i' } },
+      { reference: true, identity: true }
+    )
     .limit(0)
     .toArray()
     .then(util.handleData(res))

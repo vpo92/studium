@@ -2,7 +2,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "rules": {
     "curly": 0,
@@ -28,7 +29,8 @@
   },
   "parser": "babel-eslint",
   "plugins": [
-    "flowtype"
+    "flowtype",
+    "jest",
   ],
   "ecmaFeatures": {
     "arrowFunctions": true,

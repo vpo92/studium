@@ -1,23 +1,15 @@
-'use strict';
+import service from '../../src/services/prosopographyService';
 
-let should = require('chai').should;
-let expect = require('chai').expect;
-let assert = require('chai').assert;
-let controller = require('../../src/prosopography/prosopography.controller');
-
-describe('prosopography.controller', function(){
-
-  describe("prosopography.controller.findAll",function(){
-      it("should raise error if wrong db", function(done){
-        let res = {
-          json : (data) => {
-            console.log(data);
-            expect(data.error).to.eql('error retriving connexion to database');
-          },
-        }
-        controller.findAll(null,res);
-        expect(res.statusCode).to.eql(500);
-        done();
-      });
+describe('prosopography.service', () => {
+  describe('prosopography.service.findAll', () => {
+    it('should raise error if wrong db', done => {
+      const res = {
+        json: data => {
+          expect(data.error).toEqual('error retriving connexion to database');
+        },
+      };
+      expect(() => service.findAll(null, res)).toThrowError();
+      done();
+    });
   });
 });
