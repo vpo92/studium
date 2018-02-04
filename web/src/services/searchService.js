@@ -3,8 +3,7 @@
 import { type Profile } from '../actions/Search/searchTypes';
 import { type Prosopography } from '../actions/Search/searchTypes';
 
-const baseUrl = 'http://localhost:3000';
-
+const baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
 export async function fetchSearchByKeyword(
   keyword: string
 ): Promise<Profile[]> {

@@ -5,6 +5,8 @@ services:
     image: studium_api
     ports:
       - "3000:3000"
+    environment:
+      - BASE_URL=mongodb
     links:
       - mongodb
       - studium_web
@@ -23,4 +25,4 @@ services:
     volumes:
       - ./data/db:/data/db
     ports:
-        - 27017:27017
+      - 27017:27017

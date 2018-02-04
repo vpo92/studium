@@ -23,7 +23,7 @@ let server_ip_address = '0.0.0.0';
 
 logger.info('runnning server on 3000');
 
-db.connect('mongodb://localhost:27017/studium', function(err) {
+db.connect(`mongodb://${process.env.BASE_URL}:27017/studium`, function(err) {
   if (err) {
     logger.error(err);
     process.exit(1);

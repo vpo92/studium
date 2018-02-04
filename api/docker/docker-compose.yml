@@ -5,6 +5,8 @@ services:
     image: studium_api
     ports:
       - "3000:3000"
+    environment:
+      - BASE_URL=mongodb
     links:
       - mongodb
     depends_on:
