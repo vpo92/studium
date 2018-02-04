@@ -1,52 +1,47 @@
-'use strict';
-
-const should = require('chai').should;
-const expect = require('chai').expect;
-const assert = require('chai').assert;
-const UtilParser = require('../src/util.parser');
+import utilParser from '../src/util.parser';
 
 describe('util.parser', function() {
   describe('util.parser.findProperty', function() {
     it('should return null if no value att all', function(done) {
-      expect(UtilParser.findProperty(null, null)).to.be.a('null');
-      expect(UtilParser.findProperty({}, '')).to.be.a('null');
-      expect(UtilParser.findProperty('', '')).to.be.a('null');
+      expect(utilParser.findProperty(null, null)).toEqual(null);
+      expect(utilParser.findProperty({}, '')).toEqual(null);
+      expect(utilParser.findProperty('', '')).toEqual(null);
       done();
     });
 
     it('should return null if no json value', function(done) {
-      expect(UtilParser.findProperty(null, 'prop')).to.be.a('null');
-      expect(UtilParser.findProperty({}, 'prop')).to.be.a('null');
-      expect(UtilParser.findProperty('', 'prop')).to.be.a('null');
+      expect(utilParser.findProperty(null, 'prop')).toEqual(null);
+      expect(utilParser.findProperty({}, 'prop')).toEqual(null);
+      expect(utilParser.findProperty('', 'prop')).toEqual(null);
       done();
     });
 
     it('should return null if value is not present', function(done) {
-      expect(UtilParser.findProperty({ key: 'value' }, 'prop')).to.be.a('null');
+      expect(utilParser.findProperty({ key: 'value' }, 'prop')).toEqual(null);
       done();
     });
 
     it('should return a value if value exists', function(done) {
-      expect(UtilParser.findProperty({ prop: 'value' }, 'prop')).to.equals(
+      expect(utilParser.findProperty({ prop: 'value' }, 'prop')).toEqual(
         'value'
       );
       expect(
-        UtilParser.findProperty(
+        utilParser.findProperty(
           { level1: { level2: 'value' } },
           'level1.level2'
         )
-      ).to.equals('value');
+      ).toEqual('value');
       expect(
-        UtilParser.findProperty(
+        utilParser.findProperty(
           { level1: { 'level-2': 'value' } },
           'level1.level-2'
         )
-      ).to.equals('value');
+      ).toEqual('value');
       const j = { level1: { level2: { level3: 'value' } } };
-      expect(UtilParser.findProperty(j, 'level1.level2.level3')).to.equals(
+      expect(utilParser.findProperty(j, 'level1.level2.level3')).toEqual(
         'value'
       );
-      expect(UtilParser.findProperty(j, 'level1.level2')).to.eql({
+      expect(utilParser.findProperty(j, 'level1.level2')).toEqual({
         level3: 'value',
       });
       done();
@@ -55,14 +50,14 @@ describe('util.parser', function() {
 
   describe('indentity.parser.parseName', function() {
     it('should return null if no value att all', function(done) {
-      expect(UtilParser.parseName(null)).to.be.a('null');
-      expect(UtilParser.parseName({})).to.be.a('null');
-      expect(UtilParser.parseName('')).to.be.a('null');
+      expect(utilParser.parseName(null)).toEqual(null);
+      expect(utilParser.parseName({})).toEqual(null);
+      expect(utilParser.parseName('')).toEqual(null);
       done();
     });
     it('should parse data correctly', function(done) {
       const ex1 = 'CÉSAR';
-      expect(UtilParser.parseName(ex1)).to.eql({ value: 'CÉSAR' });
+      expect(utilParser.parseName(ex1)).toEqual({ value: 'CÉSAR' });
 
       const ex2 = {
         pname: {
@@ -71,7 +66,7 @@ describe('util.parser', function() {
           content: 'CAESAR',
         },
       };
-      expect(UtilParser.parseName(ex2)).to.eql({ value: 'CAESAR' });
+      expect(utilParser.parseName(ex2)).toEqual({ value: 'CAESAR' });
 
       const ex3 = {
         pname: [
@@ -88,8 +83,8 @@ describe('util.parser', function() {
           },
         ],
       };
-      let res3 = UtilParser.parseName(ex3);
-      expect(res3).to.eql({ value: 'CECILIA Knudsdatter, saint KNUD' });
+      let res3 = utilParser.parseName(ex3);
+      expect(res3).toEqual({ value: 'CECILIA Knudsdatter, saint KNUD' });
 
       let ex4 = {
         pname: {
@@ -114,8 +109,8 @@ describe('util.parser', function() {
         content: ['Familier de', ', en', '.'],
       };
 
-      let res4 = UtilParser.parseName(ex4);
-      expect(res4).to.eql({ value: "CHARLES, duc d' Alençon" });
+      let res4 = utilParser.parseName(ex4);
+      expect(res4).toEqual({ value: "CHARLES, duc d' Alençon" });
 
       let ex5 = {
         pname: {
@@ -132,8 +127,8 @@ describe('util.parser', function() {
         content: ['Ami du', ', roi de', ', avec lequel il a été élevé.'],
       };
 
-      let res5 = UtilParser.parseName(ex5);
-      expect(res5).to.eql({ value: 'VALDEMAR Ier' });
+      let res5 = utilParser.parseName(ex5);
+      expect(res5).toEqual({ value: 'VALDEMAR Ier' });
 
       done();
     });

@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "Studium batch application",
   "scripts": {
-    "test": "jest",
-    "start": "webpack-dev-server -d --hot --inline --progress --colors"
+    "test": "yarn jest",
+    "start": "babel-node src/import.launcher.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vpo92/studium.git"
   },
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  },
   "dependencies": {
     "mongodb": "^2.2.33",
     "omit-empty": "^0.4.1"

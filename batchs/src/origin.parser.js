@@ -1,4 +1,4 @@
-const UtilParser = require('./util.parser');
+import UtilParser from './util.parser';
 
 class OriginParser {
   static parsePlace(json) {
@@ -25,7 +25,7 @@ class OriginParser {
         if (data.content) {
           let s = data.content[0];
           if (data.ptitle) {
-            s += ' ' + data.ptitle.content;
+            s += ` ${data.ptitle.content}`;
           }
           res = { value: s };
         }
@@ -63,4 +63,4 @@ class OriginParser {
   }
 }
 
-module.exports = OriginParser;
+export default OriginParser;

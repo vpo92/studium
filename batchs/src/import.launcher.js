@@ -1,10 +1,10 @@
-const fs = require('fs');
-const parser = require('./identity.parser');
-const OriginParser = require('./origin.parser');
-const RelationalParser = require('./relational.parser');
-const MongoClient = require('mongodb').MongoClient;
-const MongoImporter = require('../src/mongo.importer');
-const OmitEmpty = require('omit-empty');
+import fs from 'fs';
+import parser from './identity.parser';
+import OriginParser from './origin.parser';
+import RelationalParser from './relational.parser';
+import { MongoClient } from 'mongodb';
+import MongoImporter from '../src/mongo.importer';
+import OmitEmpty from 'omit-empty';
 
 const enableMongo = false;
 
@@ -36,10 +36,10 @@ const processFile = (db, fileName) => {
     let prosopography = OmitEmpty(p);
     if (enableMongo) {
       MongoImporter.importProsopography(db, prosopography)
-        .then(function() {
+        .then(() => {
           console.log('Done importing');
         })
-        .catch(function(err) {
+        .catch(err => {
           console.error(err);
         });
     }
@@ -50,11 +50,11 @@ const processFile = (db, fileName) => {
 };
 
 const doImport = db => {
-  fs.readdir(path, function(err, files) {
+  fs.readdir(path, (err, files) => {
     files.map(file => {
-      processFile(db, path + '/' + file);
+      processFile(db, `${path}/${file}`);
     });
-    console.log('Nb errors:' + errors.length);
+    console.log(`Nb errors:${errors.length}`);
     console.log(errors);
     if (enableMongo) {
       MongoImporter.createIndex(db).then(db.close());
@@ -65,7 +65,7 @@ const doImport = db => {
 if (enableMongo) {
   MongoClient.connect('mongodb://localhost/studium')
     .then(doImport)
-    .catch(function(err) {
+    .catch(err => {
       console.error(err);
     });
 } else {

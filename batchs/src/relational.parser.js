@@ -1,4 +1,4 @@
-const UtilParser = require('./util.parser');
+import UtilParser from './util.parser';
 
 //FIXME : check business rule
 const relationType = {
@@ -27,7 +27,7 @@ class RelationalParser {
       res = data.map(item => {
         //data & type
         let type = relationType[item.type] ? relationType[item.type] : 'other';
-        return { name: UtilParser.parseName(item.data), type: type };
+        return { name: UtilParser.parseName(item.data), type };
       });
     }
     return res;
@@ -89,15 +89,15 @@ class RelationalParser {
     } else {
       res = item.data.content[0];
       if (UtilParser.findProperty(item, 'data.pname.content')) {
-        res += ' ' + UtilParser.parseName(item.data).value;
+        res += ` ${UtilParser.parseName(item.data).value}`;
       } else if (UtilParser.findProperty(item, 'data.ptitle.content')) {
-        res += ' ' + item.data.ptitle.content;
+        res += ` ${item.data.ptitle.content}`;
       }
 
-      res += ' ' + item.data.content[1];
+      res += ` ${item.data.content[1]}`;
       if (UtilParser.findProperty(item, 'data.dates.date.content'))
-        res += ' ' + item.data.dates.date.content;
-      if (item.data.content[2]) res += ' ' + item.data.content[2];
+        res += ` ${item.data.dates.date.content}`;
+      if (item.data.content[2]) res += ` ${item.data.content[2]}`;
       res = { value: res };
     }
     return res;
@@ -232,4 +232,4 @@ class RelationalParser {
   }
 }
 
-module.exports = RelationalParser;
+export default RelationalParser;

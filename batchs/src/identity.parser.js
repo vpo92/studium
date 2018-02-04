@@ -1,4 +1,4 @@
-const UtilParser = require('./util.parser');
+import UtilParser from './util.parser';
 
 class IndentityParser {
   //FIXME : rangeInformation
@@ -66,10 +66,10 @@ class IndentityParser {
         if (data.content) {
           let s = data.content[0];
           if (data.ptitle) {
-            s += ' ' + data.ptitle.content;
+            s += ` ${data.ptitle.content}`;
           }
           if (data.place) {
-            s += ' à ' + data.place;
+            s += ` à ${data.place}`;
           }
           res = { value: s };
         }
@@ -173,4 +173,4 @@ class IndentityParser {
   }
 }
 
-module.exports = IndentityParser;
+export default IndentityParser;

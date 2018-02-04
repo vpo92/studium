@@ -28,7 +28,7 @@ class UtilParser {
         if (UtilParser.findProperty(json, 'pname.content')) {
           let val = json.pname.content;
           if (UtilParser.findProperty(json, 'pname.ptitle.content')) {
-            val += ' ' + json.pname.ptitle.content;
+            val += ` ${json.pname.ptitle.content}`;
           }
           res = { value: val };
         } else if (json.pname && json.pname instanceof Array) {
@@ -46,4 +46,4 @@ class UtilParser {
   }
 }
 
-module.exports = UtilParser;
+export default UtilParser;
