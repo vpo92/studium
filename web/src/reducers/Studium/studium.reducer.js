@@ -21,7 +21,6 @@ type StudiumAction =
 
 type StudiumStore = {
   showSideMenu: boolean,
-  currentPageTitle: string,
   search?: Search,
   prosopographyDetails?: Object,
 };
@@ -29,7 +28,6 @@ type StudiumStore = {
 const studiumReducer = (
   state: StudiumStore = {
     showSideMenu: false,
-    currentPageTitle: 'Accueil',
   },
   action: StudiumAction
 ) => {
@@ -48,7 +46,6 @@ const studiumReducer = (
       return {
         ...state,
         showSideMenu: false,
-        currentPageTitle: action.newPage,
       };
     case 'GET_PROSOPOGRAPHY_DETAILS':
       return {

@@ -18,7 +18,6 @@ const store = configureStore({
       result: [],
     },
     showSideMenu: false,
-    currentPageTitle: 'Accueil',
   },
 });
 const history = createHistory();
