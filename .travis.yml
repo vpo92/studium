@@ -14,6 +14,7 @@ jdk:
 script:
   - npm test
   - sonar-scanner
+  - build.sh
 cache:
   directories:
     - '$HOME/.sonar/cache'
