@@ -1,4 +1,5 @@
 #!/bin/sh
+npm i -g webpack
 npm i
 cd api
 npm run docker:build
