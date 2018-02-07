@@ -42,7 +42,7 @@
     "prettier": "1.10.2"
   },
   "jestSonar": {
-    "reportFile": "test-reporter.xml",
+    "reportFile": "test-report.xml",
     "indent": 4
   },
   "dependencies": {}
