@@ -8,7 +8,7 @@
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
     "build": "webpack --env=prod -p",
     "postbuild": "cp src/server.js src/index.html ./package.json ./package-lock.json docker/build",
-    "docker:build": "npm run build && docker build docker -t studium_public -f docker/Dockerfile.public",
+    "docker:build": "npm -q run build && docker build docker -t studium_public -f docker/Dockerfile.public",
     "docker:push": "./docker/tag_push.sh"
   },
   "repository": {
