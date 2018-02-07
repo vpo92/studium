@@ -9,6 +9,6 @@ COPY build /app/
 EXPOSE 3001
 
 # Install node modules
-RUN npm install
+RUN npm install -q
 
 CMD node server.js
