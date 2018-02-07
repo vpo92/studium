@@ -1,9 +1,9 @@
 #!/bin/sh
-npm i -g webpack
-npm i
+npm i -q -g webpack
+npm i -q
 cd api
-npm i
-npm run docker:build
+npm i -q
+npm -q run docker:build
 cd ../web
-npm i
-npm run docker:build
+npm i -q
+npm -q run docker:build
