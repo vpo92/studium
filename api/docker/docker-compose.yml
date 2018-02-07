@@ -2,7 +2,7 @@ version: "3"
 
 services:
   studium_api:
-    image: studium_api
+    image: studium/api
     ports:
       - "3000:3000"
     environment:

@@ -9,7 +9,7 @@
     "build": "webpack -p",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "predocker:build": "npm -q run build",
-    "docker:build": "docker build -t studium_api docker -f docker/Dockerfile.api",
+    "docker:build": "docker build -t studium/api docker -f docker/Dockerfile.api",
     "docker:push": "./docker/tag_push.sh",
     "release": "yarn build && yarn docker:build && yarn docker:push"
   },

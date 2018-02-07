@@ -15,6 +15,7 @@ script:
   - npm test
   - sonar-scanner
   - sh ./build.sh
+  - sh ./push.sh
 cache:
   directories:
     - '$HOME/.sonar/cache'

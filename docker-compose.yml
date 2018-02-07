@@ -2,7 +2,7 @@ version: "3"
 
 services:
   studium_api:
-    image: studium_api
+    image: studium/api
     ports:
       - "3000:3000"
     environment:
@@ -13,7 +13,7 @@ services:
     depends_on:
       - mongodb
   studium_web:
-    image: studium_public
+    image: studium/web
     ports:
       - "3001:3001"
   mongodb:
