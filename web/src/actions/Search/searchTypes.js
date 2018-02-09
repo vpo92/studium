@@ -9,13 +9,18 @@ export type SearchAction = {
   search: Search,
 };
 
-export type GetProsopographyAction = {
+export type GetProsopographyDetailsAction = {
   type: 'GET_PROSOPOGRAPHY_DETAILS',
   prosopography: Prosopography,
 };
 
-export type GetProsopographiesByFirstLetterAction = {
-  type: 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+export type RequestProsopographiesByFirstLetterAction = {
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  letter: string,
+};
+
+export type ReceiveProsopographiesByFirstLetterAction = {
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_FIRST_LETTER',
   prosopographiesByFirstLetter: {
     letter: string,
     prosopographies: Prosopography[],

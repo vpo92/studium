@@ -1,11 +1,22 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
+import thunkMiddleware from 'redux-thunk';
+
+const composeFunctions = [
+  applyMiddleware(thunkMiddleware),
+  ...(process.env.NODE_ENV !== 'production'
+    ? [
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__(),
+      ]
+    : []),
+];
 
 export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+    compose(...composeFunctions)
   );
 
   if (module.hot) {

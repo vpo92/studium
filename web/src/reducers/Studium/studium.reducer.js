@@ -3,8 +3,9 @@
 import {
   type SearchAction,
   type SnackbarAction,
-  type GetProsopographyAction,
-  type GetProsopographiesByFirstLetterAction,
+  type GetProsopographyDetailsAction,
+  type ReceiveProsopographiesByFirstLetterAction,
+  type RequestProsopographiesByFirstLetterAction,
   type Search,
 } from '../../actions/Search/searchTypes';
 
@@ -18,8 +19,9 @@ type StudiumAction =
   | SideMenuAction
   | SnackbarAction
   | ChangePageAction
-  | GetProsopographyAction
-  | GetProsopographiesByFirstLetterAction;
+  | GetProsopographyDetailsAction
+  | ReceiveProsopographiesByFirstLetterAction
+  | RequestProsopographiesByFirstLetterAction;
 
 type StudiumStore = {
   showSideMenu: boolean,
@@ -62,7 +64,15 @@ const studiumReducer = (
         ...state,
         prosopographyDetails: action.prosopography,
       };
-    case 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER':
+    case 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER':
+      return {
+        ...state,
+        prosopographiesByFirstLetter: {
+          letter: action.letter,
+          prosopographies: [],
+        },
+      };
+    case 'RECEIVE_PROSOPOGRAPHIES_BY_FIRST_LETTER':
       return {
         ...state,
         prosopographiesByFirstLetter: action.prosopographiesByFirstLetter,

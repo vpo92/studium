@@ -6,8 +6,9 @@ import {
   type Search,
   type SearchAction,
   type SnackbarAction,
-  type GetProsopographyAction,
-  type GetProsopographiesByFirstLetterAction,
+  type GetProsopographyDetailsAction,
+  type ReceiveProsopographiesByFirstLetterAction,
+  type RequestProsopographiesByFirstLetterAction,
 } from '../../actions/Search/searchTypes';
 
 export const search: (search: Search) => SearchAction = search => ({
@@ -15,23 +16,32 @@ export const search: (search: Search) => SearchAction = search => ({
   search,
 });
 
-export const getProsopographyDetails: Prosopography => GetProsopographyAction = prosopography => ({
+export const getProsopographyDetails: Prosopography => GetProsopographyDetailsAction = prosopography => ({
   type: 'GET_PROSOPOGRAPHY_DETAILS',
   prosopography,
 });
 
-export const getProsopographiesByFirstLetter: (
+export type ReceiveProsopographiesByFirstLetter = (
   string,
   Prosopography[]
-) => GetProsopographiesByFirstLetterAction = (
+) => ReceiveProsopographiesByFirstLetterAction;
+export const receiveProsopographiesByFirstLetter: ReceiveProsopographiesByFirstLetter = (
   letter: string,
   prosopographiesByFirstLetter: Prosopography[]
 ) => ({
-  type: 'GET_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_FIRST_LETTER',
   prosopographiesByFirstLetter: {
     letter,
     prosopographies: prosopographiesByFirstLetter,
   },
+});
+
+export type RequestProsopographiesByFirstLetter = string => RequestProsopographiesByFirstLetterAction;
+export const requestProsopographiesByFirstLetter: RequestProsopographiesByFirstLetter = (
+  letter: string
+) => ({
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  letter,
 });
 
 export type ShowSnackbar = (
