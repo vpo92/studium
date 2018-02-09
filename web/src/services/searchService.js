@@ -3,9 +3,11 @@
 import type { Dispatch } from 'redux';
 
 import {
+  showSnackbar,
+  requestProsopographyDetails,
+  receiveProsopographyDetails,
   requestProsopographiesByFirstLetter,
   receiveProsopographiesByFirstLetter,
-  showSnackbar,
 } from '../actions/Search/searchActions';
 
 import { type Prosopography } from '../../../api/types/Prosopography';
@@ -25,14 +27,22 @@ export async function fetchProsopographyById(
   return result.json();
 }
 
-export async function fetchProsopographyByReference(
+export function fetchProsopographyByReference(
   reference: string
-): Promise<Prosopography> {
-  const result = await fetch(`${baseUrl}/prosopography/${reference}`);
-  return result.json();
+): Dispatch => Promise<void> {
+  return async dispatch => {
+    try {
+      dispatch(requestProsopographyDetails(reference));
+      const result = await fetch(`${baseUrl}/prosopography/${reference}`);
+      const prosopography = await result.json();
+      dispatch(receiveProsopographyDetails(prosopography));
+    } catch (e) {
+      dispatch(showSnackbar(true, `Couldn't get response from server.`));
+    }
+  }
 }
 
-export function fetchProsopographiesByFirstLetter(letter: string): any {
+export function fetchProsopographiesByFirstLetter(letter: string): Dispatch => Promise<void> {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(requestProsopographiesByFirstLetter(letter));

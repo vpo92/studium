@@ -3,7 +3,8 @@
 import {
   type SearchAction,
   type SnackbarAction,
-  type GetProsopographyDetailsAction,
+  type RequestProsopographyDetailsAction,
+  type ReceiveProsopographyDetailsAction,
   type ReceiveProsopographiesByFirstLetterAction,
   type RequestProsopographiesByFirstLetterAction,
   type Search,
@@ -19,7 +20,8 @@ type StudiumAction =
   | SideMenuAction
   | SnackbarAction
   | ChangePageAction
-  | GetProsopographyDetailsAction
+  | RequestProsopographyDetailsAction
+  | ReceiveProsopographyDetailsAction
   | ReceiveProsopographiesByFirstLetterAction
   | RequestProsopographiesByFirstLetterAction;
 
@@ -59,7 +61,14 @@ const studiumReducer = (
         ...state,
         showSideMenu: false,
       };
-    case 'GET_PROSOPOGRAPHY_DETAILS':
+    case 'REQUEST_PROSOPOGRAPHY_DETAILS':
+      return {
+        ...state,
+        prosopographyDetails: {
+          reference: action.reference,
+        },
+      };
+    case 'RECEIVE_PROSOPOGRAPHY_DETAILS':
       return {
         ...state,
         prosopographyDetails: action.prosopography,

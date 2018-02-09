@@ -9,8 +9,13 @@ export type SearchAction = {
   search: Search,
 };
 
-export type GetProsopographyDetailsAction = {
-  type: 'GET_PROSOPOGRAPHY_DETAILS',
+export type RequestProsopographyDetailsAction = {
+  type: 'REQUEST_PROSOPOGRAPHY_DETAILS',
+  reference: string,
+};
+
+export type ReceiveProsopographyDetailsAction = {
+  type: 'RECEIVE_PROSOPOGRAPHY_DETAILS',
   prosopography: Prosopography,
 };
 

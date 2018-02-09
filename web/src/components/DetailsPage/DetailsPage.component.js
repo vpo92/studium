@@ -50,7 +50,7 @@ class DetailsPage extends Component<Props, State> {
         <p>
           <Link to="/recherche">Retourner à la liste</Link>
         </p>
-        {prosopography ? (
+        {prosopography && prosopography._id ? (
           <div>
             <Typography type="display2" className={this.props.classes.title}>
               {prosopography.identity.name.value}

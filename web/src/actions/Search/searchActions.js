@@ -6,7 +6,8 @@ import {
   type Search,
   type SearchAction,
   type SnackbarAction,
-  type GetProsopographyDetailsAction,
+  type RequestProsopographyDetailsAction,
+  type ReceiveProsopographyDetailsAction,
   type ReceiveProsopographiesByFirstLetterAction,
   type RequestProsopographiesByFirstLetterAction,
 } from '../../actions/Search/searchTypes';
@@ -16,8 +17,13 @@ export const search: (search: Search) => SearchAction = search => ({
   search,
 });
 
-export const getProsopographyDetails: Prosopography => GetProsopographyDetailsAction = prosopography => ({
-  type: 'GET_PROSOPOGRAPHY_DETAILS',
+export const requestProsopographyDetails: string => RequestProsopographyDetailsAction = reference => ({
+  type: 'REQUEST_PROSOPOGRAPHY_DETAILS',
+  reference,
+});
+
+export const receiveProsopographyDetails: Prosopography => ReceiveProsopographyDetailsAction = prosopography => ({
+  type: 'RECEIVE_PROSOPOGRAPHY_DETAILS',
   prosopography,
 });
 
