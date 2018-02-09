@@ -4,23 +4,17 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import SearchPage from '../../components/SearchPage/SearchPage.component';
-import { fetchSearchByKeyword } from '../../services/searchService';
-import { search, showSnackbar } from '../../actions/Search/searchActions';
+import { fetchProsopographiesByKeyword } from '../../services/searchService';
 
 const mapStateToProps = state => {
   return {
-    search: state.studium.search,
+    search: state.studium.prosopographiesByKeyword,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleKeyWordSearch: async (keyWord: string) => {
-    try {
-      const result = await fetchSearchByKeyword(keyWord);
-      return dispatch(search({ keyWord, result }));
-    } catch (e) {
-      return dispatch(showSnackbar(true, `Couldn't get response from server.`));
-    }
+  handleKeywordSearch: (keyword: string) => {
+    dispatch(fetchProsopographiesByKeyword(keyword));
   },
 });
 

@@ -1,13 +1,13 @@
 // @flow
 
 import {
-  type SearchAction,
   type SnackbarAction,
+  type RequestProsopographiesByKeywordAction,
+  type ReceiveProsopographiesByKeywordAction,
   type RequestProsopographyDetailsAction,
   type ReceiveProsopographyDetailsAction,
   type ReceiveProsopographiesByFirstLetterAction,
   type RequestProsopographiesByFirstLetterAction,
-  type Search,
 } from '../../actions/Search/searchTypes';
 
 import {
@@ -16,18 +16,19 @@ import {
 } from '../../actions/Menu/menuTypes';
 
 type StudiumAction =
-  | SearchAction
   | SideMenuAction
   | SnackbarAction
   | ChangePageAction
   | RequestProsopographyDetailsAction
   | ReceiveProsopographyDetailsAction
+  | RequestProsopographiesByKeywordAction
+  | ReceiveProsopographiesByKeywordAction
   | ReceiveProsopographiesByFirstLetterAction
   | RequestProsopographiesByFirstLetterAction;
 
 type StudiumStore = {
   showSideMenu: boolean,
-  search?: Search,
+  prosopographiesByKeyword?: Object,
   prosopographyDetails?: Object,
 };
 
@@ -38,10 +39,18 @@ const studiumReducer = (
   action: StudiumAction
 ) => {
   switch (action.type) {
-    case 'SEARCH':
+    case 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD':
       return {
         ...state,
-        search: action.search,
+        prosopographiesByKeyword: {
+          keyword: action.keyword,
+          prosopographies: [],
+        },
+      };
+    case 'RECEIVE_PROSOPOGRAPHIES_BY_KEYWORD':
+      return {
+        ...state,
+        prosopographiesByKeyword: action.prosopographiesByKeyword,
       };
     case 'SHOW_SIDE_MENU':
       return {

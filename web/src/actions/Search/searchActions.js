@@ -3,18 +3,29 @@
 import { type Prosopography } from '../../../../api/types/Prosopography';
 
 import {
-  type Search,
-  type SearchAction,
   type SnackbarAction,
+  type RequestProsopographiesByKeywordAction,
+  type ReceiveProsopographiesByKeywordAction,
   type RequestProsopographyDetailsAction,
   type ReceiveProsopographyDetailsAction,
   type ReceiveProsopographiesByFirstLetterAction,
   type RequestProsopographiesByFirstLetterAction,
 } from '../../actions/Search/searchTypes';
 
-export const search: (search: Search) => SearchAction = search => ({
-  type: 'SEARCH',
-  search,
+export const requestProsopographiesByKeyword: string => RequestProsopographiesByKeywordAction = keyword => ({
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD',
+  keyword,
+});
+
+export const receiveProsopographiesByKeyword: (
+  string,
+  Prosopography[]
+) => ReceiveProsopographiesByKeywordAction = (keyword, prosopographies) => ({
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_KEYWORD',
+  prosopographiesByKeyword: {
+    keyword,
+    prosopographies,
+  },
 });
 
 export const requestProsopographyDetails: string => RequestProsopographyDetailsAction = reference => ({
@@ -25,6 +36,14 @@ export const requestProsopographyDetails: string => RequestProsopographyDetailsA
 export const receiveProsopographyDetails: Prosopography => ReceiveProsopographyDetailsAction = prosopography => ({
   type: 'RECEIVE_PROSOPOGRAPHY_DETAILS',
   prosopography,
+});
+
+export type RequestProsopographiesByFirstLetter = string => RequestProsopographiesByFirstLetterAction;
+export const requestProsopographiesByFirstLetter: RequestProsopographiesByFirstLetter = (
+  letter: string
+) => ({
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER',
+  letter,
 });
 
 export type ReceiveProsopographiesByFirstLetter = (
@@ -40,14 +59,6 @@ export const receiveProsopographiesByFirstLetter: ReceiveProsopographiesByFirstL
     letter,
     prosopographies: prosopographiesByFirstLetter,
   },
-});
-
-export type RequestProsopographiesByFirstLetter = string => RequestProsopographiesByFirstLetterAction;
-export const requestProsopographiesByFirstLetter: RequestProsopographiesByFirstLetter = (
-  letter: string
-) => ({
-  type: 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER',
-  letter,
 });
 
 export type ShowSnackbar = (

@@ -1,17 +1,17 @@
 // @flow
 
-import { type Search } from '../../actions/Search/searchTypes';
+import { type ProsopographiesByKeyword } from '../../actions/Search/searchTypes';
 
 export type State = {
   advancesearch: boolean,
   activateCompleteSearchFeature: boolean,
   search: {
-    keyWord: string,
+    keyword: string,
   },
 };
 
 export type Props = {
-  handleKeyWordSearch: Function,
-  search: Search,
+  handleKeywordSearch: Function,
+  search: ProsopographiesByKeyword,
   classes: any,
 };

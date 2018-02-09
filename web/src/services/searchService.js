@@ -4,27 +4,29 @@ import type { Dispatch } from 'redux';
 
 import {
   showSnackbar,
+  requestProsopographiesByKeyword,
+  receiveProsopographiesByKeyword,
   requestProsopographyDetails,
   receiveProsopographyDetails,
   requestProsopographiesByFirstLetter,
   receiveProsopographiesByFirstLetter,
 } from '../actions/Search/searchActions';
 
-import { type Prosopography } from '../../../api/types/Prosopography';
-
 const baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
-export async function fetchSearchByKeyword(
-  keyword: string
-): Promise<Prosopography[]> {
-  const result = await fetch(`${baseUrl}/prosopography/search/${keyword}`);
-  return result.json();
-}
 
-export async function fetchProsopographyById(
-  itemId: string
-): Promise<Prosopography> {
-  const result = await fetch(`${baseUrl}/prosopography/${itemId}`);
-  return result.json();
+export function fetchProsopographiesByKeyword(
+  keyword: string
+): Dispatch => Promise<void> {
+  return async dispatch => {
+    try {
+      dispatch(requestProsopographiesByKeyword(keyword));
+      const result = await fetch(`${baseUrl}/prosopography/search/${keyword}`);
+      const prosopographies = await result.json();
+      dispatch(receiveProsopographiesByKeyword(keyword, prosopographies));
+    } catch (e) {
+      dispatch(showSnackbar(true, `Couldn't get response from server.`));
+    }
+  };
 }
 
 export function fetchProsopographyByReference(
@@ -39,10 +41,12 @@ export function fetchProsopographyByReference(
     } catch (e) {
       dispatch(showSnackbar(true, `Couldn't get response from server.`));
     }
-  }
+  };
 }
 
-export function fetchProsopographiesByFirstLetter(letter: string): Dispatch => Promise<void> {
+export function fetchProsopographiesByFirstLetter(
+  letter: string
+): Dispatch => Promise<void> {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(requestProsopographiesByFirstLetter(letter));

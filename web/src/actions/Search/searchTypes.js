@@ -2,11 +2,19 @@
 
 import { type Prosopography } from '../../../../api/types/Prosopography';
 
-export type Search = { keyWord: string, result: Prosopography[] };
+export type ProsopographiesByKeyword = {
+  keyword: string,
+  prosopographies: Prosopography[],
+};
 
-export type SearchAction = {
-  type: 'SEARCH',
-  search: Search,
+export type RequestProsopographiesByKeywordAction = {
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD',
+  keyword: string,
+};
+
+export type ReceiveProsopographiesByKeywordAction = {
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_KEYWORD',
+  prosopographiesByKeyword: ProsopographiesByKeyword,
 };
 
 export type RequestProsopographyDetailsAction = {

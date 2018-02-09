@@ -13,9 +13,9 @@ window.React = React;
 
 const store = configureStore({
   studium: {
-    search: {
-      keyWord: '',
-      result: [],
+    prosopographiesByKeyword: {
+      keyword: '',
+      prosopographies: [],
     },
     error: {
       status: false,

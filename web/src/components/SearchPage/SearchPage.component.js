@@ -19,7 +19,7 @@ class SearchPage extends Component<Props, State> {
       advancesearch: false,
       activateCompleteSearchFeature: false,
       search: {
-        keyWord: this.props.search.keyWord,
+        keyword: this.props.search.keyword,
       },
     };
   }
@@ -28,13 +28,13 @@ class SearchPage extends Component<Props, State> {
     const { target } = event;
     if (target instanceof HTMLInputElement) {
       this.setState({
-        search: { ...this.state.search, keyWord: target.value },
+        search: { ...this.state.search, keyword: target.value },
       });
     }
   };
 
   handleSearch = () => {
-    this.props.handleKeyWordSearch(this.state.search.keyWord);
+    this.props.handleKeywordSearch(this.state.search.keyword);
   };
 
   handleToogleChange = () => {
@@ -48,7 +48,7 @@ class SearchPage extends Component<Props, State> {
         <TextField
           helperText="Saisissez un mot clé"
           className="app-search-field"
-          value={this.state.search.keyWord}
+          value={this.state.search.keyword}
           onChange={this.handleSearchField}
         />
         <Button raised color="primary" onClick={this.handleSearch}>
@@ -67,7 +67,7 @@ class SearchPage extends Component<Props, State> {
           </div>
         ) : null}
         <h1>Résultats</h1>
-        <SearchResult data={this.props.search.result} />
+        <SearchResult data={this.props.search.prosopographies} />
       </div>
     );
   }
