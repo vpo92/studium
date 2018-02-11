@@ -15,6 +15,8 @@ import {
   type ChangePageAction,
 } from '../../actions/Menu/menuTypes';
 
+import { type Prosopography } from '../../../../api/types/Prosopography';
+
 type StudiumAction =
   | SideMenuAction
   | SnackbarAction
@@ -26,18 +28,47 @@ type StudiumAction =
   | ReceiveProsopographiesByFirstLetterAction
   | RequestProsopographiesByFirstLetterAction;
 
-type StudiumStore = {
+export type StudiumStore = {
   showSideMenu: boolean,
-  prosopographiesByKeyword?: Object,
-  prosopographyDetails?: Object,
+  prosopographiesByKeyword: {
+    keyword: string,
+    prosopographies: Prosopography[],
+  },
+  prosopographyDetails: {
+    prosopography: Prosopography | null,
+  },
+  prosopographiesByFirstLetter: {
+    letter: string,
+    prosopographies: Prosopography[],
+  },
+  error: {
+    status: boolean,
+    message?: string,
+  },
+};
+
+export const studiumInitialState = {
+  prosopographiesByKeyword: {
+    keyword: '',
+    prosopographies: [],
+  },
+  prosopographyDetails: {
+    prosopography: null,
+  },
+  prosopographiesByFirstLetter: {
+    letter: '',
+    prosopographies: [],
+  },
+  error: {
+    status: false,
+  },
+  showSideMenu: false,
 };
 
 const studiumReducer = (
-  state: StudiumStore = {
-    showSideMenu: false,
-  },
+  state: StudiumStore = studiumInitialState,
   action: StudiumAction
-) => {
+): StudiumStore => {
   switch (action.type) {
     case 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD':
       return {
@@ -74,13 +105,15 @@ const studiumReducer = (
       return {
         ...state,
         prosopographyDetails: {
-          reference: action.reference,
+          prosopography: null,
         },
       };
     case 'RECEIVE_PROSOPOGRAPHY_DETAILS':
       return {
         ...state,
-        prosopographyDetails: action.prosopography,
+        prosopographyDetails: {
+          prosopography: action.prosopography,
+        },
       };
     case 'REQUEST_PROSOPOGRAPHIES_BY_FIRST_LETTER':
       return {

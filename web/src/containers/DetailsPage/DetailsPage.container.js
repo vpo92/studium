@@ -9,7 +9,7 @@ import { fetchProsopographyByReference } from '../../services/searchService';
 const mapStateToProps = (state, ownProps) => {
   const paths = ownProps.location.pathname.split('/');
   return {
-    prosopography: state.studium.prosopographyDetails,
+    prosopography: state.studium.prosopographyDetails.prosopography,
     reference: Number(paths[paths.length - 1]),
   };
 };

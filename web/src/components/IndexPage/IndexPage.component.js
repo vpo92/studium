@@ -59,7 +59,7 @@ class IndexPage extends Component<Props, State> {
 
   constructor(props: Props) {
     super();
-    if (!props.proposographiesByFirstLetter) {
+    if (!props.proposographiesByFirstLetter.letter) {
       props.getProposographiesByFirstLetter(this.defaultLetter);
     }
   }
@@ -69,16 +69,13 @@ class IndexPage extends Component<Props, State> {
   };
 
   render() {
+    const { letter, prosopographies } = this.props.proposographiesByFirstLetter;
     return (
       <div className={this.props.classes.container}>
         <h1>Index</h1>
         <AppBar position="static" color="default">
           <Tabs
-            value={
-              this.props.proposographiesByFirstLetter
-                ? this.props.proposographiesByFirstLetter.letter
-                : this.defaultLetter
-            }
+            value={letter ? letter : this.defaultLetter}
             indicatorColor="primary"
             textColor="primary"
             scrollable
@@ -86,24 +83,18 @@ class IndexPage extends Component<Props, State> {
             onChange={this.handleChange}
             className={this.props.classes.tabs}
           >
-            {alphabet.map(letter => (
-              <Tab key={letter} label={letter} value={letter} />
+            {alphabet.map(tabLetter => (
+              <Tab key={tabLetter} label={tabLetter} value={tabLetter} />
             ))}
           </Tabs>
         </AppBar>
         <List>
-          {this.props.proposographiesByFirstLetter
-            ? this.props.proposographiesByFirstLetter.prosopographies.map(
-                prosopography => (
-                  <ListItem key={prosopography._id}>
-                    <ListItemText primary={prosopography.identity.name.value} />
-                    <Link to={`/fiches/${prosopography.reference}`}>
-                      Détails
-                    </Link>
-                  </ListItem>
-                )
-              )
-            : null}
+          {prosopographies.map(prosopography => (
+            <ListItem key={prosopography._id}>
+              <ListItemText primary={prosopography.identity.name.value} />
+              <Link to={`/fiches/${prosopography.reference}`}>Détails</Link>
+            </ListItem>
+          ))}
         </List>
       </div>
     );

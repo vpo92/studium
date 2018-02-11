@@ -1,5 +1,8 @@
+// @flow
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
+import { type StudiumStore } from '../reducers/Studium/studium.reducer';
 import thunkMiddleware from 'redux-thunk';
 
 const composeFunctions = [
@@ -12,7 +15,9 @@ const composeFunctions = [
     : []),
 ];
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState: {
+  studium: StudiumStore,
+}) {
   const store = createStore(
     rootReducer,
     initialState,
@@ -21,6 +26,7 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
+    // $FlowFixMe
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers');
       store.replaceReducer(nextReducer);
