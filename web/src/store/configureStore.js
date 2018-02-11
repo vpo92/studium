@@ -2,7 +2,7 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
-import { type StudiumStore } from '../reducers/Studium/studium.reducer';
+import { type StudiumState } from '../reducers/Studium/studium.reducer';
 import thunkMiddleware from 'redux-thunk';
 
 const composeFunctions = [
@@ -16,7 +16,7 @@ const composeFunctions = [
 ];
 
 export default function configureStore(initialState: {
-  studium: StudiumStore,
+  studium: StudiumState,
 }) {
   const store = createStore(
     rootReducer,

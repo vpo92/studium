@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Header from '../../components/Header/Header.component';
 import { showSideMenu } from '../../actions/Menu/menuActions';
-import { getTitleFromPathname } from '../../components/App';
+import { getTitleFromPathname } from '../../components/App.component';
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -14,6 +14,8 @@ services:
       - mongodb
   studium_web:
     image: studium/web
+    environment:
+      - API_URL=http://localhost:3000
     ports:
       - "3001:3001"
   mongodb:

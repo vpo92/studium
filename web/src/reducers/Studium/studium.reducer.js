@@ -2,6 +2,7 @@
 
 import {
   type SnackbarAction,
+  type ReceiveApiUrlAction,
   type RequestProsopographiesByKeywordAction,
   type ReceiveProsopographiesByKeywordAction,
   type RequestProsopographyDetailsAction,
@@ -21,6 +22,7 @@ type StudiumAction =
   | SideMenuAction
   | SnackbarAction
   | ChangePageAction
+  | ReceiveApiUrlAction
   | RequestProsopographyDetailsAction
   | ReceiveProsopographyDetailsAction
   | RequestProsopographiesByKeywordAction
@@ -28,7 +30,8 @@ type StudiumAction =
   | ReceiveProsopographiesByFirstLetterAction
   | RequestProsopographiesByFirstLetterAction;
 
-export type StudiumStore = {
+export type StudiumState = {
+  apiUrl: string,
   showSideMenu: boolean,
   prosopographiesByKeyword: {
     keyword: string,
@@ -48,6 +51,7 @@ export type StudiumStore = {
 };
 
 export const studiumInitialState = {
+  apiUrl: '',
   prosopographiesByKeyword: {
     keyword: '',
     prosopographies: [],
@@ -66,10 +70,15 @@ export const studiumInitialState = {
 };
 
 const studiumReducer = (
-  state: StudiumStore = studiumInitialState,
+  state: StudiumState = studiumInitialState,
   action: StudiumAction
-): StudiumStore => {
+): StudiumState => {
   switch (action.type) {
+    case 'RECEIVE_API_URL':
+      return {
+        ...state,
+        apiUrl: action.url,
+      };
     case 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD':
       return {
         ...state,

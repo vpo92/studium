@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import IndexPage from '../../components/IndexPage/IndexPage.component';
-import { fetchProsopographiesByFirstLetter } from '../../services/searchService';
+import { fetchProsopographiesByFirstLetter } from '../../services/searchAPIService';
 
 const mapStateToProps = state => {
   return {

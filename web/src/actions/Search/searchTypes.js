@@ -2,6 +2,15 @@
 
 import { type Prosopography } from '../../../../api/types/Prosopography';
 
+export type RequestApiUrlAction = {
+  type: 'REQUEST_API_URL',
+};
+
+export type ReceiveApiUrlAction = {
+  type: 'RECEIVE_API_URL',
+  url: string,
+};
+
 export type ProsopographiesByKeyword = {
   keyword: string,
   prosopographies: Prosopography[],

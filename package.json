@@ -9,7 +9,8 @@
     "prettier-write": "prettier --write --single-quote --trailing-comma es5 --parser babylon",
     "prettier-changed": "(git diff --name-only -- '*.js' && git diff --cached --name-only -- '*.js') | xargs yarn prettier-write",
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
-    "build": "webpack --progress --colors"
+    "build": "webpack --progress --colors",
+    "docker:run": "docker-compose up"
   },
   "repository": {
     "type": "git",

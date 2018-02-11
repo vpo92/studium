@@ -9,7 +9,7 @@ import Typography from 'material-ui/Typography';
 import { MenuList } from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import logo from './img/logo_par.png';
-import { getMenuLinks } from '../App';
+import { getMenuLinks } from '../App.component';
 
 import MenuLink from '../../containers/SideMenu/MenuLink.container';
 

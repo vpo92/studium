@@ -71,7 +71,16 @@ export function getMenuLinks(): {
     .map(routeInMenu => ({ title: routeInMenu.title, path: routeInMenu.path }));
 }
 
-class App extends Component<{}> {
+type Props = {
+  getApiUrl: () => void,
+};
+
+class App extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.props.getApiUrl();
+  }
+
   render() {
     return (
       <div>

@@ -9,6 +9,7 @@
     "build": "webpack --env=prod -p",
     "postbuild": "cp src/server.js src/index.html ./package.json ./package-lock.json docker/build",
     "docker:build": "npm -q run build && docker build docker -t studium/web -f docker/Dockerfile.public",
+    "docker:run": "docker run -p 3001:3001 -e API_URL=http://localhost:3000 studium/web:latest",
     "docker:push": "./docker/tag_push.sh"
   },
   "repository": {

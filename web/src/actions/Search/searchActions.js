@@ -4,6 +4,8 @@ import { type Prosopography } from '../../../../api/types/Prosopography';
 
 import {
   type SnackbarAction,
+  type RequestApiUrlAction,
+  type ReceiveApiUrlAction,
   type RequestProsopographiesByKeywordAction,
   type ReceiveProsopographiesByKeywordAction,
   type RequestProsopographyDetailsAction,
@@ -11,6 +13,15 @@ import {
   type ReceiveProsopographiesByFirstLetterAction,
   type RequestProsopographiesByFirstLetterAction,
 } from '../../actions/Search/searchTypes';
+
+export const requestApiUrl: () => RequestApiUrlAction = () => ({
+  type: 'REQUEST_API_URL',
+});
+
+export const receiveApiUrl: string => ReceiveApiUrlAction = (url: string) => ({
+  type: 'RECEIVE_API_URL',
+  url,
+});
 
 export const requestProsopographiesByKeyword: string => RequestProsopographiesByKeywordAction = keyword => ({
   type: 'REQUEST_PROSOPOGRAPHIES_BY_KEYWORD',

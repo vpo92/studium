@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import DetailsPage from '../../components/DetailsPage/DetailsPage.component';
-import { fetchProsopographyByReference } from '../../services/searchService';
+import { fetchProsopographyByReference } from '../../services/searchAPIService';
 
 const mapStateToProps = (state, ownProps) => {
   const paths = ownProps.location.pathname.split('/');

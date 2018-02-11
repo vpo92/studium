@@ -4,14 +4,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter as Router } from 'react-router-redux';
-import App from './components/App';
+import App from './containers/App.container';
 import './main.css';
 import configureStore from './store/configureStore';
 import createHistory from 'history/createHashHistory';
-import { studiumInitialState } from './reducers/Studium/studium.reducer';
+import {
+  studiumInitialState,
+  type StudiumState,
+} from './reducers/Studium/studium.reducer';
 
 //Needed for React Developer Tools
 window.React = React;
+
+export type State = {
+  studium: StudiumState,
+};
 
 const initialState = {
   studium: studiumInitialState,
