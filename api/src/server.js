@@ -27,7 +27,7 @@ const server_ip_address = '0.0.0.0';
 logger.info('runnning server on 3000');
 
 if (!process.env.MONGO_URL) {
-  throw new Error('Could not initialize server : unknown base url.');
+  throw new Error('Could not initialize server : unknown mongo url.');
 }
 
 const environment = process.env.NODE_ENV || '';
