@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "BASE_URL=localhost babel-watch ./src/server.js -w .",
+    "start": "MONGO_URL=mongodb://localhost/studium babel-watch ./src/server.js -w .",
     "build": "webpack -p",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "predocker:build": "npm -q run build",

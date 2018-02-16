@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - BASE_URL=mongodb
+      - MONGO_URL=mongodb://mongodb/studium
     links:
       - mongodb
     depends_on:

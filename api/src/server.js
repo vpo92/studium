@@ -26,13 +26,13 @@ const server_ip_address = '0.0.0.0';
 
 logger.info('runnning server on 3000');
 
-if (!process.env.BASE_URL) {
+if (!process.env.MONGO_URL) {
   throw new Error('Could not initialize server : unknown base url.');
 }
 
 const environment = process.env.NODE_ENV || '';
 
-db.connect(`mongodb://${process.env.BASE_URL}:27017/studium`, (err) => {
+db.connect(`${process.env.MONGO_URL}`, err => {
   if (err) {
     logger.error(err);
     process.exit(1);
