@@ -8,7 +8,7 @@ let transports = [
 
 const logger = new winston.Logger({
   level: 'info',
-  transports: transports,
+  transports,
 });
 
 module.exports = logger;

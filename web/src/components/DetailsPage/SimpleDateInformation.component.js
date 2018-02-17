@@ -1,5 +1,8 @@
 //@flow
 import React from 'react';
+import injectSheet from 'react-jss';
+
+import styles from './DetailsPage.style';
 
 function getDateValue(
   date: ?{
@@ -15,13 +18,13 @@ function getDateValue(
   return '';
 }
 
-const SimpleDateInformation = (props: any) => {
+function SimpleDateInformation(props: any) {
   return (
-    <div className="app-detail-topic">
-      <span className="app-detail-topic-label">{props.label} : </span>
+    <div className={props.classes.detailsTopic}>
+      <span className={props.classes.detailsTopicLabel}>{props.label} : </span>
       <span>{getDateValue(props.value)}</span>
     </div>
   );
-};
+}
 
-export default SimpleDateInformation;
+export default injectSheet(styles)(SimpleDateInformation);

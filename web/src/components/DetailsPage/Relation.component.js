@@ -24,19 +24,23 @@ function getValue(
 }
 
 const RelationList = (props: any) => {
-  return (props.value?
+  return props.value ? (
     <div className="app-detail-topic">
       <span className="app-detail-topic-label">{props.label}</span>
       <ul>
         {props.value.map(item => {
-          return <li key={getValue(item.name)}>{getValue(item.name)} {item.type?`(${item.type})`:''}</li>
+          return (
+            <li key={getValue(item.name)}>
+              {getValue(item.name)} {item.type ? `(${item.type})` : ''}
+            </li>
+          );
         })}
       </ul>
     </div>
-    :<div></div>
-  )
-}
-
+  ) : (
+    <div />
+  );
+};
 
 class RelationalInsertion extends Component<Props> {
   constructor(props: Props) {
@@ -45,9 +49,7 @@ class RelationalInsertion extends Component<Props> {
 
   render() {
     const { relationalInsertion } = this.props;
-    //FIXME : stringify...
-    return (
-      relationalInsertion?
+    return relationalInsertion ? (
       <div>
         <SimpleInformation
           label="Classe sociale d'origine"
@@ -55,40 +57,51 @@ class RelationalInsertion extends Component<Props> {
         />
         <RelationList
           label="Réseau familial"
-          value={relationalInsertion.familyNetwork} />
+          value={relationalInsertion.familyNetwork}
+        />
         <SimpleInformation
           label="Classe sociale personnelle"
           value={relationalInsertion.personalSocialClass}
         />
         <RelationList
           label="Relation de service personnelle"
-          value={relationalInsertion.personalServicesRelationship} />
+          value={relationalInsertion.personalServicesRelationship}
+        />
         <RelationList
           label="Ami de ou ennemi de"
-          value={relationalInsertion.friendsOrEnemies} />
+          value={relationalInsertion.friendsOrEnemies}
+        />
         <SimpleListInformation
           label="Impliqué dans une polémique ou dans un débat intellectuel"
-          value={relationalInsertion.controversyOrDebates}/>
+          value={relationalInsertion.controversyOrDebates}
+        />
         <SimpleListInformation
           label="Entretient une correspondance suivie avec quelqu’un."
-          value={relationalInsertion.connectionsWith}/>
+          value={relationalInsertion.connectionsWith}
+        />
         <SimpleListInformation
           label="Appartient à un groupe particulier"
-          value={relationalInsertion.memberOfGroups}/>
+          value={relationalInsertion.memberOfGroups}
+        />
         <SimpleListInformation
           label="Liens politiques particuliers."
-          value={relationalInsertion.politicalRelationships}/>
+          value={relationalInsertion.politicalRelationships}
+        />
         <SimpleListInformation
           label="Relations professionnelles"
-          value={relationalInsertion.professionalRelationships}/>
+          value={relationalInsertion.professionalRelationships}
+        />
         <SimpleInformation
           label="Executeur testamentaire"
-          value={relationalInsertion.willExecutor}/>
+          value={relationalInsertion.willExecutor}
+        />
         <SimpleListInformation
           label="Lien maître-élève"
-          value={relationalInsertion.studentProfessorRelationships}/>
+          value={relationalInsertion.studentProfessorRelationships}
+        />
       </div>
-      :<div>Pas d'informations</div>
+    ) : (
+      <div>Pas d'information</div>
     );
   }
 }

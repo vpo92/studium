@@ -47,7 +47,6 @@ class SearchPage extends Component<Props, State> {
         <h1>Rechercher une fiche</h1>
         <TextField
           helperText="Saisissez un mot clé"
-          className="app-search-field"
           value={this.state.search.keyword}
           onChange={this.handleSearchField}
         />
@@ -56,7 +55,7 @@ class SearchPage extends Component<Props, State> {
         </Button>
         {this.state.activateCompleteSearchFeature ? (
           <div>
-            <div className="app-search-show">
+            <div>
               <Switch
                 aria-label="Recherche avancée"
                 checked={this.state.advancesearch}

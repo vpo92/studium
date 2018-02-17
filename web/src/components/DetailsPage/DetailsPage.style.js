@@ -7,12 +7,20 @@ const detailPageStyle = {
   container: {
     ...sharedStyle.page,
   },
-  title:{
-    color:'black',
-    textAlign:'center',
+  title: {
+    color: 'black',
+    textAlign: 'center',
   },
-  primaryColor:{
-    color:primaryColorCode,
+  primaryColor: {
+    color: primaryColorCode,
+  },
+  detailsTopic: {
+    fontSize: '1.2em',
+    lineHeight: '1.6em',
+  },
+  detailsTopicLabel: {
+    fontWeight: 'bold',
+    color: primaryColorCode,
   },
 };
 

@@ -12,6 +12,10 @@ const contactPageStyle = {
   text: {
     ...sharedStyle.biggerText,
   },
-}
+  'app-home-sponsor-img': {
+    height: '70px',
+    margin: '10px',
+  },
+};
 
 export default contactPageStyle;
