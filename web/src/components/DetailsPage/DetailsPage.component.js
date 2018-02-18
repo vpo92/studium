@@ -18,6 +18,7 @@ import { type Prosopography } from '../../../../api/types/Prosopography';
 
 type Props = {
   classes: any,
+  history: any,
   prosopography: ?Prosopography,
   reference: number,
   getDetails: (reference: number) => void,
