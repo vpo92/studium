@@ -30,11 +30,11 @@ class HomePage extends Component<{classes: any}> {
           </p>
         </div>
         <Divider />
-        <img src={univ_paris1} className="app-home-sponsor-img"/>
-        <img src={lamop} className="app-home-sponsor-img"/>
-        <img src={cnrs} className="app-home-sponsor-img"/>
-        <img src={erc_logo} className="app-home-sponsor-img"/>
-        <img src={Logo_Hastec} className="app-home-sponsor-img"/>
+        <img src={univ_paris1} className={this.props.classes.sponsorImage}/>
+        <img src={lamop} className={this.props.classes.sponsorImage}/>
+        <img src={cnrs} className={this.props.classes.sponsorImage}/>
+        <img src={erc_logo} className={this.props.classes.sponsorImage}/>
+        <img src={Logo_Hastec} className={this.props.classes.sponsorImage}/>
       </div>
     );
   }

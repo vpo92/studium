@@ -12,7 +12,7 @@ const contactPageStyle = {
   text: {
     ...sharedStyle.biggerText,
   },
-  'app-home-sponsor-img': {
+  sponsorImage: {
     height: '70px',
     margin: '10px',
   },
