@@ -12,29 +12,31 @@ type SimpleInformation = {
   metadata?: Metadata,
 };
 
+export type ProsopographyIdentity = {
+  id?: string,
+  name: SimpleInformation,
+  description: SimpleInformation,
+  nameVariant: [SimpleInformation],
+  datesOfLife?: {
+    from: string,
+    to: string,
+  },
+  datesOfActivity: {
+    from: string,
+    to: string,
+  },
+  gender?: {
+    value: 'male' | 'female',
+  },
+  status: SimpleInformation,
+  mediane?: SimpleInformation,
+  origine?: SimpleInformation,
+};
+
 export type Prosopography = {
   _id: string,
   reference: number,
-  identity: {
-    id?: string,
-    name: SimpleInformation,
-    description: SimpleInformation,
-    nameVariant: [SimpleInformation],
-    datesOfLife?: {
-      from: string,
-      to: string,
-    },
-    datesOfActivity: {
-      from: string,
-      to: string,
-    },
-    gender?: {
-      value: 'male' | 'female',
-    },
-    status: SimpleInformation,
-    mediane?: SimpleInformation,
-    origine?: SimpleInformation,
-  },
+  identity: ProsopographyIdentity,
   origin?: {
     birthPlace: SimpleInformation,
     diosese: SimpleInformation,
