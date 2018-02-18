@@ -1,5 +1,8 @@
 //@flow
 import React from 'react';
+import injectSheet from 'react-jss';
+
+import styles from './DetailsPage.style';
 
 function getValue(
   topic: ?{
@@ -16,8 +19,8 @@ const SimpleListInformation = (props: any) => {
 
   return (
     props.value?
-    <div className="app-detail-topic">
-      <span className="app-detail-topic-label">{props.label} : </span>
+    <div className={props.classes.detailsTopic}>
+      <span className={props.classes.detailsTopicLabel}>{props.label} : </span>
       <ul>
         {props.value.map(item => {
           return <li key={getValue(item)}>{getValue(item)}</li>
@@ -28,4 +31,4 @@ const SimpleListInformation = (props: any) => {
   );
 };
 
-export default SimpleListInformation;
+export default injectSheet(styles)(SimpleListInformation);

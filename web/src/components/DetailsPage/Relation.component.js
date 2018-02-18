@@ -25,8 +25,8 @@ function getValue(
 
 const RelationList = (props: any) => {
   return props.value ? (
-    <div className="app-detail-topic">
-      <span className="app-detail-topic-label">{props.label}</span>
+    <div className={props.classes.detailsTopic}>
+      <span className={props.classes.detailsTopicLabel}>{props.label}</span>
       <ul>
         {props.value.map(item => {
           return (
