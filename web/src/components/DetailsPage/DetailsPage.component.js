@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
-import { Link } from 'react-router-dom';
 
 import styles from './DetailsPage.style';
 import Identity from './Identity.component';
@@ -48,7 +47,13 @@ class DetailsPage extends Component<Props, State> {
     return (
       <div className={this.props.classes.container}>
         <p>
-          <Link to="/recherche">Retourner à la liste</Link>
+          <button
+            onClick={() => {
+              this.props.history.push('/recherche');
+            }}
+          >
+            Retourner à la liste
+          </button>
         </p>
         {prosopography && prosopography._id ? (
           <div>

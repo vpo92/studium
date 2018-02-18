@@ -4,23 +4,23 @@ type Metadata = {
   source: string,
   comment: string,
   link: string,
-  certain: boolean
-}
+  certain: boolean,
+};
 
 type SimpleInformation = {
   value: string,
-  metadata: Metadata
-}
+  metadata?: Metadata,
+};
 
 export type Prosopography = {
   _id: string,
-  reference: string,
+  reference: number,
   identity: {
-    id: string,
+    id?: string,
     name: SimpleInformation,
     description: SimpleInformation,
     nameVariant: [SimpleInformation],
-    datesOfLife: {
+    datesOfLife?: {
       from: string,
       to: string,
     },
@@ -32,26 +32,26 @@ export type Prosopography = {
       value: 'male' | 'female',
     },
     status: SimpleInformation,
-    mediane: SimpleInformation,
-    origine: SimpleInformation,
+    mediane?: SimpleInformation,
+    origine?: SimpleInformation,
   },
-  origin: {
+  origin?: {
     birthPlace: SimpleInformation,
-     diosese: SimpleInformation,
-     movesInOutParis: [],
+    diosese: SimpleInformation,
+    movesInOutParis: [],
   },
-  relationalInsertion: {
-      socialClassOrigin: SimpleInformation,
-      familyNetwork: [],
-      personalSocialClass: SimpleInformation,
-      personalServicesRelationship: [],
-      friendsOrEnemies: [],
-      controversyOrDebates: [],
-      connectionsWith: [],
-      memberOfGroups: [],
-      politicalRelationships: [],
-      professionalRelationships: [],
-      willExecutor: SimpleInformation,
-      studentProfessorRelationships: []
-  }
+  relationalInsertion?: {
+    socialClassOrigin: SimpleInformation,
+    familyNetwork: [],
+    personalSocialClass: SimpleInformation,
+    personalServicesRelationship: [],
+    friendsOrEnemies: [],
+    controversyOrDebates: [],
+    connectionsWith: [],
+    memberOfGroups: [],
+    politicalRelationships: [],
+    professionalRelationships: [],
+    willExecutor: SimpleInformation,
+    studentProfessorRelationships: [],
+  },
 };
