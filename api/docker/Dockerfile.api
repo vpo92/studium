@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY build /app/
 
-EXPOSE 8080
+EXPOSE 3000
 
 # Install node modules
 RUN npm install -q
