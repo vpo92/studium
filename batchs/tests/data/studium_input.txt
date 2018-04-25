@@ -1,0 +1,338 @@
+<1a>	1
+<1b>	A. Fidelis
+<1c>	$A. FIDELIS$
+<r>	CUP: IV n°2028.
+<1d> Notaire
+<1f>	%1414-1414%
+<1k> Extérieur
+<7c>	Notaire, souscripteur d'un acte de $JEAN XXIII$ émis à *Bologne en %1414%.
+<r>	CUP: IV n°2028.
+<19>	Pas d'œuvres connues.
+C	BIBLIOGRAPHIE
+<99a>	CUP: IV n°2028.
+
+<1a>	21560
+<1b>	 A. Robin
+<1c>         $A. ROBIN$
+<1d>         Étudiant en théologie ?
+<1f>         %1325-1325%
+<1f>         /Datation arbitraire.
+<1k>         Étudiant
+<5c>         Étudiant en théologie ?
+<5b>        *Paris ?
+<5e>        *Sorbonne ?
+<5e>        /Pendant le provisorat de $Annibal de CECCANO$, proviseur 1320-1327% ;
+<r>           FRANKLIN (A.), &La Sorbonne, ses origines, sa bibliothèque, les débuts de l'imprimerie à Paris et la succession de Richelieu d'après des documents inédits&, Paris, 2e éd., 1875, 224.
+<19>         Pas d’œuvres connues.
+C     BIBLIOGRAPHIE
+<99b>      FRANKLIN (A.), &La Sorbonne, ses origines, sa bibliothèque, les débuts de l'imprimerie à Paris et la succession de Richelieu d'après des documents inédits&, Paris, 2e éd., 1875.
+<1a>	23154
+<1b>	ABEL
+<1c>	        $ABEL$
+<1d>	Scribe
+<1f>	        %1270-1270%
+<1f>         /Date estimée à partir de la seule date connue pour le stationarius $Guillelmus SENONENSIS$ détenteur de l'exemplar auquel $ABEL$ a contribué.
+<1k>	Suppôt
+<5b>        *Paris %1270%.
+<7b>        *Paris (Université : scribe) ;
+<7f>        Scribe.
+<18.1>    Copiste d'une des pecia de l'exemplar du commentaire du livre III des Sentences de $THOMAS d'Aquin$, MS. Pamplona, B. Cap. 51 ;
+<r>          SHOONER (H.V.), &Codices manuscripti operum Thomae de Aquino. Tomus III, Bibliothecae Namur-Paris&, Montréal-Paris, 1985, 195 ;
+<19>        Pas d'oeuvre connue.
+C      BIBLIOGRAPHIE
+<99b>	ROBLES SIERRA (A.), El manuscrito 51 de la Biblioteca del Cabildo de Pamplona en la transmisión del Tercero de las Sentencias de Santo Tomás de Aquino, &Escritos del Vedat&, IV, 1974, 403-424 ;
+<99b>	SHOONER (H.V.), &Codices manuscripti operum Thomae de Aquino. Tomus III, Bibliothecae Namur-Paris&, Montréal-Paris, 1985 ;
+
+<1a>	3
+<1b>	ABEL de Sancto Brioco
+<1c>	$Abel de SANCTO BRIOCO$
+<r>	SULLIVAN Theol. : I p. 321-322.
+<1c>	$Abel de SANCTO BRIOCO$
+<r>	SULLIVAN Theol. : I p. 321-322.
+<1c>	$Abel de SAINT-BRIEUC$
+<r>	SULLIVAN Theol. : I p. 321-322.
+<1d> Dominicain
+<1e>	%  -1494%
+<1e>	/Il meurt le 24 janvier.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<1f>	%1473-1494%
+<1k>	Maître
+<2a>	*Bretagne (*Saint-Brieuc).
+<r>	SULLIVAN Theol. : I p. 321-322.
+<2b>	?Diocèse de £Saint-Brieuc.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<5b>	*Paris %1473-1478%.
+<5c> Licencié en théologie (Paris) (le 27 janvier) %1478% ;
+<5c> /Il est classé 15/18.
+<5c> Docteur en théologie (Paris) (le 14 décembre) %1478%.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	MS. Paris, BnF lat. 5657-A, f. 25v, 26r.
+<6c>	Évêque de £Dionysias en *Arabie, %1483-1494% ;
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	FEG: III p. 229 (RM 1540).
+<6c>	 Vicaire épiscopal de $Pierre de LAVAL, archevêque de £Reims$ en %1483%.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	FEG: III p. 229 (RM 1540).
+<6c>	/Le 25 juillet %1489%, il consacre l'église des dominicains à *Laval.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	DHGE: 1, p. 69.
+<6d> Dominicain : couvent (dominicain) de *Redon %:1470:%.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<6f>	Frère du couvent (dominicain) de *Rennes en %1476% désireux de retourner à *Paris.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<7b>	Lecteur de la Bible à £Saint-Jacques de *Paris en %1473%.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<12a>	Il touche une pension annuelle de 200 livres tournois grâce à son bénéfice à *Reims.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	EUBEL: 2, p. 144 et note 5.
+<16a>	Prêche deux fois à *Rennes en %1476% ;
+<16a>	Prêche les sermons du Carême à *Compiègne en %1480%.
+<r>	SULLIVAN Theol. : I p. 321-322.
+<19>	Oeuvres écrites en latin :
+<19>	/Recension en cours.
+<20>	Auteur actif dans le champ religieux :
+<20a1>	&Principium super librum Genesis&
+<r>	SULLIVAN Theol. : I p. 321-322.
+<r>	STEGMÜLLER Bible: 2, p. 7.
+<<b>>	Écrit en %1473%.
+<<l>>	Latin
+<<c>>	MS. Paris, B. Mazarine 145, f. 366.
+<<cc>>	Inc. : "Respexit dominus ad Abel et ad munera eius. . . ".
+<<cc>>	/Mentionné dans le MS. Paris, B. Mazarine 145, f. 366.
+C	BIBLIOGRAPHIE
+<99s>	MS. Paris, BnF lat. 5657-A, f. 25v, 26r.
+<99a>	DHGE: 1, p. 69 (par R. COULON) ;
+<99a>	EUBEL: 2, p. 144 et n. 5 ;
+<99a>	FEG: III p. 229 (RM 1540) ;
+<99a>	KAEPPELI: I, p. 3 ;
+<99a>	QUETIF et ECHARD: I, p. 210 ;
+<99a>	STEGMÜLLER Bible: 2, p. 7 ;
+<99a>	SULLIVAN Theol. : I p. 321-322.
+<99b>	KAEPELLI (T.), "Lecteurs de la Bible à Saint-Jacques de Paris (1454-1522)", &AFP&, 28, 1958, p. 301-302 ;
+<99b>	MARTIN (H.), &Les ordres mendiants en Bretagne (vers 1230-vers 1530): pauvreté volontaire et prédication à la fin du Moyen Age&, Paris, 1975, p. 130, 165, 229 ;
+<99b>	MARTIN (H.), &Le métier de prédicateur à la fin du Moyen Âge 1350-1520&, Paris, 1988, p. 682 ;
+<99b>	MEYER (A. de), &La congrégation de Hollande, ou La réforme dominicaine en territoire bourguignon, 1465-1515&, Liège, 1947, p. 267.
+<99c>	 STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Anne Tournieroux, dernière mise à jour 17/07/2015).
+<1a>	        4
+<1b>	ABRAHAM Alberti
+<1c>	        $Abraham ALBERTI$, $Abraham de HARLEM$, $Abraham de HAERLEM$
+<1c>        $Habraam ALBERTI$
+<1d>        Maître ès arts.
+<1f>	        %1460-1470%
+<1g>        %1465%
+<1k>        Maître
+<2a> 	*Pays-Bas (*Haarlem).
+<2b>	Diocèse d'£Utrecht.
+<5b>	*Paris (Nation £Anglo-allemande) %:1460-1464%.
+<5b>        /Déjà maître, il est un des membres de l'université s'acquittant d'une taxe entre le 6 février et le 20 février %1464% pour financer une ambassade à la cour royale.
+<r>          SPIRGATIS (M.), Personalverzeichnis der Pariser Universität von 1464 und die darin aufgeführten Handschriften-und Pergamenthändler, &Beihefte zum Zentralblatt für Bibliothekswesen&, Leipzig, I, 1888, p. 1-52 à la p. 37 (accessible sur http://www.archive/org).
+<5c>        Bachelier ès arts (Paris) %1460% ;
+<5c>         /"Habraam Alberti, Trajectensis dyocesis, cujus bursa V sol., III lib. et XV sol.".
+<r>          AUP: II 928 17 ; cf. AUP: VI 331 11.
+<5c>        Licencié ès arts (Paris) %1461% ;
+<r>          AUP: II 941 15.
+<5c>        /"Cujus bursa valet V sol. 1 lib. V sol.".
+<r>          AUP: VI 351 24.
+<5c>        Maître ès arts (Paris) %1461%.
+<5c>        /"Cujus bursa valet V sol. 1 lib. V sol.".
+<r>          AUP: VI 353 48.
+<7b>	Procureur de la Nation £Allemande %1463% (7 avril et 5 mai) ;
+<r>          AUP: II 948 31.
+<7c>	        Receveur de la Nation £Allemande %1468%.
+<r>          AUP: III 94, 31 et AUP VI: 446 3 14.
+<19>	Pas d'œuvres connues.
+C	BIBLIOGRAPHIE
+<99a>	AUP: II 928 17, 941 15, 948 31, 968 43, 1013
+<99a>	AUP: III 25 45 n.2, 26 20, 94 31, 100 38, 103 40, 45, 106 5, 111 44, 112 2, 124 23, 26, 127 40, 129 39, 148 48
+<99a>      AUP: VI 331 11 n.4 ; 351 24, 353 32, 378 11 n.5, 388 11, 432 31, 446 3 14
+<99b>      SPIRGATIS (M.), Personalverzeichnis der Pariser Universität von 1464 und die darin aufgeführten Handschriften-und Pergamenthändler, &Beihefte zum Zentralblatt für Bibliothekswesen&, Leipzig, I, 1888, p. 1-52 (accessible sur http://www.archive/org).
+
+
+<1a>	16796
+<1b>	ABSALON Absolonis
+<1c>	$ABSOLON Absolonis$
+<1c>	$Absolon ABSOLONIS$
+<1c>	$ABSALON Absalonis$
+<1d>	Chanoine
+<1e>	%    -:1360%
+<1e>	/il est mort au plus tard en juin %1360%.
+<r>	&Acta cameralia&, I, 1, n° 601, 603a.
+<1f>	%:1345-1358:%
+<r>	DS: 3985, DD: 3e série, V, n° 109.
+<1k>	Étudiant
+<2a>	*Danemark (*Fionie?)
+<3a>	Noblesse
+<3a>	/il appartient à une famille de la haute aristocratie, les Ulfeldt, présente dans les sources dans la seconde moitié du XIIe siècle, et alliée à la famille Hvide (branche des Sunesønner).
+<r>	 BRICKA, 24, p. 457.
+<3b>	Son père est $ABSALON Jonsen=de=Broholm$, chevalier, %:1319-1346%;
+<3b>	Son frère est $JAKOB Absalonsen$;
+<3b>	Son frère est $JOHANNES Absalonsen$, chevalier, actif dans les milieux politiques du *Danemark %1345-1378%;
+<3b>	Son grand-oncle est $ABSALON Andersen$, marié à $CECILIE Pedersdatter$, fille de $PEDER Ebbesen=Hvide$, lui-même apparenté à $ANDREAS Sunonis, archevêque de £Lund$;
+<3b>	Son neveu est $NICOLAUS Jacobi, évêque de £Roskilde$, %1368-1395%.
+<3e>	Ami de $JONAS Nicolai, chanoine de £Lund$, $JOHANNES Petri, chanoine de £Lund$, $JACOBUS Nicolai, chanoine de £Lund$, de $GUNNARUS de Thorlose, clerc de £Lund$ et de $LAURENTIUS Petri, clerc de £Lund$?
+<3e>	/ils ont été capturés en mer tous ensemble et retenus captifs lors de leur voyage de retour de l'Université de £Paris, %:1344:%: &de studio Parisiensi per mare uersus eorum patriam redeuntes&.
+<r>	DS: n° 3985.
+
+<5b>	*Paris, %:1344%.
+<r>	DS: n° 3985.
+<5c>	É. (P), %:1344%.
+
+<6b>	Chanoine de £Lund, %:1345-:1360%.
+<r>	DS: n° 3985, 4751, 4900; DD: 3e série, V, n° 109; &Acta cameralia&, I, 1, n° 601.
+
+<9>	Séjour (motifs académiques) en *France, à *Paris, %:1344%.
+
+<18.6>	Il reçoit en legs de $BENECHINUS Henrici, chantre de £Lund$, %1358%: &Summam Tancreti&.
+<<ti>>	$TANCREDUS BONONIENSIS$.
+<<ti>>	/&Summa de matrimonio&, ou &Ordo judiciarius&?
+<r>	ERSLEV, &Testamenter...&, p. 121.
+
+<19>	Pas d'œuvres connues.
+
+C	BIBLIOGRAPHIE
+<99a>	BÅÅTH (L. M.) éd., &Acta Pontificum Suecica. Acta Cameralia&, Stockholm (&Acta Cameralia&), 1936-1957.
+<99a>	DD: 3 V, n° 109;
+<99a>	DS: &passim&;
+<99a>	ERSLEV (K.) éd., &Testamenter fra Danmarks middelalder indtil 1450& (ERSLEV, &Testamenter&), Copenhague, 1901.
+
+<99c>	BRICKA (C.F.), &Dansk Biografisk leksikon&, 24 (FABRITIUS (A.)), en ligne (dernière consultation 3.8.2014).
+<99c>	STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ : Rédaction Élisabeth MORNET 17/11/2014.
+<1a>	7
+<1b>	ABSALON de Alcmaria
+<1c>	Absalon de ALCMARIA
+<1d>	Maître ès arts
+<1f>	%1478-1479%
+<1k>	Maître
+<2a>	*Pays-Bas (*Alkmaar).
+<2b>	Diocèse d'Utrecht.
+<5b>	*Paris (Nation Anglo-allemande) %:1478%.
+<5c>	Bachelier ès arts (Paris) %1478% ;
+<5c>	/"... cujus bursa valet nichil" (le Liber Receptorum ajoute "I lib. VI sol.").
+<r>	Référence: AUP: III, 381 7 et AUP: VI, 549 23.
+<5c>	Licencié ès arts (Paris) en %1479% ;
+<5c>	/"... cujus bursa valet nichil" (le Liber Receptorum ajoute "VI sol.") ; il figure parmi les licenciés qui inceptent.
+<r>	AUP: III, 415 28 et AUP: VI 562 23.
+<5c>	Maître ès arts (Paris) en %1479% ;
+<5c>	/II lib. VI sol.".
+<r>	AUP: VI, 562 43.
+<19>	Production textuelle : pas d'œuvres connues.
+C	BIBLIOGRAPHIE
+<99a>	AUP: III, 381 7, 415 28, 416 1 ;
+<99b>	AUP: VI, 549 23, 562 23 43.
+<1a>	8
+<1b>	ABSALON de Lund
+<1c>	$Absalon de LUND$
+<1c>	$ABSALON Assersen$
+<1d>	Archevêque de Lund
+<1e> 	%:1128:-1201%
+<1e>	/il est mort le 21 mars 1201 et inhumé à l'abbaye de £Sorø.
+<1f>	%1146-1201%
+
+<1k> Incertain
+<2a>	*Danemark (*Sjælland (*Fjenneslev)).
+<3a>	Haute noblesse.
+<3a>	/il appartenait à une des familles les plus puissantes du royaume de £Danemark, les HVIDE.
+<3b>	Son père est $ASSER Skjalmsen Rig$;
+<3b>	Sa mère est $INGER Eriksdatter$;
+<3b>	Son grand-père maternel est $ERIK=de=Västergötland,  jarl de £Falster$, † %1145%;
+<3b>	Sa grand-mère maternelle est $CECILIA Knudsdatter$, fille de $saint KNUD$;
+<3b>	Son frère est $ESBERN Snare$, † %1204%;
+<3b>	Son oncle paternel est $SUNE Skjalmsen$;
+<3b>	Son cousin germain est $PETRUS Sunonis, évêque de £Roskilde$, %1192-1214%;
+<3b>	Son cousin germain est $ANDREAS Sunonis, archevêque de £Lund$, %1201-1228;
+<3b>	Son &cognatus& est $SUNE Ebbesen$.
+<r>	DD: 1re série, II, n° 128, 130.
+<3e>	Ami de $GUILLAUME$, chanoine régulier de £Sainte-Geneviève (abbaye), à *Paris, puis abbé de £Saint-Thomas-du-Paraclet (monastère), à *Eskilsø (*Sjælland);
+<r>	&Vitae sanctorum Danorum&, p. 320. &Epistolae abbatis Willelmi de Paraclito&, DS: 1re série, III, 2;
+<3e>	Ami de $ÉTIENNE=DE=TOURNAI$, abbé de £Sainte-Geneviève (abbaye);
+<3e>	Ami du $VALDEMAR=Ier$, roi de £Danemark, avec lequel il a été élevé.
+<5b>	*Paris (abbaye de £Sainte-Geneviève?), %:1146-1156:%.
+<5b>	&[...] cum Parisius studendi gracia moraretur&.
+<r>	&Vitae sanctorum Danorum&, p. 320.
+<6b>	Évêque de £Roskilde %1158-1191%;
+<6b>	/il cumule ce siège avec l'archevêché de *Lund jusqu'en %1191%; à son initiative, sont publiées les constitutions ecclésiastiques de l'Église de £Scanie, %1162%, et de l'Église de £Sjælland, %1171%;
+<6b>	Archevêque de £Lund %1178-1201%.
+<6b>	/il tient un synode provincial, %1187%.
+<6i>	Légat pontifical d'$ALEXANDRE=III$ en *Danemark et en *Suède, %1179%.
+<8a>	Principal conseiller de $VALDEMAR Ier, roi de £Danemark$;
+<8a>	/rôle dans le schisme entre $ALEXANDRE=III$ et $VICTOR=IV$;
+<8a>	Chef des armées danoises contre les Wendes.
+<9>	Séjour (motifs culturels), en *France, à *Paris, %:1146-1156:%.
+<9>	Expéditions militaires considérées comme des croisades, dans le *pays=des=Wendes, %1158-11%
+<9>	Séjour (motifs ecclésiastiques) dans l'*Empire, au concile de £Dôle, %1162-1163%
+<17a>	Fondateur de *Copenhague.
+<18.1>	Possède un manuscrit de $VALÈRE=MAXIME$ à l'abbaye de £Sorø (*Sjælland): perdu;
+<18.1>	Possède $JUSTINUS$, &Epitoma historiarum Philippicarum Pompei Trogi&: MS. Copenhague, KB, GKS 450 folio, f.1-129v, &ca& 1200;
+<18.5>	Donne un manuscrit de $VALÈRE=MAXIME$ à l'abbaye de £Sorø (*Sjælland): perdu;
+<18.5>	Donne un manuscrit de $JUSTINUS$, &Epitoma historiarum Philippicarum Pompei Trogi&, à l'abbaye de £Sorø (*Sjælland): MS. Copenhague, KB, GKS 450 folio, fol.1-129v, &ca& 1200
+<18.5>	/&Liber sancte Marie de Sora per manum domni Absalonis archiepiscopi&
+<r>	JØRGENSEN, &Catalogus...&, p. 325.
+<19>	Pas d'œuvres connues.
+C	BIBLIOGRAPHIE
+<99s>	GERTZ (M. C.) éd., &Vitae sanctorum Danorum&, Copenhague, 1908-1912;
+<99a>	CUP: I 42-4
+<99a>	DHGE (A. TAYLOR)
+<99a>	JØRGENSEN (E.), &Catalogus Codicum Latinorum Medii Ævi Bibliothecæ Regiæ Hafniensis&, Copenhague, 1926
+<99b>	BIRKEBÆK (F.), CHRISTENSEN (T.), SKOVGAARD-PETERSEN (I.) éd., &Absalon, fædrelandetsfader&, Roskilde, 1996;
+<99b>	MUNK-OLSEN (B.), "Trois étudiants danois à Paris au XIIe siècle", dans LECOUTEUX (C.) éd., &Hugur. Mélanges d'histoire, de littérature et de mythologie offerts à Régis Boyer&, Paris, 1997, p. 87-96.
+
+
+
+<1a> 9
+<1b>	ABSALON de Sancto Victore
+<1c> $Absalon de SAINT-VICTOR$,
+<1c> $Absalon von SPRIGIERSBACH$
+<1d> Chanoine de Saint-Victor
+<1e> %    -1196%
+<1f> %1190-1196%
+<1k>	Maître
+<5b>	*Paris.
+<5c>	Magister à Saint-Victor ;
+<5c>	/D’après le témoignage de $Césaire de HEISTERBACH$ (&Dialogus miraculorum&, IV, 89) ;
+<r>	POIREL, p. 201-202.
+<6d> Chanoine=régulier de £Paris (Saint-Victor) %    -1193%.
+<6f>	        Abbé de *Springiersbach (diocèse de £Trèves) %1193-1196% ;
+<6f>	/Il doit être distingue de $ABASALON, abbé de £Paris (Saint-Victor)$ en %1198-1203%.
+<r>	POIREL, p. 201-202.
+<19>	Œuvres écrites en latin :
+<20> Auteur actif dans le champ religieux :
+<20a1>	&Sermones (51)&
+<<b>>	?
+<<c>>	MS. Paris, BnF lat. 583, f. 59-86 ;
+<<c>>	MS. Paris, BnF lat. 14525, f. 117-233 ;
+<<c>>	MS. Paris, BnF lat. 14859, f. 225 sq. ;
+<<c>>	MS. Paris, BnF lat. 14883, f. 125-130 ;
+<<c>>	MS. Paris, BnF lat. 14925, f. 130 ;
+<<c>>	MS. Paris, BnF lat. 14936 ;
+<<c>>	MS. Trier, StB. 318, f. 1-94 ;
+<<c>>	MS. Trier, StB. 320, f. 2-152 ;
+<<c>>	MS. Troyes, BM 1749.
+<<cc>>	Inc. : "Hodie, fratres dilectisismi, sermo politus et plenus devotionis suave murmuraret in cordibus vestris... ".
+<<d>>	Ed. *Cologne %1534% ;
+<<d>>	Ed. *Milan %1605%.
+<<i>>	In &P.L.&, CCXI, col. 8-294.
+C	BIBLIOGRAPHIE
+<99a>	DHGE: (U. ROUZIES) ;
+<99a>	HLF: XVI 451 ;
+<99a>	SCHNEYER: I, p. 37-39.
+<99b>	CHATILLON (J.), De Guillaume de Champeau à Thomas Gallus, &R.M.A.L.&, VIII, 1952, 265 ;
+<99b>      COURCELLE (P.), La culture antique d'Absalon de Saint-Victor, &Journal des Savants&, IV (4), 1972, 270-291 ;
+<99b>	POIREL (D.), L’école de Saint-Victor au Moyen Âge : bilan d’un demi-siècle historiographique, &Bibliothèque de l’école des chartes&, CLVI, 1998, 187-207 ;
+<99b>	THOME (A.), &Die Sermones festivales des Absalon von Sprigiersbach in ihrem dogmatischen Gehalt und ihrer theol.geschchtl. Bedeutung&, Trèves, 1952 ;
+<99c>	 STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Jean-Philippe Genet, dernière mise à jour 17/07/2015).
+<1a>	10
+<1b>	ACCURSIUS
+<1c>	        $ACCURSIUS$
+<r>   	CUP: II 141 (n° 679).
+<1d>        Servite
+<1f> 	%1310-1310%
+<1k>        Incertain
+<2a>        *Italie ?
+<5b>	*Paris ?
+<6d>        Ord. Serv. S.M. (couvent de £Paris) ?
+<r>   	CUP: II 141 (n° 679).
+<10a>      Membre d'un groupe de quarante maître et étudiants qui, à la demande de $Raymond LULL$, viennent jurer devant l'Official de £Paris que la doctrine de ce dernier est "bonne, utile et nécessaire"; comme &Sententia definitiva in favorem pietatis et doctrinae b. Raymundi Lullii&, elle a été imprimée à *Paris en %1676% (mais meilleur texte dans ROSSELLO, &Obras rimadas de Ramon Lull&, Palma, 1859, p. 77). Le texte est cependant suspect pour le &Chartularium& du fait de la présence parmi les quarante de deux Servites parisiens alors que la maison parisienne de l'ordre n'a été fondée qu'en %1328%. Les membres déclarent : "quod ipsi a dicto magistro Raymundo Lull audiverunt per aliqua tempora artem seu scientiam, quam dicitur fecisse seu adinvenisse idem magister Raymundus, que quidem ars seu scientia sic incipit : "Deus cum tua gratia, sapientia et amore incipit ars brevis que est imago artis generalis, que sic intitulatur : Deus cum tua summa perfectione incipit ars generalis ultima. Ratio quare fecimus istam artem brevem est, ut ars magna facilius sciatur, nam scita ista arte predicta et etiam alie artes de facili poterunt addisci". Et sic terminatur : « Ad honorem et laudem Dei et publice utililatis finivit Raymundus hunc librum Pisis in monasterio S. Dominici [Donnini?], in mense Januario, anno MCCCVII Incarnationis Domini nostri Jhesu Christi". Asseruerunt etiaim dicti magistri et omnes alii, ut predicitur, per eorum juramenta coram prefatis juralis nostris, quod dicta ars seu scientia erat bona, utilis, et necessaria, prout ipsi poterant perpendere seu etiam judicare; et quod in ea nihil erat contra fidein catholicam, seu etiam dicte fidei repugnantia; multa autem ad sustentationem dicte fidei et pro ipsa facientia in dicta scientia seu arte, ut dicebant, poterant inveniri". Le texte était cependant tenu pour authentique par la chancellerie du roi d'£Aragon en %1369%, ce qui peut malgré tout inciter à le tenir pour authentique ; si c'est un faux, il semblerait plutôt que ce soit un faux parisien, ce qui peut donner quelque crédibilité à la liste des noms qu'elle contient.
+<r>   	CUP: II 141 (n° 679).
+<19>	Pas d'œuvres connues.
+C	BIBLIOGRAPHIE
+<99a>	CUP: II 141 (n° 679).

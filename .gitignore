@@ -10,7 +10,7 @@ api/node_modules
 api/docker/build/*
 api/docker/data
 
-data
+./data
 static
 *.log*
 test-report.xml
