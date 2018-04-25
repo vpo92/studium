@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Studium batch application",
   "scripts": {
-    "test": "yarn jest",
-    "start": "babel-node src/import.launcher.js"
+    "test": "npm run jest",
+    "start": "babel-node src/import.launcher.js",
+    "start-parser2": "babel-node src/parser.js"
   },
   "repository": {
     "type": "git",
