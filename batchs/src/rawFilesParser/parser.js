@@ -15,13 +15,13 @@ type Prosopography = {
 }
 
 const dataLineTypes = {
-  '1a':'reference',
-  '1b':'name',
-  '1c':'nameVariant',
-  '1d':'job',
+  '1a': 'reference',
+  '1b': 'name',
+  '1c': 'nameVariant',
+  '1d': 'job',
 }
 
-type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';
+type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';
 
 function parseDataLine(line: string) {
   const reg = /^<([a-zA-Z0-9]*)>[ ]*(.*)/g
@@ -29,15 +29,15 @@ function parseDataLine(line: string) {
   const dataType = t[1];
   const dataValue = t[2];
   const prop = dataLineTypes[dataType];
-  return { 
+  return {
     type: 'DATA',
-    value: {[prop]: dataValue}
+    value: { [prop]: dataValue }
   };
 }
 
 type ParsedLine = { type: Line, value?: $Shape<Prosopography> };
-export function parser(record: $Shape<Prosopography>, line: string): ParsedLine {
-  const type = detectTypeOfLIne(line);
+export function lineParser(line: string): ParsedLine {
+  const type = detectTypeOfLine(line);
   return {
     BIBLIOGRAPHY_START: (line) => ({ type }),
     DATA: parseDataLine,
@@ -46,7 +46,7 @@ export function parser(record: $Shape<Prosopography>, line: string): ParsedLine 
   }[type](line);
 }
 
-export function detectTypeOfLIne(line: string) {
+export function detectTypeOfLine(line: string) {
   const skip = line.match(/^C/g);
   if (skip) {
     return 'BIBLIOGRAPHY_START';
@@ -64,21 +64,43 @@ export function detectTypeOfLIne(line: string) {
   return 'ERROR';
 }
 
+async function saveRecordInDatabase(record: Prosopography): Promise<void> {
+  console.log(`ref ${record.reference}: Saving record.`);
+  Promise.resolve({
+    reference: 'string',
+    name: 'string',
+    nameVariant: 'string',
+    job: 'string',
+  }).then((record) => {
+    console.log(`ref ${record.reference}: Saved record.`);
+  }).catch((e) => { 
+    console.log(`ref ${record.reference}: Error saving record : ${e}.`);
+  });
+}
+
+export function computeOrSaveRecord(saveRecord: (record: Prosopography) => Promise<void>) {
+  return (record: $Shape<Prosopography>, parsedLine: ParsedLine): $Shape<Prosopography> => {
+    if (parsedLine.type === 'EMPTY') {
+      saveRecord(record);
+      return {};
+    } else if (parsedLine.type === 'DATA') {
+      return {
+        ...record,
+        ...parsedLine.value,
+      };
+    }
+    console.error(`Parsed type on error ${JSON.stringify(parsedLine)}`);
+  };
+}
+
 function processStream(stream: any) {
+  const computeOrSaveRecordInDatabase = computeOrSaveRecord(saveRecordInDatabase);
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface(stream);
     let record = {};
-    
+
     rl.on('line', (line) => {
-      const parsedLine = parser(record, line);
-      if (parsedLine.type === 'EMPTY') {
-        console.log('record completed :', record);
-      } else if (parsedLine.type === 'DATA') {
-        record = {
-          ...record,
-          ...parsedLine.value,
-        };
-      }
+      record = computeOrSaveRecordInDatabase(record, lineParser(line));
     });
 
     rl.on('close', () => {
@@ -89,5 +111,5 @@ function processStream(stream: any) {
 
 export async function processFile(inputFile: string) {
   const instream = fs.createReadStream(inputFile);
-  return await processStream(instream);
+  return processStream(instream);
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm run jest",
     "start": "babel-node src/import.launcher.js",
-    "start-parser2": "babel-node src/parser.js"
+    "start-parser2": "babel-node src/rawFilesParser/run.js"
   },
   "repository": {
     "type": "git",
