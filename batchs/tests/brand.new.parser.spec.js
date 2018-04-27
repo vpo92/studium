@@ -1,6 +1,7 @@
 import { Readable } from 'stream';
+import fs from 'fs';
 
-import { detectTypeOfLIne, parser, processStream } from '../src/parser';
+import { detectTypeOfLIne, parser, processFile } from '../src/rawFilesParser/parser';
 
 describe('Brand new parser', () => {
   it('should detect bibliography among empty, bibliography or data lines', () => {
@@ -11,7 +12,7 @@ describe('Brand new parser', () => {
     const type = detectTypeOfLIne(line);
 
     // then
-    expect(type).toEqual('BIBLIOGRAPHY');
+    expect(type).toEqual('BIBLIOGRAPHY_START');
   });
 
   it('should detect data lines among empty, bibliography or data lines', () => {
@@ -22,7 +23,7 @@ describe('Brand new parser', () => {
     const type = detectTypeOfLIne(line);
 
     // then
-    expect(type).toEqual('DATA_LINE');
+    expect(type).toEqual('DATA');
   });
 
   it('should detect empty lines among empty, bibliography or data lines', () => {
@@ -33,7 +34,7 @@ describe('Brand new parser', () => {
     const type = detectTypeOfLIne(line);
 
     // then
-    expect(type).toEqual('EMPTY_LINE');
+    expect(type).toEqual('EMPTY');
   });
 
   it('should detect error if not empty, bibliography or data lines', () => {
@@ -44,7 +45,7 @@ describe('Brand new parser', () => {
     const type = detectTypeOfLIne(line);
 
     // then
-    expect(type).toEqual('ERROR_LINE');
+    expect(type).toEqual('ERROR');
   });
 
   it('should parse a line of a single record', () => {
@@ -57,29 +58,29 @@ describe('Brand new parser', () => {
 
     // then
     expect(recordParsed).toEqual({
-      reference: '1',
+      value: {
+        reference: '1',
+      },
+      type: 'DATA',
     });
   });
 
-  it.skip('should parse lines of a single record', () => {
-    const s = new Readable();
-    s._read = function noop() {};
-
+  it('should parse lines of a single record', async () => {
+    
     // given
+    const reference = 1;
     const name = 'Alban Richard';
     const nameVariant = 'Alby Ricardo';
     const job = 'Laboureur';
-    s.push(`<1a>     1
+    fs.writeFileSync('./test.tmp', `<1a>     ${reference}
 <1b>    ${name}
 <1c>    ${nameVariant}
 <1d>    ${job}
 
 `);
 
-    const record = {};
-
     // when
-    const recordParsed = processStream(s);
+    const recordParsed = await processFile('./test.tmp');
 
     // then
     expect(recordParsed).toEqual({
@@ -88,5 +89,7 @@ describe('Brand new parser', () => {
       nameVariant,
       job,
     });
+
+    fs.unlinkSync('./test.tmp');
   });
 });
