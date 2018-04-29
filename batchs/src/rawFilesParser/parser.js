@@ -1,41 +1,46 @@
 // @flow
 
-/**
-  Use https://github.com/nacholibre/node-readlines to read lines sync
-*/
-
 import readline from 'readline';
 import fs from 'fs';
 
-type Prosopography = {
-  reference: string,
-  name: string,
-  nameVariant: string,
-  job: string,
-}
+import type {
+  Prosopography,
+  Line,
+  ParsedLine,
+  SaveRecordFunction,
+} from './types.js';
 
-const dataLineTypes = {
+const dataLineTypes: {[string]: $Keys<Prosopography>} = {
   '1a': 'reference',
   '1b': 'name',
   '1c': 'nameVariant',
   '1d': 'job',
 }
 
-type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';
-
-function parseDataLine(line: string) {
-  const reg = /^<([a-zA-Z0-9]*)>[ ]*(.*)/g
+function parseDataLine(line: string): ParsedLine {
+  const reg = /^<([a-zA-Z0-9\.]*)>[ \t]*(.*)/g
   const t = reg.exec(line);
+  if(!t) {
+    console.error(`Could not parse line ${line}`);
+    return {
+      type: 'ERROR',
+    }
+  }
   const dataType = t[1];
   const dataValue = t[2];
   const prop = dataLineTypes[dataType];
+  if(!prop) {
+    console.error(`Unknown data type ${dataType}`);
+    return {
+      type: 'ERROR',
+    } 
+  }
   return {
     type: 'DATA',
     value: { [prop]: dataValue }
   };
 }
 
-type ParsedLine = { type: Line, value?: $Shape<Prosopography> };
 export function lineParser(line: string): ParsedLine {
   const type = detectTypeOfLine(line);
   return {
@@ -46,7 +51,7 @@ export function lineParser(line: string): ParsedLine {
   }[type](line);
 }
 
-export function detectTypeOfLine(line: string) {
+export function detectTypeOfLine(line: string): Line {
   const skip = line.match(/^C/g);
   if (skip) {
     return 'BIBLIOGRAPHY_START';
@@ -64,52 +69,43 @@ export function detectTypeOfLine(line: string) {
   return 'ERROR';
 }
 
-async function saveRecordInDatabase(record: Prosopography): Promise<void> {
-  console.log(`ref ${record.reference}: Saving record.`);
-  Promise.resolve({
-    reference: 'string',
-    name: 'string',
-    nameVariant: 'string',
-    job: 'string',
-  }).then((record) => {
-    console.log(`ref ${record.reference}: Saved record.`);
-  }).catch((e) => { 
-    console.log(`ref ${record.reference}: Error saving record : ${e}.`);
-  });
-}
-
-export function computeOrSaveRecord(saveRecord: (record: Prosopography) => Promise<void>) {
-  return (record: $Shape<Prosopography>, parsedLine: ParsedLine): $Shape<Prosopography> => {
-    if (parsedLine.type === 'EMPTY') {
-      saveRecord(record);
-      return {};
-    } else if (parsedLine.type === 'DATA') {
+type ComputeRecordFunction = (record: $Shape<Prosopography>, parsedLine: ParsedLine) => $Shape<Prosopography>;
+export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeRecordFunction {
+  return (record, parsedLine) => {
+    if (parsedLine.type === 'DATA') {
       return {
         ...record,
         ...parsedLine.value,
       };
+    } else if (parsedLine.type === 'EMPTY') {
+      if (record.reference) {
+        saveRecord(record);
+      }
+      return {};
     }
-    console.error(`Parsed type on error ${JSON.stringify(parsedLine)}`);
+    return record;
   };
 }
 
-function processStream(stream: any) {
-  const computeOrSaveRecordInDatabase = computeOrSaveRecord(saveRecordInDatabase);
+function processStream(stream: any, saveRecord: SaveRecordFunction): Promise<void> {;
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface(stream);
     let record = {};
 
     rl.on('line', (line) => {
-      record = computeOrSaveRecordInDatabase(record, lineParser(line));
+      record = computeOrSaveRecord(saveRecord)(record, lineParser(line));
     });
 
     rl.on('close', () => {
-      resolve(record);
+      if (record.reference) {
+        computeOrSaveRecord(saveRecord)(record, { type: 'EMPTY' });
+      }
+      resolve();
     });
   });
 }
 
-export async function processFile(inputFile: string) {
+export async function processFile(inputFile: string, saveRecord: SaveRecordFunction): Promise<void> {
   const instream = fs.createReadStream(inputFile);
-  return processStream(instream);
+  return processStream(instream, saveRecord);
 }
