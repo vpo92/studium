@@ -69,6 +69,32 @@ describe('Brand new parser', () => {
         type: 'DATA',
       });
     });
+
+    it(`should send an ERROR line if couldn't parse`, () => {
+      // given
+      const line = `<<b>>	Écrit en %1473%.`;
+
+      // when
+      const recordParsed = lineParser(line);
+
+      // then
+      expect(recordParsed).toEqual({
+        type: 'ERROR',
+      });
+    });
+
+    it(`should send an ERROR line if the data type is unknown`, () => {
+      // given
+      const line = `<3f>	Écrit en %1473%.`;
+
+      // when
+      const recordParsed = lineParser(line);
+
+      // then
+      expect(recordParsed).toEqual({
+        type: 'ERROR',
+      });
+    });
   });
 
   describe('computeOrSaveRecord', () => {
@@ -82,7 +108,7 @@ describe('Brand new parser', () => {
       };
       const record = {}
       const saveRecordMock = jest.fn();
-      
+
       // when
       const updatedRecord = computeOrSaveRecord(saveRecordMock)(record, parsedData);
 
@@ -105,7 +131,7 @@ describe('Brand new parser', () => {
         job: 'Laboureur',
       };
       const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
-      
+
       // when
       const updatedRecord = computeOrSaveRecord(saveRecordMock)(record, parsedData);
 
@@ -113,34 +139,97 @@ describe('Brand new parser', () => {
       expect(updatedRecord).toEqual({});
       expect(saveRecordMock.mock.calls.length).toBe(1);
       // first call and first argument
-      expect(saveRecordMock.mock.calls[0][0]).toBe(record);
+      expect(saveRecordMock.mock.calls[0][0]).toEqual(record);
     });
+
+    it('should not save the record when receiving an empty line and the record reference is missing', () => {
+      // given
+      const parsedData = {
+        type: 'EMPTY',
+      };
+      const record = {
+        name: 'Alex',
+        nameVariant: 'Alessandro',
+        job: 'Laboureur',
+      };
+      const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
+
+      // when
+      const updatedRecord = computeOrSaveRecord(saveRecordMock)(record, parsedData);
+
+      // then
+      expect(updatedRecord).toEqual({});
+      expect(saveRecordMock.mock.calls.length).toBe(0);
+    });
+
   });
 
   describe('processFile', () => {
     it('should parse lines of a single record', async () => {
-      
+
       // given
-      const reference = 1;
-      const name = 'Alban Richard';
-      const nameVariant = 'Alby Ricardo';
-      const job = 'Laboureur';
-      fs.writeFileSync('./test.tmp', `<1a>     ${reference}
-<1b>    ${name}
-<1c>    ${nameVariant}
-<1d>    ${job}
+      const record = {
+        reference: '1',
+        name: 'Alban Richard',
+        nameVariant: 'Alby Ricardo',
+        job: 'Laboureur',
+      };
+      fs.writeFileSync('./test.tmp', `<1a>       ${record.reference}
+<1b>    ${record.name}
+<1c>    ${record.nameVariant}
+<1d>    ${record.job}
 `);
+      const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
 
       // when
-      const recordParsed = await processFile('./test.tmp');
+      await processFile('./test.tmp', saveRecordMock);
 
       // then
-      expect(recordParsed).toEqual({
-        reference: '1',
-        name,
-        nameVariant,
-        job,
-      });
+      expect(saveRecordMock.mock.calls.length).toBe(1);
+      // first call and first argument
+      expect(saveRecordMock.mock.calls[0][0]).toEqual(record);
+
+      fs.unlinkSync('./test.tmp');
+    });
+
+    it('should parse lines of two records', async () => {
+
+      // given
+      const records = [
+        {
+          reference: '1',
+          name: 'Alban Richard',
+          nameVariant: 'Alby Ricardo',
+          job: 'Laboureur',
+        },
+        {
+          reference: '10',
+          name: 'ACCURSIUS',
+          nameVariant: '$ACCURSIUS$',
+          job: 'Servite',
+        }
+      ];
+      fs.writeFileSync('./test.tmp', `<1a>       ${records[0].reference}
+<1b>    ${records[0].name}
+<1c>    ${records[0].nameVariant}
+<1d>    ${records[0].job}
+
+<1a>	${records[1].reference}
+<1b>	${records[1].name}
+<1c>	        ${records[1].nameVariant}
+<1d>        ${records[1].job}
+`);
+      const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
+
+      // when
+      await processFile('./test.tmp', saveRecordMock);
+
+      // then
+      expect(saveRecordMock.mock.calls.length).toBe(2);
+      // first call and first argument
+      expect(saveRecordMock.mock.calls[0][0]).toEqual(records[0]);
+      // second call and first argument
+      expect(saveRecordMock.mock.calls[1][0]).toEqual(records[1]);
 
       fs.unlinkSync('./test.tmp');
     });
