@@ -8,13 +8,19 @@ import type {
   Line,
   ParsedLine,
   SaveRecordFunction,
+  MetaData,
 } from './types.js';
 
 const dataLineTypes: {[string]: $Keys<Prosopography>} = {
   '1a': 'reference',
   '1b': 'name',
   '1c': 'nameVariant',
-  '1d': 'job',
+  '1d': 'shortDescription',
+  '1e': 'datesOfLife',
+  '1f': 'datesOfActivity',
+  '1g': 'activityMediane',
+  '1h': 'gender',
+  '1k': 'status',
 }
 
 function parseDataLine(line: string): ParsedLine {
@@ -33,7 +39,7 @@ function parseDataLine(line: string): ParsedLine {
     console.error(`Unknown data type ${dataType}`);
     return {
       type: 'ERROR',
-    } 
+    }
   }
   return {
     type: 'DATA',
