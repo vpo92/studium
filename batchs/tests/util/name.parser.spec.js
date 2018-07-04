@@ -33,6 +33,17 @@ describe('Name Parser', () => {
       // then
       expect(names).toEqual(null);
     });
+
+    it('should detect name among string when only name is present', () => {
+      // given
+      const line = "$ACCURSIUS$";
+      // when
+      const names = detectNames(line);
+      // expected
+      const expected = ["ACCURSIUS"];
+      // then
+      expect(names).toEqual(expected);
+    });
     it('should detect name among string when name is present', () => {
       // given
       const line = "ami de $Helluinus de FOSSICO$ durant un moment";

@@ -4,7 +4,7 @@ export function detectInstitutions(value: string): string[] {
 
 
   //split
-  if(value && value.indexOf("£") > 0){
+  if(value && value.indexOf("£") >= 0){
     let t = value.split("£");
     let res = [];
     //remove first part
