@@ -21,6 +21,19 @@ export type SimpleDateInformation = {
   link: string,
 }
 
+export type MetaInformation = {
+  dates: any,
+  names: any,
+  places: any,
+  titles: any,
+  institutions: any,
+}
+
+export type ProsopographyInformation = {
+  value : string,
+  meta : MetaInformation,
+}
+
 export type SimpleInformation = {
   value: string,
   certain: boolean,
@@ -104,14 +117,14 @@ export type ProsopographyField = {
 export type Prosopography = {
   reference: string,
   identity:{
-    name: any,
-    nameVariant: any,
-    shortDescription: any,
+    name: ProsopographyInformation,
+    nameVariant: [ProsopographyInformation],
+    shortDescription: ProsopographyInformation,
     datesOfLife: any,
     datesOfActivity: any,
     activityMediane: any,
-    gender: any,
-    status: any,
+    gender: ProsopographyInformation,
+    status: ProsopographyInformation,
   },
   origin:{
     birthPlace: any,
@@ -176,7 +189,9 @@ export type Prosopography = {
   },
 
 
-  travels: any,
+  travels:{
+    travels: any,
+  },
 
   commissions:{
     universityCommission: any,
@@ -194,8 +209,12 @@ export type Prosopography = {
     emblems: any,
     seals: any,
   },
-  orality: any,
-  otherActivities: any,
+  orality:{
+    orality: any,
+  },
+  otherActivities:{
+    otherActivities: any
+  },
 }
 
 export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';

@@ -1,6 +1,11 @@
 // @flow
 
 import { processFile } from './parser';
-import { saveRecordInDatabase } from './mongoService';
+import { saveRecordInDatabase, createIndex } from './mongoService';
 
-processFile('./tests/data/studium_input.txt', saveRecordInDatabase);
+//FIXME : add index in mongo for full text search
+
+processFile('./tests/data/studium_input.txt', saveRecordInDatabase)
+.then(
+  createIndex()
+);

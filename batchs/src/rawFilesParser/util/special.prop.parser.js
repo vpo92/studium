@@ -77,7 +77,9 @@ function buildProsopography(record: ProsopographyField) : Prosopography{
       justiceFacts: record.justiceFacts,
     },
 
-    travels: record.travels,
+    travels:{
+      travels: record.travels,
+    },
 
     commissions:{
       universityCommission: record.universityCommission,
@@ -95,8 +97,12 @@ function buildProsopography(record: ProsopographyField) : Prosopography{
       emblems: record.emblems,
       seals: record.seals,
     },
-    orality: record.orality,
-    otherActivities: record.otherActivities,
+    orality:{
+      orality: record.orality,
+    },
+    otherActivities:{
+      otherActivities: record.otherActivities,
+    },
 
   };
 
