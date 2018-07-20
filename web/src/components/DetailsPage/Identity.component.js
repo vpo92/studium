@@ -26,7 +26,7 @@ class Identity extends Component<Props> {
           label="Nom"
           value={identity.name}
         />
-        <SimpleListInformation
+        <SimpleInformation
           label="Variantes du nom"
           value={identity.nameVariant}
         />
@@ -38,11 +38,11 @@ class Identity extends Component<Props> {
           label="Genre"
           value={identity.gender}
         />
-        <SimpleDateInformation
+        <SimpleInformation
           label="Période d'activité"
           value={identity.datesOfActivity}
         />
-        <SimpleDateInformation
+        <SimpleInformation
           label="Date de vie"
           value={identity.datesOfLife}
         />

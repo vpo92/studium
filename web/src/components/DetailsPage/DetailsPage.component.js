@@ -4,17 +4,10 @@ import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 
 import styles from './DetailsPage.style';
-import Identity from './Identity.component';
-import Origin from './Origin.component';
-import RelationalInsertion from './Relation.component';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import GenericBlock from './GenericBlock.component';
 import Typography from 'material-ui/Typography';
 
-import { type Prosopography } from '../../../../api/types/Prosopography';
+import { type Prosopography } from '../../../../batchs/src/rawFilesParser/types';
 
 type Props = {
   classes: any,
@@ -63,64 +56,58 @@ class DetailsPage extends Component<Props, State> {
             </Typography>
             <a name="fiche" />
             <br />
-            <ExpansionPanel
-              expanded={this.state.currentTab === 'identity'}
-              onChange={this.handleChange('identity')}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography
-                  type="headline"
-                  className={this.props.classes.primaryColor}
-                >
-                  Carte d'identité
-                </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}>
-                  <Identity identity={prosopography.identity} />
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-
-            <ExpansionPanel
-              expanded={this.state.currentTab === 'origin'}
-              onChange={this.handleChange('origin')}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography
-                  type="headline"
-                  className={this.props.classes.primaryColor}
-                >
-                  Origine
-                </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}>
-                  <Origin origin={prosopography.origin} />
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-
-            <ExpansionPanel
-              expanded={this.state.currentTab === 'relation'}
-              onChange={this.handleChange('relation')}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography
-                  type="headline"
-                  className={this.props.classes.primaryColor}
-                >
-                  Relations
-                </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography component="div" style={{ padding: 8 * 3 }}>
-                  <RelationalInsertion
-                    relationalInsertion={prosopography.relationalInsertion}
-                  />
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+             <GenericBlock
+               blockLabel = "Fiche d’identité"
+               block={prosopography.identity}
+             />
+             <GenericBlock
+               blockLabel = "Origine et situation géographique"
+               block={prosopography.origin}
+             />
+             <GenericBlock
+               blockLabel = "Insertion relationnelle"
+               block={prosopography.relationalInsertion}
+             />
+             <GenericBlock
+               blockLabel = "Cursus"
+               block={prosopography.curriculum}
+             />
+             <GenericBlock
+               blockLabel = "Carrière ecclésiastique"
+               block={prosopography.ecclesiasticalCareer}
+             />
+             <GenericBlock
+               blockLabel = "Carrière professionnelle"
+               block={prosopography.professionalCareer}
+             />
+             <GenericBlock
+               blockLabel = "Carrière politique et vicissitudes diverses"
+               block={prosopography.politicalCareer}
+             />
+             <GenericBlock
+               blockLabel = "Voyage"
+               block={prosopography.travels}
+             />
+             <GenericBlock
+               blockLabel = "Commission/Expertise "
+               block={prosopography.commissions}
+             />
+             <GenericBlock
+               blockLabel = "Logement et patrimoine"
+               block={prosopography.assets}
+             />
+             <GenericBlock
+               blockLabel = "Signes d’individuation"
+               block={prosopography.distinctiveSign}
+             />
+             <GenericBlock
+               blockLabel = "Oralité"
+               block={prosopography.orality}
+             />
+             <GenericBlock
+               blockLabel = "Varia"
+               block={prosopography.otherActivities}
+             />
           </div>
         ) : null}
       </div>
