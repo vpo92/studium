@@ -1,7 +1,8 @@
 // @flow
 
 import db from '../utils/db';
-import { type Prosopography } from '../../types/Prosopography';
+//import { type Prosopography } from '../../types/Prosopography';
+import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
 
 async function findAll(): Promise<Prosopography[]> {
   return await db
@@ -42,7 +43,7 @@ function findByReference(reference: string): Promise<Prosopography> {
   return db
     .get()
     .collection('prosopography')
-    .findOne({ reference: parseInt(reference) });
+    .findOne({ reference: reference });
 }
 
 /** *********************
