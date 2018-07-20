@@ -33,7 +33,7 @@ export function parseDates(value: string): ?DateInformation{
   let result = null;
   let t = null;
   if(value){
-
+    value = value.trim();
     let interval = value.split("-");
     if(interval.length > 1){
       //FIXME : deal with :

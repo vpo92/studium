@@ -26,6 +26,7 @@ C	BIBLIOGRAPHIE
 <19>         Pas d’œuvres connues.
 C     BIBLIOGRAPHIE
 <99b>      FRANKLIN (A.), &La Sorbonne, ses origines, sa bibliothèque, les débuts de l'imprimerie à Paris et la succession de Richelieu d'après des documents inédits&, Paris, 2e éd., 1875.
+
 <1a>	23154
 <1b>	ABEL
 <1c>	        $ABEL$
@@ -113,6 +114,7 @@ C	BIBLIOGRAPHIE
 <99b>	MARTIN (H.), &Le métier de prédicateur à la fin du Moyen Âge 1350-1520&, Paris, 1988, p. 682 ;
 <99b>	MEYER (A. de), &La congrégation de Hollande, ou La réforme dominicaine en territoire bourguignon, 1465-1515&, Liège, 1947, p. 267.
 <99c>	 STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Anne Tournieroux, dernière mise à jour 17/07/2015).
+
 <1a>	        4
 <1b>	ABRAHAM Alberti
 <1c>	        $Abraham ALBERTI$, $Abraham de HARLEM$, $Abraham de HAERLEM$
@@ -197,6 +199,7 @@ C	BIBLIOGRAPHIE
 
 <99c>	BRICKA (C.F.), &Dansk Biografisk leksikon&, 24 (FABRITIUS (A.)), en ligne (dernière consultation 3.8.2014).
 <99c>	STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ : Rédaction Élisabeth MORNET 17/11/2014.
+
 <1a>	7
 <1b>	ABSALON de Alcmaria
 <1c>	Absalon de ALCMARIA
@@ -219,6 +222,7 @@ C	BIBLIOGRAPHIE
 C	BIBLIOGRAPHIE
 <99a>	AUP: III, 381 7, 415 28, 416 1 ;
 <99b>	AUP: VI, 549 23, 562 23 43.
+
 <1a>	8
 <1b>	ABSALON de Lund
 <1c>	$Absalon de LUND$
@@ -320,6 +324,7 @@ C	BIBLIOGRAPHIE
 <99b>	POIREL (D.), L’école de Saint-Victor au Moyen Âge : bilan d’un demi-siècle historiographique, &Bibliothèque de l’école des chartes&, CLVI, 1998, 187-207 ;
 <99b>	THOME (A.), &Die Sermones festivales des Absalon von Sprigiersbach in ihrem dogmatischen Gehalt und ihrer theol.geschchtl. Bedeutung&, Trèves, 1952 ;
 <99c>	 STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Jean-Philippe Genet, dernière mise à jour 17/07/2015).
+
 <1a>	10
 <1b>	ACCURSIUS
 <1c>	        $ACCURSIUS$

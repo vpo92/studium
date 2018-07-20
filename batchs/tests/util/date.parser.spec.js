@@ -56,6 +56,23 @@ describe('Date Parser', () => {
       };
       // then
       expect(dates).toEqual(expected);
+
+
+      // given
+      const line2 = "    :1196";
+      // when
+      const dates2 = parseDates(line2);
+      // expected
+      const expected2 = {
+        "type": 'INTERVAL',
+        "endDate": {
+          "value": new Date("1196"),
+          "certain": true
+        },
+      };
+      // then
+      expect(dates2).toEqual(expected2);
+
     });
     it('should detect dates among string when dates is present - after', () => {
       // given

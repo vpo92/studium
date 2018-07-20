@@ -2,25 +2,93 @@
 
 import readline from 'readline';
 import fs from 'fs';
+import {detectDates} from './util/date.parser';
+import {detectNames} from './util/name.parser';
+import {detectPlaces} from './util/place.parser';
+import {detectTitles} from './util/title.parser';
+import {detectInstitutions} from './util/institution.parser';
+import {addPropToRecord} from './prop.util';
+import {finalyseProsopography} from './util/special.prop.parser';
 
 import type {
-  Prosopography,
+  ProsopographyField,
   Line,
   ParsedLine,
   SaveRecordFunction,
   MetaData,
 } from './types.js';
 
-const dataLineTypes: {[string]: $Keys<Prosopography>} = {
+const dataLineTypes: {[string]: $Keys<ProsopographyField>} = {
   '1a': 'reference',
   '1b': 'name',
-  '1c': 'nameVariant',
+  '1c': 'nameVariant', //define type SimpleValueArray..
   '1d': 'shortDescription',
   '1e': 'datesOfLife',
   '1f': 'datesOfActivity',
   '1g': 'activityMediane',
   '1h': 'gender',
   '1k': 'status',
+  '2a': 'birthPlace',
+  '2b': 'diocese',
+  '2c': 'movesInOutParis',
+  '3a': 'socialClassOrigin',
+  '3b': 'familyNetwork',
+  '3c': 'personalSocialClass',
+  '3d': 'personalServicesRelationship',
+  '3e': 'friends',
+  '3f': 'controversyOrDebates',
+  '3g': 'connectionsWith',
+  '3h': 'memberOfGroups',
+  '3i': 'politicalRelationships',
+  '3j': 'professionalRelationships',
+  '3k': 'willExecutor',
+  '3l': 'studentProfessorRelationships',
+  '5a': 'preUniversity',
+  '5b': 'university',
+  '5c': 'grades',
+  //no '5d': '',
+  '5e': 'universityCollege',
+  '5f': 'collegeFundations',
+  '6a': 'ecclesiasticalStatus',
+  '6b': 'secularPosition',
+  '6c': 'benefits',
+  '6d': 'regularOrder',
+  '6f': 'regularFunctions',
+  '6i': 'popFunctions',
+  '6j': 'otherFunctions',
+  '6k': 'communityFundations',
+  '7a': 'professorOrPerceptor',
+  '7b': 'universityFunction',
+  '7c': 'lawFunction',
+  '7d': 'propertiesAdministrator',
+  '7e': 'townAdministrator',
+  '7f': 'culturalFunction',
+  '7g': 'kingdowChurchFunction',
+  '7h': 'kingdomCulturalFunction',
+  '7i': 'kingdomVariousFunction',
+  '7j': 'royalAdministration',
+  '7k': 'localAdministrationFunction',
+  '7l': 'representation',
+  '7m': 'business',
+  '7n': 'medicine',
+  '7o': 'otherJob',
+  '8a': 'importantPosition',
+  '8d': 'jailed',
+  '8e': 'violentDeath',
+  '8f': 'exil',
+  '8g': 'justiceFacts',
+  '9':  'travels',
+  '10a': 'universityCommission',
+  '10b': 'otherCommission',
+  '11a': 'parisHousing',
+  '11b': 'otherHousing',
+  '12a': 'incomes',
+  '13a': 'will',
+  '14a': 'gifts',
+  '15a': 'emblems',
+  '15b': 'seals',
+  '16a':'orality',
+  '17a':'otherActivities',
 }
 
 function parseDataLine(line: string): ParsedLine {
@@ -34,17 +102,31 @@ function parseDataLine(line: string): ParsedLine {
   }
   const dataType = t[1];
   const dataValue = t[2];
+
+  let meta = {
+    dates: detectDates(dataValue),
+    names: detectNames(dataValue),
+    places: detectPlaces(dataValue),
+    titles: detectTitles(dataValue),
+    institutions: detectInstitutions(dataValue),
+  };
+
   const prop = dataLineTypes[dataType];
   if(!prop) {
     console.error(`Unknown data type ${dataType}`);
     return {
       type: 'ERROR',
     }
+  }else{
+    return {
+      type: 'DATA',
+      value: { [prop]: {
+        "value":dataValue,
+        "meta":meta,
+        }
+      }
+    };
   }
-  return {
-    type: 'DATA',
-    value: { [prop]: dataValue }
-  };
 }
 
 export function lineParser(line: string): ParsedLine {
@@ -75,16 +157,16 @@ export function detectTypeOfLine(line: string): Line {
   return 'ERROR';
 }
 
-type ComputeRecordFunction = (record: $Shape<Prosopography>, parsedLine: ParsedLine) => $Shape<Prosopography>;
+type ComputeRecordFunction = (record: $Shape<ProsopographyField>, parsedLine: ParsedLine) => $Shape<ProsopographyField>;
 export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeRecordFunction {
   return (record, parsedLine) => {
     if (parsedLine.type === 'DATA') {
-      return {
-        ...record,
-        ...parsedLine.value,
-      };
+      return addPropToRecord(record, parsedLine);
+
     } else if (parsedLine.type === 'EMPTY') {
       if (record.reference) {
+        console.log(record);
+        record = finalyseProsopography(record);
         saveRecord(record);
       }
       return {};

@@ -3,7 +3,7 @@
 import { Readable } from 'stream';
 import fs from 'fs';
 
-import { computeOrSaveRecord, detectTypeOfLine, lineParser, processFile } from '../src/rawFilesParser/parser';
+import { computeOrSaveRecord, detectTypeOfLine, lineParser, processFile, addPropToRecord } from '../src/rawFilesParser/parser';
 
 describe('Brand new parser', () => {
 
@@ -96,6 +96,33 @@ describe('Brand new parser', () => {
       });
     });
   });
+
+  describe('addPropToRecord', () => {
+    it('should return a record with new value', () => {
+      let record = {};
+      let parsedLine = {"prop":"value"};
+      const expected = {
+        "prop":"value"
+      };
+      const res = addPropToRecord(record,parsedLine);
+      expect(record).toEqual(expected);
+    });
+    it('should return a record with tab value if multiple value', () => {
+      let record = {
+        "prop":"value"
+      };
+      let parsedLine = {"prop":"value2"};
+      const expected = {
+        "prop":["value","value2"]
+      };
+      const res = addPropToRecord(record,parsedLine);
+      expect(record).toEqual(expected);
+    });
+
+  });
+
+
+
 
   describe('computeOrSaveRecord', () => {
     it('should return the updated record containing the line parsed value', () => {
