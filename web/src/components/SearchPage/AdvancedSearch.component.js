@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
+import GenericProsopographySearch from './GenericProsopographySearch.component';
 
 type State = {
   status: number,
@@ -37,10 +37,15 @@ class AdvanceSearch extends Component<{}, State> {
       <div>
         <h1>Recherche avancée</h1>
         <p>
-          Une partie du nom : <TextField />
-          <Divider />
-          Médiane d'activité Ou Début et Fin d'activité
-          <Divider />
+
+          <h4>Identité</h4>
+          <p>
+            Une partie du nom : <TextField />
+          </p>
+          <h4>Activité</h4>
+          <p>
+            Médiane d'activité Ou Début et Fin d'activité
+          </p>
           <h4>Cursus</h4>
           <Select
             helperText="Status"
@@ -69,13 +74,10 @@ class AdvanceSearch extends Component<{}, State> {
             <MenuItem value={1} primaryText="Every Night" />
             <MenuItem value={2} primaryText="Weeknights" />
           </Select>
-          <Divider />
-          Biographie :
-          <Divider />
-          Production textuelle :
-          <Divider />
-          Bibliographie :
-          <Divider />
+
+          <h4>Prosopography</h4>
+          <GenericProsopographySearch />
+
         </p>
       </div>
     );

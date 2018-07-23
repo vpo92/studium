@@ -17,7 +17,7 @@ class SearchPage extends Component<Props, State> {
     super(props);
     this.state = {
       advancesearch: false,
-      activateCompleteSearchFeature: false,
+      activateCompleteSearchFeature: true,
       search: {
         keyword: this.props.search.keyword,
       },
