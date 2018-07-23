@@ -134,6 +134,20 @@ export function finalyseProsopography(record : ProsopographyField) : Prosopograp
 
   record = finalizeReference(record);
   record = finalizeGender(record);
-  let result = buildProsopography(record)
+  console.log(Object.keys(record).forEach((key) => (record[key] == null) && delete record[key]));
+
+  let result = buildProsopography(record);
+  result = JSON.parse(JSON.stringify(result));
+
+  //remove empty
+  Object.keys(result).forEach( (key) => {
+    if(Object.keys(result[key]).length <= 0){
+      delete result[key]
+    }
+  });
+
+
+
+
   return result;
 }

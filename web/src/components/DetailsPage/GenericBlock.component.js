@@ -30,39 +30,43 @@ class GenericBlock extends Component<Props> {
 
   render() {
     const { block, blockLabel } = this.props;
+    if(block){
+      const keys = Object.keys(block);
+      return (<ExpansionPanel>
+         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+           <Typography
+             type="headline"
+             className={this.props.classes.primaryColor}
+           >
+             {blockLabel}
+           </Typography>
+         </ExpansionPanelSummary>
+         <ExpansionPanelDetails>
+           <Typography component="div" style={{ padding: 8 * 3 }}>
+        {keys.map(k => {
+          const val = block[k];
+          const label = localeData.fr[k];
+          if(val instanceof Array){
+            return <SimpleListInformation
+              label={label}
+              value={val}
+            />
+          }else{
+            return <SimpleInformation
+              label={label}
+              value={val}
+            />
+          }
+        })}
+      </Typography>
+    </ExpansionPanelDetails>
+  </ExpansionPanel>
 
-    const keys = Object.keys(block);
-    return (<ExpansionPanel>
-       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-         <Typography
-           type="headline"
-           className={this.props.classes.primaryColor}
-         >
-           {blockLabel}
-         </Typography>
-       </ExpansionPanelSummary>
-       <ExpansionPanelDetails>
-         <Typography component="div" style={{ padding: 8 * 3 }}>
-      {keys.map(k => {
-        const val = block[k];
-        const label = localeData.fr[k];
-        if(val instanceof Array){
-          return <SimpleListInformation
-            label={label}
-            value={val}
-          />
-        }else{
-          return <SimpleInformation
-            label={label}
-            value={val}
-          />
-        }
-      })}
-    </Typography>
-  </ExpansionPanelDetails>
-</ExpansionPanel>
+      );
+    }else{
+      return ("");
+    }
 
-    );
 
   }
 }

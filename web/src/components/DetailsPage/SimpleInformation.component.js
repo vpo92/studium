@@ -9,8 +9,9 @@ function getValue(
     value: any,
   }
 ) {
-  if (topic) {
-    return topic.value;
+  if (topic && topic.value) {
+    //Remove special chars
+    return topic.value.replace(/[&$£%*/]/gi, '');
   }
   return '';
 }
