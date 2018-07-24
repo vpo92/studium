@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 import injectSheet from 'react-jss';
 
 import { styles, type stylesType } from './Footer.style';

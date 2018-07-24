@@ -15,9 +15,6 @@ import HelpPage from '../components/HelpPage/HelpPage.component';
 import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import theme from '../material_ui_raw_theme_file';
-
 type Route = {
   path: string,
   title: string,
@@ -84,24 +81,20 @@ class App extends Component<Props> {
   render() {
     return (
       <div>
-        <MuiThemeProvider theme={theme}>
-          <div>
-            <SideMenu />
-            <Header />
-            <Switch>
-              {appRoutes.map(route => (
-                <ReactRouterDom
-                  exact
-                  key={route.path}
-                  path={route.path}
-                  component={route.component}
-                />
-              ))}
-            </Switch>
-            <Footer />
-            <Snackbar />
-          </div>
-        </MuiThemeProvider>
+        <SideMenu />
+        <Header />
+        <Switch>
+          {appRoutes.map(route => (
+            <ReactRouterDom
+              exact
+              key={route.path}
+              path={route.path}
+              component={route.component}
+            />
+          ))}
+        </Switch>
+        <Footer />
+        <Snackbar />
       </div>
     );
   }

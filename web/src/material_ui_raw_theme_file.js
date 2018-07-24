@@ -1,5 +1,5 @@
-import * as Colors from 'material-ui/colors';
-import { spacing, createMuiTheme } from 'material-ui/styles';
+import * as Colors from '@material-ui/core/colors';
+import { spacing, createMuiTheme } from '@material-ui/core/styles';
 
 const rawBaseTheme = {
   ...spacing,

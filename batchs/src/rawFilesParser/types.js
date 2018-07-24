@@ -30,8 +30,8 @@ export type MetaInformation = {
 }
 
 export type ProsopographyInformation = {
-  value : string,
-  meta : MetaInformation,
+  value: string,
+  meta: MetaInformation,
 }
 
 export type SimpleInformation = {
@@ -116,7 +116,7 @@ export type ProsopographyField = {
 
 export type Prosopography = {
   reference: string,
-  identity:{
+  identity: {
     name: ProsopographyInformation,
     nameVariant: [ProsopographyInformation],
     shortDescription: ProsopographyInformation,
@@ -126,12 +126,12 @@ export type Prosopography = {
     gender: ProsopographyInformation,
     status: ProsopographyInformation,
   },
-  origin:{
+  origin: {
     birthPlace: any,
     diocese: any,
     movesInOutParis: any,
   },
-  relationalInsertion:{
+  relationalInsertion: {
     socialClassOrigin: any,
     familyNetwork: any,
     personalSocialClass: any,
@@ -145,14 +145,14 @@ export type Prosopography = {
     willExecutor: any,
     studentProfessorRelationships: any,
   },
-  curriculum:{
+  curriculum: {
     preUniversity: any,
     university: any,
     grades: any,
     universityCollege: any,
     collegeFundations: any,
   },
-  ecclesiasticalCareer:{
+  ecclesiasticalCareer: {
     ecclesiasticalStatus: any,
     secularPosition: any,
     benefits: any,
@@ -162,7 +162,7 @@ export type Prosopography = {
     otherFunctions: any,
     communityFundations: any,
   },
-  professionalCareer:{
+  professionalCareer: {
     professorOrPerceptor: any,
     universityFunction: any,
     lawFunction: any,
@@ -180,7 +180,7 @@ export type Prosopography = {
     otherJob: any,
   },
 
-  politicalCareer:{
+  politicalCareer: {
     importantPosition: any,
     jailed: any,
     violentDeath: any,
@@ -189,15 +189,15 @@ export type Prosopography = {
   },
 
 
-  travels:{
+  travels: {
     travels: any,
   },
 
-  commissions:{
+  commissions: {
     universityCommission: any,
     otherCommission: any,
   },
-  assets:{
+  assets: {
     parisHousing: any,
     otherHousing: any,
     incomes: any,
@@ -205,14 +205,14 @@ export type Prosopography = {
     gifts: any,
   },
 
-  distinctiveSign:{
+  distinctiveSign: {
     emblems: any,
     seals: any,
   },
-  orality:{
+  orality: {
     orality: any,
   },
-  otherActivities:{
+  otherActivities: {
     otherActivities: any
   },
 }

@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TableCell, TableRow } from 'material-ui/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 import { getValue } from './utils';
 import { type Prosopography } from '../../../../../api/types/Prosopography';

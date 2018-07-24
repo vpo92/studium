@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 
 import styles from './DetailsPage.style';
 import SimpleInformation from './SimpleInformation.component';
@@ -9,12 +9,12 @@ import SimpleListInformation from './SimpleListInformation.component';
 
 import localeData from './../../locales/messages.json';
 
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import Typography from 'material-ui/Typography';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
 
 type Props = {
   classes: any,
@@ -33,7 +33,7 @@ class GenericBlock extends Component<Props> {
     if(block){
       const keys = Object.keys(block);
       return (<ExpansionPanel>
-         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
            <Typography
              type="headline"
              className={this.props.classes.primaryColor}
@@ -43,21 +43,21 @@ class GenericBlock extends Component<Props> {
          </ExpansionPanelSummary>
          <ExpansionPanelDetails>
            <Typography component="div" style={{ padding: 8 * 3 }}>
-        {keys.map(k => {
-          const val = block[k];
-          const label = localeData.fr[k];
-          if(val instanceof Array){
-            return <SimpleListInformation
-              label={label}
-              value={val}
-            />
-          }else{
-            return <SimpleInformation
-              label={label}
-              value={val}
-            />
-          }
-        })}
+              {keys.map(k => {
+                const val = block[k];
+                const label = localeData.fr[k];
+                if(val instanceof Array){
+                  return <SimpleListInformation
+                    label={label}
+                    value={val}
+                  />
+                }else{
+                  return <SimpleInformation
+                    label={label}
+                    value={val}
+                  />
+                }
+              })}
       </Typography>
     </ExpansionPanelDetails>
   </ExpansionPanel>
@@ -72,4 +72,4 @@ class GenericBlock extends Component<Props> {
 }
 
 
-export default injectSheet(styles)(GenericBlock);
+export default withStyles(styles)(GenericBlock);

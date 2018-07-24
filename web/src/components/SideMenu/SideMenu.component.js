@@ -2,16 +2,23 @@
 
 import React, { Component } from 'react';
 
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import { MenuList } from 'material-ui/Menu';
-import Divider from 'material-ui/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import MenuList from '@material-ui/core/MenuList';
+import Divider from '@material-ui/core/Divider';
 import logo from './img/logo_par.png';
 import { getMenuLinks } from '../App.component';
 
 import MenuLink from '../../containers/SideMenu/MenuLink.container';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  appDrawer: {
+    width:'200px',
+  }
+}
 
 type Props = {
   showSideMenu: boolean,
@@ -19,33 +26,45 @@ type Props = {
 };
 
 class SideMenu extends Component<Props> {
+/**
+  {getMenuLinks().map(link => (
+   <MenuLink key={link.path} title={link.title} url={link.path} />
+ ))}
+  */
+
   render() {
     return (
+      <div>
       <Drawer
+        anchor="left"
         open={this.props.showSideMenu}
         onClose={() => this.props.handleSideMenu(false)}
-        className="app-drawer"
         width={400}
       >
-        <AppBar position="static">
+        <AppBar position="static"
+          className={this.props.classes.appDrawer}>
           <Toolbar>
             <Typography type="title" color="inherit">
               Studium
             </Typography>
           </Toolbar>
         </AppBar>
+
         <div className="app-text-center">
           <img src={logo} height="180px" />
         </div>
+
         <Divider />
         <MenuList>
-          {getMenuLinks().map(link => (
-            <MenuLink key={link.path} title={link.title} url={link.path} />
-          ))}
+            {getMenuLinks().map(link => (
+              <MenuLink key={link.path} title={link.title} url={link.path} />
+           ))}
         </MenuList>
       </Drawer>
+    </div>
     );
   }
 }
 
-export default SideMenu;
+
+export default withStyles(styles)(SideMenu);

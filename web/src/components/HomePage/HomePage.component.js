@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 import header from './img/header.png';
 import univ_paris1 from './img/univ_paris1.jpg';
 import lamop from './img/lamop.jpg';

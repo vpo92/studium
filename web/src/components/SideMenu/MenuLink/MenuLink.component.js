@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { MenuItem } from 'material-ui/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import injectSheet from 'react-jss';
 

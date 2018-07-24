@@ -1,13 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import Switch from 'material-ui/Switch';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Switch from '@material-ui/core/Switch';
 
 import SearchResult from '../SearchResult/SearchResult.component';
 import AdvancedSearch from './AdvancedSearch.component';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 
 import { type State, type Props } from './SearchPage.types';
 import styles from './SearchPage.style';
@@ -17,7 +17,7 @@ class SearchPage extends Component<Props, State> {
     super(props);
     this.state = {
       advancesearch: false,
-      activateCompleteSearchFeature: true,
+      activateCompleteSearchFeature: false,
       search: {
         keyword: this.props.search.keyword,
       },
@@ -72,4 +72,4 @@ class SearchPage extends Component<Props, State> {
   }
 }
 
-export default injectSheet(styles)(SearchPage);
+export default withStyles(styles)(SearchPage);

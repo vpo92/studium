@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
+import TextField from '@material-ui/core/TextField';
+//import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core/Menu';
 
 import injectSheet from 'react-jss';
 

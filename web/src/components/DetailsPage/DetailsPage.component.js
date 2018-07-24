@@ -1,11 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 
 import styles from './DetailsPage.style';
 import GenericBlock from './GenericBlock.component';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 import { type Prosopography } from '../../../../batchs/src/rawFilesParser/types';
 
@@ -43,7 +43,7 @@ class DetailsPage extends Component<Props, State> {
         <p>
           <button
             onClick={() => {
-              this.props.history.push('/recherche');
+              this.props.history.goBack();
             }}
           >
             Retourner à la liste
@@ -115,4 +115,4 @@ class DetailsPage extends Component<Props, State> {
   }
 }
 
-export default injectSheet(styles)(DetailsPage);
+export default withStyles(styles)(DetailsPage);

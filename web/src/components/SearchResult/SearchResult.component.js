@@ -1,13 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'material-ui/Table';
-import injectSheet from 'react-jss';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { withStyles } from '@material-ui/core/styles';
 
 import ResultRow from './ResultRow/ResultRow.component';
 import styles from './SearchResult.style';
@@ -59,4 +58,4 @@ class SearchResult extends Component<Props, State> {
   }
 }
 
-export default injectSheet(styles)(SearchResult);
+export default withStyles(styles)(SearchResult);
