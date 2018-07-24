@@ -28,12 +28,13 @@ class Header extends Component<Props> {
               onClick={() =>
                 this.props.handleSideMenu(!this.props.showSideMenu)
               }
+              color="inherit"
               aria-label="Menu"
             >
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit">
-              {this.props.currentPageTitle}
+            <Typography variant="title" color="inherit">
+              Studium / {this.props.currentPageTitle}
             </Typography>
           </Toolbar>
         </AppBar>

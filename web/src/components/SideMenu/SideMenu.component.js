@@ -44,7 +44,7 @@ class SideMenu extends Component<Props> {
         <AppBar position="static"
           className={this.props.classes.appDrawer}>
           <Toolbar>
-            <Typography type="title" color="inherit">
+            <Typography variant="title" color="inherit">
               Studium
             </Typography>
           </Toolbar>
