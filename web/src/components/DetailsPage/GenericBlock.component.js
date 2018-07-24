@@ -35,7 +35,7 @@ class GenericBlock extends Component<Props> {
       return (<ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
            <Typography
-             type="headline"
+             variant="title"
              className={this.props.classes.primaryColor}
            >
              {blockLabel}

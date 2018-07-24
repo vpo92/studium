@@ -45,14 +45,23 @@ class SearchPage extends Component<Props, State> {
     return (
       <div className={this.props.classes.container}>
         <h1>Rechercher une fiche</h1>
-        <TextField
-          helperText="Saisissez un mot clé"
-          value={this.state.search.keyword}
-          onChange={this.handleSearchField}
-        />
-        <Button raised color="primary" onClick={this.handleSearch}>
-          Rechercher
-        </Button>
+        <div>
+          <TextField
+           label="Recherche plein texte"
+           value={this.state.search.keyword}
+           onChange={this.handleSearchField}
+           InputLabelProps={{
+             shrink: true,
+           }}
+           placeholder="Saisissez un mot clé"
+           fullWidth
+           margin="normal"
+         />
+       </div>
+       <div>
+         <Button variant="contained" color="primary" onClick={this.handleSearch}>Rechercher</Button>
+       </div>
+
         {this.state.activateCompleteSearchFeature ? (
           <div>
             <div>
@@ -65,7 +74,6 @@ class SearchPage extends Component<Props, State> {
             {this.state.advancesearch ? <AdvancedSearch /> : ''}
           </div>
         ) : null}
-        <h1>Résultats</h1>
         <SearchResult data={this.props.search.prosopographies} />
       </div>
     );

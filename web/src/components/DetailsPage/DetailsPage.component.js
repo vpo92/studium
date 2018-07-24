@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './DetailsPage.style';
 import GenericBlock from './GenericBlock.component';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import { type Prosopography } from '../../../../batchs/src/rawFilesParser/types';
 
@@ -40,15 +41,13 @@ class DetailsPage extends Component<Props, State> {
     const { prosopography } = this.props;
     return (
       <div className={this.props.classes.container}>
-        <p>
-          <button
-            onClick={() => {
-              this.props.history.goBack();
-            }}
-          >
-            Retourner à la liste
-          </button>
-        </p>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {this.props.history.goBack();}}
+            >
+              Retourner à la liste
+          </Button>
         {prosopography && prosopography._id ? (
           <div>
             <Typography type="display2" className={this.props.classes.title}>
