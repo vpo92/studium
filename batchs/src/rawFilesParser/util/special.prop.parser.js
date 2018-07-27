@@ -1,8 +1,8 @@
 //@flow
-import type {Prosopography,ProsopographyField} from '../types';
+import type {Prosopography,ProsopographyRow} from '../types';
 import {findProperty} from '../prop.util'
 
-function buildProsopography(record: ProsopographyField) : Prosopography{
+function buildProsopography(record: ProsopographyRow): Prosopography{
   let result : Prosopography = {
     reference: record.reference,
     identity:{
@@ -111,17 +111,17 @@ function buildProsopography(record: ProsopographyField) : Prosopography{
   return result;
 }
 
- function finalizeReference(record : ProsopographyField) : ProsopographyField {
+ function finalizeReference(record: ProsopographyRow): ProsopographyRow {
    const ref = record.reference.value;
    record.reference = ref;
    return record;
-};
+}
 
- function finalizeGender(record : ProsopographyField) : ProsopographyField {
+ function finalizeGender(record: ProsopographyRow): ProsopographyRow {
 
   if(!record.gender){
     record.gender = {
-      value : "male"
+      value : "male",
     }
   }else{
     record.gender.rawValue =record.gender.value;
@@ -130,11 +130,10 @@ function buildProsopography(record: ProsopographyField) : Prosopography{
   return record;
 }
 
-export function finalyseProsopography(record : ProsopographyField) : Prosopography {
+export function finalyseProsopography(record: ProsopographyRow): Prosopography {
 
   record = finalizeReference(record);
   record = finalizeGender(record);
-  console.log(Object.keys(record).forEach((key) => (record[key] == null) && delete record[key]));
 
   let result = buildProsopography(record);
   result = JSON.parse(JSON.stringify(result));

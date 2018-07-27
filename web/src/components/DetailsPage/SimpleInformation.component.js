@@ -16,11 +16,22 @@ function isComment(topic) {
   return (topic && topic.meta && topic.meta.isComment);
 }
 
+function isLink(topic) {
+  return (topic && topic.meta && topic.meta.isLink);
+}
+
 const SimpleInformation = (props: any) => {
   return props.value ? (
     <div className={props.classes.detailsTopic}>
       <span className={props.classes.detailsTopicLabel}>{props.label} : </span>
-      <span className={isComment(props.value)?props.classes.referenceLabel:null}>{getValue(props.value)}</span>
+      {
+        isLink(props.value)?(
+          <span className={props.classes.linkLabel}><a href="{getValue(props.value)}">{getValue(props.value)}</a></span>
+        ):(
+          <span className={isComment(props.value)?props.classes.commentLabel:null}>{getValue(props.value)}</span>
+        )
+      }
+
     </div>
   ) : null ;
 };

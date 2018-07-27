@@ -41,8 +41,8 @@ export type SimpleInformation = {
   link: string,
 }
 
-export type ProsopographyField = {
-  reference: string,
+export type ProsopographyRow = {
+  reference: any,
   name: any,
   nameVariant: any,
   shortDescription: any,
@@ -219,6 +219,6 @@ export type Prosopography = {
 
 export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';
 
-export type ParsedLine = { type: Line, value?: $Shape<ProsopographyField> };
+export type ParsedLine = { type: Line, value?: $Shape<ProsopographyRow> };
 
 export type SaveRecordFunction = (record: Prosopography) => Promise<void>;

@@ -1,6 +1,6 @@
 // @flow
 
-import { isComment } from '../../src/rawFilesParser/util/comment.parser';
+import { isComment, isLink } from '../../src/rawFilesParser/util/comment.parser';
 
 describe('Comment Parser', () => {
 
@@ -43,6 +43,50 @@ describe('Comment Parser', () => {
       const line = "/a passer son enfance entre *Paris et *Marseille";
       // when
       const comment = isComment(line);
+      // then
+      expect(comment).toEqual(true);
+    });
+  });
+
+  // isLink
+  describe('isLink', () => {
+    it('should return false when no string is provided', () => {
+      // given
+      const line = null;
+      // when
+      const comment = isLink(line);
+      // then
+      expect(comment).toEqual(false);
+    });
+    it('should return false when empty string is provided', () => {
+      // given
+      const line = "";
+      // when
+      const comment = isLink(line);
+      // then
+      expect(comment).toEqual(false);
+    });
+    it('should return false when no link', () => {
+      // given
+      const line = "this is a no name value";
+      // when
+      const comment = isLink(line);
+      // then
+      expect(comment).toEqual(false);
+    });
+    it('should return false when comment', () => {
+      // given
+      const line = "/a etudier à *Paris au début du siècle";
+      // when
+      const comment = isLink(line);
+      // then
+      expect(comment).toEqual(false);
+    });
+    it('should return true when link is present', () => {
+      // given
+      const line = "//a passer son enfance entre *Paris et *Marseille";
+      // when
+      const comment = isLink(line);
       // then
       expect(comment).toEqual(true);
     });

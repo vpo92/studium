@@ -19,6 +19,10 @@ function isComment(topic) {
   return (topic && topic.meta && topic.meta.isComment);
 }
 
+function isLink(topic) {
+  return (topic && topic.meta && topic.meta.isLink);
+}
+
 const SimpleListInformation = (props: any) => {
 
   return (
@@ -27,7 +31,13 @@ const SimpleListInformation = (props: any) => {
       <span className={props.classes.detailsTopicLabel}>{props.label} : </span>
       <ul>
         {props.value.map(item => {
-          return <li className={isComment(item)?props.classes.referenceLabel:null} key={getValue(item)}>{getValue(item)}</li>
+
+          if(isLink(item)){
+            return <li className={props.classes.linkLabel}><a href="{getValue(props.value)}">{getValue(props.value)}</a></li>;
+          }else{
+            return <li className={isComment(item)?props.classes.commentLabel:null} key={getValue(item)}>{getValue(item)}</li>
+          }
+
         })}
       </ul>
     </div>

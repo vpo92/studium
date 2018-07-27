@@ -8,19 +8,20 @@ import {detectPlaces} from './util/place.parser';
 import {detectTitles} from './util/title.parser';
 import {detectInstitutions} from './util/institution.parser';
 import {isComment} from './util/comment.parser';
+import {isLink} from './util/comment.parser';
 
 import {addPropToRecord} from './prop.util';
 import {finalyseProsopography} from './util/special.prop.parser';
 
 import type {
-  ProsopographyField,
+  ProsopographyRow,
   Line,
   ParsedLine,
   SaveRecordFunction,
   MetaData,
 } from './types.js';
 
-const dataLineTypes: {[string]: $Keys<ProsopographyField>} = {
+const dataLineTypes: {[string]: $Keys<ProsopographyRow>} = {
   '1a': 'reference',
   '1b': 'name',
   '1c': 'nameVariant', //define type SimpleValueArray..
@@ -112,6 +113,7 @@ function parseDataLine(line: string): ParsedLine {
     titles: detectTitles(dataValue),
     institutions: detectInstitutions(dataValue),
     isComment: isComment(dataValue),
+    isLink: isLink(dataValue),
   };
 
   const prop = dataLineTypes[dataType];
@@ -160,7 +162,7 @@ export function detectTypeOfLine(line: string): Line {
   return 'ERROR';
 }
 
-type ComputeRecordFunction = (record: $Shape<ProsopographyField>, parsedLine: ParsedLine) => $Shape<ProsopographyField>;
+type ComputeRecordFunction = (record: $Shape<ProsopographyRow>, parsedLine: ParsedLine) => $Shape<ProsopographyRow>;
 export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeRecordFunction {
   return (record, parsedLine) => {
     if (parsedLine.type === 'DATA') {

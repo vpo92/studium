@@ -16,4 +16,4 @@ export function detectTitles(value: string): string[] {
   }
 
   return null;
-};
+}

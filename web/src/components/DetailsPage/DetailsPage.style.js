@@ -22,7 +22,7 @@ const detailPageStyle = {
     fontWeight: 'bold',
     color: primaryColorCode,
   },
-  referenceLabel:{
+  commentLabel:{
     color: secondaryColorCode,
     fontStyle: 'italic',
     listStyleType: 'none',
