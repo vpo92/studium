@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import { type Prosopography } from '../../../../batchs/src/rawFilesParser/types';
+import localeData from './../../locales/messages.json';
 
 type Props = {
   classes: any,
@@ -56,55 +57,55 @@ class DetailsPage extends Component<Props, State> {
             <a name="fiche" />
             <br />
              <GenericBlock
-               blockLabel = "Fiche d’identité"
+               blockLabel = {localeData.fr.identity}
                block={prosopography.identity}
              />
              <GenericBlock
-               blockLabel = "Origine et situation géographique"
+               blockLabel = {localeData.fr.origin}
                block={prosopography.origin}
              />
              <GenericBlock
-               blockLabel = "Insertion relationnelle"
+               blockLabel = {localeData.fr.relationalInsertion}
                block={prosopography.relationalInsertion}
              />
              <GenericBlock
-               blockLabel = "Cursus"
+               blockLabel = {localeData.fr.curriculum}
                block={prosopography.curriculum}
              />
              <GenericBlock
-               blockLabel = "Carrière ecclésiastique"
+               blockLabel = {localeData.fr.ecclesiasticalCareer}
                block={prosopography.ecclesiasticalCareer}
              />
              <GenericBlock
-               blockLabel = "Carrière professionnelle"
+               blockLabel = {localeData.fr.professionalCareer}
                block={prosopography.professionalCareer}
              />
              <GenericBlock
-               blockLabel = "Carrière politique et vicissitudes diverses"
+               blockLabel = {localeData.fr.politicalCareer}
                block={prosopography.politicalCareer}
              />
              <GenericBlock
-               blockLabel = "Voyage"
+               blockLabel = {localeData.fr.travels}
                block={prosopography.travels}
              />
              <GenericBlock
-               blockLabel = "Commission/Expertise "
+               blockLabel = {localeData.fr.commissions}
                block={prosopography.commissions}
              />
              <GenericBlock
-               blockLabel = "Logement et patrimoine"
+               blockLabel = {localeData.fr.assets}
                block={prosopography.assets}
              />
              <GenericBlock
-               blockLabel = "Signes d’individuation"
+               blockLabel = {localeData.fr.distinctiveSign}
                block={prosopography.distinctiveSign}
              />
              <GenericBlock
-               blockLabel = "Oralité"
+               blockLabel = {localeData.fr.orality}
                block={prosopography.orality}
              />
              <GenericBlock
-               blockLabel = "Varia"
+               blockLabel = {localeData.fr.otherActivities}
                block={prosopography.otherActivities}
              />
           </div>
