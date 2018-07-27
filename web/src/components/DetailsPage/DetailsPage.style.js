@@ -1,7 +1,7 @@
 // @flow
 
 import { sharedStyle } from '../../style/shared.style';
-import { primaryColorCode } from '../../style/shared.style';
+import { primaryColorCode, secondaryColorCode } from '../../style/shared.style';
 
 const detailPageStyle = {
   container: {
@@ -21,6 +21,11 @@ const detailPageStyle = {
   detailsTopicLabel: {
     fontWeight: 'bold',
     color: primaryColorCode,
+  },
+  referenceLabel:{
+    color: secondaryColorCode,
+    fontStyle: 'italic',
+    listStyleType: 'none',
   },
 };
 

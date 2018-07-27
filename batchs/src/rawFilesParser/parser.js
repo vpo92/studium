@@ -7,6 +7,8 @@ import {detectNames} from './util/name.parser';
 import {detectPlaces} from './util/place.parser';
 import {detectTitles} from './util/title.parser';
 import {detectInstitutions} from './util/institution.parser';
+import {isComment} from './util/comment.parser';
+
 import {addPropToRecord} from './prop.util';
 import {finalyseProsopography} from './util/special.prop.parser';
 
@@ -109,6 +111,7 @@ function parseDataLine(line: string): ParsedLine {
     places: detectPlaces(dataValue),
     titles: detectTitles(dataValue),
     institutions: detectInstitutions(dataValue),
+    isComment: isComment(dataValue),
   };
 
   const prop = dataLineTypes[dataType];

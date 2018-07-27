@@ -15,6 +15,10 @@ function getValue(
   return '';
 }
 
+function isComment(topic) {
+  return (topic && topic.meta && topic.meta.isComment);
+}
+
 const SimpleListInformation = (props: any) => {
 
   return (
@@ -23,7 +27,7 @@ const SimpleListInformation = (props: any) => {
       <span className={props.classes.detailsTopicLabel}>{props.label} : </span>
       <ul>
         {props.value.map(item => {
-          return <li key={getValue(item)}>{getValue(item)}</li>
+          return <li className={isComment(item)?props.classes.referenceLabel:null} key={getValue(item)}>{getValue(item)}</li>
         })}
       </ul>
     </div>

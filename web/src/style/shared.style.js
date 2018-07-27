@@ -12,6 +12,7 @@ export type sharedStyleType = {
 };
 
 export const primaryColorCode = '#3f51b5';
+export const secondaryColorCode = '#f50057';
 
 export const sharedStyle = {
   page: {
