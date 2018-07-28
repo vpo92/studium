@@ -8,7 +8,7 @@ import OmitEmpty from 'omit-empty';
 
 const enableMongo = false;
 
-const path = './batchs/tests/data';
+const path = './tests/data';
 
 let errors = [];
 
