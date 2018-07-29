@@ -7,13 +7,15 @@ import thunkMiddleware from 'redux-thunk';
 
 const composeFunctions = [
   applyMiddleware(thunkMiddleware),
-  ...(process.env.NODE_ENV !== 'production'
-    ? [
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-          window.__REDUX_DEVTOOLS_EXTENSION__(),
-      ]
-    : []),
 ];
+
+const composeEnhancers =
+  process.env.NODE_ENV !== 'production' &&
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
 
 export default function configureStore(initialState: {
   studium: StudiumState,
@@ -21,7 +23,7 @@ export default function configureStore(initialState: {
   const store = createStore(
     rootReducer,
     initialState,
-    compose(...composeFunctions)
+    composeEnhancers(...composeFunctions)
   );
 
   if (module.hot) {
