@@ -32,12 +32,9 @@ if(!isset($action) && isAuthenticated()){
 
 //Reecriture d url
 $requestURI = $_SERVER['REQUEST_URI'];
-if(null!==getApplicationPath()){
-    $route = explode(getApplicationPath(),$requestURI)[1];
-}else{
-    $route = $requestURI;
-}
 
+//Si mode dev
+$route = str_replace("/admin","",$requestURI);
 
 $applicationLog = addLog($applicationLog,"requestURI : ".$requestURI);
 $applicationLog = addLog($applicationLog,"route : ".$route);
@@ -92,6 +89,7 @@ switch ($action){
 
     case "view" :
         $reference = getFieldFromForm("reference");
+        $applicationLog = addLog($applicationLog,"$reference : ".$reference);
         $mode = getFieldFromForm("mode");
         $keyword = getFieldFromForm("keyword");
         $fiche = $ficheService->searchByReference($reference);
