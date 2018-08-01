@@ -1,8 +1,6 @@
 // @flow
 import type {
-  DateType,
   DateInformation,
-  SimpleDateInformation,
 } from '../types';
 
 
@@ -27,7 +25,7 @@ export function isolateDates(value: string): ?string[] {
   }
 
   return null;
-};
+}
 
 export function parseDates(value: string): ?DateInformation{
   let result = null;

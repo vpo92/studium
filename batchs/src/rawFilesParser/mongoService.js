@@ -1,4 +1,4 @@
-// flow
+// @flow
 
 import type { SaveRecordFunction } from './types';
 import { MongoClient } from 'mongodb';

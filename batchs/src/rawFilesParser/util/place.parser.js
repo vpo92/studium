@@ -19,4 +19,4 @@ export function detectPlaces(value: string): string[] {
   }
 
   return null;
-};
+}

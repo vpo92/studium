@@ -18,7 +18,6 @@ import type {
   Line,
   ParsedLine,
   SaveRecordFunction,
-  MetaData,
 } from './types.js';
 
 const dataLineTypes: {[string]: $Keys<ProsopographyRow>} = {
@@ -180,7 +179,7 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
   };
 }
 
-function processStream(stream: any, saveRecord: SaveRecordFunction): Promise<void> {;
+function processStream(stream: any, saveRecord: SaveRecordFunction): Promise<void> {
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface(stream);
     let record = {};

@@ -19,4 +19,4 @@ export function detectInstitutions(value: string): string[] {
   }
 
   return null;
-};
+}

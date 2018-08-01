@@ -1,6 +1,5 @@
 //@flow
 import type {Prosopography,ProsopographyRow} from '../types';
-import {findProperty} from '../prop.util'
 
 function buildProsopography(record: ProsopographyRow): Prosopography{
   let result : Prosopography = {

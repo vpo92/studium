@@ -16,4 +16,4 @@ export function detectNames(value: string): string[] {
   }
 
   return null;
-};
+}

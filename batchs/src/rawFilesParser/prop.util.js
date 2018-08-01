@@ -1,3 +1,4 @@
+// @flow
 
 export function addPropToRecord(record, parsedLine) {
   let k = Object.keys(parsedLine.value)[0];
