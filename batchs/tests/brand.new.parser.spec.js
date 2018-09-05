@@ -64,7 +64,18 @@ describe('Brand new parser', () => {
       // then
       expect(recordParsed).toEqual({
         value: {
-          reference: '1',
+          "reference": {
+            "value": "1",
+            "meta": {
+              "dates": null,
+              "institutions": null,
+              "isComment": false,
+              "isLink": false,
+              "names": null,
+              "places": null,
+              "titles": null,
+            },
+          },
         },
         type: 'DATA',
       });
@@ -85,7 +96,7 @@ describe('Brand new parser', () => {
 
     it(`should send an ERROR line if the data type is unknown`, () => {
       // given
-      const line = `<3f>	Écrit en %1473%.`;
+      const line = `<ff>	Écrit en %1473%.`;
 
       // when
       const recordParsed = lineParser(line);
@@ -100,12 +111,28 @@ describe('Brand new parser', () => {
   describe('addPropToRecord', () => {
     it('should return a record with new value', () => {
       let record = {};
-      let parsedLine = {"prop":"value"};
+      let parsedLine = {
+        value: {
+          "reference": {
+            "value": "1",
+            "meta": {
+              "dates": null,
+              "institutions": null,
+              "isComment": false,
+              "isLink": false,
+              "names": null,
+              "places": null,
+              "titles": null,
+            },
+          },
+        },
+        type: 'DATA',
+      };
       const expected = {
         "prop":"value"
       };
       const res = addPropToRecord(record,parsedLine);
-      expect(record).toEqual(expected);
+      expect(res).toEqual(expected);
     });
     it('should return a record with tab value if multiple value', () => {
       let record = {
@@ -116,7 +143,7 @@ describe('Brand new parser', () => {
         "prop":["value","value2"]
       };
       const res = addPropToRecord(record,parsedLine);
-      expect(record).toEqual(expected);
+      expect(res).toEqual(expected);
     });
 
   });

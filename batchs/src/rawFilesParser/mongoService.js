@@ -37,7 +37,11 @@ const saveRecordInDatabase: SaveRecordFunction = (record) => {
   console.log(`ref ${record.reference}: Saving record.`);
   return MongoClient.connect('mongodb://localhost/studium')
   .then(function(db){
-    importRecord(db,record) ;
+    importRecord(db,record)
+    .then( function(res){
+        console.log("SAVE OK for"+res._id);
+      }
+    );
   })
   .catch((e) => {
     console.log(`ref ${record.reference}: Error saving record : ${e}.`);

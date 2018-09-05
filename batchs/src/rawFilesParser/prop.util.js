@@ -1,6 +1,12 @@
 // @flow
 
-export function addPropToRecord(record, parsedLine) {
+
+import type {
+  ProsopographyRow,
+  ParsedLine,
+} from './types.js';
+
+export function addPropToRecord(record: $Shape<ProsopographyRow>, parsedLine: ParsedLine): $Shape<ProsopographyRow> {
   let k = Object.keys(parsedLine.value)[0];
   if(record[k]){
     let v = record[k];
@@ -20,9 +26,9 @@ export function addPropToRecord(record, parsedLine) {
     };*/
   }
   return record;
-};
-
-export function findProperty(json, propertyName) {
+}
+/**
+export function findProperty(json: any, propertyName: string): any {
   if (json && propertyName) {
     let props = propertyName.split('.');
     if (json[props[0]]) {
@@ -40,4 +46,4 @@ export function findProperty(json, propertyName) {
   } else {
     return null;
   }
-}
+}*/

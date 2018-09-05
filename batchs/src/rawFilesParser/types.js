@@ -1,11 +1,5 @@
 // @flow
 
-export type MetaData = {
-  certain: ?boolean,
-  comment: ?string,
-  link: ?string,
-}
-
 export type DateType = 'SIMPLE' | 'INTERVAL';
 
 export type DateInformation = {
@@ -217,7 +211,7 @@ export type Prosopography = {
   },
 }
 
-export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR';
+export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR' | 'FIRST_LINE';
 
 export type ParsedLine = { type: Line, value?: $Shape<ProsopographyRow> };
 

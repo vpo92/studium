@@ -165,11 +165,24 @@ type ComputeRecordFunction = (record: $Shape<ProsopographyRow>, parsedLine: Pars
 export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeRecordFunction {
   return (record, parsedLine) => {
     if (parsedLine.type === 'DATA') {
-      return addPropToRecord(record, parsedLine);
 
+      //FIXME : save current record and start new
+      if(parsedLine.value &&  parsedLine.value.reference){
+        console.log("FIRST LINE");
+        console.log(record);
+        //if a record exist
+        if(record.reference){
+          record = finalyseProsopography(record);
+          saveRecord(record);
+        }
+        //return 'FIRST_LINE';
+        return addPropToRecord({}, parsedLine);
+      }else{
+        return addPropToRecord(record, parsedLine);
+      }
     } else if (parsedLine.type === 'EMPTY') {
       if (record.reference) {
-        console.log(record);
+        //console.log(record);
         record = finalyseProsopography(record);
         saveRecord(record);
       }
