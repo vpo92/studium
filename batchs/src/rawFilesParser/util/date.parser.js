@@ -5,9 +5,6 @@ import type {
 
 
 export function isolateDates(value: ?string): ?string[] {
-
-
-  //split
   if (value && value.indexOf("%") >= 0) {
     let t = value.split("%");
     let res = [];
@@ -23,7 +20,6 @@ export function isolateDates(value: ?string): ?string[] {
     }
     return res;
   }
-
   return null;
 }
 
@@ -31,7 +27,9 @@ export function parseDates(value: ?string): ?DateInformation {
   if (value) {
     const dGroup = '([0-9]+)';
     if (value.indexOf('-') >= 0) {
+      console.log('contains -');
       const match = new RegExp(`:?${dGroup}:?-:?${dGroup}:?`).exec(value);
+      console.log('match :', match);
       return {
         type: 'INTERVAL',
         startDate: {

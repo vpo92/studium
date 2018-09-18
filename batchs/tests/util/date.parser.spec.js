@@ -5,7 +5,7 @@ import { detectDates, isolateDates, parseDates } from '../../src/rawFilesParser/
 describe('Date Parser', () => {
 
   //Parse dates
-  describe.only('parseDates', () => {
+  describe('parseDates', () => {
     it('should return null when no string is provided', () => {
       // given
       const line = null;
@@ -196,7 +196,7 @@ describe('Date Parser', () => {
     });
     it('should detect dates among string when dates is present - near', () => {
       // given
-      const line = "a etudier à *Paris :1246:-:1310:";
+      const line = "a etudier à *Paris %:1246:-:1310:%";
       // when
       const dates = isolateDates(line);
       // expected
