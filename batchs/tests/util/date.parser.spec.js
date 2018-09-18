@@ -1,14 +1,11 @@
 // @flow
 
-import { Readable } from 'stream';
-import fs from 'fs';
-
 import { detectDates, isolateDates, parseDates } from '../../src/rawFilesParser/util/date.parser';
 
 describe('Date Parser', () => {
 
   //Parse dates
-  describe('parseDates', () => {
+  describe.only('parseDates', () => {
     it('should return null when no string is provided', () => {
       // given
       const line = null;
@@ -35,7 +32,7 @@ describe('Date Parser', () => {
         "type": 'SIMPLE',
         "startDate": {
           "value": new Date("1223"),
-          "certain": true
+          "certain": true,
         },
       };
       // then
@@ -51,27 +48,27 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "endDate": {
           "value": new Date("1403"),
-          "certain": true
+          "certain": true,
         },
       };
       // then
       expect(dates).toEqual(expected);
-
-
+    });
+    it('should detect dates among string when dates is present - before with blanks', () => {
       // given
-      const line2 = "    :1196";
+      const line = "    :1196";
       // when
-      const dates2 = parseDates(line2);
+      const dates = parseDates(line);
       // expected
-      const expected2 = {
+      const expected = {
         "type": 'INTERVAL',
         "endDate": {
           "value": new Date("1196"),
-          "certain": true
+          "certain": true,
         },
       };
       // then
-      expect(dates2).toEqual(expected2);
+      expect(dates).toEqual(expected);
 
     });
     it('should detect dates among string when dates is present - after', () => {
@@ -84,7 +81,7 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "startDate": {
           "value": new Date("1223"),
-          "certain": true
+          "certain": true,
         },
       };
       // then
@@ -97,14 +94,14 @@ describe('Date Parser', () => {
       const dates = parseDates(line);
       // expected
       const expected = {
-        "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date("1246"),
-          "certain": true
+        type: 'INTERVAL',
+        startDate: {
+          value: new Date("1246"),
+          certain: true,
         },
-        "endDate": {
-          "value": new Date("1310"),
-          "certain": true
+        endDate: {
+          value: new Date("1310"),
+          certain: true,
         },
       };
       // then
@@ -117,14 +114,14 @@ describe('Date Parser', () => {
       const dates = parseDates(line);
       // expected
       const expected = {
-        "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date("1246"),
-          "certain": false
+        type: 'INTERVAL',
+        startDate: {
+          value: new Date("1246"),
+          certain: false,
         },
-        "endDate": {
-          "value": new Date("1310"),
-          "certain": false
+        endDate: {
+          value: new Date("1310"),
+          certain: false,
         },
       };
       // then
@@ -132,8 +129,6 @@ describe('Date Parser', () => {
     });
   });
 
-
-  // isolateDates
   describe('isolateDates', () => {
     it('should return null when no string is provided', () => {
       // given
@@ -215,7 +210,7 @@ describe('Date Parser', () => {
       // when
       const dates = isolateDates(line);
       // expected
-      const expected = [":1246:-:1310:",":1403"];
+      const expected = [":1246:-:1310:", ":1403"];
       // then
       expect(dates).toEqual(expected);
     });
@@ -257,7 +252,7 @@ describe('Date Parser', () => {
         "type": 'SIMPLE',
         "startDate": {
           "value": new Date("1403"),
-          "certain": true
+          "certain": true,
         },
       }];
       // then
@@ -273,7 +268,7 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "endDate": {
           "value": new Date("1403"),
-          "certain": true
+          "certain": true,
         },
       }];
       // then
@@ -289,7 +284,7 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "startDate": {
           "value": new Date("1223"),
-          "certain": true
+          "certain": true,
         },
       }];
       // then
@@ -305,11 +300,11 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "startDate": {
           "value": new Date("1246"),
-          "certain": true
+          "certain": true,
         },
         "endDate": {
           "value": new Date("1310"),
-          "certain": true
+          "certain": true,
         },
       }];
       // then
@@ -325,11 +320,11 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "startDate": {
           "value": new Date("1246"),
-          "certain": false
+          "certain": false,
         },
         "endDate": {
           "value": new Date("1310"),
-          "certain": false
+          "certain": false,
         },
       }];
       // then
@@ -345,24 +340,22 @@ describe('Date Parser', () => {
         "type": 'INTERVAL',
         "startDate": {
           "value": new Date("1246"),
-          "certain": true
+          "certain": true,
         },
         "endDate": {
           "value": new Date("1310"),
-          "certain": true
+          "certain": true,
         },
       },
       {
         "type": 'INTERVAL',
         "endDate": {
           "value": new Date("1403"),
-          "certain": true
-        }
+          "certain": true,
+        },
       }];
       // then
       expect(dates).toEqual(expected);
     });
   });
-
-
 });

@@ -129,20 +129,20 @@ describe('Brand new parser', () => {
         type: 'DATA',
       };
       const expected = {
-        "prop":"value"
+        "prop": "value",
       };
-      const res = addPropToRecord(record,parsedLine);
+      const res = addPropToRecord(record, parsedLine);
       expect(res).toEqual(expected);
     });
     it('should return a record with tab value if multiple value', () => {
       let record = {
-        "prop":"value"
+        "prop": "value",
       };
-      let parsedLine = {"prop":"value2"};
+      let parsedLine = { "prop": "value2" };
       const expected = {
-        "prop":["value","value2"]
+        "prop": ["value", "value2"],
       };
-      const res = addPropToRecord(record,parsedLine);
+      const res = addPropToRecord(record, parsedLine);
       expect(res).toEqual(expected);
     });
 

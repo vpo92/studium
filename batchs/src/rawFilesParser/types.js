@@ -4,15 +4,15 @@ export type DateType = 'SIMPLE' | 'INTERVAL';
 
 export type DateInformation = {
   type: DateType,
-  startDate: ?SimpleDateInformation,
-  endDate: ?SimpleDateInformation,
+  startDate?: SimpleDateInformation,
+  endDate?: SimpleDateInformation,
 }
 
 export type SimpleDateInformation = {
   value: Date,
   certain: boolean,
-  comment: string,
-  link: string,
+  comment?: string,
+  link?: string,
 }
 
 export type MetaInformation = {
