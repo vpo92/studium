@@ -7,6 +7,13 @@ import { saveRecordInDatabase, createIndex } from './mongoService';
 
 //processFile('./tests/data/studium_input.txt', saveRecordInDatabase)
 processFile('./tests/data/studium_input_full.txt', saveRecordInDatabase)
-.then(
+
+.then(function(){
   createIndex()
-);
+  .then(function(db){
+      db.close();
+  });
+})
+.catch(function(err){
+  console.error(err);
+});

@@ -7,11 +7,11 @@ import { MongoClient } from 'mongodb';
 function importRecord(db,item){
   return new Promise((resolve, reject) => {
     if (db && item) {
-      db.collection('prosopography').insert(item, null, (error, results) => {
+      db.collection('prosopography').insertOne(item, (error, results) => {
         if (error) {
           reject(error);
         } else {
-          resolve(results);
+          resolve({"db":db,"record":results});
         }
       });
     } else {
@@ -35,11 +35,12 @@ const saveRecordInDatabaseOld: SaveRecordFunction = (record) => {
 //FIXME : batch never stop...
 const saveRecordInDatabase: SaveRecordFunction = (record) => {
   console.log(`ref ${record.reference}: Saving record.`);
-  return MongoClient.connect('mongodb://localhost/studium')
+  MongoClient.connect('mongodb://localhost/studium')
   .then(function(db){
     importRecord(db,record)
     .then( function(res){
-        console.log("SAVE OK for"+res._id);
+        console.log("SAVE OK for "+record.reference);
+        res.db.close();
       }
     );
   })
@@ -60,7 +61,7 @@ const createIndex = () => {
             if (error) {
               reject(error);
             } else {
-              resolve(results);
+              resolve(db);
             }
           });
         } else {
