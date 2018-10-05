@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
   appDrawer: {
     width:'200px',
-  }
+  },
 }
 
 type Props = {
