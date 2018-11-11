@@ -22,52 +22,53 @@ export function isolateDates(value: ?string): ?string[] {
   }
   return null;
 }
-
-export function parseDates(value: ?string): ?DateInformation {
-  if (value) {
-    const dGroup = '([0-9]+)';
-    if (value.indexOf('-') >= 0) {
-      console.log('contains -');
-      const match = new RegExp(`:?${dGroup}:?-:?${dGroup}:?`).exec(value);
-      console.log('match :', match);
-      return {
-        type: 'INTERVAL',
-        startDate: {
-          value: new Date(match[1]),
-          certain: !value.trim().startsWith(':'),
+export function parseDates(value: string): ?DateInformation{
+  let result = null;
+  let t = null;
+  if(value){
+    value = value.trim();
+    let interval = value.split("-");
+    if(interval.length > 1){
+      //FIXME : deal with :
+      result = {
+        "type": 'INTERVAL',
+        "startDate": {
+          "value": new Date(interval[0]),
+          "certain": true,
         },
-        endDate: {
-          value: new Date(match[2]),
-          certain: !value.trim().endsWith(':'),
-        },
-      };
-    } else {
-      const startDateOnly = `${dGroup}:?`;
-      const endDate = ` ?:${dGroup}`;
-      const match = new RegExp(`${startDateOnly}|${endDate}`).exec(value);
-      const type = value.indexOf(':') >= 0 ? 'INTERVAL' : 'SIMPLE';
-      if (match[1]) {
-        return {
-          type,
-          startDate: {
-            value: new Date(match[1]),
-            certain: true,
-          },
-        };
-      } else {
-        if (match[2]) {
-          return {
-            type,
-            endDate: {
-              value: new Date(match[2]),
-              certain: true,
-            },
-          };
+        "endDate": {
+          "value": new Date(interval[1]),
+          "certain": true,
         }
-      }
+      };
+      //before
+    }else if(t = (/[:]([0-9]+)/).exec(value)){
+      result = {
+        "type": 'INTERVAL',
+        "endDate": {
+          "value": new Date(t[1]),
+          "certain": true,
+        }
+      };
+      // after
+    }else if(t = (/([0-9]+)[:]/).exec(value)){
+      result = {
+        "type": 'INTERVAL',
+        "startDate": {
+          "value": new Date(t[1]),
+          "certain": true,
+        }
+      };
+    }else if(t = (/([0-9]+)/).exec(value)){
+      result = {
+        "type": 'SIMPLE',
+        "startDate": {
+          "value": new Date(value),
+          "certain": true,
+        }
+      };
     }
   }
-  return null;
 }
 
 export function detectDates(value: ?string): ?DateInformation[] {

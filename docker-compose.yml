@@ -12,6 +12,7 @@ services:
       - studium_web
     depends_on:
       - mongodb
+    restart: always
   studium_web:
     image: studium/web
     environment:
