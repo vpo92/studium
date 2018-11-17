@@ -1,10 +1,15 @@
 version: "3"
 
+networks:
+  public:
+    external:
+      name: public
+
 services:
   studium_api:
     image: studium/api
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
       - MONGO_URL=mongodb://mongodb/studium
     links:
@@ -13,12 +18,22 @@ services:
     depends_on:
       - mongodb
     restart: always
+    networks:
+     - default
+     - public
+    labels:
+      - "traefik.frontend.rule=Host:studium-api.vincentpoupet.fr"
   studium_web:
     image: studium/web
     environment:
-      - API_URL=http://localhost:3000
+      - API_URL=http://studium-api.vincentpoupet.fr
     ports:
-      - "3001:3001"
+      - 3001:3001
+    networks:
+     - default
+     - public
+    labels:
+      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
   mongodb:
     image: mongo:latest
     container_name: "mongodb"
@@ -27,5 +42,7 @@ services:
       - MONGO_LOG_DIR=/dev/null
     volumes:
       - ./data/db:/data/db
+    networks:
+     - default
     ports:
       - 27017:27017

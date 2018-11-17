@@ -23,6 +23,15 @@ Studium is a rich web application that allow to browse and request prosopographi
 - `cd api`
 - `npm run docker:build`
 
+#### Build all
+- go to project root folder
+- `./build.sh`
+
+#### Push image to docker hub
+- export DOCKER_HUB_LOGIN='LOGIN'
+- export DOCKER_HUB_PASSWORD='PASSWORD'
+- `./push.sh`
+
 ### Run
 #### Run Web app with docker
 - `cd web/docker`
