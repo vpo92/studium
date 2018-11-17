@@ -1,6 +1,9 @@
 # Studium
 
-Studium is a rich web application that allow to browse and request prosopographics data.
+Studium is a rich web application that allow to browse and request prosopographics data via a complete API.
+
+## API Documentation :
+https://app.swaggerhub.com/apis-docs/studium/StudiumAPI/0.0.3
 
 ## Launch in local
 - `npm install`
