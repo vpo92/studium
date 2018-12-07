@@ -66,4 +66,19 @@ router.get('/:reference', async (req, res, next) => {
   }
 });
 
+router.post('/indexDB', (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: indexDB`);
+  try {
+    service.indexDB();
+    logger.info(`${id}: indexDB done`);
+    res.send({'message':'OK'});
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to indexDB`
+    );
+    next(err);
+  }
+});
+
 export default router;

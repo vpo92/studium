@@ -46,6 +46,14 @@ function findByReference(reference: string): Promise<Prosopography> {
     .findOne({ reference: reference });
 }
 
+function indexDB(){
+  console.log(`create index`);
+    return db
+    .get()
+    .collection('prosopography')
+    .createIndex({ '$**': 'text' });
+}
+
 /** *********************
  * Export               *
  ************************
@@ -55,4 +63,5 @@ module.exports = {
   indexSearch,
   findByReference,
   textSearch,
+  indexDB,
 };
