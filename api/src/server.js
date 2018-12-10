@@ -9,6 +9,13 @@ import routes from './routes/routes';
 import db from './utils/db';
 import logger from './utils/logger';
 
+import mongoose from 'mongoose';
+
+import config from '../config';
+
+//mongoose.connect('mongodb://localhost/studium');
+mongoose.connect(config.mongooseDB,{ useNewUrlParser: true });
+
 const app = express();
 
 app.set('env', process.env.NODE_ENV || 'dev');

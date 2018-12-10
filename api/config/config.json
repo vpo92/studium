@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "mongooseDB": "mongodb://localhost/studium",
+    "appMode":"dev",
+    "auth": {
+      "userRoles": [
+        "guest",
+        "user",
+        "admin"
+      ],
+      "secrets": {
+        "session": "sofhfsoih343dohis43dsoj"
+      },
+      "iss":"souliermoi.fr"
+    }
+  }
+}

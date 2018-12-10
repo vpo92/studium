@@ -2,8 +2,11 @@
 
 import express from 'express';
 import uuid from 'uuid';
+import passport from 'passport';
 
 import service from '../services/prosopographyService';
+//import auth from '../services/authService';
+//auth.setup();
 import logger from '../utils/logger';
 
 const router = express.Router();
@@ -66,9 +69,11 @@ router.get('/:reference', async (req, res, next) => {
   }
 });
 
-router.post('/indexDB', (req, res, next) => {
+router.post('/indexDB', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: indexDB`);
+  logger.info(`${id}: indexDB user ${req.user}`);
+
   try {
     service.indexDB();
     logger.info(`${id}: indexDB done`);
