@@ -6,6 +6,30 @@ import logger from '../utils/logger';
 import User from '../models/userModel';
 import config from '../../config';
 
+
+
+
+const getAuth = passport.authenticate('jwt', { session: false });
+const getUser = async (req,res,next) => {
+  logger.info("getUser");
+  logger.info(req.user);
+  try{
+    logger.info(req.user);
+    const user = await User.findOneAsync({email:req.user.email});
+    logger.info("user:"+user);
+    if (!user) {
+      return res.status(401).end();
+    }else{
+      req.user = user;
+      next();
+    }
+  }catch(err){
+    return next(err);
+  }
+};
+const isAuthenticated = [
+  getAuth, getUser
+]
 const authenticate = async (email, password)  => {
   try{
     const user = await User.findOneAsync({email:email.toLowerCase()});
@@ -38,4 +62,6 @@ const setup = () => {
 module.exports = {
   setup,
   authenticate,
+  isAuthenticated,
+  getUser,
 };

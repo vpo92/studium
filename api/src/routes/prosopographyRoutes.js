@@ -5,7 +5,7 @@ import uuid from 'uuid';
 import passport from 'passport';
 
 import service from '../services/prosopographyService';
-//import auth from '../services/authService';
+import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
 
@@ -69,10 +69,10 @@ router.get('/:reference', async (req, res, next) => {
   }
 });
 
-router.post('/indexDB', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: indexDB`);
-  logger.info(`${id}: indexDB user ${req.user}`);
+  logger.info(`${id}: indexDB user ${req.user.name}`);
 
   try {
     service.indexDB();
