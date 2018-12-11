@@ -20,7 +20,7 @@ class HomePage extends Component<{classes: any}> {
         <div className={this.props.classes.header}><img src={header}/></div>
         <div className={this.props.classes.text}>
           <p>
-            Développée dans le cadre du projet Studium Parisiense , l’un des axes de recherche du programme européen «Signs and States» dirigé par Jean-Philippe Genet et financé par l’European Research Council, la base de données prosopographique Studium Parisiense est consacrée aux membres des écoles et de l’université de Paris entre le XIIe et le XVIe siècle. Les quelque 15 000 fiches qui la composent contiennent des informations biographiques et bibliographiques relatives, entre autres, aux professeurs, aux étudiants et aux suppôts de l’Université.
+            Développée dans le cadre du projet Studium Parisiense , l’un des axes de recherche du programme européen «Signs and States» dirigé par Jean-Philippe Genet et financé par l’European Research Council, la base de données prosopographique Studium Parisiense est consacrée aux membres des écoles et de l’université de Paris entre le XIIe et le XVIe siècle. Les quelques 15 000 fiches qui la composent contiennent des informations biographiques et bibliographiques relatives, entre autres, aux professeurs, aux étudiants et aux suppôts de l’Université.
           </p>
           <p>
             Ce projet, commencé par Jean-Philippe Genet, dans un but pédagogique, pour former les étudiants d’histoire au travail collectif de construction des bases de données historiques, a permis de réunir une somme considérable de données, grâce au dépouillement de nombreux répertoires biographiques et travaux de recherche.
