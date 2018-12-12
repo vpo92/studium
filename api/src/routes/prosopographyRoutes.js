@@ -73,19 +73,17 @@ router.post('/', auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography`);
   logger.info(`${id}: indexDB user ${req.user.name}`);
-
-  res.send({'message':'TODO'});
-  /**
-  try {
-    service.indexDB();
-    logger.info(`${id}: indexDB done`);
-    res.send({'message':'OK'});
-  } catch (err) {
-    logger.error(
-      `${id}: Failed to indexDB`
-    );
-    next(err);
-  }*/
+  //FIXME : add controls via mongoose ? or swagger ?
+  const proso = req.body;
+  try{
+    service.create(proso);
+    return res.send({'message':'OK'});
+  }catch(err){
+    return res.status(500).json({
+        message: "Error",
+        error: err,
+    });
+  }
 });
 
 router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
