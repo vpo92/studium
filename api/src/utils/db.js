@@ -1,43 +1,55 @@
 // @flow
 
 import { MongoClient } from 'mongodb';
+const bluebird = require('bluebird');
+const mongo = bluebird.promisifyAll(MongoClient);
 
 let state = {
-  db: null,
+  connection: null,
 };
 
 type Callback = (err?: Error) => void;
 
 function connect(url: string, done: Callback): void {
-  if (state.db) {
+  if (state.connection) {
     return done();
   } else {
-    MongoClient.connect(url, (err, db) => {
+    MongoClient.connect(url, (err, connection) => {
       if (err) {
         return done(err);
       }
-      state.db = db;
+      state.connection = connection;
       return done();
     });
   }
 }
 
+async function connectAsync(url: string): Promise<MongoClient>{
+  if (state.connection) {
+    return state.connection;
+  } else {
+      state.connection = await mongo.connectAsync(url);
+  }
+}
+
 function get(): any {
-  return state.db;
+  return state.connection;
 }
 
 function close(done: Callback): void {
-  if (state.db) {
-    state.db.close(err => {
-      state.db = null;
+  if (state.connection) {
+    state.connection.close(err => {
+      state.connection = null;
       state.mode = null;
       done(err);
     });
   }
 }
 
+
 module.exports = {
   connect,
   get,
   close,
+  connectAsync,
 };

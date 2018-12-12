@@ -54,6 +54,18 @@ function indexDB(){
     .createIndex({ '$**': 'text' });
 }
 
+function convertTextToJsonProsopography(text){
+  return null;
+}
+
+async function create(prosopography: Prosopography): Promise<Prosopography> {
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography')
+    .insert(prosopography);
+}
+
 /** *********************
  * Export               *
  ************************
@@ -64,4 +76,5 @@ module.exports = {
   findByReference,
   textSearch,
   indexDB,
+  create
 };
