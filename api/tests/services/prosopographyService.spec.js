@@ -34,6 +34,34 @@ describe('prosopographyService', () => {
       }
     });
   });
+
+  describe('convertFromText', () => {
+    it('should be valid with correct values', async () =>  {
+      const txt = `<1a>${tag}
+<1b>   VINCENTUS
+<1c> VINCENT TUS`;
+      const expected = {
+        reference : 30,
+        identity : {
+          name : {
+            value:"VINCENTUS",
+          },
+        },
+      };
+      try{
+        let prosopography = await service.convertFromText(txt);
+        console.log(prosopography);
+        expect(prosopography).toBeDefined();
+        expect(prosopography.reference).toEqual(tag);
+        expect(prosopography.identity.name.value).toEqual("VINCENTUS");
+        //expect(prosopography).toEqual(expected);
+      }catch(err){
+        expect(err).toBeUndefined();
+      }
+    });
+  });
+
+
 });
 
 

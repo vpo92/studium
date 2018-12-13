@@ -192,7 +192,7 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
   };
 }
 
-function processStream(stream: any, saveRecord: SaveRecordFunction): Promise<void> {
+export function processStream(stream: any, saveRecord: SaveRecordFunction): Promise<void> {
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface(stream);
     let record = {};

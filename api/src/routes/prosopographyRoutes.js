@@ -72,11 +72,31 @@ router.get('/:reference', async (req, res, next) => {
 router.post('/', auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography`);
-  logger.info(`${id}: indexDB user ${req.user.name}`);
+  logger.info(`${id}: POST prosopography user ${req.user.name}`);
   //FIXME : add controls via mongoose ? or swagger ?
   const proso = req.body;
   try{
     service.create(proso);
+    return res.send({'message':'OK'});
+  }catch(err){
+    return res.status(500).json({
+        message: "Error",
+        error: err,
+    });
+  }
+});
+
+router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: POST prosopography from-text`);
+  logger.info(`${id}: POST prosopography from-text user ${req.user.name}`);
+
+  const proso = req.body.prosopography;
+  logger.info(proso);
+  try{
+    let p = await service.convertFromText(proso);
+    logger.info(p);
+    await service.create(p);
     return res.send({'message':'OK'});
   }catch(err){
     return res.status(500).json({

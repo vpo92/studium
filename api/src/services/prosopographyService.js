@@ -3,6 +3,8 @@
 import db from '../utils/db';
 //import { type Prosopography } from '../../types/Prosopography';
 import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
+import { processStream } from '../../../batchs/src/rawFilesParser/parser';
+import {Readable} from 'stream';
 
 async function findAll(): Promise<Prosopography[]> {
   return await db
@@ -54,16 +56,25 @@ function indexDB(){
     .createIndex({ '$**': 'text' });
 }
 
-function convertTextToJsonProsopography(text){
-  return null;
-}
-
-async function create(prosopography: Prosopography): Promise<Prosopography> {
+async function create(prosopography: Prosopography): Promise<Any> {
   //FIXME : add controls
   return db
     .get()
     .collection('prosopography')
     .insert(prosopography);
+}
+
+async function convertFromText(text: string): Promise<Prosopography> {
+  var s = new Readable();
+  s.push(text);
+  s.push(null);
+  let result = [];
+  //return an array of 1 prosopographies
+  await processStream(s,function(prosopography){
+    result.push(prosopography);
+  });
+  //return only first element
+  return result[0];
 }
 
 /** *********************
@@ -76,5 +87,6 @@ module.exports = {
   findByReference,
   textSearch,
   indexDB,
-  create
+  create,
+  convertFromText,
 };
