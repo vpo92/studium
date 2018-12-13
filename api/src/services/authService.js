@@ -5,18 +5,17 @@ import {Strategy as JwtStrategy,ExtractJwt} from 'passport-jwt';
 import logger from '../utils/logger';
 import User from '../models/userModel';
 import config from '../../config';
-
+import uuid from 'uuid';
 
 
 
 const getAuth = passport.authenticate('jwt', { session: false });
 const getUser = async (req,res,next) => {
-  logger.info("getUser");
-  logger.info(req.user);
+  const id = uuid.v4();
+  logger.info(`${id}:getUser`);
   try{
-    logger.info(req.user);
     const user = await User.findOneAsync({email:req.user.email});
-    logger.info("user:"+user);
+    logger.info(`${id}:getUser user found ${user.name}`);
     if (!user) {
       return res.status(401).end();
     }else{
@@ -27,6 +26,7 @@ const getUser = async (req,res,next) => {
     return next(err);
   }
 };
+
 const isAuthenticated = [
   getAuth, getUser
 ]

@@ -92,10 +92,10 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   logger.info(`${id}: POST prosopography from-text user ${req.user.name}`);
 
   const proso = req.body.prosopography;
-  logger.info(proso);
+  logger.debug(proso);
   try{
     let p = await service.convertFromText(proso);
-    logger.info(p);
+    logger.debug(p);
     await service.create(p);
     return res.send({'message':'OK'});
   }catch(err){
