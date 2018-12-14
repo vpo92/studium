@@ -11,7 +11,7 @@ export function addPropToRecord(record: $Shape<ProsopographyRow>, parsedLine: Pa
   if(record[k]){
     let v = record[k];
     if(v instanceof Array){
-      v.push(parsedLine.value)
+      v.push(parsedLine.value[k])
     }else{
       record[k] = [v];
       record[k].push(parsedLine.value[k])
@@ -19,11 +19,6 @@ export function addPropToRecord(record: $Shape<ProsopographyRow>, parsedLine: Pa
     //return record;
   }else{
     record[k] = parsedLine.value[k];
-    /***
-    return {
-      ...record,
-      ...parsedLine.value,
-    };*/
   }
   return record;
 }

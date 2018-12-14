@@ -3,7 +3,8 @@
 import { Readable } from 'stream';
 import fs from 'fs';
 
-import { computeOrSaveRecord, detectTypeOfLine, lineParser, processFile, addPropToRecord } from '../src/rawFilesParser/parser';
+import { computeOrSaveRecord, detectTypeOfLine, lineParser, processFile } from '../src/rawFilesParser/parser';
+import { addPropToRecord } from '../src/rawFilesParser/prop.util';
 
 describe('Brand new parser', () => {
 
@@ -111,44 +112,122 @@ describe('Brand new parser', () => {
   describe('addPropToRecord', () => {
     it('should return a record with new value', () => {
       let record = {};
-      let parsedLine = {
+      const meta = {
+        "dates": null,
+        "institutions": null,
+        "isComment": false,
+        "isLink": false,
+        "names": null,
+        "places": null,
+        "titles": null,
+      };
+
+      const parsedLine = {
         value: {
           "reference": {
             "value": "1",
-            "meta": {
-              "dates": null,
-              "institutions": null,
-              "isComment": false,
-              "isLink": false,
-              "names": null,
-              "places": null,
-              "titles": null,
-            },
+            "meta": meta,
           },
         },
         type: 'DATA',
       };
       const expected = {
-        "prop": "value",
+        "reference": {
+        "meta": meta,
+        "value": "1"
+        }
       };
-      const res = addPropToRecord(record, parsedLine);
+      let res = addPropToRecord(record, parsedLine);
       expect(res).toEqual(expected);
+      const parsedLine2 = {
+        value: {
+          "name": {
+            "value": "ROMANUS",
+            "meta": meta,
+          },
+        },
+        type: 'DATA',
+      };
+      const expected2 = {
+        "reference": {
+        "meta": meta,
+          "value": "1"
+        },
+        "name": {
+          "value": "ROMANUS",
+          "meta": meta,
+        }
+      };
+      res = addPropToRecord(res, parsedLine2);
+      expect(res).toEqual(expected2);
+
     });
     it('should return a record with tab value if multiple value', () => {
+      const meta = {
+        "dates": null,
+        "institutions": null,
+        "isComment": false,
+        "isLink": false,
+        "names": null,
+        "places": null,
+        "titles": null,
+      };
+
       let record = {
-        "prop": "value",
+          nameVariant:{
+            value:'ROMANUS',
+            meta:meta,
+            },
       };
-      let parsedLine = { "prop": "value2" };
+
+      let parsedLine = {
+        value: {
+          nameVariant: {
+            "value": "ROMANUS 2",
+            "meta": meta,
+          },
+        },
+        type: 'DATA',
+      };
+
       const expected = {
-        "prop": ["value", "value2"],
+        nameVariant: [
+          {
+            "value": "ROMANUS",
+            "meta": meta,
+          },
+          {
+            "value": "ROMANUS 2",
+            "meta": meta,
+          }
+        ]
       };
-      const res = addPropToRecord(record, parsedLine);
+      let res = addPropToRecord(record, parsedLine);
       expect(res).toEqual(expected);
+
+      const expected2 = {
+        nameVariant: [
+          {
+            "value": "ROMANUS",
+            "meta": meta,
+          },
+          {
+            "value": "ROMANUS 2",
+            "meta": meta,
+          },
+          {
+            "value": "ROMANUS 2",
+            "meta": meta,
+          }
+        ]
+      };
+
+      res = addPropToRecord(res, parsedLine);
+      expect(res).toEqual(expected2);
+
     });
 
   });
-
-
 
 
   describe('computeOrSaveRecord', () => {
@@ -179,10 +258,17 @@ describe('Brand new parser', () => {
         type: 'EMPTY',
       };
       const record = {
-        reference: '1',
-        name: 'Alex',
-        nameVariant: 'Alessandro',
-        job: 'Laboureur',
+        reference: {value:"1"},
+        name: {value:'Alex'},
+        nameVariant: {value:'Alessandro'},
+      };
+      const expected = {
+        reference: "1",
+        identity:{
+          name: {value:'Alex'},
+          nameVariant: {value:'Alessandro'},
+          gender: {value:'male'},
+        }
       };
       const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
 
@@ -193,7 +279,7 @@ describe('Brand new parser', () => {
       expect(updatedRecord).toEqual({});
       expect(saveRecordMock.mock.calls.length).toBe(1);
       // first call and first argument
-      expect(saveRecordMock.mock.calls[0][0]).toEqual(record);
+      expect(saveRecordMock.mock.calls[0][0]).toEqual(expected);
     });
 
     it('should not save the record when receiving an empty line and the record reference is missing', () => {
@@ -204,7 +290,6 @@ describe('Brand new parser', () => {
       const record = {
         name: 'Alex',
         nameVariant: 'Alessandro',
-        job: 'Laboureur',
       };
       const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
 
@@ -220,18 +305,73 @@ describe('Brand new parser', () => {
 
   describe('processFile', () => {
     it('should parse lines of a single record', async () => {
-
+      const meta = {
+        "dates": null,
+        "institutions": null,
+        "isComment": false,
+        "isLink": false,
+        "names": null,
+        "places": null,
+        "titles": null,
+      };
       // given
       const record = {
         reference: '1',
-        name: 'Alban Richard',
-        nameVariant: 'Alby Ricardo',
-        job: 'Laboureur',
+        identity:{
+          name: {
+            value:'Alban Richard',
+            meta: meta,
+          },
+          nameVariant: [{
+            value:'$Adam WAQUET de VILLEMONTOIR$',
+            meta: {
+              "dates": null,
+              "institutions": null,
+              "isComment": false,
+              "isLink": false,
+              "names": ["Adam WAQUET de VILLEMONTOIR"],
+              "places": null,
+              "titles": null,
+            },
+          },
+            {
+              value:'$Adam WAQUET de VILLEMONTOIR 2$',
+              meta: {
+                "dates": null,
+                "institutions": null,
+                "isComment": false,
+                "isLink": false,
+                "names": ["Adam WAQUET de VILLEMONTOIR 2"],
+                "places": null,
+                "titles": null,
+              },
+          },
+          {
+              value:'$Adam WAQUET de VILLEMONTOIR 3$',
+              meta: {
+                "dates": null,
+                "institutions": null,
+                "isComment": false,
+                "isLink": false,
+                "names": ["Adam WAQUET de VILLEMONTOIR 3"],
+                "places": null,
+                "titles": null,
+              },
+            },
+          ],
+          "gender": {
+            value:"male"
+          },
+        },
       };
       fs.writeFileSync('./test.tmp', `<1a>       ${record.reference}
-<1b>    ${record.name}
-<1c>    ${record.nameVariant}
-<1d>    ${record.job}
+<1b>   ${record.identity.name.value}
+<1c>	${record.identity.nameVariant[0].value}
+<r>	GOROCHOV: p. 712-713.
+<1c>	${record.identity.nameVariant[1].value}
+<r>	GOROCHOV: p. 712-713.
+<1c>	${record.identity.nameVariant[2].value}
+<r>	GOROCHOV: p. 712-713.
 `);
       const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
 
@@ -247,31 +387,41 @@ describe('Brand new parser', () => {
     });
 
     it('should parse lines of two records', async () => {
-
+      const meta = {
+        "dates": null,
+        "institutions": null,
+        "isComment": false,
+        "isLink": false,
+        "names": null,
+        "places": null,
+        "titles": null,
+      };
       // given
       const records = [
         {
           reference: '1',
-          name: 'Alban Richard',
-          nameVariant: 'Alby Ricardo',
-          job: 'Laboureur',
+          identity:{
+            name: {value:'Alby Ricardo',meta:meta},
+            nameVariant: {value:'Alby Ricardo',meta:meta},
+            gender: {value:'male'},
+          },
         },
         {
           reference: '10',
-          name: 'ACCURSIUS',
-          nameVariant: '$ACCURSIUS$',
-          job: 'Servite',
+          identity:{
+            name: {value:'Alby Ricardo 2',meta:meta},
+            nameVariant: {value:'Alby Ricardo 2',meta:meta},
+            gender: {value:'male'},
+          },
         }
       ];
       fs.writeFileSync('./test.tmp', `<1a>       ${records[0].reference}
-<1b>    ${records[0].name}
-<1c>    ${records[0].nameVariant}
-<1d>    ${records[0].job}
+<1b>    ${records[0].identity.name.value}
+<1c>    ${records[0].identity.nameVariant.value}
 
 <1a>	${records[1].reference}
-<1b>	${records[1].name}
-<1c>	        ${records[1].nameVariant}
-<1d>        ${records[1].job}
+<1b>	${records[1].identity.name.value}
+<1c>	${records[1].identity.nameVariant.value}
 `);
       const saveRecordMock = jest.fn().mockReturnValue(Promise.resolve());
 
