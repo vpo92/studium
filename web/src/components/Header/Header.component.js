@@ -6,7 +6,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import injectSheet from 'react-jss';
+import styles from './Header.style';
 
 type Props = {
   handleSideMenu: (openSideMenu: boolean) => void,
@@ -33,9 +36,15 @@ class Header extends Component<Props> {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit">
+            <Typography variant="title" color="inherit" className={this.props.classes.flex}>
               Studium / {this.props.currentPageTitle}
             </Typography>
+            <Button
+              color="inherit"
+              component={Link}
+              to="/login">
+              Se Connecter
+            </Button>
           </Toolbar>
         </AppBar>
       </header>
@@ -43,4 +52,5 @@ class Header extends Component<Props> {
   }
 }
 
-export default Header;
+//export default Header;
+export default injectSheet(styles)(Header);

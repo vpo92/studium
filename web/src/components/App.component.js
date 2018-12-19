@@ -13,6 +13,7 @@ import SearchPage from '../containers/SearchPage/SearchPage.container';
 import ContactPage from '../components/ContactPage/ContactPage.component';
 import HelpPage from '../components/HelpPage/HelpPage.component';
 import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
+import LoginPage from '../components/LoginPage/LoginPage.component';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
 
 type Route = {
@@ -44,6 +45,7 @@ const appRoutes: Route[] = [
     isInMenu: false,
     component: DetailsPage,
   },
+  { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage },
 ];
 
 export function getTitleFromPathname(pathname: string): string {
