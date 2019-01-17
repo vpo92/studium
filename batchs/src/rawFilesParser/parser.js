@@ -161,23 +161,27 @@ export function detectTypeOfLine(line: string): Line {
   return 'ERROR';
 }
 
-type ComputeRecordFunction = (record: $Shape<ProsopographyRow>, parsedLine: ParsedLine) => $Shape<ProsopographyRow>;
+type ComputeRecordFunction = (record: $Shape<ProsopographyRow>, parsedLine: ParsedLine, line : String) => $Shape<ProsopographyRow>;
 export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeRecordFunction {
-  return (record, parsedLine) => {
-    if (parsedLine.type === 'DATA') {
+  return (record, parsedLine, line) => {
 
+    if (parsedLine.type === 'DATA') {
       //FIXME : save current record and start new
       if(parsedLine.value &&  parsedLine.value.reference){
         console.log("FIRST LINE");
-        console.log(record);
+        //console.log(record);
         //if a record exist
         if(record.reference){
           record = finalyseProsopography(record);
           saveRecord(record);
         }
         //return 'FIRST_LINE';
-        return addPropToRecord({}, parsedLine);
+        return addPropToRecord({raw:[line]}, parsedLine);
       }else{
+        if(!record.raw){
+          record.raw = [];
+        }
+        record.raw.push(line);
         return addPropToRecord(record, parsedLine);
       }
     } else if (parsedLine.type === 'EMPTY') {
@@ -198,12 +202,12 @@ export function processStream(stream: any, saveRecord: SaveRecordFunction): Prom
     let record = {};
 
     rl.on('line', (line) => {
-      record = computeOrSaveRecord(saveRecord)(record, lineParser(line));
+      record = computeOrSaveRecord(saveRecord)(record, lineParser(line),line);
     });
 
     rl.on('close', () => {
       if (record.reference) {
-        computeOrSaveRecord(saveRecord)(record, { type: 'EMPTY' });
+        computeOrSaveRecord(saveRecord)(record, { type: 'EMPTY' },"");
       }
       resolve();
     });

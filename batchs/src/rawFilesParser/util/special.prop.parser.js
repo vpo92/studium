@@ -102,7 +102,7 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
     otherActivities:{
       otherActivities: record.otherActivities,
     },
-
+    raw : record.raw,
   };
 
   //FIXME : remove null field

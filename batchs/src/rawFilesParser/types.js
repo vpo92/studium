@@ -105,6 +105,7 @@ export type ProsopographyRow = {
   seals: any,
   orality: any,
   otherActivities: any,
+  raw: any,
 }
 
 
@@ -209,6 +210,7 @@ export type Prosopography = {
   otherActivities: {
     otherActivities: any
   },
+  raw: any,
 }
 
 export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR' | 'FIRST_LINE';
