@@ -58,9 +58,14 @@ router.get('/:reference', async (req, res, next) => {
   const reference = req.params.reference;
   logger.info(`${id}: findByReference on ${reference}`);
   try {
-    const prosopographies = await service.findByReference(reference);
+    const prosopography = await service.findByReference(reference);
     logger.info(`${id}: findByReference done`);
-    res.send(prosopographies);
+    if(prosopography){
+      res.send(prosopography);
+    }else{
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
+
   } catch (err) {
     logger.error(
       `${id}: Failed to load all prosopographies from findByReference on ${reference} - ${err}`
