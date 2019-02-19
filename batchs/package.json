@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "babel-node src/rawFilesParser/run.js",
-    "start-web": "babel-node src/rawFilesParser/run-web.js",
+    "start-web": "babel-node src/rawFilesParser/run-web.js"
   },
   "repository": {
     "type": "git",
