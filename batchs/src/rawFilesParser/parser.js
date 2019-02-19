@@ -173,7 +173,10 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
         //if a record exist
         if(record.reference){
           record = finalyseProsopography(record);
-          saveRecord(record);
+          saveRecord(record)
+          .catch( (error) => {
+            console.log("ERROR on record "+record.reference+" : "+error);
+            });
         }
         //return 'FIRST_LINE';
         return addPropToRecord({raw:[line]}, parsedLine);
@@ -188,7 +191,10 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
       if (record.reference) {
         //console.log(record);
         record = finalyseProsopography(record);
-        saveRecord(record);
+        saveRecord(record)
+        .catch( (error) => {
+          console.log("ERROR on record "+record.reference+" : "+error);
+          });
       }
       return {};
     }
