@@ -32,7 +32,7 @@ class GenericBlock extends Component<Props> {
     const { block, blockLabel } = this.props;
     if(block){
       const keys = Object.keys(block);
-      return (<ExpansionPanel>
+      return (<ExpansionPanel defaultExpanded={true}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
            <Typography
              variant="title"
