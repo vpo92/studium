@@ -38,7 +38,7 @@ class SearchResult extends Component<Props, State> {
     return (
         (this.props.data && this.props.data.length > 0)?(
           <div>
-            <h1>Résultats</h1>
+            <h1>Résultats ({this.props.data.length})</h1>
             <Table>
               <TableHead>
                 <TableRow>
