@@ -16,6 +16,11 @@ import {
   type ChangePageAction,
 } from '../../actions/Menu/menuTypes';
 
+import {
+  type LoginSuccesAction,
+  type LoginFailureAction,
+} from '../../actions/Login/loginTypes';
+
 import { type Prosopography } from '../../../../api/types/Prosopography';
 
 type StudiumAction =
@@ -28,7 +33,13 @@ type StudiumAction =
   | RequestProsopographiesByKeywordAction
   | ReceiveProsopographiesByKeywordAction
   | ReceiveProsopographiesByFirstLetterAction
-  | RequestProsopographiesByFirstLetterAction;
+  | RequestProsopographiesByFirstLetterAction
+  | RequestLoginAction
+  | ReceiveLoginAction
+  | RequestLogoutAction
+  | ReceiveLogoutAction
+  | LoginSuccesAction
+  | LoginFailureAction;
 
 export type StudiumState = {
   apiUrl: string,
@@ -48,6 +59,10 @@ export type StudiumState = {
     status: boolean,
     message?: string,
   },
+  login: {
+    loggedIn: boolean,
+    user: any,
+  }
 };
 
 export const studiumInitialState = {
@@ -67,6 +82,10 @@ export const studiumInitialState = {
     status: false,
   },
   showSideMenu: false,
+  login: {
+    loggedIn:false,
+    user:null,
+  },
 };
 
 const studiumReducer = (
@@ -136,6 +155,14 @@ const studiumReducer = (
       return {
         ...state,
         prosopographiesByFirstLetter: action.prosopographiesByFirstLetter,
+      };
+    case 'LOGIN_SUCCESS':
+      return {
+        ...state,
+        login: {
+          loggedIn: true,
+          user: action.user,
+        },
       };
     default:
       return state;

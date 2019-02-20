@@ -15,6 +15,7 @@ type Props = {
   handleSideMenu: (openSideMenu: boolean) => void,
   showSideMenu: boolean,
   currentPageTitle: string,
+  user: any,
 };
 
 class Header extends Component<Props> {
@@ -39,12 +40,16 @@ class Header extends Component<Props> {
             <Typography variant="title" color="inherit" className={this.props.classes.flex}>
               Studium / {this.props.currentPageTitle}
             </Typography>
-            <Button
-              color="inherit"
-              component={Link}
-              to="/login">
-              Se Connecter
-            </Button>
+            {
+              this.props.user?this.props.user.username:
+              <Button
+                color="inherit"
+                component={Link}
+                to="/login">
+                Se Connecter {this.props.user?this.props.user.username:''}
+              </Button>
+            }
+
           </Toolbar>
         </AppBar>
       </header>

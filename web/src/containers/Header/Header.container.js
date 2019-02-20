@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     showSideMenu: state.studium.showSideMenu,
     currentPageTitle: getTitleFromPathname(ownProps.location.pathname),
+    user: state.studium.login.user,
   };
 };
 

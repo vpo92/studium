@@ -13,7 +13,7 @@ import SearchPage from '../containers/SearchPage/SearchPage.container';
 import ContactPage from '../components/ContactPage/ContactPage.component';
 import HelpPage from '../components/HelpPage/HelpPage.component';
 import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
-import LoginPage from '../components/LoginPage/LoginPage.component';
+import LoginPage from '../containers/LoginPage/LoginPage.container';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
 
 type Route = {
