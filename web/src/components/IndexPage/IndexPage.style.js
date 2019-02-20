@@ -7,6 +7,7 @@ const contactPageStyle = {
     ...sharedStyle.page,
   },
   tabs: {
+    minWidth:'20px',
   },
 }
 

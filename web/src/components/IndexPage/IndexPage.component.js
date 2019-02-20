@@ -97,10 +97,13 @@ class IndexPage extends React.Component<Props, State> {
             textColor="primary"
             scrollable
             scrollButtons="on"
-            className={this.props.classes.tabs}
             >
             {alphabet.map(tabLetter => (
-              <Tab key={tabLetter} label={tabLetter} value={tabLetter} />
+              <Tab
+                key={tabLetter}
+                label={tabLetter}
+                value={tabLetter}
+                className={this.props.classes.tabs}/>
             ))}
           </Tabs>
         </AppBar>
