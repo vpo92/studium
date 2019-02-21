@@ -7,7 +7,7 @@ import { ConnectedRouter as Router } from 'react-router-redux';
 import App from './containers/App.container';
 import './main.css';
 import configureStore from './store/configureStore';
-import createHistory from 'history/createHashHistory';
+import createHistory from 'history/createBrowserHistory';
 import {
   studiumInitialState,
   type StudiumState,
