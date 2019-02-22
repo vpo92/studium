@@ -41,15 +41,15 @@ class Header extends Component<Props> {
               Studium / {this.props.currentPageTitle}
             </Typography>
             {
-              this.props.user?this.props.user.username:
+              this.props.user?
+              (this.props.user.name):
               <Button
                 color="inherit"
                 component={Link}
                 to="/login">
-                Se Connecter {this.props.user?this.props.user.username:''}
+                Se Connecter
               </Button>
             }
-
           </Toolbar>
         </AppBar>
       </header>

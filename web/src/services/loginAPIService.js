@@ -17,12 +17,15 @@ export async function processLogin(apiUrl, username, password){
     let result = await response.json();
 
     if(response.ok){
-      user = {
-        username : username,
-        token: result.token,
-      };
-    }else{
-      user = null;
+      let response2 = await fetch(`${apiUrl}/user/me`,{
+        'headers':{
+          'Authorization':`Bearer ${result.token}`,
+        },
+      });
+      if(response2){
+        user = await response2.json();
+        user.token = result.token;
+      }
     }
   }catch(e){
     //FIXME : TODOconsole.error("processLogin error :"+e);
