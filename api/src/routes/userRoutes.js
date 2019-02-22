@@ -6,6 +6,7 @@ import uuid from 'uuid';
 
 import userService from '../services/userService';
 import logger from '../utils/logger';
+import auth from '../services/authService';
 
 const router = express.Router();
 
@@ -21,6 +22,18 @@ router.post('/', (req, res, next) => {
       logger.error(`${id}: Failed to create userService - ${err}`);
       next(err);
     });
+});
+
+router.get('/me',auth.isAuthenticated, (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: GET me from-text user ${req.user.name}`);
+  const profile = {
+    _id: req.user.id,
+    name : req.user.name,
+    email: req.user.email,
+    role : req.user.role,
+  };
+  res.send(profile);
 });
 
 export default router;
