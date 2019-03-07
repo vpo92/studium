@@ -15,12 +15,14 @@ import HelpPage from '../components/HelpPage/HelpPage.component';
 import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
 import LoginPage from '../containers/LoginPage/LoginPage.container';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
+import EditPage from '../components/EditPage/EditPage.component';
 
 type Route = {
   path: string,
   title: string,
   isInMenu: boolean,
   component: React$Component<*>,
+  secure: boolean,
 };
 
 const appRoutes: Route[] = [
@@ -46,6 +48,8 @@ const appRoutes: Route[] = [
     component: DetailsPage,
   },
   { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage },
+  { path: '/edition', title: 'Edition', isInMenu: true, component: EditPage },
+  { path: '/fiches/edit/:id', title: 'Edition', isInMenu: false, component: EditPage },
 ];
 
 export function getTitleFromPathname(pathname: string): string {
