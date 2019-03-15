@@ -13,12 +13,19 @@ import mongoose from 'mongoose';
 
 import config from '../config';
 
+logger.info('starting application');
+const environment = process.env.NODE_ENV || '';
+
+logger.info(`using environment : ${environment}`);
+logger.info('using config :');
+logger.info(JSON.stringify(config));
+
 //mongoose.connect('mongodb://localhost/studium');
 mongoose.connect(config.mongooseDB,{ useNewUrlParser: true });
 
 const app = express();
 
-app.set('env', process.env.NODE_ENV || 'dev');
+app.set('env', environment);
 app.set('port', 3000);
 
 app.use(cors());
@@ -36,8 +43,6 @@ logger.info('runnning server on '+server_port);
 if (!process.env.MONGO_URL) {
   throw new Error('Could not initialize server : unknown mongo url.');
 }
-
-const environment = process.env.NODE_ENV || '';
 
 db.connect(`${process.env.MONGO_URL}`, err => {
   if (err) {

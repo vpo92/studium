@@ -13,7 +13,7 @@ router.use('/prosopography', prosopographyRoutes);
 router.use('/user', userRoutes);
 router.use('/auth', authRoutes);
 router.use('/', (req,res) => {
-    res.sendFile(__dirname+ '/index.html');
+    res.send({"message":"welcome to studium API", "version":"0.0.3"});
   });
 
 

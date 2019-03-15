@@ -1,4 +1,19 @@
 {
+  "default": {
+    "mongooseDB": "mongodb://localhost/studium",
+    "appMode":"prod",
+    "auth": {
+      "userRoles": [
+        "guest",
+        "user",
+        "admin"
+      ],
+      "secrets": {
+        "session": "dsopu343dosihdoshdsos"
+      },
+      "iss":"studium.fr"
+    }
+  },
   "dev": {
     "mongooseDB": "mongodb://localhost/studium",
     "appMode":"dev",
@@ -11,7 +26,22 @@
       "secrets": {
         "session": "sofhfsoih343dohis43dsoj"
       },
-      "iss":"souliermoi.fr"
+      "iss":"studium.fr"
+    }
+  },
+  "production": {
+    "mongooseDB": "mongodb://localhost/studium",
+    "appMode":"prod",
+    "auth": {
+      "userRoles": [
+        "guest",
+        "user",
+        "admin"
+      ],
+      "secrets": {
+        "session": "apoudrjbcxtosdsjsgucsgiupmdryjhgdsuns"
+      },
+      "iss":"studium.fr"
     }
   }
 }
