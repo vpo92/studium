@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "mongodb": "^2.2.33",
-    "omit-empty": "^0.4.1"
+    "omit-empty": "^0.4.1",
+    "sleep": "^6.0.0"
   }
 }

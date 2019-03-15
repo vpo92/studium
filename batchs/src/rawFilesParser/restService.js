@@ -2,12 +2,16 @@
 
 import type { SaveRecordFunction } from './types';
 import request from 'request';
+import sleep from 'sleep';
 
 
 const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
-  console.log(`RestService.saveRecord ref ${record.reference}: Saving record.`);
-  let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography`;
+  console.log(`RestService.saveRecord ref ${record.reference} to ${uri}`);
+
+  //Tempo : wait
+  sleep.msleep(200);
+  let auth = `Bearer ${token}`;
 
   return new Promise((resolve, reject) => {
   request.post({
@@ -17,6 +21,7 @@ const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
       json: true,
       body: record,
     }, function (error, response, body) {
+      
       if(error){
         reject(error);
       }else{

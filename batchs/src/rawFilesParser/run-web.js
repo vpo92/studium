@@ -3,13 +3,14 @@
 import { processFile } from './parser';
 import { saveRecord, createIndex } from './RestService';
 
+let apiUrl = 'http://studium-api.vincentpoupet.fr';
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpbmNlbnQucG91cGV0QGdtYWlsLmNvbSIsImlhdCI6MTU1MjY2MDI0OSwiZXhwIjoxNTUyNjYwMzY5fQ.7wFI5GnCuymIBtQoSrJQeE8ghBs1JaFPPjnYeLFxgLQ';
 
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpbmNlbnQucG91cGV0QGdtYWlsLmNvbSIsImlhdCI6MTU1MDYwMDI4MSwiZXhwIjoxNTUwNjAwNDAxfQ.f5uqdF1E0DfDMm5iODL6q--W1lCd-x-etKa263bgXTQ';
 let localSaveRecord = (record) => {
-  return saveRecord("http://localhost:3000", token, record);
+  return saveRecord(apiUrl, token, record);
 };
 let localCreateIndex = () => {
-  return createIndex("http://localhost:3000", token);
+  return createIndex(apiUrl, token);
 };
 
 //Run import
