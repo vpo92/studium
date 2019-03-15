@@ -7,8 +7,6 @@ import User from '../models/userModel';
 import config from '../../config';
 import uuid from 'uuid';
 
-
-
 const getAuth = passport.authenticate('jwt', { session: false });
 const getUser = async (req,res,next) => {
   const id = uuid.v4();

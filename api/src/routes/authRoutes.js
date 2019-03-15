@@ -17,8 +17,9 @@ router.post("/login", async (req, res, next)  => {
   let { email, password } = req.body;
   try{
     let user = await auth.authenticate(email, password);
-    let opts = {};
-    opts.expiresIn = 120;  //token expires in 2min
+    //TTL 1h
+    let opts = {expiresIn: config.auth.expiresIn};
+
     const secret = config.auth.secrets.session; //FIXME normally stored in process.env.secret
     const token = jwt.sign({ email }, secret, opts);
     return res.status(200).json({
