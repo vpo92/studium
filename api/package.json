@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --config=jest.config.json",
-    "start": "MONGO_URL=mongodb://localhost/studium babel-watch ./src/server.js -w .",
+    "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
     "build": "webpack -p",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "predocker:build": "npm -q run build",

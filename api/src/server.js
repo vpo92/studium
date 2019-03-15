@@ -40,11 +40,11 @@ const server_ip_address = '0.0.0.0';
 
 logger.info('runnning server on '+server_port);
 
-if (!process.env.MONGO_URL) {
+if (!config.mongooseDB) {
   throw new Error('Could not initialize server : unknown mongo url.');
 }
 
-db.connect(`${process.env.MONGO_URL}`, err => {
+db.connect(config.mongooseDB, err => {
   if (err) {
     logger.error(err);
     process.exit(1);

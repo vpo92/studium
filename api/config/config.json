@@ -30,7 +30,7 @@
     }
   },
   "production": {
-    "mongooseDB": "mongodb://localhost/studium",
+    "mongooseDB": "mongodb://mongodb/studium",
     "appMode":"prod",
     "auth": {
       "userRoles": [
