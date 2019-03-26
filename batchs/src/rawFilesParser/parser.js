@@ -192,9 +192,6 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
         //console.log(record);
         record = finalyseProsopography(record);
         saveRecord(record)
-        .catch( (error) => {
-          console.log("ERROR on record "+record.reference+" : "+error);
-          });
       }
       return {};
     }
