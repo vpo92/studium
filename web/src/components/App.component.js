@@ -15,7 +15,7 @@ import HelpPage from '../components/HelpPage/HelpPage.component';
 import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
 import LoginPage from '../containers/LoginPage/LoginPage.container';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
-import EditPage from '../components/EditPage/EditPage.component';
+import EditPage from '../containers/EditPage/EditPage.container';
 
 type Route = {
   path: string,

@@ -11,8 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import styles from './EditPage.style';
 
 type Props = {
-  classes: any,
-  prosopography: ?Prosopography,
+  classes: any
 };
 
 type State = {
@@ -22,11 +21,17 @@ type State = {
 class EditPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      inputTxt : "<1a>17 \n<1b>ADALBERTUS Ranconis de Ericinio \n<1c>  $Adalbertus RANKONUS DE ERICINIO$",
+    };
   }
 
-  handleSave = () => {
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
 
+  handleSave = () => {
+    this.props.handleSave(this.state.inputTxt);
   }
 
   render() {
@@ -44,6 +49,8 @@ class EditPage extends Component<Props, State> {
             margin="normal"
             variant="outlined"
             placeholder="Renseigner la fiche au format TXT ici"
+            value={this.state.inputTxt}
+            onChange={this.handleChange('inputTxt')}
           />
 
           <Button

@@ -62,7 +62,10 @@ export type StudiumState = {
   login: {
     loggedIn: boolean,
     user: any,
-  }
+  },
+  edition: {
+    prosopography: Prosopography | null,
+  },
 };
 
 export const studiumInitialState = {
@@ -85,6 +88,9 @@ export const studiumInitialState = {
   login: {
     loggedIn:false,
     user:null,
+  },
+  edition: {
+    prosopography: null,
   },
 };
 

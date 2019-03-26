@@ -10,7 +10,7 @@ const EditPageStyle = {
   },
   saveButton:{
     marginTop:'1em',
-  }
+  },
 }
 
 export default EditPageStyle;
