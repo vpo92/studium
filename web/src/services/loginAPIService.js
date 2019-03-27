@@ -32,3 +32,8 @@ export async function processLogin(apiUrl, username, password){
   }
   return user;
 }
+
+export function processLogout(){
+  //TODO
+  console.log("processLogout")
+}

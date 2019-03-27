@@ -22,7 +22,7 @@ class EditPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      inputTxt : "<1a>17 \n<1b>ADALBERTUS Ranconis de Ericinio \n<1c>  $Adalbertus RANKONUS DE ERICINIO$",
+      inputTxt : '',
     };
   }
 

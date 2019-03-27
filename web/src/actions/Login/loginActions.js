@@ -1,6 +1,6 @@
 // @flow
 
-import { processLogin } from '../../services/loginAPIService';
+import { processLogin, processLogout } from '../../services/loginAPIService';
 
 export const requestLogin = (username, password) => {
 
@@ -17,3 +17,11 @@ export const requestLogin = (username, password) => {
     }
   }
 };
+
+export const requestLogout = () => {
+  return async (dispatch,getState) => {
+    processLogout();
+    dispatch({ type: 'LOGOUT_SUCCESS'});
+  }
+
+}

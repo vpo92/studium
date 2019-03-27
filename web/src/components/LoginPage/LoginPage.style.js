@@ -3,10 +3,7 @@
 import { sharedStyle } from '../../style/shared.style';
 
 const contactPageStyle = {
-  container: {
-    ...sharedStyle.page,
-    ...sharedStyle.biggerText,
-  },
+  ...sharedStyle,
   loginPaper: {
     margin: 'auto',
     maxWidth: 'fit-content',

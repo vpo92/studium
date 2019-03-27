@@ -170,6 +170,11 @@ const studiumReducer = (
           user: action.user,
         },
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        ...studiumInitialState,
+        apiUrl : state.apiUrl,
+        };
     default:
       return state;
   }

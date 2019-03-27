@@ -42,7 +42,15 @@ class Header extends Component<Props> {
             </Typography>
             {
               this.props.user?
-              (this.props.user.name):
+              <span>{this.props.user.name} -
+              <Button
+                color="inherit"
+                component={Link}
+                to="/logout">
+                Se déconnecter
+              </Button>
+              </span>
+              :
               <Button
                 color="inherit"
                 component={Link}

@@ -16,6 +16,7 @@ import DetailsPage from '../containers/DetailsPage/DetailsPage.container';
 import LoginPage from '../containers/LoginPage/LoginPage.container';
 import Snackbar from '../containers/Snackbar/Snackbar.container';
 import EditPage from '../containers/EditPage/EditPage.container';
+import LogoutPage from '../containers/LogoutPage/LogoutPage.container';
 
 type Route = {
   path: string,
@@ -50,6 +51,7 @@ const appRoutes: Route[] = [
   { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage },
   { path: '/edition', title: 'Edition', isInMenu: true, component: EditPage },
   { path: '/fiches/edit/:id', title: 'Edition', isInMenu: false, component: EditPage },
+  { path: '/logout', title: 'Déconnexion', isInMenu: false, component: LogoutPage },
 ];
 
 export function getTitleFromPathname(pathname: string): string {
