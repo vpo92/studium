@@ -8,6 +8,7 @@ import { showSideMenu } from '../../actions/Menu/menuActions';
 const mapStateToProps = state => {
   return {
     showSideMenu: state.studium.showSideMenu,
+    isAuthenticated: state.studium.login.loggedIn,
   };
 };
 

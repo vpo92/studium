@@ -23,6 +23,7 @@ const styles = {
 type Props = {
   showSideMenu: boolean,
   handleSideMenu: (openSideMenu: boolean) => void,
+  isAuthenticated : boolean,
 };
 
 class SideMenu extends Component<Props> {
@@ -57,6 +58,9 @@ class SideMenu extends Component<Props> {
         <Divider />
         <MenuList>
             {getMenuLinks().map(link => (
+              link.secure && !this.props.isAuthenticated?
+              null
+              :
               <MenuLink key={link.path} title={link.title} url={link.path} />
            ))}
         </MenuList>
