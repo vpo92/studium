@@ -101,9 +101,19 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   try{
     let p = await service.convertFromText(proso);
     logger.debug(p);
-    await service.create(p);
-    return res.send({'message':'OK'});
+    const prosopography = await service.findByReference(p.reference);
+    if(prosopography){
+      logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
+      return res.status(409).json({
+          message: "Error",
+          error: "prosopography reference already exists",
+      });
+    }else{
+      await service.create(p);
+      return res.send({'message':'OK'});
+    }
   }catch(err){
+    logger.error(err);
     return res.status(500).json({
         message: "Error",
         error: err,
