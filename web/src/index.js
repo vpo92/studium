@@ -20,9 +20,21 @@ export type State = {
   studium: StudiumState,
 };
 
-const initialState = {
+let user = localStorage.getItem('user')
+
+//load user from localStorage
+const initialState = (user)?
+  ({studium :{
+    ...studiumInitialState,
+    login : {
+      loggedIn: true,
+      user: JSON.parse(user),
+    },
+  }})
+:
+({
   studium: studiumInitialState,
-};
+});
 
 const store = configureStore(initialState);
 const history = createHistory();

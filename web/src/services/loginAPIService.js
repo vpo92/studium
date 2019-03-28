@@ -25,6 +25,7 @@ export async function processLogin(apiUrl, username, password){
       if(response2){
         user = await response2.json();
         user.token = result.token;
+        localStorage.setItem('user', JSON.stringify(user));
       }
     }
   }catch(e){
@@ -35,5 +36,6 @@ export async function processLogin(apiUrl, username, password){
 
 export function processLogout(){
   //TODO
-  console.log("processLogout")
+  console.log("processLogout");
+  localStorage.removeItem('user');
 }
