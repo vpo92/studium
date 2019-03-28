@@ -50,7 +50,7 @@ const appRoutes: Route[] = [
   },
   { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage },
   { path: '/edition', title: 'Edition', isInMenu: true, component: EditPage },
-  { path: '/fiches/edit/:id', title: 'Edition', isInMenu: false, component: EditPage },
+  { path: '/edit/:id', title: 'Edition', isInMenu: false, component: EditPage },
   { path: '/logout', title: 'Déconnexion', isInMenu: false, component: LogoutPage },
 ];
 
