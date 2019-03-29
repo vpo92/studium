@@ -4,7 +4,7 @@ export const createProsopography = (inputTxt) => {
 
   return async (dispatch,getState) => {
     const {
-      studium: { apiUrl, login, }
+      studium: { apiUrl, login }
     } = getState();
 
 
