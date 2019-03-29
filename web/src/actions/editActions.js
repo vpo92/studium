@@ -1,10 +1,10 @@
 import { importProsopographyFromText } from '../services/editProsopographyService';
 
 export const createProsopography = (inputTxt) => {
-console.log("editActions.createProsopography");
+
   return async (dispatch,getState) => {
     const {
-      studium: { apiUrl, login }
+      studium: { apiUrl, login, }
     } = getState();
 
 

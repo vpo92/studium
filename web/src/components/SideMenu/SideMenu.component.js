@@ -23,7 +23,7 @@ const styles = {
 type Props = {
   showSideMenu: boolean,
   handleSideMenu: (openSideMenu: boolean) => void,
-  isAuthenticated : boolean,
+  isAuthenticated: boolean,
 };
 
 class SideMenu extends Component<Props> {

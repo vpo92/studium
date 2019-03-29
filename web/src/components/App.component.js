@@ -51,10 +51,10 @@ const appRoutes: Route[] = [
     component: DetailsPage,
     secure: false,
   },
-  { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage, secure: false,},
-  { path: '/edition', title: 'Edition', isInMenu: true, component: EditPage, secure: true, },
-  { path: '/edit/:id', title: 'Edition', isInMenu: false, component: EditPage, secure: true, },
-  { path: '/logout', title: 'Déconnexion', isInMenu: false, component: LogoutPage, secure: false, },
+  { path: '/login', title: 'Connexion', isInMenu: false, component: LoginPage, secure: false},
+  { path: '/edition', title: 'Edition', isInMenu: true, component: EditPage, secure: true},
+  { path: '/edit/:id', title: 'Edition', isInMenu: false, component: EditPage, secure: true},
+  { path: '/logout', title: 'Déconnexion', isInMenu: false, component: LogoutPage, secure: false},
 ];
 
 export function getTitleFromPathname(pathname: string): string {
@@ -76,7 +76,7 @@ export function getMenuLinks(): {
 }[] {
   return appRoutes
     .filter(appRoute => appRoute.isInMenu)
-    .map(routeInMenu => ({ title: routeInMenu.title, path: routeInMenu.path, secure: routeInMenu.secure, }));
+    .map(routeInMenu => ({ title: routeInMenu.title, path: routeInMenu.path, secure: routeInMenu.secure }));
 }
 
 type Props = {

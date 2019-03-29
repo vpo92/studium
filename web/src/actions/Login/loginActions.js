@@ -19,7 +19,7 @@ export const requestLogin = (username, password) => {
 };
 
 export const requestLogout = () => {
-  return async (dispatch,getState) => {
+  return async (dispatch) => {
     processLogout();
     dispatch({ type: 'LOGOUT_SUCCESS'});
   }
