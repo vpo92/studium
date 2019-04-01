@@ -35,7 +35,5 @@ export async function processLogin(apiUrl, username, password){
 }
 
 export function processLogout(){
-  //TODO
-  console.log("processLogout");
   localStorage.removeItem('user');
 }
