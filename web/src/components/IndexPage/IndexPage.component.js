@@ -7,9 +7,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import styles from './IndexPage.style';
 
@@ -108,14 +111,23 @@ class IndexPage extends React.Component<Props, State> {
           </Tabs>
         </AppBar>
         <TabContainer>
-          <List>
+          <GridList cols={4}>
+            <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+              <ListSubheader component="div">Résultat(s)</ListSubheader>
+            </GridListTile>
           {prosopographies.map(prosopography => (
-            <ListItem key={prosopography.reference}>
-                <ListItemText primary={prosopography.identity.name.value} />
-                <Link to={`/fiches/${prosopography.reference}`}>Détails</Link>
-            </ListItem>
-          ))}
-          </List>
+            <GridListTile key={prosopography.reference}>
+              <Paper className={this.props.classes.resultItem}>
+                <Typography variant="h6">{prosopography.identity.name.value} </Typography>
+                <Button
+                variant="contained"
+                color="default"
+                component={Link}
+                to={`/fiches/${prosopography.reference}`}>Voir la fiche</Button>
+              </Paper>
+            </GridListTile>
+            ))}
+          </GridList>
         </TabContainer>
 
       </div>
