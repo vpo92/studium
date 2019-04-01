@@ -114,7 +114,10 @@ class IndexPage extends React.Component<Props, State> {
             <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
               <ListSubheader component="div">Résultat(s)</ListSubheader>
             </GridListTile>
-          {prosopographies.map(prosopography => (
+          {
+            prosopographies.length > 0 ?
+            (
+            prosopographies.map(prosopography => (
             <GridListTile key={prosopography.reference}>
               <Paper className={this.props.classes.resultItem}>
                 <Typography variant="h6">{prosopography.identity.name.value} </Typography>
@@ -125,7 +128,16 @@ class IndexPage extends React.Component<Props, State> {
                 to={`/fiches/${prosopography.reference}`}>Voir la fiche</Button>
               </Paper>
             </GridListTile>
-            ))}
+            ))
+            ):(
+              <GridListTile cols={4} key="no-res">
+                <Paper className={this.props.classes.resultItem}>
+                  Aucun résultats
+                </Paper>
+              </GridListTile>
+              )
+
+          }
           </GridList>
         </TabContainer>
 
