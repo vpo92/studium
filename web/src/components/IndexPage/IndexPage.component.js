@@ -11,7 +11,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 
 import styles from './IndexPage.style';
 
@@ -110,7 +109,7 @@ class IndexPage extends React.Component<Props, State> {
           </Tabs>
         </AppBar>
         <TabContainer>
-          <GridList cols={4}>
+          <GridList cols={4} cellHeight={80}>
             <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
               <ListSubheader component="div">Résultat(s)</ListSubheader>
             </GridListTile>
@@ -118,14 +117,9 @@ class IndexPage extends React.Component<Props, State> {
             prosopographies.length > 0 ?
             (
             prosopographies.map(prosopography => (
-            <GridListTile key={prosopography.reference}>
+            <GridListTile key={prosopography.reference} >
               <Paper className={this.props.classes.resultItem}>
-                <Typography variant="h6">{prosopography.identity.name.value} </Typography>
-                <Button
-                variant="contained"
-                color="default"
-                component={Link}
-                to={`/fiches/${prosopography.reference}`}>Voir la fiche</Button>
+                <Link to={`/fiches/${prosopography.reference}`}>{prosopography.identity.name.value}</Link>
               </Paper>
             </GridListTile>
             ))
