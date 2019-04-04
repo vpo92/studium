@@ -1,0 +1,801 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Swagger Studium API",
+    "description" : "This API allow you to browse parisiense studium prosopography database - still in development and DEMO mode - browse data : studium.vincentpoupet.fr",
+    "termsOfService" : "http://studium.fr/terms/",
+    "contact" : {
+      "email" : "vincent.poupet@univ-paris1.fr"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "https://opensource.org/licenses/MIT"
+    },
+    "version" : "0.0.4"
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Studium",
+    "url" : "http://studium.fr"
+  },
+  "servers" : [ {
+    "url" : "http://studium-api.vincentpoupet.fr",
+    "description" : "demo server"
+  } ],
+  "tags" : [ {
+    "name" : "Prosopography API",
+    "description" : "Everything about your Prosopography",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "https://github.com/vpo92/studium"
+    }
+  } ],
+  "paths" : {
+    "/prosopography/" : {
+      "get" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "get all prosopography",
+        "description" : "Retrieve all prosopography element stored in database (40k+)",
+        "operationId" : "getProsopography",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Prosopography"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    },
+    "/prosopography/{reference}" : {
+      "get" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "get by reference",
+        "description" : "Retrieve a prosopography element by reference - not technical id",
+        "operationId" : "getProsopographyById",
+        "parameters" : [ {
+          "name" : "reference",
+          "in" : "path",
+          "description" : "Reference of prosopography",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Prosopography"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    },
+    "/prosopography/search/{searchText}" : {
+      "get" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "full text search",
+        "description" : "Full text search for a prosopography element",
+        "operationId" : "searchProsopography",
+        "parameters" : [ {
+          "name" : "searchText",
+          "in" : "path",
+          "description" : "Keywords used for research",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Prosopography"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid searchText supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    },
+    "/prosopography/search/advanced" : {
+      "post" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "advanced search of prosopography",
+        "description" : "Search prosopographies matchnig request",
+        "operationId" : "searchProsopographyByCriterion",
+        "requestBody" : {
+          "description" : "Criterion",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Prosopography"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid searchText supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    },
+    "/prosopography/index/{letter}" : {
+      "get" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "get by first  letter",
+        "description" : "Retrieve all element starting by supplied letter",
+        "operationId" : "findProsopographyByLetter",
+        "parameters" : [ {
+          "name" : "letter",
+          "in" : "path",
+          "description" : "Letter used for filter",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Prosopography"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid searchText supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Metadata" : {
+        "type" : "object",
+        "properties" : {
+          "source" : {
+            "type" : "string"
+          },
+          "comment" : {
+            "type" : "string"
+          },
+          "link" : {
+            "type" : "string"
+          },
+          "certain" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "SimpleInformation" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "RangeInformation" : {
+        "type" : "object",
+        "properties" : {
+          "from" : {
+            "type" : "string"
+          },
+          "to" : {
+            "type" : "string"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "Identity" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "nameVariant" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "description" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "datesOfLife" : {
+            "$ref" : "#/components/schemas/RangeInformation"
+          },
+          "datesOfActivity" : {
+            "$ref" : "#/components/schemas/RangeInformation"
+          },
+          "activityMediane" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "gender" : {
+            "$ref" : "#/components/schemas/Identity_gender"
+          },
+          "status" : {
+            "$ref" : "#/components/schemas/Identity_status"
+          }
+        }
+      },
+      "Origin" : {
+        "type" : "object",
+        "properties" : {
+          "birthPlace" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "diosese" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "movesInOutParis" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          }
+        }
+      },
+      "RelationalInsertion" : {
+        "type" : "object",
+        "properties" : {
+          "socialClassOrigin" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "familyNetwork" : {
+            "type" : "array",
+            "description" : "Family Network",
+            "items" : {
+              "$ref" : "#/components/schemas/RelationalInsertion_familyNetwork"
+            }
+          },
+          "personalSocialClass" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "personalServicesRelationship" : {
+            "type" : "array",
+            "description" : "FIXME : liste de name valeur a définir",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "friends" : {
+            "type" : "array",
+            "description" : "FIXME : liste de name valeur a définir",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "controversyOrDebates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "connectionsWith" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "memberOfGroups" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "politicalRelationships" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "professionalRelationships" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "willExecutor" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "studentProfessorRelationships" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          }
+        }
+      },
+      "Curriculum" : {
+        "type" : "object",
+        "properties" : {
+          "preUniversity" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "university" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "grades" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "universityCollege" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "collegeFundations" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          }
+        }
+      },
+      "EcclesiasticalCareer" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "secularPosition" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "benefits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "regularOrder" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "regularFunctions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "popFunctions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "otherFunctions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "communityFundations" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          }
+        }
+      },
+      "ProfessionalFunction" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "FIXME : detail a revoir",
+            "enum" : [ "professorOrPerceptor", "universityFunction", "lawFunction", "propertiesAdministrator", "townAdministrator", "culturalFunction", "kingdowChurchFunction", "kingdomCulturalFunction", "kingdomVariousFunction", "royalAdministration", "localAdministrationFunction", "representation", "business", "medicine", "other" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "PoliticalInformation" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "type" : {
+            "type" : "string",
+            "enum" : [ "importantPosition", "jailed", "violentDeath", "exil", "justiceFacts" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "Commission" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "type" : {
+            "type" : "string",
+            "enum" : [ "university", "other" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "Asset" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "type" : {
+            "type" : "string",
+            "enum" : [ "parisHousing", "otherHousing", "incomes", "will", "gifts" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "DistinctiveSign" : {
+        "type" : "object",
+        "properties" : {
+          "emblems" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "seals" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          }
+        }
+      },
+      "Opus" : {
+        "type" : "object",
+        "properties" : {
+          "author" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "identifiedAuthor" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "title" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "titleVariant" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "date" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "place" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "language" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "manuscript" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Manuscript"
+            }
+          },
+          "incipit" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "editionBefore1700" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Edition"
+            }
+          },
+          "dedication" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "editing" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "translationInformation" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "translationDetails" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Opus"
+            }
+          },
+          "modernEdition" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "field" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "order" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "refused" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "opusType" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          }
+        }
+      },
+      "Manuscript" : {
+        "type" : "object",
+        "properties" : {
+          "city" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "library" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "shelfmark" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "copyDate" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "copyPlace" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "owners" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          }
+        }
+      },
+      "Edition" : {
+        "type" : "object",
+        "properties" : {
+          "city" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "date" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "printer" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          }
+        }
+      },
+      "TextualProduction" : {
+        "type" : "object",
+        "properties" : {
+          "opus" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Opus"
+            }
+          }
+        },
+        "description" : "FIXME : complexe, a voir la prochaine fois 3137"
+      },
+      "Prosopography" : {
+        "type" : "object",
+        "properties" : {
+          "reference" : {
+            "type" : "integer"
+          },
+          "identity" : {
+            "$ref" : "#/components/schemas/Identity"
+          },
+          "origin" : {
+            "$ref" : "#/components/schemas/Origin"
+          },
+          "relationalInsertion" : {
+            "$ref" : "#/components/schemas/RelationalInsertion"
+          },
+          "curriculum" : {
+            "$ref" : "#/components/schemas/Curriculum"
+          },
+          "ecclesiasticalCareer" : {
+            "$ref" : "#/components/schemas/EcclesiasticalCareer"
+          },
+          "professionalCareer" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProfessionalFunction"
+            }
+          },
+          "politicalCareer" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PoliticalInformation"
+            }
+          },
+          "travels" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "commissions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Commission"
+            }
+          },
+          "assets" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Asset"
+            }
+          },
+          "distinctiveSign" : {
+            "$ref" : "#/components/schemas/DistinctiveSign"
+          },
+          "orality" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "otherActivities" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SimpleInformation"
+            }
+          },
+          "library" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Opus"
+            }
+          },
+          "textualProduction" : {
+            "$ref" : "#/components/schemas/TextualProduction"
+          }
+        },
+        "description" : "FIXME : il manque la bibliography 99"
+      },
+      "Identity_gender" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "enum" : [ "male", "female" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "Identity_status" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "enum" : [ "master", "graduate", "student", "suppot", "external", "unconfirmed", "other" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "RelationalInsertion_familyNetwork" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "$ref" : "#/components/schemas/SimpleInformation"
+          },
+          "reference" : {
+            "type" : "integer"
+          },
+          "type" : {
+            "type" : "string",
+            "enum" : [ "father", "sister", "brother", "mother", "other" ]
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/Metadata"
+          }
+        }
+      }
+    }
+  }
+}
