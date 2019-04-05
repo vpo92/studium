@@ -38,6 +38,23 @@ router.get('/search/:searchText', async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/search/advanced', async(req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: search advanced`);
+  try {
+    //TODO Check searchRequest
+    const searchRequest = req.body;
+    const prosopographies = await service.search(searchRequest);
+    res.send(prosopographies);
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to load all prosopographies from indexSearch on ${letter} - ${err}`
+    );
+    next(err);
+  }
+
+});
 router.get('/index/:letter', async (req, res, next) => {
   const id = uuid.v4();
   const letter = req.params.letter;

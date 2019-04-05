@@ -96,6 +96,77 @@
         }
       }
     },
+    "/prosopography" : {
+      "post" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "create prosopography",
+        "description" : "create prosopographies matchnig request",
+        "operationId" : "createProsopography",
+        "requestBody" : {
+          "description" : "prosopography",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Prosopography"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid searchText supplied"
+          },
+          "404" : {
+            "description" : "Prosopography not found"
+          }
+        }
+      }
+    },
+    "/prosopography/from-text" : {
+      "post" : {
+        "tags" : [ "Prosopography API" ],
+        "summary" : "import prosopography from text",
+        "description" : "import prosopography from text",
+        "operationId" : "importProsopographyFromText",
+        "requestBody" : {
+          "description" : "prosopography",
+          "content" : {
+            "text/plain" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "Invalid prosopographt supplied"
+          }
+        }
+      }
+    },
     "/prosopography/search/{searchText}" : {
       "get" : {
         "tags" : [ "Prosopography API" ],
@@ -147,7 +218,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "type" : "string"
+                "$ref" : "#/components/schemas/SearchRequest"
               }
             }
           },
@@ -753,6 +824,67 @@
           }
         },
         "description" : "FIXME : il manque la bibliography 99"
+      },
+      "SearchRequest" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "activityMediane" : {
+            "$ref" : "#/components/schemas/SimpleRange"
+          },
+          "activity" : {
+            "$ref" : "#/components/schemas/SimpleRange"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "grade" : {
+            "type" : "string"
+          },
+          "discipline" : {
+            "type" : "string"
+          },
+          "prosopography" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProsopographyCriterion"
+            }
+          }
+        },
+        "description" : "Search request"
+      },
+      "SimpleRange" : {
+        "type" : "object",
+        "properties" : {
+          "from" : {
+            "type" : "string"
+          },
+          "to" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ProsopographyCriterion" : {
+        "type" : "object",
+        "properties" : {
+          "section" : {
+            "type" : "string"
+          },
+          "subSection" : {
+            "type" : "string"
+          },
+          "operator" : {
+            "type" : "string"
+          },
+          "matchType" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
       },
       "Identity_gender" : {
         "type" : "object",

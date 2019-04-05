@@ -3,6 +3,7 @@
 import db from '../utils/db';
 //import { type Prosopography } from '../../types/Prosopography';
 import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
+import { type SearchRequest } from '../../types/SearchRequest';
 import { processStream } from '../../../batchs/src/rawFilesParser/parser';
 import {Readable} from 'stream';
 
@@ -77,6 +78,80 @@ async function convertFromText(text: string): Promise<Prosopography> {
   return result[0];
 }
 
+async function search(searchRequest : SearchRequest): Promise<Prosopography[]> {
+  console.log(`prosopographyService.search`);
+  console.debug(searchRequest);
+  const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
+  console.debug(mongodbRequest);
+  return db
+    .get()
+    .collection('prosopography')
+    .find(
+      mongodbRequest,
+      { reference: true, identity: true }
+    )
+    .limit(0)
+    .toArray();
+}
+
+function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
+  console.log('convertSearchRequestToMongoRequest');
+  let criterions = [];
+
+  if(searchRequest.name){
+    criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
+  }
+  //FIXME : RULES ?
+  if(searchRequest.grades){
+    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.grades,'CONTAINS'));
+  }
+  if(searchRequest.status){
+    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.status,'CONTAINS'));
+  }
+  if(searchRequest.discipline){
+    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
+  }
+
+  //CRITERIONS
+  if(searchRequest.prosopography){
+    let pCrit = [];
+    for(let i in searchRequest.prosopography){
+      console.log(searchRequest.prosopography[i]);
+      let crit = searchRequest.prosopography[i];
+      pCrit.push(generateSeachClause(crit.section+'.'+crit.subSection+'.value',crit.value,crit.matchType));
+    }
+    if(pCrit.length == 1){
+      criterions.push(pCrit[0]);
+    }else{
+      criterions.push({"$and":pCrit});
+    }
+  }
+
+  if(criterions.length == 1){
+    return criterions[0];
+  }else{
+    return {
+      "$and":criterions
+    }
+  }
+}
+
+function generateSeachClause(field, value, matchType){
+  let res = {};
+  switch(matchType){
+    case 'EXACT':
+      res[field] = value;
+      break;
+    case 'STARTS':
+      res[field] = new RegExp('^'+value);
+      break;
+    case 'CONTAINS':
+      res[field] = new RegExp(value);
+      break;
+  }
+  return res;
+}
+
 /** *********************
  * Export               *
  ************************
@@ -89,4 +164,6 @@ module.exports = {
   indexDB,
   create,
   convertFromText,
+  search,
+  convertSearchRequestToMongoRequest,
 };

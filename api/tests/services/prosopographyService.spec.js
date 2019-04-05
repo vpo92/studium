@@ -61,6 +61,101 @@ describe('prosopographyService', () => {
     });
   });
 
+  describe('search', () => {
+    it('should return result with correct values', async () =>  {
+      try{
+        let searchRequest = {
+            name:"ADAM",
+        };
+        let prosopographies = await service.search(searchRequest);
+        expect(prosopographies).toBeDefined();
+      }catch(err){
+        expect(err).toBeUndefined();
+      }
+    });
+  });
+
+  describe('convertSearchRequestToMongoRequest', () => {
+    it('search by name should be ok', async () => {
+      let searchRequest = {
+          name:"roma",
+      };
+      let expected = {
+        'identity.name.value': /^roma/,
+      };
+      let res = service.convertSearchRequestToMongoRequest(searchRequest);
+      expect(res).toEqual(expected);
+    });
+
+    it('search by name and grades should be ok', async () => {
+      let searchRequest = {
+          name:"roma",
+          grades:"ETU",
+      };
+      let expected = {"$and":[{'identity.name.value': /^roma/},{'curriculum.grades.value': /ETU/}]};
+      let res = service.convertSearchRequestToMongoRequest(searchRequest);
+      expect(res).toEqual(expected);
+    });
+    /** FIXME : RG for STATUS, GRADES, DISCIPLINE
+    it('search by discipline and status should be ok', async () => {
+      let searchRequest = {
+          discipline:"roma",
+          status:"",
+      };
+      let expected = {"$and":[{'identity.name.value': /^roma/},{'curriculum.grades.value': /^Étudiant/}]};
+      let res = service.convertSearchRequestToMongoRequest(searchRequest);
+      expect(res).toEqual(expected);
+    });
+    */
+
+    it('search with one prosopography criterion should be ok', async () => {
+      let searchRequest = {
+          prosopography:[
+            {
+              section:"identity",
+              subSection:"gender",
+              operator:"AND",
+              matchType:"EXACT",
+              value:"male",
+            },
+          ],
+      };
+      let expected = {'identity.gender.value': 'male'};
+      let res = service.convertSearchRequestToMongoRequest(searchRequest);
+      expect(res).toEqual(expected);
+    });
+
+    it('search with multiple prosopography criterions should be ok', async () => {
+      let searchRequest = {
+          prosopography:[
+            {
+              section:"identity",
+              subSection:"gender",
+              operator:"AND",
+              matchType:"EXACT",
+              value:"male",
+            },
+            {
+              section:"curriculum",
+              subSection:"university",
+              operator:"AND",
+              matchType:"CONTAINS",
+              value:"Paris",
+            },
+          ],
+      };
+      let expected =
+        {"$and":[
+          {'identity.gender.value': 'male'},
+          {'curriculum.university.value': /Paris/},
+        ]};
+
+      let res = service.convertSearchRequestToMongoRequest(searchRequest);
+      expect(res).toEqual(expected);
+    });
+
+
+  })
 
 });
 

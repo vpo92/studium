@@ -195,14 +195,68 @@
   <div class="method-summary"></div>
   <h4><a href="#ProsopographyAPI">ProsopographyAPI</a></h4>
   <ul>
+  <li><a href="#createProsopography"><code><span class="http-method">post</span> /prosopography</code></a></li>
   <li><a href="#findProsopographyByLetter"><code><span class="http-method">get</span> /prosopography/index/{letter}</code></a></li>
   <li><a href="#getProsopography"><code><span class="http-method">get</span> /prosopography/</code></a></li>
   <li><a href="#getProsopographyById"><code><span class="http-method">get</span> /prosopography/{reference}</code></a></li>
+  <li><a href="#importProsopographyFromText"><code><span class="http-method">post</span> /prosopography/from-text</code></a></li>
   <li><a href="#searchProsopography"><code><span class="http-method">get</span> /prosopography/search/{searchText}</code></a></li>
   <li><a href="#searchProsopographyByCriterion"><code><span class="http-method">post</span> /prosopography/search/advanced</code></a></li>
   </ul>
 
   <h1><a name="ProsopographyAPI">ProsopographyAPI</a></h1>
+  <div class="method"><a name="createProsopography"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /prosopography</code></pre></div>
+    <div class="method-summary">create prosopography (<span class="nickname">createProsopography</span>)</div>
+    <div class="method-notes">create prosopographies matchnig request</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Prosopography">Prosopography</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; prosopography </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Invalid searchText supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Prosopography not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="findProsopographyByLetter"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -336,6 +390,55 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
+  <div class="method"><a name="importProsopographyFromText"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /prosopography/from-text</code></pre></div>
+    <div class="method-summary">import prosopography from text (<span class="nickname">importProsopographyFromText</span>)</div>
+    <div class="method-notes">import prosopography from text</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#string">string</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; prosopography </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#String">String</a>
+    <h4 class="field-label">409</h4>
+    Invalid prosopographt supplied
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="searchProsopography"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -398,7 +501,7 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#string">string</a> (required)</div>
+      <div class="param">body <a href="#SearchRequest">SearchRequest</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Criterion </div>
     </div>  <!-- field-items -->
@@ -456,10 +559,13 @@
     <li><a href="#PoliticalInformation"><code>PoliticalInformation</code></a></li>
     <li><a href="#ProfessionalFunction"><code>ProfessionalFunction</code></a></li>
     <li><a href="#Prosopography"><code>Prosopography</code></a></li>
+    <li><a href="#ProsopographyCriterion"><code>ProsopographyCriterion</code></a></li>
     <li><a href="#RangeInformation"><code>RangeInformation</code></a></li>
     <li><a href="#RelationalInsertion"><code>RelationalInsertion</code></a></li>
     <li><a href="#RelationalInsertion_familyNetwork"><code>RelationalInsertion_familyNetwork</code></a></li>
+    <li><a href="#SearchRequest"><code>SearchRequest</code></a></li>
     <li><a href="#SimpleInformation"><code>SimpleInformation</code></a></li>
+    <li><a href="#SimpleRange"><code>SimpleRange</code></a></li>
     <li><a href="#TextualProduction"><code>TextualProduction</code></a></li>
   </ol>
 
@@ -663,6 +769,17 @@
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="ProsopographyCriterion"><code>ProsopographyCriterion</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">section (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subSection (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">operator (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">matchType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="RangeInformation"><code>RangeInformation</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
@@ -702,11 +819,32 @@
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="SearchRequest"><code>SearchRequest</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Search request</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">activityMediane (optional)</div><div class="param-desc"><span class="param-type"><a href="#SimpleRange">SimpleRange</a></span>  </div>
+<div class="param">activity (optional)</div><div class="param-desc"><span class="param-type"><a href="#SimpleRange">SimpleRange</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">grade (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">discipline (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">prosopography (optional)</div><div class="param-desc"><span class="param-type"><a href="#ProsopographyCriterion">array[ProsopographyCriterion]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="SimpleInformation"><code>SimpleInformation</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#Metadata">Metadata</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SimpleRange"><code>SimpleRange</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
