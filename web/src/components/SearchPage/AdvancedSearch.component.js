@@ -3,8 +3,44 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
-import { MenuItem } from '@material-ui/core/Menu';
+import FormGroup from '@material-ui/core/FormGroup';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import GenericProsopographySearch from './GenericProsopographySearch.component';
+import Grid from '@material-ui/core/Grid';
+
+const disciplines = [
+  {code:"ALL",label:"Tous"},
+  {code:"ART",label:"Art"},
+  {code:"DROIT",label:"Droit"},
+  {code:"DROIT_CANON",label:"Droit canon"},
+  {code:"DROIT_CIVIL",label:"Droit civil"},
+  {code:"MEDECINE",label:"Médecine"},
+  {code:"MUSIQUE",label:"Musique"},
+];
+
+const grades = [
+{code:"ALL",label:"Tous"},
+{code:"MAGIS",label:"Magister"},
+{code:"DR",label:"Docteur"},
+{code:"MAITRE",label:"Maître"},
+{code:"LIC",label:"Licencié"},
+{code:"BAC",label:"Bachelier"},
+{code:"ETU",label:"Étudiant"},
+];
+
+const status = [
+{code:"ALL",label:"Tous"},
+{code:"MAITRE",label:"Maître"},
+{code:"GRADUE",label:"Gradué"},
+{code:"ETU",label:"Étudiant"},
+{code:"SUP",label:"Suppôt"},
+{code:"EXT",label:"Extérieur"},
+{code:"INC",label:"Incertain"},
+];
+
+
 
 type State = {
   status: number,
@@ -13,72 +49,108 @@ type State = {
 };
 
 class AdvanceSearch extends Component<{}, State> {
-  constructor() {
-    super();
+  constructor(props) {
+    console.log(props);
+    super(props);
+    //this.handleSearch = this.handleSearch.bind(this);
     this.state = {
-      status: 1,
-      grade: 1,
-      discipline: 1,
+      name: '',
+      status: "ALL",
+      grade: "ALL",
+      discipline: "ALL",
+      prosopography:{},
     };
   }
 
-  handleChange = (stateKey: string) => (
-    event: Event,
-    index: number,
-    value: number
-  ) => this.setState({ [stateKey]: value });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
 
-  handleStatusChange = this.handleChange('status');
-  handleGradeChange = this.handleChange('grade');
-  handleDisciplineChange = this.handleChange('discipline');
+  localHandleSearch = () => {
+    this.props.handleSearch(this.state);
+  }
+
+  updateProsopography = (p) => {
+    this.setState({
+      ...this.state,
+      prosopography:[p],
+      });
+  }
 
   render() {
     return (
       <div>
-        <h1>Recherche avancée</h1>
-        <p>
-
-          <h4>Identité</h4>
-          <p>
-            Une partie du nom : <TextField />
-          </p>
-          <h4>Activité</h4>
+          <br/>
+          <br/>
+          <Typography variant="subheading" color="secondary">Identité</Typography>
+          <TextField
+            id="select-add-option"
+            label="Une partie du nom"
+            value={this.state.name}
+            onChange={this.handleChange('name')}
+          />
+          <br/>
+          <br/>
+          <Typography variant="subheading" color="secondary">Activité</Typography>
           <p>
             Médiane d'activité Ou Début et Fin d'activité
           </p>
-          <h4>Cursus</h4>
-          <Select
-            helperText="Status"
-            value={this.state.status}
-            onChange={this.handleStatusChange}
-          >
-            <MenuItem value={0} primaryText="Never" />
-            <MenuItem value={1} primaryText="Every Night" />
-            <MenuItem value={2} primaryText="Weeknights" />
-          </Select>
-          <Select
-            helperText="Grade obtenu"
-            value={this.state.grade}
-            onChange={this.handleGradeChange}
-          >
-            <MenuItem value={0} primaryText="Never" />
-            <MenuItem value={1} primaryText="Every Night" />
-            <MenuItem value={2} primaryText="Weeknights" />
-          </Select>
-          <Select
-            helperText="Discipline"
-            value={this.state.discipline}
-            onChange={this.handleDisciplineChange}
-          >
-            <MenuItem value={0} primaryText="Never" />
-            <MenuItem value={1} primaryText="Every Night" />
-            <MenuItem value={2} primaryText="Weeknights" />
-          </Select>
-
-          <h4>Prosopography</h4>
-          <GenericProsopographySearch />
-
-        </p>
+          <br/>
+          <br/>
+          <Typography variant="subheading" color="secondary">Cursus</Typography>
+          <Grid container spacing={8}>
+            <Grid item xs={4}>
+              <TextField
+                id="select-status"
+                select
+                label="Status"
+                value={this.state.status}
+                onChange={this.handleChange('status')}
+                fullWidth
+              >
+                {status.map(option => (
+                  <MenuItem key={option.code} value={option.code}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={4}>
+              <Select
+                label="Grade obtenu"
+                value={this.state.grade}
+                onChange={this.handleChange('grade')}
+                fullWidth
+              >
+              {grades.map(option => (
+                <MenuItem key={option.code} value={option.code}>
+                  {option.label}
+                </MenuItem>
+              ))}
+              </Select>
+            </Grid>
+            <Grid item xs={4}>
+              <Select
+                label="Discipline"
+                value={this.state.discipline}
+                onChange={this.handleChange('discipline')}
+                fullWidth
+              >
+              {disciplines.map(option => (
+                <MenuItem key={option.code} value={option.code}>
+                  {option.label}
+                </MenuItem>
+              ))}
+              </Select>
+            </Grid>
+        </Grid>
+        <br/>
+        <br/>
+        <Typography variant="subheading" color="secondary">Prosopographie</Typography>
+        <GenericProsopographySearch updateProsopography={this.updateProsopography} />
+        <br/>
+        <br/>
+        <Button variant="contained" color="primary" onClick={this.localHandleSearch}>Rechercher</Button>
       </div>
     );
   }

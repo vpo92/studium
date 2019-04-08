@@ -16,10 +16,11 @@ class SearchPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      advancesearch: false,
-      activateCompleteSearchFeature: false,
+      advancesearch: true,
+      activateCompleteSearchFeature: true,
       search: {
         keyword: this.props.search.keyword,
+        searchRequest: this.props.search.searchRequest,
       },
     };
   }
@@ -36,6 +37,21 @@ class SearchPage extends Component<Props, State> {
   handleSearch = () => {
     this.props.handleKeywordSearch(this.state.search.keyword);
   };
+
+  handleSearchAdvanced = (searchRequest) => {
+    console.log(searchRequest);
+    /**
+    let searchRequest = {
+    	"prosopography":[{
+      	  "section":"identity",
+      	  "subSection":"gender",
+      	  "operator":"AND",
+      	  "matchType":"EXACT",
+      	  "value":"female"
+      	},]
+    };*/
+    this.props.handleAdvancedSearch(searchRequest);
+  }
 
   handleToogleChange = () => {
     this.setState({ advancesearch: !this.state.advancesearch });
@@ -71,10 +87,10 @@ class SearchPage extends Component<Props, State> {
                 onClick={this.handleToogleChange}
               />
             </div>
-            {this.state.advancesearch ? <AdvancedSearch /> : ''}
+            {this.state.advancesearch ? <AdvancedSearch handleSearch={this.handleSearchAdvanced}/> : ''}
           </div>
         ) : null}
-        <SearchResult data={this.props.search.prosopographies} />
+        <SearchResult data={this.props.search.prosopographies}/>
       </div>
     );
   }

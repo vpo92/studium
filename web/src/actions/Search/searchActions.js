@@ -1,6 +1,7 @@
 // @flow
 
-import { type Prosopography } from '../../../../api/types/Prosopography';
+import type { Prosopography } from '../../../../api/types/Prosopography';
+import type { SearchRequest } from '../../../../api/types/SearchRequest';
 
 import {
   type SnackbarAction,
@@ -81,5 +82,53 @@ export const showSnackbar: ShowSnackbar = (status, message) => ({
   error: {
     status,
     message,
+  },
+});
+
+// ADVANCE SEARCH PART
+
+export type RequestProsopographiesBySearchAction = {
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_SEARCH',
+  prosopographiesBySearch: {
+    searchRequest: SearchRequest
+  },
+};
+
+export type RequestProsopographiesBySearchType = (
+  SearchRequest
+) => RequestProsopographiesBySearchAction;
+
+export const requestProsopographiesBySearch: RequestProsopographiesBySearchType = (
+  searchRequest: SearchRequest
+) => ({
+  type: 'REQUEST_PROSOPOGRAPHIES_BY_SEARCH',
+  prosopographiesBySearch: {
+    searchRequest: searchRequest,
+  },
+});
+
+
+export type ReceiveProsopographiesBySearchAction = {
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_SEARCH',
+  prosopographiesBySearch: {
+    searchRequest: SearchRequest,
+    prosopographies: Prosopography[],
+  },
+};
+
+export type ReceiveProsopographiesBySearchType = (
+  SearchRequest,
+  Prosopography[]
+) => ReceiveProsopographiesBySearchAction;
+
+
+export const receiveProsopographiesBySearch: (
+  searchRequest: SearchRequest,
+  prosopographies: Prosopography[]
+) => ReceiveProsopographiesBySearchAction = (searchRequest, prosopographies) => ({
+  type: 'RECEIVE_PROSOPOGRAPHIES_BY_SEARCH',
+  prosopographiesBySearch: {
+    searchRequest,
+    prosopographies,
   },
 });

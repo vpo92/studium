@@ -1,7 +1,7 @@
 // @flow
 
 import type { Dispatch } from 'redux';
-
+import type { SearchRequest } from '../../../api/types/SearchRequest';
 import {
   showSnackbar,
   requestApiUrl,
@@ -12,6 +12,8 @@ import {
   receiveProsopographyDetails,
   requestProsopographiesByFirstLetter,
   receiveProsopographiesByFirstLetter,
+  requestProsopographiesBySearch,
+  receiveProsopographiesBySearch,
 } from '../actions/Search/searchActions';
 
 import type { State } from '../index';
@@ -75,6 +77,31 @@ export function fetchProsopographiesByFirstLetter(
       const result = await fetch(`${apiUrl}/prosopography/index/${letter}`);
       const prosopographies = await result.json();
       dispatch(receiveProsopographiesByFirstLetter(letter, prosopographies));
+    } catch (e) {
+      dispatch(showSnackbar(true, `Couldn't get response from server.`));
+    }
+  };
+}
+
+
+export function fetchProsopographiesBySearch(
+  searchRequest: SearchRequest
+): (Dispatch, () => State) => Promise<void> {
+  return async (dispatch, getState) => {
+    const { studium: { apiUrl } } = getState();
+    console.log('fetchProsopographiesBySearch');
+    try {
+      dispatch(requestProsopographiesBySearch(searchRequest));
+      const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
+        'method':'POST',
+        'headers':{
+          'Content-Type':'application/json',
+        },
+        'body': JSON.stringify(searchRequest),
+      });
+      const prosopographies = await result.json();
+      console.log(prosopographies);
+      dispatch(receiveProsopographiesBySearch(searchRequest, prosopographies));
     } catch (e) {
       dispatch(showSnackbar(true, `Couldn't get response from server.`));
     }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import SearchPage from '../../components/SearchPage/SearchPage.component';
-import { fetchProsopographiesByKeyword } from '../../services/searchAPIService';
+import { fetchProsopographiesByKeyword, fetchProsopographiesBySearch } from '../../services/searchAPIService';
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +15,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   handleKeywordSearch: (keyword: string) => {
     dispatch(fetchProsopographiesByKeyword(keyword));
+  },
+  handleAdvancedSearch: (searchRequest: SearchRequest) => {
+    dispatch(fetchProsopographiesBySearch(searchRequest));
   },
 });
 

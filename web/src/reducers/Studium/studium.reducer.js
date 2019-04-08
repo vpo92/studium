@@ -46,6 +46,7 @@ export type StudiumState = {
   showSideMenu: boolean,
   prosopographiesByKeyword: {
     keyword: string,
+    searchRequest: SearchRequest,
     prosopographies: Prosopography[],
   },
   prosopographyDetails: {
@@ -72,6 +73,7 @@ export const studiumInitialState = {
   apiUrl: '',
   prosopographiesByKeyword: {
     keyword: '',
+    searchRequest: {},
     prosopographies: [],
   },
   prosopographyDetails: {
@@ -109,6 +111,7 @@ const studiumReducer = (
         ...state,
         prosopographiesByKeyword: {
           keyword: action.keyword,
+          searchRequest: {},
           prosopographies: [],
         },
       };
@@ -161,6 +164,25 @@ const studiumReducer = (
       return {
         ...state,
         prosopographiesByFirstLetter: action.prosopographiesByFirstLetter,
+      };
+    case 'REQUEST_PROSOPOGRAPHIES_BY_SEARCH':
+      return {
+        ...state,
+        prosopographiesByKeyword: {
+          keyword: '',
+          searchRequest: action.searchRequest,
+          prosopographies: [],
+        },
+      };
+    case 'RECEIVE_PROSOPOGRAPHIES_BY_SEARCH':
+      console.log(action);
+      return {
+        ...state,
+        prosopographiesByKeyword: {
+          keyword: '',
+          searchRequest: action.prosopographiesBySearch.searchRequest,
+          prosopographies: action.prosopographiesBySearch.prosopographies,
+        },
       };
     case 'LOGIN_SUCCESS':
       return {
