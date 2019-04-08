@@ -80,9 +80,9 @@ async function convertFromText(text: string): Promise<Prosopography> {
 
 async function search(searchRequest : SearchRequest): Promise<Prosopography[]> {
   console.log(`prosopographyService.search`);
-  console.debug(searchRequest);
+  console.log(searchRequest);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
-  console.debug(mongodbRequest);
+  console.log(mongodbRequest);
   return db
     .get()
     .collection('prosopography')
@@ -101,6 +101,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   if(searchRequest.name){
     criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
   }
+  /**
   //FIXME : RULES ?
   if(searchRequest.grades){
     criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.grades,'CONTAINS'));
@@ -111,7 +112,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   if(searchRequest.discipline){
     criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
   }
-
+*/
   //CRITERIONS
   if(searchRequest.prosopography){
     let pCrit = [];
@@ -139,14 +140,14 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
 function generateSeachClause(field, value, matchType){
   let res = {};
   switch(matchType){
-    case 'EXACT':
-      res[field] = value;
+    case 'EQUALS':
+      res[field] = new RegExp('^'+value+'$',"i");;
       break;
     case 'STARTS':
-      res[field] = new RegExp('^'+value);
+      res[field] = new RegExp('^'+value,"i");
       break;
     case 'CONTAINS':
-      res[field] = new RegExp(value);
+      res[field] = new RegExp(value,"i");
       break;
   }
   return res;

@@ -81,7 +81,7 @@ describe('prosopographyService', () => {
           name:"roma",
       };
       let expected = {
-        'identity.name.value': /^roma/,
+        'identity.name.value': /^roma/i,
       };
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
@@ -92,7 +92,7 @@ describe('prosopographyService', () => {
           name:"roma",
           grades:"ETU",
       };
-      let expected = {"$and":[{'identity.name.value': /^roma/},{'curriculum.grades.value': /ETU/}]};
+      let expected = {"$and":[{'identity.name.value': /^roma/i},{'curriculum.grades.value': /ETU/i}]};
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
     });
@@ -115,12 +115,12 @@ describe('prosopographyService', () => {
               section:"identity",
               subSection:"gender",
               operator:"AND",
-              matchType:"EXACT",
+              matchType:"EQUALS",
               value:"male",
             },
           ],
       };
-      let expected = {'identity.gender.value': 'male'};
+      let expected = {'identity.gender.value': /^male$/i};
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
     });
@@ -132,7 +132,7 @@ describe('prosopographyService', () => {
               section:"identity",
               subSection:"gender",
               operator:"AND",
-              matchType:"EXACT",
+              matchType:"EQUALS",
               value:"male",
             },
             {
@@ -146,8 +146,8 @@ describe('prosopographyService', () => {
       };
       let expected =
         {"$and":[
-          {'identity.gender.value': 'male'},
-          {'curriculum.university.value': /Paris/},
+          {'identity.gender.value': /^male$/i},
+          {'curriculum.university.value': /Paris/i},
         ]};
 
       let res = service.convertSearchRequestToMongoRequest(searchRequest);

@@ -49,7 +49,7 @@ router.post('/search/advanced', async(req, res, next) => {
     res.send(prosopographies);
   } catch (err) {
     logger.error(
-      `${id}: Failed to load all prosopographies from indexSearch on ${letter} - ${err}`
+      `${id}: Failed to load all prosopographies search advanced - ${err}`
     );
     next(err);
   }
