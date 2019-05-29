@@ -65,6 +65,14 @@ async function create(prosopography: Prosopography): Promise<Any> {
     .insert(prosopography);
 }
 
+async function update(prosopography: Prosopography): Promise<Any> {
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography')
+    .save(prosopography);
+}
+
 async function convertFromText(text: string): Promise<Prosopography> {
   var s = new Readable();
   s.push(text);
@@ -164,6 +172,7 @@ module.exports = {
   textSearch,
   indexDB,
   create,
+  update,
   convertFromText,
   search,
   convertSearchRequestToMongoRequest,

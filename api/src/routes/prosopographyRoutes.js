@@ -17,6 +17,7 @@ router.get('/', async (req, res, next) => {
   try {
     const prosopographies = await service.findAll();
     logger.info(`${id}: findAll done`);
+    res.set("X-Total-Count", prosopographies.length);
     res.send(prosopographies);
   } catch (err) {
     logger.error(`${id}: Failed to find all prosopographies - ${err}`);
@@ -114,17 +115,33 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   logger.info(`${id}: POST prosopography from-text user ${req.user.name}`);
 
   const proso = req.body.prosopography;
-  logger.debug(proso);
+  const reference = req.body.reference;
+  logger.info(proso);
+  if(reference){
+    logger.info(`${id}: POST prosopography from-text update ${reference}`);
+  }
+
   try{
     let p = await service.convertFromText(proso);
-    logger.debug(p);
     const prosopography = await service.findByReference(p.reference);
     if(prosopography){
-      logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
-      return res.status(409).json({
-          message: "Error",
-          error: "prosopography reference already exists",
-      });
+      logger.info(`${id}: POST prosopography from-text found ${prosopography.reference}`);
+      //Update
+      if( parseInt(reference) === parseInt(prosopography.reference)){
+        p = {
+          _id:prosopography._id,
+          ...p
+        };
+        await service.update(p);
+        return res.send({'message':'OK'});
+      }else{
+        logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
+        return res.status(409).json({
+            message: "Error",
+            error: "prosopography reference already exists",
+        });
+      }
+
     }else{
       await service.create(p);
       return res.send({'message':'OK'});

@@ -112,7 +112,7 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
 
  function finalizeReference(record: ProsopographyRow): ProsopographyRow {
    const ref = record.reference.value;
-   record.reference = ref;
+   record.reference = ref.trim();
    return record;
 }
 
