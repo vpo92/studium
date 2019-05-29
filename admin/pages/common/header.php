@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Studium</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h3>Studium</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <img src="resources/img/logo_par.png" alt="Paris 1" height="180px">
+            <li class="active">
+                <a href="index.php?page=home">Accueil</a>
+            </li>
+            <li>
+                <a href="index.php?action=index">Index</a>
+            </li>
+            <!--
+            <li>
+                <a href="index.php?page=recherche">Recherche</a>
+            </li>
+            -->
+            <li>
+                <a href="index.php?page=contact">Contact</a>
+            </li>
+            <li>
+                <a href="index.php?page=aide">Aide</a>
+            </li>
+            <!--
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Admin</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            -->
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <span class="mr-auto">
+                <a class="navbar-brand" href="#">&nbsp;&nbsp;Studium</a>
+            </span>
+            <span class="navbar-text">
+                <?php if(isAuthenticated()){
+                    echo getSessionUserName();?>
+                    <a href="index.php?action=logout"> - Se déconnecter</a>
+                <?php }else{ ?>
+                    <a href="index.php?action=prepare-login">Se connecter</a>
+                <?php } ?>
+            </span>
+        </nav>
+
+        <div class="app-page">
+        <?php
+        if(isset($error_msg)){?>
+        <div class="alert alert-danger" role="alert">
+            <strong>Erreur : </strong><?php echo $error_msg?>
+        </div>
+        <?php
+        }else if(isset($info_msg)){?>
+        <div class="alert alert-info" role="alert">
+            <strong>Info : </strong><?php echo $info_msg?>
+        </div>
+        <?php
+        }
+        ?>
