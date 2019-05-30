@@ -1,7 +1,7 @@
 <?php
 
 function getAPIUrl(){
-    return "http://localhost:3000";
+    return isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000";
 }
 
 function getFieldFromForm($name, $default = null){
@@ -30,6 +30,18 @@ function formatErrorMsgReqired($error){
         $error_msg.=" $f,";
     }
     return $error_msg;
+}
+
+function getPropertieValue($prop){
+    if(isset($prop)){
+        if(is_object($prop)){
+            return $prop->value;
+        }else{
+            return ($prop[0]->value)."...";
+        }
+    }else{
+        return "";
+    }
 }
 
 function callAPI($method, $url, $headers = false, $data = false)

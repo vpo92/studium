@@ -2,15 +2,21 @@
 
 <?php
 $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
+
+$backLink = "index.php?action=index&letter=$name[0]";
+if(isset($mode) && $mode == "SEARCH") {
+    $backLink = "index.php?action=search&keyword=$keyword";
+}
 ?>
-<a href="index.php?action=index&letter=<?php echo $name[0] ?>" class="btn btn-secondary">
-    Retourner à l'index
+<a href="<?php echo $backLink ?>" class="btn btn-secondary">
+    Retourner à la liste
 </a>
-
-<a href="index.php?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
-    Modifier la fiche
-</a>
-
+<?php
+if(isAuthenticated()){?>
+    <a href="index.php?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
+        Modifier la fiche
+    </a>
+<?php } ?>
 
 <ul class="list-group app-view-list">
     <?php

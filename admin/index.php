@@ -69,6 +69,8 @@ switch ($action){
 
     case "view" :
         $reference = getFieldFromForm("reference");
+        $mode = getFieldFromForm("mode");
+        $keyword = getFieldFromForm("keyword");
         $fiche = $ficheService->searchByReference($reference);
         $page = "view";
         break;
@@ -116,6 +118,13 @@ switch ($action){
             $mode = "CREATE";
         }
         break;
+
+    case "search":
+        $keyword = getFieldFromForm("keyword");
+        $result = $ficheService->searchByKeyWord($keyword);
+        $page = "recherche";
+        break;
+
 }
 
 

@@ -24,6 +24,12 @@ class FicheService
         return json_decode($response);
     }
 
+    public function searchByKeyWord($keyword){
+        $response = callAPI('GET', "/prosopography/search/$keyword");
+        $res = json_decode($response);
+        return isset($res->message)?[]:$res;
+    }
+
     public function saveFicheFromText($reference,$prosopography)
     {
         $data = array("prosopography" => $prosopography);

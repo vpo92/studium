@@ -44,11 +44,9 @@
             <li>
                 <a href="index.php?action=index">Index</a>
             </li>
-            <!--
             <li>
                 <a href="index.php?page=recherche">Recherche</a>
             </li>
-            -->
             <li>
                 <a href="index.php?page=contact">Contact</a>
             </li>
