@@ -10,6 +10,9 @@ async function create(body){
   logger.info("userService.create")
   logger.info(`userService.create user ${body}`);
   let newUser = new User(body);
+  if(newUser.email){
+    newUser.email = newUser.email.trim().toLowerCase()
+  }
   return await newUser.save();
 }
 

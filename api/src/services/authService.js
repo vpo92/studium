@@ -12,7 +12,8 @@ const getUser = async (req,res,next) => {
   const id = uuid.v4();
   logger.info(`${id}:getUser`);
   try{
-    const user = await User.findOneAsync({email:req.user.email});
+    const userEmail = req.user.email?req.user.email.trim().toLowerCase():null;
+    const user = await User.findOneAsync({email:userEmail});
     logger.info(`${id}:getUser user found ${user.name}`);
     if (!user) {
       return res.status(401).end();
@@ -30,7 +31,7 @@ const isAuthenticated = [
 ]
 const authenticate = async (email, password)  => {
   try{
-    const user = await User.findOneAsync({email:email.toLowerCase()});
+    const user = await User.findOneAsync({email:email.trim().toLowerCase()});
     await user.authenticate(password);
     return user;
   }catch(err){
