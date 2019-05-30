@@ -46,3 +46,14 @@ services:
      - default
     ports:
       - 27017:27017
+  studium_admin:
+    image: studium/admin
+    environment:
+      - API_URL=http://studium_api:3000
+    ports:
+      - 3002:80
+    networks:
+     - default
+     - public
+    labels:
+      - "traefik.frontend.rule=Host:studium-admin.vincentpoupet.fr"

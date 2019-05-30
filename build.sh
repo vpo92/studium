@@ -7,3 +7,5 @@ npm -q run docker:build
 cd ../web
 npm i -q
 npm -q run docker:build
+cd ../admin
+./docker_build.sh
