@@ -3,12 +3,12 @@ $targetAction = $mode == "EDIT"?"process-edit":"process-create";
 ?>
 <h3>Fiche <?php echo $mode == "EDIT"?$fiche->reference:"" ?> </h3>
 
-<form action="index.php" method="POST">
+<form action="<?php echo getApplicationUrl()?>/index.php" method="POST">
     <div class="form-group">
         <?php if($mode == "EDIT"){?>
-            <a href="index.php?action=view&reference=<?php echo $fiche->reference ?>" class="btn btn-secondary">Annuler</a>
+            <a href="<?php echo getApplicationUrl()?>?action=view&reference=<?php echo $fiche->reference ?>" class="btn btn-secondary">Annuler</a>
         <?php }else{?>
-            <a href="index.php?action=index&letter=A" class="btn btn-secondary">Annuler</a>
+            <a href="<?php echo getApplicationUrl()?>?action=index&letter=A" class="btn btn-secondary">Annuler</a>
         <?php }?>
         <button name="saveChange" type="submit" class="btn btn-primary">Enregistrer</button>
     </div>

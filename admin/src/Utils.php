@@ -3,6 +3,14 @@
 function getAPIUrl(){
     return isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000";
 }
+function getApplicationUrl(){
+    return isset($_ENV["APPLICATION_URL"] )?$_ENV["APPLICATION_URL"]:"/admin";
+}
+
+function getResourcesWebDirectory(){
+    return getApplicationUrl()."/resources";
+}
+
 
 function getFieldFromForm($name, $default = null){
     return isset($_POST[$name])?$_POST[$name]:(isset($_GET[$name])?$_GET[$name]:$default);

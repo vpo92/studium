@@ -1,7 +1,7 @@
 <div class="card" style="width: 80%;margin: auto">
     <div class="card-body">
         <h5 class="card-title">Connexion</h5>
-        <form method="post" action="index.php">
+        <form method="post" action="<?php echo getApplicationUrl()?>/index.php">
             <input type="hidden" name="action" value="login">
             <div class="form-group">
                 <label class="bmd-label-floating">Pseudo : </label>

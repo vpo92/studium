@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="<?php echo getResourcesWebDirectory()?>/css/style.css">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -37,21 +37,21 @@
         </div>
 
         <ul class="list-unstyled components">
-            <img src="resources/img/logo_par.png" alt="Paris 1" height="180px">
+            <img src="<?php echo getResourcesWebDirectory()?>/img/logo_par.png" alt="Paris 1" height="180px" class="img-fluid">
             <li class="active">
-                <a href="index.php?page=home">Accueil</a>
+                <a href="<?php echo getApplicationUrl()?>?page=home">Accueil</a>
             </li>
             <li>
-                <a href="index.php?action=index">Index</a>
+                <a href="<?php echo getApplicationUrl()?>?action=index">Index</a>
             </li>
             <li>
-                <a href="index.php?page=recherche">Recherche</a>
+                <a href="<?php echo getApplicationUrl()?>?page=recherche">Recherche</a>
             </li>
             <li>
-                <a href="index.php?page=contact">Contact</a>
+                <a href="<?php echo getApplicationUrl()?>?page=contact">Contact</a>
             </li>
             <li>
-                <a href="index.php?page=aide">Aide</a>
+                <a href="<?php echo getApplicationUrl()?>?page=aide">Aide</a>
             </li>
             <!--
             <li>
@@ -84,9 +84,9 @@
             <span class="navbar-text">
                 <?php if(isAuthenticated()){
                     echo getSessionUserName();?>
-                    <a href="index.php?action=logout"> - Se déconnecter</a>
+                    <a href="<?php echo getApplicationUrl()?>?action=logout"> - Se déconnecter</a>
                 <?php }else{ ?>
-                    <a href="index.php?action=prepare-login">Se connecter</a>
+                    <a href="<?php echo getApplicationUrl()?>?action=prepare-login">Se connecter</a>
                 <?php } ?>
             </span>
         </nav>

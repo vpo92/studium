@@ -1,6 +1,6 @@
 <h3>Rechercher une fiche par mot clé</h3>
 
-<form action="index.php" method="POST">
+<form action="<?php echo getApplicationUrl()?>/index.php" method="POST">
     <input type="hidden" name="action" value="search" />
     <div class="form-group">
       <input type="text" name="keyword" value="<?php echo isset($keyword)?$keyword:"" ?>"/>
@@ -28,10 +28,11 @@ if ( $count> 0){
     <tbody>
     <?php
     foreach ($result as $fiche) {
-        $name = is_object($fiche->identity->name) ? $fiche->identity->name->value : $fiche->identity->name[0]->value;
+        $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
+        $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name)."&mode=SEARCH&keyword=$keyword";
         $status = getPropertieValue($fiche->identity->status);
         $description = getPropertieValue($fiche->identity->shortDescription);
-        $link = "index.php?action=view&reference=".$fiche->reference."&mode=SEARCH&keyword=$keyword";
+        $link = getApplicationUrl()."?action=view&reference=".$fiche->reference."&mode=SEARCH&keyword=$keyword";
         ?>
         <tr>
             <th scope="row"><?php echo $fiche->reference ?></th>
@@ -39,7 +40,7 @@ if ( $count> 0){
             <td><?php echo $status ?></td>
             <td><?php echo $description ?></td>
             <td><a class="btn btn-primary"
-                   href="<?php echo $link ?>">voir la
+                   href="<?php echo $viewLink ?>">voir la
                     fiche</a></td>
         </tr>
     <?php }

@@ -4,7 +4,7 @@
 docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}
 
 DATE=`date +%Y%m%d_%H%M%S`
-VERSION='0.0.2'
+VERSION='0.0.3'
 
 # TAG
 docker tag studium/admin:latest studium/admin:latest

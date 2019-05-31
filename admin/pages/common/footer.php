@@ -1,7 +1,7 @@
 </div>
 <footer>
     <hr/>
-    2019 - Studium
+    2019 - Studium 0.0.3
 </footer>
 
 </div>

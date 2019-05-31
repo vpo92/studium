@@ -27,6 +27,19 @@ $action = getFieldFromForm("action");
 if(!isset($action) && isAuthenticated()){
     $action = "list";
 }
+
+//Reecriture d url
+$requestURI = $_SERVER['REQUEST_URI'];
+$route = explode(getApplicationUrl(),$requestURI)[1];
+$matches = null;
+if(preg_match('/individus\/(.+)/', $route, $matches)){
+    $action = "view";
+    $reference = explode("-",$matches[1])[0];
+    $_GET["reference"] = $reference;
+}
+
+
+
 switch ($action){
     case "prepare-login":
         $page = "common/login";

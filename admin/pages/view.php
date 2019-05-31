@@ -3,9 +3,9 @@
 <?php
 $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
 
-$backLink = "index.php?action=index&letter=$name[0]";
+$backLink = getApplicationUrl()."?action=index&letter=$name[0]";
 if(isset($mode) && $mode == "SEARCH") {
-    $backLink = "index.php?action=search&keyword=$keyword";
+    $backLink = getApplicationUrl()."?action=search&keyword=$keyword";
 }
 ?>
 <a href="<?php echo $backLink ?>" class="btn btn-secondary">
@@ -13,7 +13,7 @@ if(isset($mode) && $mode == "SEARCH") {
 </a>
 <?php
 if(isAuthenticated()){?>
-    <a href="index.php?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
+    <a href="<?php echo getApplicationUrl()?>?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
         Modifier la fiche
     </a>
 <?php } ?>
