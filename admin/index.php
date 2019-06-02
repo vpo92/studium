@@ -32,7 +32,13 @@ if(!isset($action) && isAuthenticated()){
 
 //Reecriture d url
 $requestURI = $_SERVER['REQUEST_URI'];
-$route = explode(getApplicationUrl(),$requestURI)[1];
+if(null!==getApplicationPath()){
+    $route = explode(getApplicationPath(),$requestURI)[1];
+}else{
+    $route = $requestURI;
+}
+
+
 $applicationLog = addLog($applicationLog,"requestURI : ".$requestURI);
 $applicationLog = addLog($applicationLog,"route : ".$route);
 $matches = null;

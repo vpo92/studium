@@ -4,7 +4,11 @@ function getAPIUrl(){
     return isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000";
 }
 function getApplicationUrl(){
-    return isset($_ENV["APPLICATION_URL"] )?$_ENV["APPLICATION_URL"]:"/admin";
+    $url = isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost";
+    return $url.getApplicationPath();
+}
+function getApplicationPath(){
+    return isset($_ENV["APPLICATION_PATH"] )?$_ENV["APPLICATION_PATH"]:"/admin";
 }
 
 function getResourcesWebDirectory(){

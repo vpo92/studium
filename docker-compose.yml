@@ -51,6 +51,7 @@ services:
     environment:
       - API_URL=http://studium_api:3000
       - APPLICATION_URL=http://studium-admin.vincentpoupet.fr
+      - APPLICATION_PATH=/
     ports:
       - 3002:80
     networks:
