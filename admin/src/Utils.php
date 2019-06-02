@@ -11,6 +11,10 @@ function getResourcesWebDirectory(){
     return getApplicationUrl()."/resources";
 }
 
+function addLog($applicationLog, $string){
+    $applicationLog .="console.log('$string');";
+    return $applicationLog;
+}
 
 function getFieldFromForm($name, $default = null){
     return isset($_POST[$name])?$_POST[$name]:(isset($_GET[$name])?$_GET[$name]:$default);

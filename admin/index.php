@@ -12,6 +12,8 @@ $liste = null;
 $reference = null;
 $error_msg = null;
 $info_msg = null;
+$applicationLog = "";
+
 
 $ficheService = new FicheService();
 $userService = new UserService();
@@ -31,6 +33,8 @@ if(!isset($action) && isAuthenticated()){
 //Reecriture d url
 $requestURI = $_SERVER['REQUEST_URI'];
 $route = explode(getApplicationUrl(),$requestURI)[1];
+$applicationLog = addLog($applicationLog,"requestURI : ".$requestURI);
+$applicationLog = addLog($applicationLog,"route : ".$route);
 $matches = null;
 if(preg_match('/individus\/(.+)/', $route, $matches)){
     $action = "view";

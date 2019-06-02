@@ -45,6 +45,12 @@
     });
 </script>
 
+<script>
+    <?php
+    echo $applicationLog;
+    ?>
+</script>
+
 </body>
 
 </html>
