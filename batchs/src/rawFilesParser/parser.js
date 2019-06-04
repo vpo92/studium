@@ -194,6 +194,11 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
         saveRecord(record)
       }
       return {};
+    }else if (parsedLine.type === 'ERROR'){
+      if(!record.raw){
+        record.raw = [];
+      }
+      record.raw.push(line);
     }
     return record;
   };
