@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import FormGroup from '@material-ui/core/FormGroup';
+<<<<<<< HEAD
+=======
+import InputLabel from '@material-ui/core/InputLabel';
+>>>>>>> feat(web) advance search v0
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
@@ -83,11 +87,16 @@ class AdvanceSearch extends Component<{}, State> {
           <br/>
           <br/>
           <Typography variant="subheading" color="secondary">Identité</Typography>
+<<<<<<< HEAD
           <TextField
             id="select-add-option"
             label="Une partie du nom"
             value={this.state.name}
             onChange={this.handleChange('name')}
+=======
+          <TextField id="select-add-option"
+              label="Une partie du nom"
+>>>>>>> feat(web) advance search v0
           />
           <br/>
           <br/>
@@ -98,6 +107,7 @@ class AdvanceSearch extends Component<{}, State> {
           <br/>
           <br/>
           <Typography variant="subheading" color="secondary">Cursus</Typography>
+<<<<<<< HEAD
           <Grid container spacing={8}>
             <Grid item xs={4}>
               <TextField
@@ -151,6 +161,48 @@ class AdvanceSearch extends Component<{}, State> {
         <br/>
         <br/>
         <Button variant="contained" color="primary" onClick={this.localHandleSearch}>Rechercher</Button>
+=======
+          <FormGroup row>
+            <Select
+              label="Status"
+              value={this.state.status}
+              onChange={this.handleStatusChange}
+              inputProps={{
+                name: 'status',
+                id: 'status',
+              }}
+            >
+              <MenuItem value={0} primaryText="Never" />
+              <MenuItem value={1} primaryText="Every Night" />
+              <MenuItem value={2} primaryText="Weeknights" />
+            </Select>
+          <Select
+            label="Grade obtenu"
+            value={this.state.grade}
+            onChange={this.handleGradeChange}
+          >
+            <MenuItem value={0} primaryText="Never" />
+            <MenuItem value={1} primaryText="Every Night" />
+            <MenuItem value={2} primaryText="Weeknights" />
+          </Select>
+          <Select
+            label="Discipline"
+            value={this.state.discipline}
+            onChange={this.handleDisciplineChange}
+          >
+            <MenuItem value={0} primaryText="Never" />
+            <MenuItem value={1} primaryText="Every Night" />
+            <MenuItem value={2} primaryText="Weeknights" />
+          </Select>
+        </FormGroup>
+        <br/>
+        <br/>
+        <Typography variant="subheading" color="secondary">Prosopographie</Typography>
+        <GenericProsopographySearch />
+        <br/>
+        <br/>
+        <Button variant="contained" color="primary" onClick={this.handleSearch}>Rechercher</Button>
+>>>>>>> feat(web) advance search v0
       </div>
     );
   }

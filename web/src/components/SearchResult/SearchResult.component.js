@@ -36,6 +36,7 @@ class SearchResult extends Component<Props, State> {
 
   render() {
     return (
+<<<<<<< HEAD
         (this.props.data && this.props.data.length > 0)?(
           <div>
             <h1>Résultats ({this.props.data.length})</h1>
@@ -57,6 +58,27 @@ class SearchResult extends Component<Props, State> {
             </Table>
           </div>
         ):("")
+=======
+      <div>
+        <h1>Résultats</h1>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Référence</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Statut</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.props.data.map(item => (
+              <ResultRow key={item._id} profile={item} />
+            ))}
+          </TableBody>
+        </Table>
+      </div>        
+>>>>>>> feat(web) advance search v0
     );
   }
 }

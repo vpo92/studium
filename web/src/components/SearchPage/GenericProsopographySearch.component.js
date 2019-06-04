@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
+<<<<<<< HEAD
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,6 +17,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+=======
+
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+>>>>>>> feat(web) advance search v0
 
 
 import injectSheet from 'react-jss';
@@ -197,13 +203,18 @@ class GenericProsopographySearch extends Component<LocalProps, LocalState> {
   getChapter = () => {
     return Object.keys(prosopographyEntries).map( (item: string) => {
       return {
+<<<<<<< HEAD
         value: item,
+=======
+        value: prosopographyEntries[item],
+>>>>>>> feat(web) advance search v0
         label: localeData.fr[item],
       };
     });
   }
 
   getSubChapter = (chapter: any) => {
+<<<<<<< HEAD
     const values = prosopographyEntries[chapter];
     return values?values.map( (item: string) => {
       const k = localeData.fr[item];
@@ -212,12 +223,23 @@ class GenericProsopographySearch extends Component<LocalProps, LocalState> {
         label: k,
       };
     }):[];
+=======
+
+    return Object.keys(chapter).map( (item: string) => {
+      const k = localeData.fr[chapter[item]];
+      return {
+        value: k,
+        label: k,
+      };
+    });
+>>>>>>> feat(web) advance search v0
   }
 
   render() {
     const { classes } = this.props;
 
     return (
+<<<<<<< HEAD
       <Grid container spacing={8}>
         <Grid item xs={1}>
           <FormControl component="fieldset">
@@ -297,6 +319,89 @@ class GenericProsopographySearch extends Component<LocalProps, LocalState> {
         </Grid>
 
       </Grid>
+=======
+      <FormGroup row >
+        <TextField id="select-add-option"
+            select
+            label="Options"
+            className={classes.selectField}
+            value={this.state.addOption}
+            onChange={this.handleChange('addOption')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+            {addOption.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField id="select-chapter"
+            select
+            label="Rubrique"
+            className={classes.selectField}
+            value={this.state.chapter}
+            onChange={this.handleChange('chapter')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+            {this.getChapter().map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField id="select-sub-chapter"
+            select
+            label="Sous-rubrique"
+            className={classes.selectField}
+            value={this.state.subChapter}
+            onChange={this.handleChange('subChapter')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+            {this.getSubChapter(this.state.chapter).map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField id="select-search-option"
+            select
+            label="Option de recherche de texte"
+            className={classes.selectField}
+            value={this.state.searchOption}
+            onChange={this.handleChange('searchOption')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+            {searchOption.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <IconButton color="secondary" className={classes.button} aria-label="Ajouter une ligne">
+          <Icon>add_circle</Icon>
+        </IconButton>
+      </FormGroup>
+>>>>>>> feat(web) advance search v0
     );
   }
 }
