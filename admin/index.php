@@ -13,6 +13,7 @@ $reference = null;
 $error_msg = null;
 $info_msg = null;
 $applicationLog = "";
+$pageScripts = "";
 
 
 $ficheService = new FicheService();

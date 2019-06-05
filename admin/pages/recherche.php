@@ -15,7 +15,7 @@
 if ( $count> 0){
     echo "<h4>$count Résultat(s) pour le mot clé '$keyword'</h4>";
 ?>
-<table class="table">
+<table class="table" id="resultTable">
     <thead>
     <tr>
         <th scope="col">Référence</th>
@@ -51,3 +51,17 @@ if ( $count> 0){
     </tbody>
 </table>
 
+<?php
+$pageScripts .='<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>';
+$pageScripts .='<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>';
+
+
+$pageScripts .='<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>';
+$pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>';
+$pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>';
+$pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>';
+$pageScripts .='<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>';
+
+
+$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
+ ?>
