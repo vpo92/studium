@@ -94,7 +94,12 @@ switch ($action){
         $mode = getFieldFromForm("mode");
         $keyword = getFieldFromForm("keyword");
         $fiche = $ficheService->searchByReference($reference);
-        $page = "view";
+        if(isset($fiche) && isset($fiche->reference)){
+            $page = "view";
+        }else{
+            $page = "nontrouve";
+        }
+
         break;
 
     case "prepare-edit" :
