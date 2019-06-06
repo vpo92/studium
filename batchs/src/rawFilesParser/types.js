@@ -105,6 +105,8 @@ export type ProsopographyRow = {
   seals: any,
   orality: any,
   otherActivities: any,
+  title: string,
+  link: string,
   raw: any,
 }
 

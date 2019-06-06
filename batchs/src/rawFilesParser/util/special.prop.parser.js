@@ -132,7 +132,11 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
 }
 
 function finalizeTitle(record: ProsopographyRow): ProsopographyRow{
-  record.title = record.name instanceof Array? record.name[0].value: record.name.value;
+  if(record.name){
+    record.title = record.name instanceof Array? record.name[0].value: record.name.value;
+  }else{
+    record.title = '';
+  }
   return record;
 }
 
