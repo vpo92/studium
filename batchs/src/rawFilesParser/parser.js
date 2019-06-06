@@ -97,7 +97,7 @@ function parseDataLine(line: string): ParsedLine {
   const reg = /^<([a-zA-Z0-9\.]*)>[ \t]*(.*)/g
   const t = reg.exec(line);
   if(!t) {
-    console.error(`Could not parse line ${line}`);
+    //console.error(`Could not parse line ${line}`);
     return {
       type: 'ERROR',
     }
@@ -117,7 +117,7 @@ function parseDataLine(line: string): ParsedLine {
 
   const prop = dataLineTypes[dataType];
   if(!prop) {
-    console.error(`Unknown data type ${dataType}`);
+    //console.error(`Unknown data type ${dataType}`);
     return {
       type: 'ERROR',
     }
@@ -168,7 +168,7 @@ export function computeOrSaveRecord(saveRecord: SaveRecordFunction): ComputeReco
     if (parsedLine.type === 'DATA') {
       //FIXME : save current record and start new
       if(parsedLine.value &&  parsedLine.value.reference){
-        console.log("FIRST LINE");
+        //console.log("FIRST LINE");
         //console.log(record);
         //if a record exist
         if(record.reference){
