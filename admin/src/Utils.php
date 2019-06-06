@@ -13,9 +13,9 @@ function getResourcesWebDirectory(){
 }
 
 function getApplicationVersion(){
-  $response = callAPI('GET', "/package.json");
-  $conf = json_decode($response);
-  return $conf->version;
+    $response = file_get_contents("./package.json");
+    $conf = json_decode($response);
+    return $conf->version;
 }
 
 function getFicheUrl($fiche){
