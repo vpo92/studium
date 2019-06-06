@@ -29,10 +29,9 @@ if ( $count> 0){
     <?php
     foreach ($result as $fiche) {
         $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
-        $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name)."&mode=SEARCH&keyword=$keyword";
+        $viewLink =  getFicheUrl($fiche)."?mode=SEARCH&keyword=$keyword";
         $status = getPropertieValue($fiche->identity->status);
         $description = getPropertieValue($fiche->identity->shortDescription);
-        $link = getApplicationUrl()."?action=view&reference=".$fiche->reference."&mode=SEARCH&keyword=$keyword";
         ?>
         <tr>
             <th scope="row"><?php echo $fiche->reference ?></th>
@@ -64,4 +63,5 @@ $pageScripts .='<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons
 
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
+
  ?>

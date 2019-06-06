@@ -5,11 +5,17 @@ function getAPIUrl(){
 }
 
 function getApplicationUrl(){
-    return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost:8080/admin";
+    return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin";
 }
 
 function getResourcesWebDirectory(){
     return getApplicationUrl()."/resources";
+}
+
+function getFicheUrl($fiche){
+    $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
+    $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name);
+    return $viewLink;
 }
 
 function addLog($applicationLog, $string){

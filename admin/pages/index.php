@@ -24,8 +24,7 @@ if($liste){?>
             <?php
 
             foreach ($liste as $fiche) {
-                $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
-                $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name);
+                $viewLink =  getFicheUrl($fiche);
                 ?>
                 <div class="col-3">
                     <div class="card" style="width: 12rem;">
