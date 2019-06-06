@@ -18,12 +18,6 @@ function getApplicationVersion(){
     return $conf->version;
 }
 
-function getFicheUrl($fiche){
-    $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
-    $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name);
-    return $viewLink;
-}
-
 function addLog($applicationLog, $string){
     $applicationLog .="console.log('$string');";
     return $applicationLog;

@@ -28,8 +28,8 @@ if ( $count> 0){
     <tbody>
     <?php
     foreach ($result as $fiche) {
-        $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
-        $viewLink =  getFicheUrl($fiche)."?mode=SEARCH&keyword=$keyword";
+        $name = $ficheService->getFicheTitle($fiche);
+        $viewLink =  $ficheService->getFicheUrl($fiche);
         $status = getPropertieValue($fiche->identity->status);
         $description = getPropertieValue($fiche->identity->shortDescription);
         ?>

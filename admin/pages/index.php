@@ -23,16 +23,14 @@ if($liste){?>
         <div class="row">
             <?php
 
-            foreach ($liste as $fiche) {
-                $viewLink =  getFicheUrl($fiche);
-                ?>
+            foreach ($liste as $fiche) {?>
                 <div class="col-3">
                     <div class="card" style="width: 12rem;">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <?php echo $fiche->reference ?> - <?php echo $name ?>
+                                <?php echo $fiche->reference ?> - <?php echo $ficheService->getFicheTitle($fiche) ?>
                             </h5>
-                            <a href="<?php echo $viewLink ?>">voir la fiche</a>
+                            <a href="<?php echo $ficheService->getFicheUrl($fiche) ?>">voir la fiche</a>
                         </div>
                     </div>
                 </div>

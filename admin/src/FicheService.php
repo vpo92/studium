@@ -43,5 +43,14 @@ class FicheService
         return $response;
     }
 
+    public function getFicheUrl($fiche){
+        $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
+        $viewLink =  getApplicationUrl()."/individus/".$fiche->reference."-".str_replace(' ', '', $name);
+        return $viewLink;
+    }
+
+    public function getFicheTitle($fiche){
+        return is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
+    }
 
 }
