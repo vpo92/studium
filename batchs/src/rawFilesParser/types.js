@@ -210,6 +210,8 @@ export type Prosopography = {
   otherActivities: {
     otherActivities: any
   },
+  title: string,
+  link: string,
   raw: any,
 }
 

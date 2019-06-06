@@ -102,6 +102,8 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
     otherActivities:{
       otherActivities: record.otherActivities,
     },
+    title: record.title,
+    link: record.link,
     raw : record.raw,
   };
 
@@ -129,13 +131,27 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
   return record;
 }
 
+function finalizeTitle(record: ProsopographyRow): ProsopographyRow{
+  record.title = record.name instanceof Array? record.name[0].value: record.name.value;
+  return record;
+}
+
+function finalizeLink(record: ProsopographyRow): ProsopographyRow{
+  let title = record.title.split(' ').join('').toLowerCase();
+  record.link = "/individus/"+record.reference+"-"+title;
+  return record;
+}
+
 export function finalyseProsopography(record: ProsopographyRow): Prosopography {
 
   record = finalizeReference(record);
   record = finalizeGender(record);
+  record = finalizeTitle(record);
+  record = finalizeLink(record);
 
   let result = buildProsopography(record);
   result = JSON.parse(JSON.stringify(result));
+
 
   //remove empty
   Object.keys(result).forEach( (key) => {
