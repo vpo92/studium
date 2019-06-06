@@ -3,7 +3,7 @@
     "mongooseDB": "mongodb://localhost/studium",
     "appMode":"prod",
     "auth": {
-      "expiresIn":"1h",
+      "expiresIn":"4h",
       "userRoles": [
         "guest",
         "user",
@@ -19,7 +19,7 @@
     "mongooseDB": "mongodb://localhost/studium",
     "appMode":"dev",
     "auth": {
-      "expiresIn":"1h",
+      "expiresIn":"4h",
       "userRoles": [
         "guest",
         "user",
@@ -35,7 +35,7 @@
     "mongooseDB": "mongodb://mongodb/studium",
     "appMode":"prod",
     "auth": {
-      "expiresIn":"1h",
+      "expiresIn":"4h",
       "userRoles": [
         "guest",
         "user",
