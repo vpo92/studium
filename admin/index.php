@@ -2,6 +2,7 @@
 //ini_set('error_reporting', E_ALL);
 
 session_start();
+require_once "src/LoggerService.php";
 require_once "src/Utils.php";
 require_once "src/FicheService.php";
 require_once "src/UserService.php";
@@ -12,12 +13,12 @@ $liste = null;
 $reference = null;
 $error_msg = null;
 $info_msg = null;
-$applicationLog = "";
 $pageScripts = "";
 
-
+$loggerService = new LoggerService();
 $ficheService = new FicheService();
 $userService = new UserService();
+
 
 //Recuperer les parametres
 $page = getFieldFromForm("page");
@@ -37,8 +38,8 @@ $requestURI = $_SERVER['REQUEST_URI'];
 //Si mode dev
 $route = str_replace("/admin","",$requestURI);
 
-$applicationLog = addLog($applicationLog,"requestURI : ".$requestURI);
-$applicationLog = addLog($applicationLog,"route : ".$route);
+$loggerService->log("requestURI : ".$requestURI);
+$loggerService->log("route : ".$route);
 $matches = null;
 if(preg_match('/individus\/(.+)/', $route, $matches)){
     $action = "view";
@@ -90,7 +91,7 @@ switch ($action){
 
     case "view" :
         $reference = getFieldFromForm("reference");
-        $applicationLog = addLog($applicationLog,"$reference : ".$reference);
+        $loggerService->log("$reference : ".$reference);
         $mode = getFieldFromForm("mode");
         $keyword = getFieldFromForm("keyword");
         $fiche = $ficheService->searchByReference($reference);

@@ -45,16 +45,12 @@
     });
 </script>
 
-
 <?php
 echo $pageScripts;
-?>
 
-<script>
-    <?php
-    echo $applicationLog;
-    ?>
-</script>
+//Display Logs
+$loggerService->generateJSConsoleOutput();
+?>
 
 </body>
 
