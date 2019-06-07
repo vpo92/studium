@@ -21,7 +21,7 @@ if(isAuthenticated()){?>
 <ul class="list-group app-view-list">
     <?php
     foreach($fiche->raw as $r){
-        echo "<li class=\"list-group-item\">$r</li>";
+        echo "<li class=\"list-group-item\">".htmlspecialchars($r)."</li>";
     } ?>
 </ul>
 
