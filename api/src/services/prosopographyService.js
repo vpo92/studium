@@ -7,16 +7,32 @@ import { type SearchRequest } from '../../types/SearchRequest';
 import { processStream } from '../../../batchs/src/rawFilesParser/parser';
 import {Readable} from 'stream';
 
-async function findAll(): Promise<Prosopography[]> {
+const readPagination = function(pagination){
+  let page = (pagination && pagination.page?pagination.page:1);
+  let rows = (pagination && pagination.rows?pagination.rows:50);
+  return {
+    "skip" : (page-1)*rows,
+    "limit" : rows,
+  }
+
+}
+
+
+async function findAll(pagination: any): Promise<Prosopography[]> {
+  const pg = readPagination(pagination);
+
   return await db
     .get()
     .collection('prosopography')
     .find()
-    .limit(50)
+    .skip(pg.skip)
+    .limit(pg.limit)
     .toArray();
 }
 
-async function textSearch(searchText: string): Promise<Prosopography[]> {
+async function textSearch(searchText: string, pagination: any): Promise<Prosopography[]> {
+  const pg = readPagination(pagination);
+
   return await db
     .get()
     .collection('prosopography')
@@ -25,7 +41,8 @@ async function textSearch(searchText: string): Promise<Prosopography[]> {
       { score: { $meta: 'textScore' }, reference: true, identity: true }
     )
     .sort({ score: { $meta: 'textScore' } })
-    .limit(50)
+    .skip(pg.skip)
+    .limit(pg.limit)
     .toArray();
 }
 
@@ -86,9 +103,10 @@ async function convertFromText(text: string): Promise<Prosopography> {
   return result[0];
 }
 
-async function search(searchRequest : SearchRequest): Promise<Prosopography[]> {
+async function search(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
   console.log(`prosopographyService.search`);
   console.log(searchRequest);
+  const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
   console.log(mongodbRequest);
   return db
@@ -98,7 +116,8 @@ async function search(searchRequest : SearchRequest): Promise<Prosopography[]> {
       mongodbRequest,
       { reference: true, identity: true }
     )
-    .limit(0)
+    .skip(pg.skip)
+    .limit(pg.limit)
     .toArray();
 }
 

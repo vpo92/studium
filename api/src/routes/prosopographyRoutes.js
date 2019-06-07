@@ -11,11 +11,20 @@ import logger from '../utils/logger';
 
 const router = express.Router();
 
+const getPagination = function(req){
+  return {
+    page: parseInt(req.query.page),
+    rows: parseInt(req.query.rows),
+  };
+}
+
 router.get('/', async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: findAll`);
+  let pagination = getPagination(req);
+
   try {
-    const prosopographies = await service.findAll();
+    const prosopographies = await service.findAll(pagination);
     logger.info(`${id}: findAll done`);
     res.set("X-Total-Count", prosopographies.length);
     res.send(prosopographies);
@@ -28,8 +37,9 @@ router.get('/search/:searchText', async (req, res, next) => {
   const id = uuid.v4();
   const searchText = req.params.searchText;
   logger.info(`${id}: textSearch on ${searchText}`);
+  let pagination = getPagination(req);
   try {
-    const prosopographies = await service.textSearch(searchText);
+    const prosopographies = await service.textSearch(searchText,pagination);
     logger.info(`${id}: textSearch done`);
     res.send(prosopographies);
   } catch (err) {
@@ -43,10 +53,11 @@ router.get('/search/:searchText', async (req, res, next) => {
 router.post('/search/advanced', async(req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: search advanced`);
+  let pagination = getPagination(req);
   try {
     //TODO Check searchRequest
     const searchRequest = req.body;
-    const prosopographies = await service.search(searchRequest);
+    const prosopographies = await service.search(searchRequest,pagination);
     res.send(prosopographies);
   } catch (err) {
     logger.error(
