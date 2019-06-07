@@ -53,7 +53,7 @@ function indexSearch(letter: string): Promise<Prosopography[]> {
     .collection('prosopography')
     .find(
       { 'identity.name.value': { $regex: regex, $options: '-i' } },
-      { reference: true, identity: true }
+      { reference: true, link: true, title: true}
     )
     .limit(0)
     .toArray();
