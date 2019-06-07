@@ -45,6 +45,12 @@ if(preg_match('/individus\/(.+)/', $route, $matches)){
     $action = "view";
     $reference = explode("-",$matches[1])[0];
     $_GET["reference"] = $reference;
+}elseif($route === "/contact"){
+    $page = "contact";
+}elseif($route === "/aide"){
+    $page = "aide";
+}elseif($route === "/home"){
+    $page = "home";
 }
 
 

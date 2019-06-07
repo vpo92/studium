@@ -40,7 +40,7 @@
         <ul class="list-unstyled components">
             <img src="<?php echo getResourcesWebDirectory()?>/img/logo_par.png" alt="Paris 1" height="180px" class="img-fluid">
             <li class="active">
-                <a href="<?php echo getApplicationUrl()?>?page=home">Accueil</a>
+                <a href="<?php echo getApplicationUrl()?>/home">Accueil</a>
             </li>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?action=index">Index</a>
@@ -49,10 +49,10 @@
                 <a href="<?php echo getApplicationUrl()?>?page=recherche">Recherche</a>
             </li>
             <li>
-                <a href="<?php echo getApplicationUrl()?>?page=contact">Contact</a>
+                <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>
             </li>
             <li>
-                <a href="<?php echo getApplicationUrl()?>?page=aide">Aide</a>
+                <a href="<?php echo getApplicationUrl()?>/aide">Aide</a>
             </li>
             <!--
             <li>
