@@ -23,17 +23,17 @@ services:
      - public
     labels:
       - "traefik.frontend.rule=Host:studium-api.vincentpoupet.fr"
-  studium_web:
-    image: studium/web
-    environment:
-      - API_URL=http://studium-api.vincentpoupet.fr
-    ports:
-      - 3001:3001
-    networks:
-     - default
-     - public
-    labels:
-      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
+#  studium_web:
+#    image: studium/web
+#    environment:
+#      - API_URL=http://studium-api.vincentpoupet.fr
+#    ports:
+#      - 3001:3001
+#    networks:
+#     - default
+#     - public
+#    labels:
+#      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
   mongodb:
     image: mongo:latest
     container_name: "mongodb"
@@ -50,12 +50,11 @@ services:
     image: studium/admin
     environment:
       - API_URL=http://studium_api:3000
-      - APPLICATION_URL=http://studium-admin.vincentpoupet.fr
-      - APPLICATION_PATH=/
+      - APPLICATION_URL=http://studium.vincentpoupet.fr
     ports:
       - 3002:80
     networks:
      - default
      - public
     labels:
-      - "traefik.frontend.rule=Host:studium-admin.vincentpoupet.fr"
+      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
