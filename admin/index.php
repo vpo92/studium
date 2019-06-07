@@ -48,7 +48,7 @@ if(preg_match('/individus\/(.+)/', $route, $matches)){
 }
 
 
-
+$loggerService->log("action : $action");
 switch ($action){
     case "prepare-login":
         $page = "common/login";
@@ -91,7 +91,7 @@ switch ($action){
 
     case "view" :
         $reference = getFieldFromForm("reference");
-        $loggerService->log("$reference : ".$reference);
+        $loggerService->log("reference : ".$reference);
         $mode = getFieldFromForm("mode");
         $keyword = getFieldFromForm("keyword");
         $fiche = $ficheService->searchByReference($reference);

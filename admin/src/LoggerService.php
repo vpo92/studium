@@ -20,7 +20,7 @@ class LoggerService
     function generateJSConsoleOutput(){
         echo "<script>";
         foreach ($this->applicationLog as $log){
-            echo "console.log('".addslashes($log)."');";
+            echo "console.log('##BACK## ".addslashes($log)."');";
         }
         echo "</script>";
     }
