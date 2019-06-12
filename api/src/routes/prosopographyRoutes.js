@@ -33,6 +33,28 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+
+router.get('/seq/current', async (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: getCurrentReference`);
+  try {
+    const result = await service.getCurrentReference();
+    if(result){
+      logger.info(`${id}: getCurrentReference seq ${result.seq}`);
+      res.send({'seq':result.seq});
+    }else{
+      res.status(500).json({'error':'KO','message' : `can't find sequence`});
+    }
+
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to get sequence - ${err}`
+    );
+    next(err);
+  }
+});
+
 router.get('/search/:searchText', async (req, res, next) => {
   const id = uuid.v4();
   const searchText = req.params.searchText;
@@ -182,5 +204,6 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
     next(err);
   }
 });
+
 
 export default router;

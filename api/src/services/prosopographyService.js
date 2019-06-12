@@ -180,6 +180,14 @@ function generateSeachClause(field, value, matchType){
   return res;
 }
 
+async function getCurrentReference(){
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography_seq')
+    .findOne()
+}
+
 /** *********************
  * Export               *
  ************************
@@ -195,4 +203,5 @@ module.exports = {
   convertFromText,
   search,
   convertSearchRequestToMongoRequest,
+  getCurrentReference,
 };
