@@ -17,12 +17,12 @@ if(isAuthenticated()){?>
         Modifier la fiche
     </a>
 <?php } ?>
-
+  <a href="<?php echo getAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
+      Voir la fiche au format JSON
+  </a>
 <ul class="list-group app-view-list">
     <?php
     foreach($fiche->raw as $r){
         echo "<li class=\"list-group-item\">".htmlspecialchars($r)."</li>";
     } ?>
 </ul>
-
-
