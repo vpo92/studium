@@ -4,8 +4,17 @@
 session_start();
 require_once "src/LoggerService.php";
 require_once "src/Utils.php";
-require_once "src/FicheService.php";
 require_once "src/UserService.php";
+require_once "src/FicheService.php";
+$loggerService = new LoggerService();
+$userService = new UserService();
+$ficheService = new FicheService();
+
+$mock = false;
+if($mock){
+  require_once "src/FicheServiceMock.php";
+  $ficheService = new FicheServiceMock();
+}
 
 //Global variable for pages
 $fiche = null;
@@ -14,11 +23,6 @@ $reference = null;
 $error_msg = null;
 $info_msg = null;
 $pageScripts = "";
-
-$loggerService = new LoggerService();
-$ficheService = new FicheService();
-$userService = new UserService();
-
 
 //Recuperer les parametres
 $page = getFieldFromForm("page");
