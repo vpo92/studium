@@ -38,7 +38,7 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
     .collection('prosopography')
     .find(
       { $text: { $search: searchText } },
-      { score: { $meta: 'textScore' }, reference: true, identity: true }
+      { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
     )
     .sort({ score: { $meta: 'textScore' } })
     .skip(pg.skip)
@@ -114,7 +114,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
     .collection('prosopography')
     .find(
       mongodbRequest,
-      { reference: true, identity: true }
+      { reference: true, identity: true, link: true, title: true }
     )
     .skip(pg.skip)
     .limit(pg.limit)
