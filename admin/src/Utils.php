@@ -4,6 +4,10 @@ function getAPIUrl(){
     return isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000";
 }
 
+function getPublicAPIUrl(){
+    return isset($_ENV["PUBLIC_API_URL"] )?$_ENV["PUBLIC_API_URL"]:getAPIUrl();
+}
+
 function getApplicationUrl(){
     //return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost:8080/studium/admin";
     return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin";

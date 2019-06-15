@@ -17,7 +17,7 @@ if(isAuthenticated()){?>
         Modifier la fiche
     </a>
 <?php } ?>
-  <a href="<?php echo getAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
+  <a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
       Voir la fiche au format JSON
   </a>
 <ul class="list-group app-view-list">
