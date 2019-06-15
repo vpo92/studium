@@ -35,7 +35,7 @@ router.get('/', async (req, res, next) => {
 });
 
 
-router.get('/seq/current', async (req, res, next) => {
+router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: getCurrentReference`);
   try {
