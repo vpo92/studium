@@ -2,7 +2,11 @@
 $targetAction = $mode == "EDIT"?"process-edit":"process-create";
 ?>
 <h3>Fiche <?php echo $mode == "EDIT"?$fiche->reference:"" ?> </h3>
-
+<?php if($mode === "CREATE"){?>
+    <div class="alert alert-primary" role="alert">
+        Le champs <1a> sera ajouté automatiquement à la création
+    </div>
+<?php }?>
 <form action="<?php echo getApplicationUrl()?>/index.php" method="POST">
     <div class="form-group">
         <?php if($mode == "EDIT"){?>

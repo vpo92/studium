@@ -129,6 +129,7 @@ switch ($action){
             $fiche = $ficheService->searchByReference($reference);
             $page = "view";
         }else{
+            $loggerService->log("$result : ".$result);
             $error_msg = "Erreur lors de l'enregistrement : ".$result->error;
             $page = "edit";
             $mode = "EDIT";

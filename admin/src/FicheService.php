@@ -32,13 +32,16 @@ class FicheService
 
     public function saveFicheFromText($reference,$prosopography)
     {
+        $res = null;
         $data = array("prosopography" => $prosopography);
         if($reference){
             //update
             $data["reference"] = $reference;
+            $res = postJSON("/prosopography/from-text", json_encode($data), getSessionToken());
+        }else{
+            $res = postJSON("/prosopography/create-from-text", json_encode($data), getSessionToken());
         }
 
-        $res = postJSON("/prosopography/from-text", json_encode($data), getSessionToken());
         $response = json_decode($res);
         return $response;
     }
