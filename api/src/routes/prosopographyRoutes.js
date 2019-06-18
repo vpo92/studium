@@ -142,6 +142,44 @@ router.post('/', auth.isAuthenticated, (req, res, next) => {
   }
 });
 
+/**
+* Handle prosopography creation from text format
+*/
+router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: POST prosopography create-from-text`);
+  logger.info(`${id}: POST prosopography create-from-text user ${req.user.name}`);
+
+  let proso = req.body.prosopography;
+  //Auto Generate <1a> fragment
+  let seq = await service.getCurrentReference();
+  let ref = parseInt(seq.seq);
+  proso = `<1a> ${ref} \n`+proso;
+  logger.info(proso);
+
+  try{
+    let p = await service.convertFromText(proso);
+    const prosopography = await service.findByReference(p.reference);
+    if(prosopography){
+      logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
+      return res.status(409).json({
+          message: "Error",
+          error: "prosopography reference already exists",
+      });
+    }else{
+      await service.create(p);
+      await service.updateCurrentReference(p);
+      return res.send({'message':'OK'});
+    }
+  }catch(err){
+    logger.error(err);
+    return res.status(500).json({
+        message: "Error",
+        error: err,
+    });
+  }
+});
+
 router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography from-text`);
@@ -152,36 +190,45 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   logger.info(proso);
   if(reference){
     logger.info(`${id}: POST prosopography from-text update ${reference}`);
-  }
-
-  try{
-    let p = await service.convertFromText(proso);
-    const prosopography = await service.findByReference(p.reference);
-    if(prosopography){
-      logger.info(`${id}: POST prosopography from-text found ${prosopography.reference}`);
-      //Update
-      if( parseInt(reference) === parseInt(prosopography.reference)){
-        p = {
-          _id:prosopography._id,
-          ...p
-        };
-        await service.update(p);
-        return res.send({'message':'OK'});
+    try{
+      let p = await service.convertFromText(proso);
+      const prosopography = await service.findByReference(p.reference);
+      if(prosopography){
+        logger.info(`${id}: POST prosopography from-text found ${prosopography.reference}`);
+        //Update
+        if( parseInt(reference) === parseInt(prosopography.reference)){
+          p = {
+            _id:prosopography._id,
+            ...p
+          };
+          await service.update(p);
+          return res.send({'message':'OK'});
+        }else{
+          return res.status(409).json({
+              message: "Error",
+              error: "prosopography reference doesn't match <1a> content",
+          });
+        }
       }else{
-        logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
         return res.status(409).json({
             message: "Error",
-            error: "prosopography reference already exists",
+            error: "prosopography reference not found",
         });
       }
-
-    }else{
-      await service.create(p);
-      return res.send({'message':'OK'});
+    }catch(err){
+      logger.error(err);
+      return res.status(500).json({
+          message: "Error",
+          error: err,
+      });
     }
-  }catch(err){
+
+
+
+  }else{
+    let err = 'missing reference';
     logger.error(err);
-    return res.status(500).json({
+    return res.status(400).json({
         message: "Error",
         error: err,
     });

@@ -188,6 +188,15 @@ async function getCurrentReference(){
     .findOne()
 }
 
+
+async function updateCurrentReference(){
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography_seq')
+    .update({},{$inc : {'seq':1}})
+}
+
 /** *********************
  * Export               *
  ************************
@@ -204,4 +213,5 @@ module.exports = {
   search,
   convertSearchRequestToMongoRequest,
   getCurrentReference,
+  updateCurrentReference,
 };
