@@ -1,0 +1,4502 @@
+[
+  {
+    "FID": 0,
+    "Field1": 102,
+    "personID": 17283,
+    "Rue": ";  comme �tant \"in vico Poretarum\", et �tant \"non scolaris\". COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In vico Poretarum",
+    "XL93": 651772.6564,
+    "YL93": 6861152.65,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 1,
+    "Field1": 103,
+    "personID": 1296,
+    "Rue": ";  comme �tant \"in vico Sancti Victoris\", payant 14 sous avec six autres dont son fr�re et les scolares de Magister Jacobus de MORETO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 2,
+    "Field1": 104,
+    "personID": 17282,
+    "Rue": ";  comme �tant \"in vico Sancti Victoris\", payant 14 sous avec six autres dont son fr�re et les scolares de Magister Jacobus de MORETO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 3,
+    "Field1": 105,
+    "personID": 10685,
+    "Rue": "; \"in vico Jude\" payant 8 sous ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 4,
+    "Field1": 106,
+    "personID": 2195,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\" payant dix sous ; COURTENAY, &Parisian Scholars ...&, 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 5,
+    "Field1": 107,
+    "personID": 579,
+    "Rue": "; \"in vico Sancti Germani de Autesodoro\" pour 22 deniers. COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 6,
+    "Field1": 108,
+    "personID": 4299,
+    "Rue": "; \"in vico Sancti Victoris\" payant 3 sous  ; COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 7,
+    "Field1": 109,
+    "personID": 2795,
+    "Rue": "; \"In vico Sancti Victoris\" payant 6 sous en commun avec son fr�re Elias FABER ; COURTENAY, &Parisian Scholars ...&, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 8,
+    "Field1": 110,
+    "personID": 2099,
+    "Rue": "; \"In vico Sancti Victoris\" payant 6 sous en commun avec son fr�re Gerardus FABER ; COURTENAY, &Parisian Scholars ...&, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 9,
+    "Field1": 111,
+    "personID": 1423,
+    "Rue": ";  \"in vico Sancti Germani de Auteseodoro\" pour 2 sous. COURTENAY, &Parisian Scholars ...&, 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 10,
+    "Field1": 121,
+    "personID": 6970,
+    "Rue": "; \"Domus Navarre\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230, 240.",
+    "RUE_1": "Domus Navarre",
+    "XL93": 652313.1703,
+    "YL93": 6860940.889,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 11,
+    "Field1": 123,
+    "personID": 16913,
+    "Rue": "; \"In claustro Sancte Jenovefe\", avec son neveu, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 12,
+    "Field1": 124,
+    "personID": 5285,
+    "Rue": "; \"In claustro Sancte Jenovefe\", avec son oncle, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 13,
+    "Field1": 125,
+    "personID": 16915,
+    "Rue": "; \"In claustro Sancte Jenovefe\", avec son oncle, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 14,
+    "Field1": 126,
+    "personID": 5812,
+    "Rue": "; \"In claustro Sancte Jenovefe\", paye 20 sous. COURTENAY, &Parisian Scholars ...&, p.229, 238.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 15,
+    "Field1": 127,
+    "personID": 10027,
+    "Rue": "; \"In claustro Sancte Jenovefe\", paye 4 sous ; COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 16,
+    "Field1": 128,
+    "personID": 2889,
+    "Rue": "; \"In claustro Sancte Jenovefe\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 17,
+    "Field1": 129,
+    "personID": 9550,
+    "Rue": "; \"In claustro Sancte Jenovefe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 18,
+    "Field1": 130,
+    "personID": 10799,
+    "Rue": "; \"In claustro Sancte Jenovefe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 19,
+    "Field1": 131,
+    "personID": 3407,
+    "Rue": "; \"In claustro Sancte Jenovefe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 20,
+    "Field1": 132,
+    "personID": 8055,
+    "Rue": "; \"In claustro Sancte Jenovefe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 21,
+    "Field1": 133,
+    "personID": 9906,
+    "Rue": "; \"In claustro Sancte Jenovefe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 22,
+    "Field1": 134,
+    "personID": 16285,
+    "Rue": "; \"in claustro Sancti Benedicti\" (clo�tre de Saint-Beno�t ), avec un paiement de 2 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 23,
+    "Field1": 135,
+    "personID": 2618,
+    "Rue": "; \"in claustro Sancti Benedicti\", avec 5 sociis, \"eorum [cujuslibet] bursa dimidia 4 s. et sunt 24 s. solv.\". COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 24,
+    "Field1": 136,
+    "personID": 10622,
+    "Rue": "; \"in claustro Sancti Benedicti\", avec 5 sociis, paye 12 sous. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 25,
+    "Field1": 138,
+    "personID": 7749,
+    "Rue": "; \"in claustro Sancti Benedicti\", dans une maison adjacente � la rue avec 5 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 26,
+    "Field1": 139,
+    "personID": 5168,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 12 sous. Cette somme est bas�e sur sa bourse. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 27,
+    "Field1": 140,
+    "personID": 7874,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 12 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 28,
+    "Field1": 141,
+    "personID": 3994,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 26 deniers. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 29,
+    "Field1": 142,
+    "personID": 1140,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 5 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 30,
+    "Field1": 143,
+    "personID": 10176,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 31,
+    "Field1": 144,
+    "personID": 11347,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 32,
+    "Field1": 145,
+    "personID": 3054,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 33,
+    "Field1": 146,
+    "personID": 16698,
+    "Rue": "; \"in claustro Sancti Benedicti\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 34,
+    "Field1": 147,
+    "personID": 10675,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement, avec la mention \"non scolaris\". COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 35,
+    "Field1": 148,
+    "personID": 10157,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 36,
+    "Field1": 149,
+    "personID": 16702,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 37,
+    "Field1": 150,
+    "personID": 7971,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 38,
+    "Field1": 151,
+    "personID": 9651,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 39,
+    "Field1": 152,
+    "personID": 11182,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.209, 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 40,
+    "Field1": 153,
+    "personID": 10364,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 41,
+    "Field1": 154,
+    "personID": 10512,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 42,
+    "Field1": 155,
+    "personID": 16699,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 43,
+    "Field1": 156,
+    "personID": 6447,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 44,
+    "Field1": 157,
+    "personID": 8012,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 45,
+    "Field1": 158,
+    "personID": 9168,
+    "Rue": "; \"in claustro Sancti Benedicti\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 46,
+    "Field1": 159,
+    "personID": 3413,
+    "Rue": "; \"in Claustro Sancti Jacobi\", paye 10 sous. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In Claustro Sancti Jacobi",
+    "XL93": 651828.4238,
+    "YL93": 6861046.742,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 47,
+    "Field1": 160,
+    "personID": 9574,
+    "Rue": "; \"in Claustro Sancti Jacobi\", sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In Claustro Sancti Jacobi",
+    "XL93": 651828.4238,
+    "YL93": 6861046.742,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 48,
+    "Field1": 161,
+    "personID": 16705,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum ... coram Porta Jacobi\", sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 49,
+    "Field1": 162,
+    "personID": 21470,
+    "Rue": "; \"In magno vico supra Sanctum Benedictum\" avec 3 \"sociis\" ; COURTENAY, &Parisian Scholars ...&, p. 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 50,
+    "Field1": 163,
+    "personID": 1407,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", avec 1 socius, sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 51,
+    "Field1": 164,
+    "personID": 7983,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", avec 2 sociis, paye 9 sous. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 52,
+    "Field1": 165,
+    "personID": 16703,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", avec deux sociis, paye 12 sous. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 53,
+    "Field1": 166,
+    "personID": 5514,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", avec deux sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 54,
+    "Field1": 167,
+    "personID": 2608,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", avec ses socii, paye 2 sous. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 55,
+    "Field1": 168,
+    "personID": 16724,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", dans la partie sup�rieure de la Grande rue Saint-Jacques voisin de Jean de CRASMENIL , sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.153, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 56,
+    "Field1": 169,
+    "personID": 7912,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", dans la partie sup�rieure de la Grande rue Saint-Jacques, avec son fr�re, sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 57,
+    "Field1": 170,
+    "personID": 2030,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", dans la partie sup�rieure de la Grande rue Saint-Jacques, paye 20 sous. COURTENAY, &Parisian Scholars ...&, p.139-140, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 58,
+    "Field1": 171,
+    "personID": 3766,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", dans la partie sup�rieure de la rue Saint-Jacques pr�s du coll�ge du Plessis , sans paiement sp�cifi� ; COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 59,
+    "Field1": 172,
+    "personID": 1204,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", paye 2 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 60,
+    "Field1": 173,
+    "personID": 8336,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", paye 2 sous. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 61,
+    "Field1": 174,
+    "personID": 11719,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", paye 2 sous. COURTENAY, &Parisian Scholars ...&, p.219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 62,
+    "Field1": 175,
+    "personID": 2810,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 63,
+    "Field1": 176,
+    "personID": 16704,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 64,
+    "Field1": 177,
+    "personID": 7482,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 65,
+    "Field1": 178,
+    "personID": 8161,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 66,
+    "Field1": 179,
+    "personID": 16667,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�, avec 15 sociis. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 67,
+    "Field1": 180,
+    "personID": 6812,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�, avec 7 sociis. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 68,
+    "Field1": 181,
+    "personID": 2051,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 218.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 69,
+    "Field1": 182,
+    "personID": 1396,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 70,
+    "Field1": 183,
+    "personID": 2881,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 71,
+    "Field1": 184,
+    "personID": 7997,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum\", sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 72,
+    "Field1": 185,
+    "personID": 16286,
+    "Rue": "; \"in magno vico supra Sanctum Benedictum, sans paiement sp�cifi�. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 73,
+    "Field1": 186,
+    "personID": 16900,
+    "Rue": "; \"In platea Mauberti et vico predicto\", avec 5 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228, 246.",
+    "RUE_1": "In platea Mauberti et vico predicto",
+    "XL93": 652278.4177,
+    "YL93": 6861287.524,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 74,
+    "Field1": 187,
+    "personID": 16899,
+    "Rue": "; \"In platea Mauberti et vico predicto\", avec 8 socii, paye 10 sous et 8 deniers. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In platea Mauberti et vico predicto",
+    "XL93": 652278.4177,
+    "YL93": 6861287.524,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 75,
+    "Field1": 188,
+    "personID": 1619,
+    "Rue": "; \"In platea Mauberti et vico predicto\", avec 8 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In platea Mauberti et vico predicto",
+    "XL93": 652278.4177,
+    "YL93": 6861287.524,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 76,
+    "Field1": 189,
+    "personID": 9383,
+    "Rue": "; \"In platea Mauberti et vico predicto\", pr�s de la place Maubert, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In platea Mauberti et vico predicto",
+    "XL93": 652278.4177,
+    "YL93": 6861287.524,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 77,
+    "Field1": 191,
+    "personID": 9976,
+    "Rue": "; \"In vico 7 Viarum\", \" avec le \"prior de Leminiorii\" et \"cum 2 sociis, \"9 s. solv.\". COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "In vico 7 Viarum",
+    "XL93": 652126.8083,
+    "YL93": 6861056.883,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 78,
+    "Field1": 192,
+    "personID": 11659,
+    "Rue": "; \"In vico 7 Viarum\", \"cum 2 sociis\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico 7 Viarum",
+    "XL93": 652126.8083,
+    "YL93": 6861056.883,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 79,
+    "Field1": 193,
+    "personID": 11479,
+    "Rue": "; \"In vico 7 Viarum\", \"cum socio\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico 7 Viarum",
+    "XL93": 652126.8083,
+    "YL93": 6861056.883,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 80,
+    "Field1": 194,
+    "personID": 5188,
+    "Rue": "; \"In vico Amigdalariorum\", avec 1 socius, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Amigdalariorum",
+    "XL93": 652150.3856,
+    "YL93": 6861020.336,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 81,
+    "Field1": 195,
+    "personID": 3391,
+    "Rue": "; \"In vico Amigdalariorum\", avec 2 socii, paye 5 sous ; COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Amigdalariorum",
+    "XL93": 652150.3856,
+    "YL93": 6861020.336,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 82,
+    "Field1": 196,
+    "personID": 21454,
+    "Rue": "; \"In vico Amigdalariorum\", paye 7 sous avec un socius. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Amigdalariorum",
+    "XL93": 652150.3856,
+    "YL93": 6861020.336,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 83,
+    "Field1": 197,
+    "personID": 21478,
+    "Rue": "; \"In vico Anglicorum\" sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, 227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 84,
+    "Field1": 198,
+    "personID": 4849,
+    "Rue": "; \"In vico Anglicorum\", cum 2 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 85,
+    "Field1": 199,
+    "personID": 9524,
+    "Rue": "; \"In vico Anglicorum\", rue des Anglais avec 4 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 86,
+    "Field1": 200,
+    "personID": 3981,
+    "Rue": "; \"In vico Anglicorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 87,
+    "Field1": 201,
+    "personID": 5578,
+    "Rue": "; \"In vico Anglicorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 88,
+    "Field1": 202,
+    "personID": 5163,
+    "Rue": "; \"In vico Anglicorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 89,
+    "Field1": 203,
+    "personID": 9553,
+    "Rue": "; \"In vico Anglicorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Anglicorum",
+    "XL93": 652171.3734,
+    "YL93": 6861379.635,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 90,
+    "Field1": 204,
+    "personID": 2114,
+    "Rue": "; \"In vico Antiqui Plasterii\" ; comme Guido PICTAVIENSIS et Johannes de ARBORETO , il est indiqu� que \"non gaudebunt de cetero privilegiis\". COURTENAY, &Parisian Scholars ...&, 222, 252 n.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 91,
+    "Field1": 205,
+    "personID": 16769,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers ; probablement � cause de son refus de payer, les privil�ges de l'universit� lui sont refus�s. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 92,
+    "Field1": 206,
+    "personID": 3376,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers ; probablement � cause de son refus de payer, les privil�ges de l'universit� lui sont refus�s. COURTENAY, &Parisian Scholars ...&, p.150, 222.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 93,
+    "Field1": 207,
+    "personID": 7731,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers ; probablement � cause de son refus de payer, les privil�ges de l'universit� lui sont refus�s. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 94,
+    "Field1": 208,
+    "personID": 6678,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers apr�s le coll�ge de Suesse , paye 3 sous. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 95,
+    "Field1": 209,
+    "personID": 10456,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers apr�s le coll�ge de Suesse , sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 96,
+    "Field1": 210,
+    "personID": 7957,
+    "Rue": "; \"In vico Antiqui Plasterii\", rue des Viez Plastriers apr�s le coll�ge de Suesse , sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Antiqui Plasterii",
+    "XL93": 651742.3226,
+    "YL93": 6861450.58,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 97,
+    "Field1": 211,
+    "personID": 9965,
+    "Rue": "; \"In vico Biurie\", avec 1 socius, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 98,
+    "Field1": 212,
+    "personID": 7451,
+    "Rue": "; \"In vico Biurie\", avec 2 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 99,
+    "Field1": 213,
+    "personID": 7588,
+    "Rue": "; \"In vico Biurie\", avec 4 socii, paye 14 sous et 5 deniers. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 100,
+    "Field1": 214,
+    "personID": 12063,
+    "Rue": "; \"In vico Biurie\", avec 4 socii, paye 7 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 101,
+    "Field1": 215,
+    "personID": 7750,
+    "Rue": "; \"In vico Biurie\", avec 4 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 102,
+    "Field1": 216,
+    "personID": 3809,
+    "Rue": "; \"In vico Biurie\", avec 6 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 103,
+    "Field1": 217,
+    "personID": 19194,
+    "Rue": "; \"in vico Biurie\", et paye 32 sous. COURTENAY, &Parisian Scholars ...&, p. 228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 104,
+    "Field1": 218,
+    "personID": 5180,
+    "Rue": "; \"In vico Biurie\", paye 2 sous. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 105,
+    "Field1": 219,
+    "personID": 2010,
+    "Rue": "; \"In vico Biurie\", paye 32 sous. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 106,
+    "Field1": 220,
+    "personID": 3570,
+    "Rue": "; \"In vico Biurie\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, p. 228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 107,
+    "Field1": 221,
+    "personID": 16908,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 108,
+    "Field1": 222,
+    "personID": 10147,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 109,
+    "Field1": 223,
+    "personID": 12089,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 110,
+    "Field1": 224,
+    "personID": 16906,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 111,
+    "Field1": 225,
+    "personID": 4354,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 112,
+    "Field1": 226,
+    "personID": 6709,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 113,
+    "Field1": 227,
+    "personID": 6937,
+    "Rue": "; \"In vico Biurie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Biurie",
+    "XL93": 652293.6836,
+    "YL93": 6861286.106,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 114,
+    "Field1": 229,
+    "personID": 2117,
+    "Rue": "; \"In vico Burnelli\" pour 7 sous avec un socius. COURTENAY, &Parisian Scholars ...&, 227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 115,
+    "Field1": 230,
+    "personID": 16894,
+    "Rue": "; \"In vico Burnelli\", \"cum 2 sociis\", paye 7 sous \"pro 2\". COURTENAY, &Parisian Scholars ...&, 227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 116,
+    "Field1": 231,
+    "personID": 6703,
+    "Rue": "; \"In vico Burnelli\", \"cum socio\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 117,
+    "Field1": 232,
+    "personID": 16892,
+    "Rue": "; \"In vico Burnelli\", , sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 118,
+    "Field1": 233,
+    "personID": 4933,
+    "Rue": "; \"In vico Burnelli\", avec 4 socii, paye 17 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 119,
+    "Field1": 234,
+    "personID": 9666,
+    "Rue": "; \"In vico Burnelli\", avec 5 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 120,
+    "Field1": 235,
+    "personID": 16893,
+    "Rue": "; \"In vico Burnelli\", avec 5 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 121,
+    "Field1": 238,
+    "personID": 9846,
+    "Rue": "; \"In vico Burnelli\", avec 6 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 122,
+    "Field1": 239,
+    "personID": 6497,
+    "Rue": "; \"In vico Burnelli\", avec 9 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227, 242.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 123,
+    "Field1": 240,
+    "personID": 10678,
+    "Rue": "; \"In vico Burnelli\", avec le cur� de Saint-Hilaire , paiement d'un florin � l'agnel. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 124,
+    "Field1": 241,
+    "personID": 10001,
+    "Rue": "; \"In vico Burnelli\", avec son fr�re Nicholaus, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 125,
+    "Field1": 242,
+    "personID": 9414,
+    "Rue": "; \"In vico Burnelli\", avec son fr�re Petrus, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 126,
+    "Field1": 243,
+    "personID": 2968,
+    "Rue": "; \"In vico Burnelli\", avec un socius, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 127,
+    "Field1": 244,
+    "personID": 6797,
+    "Rue": "; \"In vico Burnelli\", paye 6 sous. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 128,
+    "Field1": 245,
+    "personID": 4319,
+    "Rue": "; \"In vico Burnelli\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 129,
+    "Field1": 246,
+    "personID": 16284,
+    "Rue": "; \"in vico Burnelli\", sans paiement mentionn�. COURTENAY, &Parisian Scholars ...&, 226.",
+    "RUE_1": "In vico Burnelli",
+    "XL93": 652083.2153,
+    "YL93": 6861175.026,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 130,
+    "Field1": 247,
+    "personID": 16882,
+    "Rue": "; \"In vico Cadrigarie\", avec 3 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Cadrigarie",
+    "XL93": 652072.4602,
+    "YL93": 6861139.377,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 131,
+    "Field1": 250,
+    "personID": 80,
+    "Rue": "; \"in vico Cadrigarie\", avec un paiement de 10 sous pay�  avec quatre \"sociis\". COURTENAY, &Parisian Scholars ...&, 226.",
+    "RUE_1": "In vico Cadrigarie",
+    "XL93": 652072.4602,
+    "YL93": 6861139.377,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 132,
+    "Field1": 251,
+    "personID": 5156,
+    "Rue": "; \"In vico Cadrigarie\", paye 10 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Cadrigarie",
+    "XL93": 652072.4602,
+    "YL93": 6861139.377,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 133,
+    "Field1": 253,
+    "personID": 11093,
+    "Rue": "; \"In vico Cerpentis\", i.e. Rue Serpente , sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Cerpentis",
+    "XL93": 651830.184,
+    "YL93": 6861537.957,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 134,
+    "Field1": 255,
+    "personID": 10674,
+    "Rue": "; \"In vico Cerpentis\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Cerpentis",
+    "XL93": 651830.184,
+    "YL93": 6861537.957,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 135,
+    "Field1": 256,
+    "personID": 10644,
+    "Rue": "; \"in vico Cordigerorum\", avec des sociis, paye 16 sous. COURTENAY, &Parisian Scholars ...&, p.220.",
+    "RUE_1": "In vico Cordigerorum",
+    "XL93": 651850.7904,
+    "YL93": 6861068.673,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 136,
+    "Field1": 260,
+    "personID": 16927,
+    "Rue": "; \"in vico feni\", il ne paie pas mais repara�t \"in vico Sancti Victoris\", payant III s. ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Feni",
+    "XL93": 651877.7452,
+    "YL93": 6861432.641,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 137,
+    "Field1": 261,
+    "personID": 8143,
+    "Rue": "; \"in vico feni\", il ne paie pas mais repara�t \"in vico Sancti Victoris\", payant III s. ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Feni",
+    "XL93": 651877.7452,
+    "YL93": 6861432.641,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 138,
+    "Field1": 262,
+    "personID": 4386,
+    "Rue": "; \"In vico Feni\", paie 3 sous et 2 deniers. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "In vico Feni",
+    "XL93": 651877.7452,
+    "YL93": 6861432.641,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 139,
+    "Field1": 264,
+    "personID": 4240,
+    "Rue": "; \"In vico Feni\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "In vico Feni",
+    "XL93": 651877.7452,
+    "YL93": 6861432.641,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 140,
+    "Field1": 265,
+    "personID": 8727,
+    "Rue": "; \"In vico Feni\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Feni",
+    "XL93": 651877.7452,
+    "YL93": 6861432.641,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 141,
+    "Field1": 267,
+    "personID": 10495,
+    "Rue": "; \"In vico Furni\", avec 6 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Furni",
+    "XL93": 652088.9487,
+    "YL93": 6861078.083,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 142,
+    "Field1": 269,
+    "personID": 21476,
+    "Rue": "; \"In vico Harpe\" et il paie 4 sous ; COURTENAY, &Parisian Scholars ...&, p. 223.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 143,
+    "Field1": 272,
+    "personID": 3837,
+    "Rue": "; \"In vico Harpe\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 224.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 144,
+    "Field1": 273,
+    "personID": 1257,
+    "Rue": "; \"In vico Harpe\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 145,
+    "Field1": 274,
+    "personID": 10035,
+    "Rue": "; \"In vico Harpe\", avec 6 �tudiants, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 146,
+    "Field1": 277,
+    "personID": 16751,
+    "Rue": "; \"In vico Harpe\", avec Simon HULARDI qui paye seulement 2 sous. COURTENAY, &Parisian Scholars ...&, p. 221.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 147,
+    "Field1": 278,
+    "personID": 4433,
+    "Rue": "; \"In vico Harpe\", avec un socius, paye 3 sous. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 148,
+    "Field1": 282,
+    "personID": 9016,
+    "Rue": "; \"In vico Harpe\", paye 18 sous. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 149,
+    "Field1": 284,
+    "personID": 10126,
+    "Rue": "; \"In vico Harpe\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p.199, 221.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 150,
+    "Field1": 285,
+    "personID": 16752,
+    "Rue": "; \"In vico Harpe\", paye 8 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 151,
+    "Field1": 286,
+    "personID": 21598,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 223.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 152,
+    "Field1": 287,
+    "personID": 10671,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 153,
+    "Field1": 288,
+    "personID": 16761,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 154,
+    "Field1": 289,
+    "personID": 9391,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 155,
+    "Field1": 290,
+    "personID": 10004,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 156,
+    "Field1": 291,
+    "personID": 10226,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 157,
+    "Field1": 292,
+    "personID": 16869,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 158,
+    "Field1": 293,
+    "personID": 10111,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 159,
+    "Field1": 294,
+    "personID": 8958,
+    "Rue": "; \"In vico Harpe\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 160,
+    "Field1": 302,
+    "personID": 16924,
+    "Rue": "; \"In vico Jude\", avec 2 socii, paye 9 sous. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 161,
+    "Field1": 308,
+    "personID": 3136,
+    "Rue": "; \"in vico Jude\", avec un paiement de 2 sous. COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 162,
+    "Field1": 309,
+    "personID": 3059,
+    "Rue": "; \"In vico Jude\", paye 10 sous. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 163,
+    "Field1": 310,
+    "personID": 16922,
+    "Rue": "; \"In vico Jude\", paye 4 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 164,
+    "Field1": 311,
+    "personID": 16921,
+    "Rue": "; \"In vico Jude\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p. 230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 165,
+    "Field1": 312,
+    "personID": 5482,
+    "Rue": "; \"In vico Jude\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230, 246.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 166,
+    "Field1": 313,
+    "personID": 12022,
+    "Rue": "; \"In vico Jude\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 167,
+    "Field1": 314,
+    "personID": 6791,
+    "Rue": "; \"In vico Jude\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 168,
+    "Field1": 315,
+    "personID": 7387,
+    "Rue": "; \"In vico Jude\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 169,
+    "Field1": 316,
+    "personID": 7825,
+    "Rue": "; \"In vico Jude\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.230.",
+    "RUE_1": "In vico Jude",
+    "XL93": 652158.5422,
+    "YL93": 6861165.622,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 170,
+    "Field1": 317,
+    "personID": 21468,
+    "Rue": "; \"In vico Latomorum\" avec son fr�re ; COURTENAY, &Parisian Scholars ...&, p. 221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 171,
+    "Field1": 318,
+    "personID": 21469,
+    "Rue": "; \"In vico Latomorum\" avec son fr�re ; COURTENAY, &Parisian Scholars ...&, p. 221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 172,
+    "Field1": 319,
+    "personID": 1203,
+    "Rue": "; \"In vico Latomorum\", avec 7 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 173,
+    "Field1": 320,
+    "personID": 6368,
+    "Rue": "; \"In vico Latomorum\", avec deux soccii rue des Ma�ons, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.171, 221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 174,
+    "Field1": 321,
+    "personID": 2006,
+    "Rue": "; \"In vico Latomorum\", avec un jeune homme noble et un ami, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 175,
+    "Field1": 322,
+    "personID": 7867,
+    "Rue": "; \"In vico Latomorum\", rue des Ma�ons avec 5 sociis, paye 15 sous. COURTENAY, &Parisian Scholars ...&, p.171, 221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 176,
+    "Field1": 323,
+    "personID": 7882,
+    "Rue": "; \"In vico Latomorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "In vico Latomorum",
+    "XL93": 651790.0514,
+    "YL93": 6861180.108,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 177,
+    "Field1": 324,
+    "personID": 16874,
+    "Rue": "; \"in vico Lignorum cum 2 pueris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 224.",
+    "RUE_1": "In vico Lignorum",
+    "XL93": 652167.7567,
+    "YL93": 6861591.456,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 178,
+    "Field1": 325,
+    "personID": 10293,
+    "Rue": "; \"In vico Lignorum\", rue de la Buscherie, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "In vico Lignorum",
+    "XL93": 652167.7567,
+    "YL93": 6861591.456,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 179,
+    "Field1": 326,
+    "personID": 5913,
+    "Rue": "; \"In vico Lignorum\", rue de la Buscherie, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "In vico Lignorum",
+    "XL93": 652167.7567,
+    "YL93": 6861591.456,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 180,
+    "Field1": 327,
+    "personID": 306,
+    "Rue": "; \"in vico Lignorum\", sans paiement indiqu�. COURTENAY, &Parisian Scholars ...&, 224.",
+    "RUE_1": "In vico Lignorum",
+    "XL93": 652167.7567,
+    "YL93": 6861591.456,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 181,
+    "Field1": 328,
+    "personID": 11717,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", avec 1 socio, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 182,
+    "Field1": 329,
+    "personID": 9399,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", avec 2 sociis, sans indication de paiement, mais son paiement est signal� au dernier folio, 10 sous 6 d. ; COURTENAY, &Parisian Scholars ...&, p. 225, 246.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 183,
+    "Field1": 330,
+    "personID": 1187,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", avec 2 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 184,
+    "Field1": 331,
+    "personID": 2202,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", avec 8 boursiers, paie 5 sous. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 185,
+    "Field1": 332,
+    "personID": 11527,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", dans la partie inf�rieure de la rue, paie 5 sous (une demi bourse). COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 186,
+    "Field1": 333,
+    "personID": 11153,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", paie 2 sous. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 187,
+    "Field1": 334,
+    "personID": 5203,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", paie 2 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 188,
+    "Field1": 335,
+    "personID": 16878,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 189,
+    "Field1": 336,
+    "personID": 16880,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 190,
+    "Field1": 337,
+    "personID": 1141,
+    "Rue": "; \"In vico magno sub Sancto Benedicto\", sans indication de paiement. Il refuse apparemment de payer, provoquant la perte de ses privil�ges universitaires. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 191,
+    "Field1": 338,
+    "personID": 11299,
+    "Rue": "; \"In vico Minorum\", avec 12 �tudiants, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Minorum",
+    "XL93": 651764.6543,
+    "YL93": 6861385.692,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 192,
+    "Field1": 340,
+    "personID": 16763,
+    "Rue": "; \"In vico Minorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Minorum",
+    "XL93": 651764.6543,
+    "YL93": 6861385.692,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 193,
+    "Field1": 341,
+    "personID": 4966,
+    "Rue": "; \"In vico Minorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Minorum",
+    "XL93": 651764.6543,
+    "YL93": 6861385.692,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 194,
+    "Field1": 344,
+    "personID": 4297,
+    "Rue": "; \"In vico Petri Saraceni\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Petri Saraceni",
+    "XL93": 651801.3827,
+    "YL93": 6861396.248,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 195,
+    "Field1": 345,
+    "personID": 16767,
+    "Rue": "; \"In vico Petri Saraceni\", avec 5 sociis, paye 21 sous. COURTENAY, &Parisian Scholars ...&, p. 222.",
+    "RUE_1": "In vico Petri Saraceni",
+    "XL93": 651801.3827,
+    "YL93": 6861396.248,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 196,
+    "Field1": 346,
+    "personID": 16766,
+    "Rue": "; \"In vico Petri Saraceni\", pr�s de la rue Pierre Sarrazin, paye 6 sous. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Petri Saraceni",
+    "XL93": 651801.3827,
+    "YL93": 6861396.248,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 197,
+    "Field1": 347,
+    "personID": 16768,
+    "Rue": "; \"In vico Petri Saraceni\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "In vico Petri Saraceni",
+    "XL93": 651801.3827,
+    "YL93": 6861396.248,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 198,
+    "Field1": 348,
+    "personID": 10199,
+    "Rue": "; \"In vico Plaustri\", avec 3 socii, il paie 8 sous ; COURTENAY, &Parisian Scholars ...&, p. 227.",
+    "RUE_1": "In vico Plaustri",
+    "XL93": 652072.062,
+    "YL93": 6861430.973,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 199,
+    "Field1": 349,
+    "personID": 2106,
+    "Rue": "; \"In vico Plaustri\", avec 4 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227, 246.",
+    "RUE_1": "In vico Plaustri",
+    "XL93": 652072.062,
+    "YL93": 6861430.973,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 200,
+    "Field1": 350,
+    "personID": 11613,
+    "Rue": "; \"In vico Plaustri\", avec 8 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227.",
+    "RUE_1": "In vico Plaustri",
+    "XL93": 652072.062,
+    "YL93": 6861430.973,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 201,
+    "Field1": 351,
+    "personID": 3085,
+    "Rue": "; \"In vico Plaustri\", rue des Pl�triers, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.227, 232.",
+    "RUE_1": "In vico Plaustri",
+    "XL93": 652072.062,
+    "YL93": 6861430.973,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 202,
+    "Field1": 352,
+    "personID": 16707,
+    "Rue": "; \"In vico Poretarum\", avec 6 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.220.",
+    "RUE_1": "In vico Poretarum",
+    "XL93": 651772.6564,
+    "YL93": 6861152.65,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 203,
+    "Field1": 353,
+    "personID": 11168,
+    "Rue": "; \"In vico Poretarum\", avec socio, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.220.",
+    "RUE_1": "In vico Poretarum",
+    "XL93": 651772.6564,
+    "YL93": 6861152.65,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 204,
+    "Field1": 356,
+    "personID": 21455,
+    "Rue": "; \"In vico Sancti Germani de Aueseodor\", paye 9 sous avec deux autres personnes. COURTENAY, &Parisian Scholars ...&, p.240.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 205,
+    "Field1": 357,
+    "personID": 9662,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro cum 3 [sociis]\" et paie 6 deniers. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 206,
+    "Field1": 358,
+    "personID": 3557,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro cum 4 sociis\", payant 7 s. 6 d. ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 207,
+    "Field1": 359,
+    "personID": 3779,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro cum 5 sociis\", et paie 7 s. 6 d. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 208,
+    "Field1": 360,
+    "personID": 108,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\" ; il est tax� � 12 deniers, ce qui correspond � une demi-bourse d'�tudiant. COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 209,
+    "Field1": 361,
+    "personID": 17134,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\" ; il est tax� � 12 deniers, ce qui correspond � une demi-bourse d'�tudiant. COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 210,
+    "Field1": 362,
+    "personID": 9031,
+    "Rue": "; \"in Vico Sancti Germani de Auteseodoro\" et paie 2 sous 6 d. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 211,
+    "Field1": 363,
+    "personID": 21934,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\" payant 3 sous avec Johannes de MONTE LETERICO qui est lui bien sp�cifi� comme \"grammaticus\" ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 212,
+    "Field1": 364,
+    "personID": 2196,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\" pour 12 deniers. COURTENAY, &Parisian Scholars ...&, 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 213,
+    "Field1": 365,
+    "personID": 17361,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", avec paiement de 30 s. COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 214,
+    "Field1": 366,
+    "personID": 8606,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", et il paie 3 s. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 215,
+    "Field1": 367,
+    "personID": 3768,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", et paie 10 s. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 216,
+    "Field1": 368,
+    "personID": 6661,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", et paie 2 sous ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 217,
+    "Field1": 369,
+    "personID": 21931,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", et paie 4 s. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 218,
+    "Field1": 370,
+    "personID": 1984,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", et paye 10 sous 8 deniers. COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 219,
+    "Field1": 371,
+    "personID": 3914,
+    "Rue": "; \"in vico Sancti Germani de Auteseodoro\", payant 28 deniers ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 220,
+    "Field1": 372,
+    "personID": 3559,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", payant 32 d. ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 221,
+    "Field1": 373,
+    "personID": 12007,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p.246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 222,
+    "Field1": 374,
+    "personID": 12189,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", paye 7 sous avec Bernardus JACOBI . COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 223,
+    "Field1": 375,
+    "personID": 12178,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", paye 9 sous avec deux autres personnes. COURTENAY, &Parisian Scholars ...&, p.246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 224,
+    "Field1": 376,
+    "personID": 21453,
+    "Rue": "; \"In vico Sancti Germani de Auteseodoro\", paye XVIII s (\"Decanus Abolensis\"). COURTENAY, &Parisian Scholars ...&, p.245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 225,
+    "Field1": 377,
+    "personID": 265,
+    "Rue": "; \"in vico Sancti Germani de Autesodoro\", avec un paiement de \"tres solidos\". COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 226,
+    "Field1": 378,
+    "personID": 16481,
+    "Rue": "; \"in vico Sancti Germani de Autesodoro\", avec un paiement de trois sous. COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 227,
+    "Field1": 379,
+    "personID": 21464,
+    "Rue": "; \"In vico Sancti Germani de Autiseodoro\", et paie 16 d. COURTENAY, &Parisian Scholars ...&, p.245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 228,
+    "Field1": 380,
+    "personID": 21479,
+    "Rue": "; \"in vico Sancti Germani\" et paie 6 sous 5 deniers ; COURTENAY, &Parisian Scholars ...&, p. 223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 229,
+    "Field1": 381,
+    "personID": 4845,
+    "Rue": "; \"In vico Sancti Germani\" ou \"Hirundale\", avec 9 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 230,
+    "Field1": 382,
+    "personID": 16773,
+    "Rue": "; \"In vico Sancti Germani\" ou \"Hirundale\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 231,
+    "Field1": 383,
+    "personID": 4350,
+    "Rue": "; \"In vico Sancti Germani\", avec 3 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 232,
+    "Field1": 384,
+    "personID": 16771,
+    "Rue": "; \"In vico Sancti Germani\", paye 2 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.223, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 233,
+    "Field1": 385,
+    "personID": 16772,
+    "Rue": "; \"In vico Sancti Germani\", paye 2 sous. COURTENAY, &Parisian Scholars ...&, p.223, 242.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 234,
+    "Field1": 386,
+    "personID": 4776,
+    "Rue": "; \"In vico Sancti Germani\", paye 3 sous et 2 deniers. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 235,
+    "Field1": 387,
+    "personID": 9932,
+    "Rue": "; \"In vico Sancti Germani\", rue Saint-Germain-des-Pr�s, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 236,
+    "Field1": 388,
+    "personID": 16770,
+    "Rue": "; \"In vico Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 237,
+    "Field1": 389,
+    "personID": 4082,
+    "Rue": "; \"In vico Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 238,
+    "Field1": 390,
+    "personID": 4070,
+    "Rue": "; \"In vico Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 239,
+    "Field1": 391,
+    "personID": 10691,
+    "Rue": "; \"In vico Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 240,
+    "Field1": 392,
+    "personID": 7178,
+    "Rue": "; \"In vico Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 241,
+    "Field1": 393,
+    "personID": 734,
+    "Rue": "; \"in vico Sancti Illarii\" (rue Saint-Hilaire ) pour huit sous avec 2 socii. COURTENAY, &Parisian Scholars ...&, 228.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 242,
+    "Field1": 394,
+    "personID": 5192,
+    "Rue": "; \"In vico Sancti Illarii\", avec 2 socii, paye 6 sous. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 243,
+    "Field1": 395,
+    "personID": 16909,
+    "Rue": "; \"In vico Sancti Illarii\", avec 2 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 244,
+    "Field1": 396,
+    "personID": 5460,
+    "Rue": "; \"In vico Sancti Illarii\", avec 4 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 245,
+    "Field1": 397,
+    "personID": 12097,
+    "Rue": "; \"In vico Sancti Illarii\", avec 5 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 246,
+    "Field1": 398,
+    "personID": 2915,
+    "Rue": "; \"In vico Sancti Illarii\", avec 5 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 247,
+    "Field1": 399,
+    "personID": 16910,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 248,
+    "Field1": 400,
+    "personID": 7591,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 249,
+    "Field1": 401,
+    "personID": 10602,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 250,
+    "Field1": 402,
+    "personID": 11194,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.228.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 251,
+    "Field1": 403,
+    "personID": 8388,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 252,
+    "Field1": 404,
+    "personID": 9535,
+    "Rue": "; \"In vico Sancti Illarii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "In vico Sancti Illarii",
+    "XL93": 652204.9974,
+    "YL93": 6861297.146,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 253,
+    "Field1": 405,
+    "personID": 8189,
+    "Rue": "; \"In vico Sancti Stephane\", \"cum 2\", paye 18 deniers. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 254,
+    "Field1": 406,
+    "personID": 16890,
+    "Rue": "; \"In vico Sancti Stephane\", avec sa &familia& dans la maison \"ad Delfinum cum Sancto Leudovico\", paye 20 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 255,
+    "Field1": 407,
+    "personID": 9637,
+    "Rue": "; \"In vico Sancti Stephane\", avec son fr�re Guidomarus, , paye 16 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 256,
+    "Field1": 408,
+    "personID": 16885,
+    "Rue": "; \"In vico Sancti Stephane\", avec son fr�re Olivier, paye 16 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 257,
+    "Field1": 409,
+    "personID": 16887,
+    "Rue": "; \"In vico Sancti Stephane\", paye avec ses trois fr�res 40 sous. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 258,
+    "Field1": 410,
+    "personID": 16888,
+    "Rue": "; \"In vico Sancti Stephane\", paye avec ses trois fr�res 40 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 259,
+    "Field1": 411,
+    "personID": 16889,
+    "Rue": "; \"In vico Sancti Stephane\", paye avec ses trois fr�res 40 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 260,
+    "Field1": 412,
+    "personID": 4229,
+    "Rue": "; \"In vico Sancti Stephane\", paye avec ses trois fr�res 40 sous. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 261,
+    "Field1": 413,
+    "personID": 8297,
+    "Rue": "; \"In vico Sancti Stephane\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 262,
+    "Field1": 414,
+    "personID": 4308,
+    "Rue": "; \"In vico Sancti Stephane\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 263,
+    "Field1": 415,
+    "personID": 7168,
+    "Rue": "; \"In vico Sancti Stephane\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "In vico Sancti Stephane",
+    "XL93": 651904.8539,
+    "YL93": 6861010.413,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 264,
+    "Field1": 417,
+    "personID": 8234,
+    "Rue": "; \"In vico Sancti Victoris\" (?) il paie 5 sous en commun avec Symon de PLANSEIO et Guillelmus de CASTRO VILLANI ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 265,
+    "Field1": 419,
+    "personID": 3060,
+    "Rue": "; \"In vico Sancti Victoris\" (?), et paie V sous avec le magister Guillelmus YNGOF ; COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 266,
+    "Field1": 420,
+    "personID": 2140,
+    "Rue": "; \"In vico Sancti Victoris\" payant 3 sous ; COURTENAY, &Parisian Scholars ...&, 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 267,
+    "Field1": 421,
+    "personID": 19585,
+    "Rue": "; \"In vico Sancti Victoris\" payant 6 sous avec Everardus de LETENC . COURTENAY, &Parisian Scholars ...&, 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 268,
+    "Field1": 422,
+    "personID": 2213,
+    "Rue": "; \"In vico Sancti Victoris\" payant 6 sous avec Valterus STET . COURTENAY, &Parisian Scholars ...&, 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 269,
+    "Field1": 423,
+    "personID": 1420,
+    "Rue": "; \"in vico Sancti Victoris\" pour 12 sous 6 d. \"cum IIII socii\". COURTENAY, &Parisian Scholars ...&, 241.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 270,
+    "Field1": 424,
+    "personID": 1438,
+    "Rue": "; \"in vico Sancti Victoris\" pour 18 deniers. COURTENAY, &Parisian Scholars ...&, 243.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 271,
+    "Field1": 425,
+    "personID": 1426,
+    "Rue": "; \"in vico Sancti Victoris\" pour 20 deniers. COURTENAY, &Parisian Scholars ...&, 240.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 272,
+    "Field1": 426,
+    "personID": 1431,
+    "Rue": "; \"in vico Sancti Victoris\" pour 20 deniers. COURTENAY, &Parisian Scholars ...&, 240.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 273,
+    "Field1": 427,
+    "personID": 17329,
+    "Rue": "; \"in vico Sancti Victoris\" pour 32 deniers. COURTENAY, &Parisian Scholars ...&, 219.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 274,
+    "Field1": 428,
+    "personID": 1374,
+    "Rue": "; \"in vico Sancti Victoris\" pour 7 sous avec trois autres, Johannes de ROSELLO , Johanes BRINACA et Yterius de GRESIS . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 275,
+    "Field1": 429,
+    "personID": 1283,
+    "Rue": "; \"in vico Sancti Victoris\" sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 276,
+    "Field1": 430,
+    "personID": 10183,
+    "Rue": "; \"In vico Sancti Victoris\", avec 5 autres personnes, il paye 6 sous mais l'entr�e est barr�e ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 277,
+    "Field1": 431,
+    "personID": 15146,
+    "Rue": "; \"In vico Sancti Victoris\", avec 5 autres personnes, il paye 6 sous mais l'entr�e est barr�e ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 278,
+    "Field1": 432,
+    "personID": 1698,
+    "Rue": "; \"In vico Sancti Victoris\", avec son fr�re, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 279,
+    "Field1": 433,
+    "personID": 344,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement de deux sous. COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 280,
+    "Field1": 434,
+    "personID": 285,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement de deux sous. COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 281,
+    "Field1": 435,
+    "personID": 944,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement de quatre sous. COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 282,
+    "Field1": 436,
+    "personID": 770,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement de six sous partag� avec trois autres personnes, dont Bartholomaeus de NOVO CASTRO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 283,
+    "Field1": 437,
+    "personID": 1028,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement de trois sous. COURTENAY, &Parisian Scholars ...&, 240.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 284,
+    "Field1": 438,
+    "personID": 1015,
+    "Rue": "; \"in vico Sancti Victoris\", avec un paiement d'un \"agnellus\" avec deux autres personnes. COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 285,
+    "Field1": 439,
+    "personID": 2868,
+    "Rue": "; \"In vico Sancti Victoris\", et il paie 3 sous ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 286,
+    "Field1": 440,
+    "personID": 11352,
+    "Rue": "; \"In vico Sancti Victoris\", et paie II sol. ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 287,
+    "Field1": 441,
+    "personID": 3055,
+    "Rue": "; \"In vico Sancti Victoris\", et paie V sol. avec Berengarius de CASA ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 288,
+    "Field1": 442,
+    "personID": 21682,
+    "Rue": "; \"In vico Sancti Victoris\", et paie V sol. avec quatre autres �tudiants ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 289,
+    "Field1": 443,
+    "personID": 5095,
+    "Rue": "; \"In vico Sancti Victoris\", et paie V sol. avec quatre autres �tudiants ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 290,
+    "Field1": 444,
+    "personID": 9938,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VI sous avec Gerardus PICTAVIENSIS et Johannes SALOMONIS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 291,
+    "Field1": 445,
+    "personID": 10158,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VI sous avec Gerardus PICTAVIENSIS et Johannes SALOMONIS ; COURTENAY, &Parisian Scholars ...&, p. 240.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 292,
+    "Field1": 446,
+    "personID": 7480,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VI sous avec Gerardus PICTAVIENSIS et Petrus PICTAVIENSIS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 293,
+    "Field1": 447,
+    "personID": 21591,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VI sous avec Petrus PICTAVIENSIS et Johannes SALOMONIS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 294,
+    "Field1": 448,
+    "personID": 10189,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VIII sol. VIII d. avec Johannes de VENETA , Johannes de SANCTO JUSTO , Jacobus PIDO et Mathias PIDO ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 295,
+    "Field1": 449,
+    "personID": 21585,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VIII sol. VIII d. avec Johannes de VENETA , Petrus de SILVANECTO , Jacobus PIDO et Mathias PIDO ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 296,
+    "Field1": 452,
+    "personID": 8395,
+    "Rue": "; \"In vico Sancti Victoris\", et paie VIII sol. VIII d. avec Petrus de SILVANECTO , Johannes de SANCTO JUSTO , Jacobus PIDO et Mathias PIDO ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 297,
+    "Field1": 453,
+    "personID": 11427,
+    "Rue": "; \"In vico Sancti Victoris\", et paie XVI d. ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 298,
+    "Field1": 454,
+    "personID": 11463,
+    "Rue": "; \"In vico Sancti Victoris\", et paie XVI d. ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 299,
+    "Field1": 455,
+    "personID": 4260,
+    "Rue": "; \"in vico Sancti Victoris\", payant 18 deniers ; COURTENAY, &Parisian Scholars ...&, p. 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 300,
+    "Field1": 456,
+    "personID": 21802,
+    "Rue": "; \"in vico Sancti Victoris\", payant 22 deniers ;. COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 301,
+    "Field1": 457,
+    "personID": 5310,
+    "Rue": "; \"in vico Sancti Victoris\", payant 6 sous en commun avec Thiboldus de BURYA ; COURTENAY, &Parisian Scholars ...&, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 302,
+    "Field1": 458,
+    "personID": 5505,
+    "Rue": "; \"in vico Sancti Victoris\", payant 8 sous en commun avec Jacobus de AUSTRIA , Beardus de FRISIA , Wolfardus FRISO et Henricus FRISO . COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 303,
+    "Field1": 459,
+    "personID": 12352,
+    "Rue": "; \"in vico Sancti Victoris\", payant 8 sous en commun avec Jacobus de AUSTRIA , Jacobus de FRISIA , Beardus de FRISIA et Henricus FRISO . COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 304,
+    "Field1": 460,
+    "personID": 4704,
+    "Rue": "; \"in vico Sancti Victoris\", payant 8 sous en commun avec Jacobus de AUSTRIA , Jacobus de FRISIA , Beardus de FRISIA et Wolfardus FRISO . COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 305,
+    "Field1": 461,
+    "personID": 17362,
+    "Rue": "; \"in vico Sancti Victoris\", payant 8 sous en commun avec Jacobus de AUSTRIA , Jacobus de FRISIA , Wolfardus FRISO et Henricus FRISO . COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 306,
+    "Field1": 462,
+    "personID": 5469,
+    "Rue": "; \"in vico Sancti Victoris\", payant 8 sous en commun avec Jacobus de FRISIA , Beardus de FRISIA , Wolfardus FRISO et Henricus FRISO . COURTENAY, &Parisian Scholars ...&, 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 307,
+    "Field1": 463,
+    "personID": 10003,
+    "Rue": "; \"In vico Sancti Victoris\", paye 12 sous. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 308,
+    "Field1": 464,
+    "personID": 11417,
+    "Rue": "; \"In vico Sancti Victoris\", paye 12 sous. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 309,
+    "Field1": 465,
+    "personID": 12398,
+    "Rue": "; \"In vico Sancti Victoris\", paye 12 sous. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 310,
+    "Field1": 466,
+    "personID": 9539,
+    "Rue": "; \"In vico Sancti Victoris\", paye 3 sous. COURTENAY, &Parisian Scholars ...&, p.231, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 311,
+    "Field1": 467,
+    "personID": 9913,
+    "Rue": "; \"In vico Sancti Victoris\", paye 3 sous. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 312,
+    "Field1": 468,
+    "personID": 2471,
+    "Rue": "; \"In vico Sancti Victoris\", paye 33 deniers ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 313,
+    "Field1": 469,
+    "personID": 9410,
+    "Rue": "; \"In vico Sancti Victoris\", paye 4 sous. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 314,
+    "Field1": 470,
+    "personID": 16926,
+    "Rue": "; \"In vico Sancti Victoris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 315,
+    "Field1": 471,
+    "personID": 3096,
+    "Rue": "; \"In vico Sancti Victoris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 235.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 316,
+    "Field1": 472,
+    "personID": 3424,
+    "Rue": "; \"In vico Sancti Victoris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 235.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 317,
+    "Field1": 473,
+    "personID": 6425,
+    "Rue": "; \"In vico Sancti Victoris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 318,
+    "Field1": 474,
+    "personID": 6943,
+    "Rue": "; \"In vico Sancti Victoris\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 319,
+    "Field1": 476,
+    "personID": 10777,
+    "Rue": "; \"In vico Scurell\", avec un socio, paye 12 sous. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Scurell",
+    "XL93": 651707.7985,
+    "YL93": 6861543.303,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 320,
+    "Field1": 477,
+    "personID": 6657,
+    "Rue": "; \"In vico Scurell\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.223.",
+    "RUE_1": "In vico Scurell",
+    "XL93": 651707.7985,
+    "YL93": 6861543.303,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 321,
+    "Field1": 480,
+    "personID": 4158,
+    "Rue": "; \"In vico Severini\", avec 1 socius, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Severini",
+    "XL93": 652019.7399,
+    "YL93": 6861562.207,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 322,
+    "Field1": 481,
+    "personID": 10305,
+    "Rue": "; \"In vico Severini\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Severini",
+    "XL93": 652019.7399,
+    "YL93": 6861562.207,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 323,
+    "Field1": 482,
+    "personID": 4952,
+    "Rue": "; \"In vico Severini\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Severini",
+    "XL93": 652019.7399,
+    "YL93": 6861562.207,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 324,
+    "Field1": 483,
+    "personID": 8342,
+    "Rue": "; \"In vico Severini\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Severini",
+    "XL93": 652019.7399,
+    "YL93": 6861562.207,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 325,
+    "Field1": 484,
+    "personID": 9856,
+    "Rue": "; \"In vico Severini\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "In vico Severini",
+    "XL93": 652019.7399,
+    "YL93": 6861562.207,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 326,
+    "Field1": 485,
+    "personID": 6856,
+    "Rue": "; \"Prope domum Sancti Deonisii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 222.",
+    "RUE_1": "Prope domum Sancti Deonisii",
+    "XL93": 651676.8508,
+    "YL93": 6861807.212,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 327,
+    "Field1": 486,
+    "personID": 11887,
+    "Rue": "; \"Prope portam Bordelii\", avec 4 socii, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 328,
+    "Field1": 487,
+    "personID": 5343,
+    "Rue": "; \"Prope portam Bordelii\", avec un socius, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 329,
+    "Field1": 488,
+    "personID": 8177,
+    "Rue": "; \"Prope portam Bordelii\", paye 10 sous. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 330,
+    "Field1": 489,
+    "personID": 9039,
+    "Rue": "; \"Prope portam Bordelii\", paye 10 sous. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 331,
+    "Field1": 490,
+    "personID": 8582,
+    "Rue": "; \"Prope portam Bordelii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 332,
+    "Field1": 491,
+    "personID": 1406,
+    "Rue": "; \"Prope portam Bordelii\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.229.",
+    "RUE_1": "Prope portam Bordelii",
+    "XL93": 652288.3487,
+    "YL93": 6860744.211,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 333,
+    "Field1": 492,
+    "personID": 10899,
+    "Rue": "; \"Prope Portam Inferni\", avec 5 sociis, paye 9 sous pour trois d'entre eux et 6 sous pour les deux autres. COURTENAY, &Parisian Scholars ...&, p.220.",
+    "RUE_1": "Prope Portam Inferni",
+    "XL93": 651716.7784,
+    "YL93": 6861119.849,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 334,
+    "Field1": 493,
+    "personID": 5194,
+    "Rue": "; \"Prope Portam Inferni\", paye 3 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, 220.",
+    "RUE_1": "Prope Portam Inferni",
+    "XL93": 651716.7784,
+    "YL93": 6861119.849,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 335,
+    "Field1": 494,
+    "personID": 9448,
+    "Rue": "; \"Prope Portam Inferni\", paye 8 sous. COURTENAY, &Parisian Scholars ...&, p.220.",
+    "RUE_1": "Prope Portam Inferni",
+    "XL93": 651716.7784,
+    "YL93": 6861119.849,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 336,
+    "Field1": 495,
+    "personID": 16706,
+    "Rue": "; \"Prope Portam Inferni\", pr�s de la porte d'Enfer avec son ma�tre, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.220, 238.",
+    "RUE_1": "Prope Portam Inferni",
+    "XL93": 651716.7784,
+    "YL93": 6861119.849,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 337,
+    "Field1": 496,
+    "personID": 16765,
+    "Rue": "; \"Prope portam Sancti Germani\", avec 32 �tudiants, paye 2,7 sous. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "Prope portam Sancti Germani",
+    "XL93": 651662.2102,
+    "YL93": 6861551.195,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 338,
+    "Field1": 497,
+    "personID": 10796,
+    "Rue": "; \"Prope portam Sancti Germani\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.222.",
+    "RUE_1": "Prope portam Sancti Germani",
+    "XL93": 651662.2102,
+    "YL93": 6861551.195,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 339,
+    "Field1": 502,
+    "personID": 1704,
+    "Rue": "; \"Vicus ducis Burgundie\", \"cum 4 sociis\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "Vicus ducis Burgundie",
+    "XL93": 651994.4664,
+    "YL93": 6861017.155,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 340,
+    "Field1": 503,
+    "personID": 3893,
+    "Rue": "; \"Vicus ducis Burgundie\", \"cum socio\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "Vicus ducis Burgundie",
+    "XL93": 651994.4664,
+    "YL93": 6861017.155,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 341,
+    "Field1": 504,
+    "personID": 11312,
+    "Rue": "; \"Vicus ducis Burgundie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "Vicus ducis Burgundie",
+    "XL93": 651994.4664,
+    "YL93": 6861017.155,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 342,
+    "Field1": 505,
+    "personID": 4486,
+    "Rue": "; \"Vicus ducis Burgundie\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226. CUP: II p.661a.",
+    "RUE_1": "Vicus ducis Burgundie",
+    "XL93": 651994.4664,
+    "YL93": 6861017.155,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 343,
+    "Field1": 506,
+    "personID": 9415,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", avec 12 sociis � l'angle de la rue Garlande et de la rue d'Arras pr�s de la rue du Fouarre, paie pour trois d'entre eux 8 sous et 6 deniers. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 344,
+    "Field1": 507,
+    "personID": 5470,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", avec 2 sociis et 5 �tudiants en grammaire, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 345,
+    "Field1": 508,
+    "personID": 4653,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", avec 2 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 346,
+    "Field1": 509,
+    "personID": 7892,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", avec 2 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 347,
+    "Field1": 510,
+    "personID": 9074,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", avec 5 sociis � l'angle de la rue Garlande et de la rue d'Arras, paie 10 sous. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 348,
+    "Field1": 511,
+    "personID": 3864,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 349,
+    "Field1": 512,
+    "personID": 1597,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 350,
+    "Field1": 513,
+    "personID": 4429,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 351,
+    "Field1": 514,
+    "personID": 16876,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 352,
+    "Field1": 515,
+    "personID": 2320,
+    "Rue": "; \"Vicus Garlandie et Attrebati\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 353,
+    "Field1": 518,
+    "personID": 8408,
+    "Rue": "; \"Vicus Huchette\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 354,
+    "Field1": 522,
+    "personID": 5576,
+    "Rue": "; \"Vicus Huchette\", paie 2 sous, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 355,
+    "Field1": 523,
+    "personID": 2836,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, 224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 356,
+    "Field1": 524,
+    "personID": 16872,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 357,
+    "Field1": 525,
+    "personID": 10107,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 358,
+    "Field1": 526,
+    "personID": 10316,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 359,
+    "Field1": 527,
+    "personID": 2593,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 360,
+    "Field1": 528,
+    "personID": 7318,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 361,
+    "Field1": 529,
+    "personID": 7522,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 362,
+    "Field1": 530,
+    "personID": 8376,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 363,
+    "Field1": 531,
+    "personID": 8786,
+    "Rue": "; \"Vicus Huchette\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.224.",
+    "RUE_1": "Vicus Huchette",
+    "XL93": 652043.4779,
+    "YL93": 6861642.658,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 364,
+    "Field1": 539,
+    "personID": 4203,
+    "Rue": "; \"Vicus Ospitilariorum\", \"cum fratre et quodam priore\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "Vicus Ospitilariorum",
+    "XL93": 651992.6494,
+    "YL93": 6861231.32,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 365,
+    "Field1": 540,
+    "personID": 8202,
+    "Rue": "; \"Vicus Ospitilariorum\", avec 18 sociis dont 8 �tudiants en arts, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "Vicus Ospitilariorum",
+    "XL93": 651992.6494,
+    "YL93": 6861231.32,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 366,
+    "Field1": 541,
+    "personID": 2589,
+    "Rue": "; \"Vicus Ospitilariorum\", rue de l'h�pital, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.226.",
+    "RUE_1": "Vicus Ospitilariorum",
+    "XL93": 651992.6494,
+    "YL93": 6861231.32,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 367,
+    "Field1": 542,
+    "personID": 7728,
+    "Rue": "; \"Vicus Ospitilariorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "Vicus Ospitilariorum",
+    "XL93": 651992.6494,
+    "YL93": 6861231.32,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 368,
+    "Field1": 543,
+    "personID": 8015,
+    "Rue": "; \"Vicus Ospitilariorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "Vicus Ospitilariorum",
+    "XL93": 651992.6494,
+    "YL93": 6861231.32,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 369,
+    "Field1": 544,
+    "personID": 9979,
+    "Rue": "; \"Vicus Pergemenorum\", avec 3 sociis, paie 8 sous. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 370,
+    "Field1": 545,
+    "personID": 8621,
+    "Rue": "; \"Vicus Pergemenorum\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 371,
+    "Field1": 546,
+    "personID": 10050,
+    "Rue": "; \"Vicus Pergemenorum\", avec 4 sociis, sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 372,
+    "Field1": 548,
+    "personID": 11873,
+    "Rue": "; \"Vicus Pergemenorum\", paie 3 sous. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 373,
+    "Field1": 549,
+    "personID": 9665,
+    "Rue": "; \"Vicus Pergemenorum\", paie 7 sous et 2 deniers. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 374,
+    "Field1": 550,
+    "personID": 16877,
+    "Rue": "; \"Vicus Pergemenorum\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.225.",
+    "RUE_1": "Vicus Pergemenorum",
+    "XL93": 651942.8103,
+    "YL93": 6861521.159,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 375,
+    "Field1": 557,
+    "personID": 11128,
+    "Rue": "; \"Vicus Sarbone\", paye 15 sous. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "Vicus Sarbone",
+    "XL93": 651826.825,
+    "YL93": 6861152.35,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 376,
+    "Field1": 558,
+    "personID": 4098,
+    "Rue": "; \"Vicus Sarbone\", paye 5 sous. COURTENAY, &Parisian Scholars ...&, p. 221.",
+    "RUE_1": "Vicus Sarbone",
+    "XL93": 651826.825,
+    "YL93": 6861152.35,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 377,
+    "Field1": 559,
+    "personID": 10178,
+    "Rue": "; \"Vicus Sarbone\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "Vicus Sarbone",
+    "XL93": 651826.825,
+    "YL93": 6861152.35,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 378,
+    "Field1": 560,
+    "personID": 16745,
+    "Rue": "; \"Vicus Sarbone\", sans indication de paiement. COURTENAY, &Parisian Scholars ...&, p.221.",
+    "RUE_1": "Vicus Sarbone",
+    "XL93": 651826.825,
+    "YL93": 6861152.35,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 379,
+    "Field1": 563,
+    "personID": 7527,
+    "Rue": "; il demeurait \"in vico Sancti Victoris\" (?) en tant que scholaris Magistri Jacobi de MORETO et paie XIIII s. avec quatre autres �l�ves ; COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 380,
+    "Field1": 564,
+    "personID": 11307,
+    "Rue": "; il demeurait \"in vico Sancti Victoris\" (?) en tant que scholaris Magistri Johannes de MORETO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 381,
+    "Field1": 565,
+    "personID": 1706,
+    "Rue": "; il demeurait \"in vico Sancti Victoris\" (?) en tant que scholaris Magistri Johannes de MORETO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 382,
+    "Field1": 566,
+    "personID": 19784,
+    "Rue": "; il demeurait \"in vico Sancti Victoris\" (?) en tant que scholaris Magistri Johannes de MORETO . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 383,
+    "Field1": 567,
+    "personID": 1699,
+    "Rue": "; il demeurait \"in vico Sancti Victoris\" (?) et paie 4 sous avec Johannes de BELACORT . COURTENAY, &Parisian Scholars ...&, 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 384,
+    "Field1": 574,
+    "personID": 21490,
+    "Rue": "; il r�side \"in claustro sancti Benedicti\" ; COURTENAY, &Parisian Scholars ...&, p. 218.",
+    "RUE_1": "In claustro Sancti Benedicti",
+    "XL93": 651967.565,
+    "YL93": 6861337.479,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 385,
+    "Field1": 575,
+    "personID": 4922,
+    "Rue": "; il r�side \"in magno vico supra Sanctum Benedictum\", avec 7 sociis, et il paie 24 sous ; COURTENAY, &Parisian Scholars ...&, p. 219.",
+    "RUE_1": "In magno vico supra Sanctum Benedictum",
+    "XL93": 651967.6866,
+    "YL93": 6861228.744,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 386,
+    "Field1": 579,
+    "personID": 9731,
+    "Rue": "; il r�side \"in vico Sancti Germani de Ateseodoro\" et il paie 3 s. ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 387,
+    "Field1": 580,
+    "personID": 11254,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 1 agnel avec le Magister Gilbertus SCOTUS et Arnoldus de LUBEKE ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 388,
+    "Field1": 581,
+    "personID": 21485,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 1 agnel avec Rogerus SCOTUS et Arnoldus de LUBEKE ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 389,
+    "Field1": 582,
+    "personID": 11277,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 3 sous avec Gosenius SCOTUS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 390,
+    "Field1": 583,
+    "personID": 3263,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 3 sous avec Rolandus SCOTUS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 391,
+    "Field1": 584,
+    "personID": 10662,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 5 sous avec quatre autres personnes ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 392,
+    "Field1": 585,
+    "personID": 11726,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie 6 sous avec cinq autres personnages, une somme particuli�rement faible ; COURTENAY, &Parisian Scholars ...&, p.232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 393,
+    "Field1": 586,
+    "personID": 8589,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" et paie XXXII d. ; COURTENAY, &Parisian Scholars ...&, p. 238.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 394,
+    "Field1": 587,
+    "personID": 8430,
+    "Rue": "; il r�side \"in vico Sancti Victoris\" sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 395,
+    "Field1": 590,
+    "personID": 316,
+    "Rue": "; peut-�tre \"in vico Sancti Victoris (?)\", et avec un paiement de 25 d. COURTENAY, &Parisian Scholars ...&, 244.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 396,
+    "Field1": 591,
+    "personID": 269,
+    "Rue": "; peut-�tre \"in vico Sancti Victoris\" mais en tous cas \"cum scolaribus suis, qui sunt XXXX\", sans paiement indiqu�. COURTENAY, &Parisian Scholars ...&, 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 397,
+    "Field1": 592,
+    "personID": 9496,
+    "Rue": "; ;   \"in vico Sancti Victoris\" sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, p. 235.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 398,
+    "Field1": 594,
+    "personID": 9348,
+    "Rue": "; ;   in vico Sancti Victoris et paie 2 sous ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 399,
+    "Field1": 595,
+    "personID": 11183,
+    "Rue": "in vico Sancti Germani de Auteseodor.\" et paie 10 s. avec Robert DATIES ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 400,
+    "Field1": 596,
+    "personID": 11065,
+    "Rue": "in vico Sancti Germani de Auteseodor.\" et paie 10 s. avec Robert de MOTA ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 401,
+    "Field1": 597,
+    "personID": 10813,
+    "Rue": "in vico Sancti Germani de Auteseodor.\" et paie 4 s. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 402,
+    "Field1": 598,
+    "personID": 9816,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie 9 s. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 403,
+    "Field1": 599,
+    "personID": 9904,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie III sous ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 404,
+    "Field1": 600,
+    "personID": 21604,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie VI sol. avec son socius ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 405,
+    "Field1": 603,
+    "personID": 21595,
+    "Rue": "in vico Sancti Victoris\" (?) avec Petrus de MOLENTO dont il est le socius ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 406,
+    "Field1": 604,
+    "personID": 10140,
+    "Rue": "in vico Sancti Victoris\" (?) avec son socius ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 407,
+    "Field1": 605,
+    "personID": 10142,
+    "Rue": "in vico Sancti Victoris\" (?) avec son socius ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 408,
+    "Field1": 606,
+    "personID": 21596,
+    "Rue": "in vico Sancti Victoris\" (?) avec son socius ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 409,
+    "Field1": 607,
+    "personID": 10294,
+    "Rue": "in vico Sancti Victoris\" (?) sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, p. 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 410,
+    "Field1": 608,
+    "personID": 10455,
+    "Rue": "in vico Sancti Victoris\" et paie III sol. ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 411,
+    "Field1": 609,
+    "personID": 9791,
+    "Rue": "in vico Sancti Victoris\" et paie III sol. ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 412,
+    "Field1": 610,
+    "personID": 9930,
+    "Rue": "in vico Sancti Victoris\" et paie III sol. ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 413,
+    "Field1": 611,
+    "personID": 10041,
+    "Rue": "in vico Sancti Victoris\" et paie IIII sol. ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 414,
+    "Field1": 612,
+    "personID": 10082,
+    "Rue": "in vico Sancti Victoris\" et paie V sol. avec le Magister Nicholaus de ROGIACO ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 415,
+    "Field1": 614,
+    "personID": 10422,
+    "Rue": "in vico Sancti Victoris\" et paie V sol. en commun avec Petrus de VICO , Johannes DORDANUS , Herveus DIUNANO et Reginaldus SARBORS ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 416,
+    "Field1": 615,
+    "personID": 10037,
+    "Rue": "in vico Sancti Victoris\" et paie V sol. et IIII d. avec Mattheus de FRENNAY ; COURTENAY, &Parisian Scholars ...&, p. 233.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 417,
+    "Field1": 616,
+    "personID": 21601,
+    "Rue": "in vico Sancti Victoris\" et paie V sol. et IIII d. avec Petrus de BELLEY ; COURTENAY, &Parisian Scholars ...&, p. 233.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 418,
+    "Field1": 617,
+    "personID": 1718,
+    "Rue": "; � deux reprises, mais il demeurait probablement \"in vico Sancti Germani de Auteseodoro\" et a pay� 2 s. 6 d.. COURTENAY, &Parisian Scholars ...&, 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 419,
+    "Field1": 620,
+    "personID": 1439,
+    "Rue": "; comme �tant \"in vico Sancti Victoris\" pour 20 deniers. COURTENAY, &Parisian Scholars ...&, 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 420,
+    "Field1": 621,
+    "personID": 1369,
+    "Rue": "; comme �tant \"in vico Sancti Victoris\" pour un sou. COURTENAY, &Parisian Scholars ...&, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 421,
+    "Field1": 622,
+    "personID": 1255,
+    "Rue": "; comme �tant \"in vico Sancti Victoris\", 7 sous avec Mauricius SCOTUS et Magister Johannes SCOTI . COURTENAY, &Parisian Scholars ...&, 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 422,
+    "Field1": 623,
+    "personID": 11279,
+    "Rue": "; comme �tant \"in vico Sancti Victoris\", pour 4 sous avec Johannes de VILLA JURIS ; COURTENAY, &Parisian Scholars ...&, 233.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 423,
+    "Field1": 624,
+    "personID": 1287,
+    "Rue": "; comme �tant \"in vico Sancti Victoris\", pour 5 sous avec Gido de PROYNIS . COURTENAY, &Parisian Scholars ...&, 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 424,
+    "Field1": 625,
+    "personID": 1681,
+    "Rue": "; comme r�sident \"in vico Sancti Victoris\", tax� 5 sous avec Petrus de CUSILLO . COURTENAY, &Parisian Scholars ...&, 137 et 242.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 425,
+    "Field1": 626,
+    "personID": 21929,
+    "Rue": "; et r�side peut-�tre \"In vico Cadrigarie\" ; son nom a toutefois �t� ray� ; COURTENAY, &Parisian Scholars ...&, p. 226.",
+    "RUE_1": "In vico Cadrigarie",
+    "XL93": 652072.4602,
+    "YL93": 6861139.377,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 426,
+    "Field1": 627,
+    "personID": 21467,
+    "Rue": "; habitant en bas de la Grande Rue Saint-Jacques : \"In vico magno sub Sancto Benedicto\", et paie 5 sous ; COURTENAY, &Parisian Scholars ...&, p. 225.",
+    "RUE_1": "In vico magno sub Sancto Benedicto",
+    "XL93": 652078.5535,
+    "YL93": 6861526.695,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 427,
+    "Field1": 628,
+    "personID": 21928,
+    "Rue": "; r�sidant dans le \"Vicus Garlandie et Attrebati\" et paie 6 sol. ; COURTENAY, &Parisian Scholars ...&, p. 224.",
+    "RUE_1": "Vicus Garlandie et Attrebati",
+    "XL93": 652174.8168,
+    "YL93": 6861461.498,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 428,
+    "Field1": 632,
+    "personID": 1222,
+    "Rue": ";,  comme �tant \"in vico Sancti Victoris\", 6 sous avec trois autres, Anselmus de NOVOCASTRO , Johannes de CAPELLA et Johannes de CASTRI WILLANI . COURTENAY, &Parisian Scholars ...&, p.236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 429,
+    "Field1": 635,
+    "personID": 13119,
+    "Rue": ";, \"in claustro Sancte Jenovefe\" avec un paiement de XX sol. ; COURTENAY, &Parisian Scholars ...&, p. 229 et 238.",
+    "RUE_1": "In claustro Sancte Jenovefe",
+    "XL93": 652207.4556,
+    "YL93": 6860983.297,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 430,
+    "Field1": 636,
+    "personID": 8173,
+    "Rue": ";, \"in vico Sancti Germani de Auteseodoro\" et paie 3 s. en commun avec WILLELMUS ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 431,
+    "Field1": 638,
+    "personID": 1223,
+    "Rue": ";, comme �tant  comme �tant \"in vico Sancti Victoris\", 3 sous et 2 d. COURTENAY, &Parisian Scholars ...&, p.240.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 432,
+    "Field1": 639,
+    "personID": 11407,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie 3 s 6 d. COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 433,
+    "Field1": 640,
+    "personID": 11547,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie 4 s. COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 434,
+    "Field1": 641,
+    "personID": 11493,
+    "Rue": "in vico Sancti Victoris\" et paie 5 s. en commun avec deux autres �tudiants, Johannes de PONSIO et Gilhelmus de CASTRO VILLANI ; COURTENAY, &Parisian Scholars ...&, p. 234.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 435,
+    "Field1": 642,
+    "personID": 8328,
+    "Rue": ";, demeure \"in vico Sancti Victoris\" et paie 6 sous avec cinq autres �tudiants, mais tous leurs noms sont ray�s ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 436,
+    "Field1": 643,
+    "personID": 8351,
+    "Rue": ";, demeure \"in vico Sancti Victoris\" et paie 6 sous avec cinq autres �tudiants, mais tous leurs noms sont ray�s ; COURTENAY, &Parisian Scholars ...&, p. 231.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 437,
+    "Field1": 659,
+    "personID": 21658,
+    "Rue": ";, et il r�sidz \"in vico Harpe\" sans indication de paiement ; COURTENAY, &Parisian Scholars ...&, p. 224.",
+    "RUE_1": "In vico Harpe",
+    "XL93": 651728.8652,
+    "YL93": 6861147.281,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 438,
+    "Field1": 670,
+    "personID": 6555,
+    "Rue": ";, il r�side \"in vico Sancti Germani de Auteseodoro\" et il paie 3 s. 6 d. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 439,
+    "Field1": 671,
+    "personID": 11724,
+    "Rue": ";, logeant \"in vico Sancti Germani de Auteseodoro\", et paie 8 sous ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 440,
+    "Field1": 683,
+    "personID": 19785,
+    "Rue": ";, peut-�tre \"in vico Sancti Victoris\" ; COURTENAY, &Parisian Scholars ...&, 236.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 441,
+    "Field1": 687,
+    "personID": 9536,
+    "Rue": ";, r�sidant \"in vico Sancti Germani de Auteseodoro' et payant 3 sol. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 442,
+    "Field1": 688,
+    "personID": 10687,
+    "Rue": ";, r�sidant \"in vico Sancti Victoris\" et payant 6 sous en commun avec Theobaldus de NOYS et Johannes de CARVOMONTE ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 443,
+    "Field1": 691,
+    "personID": 21654,
+    "Rue": ";, r�side \"in vico Sancti Victoris\" et paie 2 sous \"cum 2 sociis\" ; COURTENAY, &Parisian Scholars ...&, p. 232.",
+    "RUE_1": "In vico Sancti Victoris",
+    "XL93": 652290.7437,
+    "YL93": 6861266.938,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 444,
+    "Field1": 821,
+    "personID": 9497,
+    "Rue": "S'il est bien Nicolas de NAVARRA , ;, r�sidant \"in vico Sancti Germani de Auteseodoro' et payant 3 sol. ; COURTENAY, &Parisian Scholars ...&, p. 245.",
+    "RUE_1": "In vico Sancti Germani",
+    "XL93": 651581.0393,
+    "YL93": 6861707.308,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 445,
+    "Field1": 98,
+    "personID": 2011,
+    "Rue": "Il figure avec 4 \"sociis\" sous la rubrique \"Navare\" dans le \"compotus receptarum bursarum\" datable entre 1329 (mi-octobre) et 1330 (mars) : \"in vico Sancti Germani de Auteseodoro\", et paye 10 sous 8 deniers. COURTENAY, &Parisian Scholars ...&, p.",
+    "RUE_1": "In vico Sancti Germani de Autesodoro",
+    "XL93": 652090.9334,
+    "YL93": 6862202.748,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 446,
+    "Field1": 112,
+    "personID": 1371,
+    "Rue": ";  \"in vico Sancti Germani de Auteseodoro\" pour 7 sous solv., avec Verdinus GUNBERTI , mais c'est aussi le m�me homme qui est apparemment r�pertori� \"in vico cadrigarie\" \"cum socio\" ... COURTENAY, &Parisian Scholars ...&, 226, 245.",
+    "RUE_1": "In vico Sancti Germani de Autesodoro",
+    "XL93": 652090.9334,
+    "YL93": 6862202.748,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 447,
+    "Field1": 249,
+    "personID": 1372,
+    "Rue": "; \"In vico Cadrigarie\", avec des \"socii\", sans indication de paiement, mais est peut-�tre la m�me personne que celui quui paye 7 sous avec Verdinus GUNBERDI \"in vico Sancti Germani de Auteseodoro\".. COURTENAY, &Parisian Scholars ...&, p.226 et 245.",
+    "RUE_1": "In vico Sancti Germani de Autesodoro",
+    "XL93": 652090.9334,
+    "YL93": 6862202.748,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 448,
+    "Field1": 601,
+    "personID": 21606,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie VI sol. avec son socius, si du moins il est d�j� scolasticus d' Osnabr�ck � cette date ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani de Autesodoro",
+    "XL93": 652090.9334,
+    "YL93": 6862202.748,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  },
+  {
+    "FID": 449,
+    "Field1": 602,
+    "personID": 21605,
+    "Rue": "in vico Sancti Germani de Auteseodoro\" et paie VI sol. avec son socius, si du moins il est encore scolasticus d' Osnabr�ck � cette date ; COURTENAY, &Parisian Scholars ...&, p. 246.",
+    "RUE_1": "In vico Sancti Germani de Autesodoro",
+    "XL93": 652090.9334,
+    "YL93": 6862202.748,
+    "Database": "Computo 1329-1330 ANR ALPAGE"
+  }
+]

@@ -1,0 +1,1862 @@
+[
+  {
+    "FID": 0,
+    "personID": 3832,
+    "diocese": "Diocèse d' Albi .",
+    "Diocèse": "Diocèse d'Albi",
+    "Chef_lieu": "Albi",
+    "XL93": 627062.3267,
+    "YL93": 6316030.254,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 1,
+    "personID": 11989,
+    "diocese": "Diocèse d' Albi . FOURNIER: 2",
+    "Diocèse": "Diocèse d'Albi",
+    "Chef_lieu": "Albi",
+    "XL93": 627062.3267,
+    "YL93": 6316030.254,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 2,
+    "personID": 16429,
+    "diocese": "Diocèse d' Amiens .",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 3,
+    "personID": 3981,
+    "diocese": "Diocèse d’ Amiens .",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 4,
+    "personID": 12754,
+    "diocese": "Diocèse de Amiens .",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 5,
+    "personID": 7475,
+    "diocese": "Diocèse de Amiens ?",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 6,
+    "personID": 22254,
+    "diocese": "Diocèse de Amiens . Dans l’enregistrement de la licence",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 7,
+    "personID": 22255,
+    "diocese": "Diocèse de Amiens ; FEG: I, Amiens n° 126 (P. DESPORTES et H. MILLET).",
+    "Diocèse": "Diocèse d'Amiens",
+    "Chef_lieu": "Amiens",
+    "XL93": 637020.0462,
+    "YL93": 6987894.789,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 8,
+    "personID": 15765,
+    "diocese": "Diocèse d' Angers .",
+    "Diocèse": "Diocèse d'Angers",
+    "Chef_lieu": "Angers",
+    "XL93": 438672.3431,
+    "YL93": 6715739.674,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 9,
+    "personID": 11320,
+    "diocese": "Diocèse d’ Angers ?",
+    "Diocèse": "Diocèse d'Angers",
+    "Chef_lieu": "Angers",
+    "XL93": 438672.3431,
+    "YL93": 6715739.674,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 10,
+    "personID": 9858,
+    "diocese": "Diocèse de Angers AUP: V",
+    "Diocèse": "Diocèse d'Angers",
+    "Chef_lieu": "Angers",
+    "XL93": 438672.3431,
+    "YL93": 6715739.674,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 11,
+    "personID": 13338,
+    "diocese": "?Diocèse d' Angoulême .",
+    "Diocèse": "Diocèse d'Angoulême",
+    "Chef_lieu": "Angoulême",
+    "XL93": 486117.7877,
+    "YL93": 6514044.831,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 12,
+    "personID": 16381,
+    "diocese": "Diocèse d' Arras .",
+    "Diocèse": "Diocèse d'Arras",
+    "Chef_lieu": "Arras",
+    "XL93": 689082.6698,
+    "YL93": 7027090.9,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 13,
+    "personID": 6510,
+    "diocese": "Diocèse d' Arras ?",
+    "Diocèse": "Dio+C15:F15cèse d'Arras",
+    "Chef_lieu": "Arras",
+    "XL93": 689082.6698,
+    "YL93": 7027090.9,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 14,
+    "personID": 9189,
+    "diocese": "Diocèse d’ Arras .",
+    "Diocèse": "Diocèse d'Arras",
+    "Chef_lieu": "Arras",
+    "XL93": 689082.6698,
+    "YL93": 7027090.9,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 15,
+    "personID": 15542,
+    "diocese": "Diocèse de Arras .",
+    "Diocèse": "Diocèse d'Arras",
+    "Chef_lieu": "Arras",
+    "XL93": 689082.6698,
+    "YL93": 7027090.9,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 16,
+    "personID": 9525,
+    "diocese": "Diocèse d'Autun.",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 17,
+    "personID": 15111,
+    "diocese": "Diocèse d' Autun .",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 18,
+    "personID": 2256,
+    "diocese": "Diocèse d'Autun. FOURNIER: 2",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 19,
+    "personID": 5479,
+    "diocese": "Bourgogne .¤Diocèse d' Autun .",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 20,
+    "personID": 19767,
+    "diocese": "Diocèse d' Autun ;¤Si Nicolaus VIARDI et Nicolas VIART sont la même personne ; AUP: V, 705 31.",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 21,
+    "personID": 11520,
+    "diocese": "Diocèse d’ Autun . CUP V",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 22,
+    "personID": 17732,
+    "diocese": "Diocèse de Autun . AUP: V",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 23,
+    "personID": 19466,
+    "diocese": "Diocèse de Autun . FOURNIER: 1",
+    "Diocèse": "Diocèse d'Autun",
+    "Chef_lieu": "Autun",
+    "XL93": 791441.002,
+    "YL93": 6653406.154,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 24,
+    "personID": 2574,
+    "diocese": "Diocèse d’Auxerre.",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 25,
+    "personID": 19768,
+    "diocese": "Diocèse d' Auxerre .",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 26,
+    "personID": 2705,
+    "diocese": "Diocèse d’ Auxerre .",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 27,
+    "personID": 3703,
+    "diocese": "Diocèse d’ Auxerre ?",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 28,
+    "personID": 1387,
+    "diocese": "Diocèse d' Auxerre ; FEG: II, Rouen, n° 393 (V. TABBAGH).",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 29,
+    "personID": 391,
+    "diocese": "Diocèse de Auxerre ; AUP : V, 77 8.",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 30,
+    "personID": 5453,
+    "diocese": "Diocèse de Auxerre ; AUP: V, 137 15.",
+    "Diocèse": "Diocèse d'Auxerre",
+    "Chef_lieu": "Auxerre",
+    "XL93": 721524.2926,
+    "YL93": 6717017.871,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 31,
+    "personID": 15626,
+    "diocese": "Diocèse d' Avranches .",
+    "Diocèse": "Diocèse d'Avranches",
+    "Chef_lieu": "Avranches",
+    "XL93": 394464.7097,
+    "YL93": 6841902.285,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 32,
+    "personID": 9144,
+    "diocese": "Diocèse d’ Avranches ?",
+    "Diocèse": "Diocèse d'Avranches",
+    "Chef_lieu": "Avranches",
+    "XL93": 394464.7097,
+    "YL93": 6841902.285,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 33,
+    "personID": 22245,
+    "diocese": "Diocèse de Bayeux .",
+    "Diocèse": "Diocèse de Bayeux",
+    "Chef_lieu": "Bayeux",
+    "XL93": 433004.3524,
+    "YL93": 6891849.297,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 34,
+    "personID": 1164,
+    "diocese": "Diocèse de Bayeux ?",
+    "Diocèse": "Diocèse de Bayeux",
+    "Chef_lieu": "Bayeux",
+    "XL93": 433004.3524,
+    "YL93": 6891849.297,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 35,
+    "personID": 11664,
+    "diocese": "Diocèse de Bayeux ? FEG: II",
+    "Diocèse": "Diocèse de Bayeux",
+    "Chef_lieu": "Bayeux",
+    "XL93": 433004.3524,
+    "YL93": 6891849.297,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 36,
+    "personID": 11701,
+    "diocese": "Diocèse de Bayeux 1380 . COURTENAY: III (2)",
+    "Diocèse": "Diocèse de Bayeux",
+    "Chef_lieu": "Bayeux",
+    "XL93": 433004.3524,
+    "YL93": 6891849.297,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 37,
+    "personID": 11703,
+    "diocese": "Diocèse de Bazas .",
+    "Diocèse": "Diocèse de Bazas",
+    "Chef_lieu": "Bazas",
+    "XL93": 446092.0173,
+    "YL93": 6376099.786,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 38,
+    "personID": 11710,
+    "diocese": "Diocèse de Bazas . FEG: XIV",
+    "Diocèse": "Diocèse de Bazas",
+    "Chef_lieu": "Bazas",
+    "XL93": 446092.0173,
+    "YL93": 6376099.786,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 39,
+    "personID": 11737,
+    "diocese": "Diocèse de Beauvais .",
+    "Diocèse": "Diocèse de Beauvais",
+    "Chef_lieu": "Beauvais",
+    "XL93": 647702.9246,
+    "YL93": 6924727.872,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 40,
+    "personID": 13145,
+    "diocese": "Diocèse de Beauvais ?",
+    "Diocèse": "Diocèse de Beauvais",
+    "Chef_lieu": "Beauvais",
+    "XL93": 647702.9246,
+    "YL93": 6924727.872,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 41,
+    "personID": 141,
+    "diocese": "Diocèse de Beauvais AUP: V",
+    "Diocèse": "Diocèse de Beauvais",
+    "Chef_lieu": "Beauvais",
+    "XL93": 647702.9246,
+    "YL93": 6924727.872,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 42,
+    "personID": 2912,
+    "diocese": "?Diocèse de Beauvais . COURTENAY",
+    "Diocèse": "Diocèse de Beauvais",
+    "Chef_lieu": "Beauvais",
+    "XL93": 647702.9246,
+    "YL93": 6924727.872,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 43,
+    "personID": 135,
+    "diocese": "Diocèse de Beauvais 1378 . COURTENAY: III (2)",
+    "Diocèse": "Diocèse de Beauvais",
+    "Chef_lieu": "Beauvais",
+    "XL93": 647702.9246,
+    "YL93": 6924727.872,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 44,
+    "personID": 11526,
+    "diocese": "Clerc du diocèse de Belley . COURTENAY: III",
+    "Diocèse": "Diocèse de Belley",
+    "Chef_lieu": "Belley",
+    "XL93": 906749.6836,
+    "YL93": 6513070.721,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 45,
+    "personID": 142,
+    "diocese": "Diocèse de Belley . FOURNIER: 2",
+    "Diocèse": "Diocèse de Belley",
+    "Chef_lieu": "Belley",
+    "XL93": 906749.6836,
+    "YL93": 6513070.721,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 46,
+    "personID": 143,
+    "diocese": "Diocèse de Besançon .",
+    "Diocèse": "Diocèse de Besançon",
+    "Chef_lieu": "Besançon",
+    "XL93": 931619.704,
+    "YL93": 6687350.506,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 47,
+    "personID": 2209,
+    "diocese": "Diocèse de Besançon ?",
+    "Diocèse": "Diocèse de Besançon",
+    "Chef_lieu": "Besançon",
+    "XL93": 931619.704,
+    "YL93": 6687350.506,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 48,
+    "personID": 2225,
+    "diocese": "Diocèse de Besançon ? FEG: XII n° 380 (Autun",
+    "Diocèse": "Diocèse de Besançon",
+    "Chef_lieu": "Besançon",
+    "XL93": 931619.704,
+    "YL93": 6687350.506,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 49,
+    "personID": 2266,
+    "diocese": "Diocèse de Béziers . enterré à Sainte-Marie-de-la-Minerve .",
+    "Diocèse": "Diocèse de Béziers",
+    "Chef_lieu": "Béziers",
+    "XL93": 721268.3978,
+    "YL93": 6269229.293,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 50,
+    "personID": 2267,
+    "diocese": "Diocèse de Bordeaux . FEG: XIII 674 (F. LAINÉ).",
+    "Diocèse": "Diocèse de Bordeaux",
+    "Chef_lieu": "Bordeaux",
+    "XL93": 405292.612,
+    "YL93": 6418942.357,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 51,
+    "personID": 2269,
+    "diocese": "Diocèse de Bourges .",
+    "Diocèse": "Diocèse de Bourges",
+    "Chef_lieu": "Bourges",
+    "XL93": 638847.7604,
+    "YL93": 6640361.797,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 52,
+    "personID": 3034,
+    "diocese": "Diocèse de Bourges ?",
+    "Diocèse": "Diocèse de Bourges",
+    "Chef_lieu": "Bourges",
+    "XL93": 638847.7604,
+    "YL93": 6640361.797,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 53,
+    "personID": 3035,
+    "diocese": "Diocèse de Bourges ??",
+    "Diocèse": "Diocèse de Bourges",
+    "Chef_lieu": "Bourges",
+    "XL93": 638847.7604,
+    "YL93": 6640361.797,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 54,
+    "personID": 3890,
+    "diocese": "Diocèse de Cahors .",
+    "Diocèse": "Diocèse de Cahors",
+    "Chef_lieu": "Cahors",
+    "XL93": 586540.3783,
+    "YL93": 6379743.486,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 55,
+    "personID": 5786,
+    "diocese": "Diocèse de Chalons-en-Champagne .",
+    "Diocèse": "Diocèse de Chalon",
+    "Chef_lieu": "Chalon (-sur-Saône)",
+    "XL93": 848081.8218,
+    "YL93": 6637184.34,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 56,
+    "personID": 7508,
+    "diocese": "Diocèse de Chalon-sur-Saône .",
+    "Diocèse": "Diocèse de Chalon",
+    "Chef_lieu": "Chalon (-sur-Saône)",
+    "XL93": 848081.8218,
+    "YL93": 6637184.34,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 57,
+    "personID": 8119,
+    "diocese": "Diocèse de Chalon-sur-Saône ;",
+    "Diocèse": "Diocèse de Chalon",
+    "Chef_lieu": "Chalon (-sur-Saône)",
+    "XL93": 848081.8218,
+    "YL93": 6637184.34,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 58,
+    "personID": 8190,
+    "diocese": "Diocèse de Chalon-sur-Saône. AUP: V",
+    "Diocèse": "Diocèse de Chalon",
+    "Chef_lieu": "Chalon (-sur-Saône)",
+    "XL93": 848081.8218,
+    "YL93": 6637184.34,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 59,
+    "personID": 7271,
+    "diocese": "Diocèse de Châlons-sur-Marne .",
+    "Diocèse": "Diocèse de Châlons",
+    "Chef_lieu": "Châlons (-en Champagne)",
+    "XL93": 816617.9763,
+    "YL93": 6857181.028,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 60,
+    "personID": 10217,
+    "diocese": "?Diocèse de Chartres .",
+    "Diocèse": "Diocèse de Chartres",
+    "Chef_lieu": "Chartres",
+    "XL93": 579815.8063,
+    "YL93": 6799526.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 61,
+    "personID": 825,
+    "diocese": "Diocèse de Chartres .",
+    "Diocèse": "Diocèse de Chartres",
+    "Chef_lieu": "Chartres",
+    "XL93": 579815.8063,
+    "YL93": 6799526.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 62,
+    "personID": 17653,
+    "diocese": "Clerc du diocèse de Chartres . COURTENAY: III",
+    "Diocèse": "Diocèse de Chartres",
+    "Chef_lieu": "Chartres",
+    "XL93": 579815.8063,
+    "YL93": 6799526.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 63,
+    "personID": 1157,
+    "diocese": "Diocèse de Clermont .",
+    "Diocèse": "Diocèse de Clermont",
+    "Chef_lieu": "Clermont",
+    "XL93": 710858.4144,
+    "YL93": 6519344.573,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 64,
+    "personID": 11796,
+    "diocese": "Diocèse de Clermont-Ferrand .",
+    "Diocèse": "Diocèse de Clermont",
+    "Chef_lieu": "Clermont",
+    "XL93": 710858.4144,
+    "YL93": 6519344.573,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 65,
+    "personID": 16492,
+    "diocese": "?Diocèse de Coutances .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 66,
+    "personID": 917,
+    "diocese": "Diocèse de Coutances .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 67,
+    "personID": 11967,
+    "diocese": "Diocèse Coutances .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 68,
+    "personID": 940,
+    "diocese": "Diocèse de Constance ou Diocèse de Coutances .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 69,
+    "personID": 1238,
+    "diocese": "Diocèse de Coutances (Nation de Normandie ) ; COURTENAY, Foreign Scholars ..., 71.",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 70,
+    "personID": 16156,
+    "diocese": "Diocèse de Coutances ;¤Diocèse de Laon . SULLIVAN Theol.: II, 310-311. Mais selon Anne MASSONI , il est clerc du diocèse de Coutances ? MASSONI, 621-622.",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 71,
+    "personID": 16169,
+    "diocese": "Diocèse de Coutances ? FOURNIER: I",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 72,
+    "personID": 16178,
+    "diocese": "Diocèse de Coutances ou diocèse de Constance .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 73,
+    "personID": 13146,
+    "diocese": "?Diocèse de Constance .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 74,
+    "personID": 3050,
+    "diocese": "Diocèse de Constance .",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 75,
+    "personID": 410,
+    "diocese": "Diocèse de Constance ?",
+    "Diocèse": "Diocèse de Coutances",
+    "Chef_lieu": "Coutances",
+    "XL93": 379390.252,
+    "YL93": 6910788.852,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 76,
+    "personID": 570,
+    "diocese": "Diocèse de Digne ; CUP: V, 422 4.",
+    "Diocèse": "Diocèse de Digne",
+    "Chef_lieu": "Digne (-les-bains)",
+    "XL93": 965247.9096,
+    "YL93": 6348728.758,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 77,
+    "personID": 1815,
+    "diocese": "Diocèse de Dol .",
+    "Diocèse": "Diocèse de Dol",
+    "Chef_lieu": "Dol",
+    "XL93": 347528.9929,
+    "YL93": 6836661.518,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 78,
+    "personID": 16612,
+    "diocese": "Diocèse de Grenoble .",
+    "Diocèse": "Diocèse de Grenoble",
+    "Chef_lieu": "Grenoble",
+    "XL93": 926246.3659,
+    "YL93": 6460036.669,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 79,
+    "personID": 21739,
+    "diocese": "Diocèse de Langes ; FOURNIER: II, 78.",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 80,
+    "personID": 3953,
+    "diocese": "Diocèse de Langres .",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 81,
+    "personID": 11874,
+    "diocese": "Diocèse de Langres FOURNIER: 1",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 82,
+    "personID": 6963,
+    "diocese": "Champagne ?¤Diocèse de Langres : FEG: II",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 83,
+    "personID": 2437,
+    "diocese": "Diocèse de Langres ?",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 84,
+    "personID": 12748,
+    "diocese": "Diocèse de Lescar . MS. Paris",
+    "Diocèse": "Diocèse de Lescar",
+    "Chef_lieu": "Lescar",
+    "XL93": 430677.7005,
+    "YL93": 6254416.827,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 85,
+    "personID": 16672,
+    "diocese": "Diocèse de Limoges .",
+    "Diocèse": "Diocèse de Limoges",
+    "Chef_lieu": "Limoges",
+    "XL93": 594776.5773,
+    "YL93": 6522288.767,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 86,
+    "personID": 6585,
+    "diocese": "?Diocèse de Limoges . D'après son épitaphe dans l'église de La Couture . DIEULEVEULT",
+    "Diocèse": "Diocèse de Limoges",
+    "Chef_lieu": "Limoges",
+    "XL93": 594776.5773,
+    "YL93": 6522288.767,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 87,
+    "personID": 3729,
+    "diocese": "Diocèse de Lisieux .",
+    "Diocèse": "Diocèse de Lisieux",
+    "Chef_lieu": "Lisieux",
+    "XL93": 501915.1482,
+    "YL93": 6891663.516,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 88,
+    "personID": 6873,
+    "diocese": "?Diocèse de Lisieux . FOURNIER: 1, p. 135. CUP: IV, n° 2048 ;¤?Diocèse d' Évreux . FOURNIER: 1, p. 160.",
+    "Diocèse": "Diocèse de Lisieux",
+    "Chef_lieu": "Lisieux",
+    "XL93": 501915.1482,
+    "YL93": 6891663.516,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 89,
+    "personID": 6960,
+    "diocese": "?Diocèse de Lisieux . Lorsqu'il engage tous ses biens au moment de prêter serment pour être libraire",
+    "Diocèse": "Diocèse de Lisieux",
+    "Chef_lieu": "Lisieux",
+    "XL93": 501915.1482,
+    "YL93": 6891663.516,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 90,
+    "personID": 16180,
+    "diocese": "Diocèse de Luçon . AUP: V",
+    "Diocèse": "Diocèse de Luçon",
+    "Chef_lieu": "Luçon",
+    "XL93": 364135.2044,
+    "YL93": 6628690.255,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 91,
+    "personID": 16166,
+    "diocese": "Diocèse de Luçon .",
+    "Diocèse": "Diocèse de Luçon",
+    "Chef_lieu": "Luçon",
+    "XL93": 364135.2044,
+    "YL93": 6628690.255,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 92,
+    "personID": 16461,
+    "diocese": "Diocèse de Lvov .",
+    "Diocèse": "Diocèse de Lyon",
+    "Chef_lieu": "Lyon",
+    "XL93": 839770.9488,
+    "YL93": 6541394.766,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 93,
+    "personID": 16462,
+    "diocese": "Diocèse de Lyon .",
+    "Diocèse": "Diocèse de Lyon",
+    "Chef_lieu": "Lyon",
+    "XL93": 839770.9488,
+    "YL93": 6541394.766,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 94,
+    "personID": 18101,
+    "diocese": "Diocèse de Lyon ?",
+    "Diocèse": "Diocèse de Lyon",
+    "Chef_lieu": "Lyon",
+    "XL93": 839770.9488,
+    "YL93": 6541394.766,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 95,
+    "personID": 21588,
+    "diocese": "Diocèse de Mende .",
+    "Diocèse": "Diocèse de Mende",
+    "Chef_lieu": "Mende",
+    "XL93": 740648.6594,
+    "YL93": 6384472.541,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 96,
+    "personID": 21510,
+    "diocese": "Diocèse de Mende ?",
+    "Diocèse": "Diocèse de Mende",
+    "Chef_lieu": "Mende",
+    "XL93": 740648.6594,
+    "YL93": 6384472.541,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 97,
+    "personID": 17938,
+    "diocese": "Diocèse de Metz",
+    "Diocèse": "Diocèse de Metz",
+    "Chef_lieu": "Metz",
+    "XL93": 963604.2141,
+    "YL93": 6883163.387,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 98,
+    "personID": 18285,
+    "diocese": "Diocèse de Metz .",
+    "Diocèse": "Diocèse de Metz",
+    "Chef_lieu": "Metz",
+    "XL93": 963604.2141,
+    "YL93": 6883163.387,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 99,
+    "personID": 9271,
+    "diocese": "Diocèse de Metz ? « Diocesis Methensis » ; AUP: II, 980 40.",
+    "Diocèse": "Diocèse de Metz",
+    "Chef_lieu": "Metz",
+    "XL93": 963604.2141,
+    "YL93": 6883163.387,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 100,
+    "personID": 6955,
+    "diocese": "Diocèse de Metz ?¤« Diocesis Methensis » ; AUP : II, 951 37.",
+    "Diocèse": "Diocèse de Metz",
+    "Chef_lieu": "Metz",
+    "XL93": 963604.2141,
+    "YL93": 6883163.387,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 101,
+    "personID": 20841,
+    "diocese": "Diocèse de Nantes .",
+    "Diocèse": "Diocèse de Nantes",
+    "Chef_lieu": "Nantes",
+    "XL93": 348094.3397,
+    "YL93": 6702208.551,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 102,
+    "personID": 22132,
+    "diocese": "Diocèse de Nevers .",
+    "Diocèse": "Diocèse de Nevers",
+    "Chef_lieu": "Nevers",
+    "XL93": 733887.6503,
+    "YL93": 6653836.113,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 103,
+    "personID": 17691,
+    "diocese": "Diocèse de Nevers ; CUP: V, 512 9.",
+    "Diocèse": "Diocèse de Nevers",
+    "Chef_lieu": "Nevers",
+    "XL93": 733887.6503,
+    "YL93": 6653836.113,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 104,
+    "personID": 17746,
+    "diocese": "Diocèse de Nevers ; FOURNIER: II, 470.",
+    "Diocèse": "Diocèse de Nevers",
+    "Chef_lieu": "Nevers",
+    "XL93": 733887.6503,
+    "YL93": 6653836.113,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 105,
+    "personID": 12732,
+    "diocese": "Diocèse de Noyon",
+    "Diocèse": "Diocèse de Noyon",
+    "Chef_lieu": "Noyon",
+    "XL93": 705048.3261,
+    "YL93": 6965662.724,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 106,
+    "personID": 22260,
+    "diocese": "Diocèse de Paris .",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 107,
+    "personID": 6979,
+    "diocese": "Diocèse de Paris ? AUP: V",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 108,
+    "personID": 7265,
+    "diocese": "?Diocèse de Paris . GOROCHOV: p. 601-602.",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 109,
+    "personID": 15912,
+    "diocese": "Clerc du diocèse de Paris .",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 110,
+    "personID": 6893,
+    "diocese": "Diocèse de Paris ?",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 111,
+    "personID": 700,
+    "diocese": "Diocèse de Paris ?.",
+    "Diocèse": "Diocèse de Paris",
+    "Chef_lieu": "Paris",
+    "XL93": 655288.269,
+    "YL93": 6854485.114,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 112,
+    "personID": 8151,
+    "diocese": "Diocèse de Périgueux .",
+    "Diocèse": "Diocèse de Périgueux",
+    "Chef_lieu": "Périgueux",
+    "XL93": 515515.309,
+    "YL93": 6455451.928,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 113,
+    "personID": 9013,
+    "diocese": "Diocèse de Périgueux ?",
+    "Diocèse": "Diocèse de Périgueux",
+    "Chef_lieu": "Périgueux",
+    "XL93": 515515.309,
+    "YL93": 6455451.928,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 114,
+    "personID": 7657,
+    "diocese": "?Diocèse de Reims .",
+    "Diocèse": "Diocèse de Reims",
+    "Chef_lieu": "Reims",
+    "XL93": 808509.1514,
+    "YL93": 6929363.35,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 115,
+    "personID": 6503,
+    "diocese": "Diocèse de Reims .",
+    "Diocèse": "Diocèse de Reims",
+    "Chef_lieu": "Reims",
+    "XL93": 808509.1514,
+    "YL93": 6929363.35,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 116,
+    "personID": 8675,
+    "diocese": "Diocèse de Reims ?",
+    "Diocèse": "Diocèse de Reims",
+    "Chef_lieu": "Reims",
+    "XL93": 808509.1514,
+    "YL93": 6929363.35,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 117,
+    "personID": 7667,
+    "diocese": "?Diocèse de Reims . GOROCHOV: p.602. FEG: III p.362-363 (RM 38).",
+    "Diocèse": "Diocèse de Reims",
+    "Chef_lieu": "Reims",
+    "XL93": 808509.1514,
+    "YL93": 6929363.35,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 118,
+    "personID": 6614,
+    "diocese": "Bretagne .¤Diocèse de Rennes . AUP: V",
+    "Diocèse": "Diocèse de Rennes",
+    "Chef_lieu": "Rennes",
+    "XL93": 369799.8242,
+    "YL93": 6787157.915,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 119,
+    "personID": 5222,
+    "diocese": "Clerc du diocèse de Rennes . COURTENAY: III",
+    "Diocèse": "Diocèse de Rennes",
+    "Chef_lieu": "Rennes",
+    "XL93": 369799.8242,
+    "YL93": 6787157.915,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 120,
+    "personID": 20847,
+    "diocese": "Diocèse de Rodez .",
+    "Diocèse": "Diocèse de Rodez",
+    "Chef_lieu": "Rodez",
+    "XL93": 665187.675,
+    "YL93": 6365090.57,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 121,
+    "personID": 21765,
+    "diocese": "Diocèse de Rodez . CUP: IV",
+    "Diocèse": "Diocèse de Rodez",
+    "Chef_lieu": "Rodez",
+    "XL93": 665187.675,
+    "YL93": 6365090.57,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 122,
+    "personID": 401,
+    "diocese": "Diocèse de Rodez . FOURNIER: 2",
+    "Diocèse": "Diocèse de Rodez",
+    "Chef_lieu": "Rodez",
+    "XL93": 665187.675,
+    "YL93": 6365090.57,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 123,
+    "personID": 19758,
+    "diocese": "Diocèse de Rouen . A revoir. SULLIVAN Theol.: II pp. 44 et 195.",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 124,
+    "personID": 8107,
+    "diocese": "?Diocèse de Rouen . CUP: III n°1306.",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 125,
+    "personID": 17492,
+    "diocese": "Diocèse de Rouen .",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 126,
+    "personID": 11907,
+    "diocese": "Diocèse de Rouen . A revoir.",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 127,
+    "personID": 11114,
+    "diocese": "Diocèse de Rouen ?",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 128,
+    "personID": 11122,
+    "diocese": "Diocèse de Rouen ? FEG: II",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 129,
+    "personID": 11892,
+    "diocese": "Diocèse de Rouen ? FEG: II",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 130,
+    "personID": 11954,
+    "diocese": "Diocèse de Rouen ? FEG: II",
+    "Diocèse": "Diocèse de Rouen",
+    "Chef_lieu": "Rouen",
+    "XL93": 568872.5238,
+    "YL93": 6936451.204,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 131,
+    "personID": 12710,
+    "diocese": "Clerc du diocèse de Saint-Brieuc .",
+    "Diocèse": "Diocèse de Saint-Brieuc",
+    "Chef_lieu": "Saint-Brieuc",
+    "XL93": 282013.4128,
+    "YL93": 6825265.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 132,
+    "personID": 8649,
+    "diocese": "?Diocèse de Saint-Brieuc . SULLIVAN Theol. : I p. 321-322.",
+    "Diocèse": "Diocèse de Saint-Brieuc",
+    "Chef_lieu": "Saint-Brieuc",
+    "XL93": 282013.4128,
+    "YL93": 6825265.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 133,
+    "personID": 6498,
+    "diocese": "Clerc du diocèse de Saint-Brieuc . COURTENAY: III",
+    "Diocèse": "Diocèse de Saint-Brieuc",
+    "Chef_lieu": "Saint-Brieuc",
+    "XL93": 282013.4128,
+    "YL93": 6825265.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 134,
+    "personID": 7550,
+    "diocese": "Diocèse de Saint-Brieuc .",
+    "Diocèse": "Diocèse de Saint-Brieuc",
+    "Chef_lieu": "Saint-Brieuc",
+    "XL93": 282013.4128,
+    "YL93": 6825265.125,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 135,
+    "personID": 1884,
+    "diocese": "Diocèse de Saintes . CHEVALIER: 1",
+    "Diocèse": "Diocèse de Saintes",
+    "Chef_lieu": "Saintes",
+    "XL93": 423415.0752,
+    "YL93": 6520071.539,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 136,
+    "personID": 9356,
+    "diocese": "Clerc du diocèse de Saint-Pol-de-Léon .",
+    "Diocèse": "Diocèse de Saint-Pol",
+    "Chef_lieu": "Saint-Pol",
+    "XL93": 164054.0125,
+    "YL93": 6846483.247,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 137,
+    "personID": 17707,
+    "diocese": "Diocèse de Sées .",
+    "Diocèse": "Diocèse de Sées",
+    "Chef_lieu": "Sées",
+    "XL93": 487774.3488,
+    "YL93": 6839415.55,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 138,
+    "personID": 8179,
+    "diocese": "Diocèse de Senlis .",
+    "Diocèse": "Diocèse de Senlis",
+    "Chef_lieu": "Senlis",
+    "XL93": 677528.5501,
+    "YL93": 6897907.53,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 139,
+    "personID": 20853,
+    "diocese": "Diocèse de Sens .",
+    "Diocèse": "Diocèse de Sens",
+    "Chef_lieu": "Sens",
+    "XL93": 696625.9098,
+    "YL93": 6788774.207,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 140,
+    "personID": 17835,
+    "diocese": "Diocèse de Sens ; AUP V 444 32 et 447 3. Diocèse de Meaux pour son B.A. AUP V 342 1.",
+    "Diocèse": "Diocèse de Sens",
+    "Chef_lieu": "Sens",
+    "XL93": 696625.9098,
+    "YL93": 6788774.207,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 141,
+    "personID": 18067,
+    "diocese": "Diocèse de Sisteron .",
+    "Diocèse": "Diocèse de Sisteron",
+    "Chef_lieu": "Sisteron",
+    "XL93": 917058.1902,
+    "YL93": 6337599.685,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 142,
+    "personID": 16017,
+    "diocese": "Diocèse de Sisteron . WICK: I p.31.",
+    "Diocèse": "Diocèse de Sisteron",
+    "Chef_lieu": "Sisteron",
+    "XL93": 917058.1902,
+    "YL93": 6337599.685,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 143,
+    "personID": 8996,
+    "diocese": "?Diocèse de Soissons . GOROCHOV: p.650.",
+    "Diocèse": "Diocèse de Soissons",
+    "Chef_lieu": "Soissons",
+    "XL93": 726246.5461,
+    "YL93": 6900804.792,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 144,
+    "personID": 16419,
+    "diocese": "Diocèse de Tarbatens .",
+    "Diocèse": "Diocèse de Tarbes",
+    "Chef_lieu": "Tarbes",
+    "XL93": 463436.4744,
+    "YL93": 6227301.504,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 145,
+    "personID": 4498,
+    "diocese": "Diocèse de Thérouane .",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 146,
+    "personID": 8873,
+    "diocese": "Diocèse de Thérouanne ;¤Diocèse de Canterbury . FOURNIER: 2, p. 469.",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 147,
+    "personID": 2695,
+    "diocese": "?Diocèse de Thérouanne . GOROCHOV: p.708.",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 148,
+    "personID": 9492,
+    "diocese": "Diocèse de Thérouanne",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 149,
+    "personID": 9120,
+    "diocese": "Diocèse de Thérouanne ?",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 150,
+    "personID": 927,
+    "diocese": "Diocèse de Thérouanne ? AUP: IV",
+    "Diocèse": "Diocèse de Thérouanne",
+    "Chef_lieu": "Thérouanne",
+    "XL93": 641214.2647,
+    "YL93": 7066289.909,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 151,
+    "personID": 20834,
+    "diocese": "Diocèse de Toul ; Mais Geraldus de OCHEYO est du diocèse de Reims ? FOURNIER: 1, p. 188.",
+    "Diocèse": "Diocèse de Toul",
+    "Chef_lieu": "Toul",
+    "XL93": 929219.663,
+    "YL93": 6817857.495,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 152,
+    "personID": 20836,
+    "diocese": "Diocèse de Toul ?",
+    "Diocèse": "Diocèse de Toul",
+    "Chef_lieu": "Toul",
+    "XL93": 929219.663,
+    "YL93": 6817857.495,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 153,
+    "personID": 2829,
+    "diocese": "Diocèse de Toul .",
+    "Diocèse": "Diocèse de Toul",
+    "Chef_lieu": "Toul",
+    "XL93": 929219.663,
+    "YL93": 6817857.495,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 154,
+    "personID": 20837,
+    "diocese": "Diocèse de Toulouse .",
+    "Diocèse": "Diocèse de Toulouse",
+    "Chef_lieu": "Toulouse",
+    "XL93": 575524.2942,
+    "YL93": 6278541.44,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 155,
+    "personID": 16057,
+    "diocese": "Diocèse de Tours .",
+    "Diocèse": "Diocèse de Tours",
+    "Chef_lieu": "Tours",
+    "XL93": 531410.4256,
+    "YL93": 6683319.963,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 156,
+    "personID": 5407,
+    "diocese": "?Diocèse de Tours . FOURNIER: 3",
+    "Diocèse": "Diocèse de Tours",
+    "Chef_lieu": "Tours",
+    "XL93": 531410.4256,
+    "YL93": 6683319.963,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 157,
+    "personID": 3711,
+    "diocese": "Bretagne .¤Diocèse de Tréguier . AUP: V",
+    "Diocèse": "Diocèse de Tréguier",
+    "Chef_lieu": "Tréguier",
+    "XL93": 228320.5877,
+    "YL93": 6849948.16,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 158,
+    "personID": 16873,
+    "diocese": "Bretagne .¤Diocèse de Tréguier . AUP: V",
+    "Diocèse": "Diocèse de Tréguier",
+    "Chef_lieu": "Tréguier",
+    "XL93": 228320.5877,
+    "YL93": 6849948.16,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 159,
+    "personID": 19149,
+    "diocese": "Diocèse de Tréguier",
+    "Diocèse": "Diocèse de Tréguier",
+    "Chef_lieu": "Tréguier",
+    "XL93": 228320.5877,
+    "YL93": 6849948.16,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 160,
+    "personID": 11682,
+    "diocese": "Diocèse de Troyes .",
+    "Diocèse": "Diocèse de Troyes",
+    "Chef_lieu": "Troyes",
+    "XL93": 777050.1799,
+    "YL93": 6818730.523,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 161,
+    "personID": 7526,
+    "diocese": "?Diocèse de Troyes . \"Egidio de Auxonno, cler. Trecens. dioc, mag. in art. Parisius, scol. in theol. in quarto anno — de can. eccl. Senonens\". CUP: III p. 253 ; COURTENAY: III (1) 52.",
+    "Diocèse": "Diocèse de Troyes",
+    "Chef_lieu": "Troyes",
+    "XL93": 777050.1799,
+    "YL93": 6818730.523,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 162,
+    "personID": 9567,
+    "diocese": "Clerc du diocèse de Tulle . COURTENAY: III",
+    "Diocèse": "Diocèse de Tulle",
+    "Chef_lieu": "Tulle",
+    "XL93": 616270.797,
+    "YL93": 6450569.032,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 163,
+    "personID": 16010,
+    "diocese": "Diocèse de Tulle .",
+    "Diocèse": "Diocèse de Tulle",
+    "Chef_lieu": "Tulle",
+    "XL93": 616270.797,
+    "YL93": 6450569.032,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 164,
+    "personID": 20856,
+    "diocese": "Diocèse de Valence .",
+    "Diocèse": "Diocèse de Valence",
+    "Chef_lieu": "Valence",
+    "XL93": 848530.7645,
+    "YL93": 6420765.575,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 165,
+    "personID": 19602,
+    "diocese": "Diocèse de Valence . AUP: V",
+    "Diocèse": "Diocèse de Valence",
+    "Chef_lieu": "Valence",
+    "XL93": 848530.7645,
+    "YL93": 6420765.575,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 166,
+    "personID": 652,
+    "diocese": "Diocèse de Vannes",
+    "Diocèse": "Diocèse de Vannes",
+    "Chef_lieu": "Vannes",
+    "XL93": 264542.5169,
+    "YL93": 6759654.331,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 167,
+    "personID": 16691,
+    "diocese": "Diocèse de Vannes .",
+    "Diocèse": "Diocèse de Vannes",
+    "Chef_lieu": "Vannes",
+    "XL93": 264542.5169,
+    "YL93": 6759654.331,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 168,
+    "personID": 15821,
+    "diocese": "Diocèse de Vannes ?",
+    "Diocèse": "Diocèse de Vannes",
+    "Chef_lieu": "Vannes",
+    "XL93": 264542.5169,
+    "YL93": 6759654.331,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 169,
+    "personID": 8952,
+    "diocese": "?Diocèse de Verdun .",
+    "Diocèse": "Diocèse de Verdun",
+    "Chef_lieu": "Verdun",
+    "XL93": 877835.9156,
+    "YL93": 6894053.253,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 170,
+    "personID": 19595,
+    "diocese": "Diocèse de Verdens .",
+    "Diocèse": "Diocèse de Verdun",
+    "Chef_lieu": "Verdun",
+    "XL93": 877835.9156,
+    "YL93": 6894053.253,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 171,
+    "personID": 15937,
+    "diocese": "Diocèse de Verdun .",
+    "Diocèse": "Diocèse de Verdun",
+    "Chef_lieu": "Verdun",
+    "XL93": 877835.9156,
+    "YL93": 6894053.253,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 172,
+    "personID": 4654,
+    "diocese": "?Diocèse de Verdun . FOURNIER: 2",
+    "Diocèse": "Diocèse de Verdun",
+    "Chef_lieu": "Verdun",
+    "XL93": 877835.9156,
+    "YL93": 6894053.253,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 173,
+    "personID": 4562,
+    "diocese": "?Diocèse de Verdun . GOROCHOV: p.592.",
+    "Diocèse": "Diocèse de Verdun",
+    "Chef_lieu": "Verdun",
+    "XL93": 877835.9156,
+    "YL93": 6894053.253,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 174,
+    "personID": 8747,
+    "diocese": "Diocèse d’Évreux.",
+    "Diocèse": "Diocèse d'Évreux",
+    "Chef_lieu": "Évreux",
+    "XL93": 552357.2845,
+    "YL93": 6874807.98,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 175,
+    "personID": 1158,
+    "diocese": "Diocèse d' Évreux .",
+    "Diocèse": "Diocèse d'Évreux",
+    "Chef_lieu": "Évreux",
+    "XL93": 552357.2845,
+    "YL93": 6874807.98,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 176,
+    "personID": 9361,
+    "diocese": "Diocèse d' Évreux ?",
+    "Diocèse": "Diocèse d'Évreux",
+    "Chef_lieu": "Évreux",
+    "XL93": 552357.2845,
+    "YL93": 6874807.98,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 177,
+    "personID": 16827,
+    "diocese": "Diocèse d’ Évreux ?",
+    "Diocèse": "Diocèse d'Évreux",
+    "Chef_lieu": "Évreux",
+    "XL93": 552357.2845,
+    "YL93": 6874807.98,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 178,
+    "personID": 1148,
+    "diocese": "Diocèse d' Evreux .",
+    "Diocèse": "Diocèse d'Évreux",
+    "Chef_lieu": "Évreux",
+    "XL93": 552357.2845,
+    "YL93": 6874807.98,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 179,
+    "personID": 22187,
+    "diocese": "Diocèse d' Orléans .",
+    "Diocèse": "Diocèse d'Orléans",
+    "Chef_lieu": "Orléans",
+    "XL93": 619228.8222,
+    "YL93": 6739700.251,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 180,
+    "personID": 231,
+    "diocese": "?Diocèse du Puy-en-Velay . FOURNIER: 3",
+    "Diocèse": "Diocèse du Velay",
+    "Chef_lieu": "Le Puy",
+    "XL93": 779833.1211,
+    "YL93": 6448737.703,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 181,
+    "personID": 17795,
+    "diocese": "Diocèse d' Uzès ?",
+    "Diocèse": "Diocèse d'Uzès",
+    "Chef_lieu": "Uzès",
+    "XL93": 806106.2124,
+    "YL93": 6340478.658,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 182,
+    "personID": 20492,
+    "diocese": "Diocèse d’ Uzès .",
+    "Diocèse": "Diocèse d'Uzès",
+    "Chef_lieu": "Uzès",
+    "XL93": 806106.2124,
+    "YL93": 6340478.658,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 183,
+    "personID": 22319,
+    "diocese": "Diocèse d’ Aix-en-Provence .",
+    "Diocèse": "Diocèse d'Aix",
+    "Chef_lieu": "Aix",
+    "XL93": 910291.2001,
+    "YL93": 6281573.324,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 184,
+    "personID": 409,
+    "diocese": "Diocèse d’ Arras . FABRIS n° 384.",
+    "Diocèse": "Diocèse d'Arras",
+    "Chef_lieu": "Arras",
+    "XL93": 689082.6698,
+    "YL93": 7027090.9,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  },
+  {
+    "FID": 185,
+    "personID": 15633,
+    "diocese": "Diocèse du Langres . FOURNIER: 3",
+    "Diocèse": "Diocèse de Langres",
+    "Chef_lieu": "Langres",
+    "XL93": 840112.9932,
+    "YL93": 6747118.535,
+    "Database": "Dioceses Areal-Dubois - Gherdevich ANR COLEMON"
+  }
+]

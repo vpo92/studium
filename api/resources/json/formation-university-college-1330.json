@@ -1,0 +1,422 @@
+[
+  {
+    "FID": 0,
+    "Field1": 134,
+    "personID": 7652,
+    "College": "Coll�ge des Cholets",
+    "Titulature": "Coll�ge des Cholets",
+    "XL93": 651947.8846,
+    "YL93": 6861018.098,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 1,
+    "Field1": 135,
+    "personID": 4221,
+    "College": "Coll�ge des Cholets",
+    "Titulature": "Coll�ge des Cholets",
+    "XL93": 651947.8846,
+    "YL93": 6861018.098,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 2,
+    "Field1": 145,
+    "personID": 3975,
+    "College": "Coll�ge de Skara",
+    "Titulature": "Coll�ge de Skara",
+    "XL93": 652087.3133,
+    "YL93": 6861156.231,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 3,
+    "Field1": 161,
+    "personID": 2841,
+    "College": "Coll�ge de Narbonne",
+    "Titulature": "Coll�ge de Narbonne",
+    "XL93": 651804.1895,
+    "YL93": 6861301.61,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 4,
+    "Field1": 162,
+    "personID": 2839,
+    "College": "Coll�ge de Montaigu",
+    "Titulature": "Coll�ge de Montaigu",
+    "XL93": 652054.284,
+    "YL93": 6860974.513,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 5,
+    "Field1": 169,
+    "personID": 2803,
+    "College": "Coll�ge de Link�ping",
+    "Titulature": "Coll�ge de Link�ping",
+    "XL93": 652121.4422,
+    "YL93": 6861124.724,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 6,
+    "Field1": 170,
+    "personID": 2798,
+    "College": "Coll�ge de Laon",
+    "Titulature": "Coll�ge de Laon",
+    "XL93": 652181.4523,
+    "YL93": 6861293.651,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 7,
+    "Field1": 174,
+    "personID": 11024,
+    "College": "Coll�ge de Cornouailles",
+    "Titulature": "Coll�ge de Cornouailles",
+    "XL93": 652000.749,
+    "YL93": 6861144.584,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 8,
+    "Field1": 303,
+    "personID": 2206,
+    "College": "?coll�ge de Skara",
+    "Titulature": "Coll�ge de Skara",
+    "XL93": 652087.3133,
+    "YL93": 6861156.231,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 9,
+    "Field1": 305,
+    "personID": 2180,
+    "College": "?Coll�ge de Narbonne",
+    "Titulature": "Coll�ge de Narbonne",
+    "XL93": 651804.1895,
+    "YL93": 6861301.61,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 10,
+    "Field1": 324,
+    "personID": 12328,
+    "College": "Coll�ge de Laon",
+    "Titulature": "Coll�ge de Laon",
+    "XL93": 652181.4523,
+    "YL93": 6861293.651,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 11,
+    "Field1": 164,
+    "personID": 2831,
+    "College": "Coll�ge de Marmoutiers",
+    "Titulature": "Coll�ge de Marmoutier",
+    "XL93": 651989.4945,
+    "YL93": 6861109.915,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 12,
+    "Field1": 175,
+    "personID": 2724,
+    "College": "Coll�ge de Cornouaille",
+    "Titulature": "Coll�ge de Cornouailles",
+    "XL93": 652000.749,
+    "YL93": 6861144.584,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 13,
+    "Field1": 306,
+    "personID": 2175,
+    "College": "?Coll�ge de Cornouaille",
+    "Titulature": "Coll�ge de Cornouailles",
+    "XL93": 652000.749,
+    "YL93": 6861144.584,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 14,
+    "Field1": 124,
+    "personID": 4285,
+    "College": "Coll�gue de Laon",
+    "Titulature": "Coll�ge de Laon",
+    "XL93": 652181.4523,
+    "YL93": 6861293.651,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 15,
+    "Field1": 179,
+    "personID": 2482,
+    "College": "Coll�ge d' Harcourt",
+    "Titulature": "Coll�ge d'Harcourt",
+    "XL93": 651713.8058,
+    "YL93": 6861229.694,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 16,
+    "Field1": 181,
+    "personID": 2453,
+    "College": "Coll�ge d' Arras",
+    "Titulature": "Coll�ge d'Arras",
+    "XL93": 652477.8795,
+    "YL93": 6861039.772,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 17,
+    "Field1": 6,
+    "personID": 7401,
+    "College": "Sorbonne",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 18,
+    "Field1": 178,
+    "personID": 7707,
+    "College": "Coll�ge d' Uppsala ?",
+    "Titulature": "Coll�ge de Uppsala",
+    "XL93": 651855.4125,
+    "YL93": 6861517.477,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 19,
+    "Field1": 7,
+    "personID": 740,
+    "College": "Saint-Victor",
+    "Titulature": "Coll�ge des Bons Enfants Saint Victor",
+    "XL93": 652527.7211,
+    "YL93": 6861067.795,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 20,
+    "Field1": 129,
+    "personID": 4232,
+    "College": "Coll�ge du Tr�sorier",
+    "Titulature": "Coll�ge du Tr�sorier (de Notre Dame de Rouen)",
+    "XL93": 651766.7096,
+    "YL93": 6861181.873,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 21,
+    "Field1": 130,
+    "personID": 4224,
+    "College": "Coll�ge du Cardinal Le Moine : recteur 1302",
+    "Titulature": "Coll�ge du Cardinal Le Moine",
+    "XL93": 652570.9437,
+    "YL93": 6861141.287,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 22,
+    "Field1": 138,
+    "personID": 4165,
+    "College": "Coll�ge de Tournai",
+    "Titulature": "Coll�ge de Tournai ou Tournay",
+    "XL93": 652372.6706,
+    "YL93": 6860913.646,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 23,
+    "Field1": 144,
+    "personID": 3976,
+    "College": "Coll�ge de Skara , Nation anglaise",
+    "Titulature": "Coll�ge de Skara",
+    "XL93": 652087.3133,
+    "YL93": 6861156.231,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 24,
+    "Field1": 150,
+    "personID": 3916,
+    "College": "Coll�ge de Presles",
+    "Titulature": "Coll�ge de Presles ou de Soissons",
+    "XL93": 652181.4523,
+    "YL93": 6861293.651,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 25,
+    "Field1": 154,
+    "personID": 11422,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 26,
+    "Field1": 155,
+    "personID": 7705,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 27,
+    "Field1": 156,
+    "personID": 3458,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 28,
+    "Field1": 157,
+    "personID": 3448,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 29,
+    "Field1": 158,
+    "personID": 3418,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 30,
+    "Field1": 159,
+    "personID": 3401,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 31,
+    "Field1": 160,
+    "personID": 3025,
+    "College": "Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 32,
+    "Field1": 171,
+    "personID": 2751,
+    "College": "Coll�ge de la Sorbonne",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 33,
+    "Field1": 177,
+    "personID": 7629,
+    "College": "Coll�ge de Bourgogne : Principal",
+    "Titulature": "Coll�ge de Bourgogne",
+    "XL93": 651673.6876,
+    "YL93": 6861482.521,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 34,
+    "Field1": 304,
+    "personID": 2184,
+    "College": "?Coll�ge de Navarre",
+    "Titulature": "Coll�ge de Navarre ou Coll�ge royal de Champagne",
+    "XL93": 652322.196,
+    "YL93": 6861002.821,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 35,
+    "Field1": 141,
+    "personID": 11893,
+    "College": "Coll�ge de Sorbonne",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 36,
+    "Field1": 142,
+    "personID": 4126,
+    "College": "Coll�ge de Sorbonne",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 37,
+    "Field1": 302,
+    "personID": 2274,
+    "College": "?Coll�ge de Sorbonne",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 38,
+    "Field1": 140,
+    "personID": 10348,
+    "College": "Coll�ge de Sorbonne : socius",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 39,
+    "Field1": 143,
+    "personID": 3983,
+    "College": "Coll�ge de Sorbon",
+    "Titulature": "La Sorbonne",
+    "XL93": 651854.2996,
+    "YL93": 6861142.881,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 40,
+    "Field1": 176,
+    "personID": 2722,
+    "College": "Coll�ge de Cluny",
+    "Titulature": "Coll�ge de Clugny ou Cluni ou Cluny",
+    "XL93": 651771.8649,
+    "YL93": 6861124.445,
+    "Database": "Colleges ANR Alpage"
+  },
+  {
+    "FID": 41,
+    "Field1": 307,
+    "personID": 21612,
+    "College": "?Coll�ge de Cluny",
+    "Titulature": "Coll�ge de Clugny ou Cluni ou Cluny",
+    "XL93": 651771.8649,
+    "YL93": 6861124.445,
+    "Database": "Colleges ANR Alpage"
+  }
+]
