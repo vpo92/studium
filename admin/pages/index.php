@@ -24,8 +24,8 @@ if($liste){?>
             <?php
 
             foreach ($liste as $fiche) {?>
-                <div class="col-3">
-                    <div class="card" style="width: 12rem;">
+                <div class="col">
+                    <div class="card" style="width: 12rem;height:100%">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <?php echo $fiche->reference ?> - <?php echo $ficheService->getFicheTitle($fiche) ?>
