@@ -32,8 +32,12 @@ const isAuthenticated = [
 const authenticate = async (email, password)  => {
   try{
     const user = await User.findOneAsync({email:email.trim().toLowerCase()});
-    await user.authenticate(password);
-    return user;
+    if(await user.authenticate(password)){
+      return user;
+    }else{
+      throw('Authentication failed : Wrong username password');
+    }
+
   }catch(err){
     throw(err);
   }
