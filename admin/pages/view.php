@@ -1,3 +1,7 @@
+<?php
+ require "view/view_properties.php"
+?>
+
 <h3>Fiche <?php echo $fiche->reference ?></h3>
 
 <?php
@@ -20,9 +24,34 @@ if(isAuthenticated()){?>
   <a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
       Voir la fiche au format JSON
   </a>
-<ul class="list-group app-view-list">
-    <?php
-    foreach($fiche->raw as $r){
-        echo "<li class=\"list-group-item\">".htmlspecialchars($r)."</li>";
-    } ?>
+<br>
+<br>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Fiche</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Format brut</a>
+    </li>
 </ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <?php
+    drawFiche($fiche);
+    ?>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <ul class="list-group app-view-list">
+            <?php
+            foreach($fiche->raw as $r){
+                echo "<li class=\"list-group-item\">".htmlspecialchars($r)."</li>";
+            } ?>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
