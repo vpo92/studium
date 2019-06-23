@@ -13,16 +13,20 @@ import userRoutes from './userRoutes';
 
 const pkg = require("../../package.json");
 const router = express.Router();
+const mode = process.env.APP_MODE || 'dev';
+
 router.use('/prosopography', prosopographyRoutes);
 router.use('/user', userRoutes);
 router.use('/auth', authRoutes);
 router.get('/docs', (req,res) => {
-    res.sendFile(path.join(__dirname+"../../../docs/index.html"));
+    let p = mode === 'PROD'?'/app/docs/index.html':path.join(__dirname,"../../docs/index.html");
+    res.sendFile(p);
   });
 router.get('/data/:file', (req,res) => {
   let file = req.params.file+'.json';
   console.log(req.params.file);
-  res.sendFile(path.join(__dirname+"../../../resources/json/"+file));
+  let p = mode === 'PROD'?'/app/resources/json/':path.join(__dirname,"../../resources/json/");
+  res.sendFile(p+file);
 });
 router.use('/', (req,res) => {
     res.send({"message":"welcome to studium API", "version":pkg.version});

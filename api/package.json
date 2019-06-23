@@ -1,21 +1,22 @@
 {
   "name": "studium-api",
-  "version":"0.0.11",
+  "version":"0.0.15",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
     "test": "jest --config=jest.config.json",
     "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
-    "build": "webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/",
+    "build": "webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "predocker:build": "npm -q run build",
-    "docker:build": "npm -q run build && docker build -t studium/api docker -f docker/Dockerfile.api",
+    "docker:build": "rm -rf build && npm -q run build && docker build -t studium/api docker -f docker/Dockerfile.api",
     "docker:run": "docker-compose -f ./docker/docker-compose.yml up",
     "docker:push": "./docker/tag_push.sh",
     "release": "yarn build && yarn docker:build && yarn docker:push"
   },
   "author": "vpo92",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^7.1.2",
