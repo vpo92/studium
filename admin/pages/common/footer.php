@@ -45,7 +45,7 @@
     });
 
     //Common variables
-    var apiUrl =' <?php echo getAPIUrl(); ?>';
+    var apiUrl =' <?php echo getPublicAPIUrl(); ?>';
     var resourceUrl=' <?php echo getResourcesWebDirectory(); ?>';
 </script>
 
