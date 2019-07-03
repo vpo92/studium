@@ -143,9 +143,10 @@ const prosopographyEntries = {
 
 const getChapter = () => {
     return Object.keys(prosopographyEntries).map( item => {
+        console.log(messages[item]);
         return {
             code: item,
-            label: item,
+            label: messages[item],
         };
     });
 }
@@ -156,7 +157,7 @@ const getSubChapter = (chapter) => {
         const k = chapter[item];
         return {
             code: k,
-            label: k,
+            label: messages[k],
         };
     });
 }
@@ -232,76 +233,87 @@ Vue.component('prosopography-row', {
             </tr>`
 })
 
+var messages = null;
+fetch(resourceUrl+'/messages.json')
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+        messages = data.fr;
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        apiUrl: "http://localhost:3000",
-        searchRequest: {
-            activityMediane: {
-                from: null,
-                to: null,
-            },
-            activity: {
-                from: null,
-                to: null,
-            },
-            status: null,
-            grade: null,
-            discipline: null,
-            prosopography: [{
-                section: null,
-                subSection: null,
-                operator: null,
-                matchType: null,
-                value: null,
-            }]
-        },
 
-        statusList:status,
-        disciplineList:disciplines,
-        gradeList:grades,
-        results: null,
-        dataTable: null,
+    })
+    .then(function(){
 
-    },
-    methods: {
-        handleChapterChange : function(){
-            this.subChapterList = getSubChapter(prosopographyEntries[this.searchRequest.prosopography.section]);
-        },
-        handleAddProsopographyRow: function(){
-            this.searchRequest.prosopography.push({
-                section: null,
-                    subSection: null,
-                    operator: null,
-                    matchType: null,
-                    value: null,
-            });
-        },
-        handleRemoveProsopographyRow: function(item){
-            console.log(item);
-            for( var i = 0; i < this.searchRequest.prosopography.length; i++){
-                if ( this.searchRequest.prosopography[i] == item) {
-                    this.searchRequest.prosopography.splice(i, 1);
-                    i--;
-                }
-            }
-        },
-        search: async function(){
-
-            const result = await fetch(`${this.apiUrl}/prosopography/search/advanced`,{
-                'method':'POST',
-                'headers':{
-                    'Content-Type':'application/json',
+        var app = new Vue({
+            el: '#app',
+            data: {
+                searchRequest: {
+                    activityMediane: {
+                        from: null,
+                        to: null,
+                    },
+                    activity: {
+                        from: null,
+                        to: null,
+                    },
+                    status: null,
+                    grade: null,
+                    discipline: null,
+                    prosopography: [{
+                        section: null,
+                        subSection: null,
+                        operator: null,
+                        matchType: null,
+                        value: null,
+                    }]
                 },
-                'body': JSON.stringify(this.searchRequest),
-            });
-            this.results = await result.json();
-        }
-    },
-    // mounted() {
-    //     let users = [];
-    //
-    //     this.dataTable = $('#resultTable').DataTable({});
-    // }
-});
+
+                statusList:status,
+                disciplineList:disciplines,
+                gradeList:grades,
+                results: null,
+                dataTable: null,
+
+            },
+            methods: {
+                handleChapterChange: function(){
+                    this.subChapterList = getSubChapter(prosopographyEntries[this.searchRequest.prosopography.section]);
+                },
+                handleAddProsopographyRow: function(){
+                    this.searchRequest.prosopography.push({
+                        section: null,
+                        subSection: null,
+                        operator: null,
+                        matchType: null,
+                        value: null,
+                    });
+                },
+                handleRemoveProsopographyRow: function(item){
+                    console.log(item);
+                    for( var i = 0; i < this.searchRequest.prosopography.length; i++){
+                        if ( this.searchRequest.prosopography[i] == item) {
+                            this.searchRequest.prosopography.splice(i, 1);
+                            i--;
+                        }
+                    }
+                },
+                search: async function(){
+
+                    const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
+                        'method':'POST',
+                        'headers':{
+                            'Content-Type':'application/json',
+                        },
+                        'body': JSON.stringify(this.searchRequest),
+                    });
+                    this.results = await result.json();
+                }
+            },
+            // mounted() {
+            //     let users = [];
+            //
+            //     this.dataTable = $('#resultTable').DataTable({});
+            // }
+        });
+    });
+
+

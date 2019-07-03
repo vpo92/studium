@@ -43,6 +43,10 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
     });
+
+    //Common variables
+    var apiUrl =' <?php echo getAPIUrl(); ?>';
+    var resourceUrl=' <?php echo getResourcesWebDirectory(); ?>';
 </script>
 
 <?php
