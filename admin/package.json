@@ -1,6 +1,14 @@
 {
   "name": "studium",
-  "version":"0.0.15",
+  "version":"0.0.16",
   "description": "Studium web application",
-  "author": "vpo92"
+  "author": "vpo92",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "datatables.net-bs": "^1.10.19",
+    "jquery": "^3.4.1",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "popper.js": "^1.15.0",
+    "vue": "^2.6.10"
+  }
 }
