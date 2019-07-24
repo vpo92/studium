@@ -20,8 +20,9 @@ logger.info(`using environment : ${environment}`);
 logger.info('using config :');
 logger.info(JSON.stringify(config));
 
-//mongoose.connect('mongodb://localhost/studium');
-mongoose.connect(config.mongooseDB,{ useNewUrlParser: true });
+const mongoUrl = process.env.MONGODB_CONNECTION_STRING || config.mongooseDB;
+logger.info(`mongoUrl : ${mongoUrl}`);
+mongoose.connect(mongoUrl,{ useNewUrlParser: true });
 
 const app = express();
 
