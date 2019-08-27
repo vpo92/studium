@@ -32,7 +32,7 @@
     }
   },
   "production": {
-    "mongooseDB": "mongodb://mongodb/studium",
+    "mongooseDB": "mongodb://localhost/studium",
     "appMode":"prod",
     "auth": {
       "expiresIn":"4h",
@@ -44,7 +44,7 @@
       "secrets": {
         "session": "apoudrjbcxtosdsjsgucsgiupmdryjhgdsuns"
       },
-      "iss":"studium.fr"
+      "iss":"studium.univ-paris1.fr"
     }
   }
 }
