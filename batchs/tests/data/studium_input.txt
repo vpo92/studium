@@ -339,5 +339,179 @@ C	BIBLIOGRAPHIE
 <10a>      Membre d'un groupe de quarante maître et étudiants qui, à la demande de $Raymond LULL$, viennent jurer devant l'Official de £Paris que la doctrine de ce dernier est "bonne, utile et nécessaire"; comme &Sententia definitiva in favorem pietatis et doctrinae b. Raymundi Lullii&, elle a été imprimée à *Paris en %1676% (mais meilleur texte dans ROSSELLO, &Obras rimadas de Ramon Lull&, Palma, 1859, p. 77). Le texte est cependant suspect pour le &Chartularium& du fait de la présence parmi les quarante de deux Servites parisiens alors que la maison parisienne de l'ordre n'a été fondée qu'en %1328%. Les membres déclarent : "quod ipsi a dicto magistro Raymundo Lull audiverunt per aliqua tempora artem seu scientiam, quam dicitur fecisse seu adinvenisse idem magister Raymundus, que quidem ars seu scientia sic incipit : "Deus cum tua gratia, sapientia et amore incipit ars brevis que est imago artis generalis, que sic intitulatur : Deus cum tua summa perfectione incipit ars generalis ultima. Ratio quare fecimus istam artem brevem est, ut ars magna facilius sciatur, nam scita ista arte predicta et etiam alie artes de facili poterunt addisci". Et sic terminatur : « Ad honorem et laudem Dei et publice utililatis finivit Raymundus hunc librum Pisis in monasterio S. Dominici [Donnini?], in mense Januario, anno MCCCVII Incarnationis Domini nostri Jhesu Christi". Asseruerunt etiaim dicti magistri et omnes alii, ut predicitur, per eorum juramenta coram prefatis juralis nostris, quod dicta ars seu scientia erat bona, utilis, et necessaria, prout ipsi poterant perpendere seu etiam judicare; et quod in ea nihil erat contra fidein catholicam, seu etiam dicte fidei repugnantia; multa autem ad sustentationem dicte fidei et pro ipsa facientia in dicta scientia seu arte, ut dicebant, poterant inveniri". Le texte était cependant tenu pour authentique par la chancellerie du roi d'£Aragon en %1369%, ce qui peut malgré tout inciter à le tenir pour authentique ; si c'est un faux, il semblerait plutôt que ce soit un faux parisien, ce qui peut donner quelque crédibilité à la liste des noms qu'elle contient.
 <r>   	CUP: II 141 (n° 679).
 <19>	Pas d'œuvres connues.
+<18.1> Il possède:
+<<ti1>>	MS. Paris, B.Mazarine 173 (acheté aux exécuteurs testamentaires d'$Aegidius CARLERII$).
+<r>	SULLIVAN Theol.: II p.134-137.
+<r>	BENEDICTINS de BOUVERET, &Colophons des manuscrits occidentaux des origines au XVIe siècle&, IV, Fribourg-en-Brisgau, 1965-1982, p.146.
+<<ti2>>	MS. Paris, B.Mazarine 1686 (acheté %:1433:-:1434:%).
+<18.4>	Achète une copie de l'&Historia contra paganos& aux exécuteurs testamentaires de $Pierre d'AILLY$, qui meurt en %1420%.
+<18.4>	/Apparemment le manuscrit appartenait au chapitre de £Cambrai et par conséquent $Aegidius CARLERII$ a été obligé de le rendre à la bibliothèque du chapitre.
+<r>	SULLIVAN Theol.: II p.134-137.
+<r>	HASENOHR (G.), "L'essor des bibliothèques privées aux XIVe et XVe siècles", dans &Histoire des bibliothèques françaises. Les bibliothèques médiévales du VIe siècle à 1530&, VERNET (A.) éd., Paris, 1989, p.229.
+<18.6>	Lègue des manuscrits au collège de £Navarre :
+<r>	SULLIVAN Theol.: II p.134-137.
+<<ti1>>	MS. Paris, B. Mazarine 958-959, &[commentaires des Sentences]& ;
+<<ti2>>	MS. Paris, B. Mazarine 1337, &[recueil de textes théologiques divers]& ;
+<<ti3>>	MS. Paris, B. Mazarine 555, &[traité sur Job]&, $ORIGÈNE$ ;
+<<ti4>>	MS. Paris, B. Mazarine 830-831, &Summa&, $Thomas AQUINAS$ ;
+<<ti5>>	MS. Paris, B. Mazarine 804, &Quaestiones&, $Thomas AQUINAS$  ;
+<<ti6>>	MS. Paris, B. Mazarine 937-939, ouvrages, $Jean GERSON$ ;
+<<ti7>>	MS. Paris, B. Mazarine 1617, notes pour une histoire de la papauté ;
+<<ti8>>	MS. Paris, B. Mazarine 1683, textes concernant les Conciles de £Constance et £Bâle.
+<18.6> Il lègue au chapitre de £Cambrai :
+<r>	SULLIVAN Theol.: II p.134-137.
+<<ti1>>	Cambrai, BM 91 ;
+<<ti2>>	Cambrai, BM 789 ;
+<<ti3>>	Cambrai, BM 545 ;
+<<ti4>>	Cambrai, BM 363.
+<18.8>	Commanditaire :
+<r>	SULLIVAN Theol.: II p.134-137.
+<<ti1>>	MS. Cambrai, BM 1037.
+<r>	BENEDICTINS de BOUVERET, &Colophons des manuscrits occidentaux des origines au XVIe siècle&, II, Fribourg-en-Brisgau, 1965-1982, p.11-12.
+<r>	CMD: I, p.271, 287, 293, 295 et 297.
+<r>	FRANKLIN (A.), &Les anciennes bibliothèques de Paris. Eglises, monastères, collèges&, I, Paris, 1870, p.398.
+<19>	Å’uvres écrites en latin :
+<19>	/Il laisse une oeuvre qui peut se diviser en trois types d'ouvrages issus de ses trois activités : professorale à *Paris, conciliaire à *Bâle et pastorale à *Cambrai. Leur recension en cours.
+<r>	SULLIVAN Theol.: II p.134-137.
+<r>	GOROCHOV: p.609-610.
+<20>	Auteur actif dans le champ religieux :
+<20a1>	&[Sermon]&
+<<b>>	15 août %1432% dans la cathédrale de £Bâle.
+<<l>>	Latin
+<20a2>	&[Exhortation au clergé de Prague de mettre fin au schisme]&
+<<b>>	4 juin %1433%.
+<<l>>	Latin
+<<i>>	In &Monumenta Concilia Generalia&, I, p.380-384.
+<20a3>	&[Discours (non prononcé) adressé à PROCOPE]&
+<<b>>	Juin %1433% à *Prague.
+<<l>>	Latin
+<<i>>	In &Monumenta Concilia Generalia&, I, p.420-422.
+<20a4>	&[Sermon sur "Unum panis et unum corpus multi sumus"]&
+<<b>>	27 mai %1434% à *Vienne.
+<<l>>	Latin
+<<e>>	?Pour $CHARLES VII, roi de £France$.
+<20a5>	&[Sermon devant le corps académique de l'Université de Vienne]&
+<<b>>	25 février %1435% à *Vienne.
+<<l>>	Latin
+<<i>>	In &Monumenta Concilia Generalia&, I, p.524-525.
+<20a6>	&Sporta&
+<20a6>	/L'ouvrage comprend des réponses aux questions qui sont posées par les deux clergé : séculier et régulier dans divers diocèses de la région.
+<<v>>	&Casuum consultationes&
+<<v>>	&De corrigendis peccatis publicis&
+<r>	CANISIUS (H.) et BASNAGE (J.), &Thesaurus monumentorum ecclesiasticorum et historicorum, sive, Henrici Canisii Lectiones antiquae : ad saeculorum ordinem digestae variisque opusculis auctae&, IV, Antwerp, 1725, p.566-627.
+<<b>>	?
+<<l>>	Latin
+<<d>>	Ed. *Bruxelles par les Frères de la £Vie=Commune %1478-1479%.
+<20a7>	&Sportula fragmentorum&
+<20a7>	/L'ouvrage comprend des réponses aux questions qui sont posées par les deux clergé : séculier et régulier dans divers diocèses de la région.
+<<v>>	&Casuum consultationes&
+<<v>>	&De corrigendis peccatis publicis&
+<r>	CANISIUS (H.) et BASNAGE (J.), &Thesaurus monumentorum ecclesiasticorum et historicorum, sive, Henrici Canisii Lectiones antiquae : ad saeculorum ordinem digestae variisque opusculis auctae&, IV, Antwerp, 1725, p.566-627.
+<<b>>	?
+<<l>>	Latin
+<<d>>	Ed. *Bruxelles par les Frères de la £Vie=Commune %1478-1479%.
+<20a8>	&Scutum veritatis&
+<<b>>	?
+<<l>>	Latin
+<20a9>	&[Commentaires des livres des Sentences]&
+<<b>>	manuscrit achevé le 28 juin %1417%
+<<l>>	Latin
+<<c>>	MS. Paris, B.Mazarine 959.
+<20a10>	&[Sermons]&
+<<b>>	?
+<<l>>	Latin
+<20a11>	&Quaestio de Immaculata conceptione B. Mariae Virginis&
+<<b>>	?
+<<l>>	Latin
+<<i>>	In DOUCET (V.), "Magister Aegidius Carlerii eiusque Quaestio de Immaculata conceptione B. Mariae Virginis", dans &Antonianum&, V, 1901, p.405-442.
+<20a12>	&Carmina in laudem pudicitiae sacerdotalis&
+<<b>>	?
+<<l>>	Latin
+<20a13>   &(Texte qui a servi pour un plain-chant composé par Guillaume DUFAY pour la cathédrale de Cambrai un plain-chant pour un nouvel office en l'honneur de la Sainte Vierge)&
+<20a13>   /La musique de $Guillaume DUFAY& est enregistrée sur un CD intitulé &The Virgin and the Temple& par POMERIUM.
+<<b>>     %1457%.
+<<c>>     MS. ?
+<r>	        HAGGH (B.H.), "The Celebration of the Recollectio Festorum Beatae Mariae Virginis, 1457-1987", dans &Studia musicologia Acadamiae Scientiarum Hungaricae&, 30, 1988, p.361-373.
+<r>	        SULLIVAN Theol.: II p.134-137.
+<28>	Auteur actif dans le champ musical :
+<28a1>	&Tractatus de laude et utilitate musicae&
+<28a1>    /En fait, il y a deux petits traités, &De cantu iubiliationis armonicae et utilitate eius& et le &Tractatus de duplici ritu cantus ecclesiastici in divinis officiis&
+<<b>>     ?
+<<c>>     MS. Bruxelles B.R. 11492-11513 ;
+<<c>>     MS. Gent UB 70 [71], écrit à Gand en %1504% par $M.A. de AGGERE SANCTI MARTINI$ ;
+<<c>>     MS. Paris BnF latin 7212A (numérisation en ligne sur gallica.bnf. fr/ark:/12148/btv1b9065996h/f1.image [&lien non activé&]).
+<<i>>      In SEAY ALBERT, &Egidius Carlerius: Duo tractatuli de musica&, Critical Texts Â» (7), Colorado Spring College Music Press, 1977 [édition électronique de l'Université d'Indiana : De cantu iubiliationis armonicae et utilitate eius ; Tractatus de duplici ritu cantus ecclesiastici in divinis officiis et primo de simplici]
+<<i>>     In STROHM (R.) et CULLINGTON J. DONALD, On the Dignity and the Effects of Music: Egidius Carlerius : Johannes Tinctoris. Two fifteenth-century treatises, in &Study Texts (2)&, Institute of Advanced Musical Studies, King's College London 1996 [éd. et trad. anglaise], p.22-50 ;
+<<l>>	Latin
+<50>	Auteur actif dans le champ historique :
+<50a1>	&Liber de legationibus concilii Basiliensis pro reductione Bohemorum&
+<50a1>	/Cet ouvrage rend compte des trois ambassades auxquelles il a participé, ainsi que la seconde ambassade à *Prague en septembre %1433%, à laquelle il n'a pas participé.
+<<aa>>	prose latine
+<<ab>>	Histoire sainte
+<<b>>	Prédication au Concile de £Bâle le 13 janvier %1436%.
+<<c>>     MS. ?
+<<l>>	Latin
+<<i>>	In &Monumenta Concilia Generalia&, I, 0 ;
+<<i>>	In HALLER (J.) éd., &Concilium Basiliense. Studien und Quellen zur Geschichte des Concils von Bâle&, IV, Bâle, 1896-1936, p.17.
 C	BIBLIOGRAPHIE
-<99a>	CUP: II 141 (n° 679).
+<99s>	Città=del=Vaticano, ASV Reg. suppl. 78, f. 118 ;
+<99s>	Città=del=Vaticano, ASV Reg. suppl. 84, f. 221v ;
+<99s>	Città=del=Vaticano, ASV Reg. Suppl. 210r ;
+<99s>	MS. Cambrai, BM 1046, f. 92, 133, 183 ;
+<99s>	MS. Cambrai, BM 1037 ;
+<99s>	MS. Paris, B. Mazarine 173, 555, 804, 830-831, 937-939, 958-959, 1337, 1617, 1683, 1686 ;
+<99s>	&Monumenta Concilia Generalia&, I, p.359-700 ;
+<99s>	BACHMANN (A.), &Geschichte Bohmens&, t.II, Gotha, 1905 ;
+<99s>	BRIEGLEB (P.) et LARET-KAYSER (A.), &Suppliques de Benoit XIII (1394-1422)&, Bruxelles, 1973, p.49-50 ;
+<99s>	CANISIUS (H.) et BASNAGE (J.), &Thesaurus monumentorum ecclesiasticorum et historicorum, sive, Henrici Canisii Lectiones antiquae : ad saeculorum ordinem digestae variisque opusculis auctae&, IV, Antwerp, 1725, p.566-627 ;
+<99s>	LAUNOI (J.), &Opera omnia&, IV, IIe partie, Genève, 1731 ;
+<99a>	BÉNÉDICTINS de BOUVERET, &Colophons des manuscrits occidentaux des origines au XVIe siècle&, II, Fribourg-en-Brisgau, 1965-1982, p.11-12 ;
+<99a>	BÉNÉDICTINS de BOUVERET, &Colophons des manuscrits occidentaux des origines au XVIe siècle&, IV, Fribourg-en-Brisgau, 1965-1982, p.146 ;
+<99a>	CUP: IV p.93 (1976), 95 (n.23 to 1796), 322 (2072), 399 (2183), 406 (2195), 420 (2219), 457 (2281), 460 ( note to 2283), 467 (n.2 to 2295) et 619 (2550).
+<99a>	DHGE: XI p.1049-1050 et 1946 ;
+<99a>	FERET MA: IV p.312 ;
+<99a>	FETIS (F.-J.), &Biographie universelle des musiciens et bibliographie générale de la musique&, t.II, Paris, 1835-1844 ;
+<99a>	GOROCHOV: p.609-610, 724 et 731 ;
+<99a>	LAUNOI: p.209 ;
+<99a>	LThK: I p.179 ;
+<99a>	PELLECHET (M.L.C.) et POLAIN (L.), &Catalogue général des incunables des bibliothèques publiques de France&, II, Paris, 1897-1909, p.374-375 ;
+<99a>	SAMARAN (C.) et MARICHAL (R.), &Catalogue des manuscrits en écriture latine portant des indications de date, de lieu ou de copiste&, I, Paris, 1959-1985, p.271, 287, 293, 295 et 297 ;
+<99a>	SULLIVAN Theol.: II p.134-137.
+<99b>	BARTOÅ  (F.M.), &The Hussite Revolution, 1424-1437&, KLASSEN (J.M.) trad., Boulder, 1986, p.41, 93, 94 et 99 ;
+<99b>	BASNAGIUS (J.), "Observationes historicae", dans &Thesaurus monumentorum sive lectiones antiquae&, éd. Canisius (H.), IV, Anvers, 1725, 449, 457-59 ;
+<99b>	BERLIERE (U.), &Mélanges d'hist. bénédictine&, IIe série, Maredsous, 1899 ;
+<99b>	BILDERBACK (D.L.), &Membership of the Council of Basle&, University of Washington, 1966, p.253, 271 et 285 ;
+<99b>	DOUCET (V.), "Magister Aegidius Carlerii eiusque Quaestio de Immaculata conceptione B. Mariae Virginis", dans &Antonianum&, V, 1901, p.405-442.
+<99b>	DUBRULLE (H.), &Cambrai à la fin du Moyen Age&, Lille, 1904 ;
+<99b>	DUFAY (G.) , &The Virgin and the Temple& par POMERIUM (cd).
+<99b>	FRANKLIN (A.), &Les anciennes bibliothèques de Paris. Eglises, monastères, collèges&, I, Paris, 1870, p.398 ;
+<99b>	FREDERICQ (P.), De "Sporta" en de "Sportula fragmentorum" van... Gillis Carlier, dans &Archief voor Nederlandsche Kerkgeschiedenis&, III, 1889, p.1-31 ;
+<99b>	FUDGE (T.A.), &The crusade against Heretics in Bohemia, 1418-1437. Sources and Documents for the Hussite Crusades&, Aldergate, 2002, p.356 ;
+<99b>	HAGGH (B.H.), "The Celebration of the Recollectio Festorum Beatae Mariae Virginis, 1457-1987", dans &Studia musicologia Acadamiae Scientiarum Hungaricae&, 30, 1988, p.361-373 ;
+<99b>	HALLER (J.) éd., &Concilium Basiliense. Studien und Quellen zur Geschichte des Concils von Bâle&, IV, Bâle, 1896-1936, p.17.
+<99b>	HASENOHR (G.), "L'essor des bibliothèques privées aux XIVe et XVe siècles", dans &Histoire des bibliothèques françaises. Les bibliothèques médiévales du VIe siècle à 1530&, VERNET (A.) éd., Paris, 1989, p.229 ;
+<99b>	KALUZA (Z.), "Les débuts de l'Albertisme tardif", dans &Albertus Magnus und des Albertismus Deutsche philosophische Kultur des Mittelalters&, Leyde, 1995, p.214.
+<99b>	KALUZA (Z.), "Matériaux et remarques sur le catalogue des oeuvres de Gilles Charlier", &Archives d 'histoire doctrinale et littéraire du Moyen Age&, XXXVI, 1969, p.169-187 ;
+<99b>	KALUZA (Z.), "Nouvelles remarques sur les oeuvres de Gilles Charlier", &Archives d 'histoire doctrinale et littéraire du Moyen Age&, XXXVIII, 1971, p.149-191 ;
+<99b>	LE GLAY (A.), &"Cameracum christianum", ou Histoire ecclésiastique du diocèse de Cambrai&, Lille, 1849 ;
+<99b>	&Les bénéficiers des diocèses d'Arras, Cambrai, Thérouanne, Tournai, pendant le pontificat de Martin V et d'Eugène IV, dans &Analectes pour servir à l'hist. ecclés. de Belgique&, XXXI-XXXIV, 1905-1908 ;
+<99b>	LEFEVRE (P.), "L''Epistola reformatoria' du prieur de Bethléem Henri van der Heyden pour l'abbaye du Parc au XVe siècle", dans &Analecta praemonstratensia&, III, 1927, p.1-25 ;
+<99b>	MARCHAL (M.), "Notice sur Jean de Bourgogne, évêque de Cambrai", dans &Bull. Acad. Royale des Sc. et Belles-lettres&, VII, 1840, p.164-67 ;
+<99b>	MARTIN (H.), &Le métier de prédicateur en France septentrionale à la fin du Moyen Âge, 1350-1520&, Paris, 1988, p.136, n.19 ;
+<99b>	MÜLLER (H.), &Die Franzosen, Frankreich und das Basler Konzil (1431-1449)&, II, Paderborn, 1990, p.765-775 ;
+<99b>	NELIS (H.), &Documents relatifs au Grand Schisme. vol. III : Suppliques et lettres de Clément VII (1379-1394)&, Rome, 1934, p.312 ;
+<99b>	PALACKY (F.), "Handschriften zur Gesch. des Basler Concils", dans &Sitzungsber. der Vienneer Akad., Philos. Kl.&, XI, 1854, p.289-90 ;
+<99b>	PALACKY (F.),&Urkundliche Beiträge zur Gesch. des Hussitenkrieges in den Jahren 1419-1436&, Prague, 1873, 2 vol. ;
+<99b>	PAYE-BOURGEOIS (J.), &Lettres de Benoît XIII (1394-1422). Tome I (1394-1395)&, I, Brussels/Rome, 1983, p.97 ;
+<99b>	PLATELLE (H.), "Les consultations de Gilles Carlier, doyen du chapitre de Cambrai (+1472) sur diverses affaires de sortilège", &Bulletin Philologique et Historique du Comité des Travaux Historiques et Philologiques&, 1978, p.222-252 ;
+<99b>	&Recherche sur l'église de Cambrai&, Paris, 1825 ;
+<99b>	SCHOEPLIN (J.-D.), &Commentationes historicae et criticae&, Bâle, 1741 ;
+<99b>	SWIEZAWSKI (S.), "Note sur le 'Commentaire des Sentences' de Gilles Charlier", dans &Medievalia philosophorum Polonorum&, X, 1961, p.77, n.1, 78 sq., 79, n.3 et 80 ;
+<99b>	TOUSSAINT (J.), &Les relations diplomatiques de Philip Le Bon avec le Concile de Bâle (1431-1449)&, Louvain, 1942, p.4, n.3 ;
+<99b>	ULLMAN (W.), &A Short History of the Papacy in the Middle Ages&, Londres, 1974, p.306 ;
+<99b>	VALOIS (N.), &La crise religieuse du XVe s. Le pape et le concile (1418-1450)&, Paris, 1909, 2 vol. ;
+<99b>	VALVEKINS (E.), "Chapitre général de Prémontré et les nouveaux statuts de 1505", dans &Analecta praemonstratensia&, 14, 1938, p.54-55 ;
+<99b>	VIDAL (J.-M.), Un recueil ms. de sermons prononcés aux conciles de Constance et de Bâle, &Revue d'hist. ecclés.&, X, 1909, 493-520 ;
+<99b>	WIEZAWSKI (S.), "Note sur le 'Commentaire des Sentences' de Gilles Charlier", dans &Medievalia philosophorum Polonorum&, X, 1961, p.77-86 ;
+<99b>	WITTRAM (R.), &Die französische Politik auf dem Basler Konzil während der Zeit seiner Blüte&, Riga, 1927.
+<99c>	 STUDIUM : http://lamop-vs3.univ-paris1.fr/studium/ (Rédaction : Claire Priol et Anne Tournieroux, dernière mise à jour 17/07/2015).

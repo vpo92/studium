@@ -102,6 +102,33 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
     otherActivities:{
       otherActivities: record.otherActivities,
     },
+    textualProduction:{
+      manyFields	:	record.manyFields,
+      religion	:	record.religion,
+      philosophy	:	record.philosophy,
+      philosophyExtended	:	record.philosophyExtended,
+      science	:	record.science,
+      medicine	:	record.medicine,
+      litterature	:	record.litterature,
+      justice	:	record.justice,
+      pratical	:	record.pratical,
+      music	:	record.musical,
+      administrativePractice	:	record.administrativePractice,
+      history	:	record.history,
+      political	:	record.political,
+      discussedMusical	:	record.discussedMusical,
+      discussedManyFields	:	record.discussedManyFields,
+      discussedReligion	:	record.discussedReligion,
+      discussedPhilosophy	:	record.discussedPhilosophy,
+      discussedPhilosophyExtended	:	record.discussedPhilosophyExtended,
+      discussedMedicine	:	record.discussedMedicine,
+      discussedScience	:	record.discussedScience,
+      discussedLitterature	:	record.discussedLitterature,
+      discussedJustice	:	record.discussedJustice,
+      discussedPratical	:	record.discussedPratical,
+      discussedHistory	:	record.discussedHistory,
+      discussedPolitical	:	record.discussedPolitical,
+    },
     title: record.title,
     link: record.link,
     raw : record.raw,
@@ -113,7 +140,8 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
 }
 
  function finalizeReference(record: ProsopographyRow): ProsopographyRow {
-   const ref = record.reference.value;
+
+   const ref = record.reference[0].value;
    record.reference = ref.trim();
    return record;
 }
@@ -121,12 +149,24 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
  function finalizeGender(record: ProsopographyRow): ProsopographyRow {
 
   if(!record.gender){
-    record.gender = {
+    record.gender = [
+      {
       value : "male",
-    }
+      meta:{
+        isComment: false,
+        isLink: false},
+      },
+      ];
   }else{
     record.gender.rawValue =record.gender.value;
-    record.gender.value ="female";
+    record.gender=[
+      {
+      value : "female",
+      meta:{
+        isComment: false,
+        isLink: false},
+      },
+      ];
   }
   return record;
 }
@@ -146,26 +186,49 @@ function finalizeLink(record: ProsopographyRow): ProsopographyRow{
   return record;
 }
 
-export function finalyseProsopography(record: ProsopographyRow): Prosopography {
+function buidOpus(data){
+  return {
 
-  record = finalizeReference(record);
-  record = finalizeGender(record);
-  record = finalizeTitle(record);
-  record = finalizeLink(record);
+  }
+}
 
-  let result = buildProsopography(record);
-  result = JSON.parse(JSON.stringify(result));
+function finalyzeBook(record: ProsopographyRow): Any{
+  let books = [];
+  if(record.bookOwner){
+    if(record.bookOwner instanceof Array){
 
+    }else{
 
-  //remove empty
-  Object.keys(result).forEach( (key) => {
-    if(Object.keys(result[key]).length <= 0){
-      delete result[key]
     }
-  });
+  }
+
+}
+
+export function finalyseProsopography(record: ProsopographyRow): Prosopography {
+  if(record.reference){
+
+    record = finalizeReference(record);
+    record = finalizeGender(record);
+    record = finalizeTitle(record);
+    record = finalizeLink(record);
+
+    let result = buildProsopography(record);
+    result = JSON.parse(JSON.stringify(result));
+
+
+    //remove empty
+    Object.keys(result).forEach( (key) => {
+      if(Object.keys(result[key]).length <= 0){
+        delete result[key]
+      }
+    });
+
+    //FIXME clean all meta
+
+    return result;
+  }
+  return null;
 
 
 
-
-  return result;
 }
