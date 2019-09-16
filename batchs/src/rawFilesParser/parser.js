@@ -7,7 +7,8 @@ import {detectTitles} from './util/title.parser';
 import {detectInstitutions} from './util/institution.parser';
 import {isComment} from './util/comment.parser';
 import {isLink} from './util/comment.parser';
-import {finalyseProsopography} from './util/special.prop.parser';
+import {finalyseProsopography,finalyzeOpus} from './util/special.prop.parser';
+//import {finalyseOpus} from './util/special.prop.parser';
 
 const dataLineTypes = {
   '1a': 'reference',
@@ -309,7 +310,7 @@ function handleOpusFirstLine(record,parsingContext,raw,saveRecord){
     if(!parsingContext.currentData[idx-1].opus){
       parsingContext.currentData[idx-1].opus = [];
     }
-    parsingContext.currentData[idx-1].opus.push(parsingContext.opus);
+    parsingContext.currentData[idx-1].opus.push(finalyzeOpus(parsingContext.opus));
     parsingContext.opus = {};
   }
   parsingContext.opus = {

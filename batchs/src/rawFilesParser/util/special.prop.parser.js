@@ -186,10 +186,12 @@ function finalizeLink(record: ProsopographyRow): ProsopographyRow{
   return record;
 }
 
-function buidOpus(data){
-  return {
-
+export function finalyzeOpus(opus){
+  if(opus){
+    let s = new String(opus.title[0].value);
+    opus.mainTitle = s.replace(/[()&]/g, '');
   }
+  return opus;
 }
 
 function finalyzeBook(record: ProsopographyRow): Any{

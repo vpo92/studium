@@ -5,7 +5,7 @@ import { saveRecord, createIndex } from './RestService';
 
 let apiUrl = 'http://localhost:3000';
 //let apiUrl = 'http://studium.univ-paris1.fr/api/';
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN0ZXBoYW5lLmxhbWFzc2VAdW5pdi1wYXJpczEuZnIiLCJpYXQiOjE1NjgzNjM0NzQsImV4cCI6MTU2ODM3Nzg3NH0.1tRQyD4lhP_Y3C3SMjChd8uq5pd1DCLyDqPGJpmtZ8E';
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN0ZXBoYW5lLmxhbWFzc2VAdW5pdi1wYXJpczEuZnIiLCJpYXQiOjE1Njg2MjgxMTEsImV4cCI6MTU2ODY0MjUxMX0.ncy6OtInDt-ny4J9Jk5RHCcf0lGhmTc2F8v5wmRJYV0';
 
 let localSaveRecord = (record) => {
   return saveRecord(apiUrl, token, record);
