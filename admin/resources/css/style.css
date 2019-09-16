@@ -200,3 +200,11 @@ a.article:hover {
 .app-view-list{
     margin-top: 20px;
 }
+a.app-opusCollapseLink{
+    background-color: inherit;
+    color:black;
+}
+li.app-reference{
+    color:#3f51b5;
+    font-size: 0.6em;
+}
