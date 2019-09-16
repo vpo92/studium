@@ -180,10 +180,10 @@ function detectTypeOfLine(line){
 }
 
 function detectParagraphe(line){
-  const reg = /^<([a-zA-Z0-9\.]*)>[ \t]*(.*)/g
-  const regexBiblio = /^<([0-9]+[a-z]+[0-9]+)>[ \t]*(.*)/g;
-  const regexOpusData = /^<<([a-zA-Z0-9\.]+)>>[ \t]*(.*)/g;
-  const regexOpusOtherVersionData = /^<<<([a-zA-Z0-9\.]+)>>>[ \t]*(.*)/g;
+  const reg = /^<([a-zA-Z0-9\.]*)>[ \t]+(.*)/g
+  const regexBiblio = /^<([0-9]+[a-z]+[0-9]+)>[ \t]+(.*)/g;
+  const regexOpusData = /^<<([a-zA-Z0-9\.]+)>>[ \t]+(.*)/g;
+  const regexOpusOtherVersionData = /^<<<([a-zA-Z0-9\.]+)>>>[ \t]+(.*)/g;
 
   if(line.match(regexBiblio)){
     const t = regexBiblio.exec(line);
@@ -274,6 +274,8 @@ function handleDataLine(record,parsingContext,raw,saveRecord){
 
   //Compute data
   if(parsingContext.newData){
+    console.log("New DATA:"+raw.data.name);
+
     record[parsingContext.previousDataName] = parsingContext.currentData;
     //FIXME : add OPUS !
     parsingContext.currentData = [];
@@ -304,6 +306,9 @@ function handleDataLine(record,parsingContext,raw,saveRecord){
 
 
 function handleOpusFirstLine(record,parsingContext,raw,saveRecord){
+
+  console.log(raw.data.opusNumber);
+
   //Save Previous OPUS
   if(parsingContext.opus){
     let idx = parsingContext.currentData.length;
@@ -333,11 +338,25 @@ function handleOpusFirstLine(record,parsingContext,raw,saveRecord){
 }
 
 function handleReferenceLine(record,parsingContext,raw,saveRecord){
-  let idx = parsingContext.currentData.length;
-  if(!parsingContext.currentData[idx-1].reference){
-    parsingContext.currentData[idx-1].reference = [];
+  if(parsingContext.opus){
+    let ks = Object.keys(parsingContext.opus);
+    let k = ks[ks.length -1];
+    //console.log(k);
+    //console.log(parsingContext.opus[k]);
+    let idx = parsingContext.opus[k].length -1;
+    if(!parsingContext.opus[k][idx].reference){
+      parsingContext.opus[k][idx].reference = [];
+    }
+    parsingContext.opus[k][idx].reference.push(raw.data);
+
+  }else{
+    let idx = parsingContext.currentData.length;
+    if(!parsingContext.currentData[idx-1].reference){
+      parsingContext.currentData[idx-1].reference = [];
+    }
+    parsingContext.currentData[idx-1].reference.push(raw.data);
   }
-  parsingContext.currentData[idx-1].reference.push(raw.data);
+
   return {
       parsingContext:parsingContext,
       record:record};
