@@ -274,7 +274,6 @@ function handleDataLine(record,parsingContext,raw,saveRecord){
 
   //Compute data
   if(parsingContext.newData){
-    console.log("New DATA:"+raw.data.name);
 
     record[parsingContext.previousDataName] = parsingContext.currentData;
     //FIXME : add OPUS !
@@ -306,8 +305,6 @@ function handleDataLine(record,parsingContext,raw,saveRecord){
 
 
 function handleOpusFirstLine(record,parsingContext,raw,saveRecord){
-
-  console.log(raw.data.opusNumber);
 
   //Save Previous OPUS
   if(parsingContext.opus){
