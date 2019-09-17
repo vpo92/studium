@@ -206,5 +206,13 @@ a.app-opusCollapseLink{
 }
 li.app-reference{
     color:#3f51b5;
-    font-size: 0.6em;
+    font-size: 0.8em;
 }
+li.app-comment{
+    color:#6c757d;
+    font-size: 0.8em;
+}
+li.app-value{
+     color:black;
+     font-size: 0.8em;
+ }
