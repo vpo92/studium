@@ -194,6 +194,25 @@ export function finalyzeOpus(opus){
   return opus;
 }
 
+function finalyzeTextualProduction(record){
+  if(record.textualProduction){
+    let txtPrd = record.textualProduction;
+    let res = {};
+    Object.keys(txtPrd).forEach( (key) => {
+      let opusType = txtPrd[key];
+      if(opusType && opusType[0] && opusType[0].opus){
+        res[key] = {
+          value:opusType[0].value,
+          meta:opusType[0].meta,
+          opus:opusType[0].opus
+        }
+      }
+    });
+    record.textualProduction = res;
+  }
+  return record;
+}
+
 function finalyzeBook(record: ProsopographyRow): Any{
   let books = [];
   if(record.bookOwner){
@@ -214,8 +233,11 @@ export function finalyseProsopography(record: ProsopographyRow): Prosopography {
     record = finalizeTitle(record);
     record = finalizeLink(record);
 
+
     let result = buildProsopography(record);
     result = JSON.parse(JSON.stringify(result));
+
+    result = finalyzeTextualProduction(result);
 
 
     //remove empty
