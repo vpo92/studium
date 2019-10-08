@@ -95,11 +95,17 @@ async function convertFromText(text: string): Promise<Prosopography> {
   s.push(text);
   s.push(null);
   let result = [];
-  //return an array of 1 prosopographies
-  await processStream(s,function(prosopography){
-    result.push(prosopography);
-  });
-  //return only first element
+  let localSave = function(prosop){
+    return new Promise((resolve, reject) => {
+      try{
+        result.push(prosop);
+      }catch(error){
+        reject(error);
+      }
+      resolve();
+    });
+  };
+  await processStream(s,localSave);
   return result[0];
 }
 
