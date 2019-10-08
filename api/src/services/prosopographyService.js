@@ -71,7 +71,7 @@ function indexDB(){
     return db
     .get()
     .collection('prosopography')
-    .createIndex({ '$**': 'text' });
+    .createIndex({ '$**': 'text' },{ language_override: "dummy" });
 }
 
 async function create(prosopography: Prosopography): Promise<Any> {
