@@ -252,5 +252,20 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
   }
 });
 
+router.delete('/:reference', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: deleteByReference on ${reference}`);
+  try {
+    await service.remove(reference);
+    logger.info(`${id}: deleteByReference done`);
+    res.send({'message':'OK'});
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to delete with reference ${reference} - ${err}`
+    );
+    next(err);
+  }
+});
 
 export default router;

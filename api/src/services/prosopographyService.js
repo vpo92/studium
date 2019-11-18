@@ -91,6 +91,15 @@ async function update(prosopography: Prosopography): Promise<Any> {
     .save(prosopography);
 }
 
+
+async function remove(reference: string): Promise<Any> {
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography')
+    .remove({ reference: reference });
+}
+
 async function convertFromText(text: string): Promise<Prosopography> {
   var s = new Readable();
   s.push(text);
@@ -216,6 +225,7 @@ module.exports = {
   indexDB,
   create,
   update,
+  remove,
   convertFromText,
   search,
   convertSearchRequestToMongoRequest,
