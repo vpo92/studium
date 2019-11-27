@@ -76,11 +76,17 @@ function indexDB(){
 }
 
 async function create(prosopography: Prosopography): Promise<Any> {
-  //FIXME : add controls
-  return db
-    .get()
-    .collection('prosopography')
-    .insert(prosopography);
+  const p = await findByReference(prosopography.reference);
+  if(p){
+    //throw
+    throw "Reference already exists";
+  }else{
+    return db
+      .get()
+      .collection('prosopography')
+      .insert(prosopography);
+  }
+
 }
 
 async function update(prosopography: Prosopography): Promise<Any> {
