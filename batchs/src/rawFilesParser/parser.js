@@ -285,6 +285,7 @@ function handleDataLine(record,parsingContext,raw,saveRecord){
     //FIXME : add OPUS !
     record = finalyseProsopography(record);
     if(record){
+      parsingContext.recordCount++;
       saveRecord(record)
       .catch( (error) => {
         console.log("ERROR on record "+record.reference+" : "+error);
@@ -363,6 +364,7 @@ function handleReferenceLine(record,parsingContext,raw,saveRecord){
 export function processStream(stream, saveRecord){
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface(stream);
+
     let record = {};
     let parsingContext = {
       currentData : [],
@@ -372,6 +374,7 @@ export function processStream(stream, saveRecord){
       newFile: true,
       newData: null,
       opus: null,
+      recordCount: 0,
     };
 
     rl.on('line', (line) => {
@@ -441,11 +444,13 @@ export function processStream(stream, saveRecord){
       record[parsingContext.previousDataName] = parsingContext.currentData;
       record = finalyseProsopography(record);
       if(record){
+        parsingContext.recordCount++;
         saveRecord(record)
         .catch( (error) => {
           console.log("ERROR on record "+record.reference+" : "+error);
         });
       }
+      console.log("PARSER END nbrecord:"+parsingContext.recordCount);
       //if (record.reference) {
         //computeOrSaveRecord(saveRecord)(record, { type: 'EMPTY' },"");
       //}

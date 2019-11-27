@@ -21,7 +21,7 @@ const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
       json: true,
       body: record,
     }, function (error, response, body) {
-      
+
       if(error){
         reject(error);
       }else{
@@ -30,7 +30,8 @@ const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
           //console.log(body) // Print the shortened url.
           resolve(body);
         }else{
-          reject("HTTP ERROR : "+response.statusCode);
+          let msg = response.body.error ? response.body.error:JSON.stringify(response.body);
+          reject("HTTP ERROR("+response.statusCode+"): "+msg);
         }
       }
     });
