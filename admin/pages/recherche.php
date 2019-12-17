@@ -138,7 +138,7 @@ if ( $count> 0){
     <?php
     foreach ($result as $fiche) {
         $name = $ficheService->getFicheTitle($fiche);
-        $viewLink =  $ficheService->getFicheUrl($fiche);
+        $viewLink =  $ficheService->getFicheUrl($fiche)."?mode=SEARCH&keyword=$keyword";;
         $status = getPropertieValue($fiche->identity->status);
         $description = getPropertieValue($fiche->identity->shortDescription);
         ?>
