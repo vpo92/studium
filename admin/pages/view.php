@@ -11,19 +11,25 @@ $backLink = getApplicationUrl()."?action=index&letter=$name[0]";
 if(isset($mode) && $mode == "SEARCH") {
     $backLink = getApplicationUrl()."?action=search&keyword=$keyword";
 }
+$removeRedirect = "&mode=$mode&letter=$name[0]&keyword=$keyword"
 ?>
 <a href="<?php echo $backLink ?>" class="btn btn-secondary">
     Retourner à la liste
 </a>
+<a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
+    Voir la fiche au format JSON
+</a>
 <?php
 if(isAuthenticated()){?>
-    <a href="<?php echo getApplicationUrl()?>?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
-        Modifier la fiche
-    </a>
+<a href="<?php echo getApplicationUrl()?>?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
+    Modifier la fiche
+</a>
+
+<a href="<?php echo getApplicationUrl()?>?action=prepare-delete&reference=<?php echo $fiche->reference ?>&redirect=<?php echo $removeRedirect?>" class="btn btn-danger">
+    Supprimer la fiche
+</a>
 <?php } ?>
-  <a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
-      Voir la fiche au format JSON
-  </a>
+
 <br>
 <br>
 <ul class="nav nav-tabs" id="myTab" role="tablist">

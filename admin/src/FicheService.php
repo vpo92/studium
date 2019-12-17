@@ -46,6 +46,15 @@ class FicheService
         return $response;
     }
 
+    public function removeFicheByReference($reference)
+    {
+        if($reference){
+            $res = deleteAPI("/prosopography/".$reference, getSessionToken());
+        }else{
+            //FIXME error
+        }
+    }
+
     public function getFicheUrl($fiche){
         $viewLink =  getApplicationUrl().$fiche->link;
         return $viewLink;

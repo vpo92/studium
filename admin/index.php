@@ -167,9 +167,36 @@ switch ($action){
         $page = "recherche";
         break;
 
+    case "prepare-delete":
+        $reference = getFieldFromForm("reference");
+        $mode = getFieldFromForm("mode");
+        $letter = getFieldFromForm("letter");
+        $keyword = getFieldFromForm("keyword");
+        $page = "delete";
+        break;
+    case "delete":
+        $reference = getFieldFromForm("reference");
+        $mode = getFieldFromForm("mode");
+        $letter = getFieldFromForm("letter");
+        $keyword = getFieldFromForm("keyword");
+        
+        $res = $ficheService->removeFicheByReference($reference);
+        $page = "_redirect";
+
+        $redirect = getApplicationUrl()."?action=index&letter=$letter";
+        if(isset($mode) && $mode == "SEARCH") {
+            $redirect = getApplicationUrl()."?action=search&keyword=$keyword";
+        }
+
+        break;
+
 }
+if($page == "_redirect"){
+    header("Location: $redirect");
+}else{
 
+    include "pages/common/header.php";
+    include "pages/$page.php";
+    include "pages/common/footer.php";
 
-include "pages/common/header.php";
-include "pages/$page.php";
-include "pages/common/footer.php";
+}

@@ -125,3 +125,24 @@ function postJSON($url,$jsonString,$token = false){
 
     return $result;
 }
+
+function deleteAPI($url,$token = false){
+    $url = getAPIUrl()."".$url;
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $headers = array();
+    if($token){
+        $headers[] = "Authorization: bearer $token";
+    }
+
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
