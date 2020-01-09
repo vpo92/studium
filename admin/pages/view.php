@@ -2,7 +2,8 @@
  require "view/view_properties.php"
 ?>
 
-<h3>Fiche <?php echo $fiche->reference ?></h3>
+<h3>Fiche <?php echo $fiche->reference ?> - <?php echo $fiche->title ?></h3>
+<h6>permalien : <a href="<?php echo getPublicAPIUrl().$fiche->link ?>"><?php echo getPublicAPIUrl().$fiche->link ?></a></h6>
 
 <?php
 $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->identity->name[0]->value;
