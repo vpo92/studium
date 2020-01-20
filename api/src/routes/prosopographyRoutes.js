@@ -107,12 +107,22 @@ router.get('/index/:letter', async (req, res, next) => {
 router.get('/:reference', async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
+  const format = req.query.format?req.query.format:'json';
   logger.info(`${id}: findByReference on ${reference}`);
   try {
     const prosopography = await service.findByReference(reference);
     logger.info(`${id}: findByReference done`);
     if(prosopography){
-      res.send(prosopography);
+      switch(format){
+        case 'raw':
+          res.header('Content-Type','plain/text');
+          res.send(prosopography.raw.join('\n'));
+          break;
+        case 'json':
+        default:
+          res.send(prosopography);
+      }
+
     }else{
       res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
     }
