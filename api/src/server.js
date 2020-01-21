@@ -32,6 +32,7 @@ app.set('port', 3000);
 app.use(cors());
 app.use(methodOverride());
 app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
 app.use(errorHandler);

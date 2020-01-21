@@ -246,6 +246,26 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   }
 });
 
+
+router.post('/parse-text', async (req, res) => {
+  const id = uuid.v4();
+  logger.info(`${id}: POST prosopography parse-text`);
+
+  const proso = req.body;
+  try{
+    let p = await service.convertFromText(proso);
+    logger.info(`${id} POST prosopography parse-text : Parsing OK`);
+    return res.send(p);
+  }catch(err){
+    logger.error(err);
+    return res.status(500).json({
+        message: "Error",
+        error: err,
+    });
+  }
+});
+
+
 router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: indexDB`);
