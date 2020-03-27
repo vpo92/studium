@@ -28,9 +28,8 @@ if($liste){?>
                     <div class="card" style="width: 12rem;height:100%">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <?php echo $fiche->reference ?> - <?php echo $ficheService->getFicheTitle($fiche) ?>
+                                <a href="<?php echo $ficheService->getFicheUrl($fiche) ?>"><?php echo $fiche->reference ?> - <?php echo $ficheService->getFicheTitle($fiche) ?></a>
                             </h5>
-                            <a href="<?php echo $ficheService->getFicheUrl($fiche) ?>">voir la fiche</a>
                         </div>
                     </div>
                 </div>
