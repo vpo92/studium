@@ -253,8 +253,9 @@ function startProso(ctx){
 
 function startOpus(ctx){
   if(ctx.currentData){
-    if(!ctx.currentData.data.opus){
-      ctx.currentData.data.opus = [];
+    let idx = ctx.currentData.data.length - 1;
+    if(! (ctx.currentData.data[idx] && ctx.currentData.data[idx].opus)){
+      ctx.currentData.data[idx].opus = [];
     }
   }
   ctx.currentOpus = {};
@@ -289,8 +290,11 @@ function endOpus(ctx){
     if(ctx.currentOpusData){
       ctx.currentOpus[ctx.currentOpusData.name] = ctx.currentOpusData.data;
     }
-    if(ctx.currentData && ctx.currentData.data && ctx.currentData.data.opus){
-      ctx.currentData.data.opus.push(ctx.currentOpus);
+    if(ctx.currentData && ctx.currentData.data){
+      let idx = ctx.currentData.data.length - 1;
+      if(ctx.currentData.data[idx] && ctx.currentData.data[idx].opus){
+        ctx.currentData.data[idx].opus.push(ctx.currentOpus);
+      }
     }
   }
   ctx.currentOpus = null;
@@ -335,7 +339,7 @@ export function processStream(stream, saveRecord){
           switch(type){
             case 'REFERENCE':
               //Traite la ligne de reference
-            //  ctx = buildReference(ctx,line);
+              ctx = buildReference(ctx,line);
               break;
             case 'COMMENTAIRE':
               break;
