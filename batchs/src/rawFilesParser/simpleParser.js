@@ -14,9 +14,9 @@ import {finalyzeProsopography,finalyzeOpus} from './util/special.prop.parser';
 Detecte le type de ligne en cours d'analyse
 */
 function detectTypeOfLine(line){
-  /**if(line.match(/^<[a-zA-Z0-9\.]+>[ \t]+\//g)){
+  if(line.match(/^<[a-zA-Z0-9\.]+>[ \t]+\//g)){
     return 'COMMENTAIRE';
-  }else */
+  }else
   if(line.match(/^<<<[a-zA-Z0-9\.]+>>>/g)){
     return 'VERSION_DATA';
   }else if(line.match(/^<<k[a-zA-Z0-9\.]+a[a-zA-Z0-9\.]+>>/g)){
@@ -106,6 +106,7 @@ function getVersionLineInformations(line){
   }
 }
 
+//remove special char
 function formatData(data){
   return data.trim();
 }
@@ -124,12 +125,14 @@ function getMeta(data){
 
 function buildDataLine(ctx,line){
   let info = getLineInformations(line);
+
   //Si mm data
   if(ctx.currentData && ctx.currentData.code === info.code){
     ctx.currentData.data.push({
-        value: formatData(info.data),
-        meta: getMeta(info.data),
-      });
+      value: formatData(info.data),
+      meta: getMeta(info.data),
+    });
+
   }else{
     //Si nouvelle data avec data existante
     //On enregistre la data et on en crée une nouvelle
@@ -178,8 +181,7 @@ function buildOpusLine(ctx,line){
   }
   return ctx;
 }
-//FIXME : TODO
-//TODO
+
 function buildVersionLine(ctx,line){
   let info = getVersionLineInformations(line);
   //Si mm data
@@ -208,8 +210,33 @@ function buildVersionLine(ctx,line){
   return ctx;
 }
 
-function buildCommentaire(line){
+function buildCommentaire(ctx,line){
+  let info = getLineInformations(line);
 
+  //Si currentVersionData, on ajoute la reference a la currentVersionData
+  if(ctx.currentVersionData){
+    let idx = ctx.currentVersionData.data.length - 1;
+    if(!ctx.currentVersionData.data[idx].comment){
+      ctx.currentVersionData.data[idx].comment = [];
+    }
+    ctx.currentVersionData.data[idx].comment.push(info.data);
+  //Si currentOpusData, on ajoute la reference a la currentOpusData
+  }
+  else if(ctx.currentOpusData){
+    let idx = ctx.currentOpusData.data.length - 1;
+    if(!ctx.currentOpusData.data[idx].comment){
+      ctx.currentOpusData.data[idx].comment = [];
+    }
+    ctx.currentOpusData.data[idx].comment.push(info.data);
+  //Si currentData, on ajoute la reference a la currentData
+  }else if(ctx.currentData){
+    let idx = ctx.currentData.data.length - 1;
+    if(!ctx.currentData.data[idx].comment){
+      ctx.currentData.data[idx].comment = [];
+    }
+    ctx.currentData.data[idx].comment.push(info.data);
+  }
+  return ctx;
 }
 
 function buildReference(ctx,line){
@@ -218,23 +245,26 @@ function buildReference(ctx,line){
 
   //Si currentVersionData, on ajoute la reference a la currentVersionData
   if(ctx.currentVersionData){
-    if(!ctx.currentVersionData.data.reference){
-      ctx.currentVersionData.data.reference = [];
+    let idx = ctx.currentVersionData.data.length - 1;
+    if(!ctx.currentVersionData.data[idx].reference){
+      ctx.currentVersionData.data[idx].reference = [];
     }
-    ctx.currentVersionData.data.reference.push(info.data);
+    ctx.currentVersionData.data[idx].reference.push(info.data);
   //Si currentOpusData, on ajoute la reference a la currentOpusData
   }
   else if(ctx.currentOpusData){
-    if(!ctx.currentOpusData.data.reference){
-      ctx.currentOpusData.data.reference = [];
+    let idx = ctx.currentOpusData.data.length - 1;
+    if(!ctx.currentOpusData.data[idx].reference){
+      ctx.currentOpusData.data[idx].reference = [];
     }
-    ctx.currentOpusData.data.reference.push(info.data);
+    ctx.currentOpusData.data[idx].reference.push(info.data);
   //Si currentData, on ajoute la reference a la currentData
   }else if(ctx.currentData){
-    if(!ctx.currentData.data.reference){
-      ctx.currentData.data.reference = [];
+    let idx = ctx.currentData.data.length - 1;
+    if(!ctx.currentData.data[idx].reference){
+      ctx.currentData.data[idx].reference = [];
     }
-    ctx.currentData.data.reference.push(info.data);
+    ctx.currentData.data[idx].reference.push(info.data);
   }
 
   return ctx;
@@ -283,6 +313,8 @@ function endProso(ctx,saveRecord){
       ctx.currentRecord[ctx.currentData.name] = ctx.currentData.data;
     }
     try{
+      //console.log(ctx.currentRecord);
+      //FIXME : finalyse with comment and reference
       ctx.currentRecord = finalyzeProsopography(ctx.currentRecord);
     }catch(e){
       console.log("ERROR finalyzeProsopography:"+e);
@@ -361,7 +393,8 @@ export function processStream(stream, saveRecord){
               ctx = buildReference(ctx,line);
               break;
             case 'COMMENTAIRE':
-            //TODO commentaires
+              //TODO commentaires --> creer n champs commentaire comme référence
+              ctx =  buildCommentaire(ctx,line);
               break;
             case 'VERSION_DATA':
               ctx = buildVersionLine(ctx,line);
@@ -444,7 +477,7 @@ export function processStream(stream, saveRecord){
       });
 
     }catch(e){
-      console.log("ERROR PARSING LINE "+ctx.currentLine);
+      console.log("ERROR READING FILE");
       reject(e);
     }
   });

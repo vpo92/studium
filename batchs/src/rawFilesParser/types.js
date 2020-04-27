@@ -26,6 +26,8 @@ export type MetaInformation = {
 export type ProsopographyInformation = {
   value: string,
   meta: MetaInformation,
+  reference: any,
+  comment: any,
 }
 
 export type SimpleInformation = {
