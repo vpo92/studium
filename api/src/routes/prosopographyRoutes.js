@@ -9,6 +9,7 @@ import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
 
+//const { spawn } = require('child_process');
 const router = express.Router();
 
 const getPagination = function(req){
@@ -282,6 +283,65 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
     next(err);
   }
 });
+
+//FIXME : add auth
+router.post('/re-index-from-raw/:reference', async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: reIndexFromRaw on ${reference}`);
+  try {
+    const prosopography = await service.findByReference(reference);
+    if(prosopography){
+      const raw = prosopography.raw.join("\n");
+      let p = await service.convertFromText(raw);
+      res.send(p);
+    }else{
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
+
+  }catch(error){
+    next(error);
+  }
+});
+
+/**
+//FIXME : implement backup
+router.post('/backup', auth.isAuthenticated, (req, res, next) => {
+//
+  const id = uuid.v4();
+  logger.info(`${id}: backup`);
+  logger.info(`${id}: backup user ${req.user.name}`);
+
+
+  //res.sendFile('/tmp/studium.json');
+
+  try {
+    let mexport = spawn('mongoexport',[
+      '--db','studium',
+      '--collection',
+      'prosopography',
+      '--type','json',
+      '--out','/tmp/studium.json']);
+      mexport.stdout.on('data', (data) => {
+      console.log(data.toString());
+    });
+
+    mexport.stderr.on('data', (data) => {
+      console.error(data.toString());
+    });
+
+    bat.on('exit', (code) => {
+      console.log(`Child exited with code ${code}`);
+    });
+        logger.info(`${id}: indexDB done`);
+        res.send({'message':'OK'});
+      } catch (err) {
+        logger.error(`${id}: Failed to backup`);
+        next(err);
+      }
+
+});
+*/
 
 router.delete('/:reference', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();

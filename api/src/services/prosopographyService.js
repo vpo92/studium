@@ -4,7 +4,8 @@ import db from '../utils/db';
 //import { type Prosopography } from '../../types/Prosopography';
 import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
 import { type SearchRequest } from '../../types/SearchRequest';
-import { processStream } from '../../../batchs/src/rawFilesParser/parser';
+//import { processStream } from '../../../batchs/src/rawFilesParser/parser';
+import { processStream } from '../../../batchs/src/rawFilesParser/simpleParser';
 import {Readable} from 'stream';
 
 const readPagination = function(pagination){
