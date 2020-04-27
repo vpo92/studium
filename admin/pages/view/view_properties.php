@@ -6,6 +6,14 @@
  * Time: 08:58
  */
 
+function drawComment($comList){
+    //echo "<ul>";
+    foreach($comList as $com){
+        echo "<li class=\"app-comment\">Commentaire : ".$com."</li>";
+    }
+    //echo "</ul>";
+}
+
 function drawReference($refList){
     //echo "<ul>";
     foreach($refList as $ref){
@@ -24,6 +32,30 @@ function drawOpus($opusList){
         echo "<div id=\"collapseOpus$id$i\" class=\"collapse\">";
         echo "<ul>";
         drawProperties($opus);
+        //Version
+        if($opus->versions){
+            drawVersion($opus->versions);
+        }
+
+        echo "</ul>";
+        echo "</div>";
+        echo "</li>";
+        $i++;
+    }
+    echo "</ul>";
+}
+
+
+function drawVersion($versionList){
+    $id = uniqid();
+    $i = 1;
+    echo "<ul>";
+    foreach($versionList as $version){
+        echo "<li>";
+        echo "<a class=\"app-versionCollapseLink\" data-toggle=\"collapse\" href=\"#collapseVersion$id$i\">Autre version ".$i."</a>";
+        echo "<div id=\"collapseVersion$id$i\" class=\"collapse\">";
+        echo "<ul>";
+        drawProperties($version);
         echo "</ul>";
         echo "</div>";
         echo "</li>";
@@ -42,7 +74,7 @@ function drawValue($item){
 
 function drawProperties($prop){
     foreach($prop as $k => $v){
-        if($k != "mainTitle"){
+        if($k != "mainTitle" && $k != "versions"){
             echo "<li><b>".MessageUtils::getMessage('fr',$k).":</b> ";
 
             if(is_object($v)){
@@ -59,6 +91,10 @@ function drawProperties($prop){
                     drawReference($v->reference);
                 }
 
+                //COMMENTAIRE
+                if(isset($v->comment)){
+                    drawComment($v->comment);
+                }
 
                 //If multiple value
             }else if(is_array($v)){
@@ -76,6 +112,11 @@ function drawProperties($prop){
 
                     if(isset($item->reference)){
                         drawReference($item->reference);
+                    }
+
+                    //COMMENTAIRE
+                    if(isset($item->comment)){
+                        drawComment($item->comment);
                     }
                 }
                 echo "</ul>";
