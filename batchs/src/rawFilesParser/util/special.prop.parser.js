@@ -186,8 +186,8 @@ function finalizeLink(record: ProsopographyRow): ProsopographyRow{
   return record;
 }
 
-export function finalyzeOpus(opus){
-  if(opus){
+export function finalyzeOpus(opus: any){
+  if(opus && opus.title){
     let s = new String(opus.title[0].value);
     opus.mainTitle = s.replace(/[()&]/g, '');
   }
@@ -196,16 +196,25 @@ export function finalyzeOpus(opus){
 
 function finalyzeTextualProduction(record){
   if(record.textualProduction){
+    //console.log(JSON.stringify(record.textualProduction));
     let txtPrd = record.textualProduction;
     let res = {};
     Object.keys(txtPrd).forEach( (key) => {
       let opusType = txtPrd[key];
+      //Si Opus
       if(opusType && opusType[0] && opusType[0].opus){
         res[key] = {
           value:opusType[0].value,
           meta:opusType[0].meta,
           opus:opusType[0].opus
         }
+      //Sinon on ignore
+      }else{
+        //console.log(`ERROR in finalyzeTextualProduction for ${opusType}`);
+        //console.log(`ERROR in finalyzeTextualProduction for ${opusType[0]}`);
+        //console.log(`ERROR in finalyzeTextualProduction for ${opusType[0].opus}`);
+        //throw new Error(`ERROR in finalyzeTextualProduction for ${opusType}`);
+
       }
     });
     record.textualProduction = res;
@@ -213,19 +222,7 @@ function finalyzeTextualProduction(record){
   return record;
 }
 
-function finalyzeBook(record: ProsopographyRow): Any{
-  let books = [];
-  if(record.bookOwner){
-    if(record.bookOwner instanceof Array){
-
-    }else{
-
-    }
-  }
-
-}
-
-export function finalyseProsopography(record: ProsopographyRow): Prosopography {
+export function finalyzeProsopography(record: ProsopographyRow): Prosopography {
   if(record.reference){
 
     record = finalizeReference(record);

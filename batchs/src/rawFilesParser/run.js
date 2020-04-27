@@ -7,15 +7,36 @@ import { saveRecordInDatabase, createIndex } from './mongoService';
 //FIXME : add index in mongo for full text search
 
 
-processFile('./tests/data/simple_studium_input.txt', saveRecordInDatabase)
-//processFile('./tests/data/487.txt', saveRecordInDatabase)
-//processFile('./tests/data/studium_input.txt', saveRecordInDatabase)
-//processFile('./tests/data/studium_input_full.txt', saveRecordInDatabase)
-//processFile('../data/full_db.txt', saveRecordInDatabase)
+let localSaveRecord = (record) => {
+  return new Promise((resolve, reject) => {
+    console.log(record);
+    resolve();
+    });
+};
+let localCreateIndex = () => {
+  return new Promise((resolve, reject) => {
+    console.log("create index");
+    let db = {close : function(){} };
+    resolve(db);
+    });
+};
+
+
+//let saveFunction =  localSaveRecord;
+//let indexFunction = localCreateIndex;
+let saveFunction = saveRecordInDatabase;
+let indexFunction = createIndex;
+
+//processFile('./tests/data/simple_studium_input.txt', saveFunction)
+//processFile('./tests/data/487.txt', saveFunction)
+//processFile('./tests/data/studium_input.txt', saveFunction)
+processFile('./tests/data/studium_input_full.txt', saveFunction)
+//processFile('../data/full_db.txt', saveFunction)
 
 .then(function(){
-  createIndex()
+  indexFunction()
   .then(function(db){
+    if(db)
       db.close();
   });
 })

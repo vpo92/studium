@@ -8,14 +8,16 @@ import {detectInstitutions} from './util/institution.parser';
 import {isComment} from './util/comment.parser';
 import {isLink} from './util/comment.parser';
 import {getDataLineNameByCode, getOpusLineNameByCode,getVersionLineNameByCode} from './util/para.parser';
+import {finalyzeProsopography,finalyzeOpus} from './util/special.prop.parser';
 
 /**
 Detecte le type de ligne en cours d'analyse
 */
 function detectTypeOfLine(line){
-  if(line.match(/^<[a-zA-Z0-9\.]+>[ \t]+\//g)){
+  /**if(line.match(/^<[a-zA-Z0-9\.]+>[ \t]+\//g)){
     return 'COMMENTAIRE';
-  }else if(line.match(/^<<<[a-zA-Z0-9\.]+>>>/g)){
+  }else */
+  if(line.match(/^<<<[a-zA-Z0-9\.]+>>>/g)){
     return 'VERSION_DATA';
   }else if(line.match(/^<<k[a-zA-Z0-9\.]+a[a-zA-Z0-9\.]+>>/g)){
     return 'NEW_VERSION';
@@ -274,13 +276,29 @@ function startVersion(ctx){
   return ctx;
 }
 
-function endProso(ctx){
+function endProso(ctx,saveRecord){
   //FIXME
-  if(ctx.currentData){
-    ctx.currentRecord[ctx.currentData.name] = ctx.currentData.data;
+  if(ctx.currentRecord){
+    if(ctx.currentData){
+      ctx.currentRecord[ctx.currentData.name] = ctx.currentData.data;
+    }
+    try{
+      ctx.currentRecord = finalyzeProsopography(ctx.currentRecord);
+    }catch(e){
+      console.log("ERROR finalyzeProsopography:"+e);
+    }
+    ctx.currentRecord.raw = ctx.currentRecordRaw;
+    let saveR = ctx.currentRecord;
+    //console.log(ctx.currentRecord);
+    //FIXME : SAVE
+    ctx.currentRecord = null;
+    ctx.currentRecordRaw = null;
+    saveRecord(saveR)
+    .catch( (error) => {
+      throw Error("ERROR on record "+saveR.reference+" : "+error);
+    });
   }
-  //console.log(JSON.stringify(ctx.currentRecord));
-  console.log(ctx.currentRecord);
+
   return ctx;
 }
 
@@ -290,6 +308,7 @@ function endOpus(ctx){
     if(ctx.currentOpusData){
       ctx.currentOpus[ctx.currentOpusData.name] = ctx.currentOpusData.data;
     }
+    ctx.currentOpus = finalyzeOpus(ctx.currentOpus);
     if(ctx.currentData && ctx.currentData.data){
       let idx = ctx.currentData.data.length - 1;
       if(ctx.currentData.data[idx] && ctx.currentData.data[idx].opus){
@@ -342,6 +361,7 @@ export function processStream(stream, saveRecord){
               ctx = buildReference(ctx,line);
               break;
             case 'COMMENTAIRE':
+            //TODO commentaires
               break;
             case 'VERSION_DATA':
               ctx = buildVersionLine(ctx,line);
@@ -366,7 +386,7 @@ export function processStream(stream, saveRecord){
               //Finalise l opus en cours
               ctx = endOpus(ctx);
               //Finalise la proso en cours
-              ctx = endProso(ctx);
+              ctx = endProso(ctx,saveRecord);
               //Créé une nouvelle proso
               ctx = startProso(ctx);
               //Traite la ligne de donnee
@@ -400,19 +420,26 @@ export function processStream(stream, saveRecord){
 
           console.log("ERROR PARSING LINE "+ctx.currentLine);
           //console.log(ctx);
-          //console.log(e.message);
+          //console.log(e);
         }
 
         ctx.currentLine++;
       });
 
       rl.on('close', () => {
-        //Finalise la version en cours
-        ctx = endVersion(ctx);
-        //Finalise l opus en cours
-        ctx = endOpus(ctx);
-        //Finalise la proso en cours
-        ctx = endProso(ctx);
+        try{
+          //Finalise la version en cours
+          ctx = endVersion(ctx);
+          //Finalise l opus en cours
+          ctx = endOpus(ctx);
+          //Finalise la proso en cours
+          ctx = endProso(ctx,saveRecord);
+        }catch(e){
+          console.log("ERROR PARSING LINE "+ctx.currentLine);
+          //console.log(ctx);
+          //console.log(e.message);
+        }
+        console.log("END OF FILE. Nb ELEM: "+ctx.recordCount);
         resolve();
       });
 

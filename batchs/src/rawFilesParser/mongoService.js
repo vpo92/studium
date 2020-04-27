@@ -35,11 +35,11 @@ const saveRecordInDatabaseOld: SaveRecordFunction = (record) => {
 //FIXME : batch never stop...
 const saveRecordInDatabase: SaveRecordFunction = (record) => {
   console.log(`ref ${record.reference}: Saving record.`);
-  MongoClient.connect('mongodb://localhost/studium')
+  return MongoClient.connect('mongodb://localhost/studium')
   .then(function(db){
     importRecord(db,record)
     .then( function(res){
-        console.log("SAVE OK for "+record.reference);
+        //console.log("SAVE OK for "+record.reference);
         res.db.close();
       }
     );
@@ -57,7 +57,7 @@ const createIndex = () => {
     return new Promise((resolve, reject) => {
       if (db) {
         db.collection('prosopography')
-          .createIndex({ '$**': 'text' }, (error, results) => {
+          .createIndex({ '$**': 'text' },{ language_override: "dummy" }, (error, results) => {
             if (error) {
               reject(error);
             } else {
@@ -71,7 +71,7 @@ const createIndex = () => {
       });
   })
   .catch((e) => {
-    console.log(`ref ${record.reference}: Error saving record : ${e}.`);
+    console.log(`Error creating index : ${e}.`);
   });
 
 };
