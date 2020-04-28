@@ -105,6 +105,25 @@ router.get('/index/:letter', async (req, res, next) => {
     next(err);
   }
 });
+
+
+router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: all-id`);
+  try {
+    const ids = await service.getAllIds();
+    if(ids){
+      res.send(ids);
+    }else{
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
+
+  }catch(error){
+    next(error);
+  }
+});
+
 router.get('/:reference', async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
@@ -285,7 +304,7 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
 });
 
 //FIXME : add auth
-router.post('/re-index-from-raw/:reference', async (req, res, next) => {
+router.post('/re-index-from-raw/:reference', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   logger.info(`${id}: reIndexFromRaw on ${reference}`);
@@ -303,6 +322,7 @@ router.post('/re-index-from-raw/:reference', async (req, res, next) => {
     next(error);
   }
 });
+
 
 /**
 //FIXME : implement backup

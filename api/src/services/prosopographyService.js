@@ -31,6 +31,19 @@ async function findAll(pagination: any): Promise<Prosopography[]> {
     .toArray();
 }
 
+
+async function getAllIds(){
+  //FIXME : add controls
+  return db
+    .get()
+    .collection('prosopography')
+    .find({},{_id:0,reference:1})
+    .limit(0)
+    .map((item) => {return item.reference;})
+    .toArray();
+
+}
+
 async function textSearch(searchText: string, pagination: any): Promise<Prosopography[]> {
   const pg = readPagination(pagination);
 
@@ -226,6 +239,7 @@ async function updateCurrentReference(){
  */
 module.exports = {
   findAll,
+  getAllIds,
   indexSearch,
   findByReference,
   textSearch,
