@@ -1,11 +1,9 @@
-// @flow
-
 import type { SaveRecordFunction } from './types';
 import request from 'request';
 import sleep from 'sleep';
 
 
-const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
+const saveRecord =  (apiUrl, token, record) => {
   let uri = `${apiUrl}/prosopography`;
   console.log(`RestService.saveRecord ref ${record.reference} to ${uri}`);
 
@@ -26,7 +24,7 @@ const saveRecord: SaveRecordFunction =  (apiUrl, token, record) => {
         reject(error);
       }else{
         //console.log(response.statusCode);
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
           //console.log(body) // Print the shortened url.
           resolve(body);
         }else{
@@ -55,7 +53,7 @@ const createIndex = (apiUrl, token) => {
         reject(error);
       }else{
         //console.log(response.statusCode);
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
           //console.log(body) // Print the shortened url.
           resolve(body);
         }else{
@@ -64,9 +62,67 @@ const createIndex = (apiUrl, token) => {
       }
     });
   });
+};
 
+
+const getAllIds = (apiUrl, token) => {
+  console.log(`RestService.getAllIds`);
+  let auth = `Bearer ${token}`;
+  let uri = `${apiUrl}/prosopography/all-ids`;
+
+  return new Promise((resolve, reject) => {
+  request.get({
+      uri: uri,
+      headers: {'Content-Type': 'application/json','Authorization':auth},
+      method: 'GET',
+      json: true,
+      body: {},
+    }, function (error, response, body) {
+      if(error){
+        reject(error);
+      }else{
+        //console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+          //console.log(body) // Print the shortened url.
+          resolve(body);
+        }else{
+          reject("HTTP ERROR : "+response.statusCode);
+        }
+      }
+    });
+  });
+};
+
+
+const reIndex = (apiUrl, token, reference) => {
+
+  let auth = `Bearer ${token}`;
+  let uri = `${apiUrl}/prosopography/re-index-from-raw/${reference}`;
+  console.log(`RestService.reIndex ref ${reference} to ${uri}`);
+
+  return new Promise((resolve, reject) => {
+  request.post({
+      uri: uri,
+      headers: {'Content-Type': 'application/json','Authorization':auth},
+      method: 'POST',
+      json: true,
+      body: {},
+    }, function (error, response, body) {
+      if(error){
+        reject(error);
+      }else{
+        //console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+          //console.log(body) // Print the shortened url.
+          resolve(body);
+        }else{
+          reject("HTTP ERROR : "+response.statusCode);
+        }
+      }
+    });
+  });
 };
 
 export {
-  saveRecord, createIndex
+  saveRecord, createIndex, getAllIds, reIndex
 };
