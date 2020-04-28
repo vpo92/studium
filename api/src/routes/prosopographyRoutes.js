@@ -313,6 +313,8 @@ router.post('/re-index-from-raw/:reference', auth.isAuthenticated, async (req, r
     if(prosopography){
       const raw = prosopography.raw.join("\n");
       let p = await service.convertFromText(raw);
+      p._id = prosopography._id;
+      await service.update(p);
       res.send(p);
     }else{
       res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
