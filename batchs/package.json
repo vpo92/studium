@@ -1,12 +1,13 @@
 {
   "name": "studium-batch",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Studium batch application",
   "scripts": {
     "test": "jest",
     "start": "babel-node src/rawFilesParser/run.js",
     "start-web": "babel-node src/rawFilesParser/run-web.js",
     "re-index": "babel-node src/rawFilesParser/run-re-index.js",
+    "backup": "babel-node src/rawFilesParser/run-backup.js",
     "import-json": "babel-node src/jsonImporter/run.js"
   },
   "repository": {

@@ -9,7 +9,7 @@ import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
 
-//const { spawn } = require('child_process');
+
 const router = express.Router();
 
 const getPagination = function(req){
@@ -326,44 +326,24 @@ router.post('/re-index-from-raw/:reference', auth.isAuthenticated, async (req, r
 });
 
 
-/**
 //FIXME : implement backup
-router.post('/backup', auth.isAuthenticated, (req, res, next) => {
+router.post('/backup', auth.isAuthenticated, async (req, res, next) => {
 //
   const id = uuid.v4();
   logger.info(`${id}: backup`);
   logger.info(`${id}: backup user ${req.user.name}`);
 
-
-  //res.sendFile('/tmp/studium.json');
-
-  try {
-    let mexport = spawn('mongoexport',[
-      '--db','studium',
-      '--collection',
-      'prosopography',
-      '--type','json',
-      '--out','/tmp/studium.json']);
-      mexport.stdout.on('data', (data) => {
-      console.log(data.toString());
-    });
-
-    mexport.stderr.on('data', (data) => {
-      console.error(data.toString());
-    });
-
-    bat.on('exit', (code) => {
-      console.log(`Child exited with code ${code}`);
-    });
-        logger.info(`${id}: indexDB done`);
-        res.send({'message':'OK'});
-      } catch (err) {
-        logger.error(`${id}: Failed to backup`);
-        next(err);
-      }
+  try{
+    await service.backupAll();
+    logger.info(`${id}: backup done`);
+    res.send({'message':'OK'});
+  }catch(error){
+    console.log(error);
+    next(error);
+  }
 
 });
-*/
+
 
 router.delete('/:reference', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();

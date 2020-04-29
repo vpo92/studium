@@ -6,6 +6,7 @@ import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
 import { type SearchRequest } from '../../types/SearchRequest';
 //import { processStream } from '../../../batchs/src/rawFilesParser/parser';
 import { processStream } from '../../../batchs/src/rawFilesParser/simpleParser';
+import { backup } from '../../../batchs/src/rawFilesParser/mongoService';
 import {Readable} from 'stream';
 
 const readPagination = function(pagination){
@@ -233,6 +234,10 @@ async function updateCurrentReference(){
     .update({},{$inc : {'seq':1}})
 }
 
+async function backupAll(){
+  return backup("/tmp/");
+}
+
 /** *********************
  * Export               *
  ************************
@@ -252,4 +257,5 @@ module.exports = {
   convertSearchRequestToMongoRequest,
   getCurrentReference,
   updateCurrentReference,
+  backupAll,
 };

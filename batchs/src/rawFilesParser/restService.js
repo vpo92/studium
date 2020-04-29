@@ -123,6 +123,38 @@ const reIndex = (apiUrl, token, reference) => {
   });
 };
 
+
+const backupAll = (apiUrl, token) => {
+
+  let auth = `Bearer ${token}`;
+  let uri = `${apiUrl}/prosopography/backup/`;
+  console.log(`RestService.backupAll`);
+
+  return new Promise((resolve, reject) => {
+  request.post({
+      uri: uri,
+      headers: {'Content-Type': 'application/json','Authorization':auth},
+      method: 'POST',
+      json: true,
+      body: {},
+    }, function (error, response, body) {
+      if(error){
+        reject(error);
+      }else{
+        //console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+          //console.log(body) // Print the shortened url.
+          resolve(body);
+        }else{
+          reject("HTTP ERROR : "+response.statusCode);
+        }
+      }
+    });
+  });
+};
+
+
+
 export {
-  saveRecord, createIndex, getAllIds, reIndex
+  saveRecord, createIndex, getAllIds, reIndex, backupAll
 };

@@ -1,6 +1,6 @@
 {
   "name": "studium-api",
-  "version":"0.1.8",
+  "version":"0.1.9",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
