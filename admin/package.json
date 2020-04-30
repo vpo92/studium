@@ -6,7 +6,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "datatables.net-bs": "^1.10.19",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10"
