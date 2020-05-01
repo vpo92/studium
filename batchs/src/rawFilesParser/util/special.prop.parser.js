@@ -129,6 +129,12 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
       discussedHistory	:	record.discussedHistory,
       discussedPolitical	:	record.discussedPolitical,
     },
+    bibliography:{
+      workSources : record.workSources,
+      workReferences : record.workReferences,
+      bookReferences : record.bookReferences,
+      otherBases : record.otherBases,
+    },
     title: record.title,
     link: record.link,
     raw : record.raw,

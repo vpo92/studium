@@ -136,6 +136,11 @@ export type ProsopographyRow = {
   link: string,
   raw: any,
   bookOwner: any,
+  workSources: any,
+  workReferences: any,
+  bookReferences: any,
+  otherBases: any,
+
 }
 
 
@@ -266,6 +271,12 @@ export type Prosopography = {
     discussedPratical: any,
     discussedHistory: any,
     discussedPolitical: any,
+  },
+  bibliography: {
+    workSources: any,
+    workReferences: any,
+    bookReferences: any,
+    otherBases: any,
   },
   library: any,
   title: string,
