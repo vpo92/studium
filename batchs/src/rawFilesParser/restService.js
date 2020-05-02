@@ -154,7 +154,36 @@ const backupAll = (apiUrl, token) => {
 };
 
 
+const auth = (apiUrl, username, password) => {
+
+  let uri = `${apiUrl}/auth/login`;
+  console.log(`RestService.auth for user ${username}`);
+
+  return new Promise((resolve, reject) => {
+  request.post({
+      uri: uri,
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      json: true,
+      body: {
+        email:username,
+        password:password
+      },
+    }, function (error, response, body) {
+      if(error){
+        reject(error);
+      }else{
+        //console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+          resolve(body.token);
+        }else{
+          reject("HTTP ERROR : "+response.statusCode);
+        }
+      }
+    });
+  });
+};
 
 export {
-  saveRecord, createIndex, getAllIds, reIndex, backupAll
+  saveRecord, createIndex, getAllIds, reIndex, backupAll, auth
 };
