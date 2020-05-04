@@ -37,13 +37,17 @@ export function runImportFile(file: string, api: string,tk: string) {
 
 function recurviceReIndex(api,tk,ids){
   if(ids && ids.length > 0){
-    reIndex(api,tk,ids[0])
-    .then(() => {
+    if(ids[0]){
+      reIndex(api,tk,ids[0])
+      .then(() => {
+        recurviceReIndex(api,tk,ids.slice(1));
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+    }else{
       recurviceReIndex(api,tk,ids.slice(1));
-    })
-    .catch((error) => {
-      console.log(error)
-    });
+    }
   }
 }
 
