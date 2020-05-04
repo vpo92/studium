@@ -112,15 +112,27 @@ function formatData(data){
 }
 
 function getMeta(data){
-  return {
-      dates: detectDates(data),
-      names: detectNames(data),
-      places: detectPlaces(data),
-      titles: detectTitles(data),
-      institutions: detectInstitutions(data),
-      isComment: isComment(data),
-      isLink: isLink(data),
-  };
+  try{
+    let meta = {
+        dates: detectDates(data),
+        names: detectNames(data),
+        places: detectPlaces(data),
+        titles: detectTitles(data),
+        institutions: detectInstitutions(data),
+        isComment: isComment(data),
+        isLink: isLink(data),
+    };
+    Object.keys(meta).forEach( (key) => {
+      if(!meta[key]){
+        delete meta[key];
+      }
+    });
+    return meta;
+  }catch(error){
+    console.log(error);
+  }
+  return {};
+
 }
 
 function buildDataLine(ctx,line){
