@@ -7,10 +7,9 @@ describe('Date Parser', () => {
   //Parse dates
   describe('parseDates', () => {
     it('should return null when no string is provided', () => {
-      // given
-      const line = null;
+
       // when
-      const dates = parseDates(line);
+      const dates = parseDates(null);
       // then
       expect(dates).toEqual(null);
     });
@@ -30,10 +29,7 @@ describe('Date Parser', () => {
       // expected
       const expected = {
         "type": 'SIMPLE',
-        "startDate": {
-          "value": new Date("1223"),
-          "certain": true,
-        },
+        "date": 1223,
       };
       // then
       expect(dates).toEqual(expected);
@@ -45,11 +41,8 @@ describe('Date Parser', () => {
       const dates = parseDates(line);
       // expected
       const expected = {
-        "type": 'INTERVAL',
-        "endDate": {
-          "value": new Date("1403"),
-          "certain": true,
-        },
+        "type": 'BEFORE',
+        "date": 1403,
       };
       // then
       expect(dates).toEqual(expected);
@@ -61,11 +54,8 @@ describe('Date Parser', () => {
       const dates = parseDates(line);
       // expected
       const expected = {
-        "type": 'INTERVAL',
-        "endDate": {
-          "value": new Date("1196"),
-          "certain": true,
-        },
+        "type": 'BEFORE',
+        "date": 1196,
       };
       // then
       expect(dates).toEqual(expected);
@@ -78,11 +68,21 @@ describe('Date Parser', () => {
       const dates = parseDates(line);
       // expected
       const expected = {
-        "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date("1223"),
-          "certain": true,
-        },
+        "type": 'AFTER',
+        "date": 1223,
+      };
+      // then
+      expect(dates).toEqual(expected);
+    });
+    it('should detect dates among string when dates is present - near single', () => {
+      // given
+      const line = ":1223:";
+      // when
+      const dates = parseDates(line);
+      // expected
+      const expected = {
+        "type": 'NEAR',
+        "date": 1223,
       };
       // then
       expect(dates).toEqual(expected);
@@ -96,12 +96,12 @@ describe('Date Parser', () => {
       const expected = {
         type: 'INTERVAL',
         startDate: {
-          value: new Date("1246"),
-          certain: true,
+          type: 'SIMPLE',
+          date: 1246,
         },
         endDate: {
-          value: new Date("1310"),
-          certain: true,
+          type: 'SIMPLE',
+          date: 1310,
         },
       };
       // then
@@ -116,12 +116,12 @@ describe('Date Parser', () => {
       const expected = {
         type: 'INTERVAL',
         startDate: {
-          value: new Date("1246"),
-          certain: false,
+          type: 'NEAR',
+          date: 1246,
         },
         endDate: {
-          value: new Date("1310"),
-          certain: false,
+          type: 'NEAR',
+          date: 1310,
         },
       };
       // then
@@ -250,10 +250,7 @@ describe('Date Parser', () => {
       // expected
       const expected = [{
         "type": 'SIMPLE',
-        "startDate": {
-          "value": new Date("1403"),
-          "certain": true,
-        },
+        "date": 1403,
       }];
       // then
       expect(dates).toEqual(expected);
@@ -265,11 +262,8 @@ describe('Date Parser', () => {
       const dates = detectDates(line);
       // expected
       const expected = [{
-        "type": 'INTERVAL',
-        "endDate": {
-          "value": new Date("1403"),
-          "certain": true,
-        },
+        "type": 'BEFORE',
+        "date": 1403,
       }];
       // then
       expect(dates).toEqual(expected);
@@ -281,11 +275,8 @@ describe('Date Parser', () => {
       const dates = detectDates(line);
       // expected
       const expected = [{
-        "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date("1223"),
-          "certain": true,
-        },
+        "type": 'AFTER',
+        "date": 1223,
       }];
       // then
       expect(dates).toEqual(expected);
@@ -299,12 +290,12 @@ describe('Date Parser', () => {
       const expected = [{
         "type": 'INTERVAL',
         "startDate": {
-          "value": new Date("1246"),
-          "certain": true,
+          "type": 'SIMPLE',
+          "date": 1246,
         },
         "endDate": {
-          "value": new Date("1310"),
-          "certain": true,
+          "type": 'SIMPLE',
+          "date": 1310,
         },
       }];
       // then
@@ -312,19 +303,19 @@ describe('Date Parser', () => {
     });
     it('should detect dates among string when dates is present - near', () => {
       // given
-      const line = "a etudier à *Paris :1246:-:1310:";
+      const line = "a etudier à *Paris %:1246:-:1310:%";
       // when
       const dates = detectDates(line);
       // expected
       const expected = [{
         "type": 'INTERVAL',
         "startDate": {
-          "value": new Date("1246"),
-          "certain": false,
+          "type": 'NEAR',
+          "date": 1246,
         },
         "endDate": {
-          "value": new Date("1310"),
-          "certain": false,
+          "type": 'NEAR',
+          "date": 1310,
         },
       }];
       // then
@@ -339,20 +330,17 @@ describe('Date Parser', () => {
       const expected = [{
         "type": 'INTERVAL',
         "startDate": {
-          "value": new Date("1246"),
-          "certain": true,
+          "type": 'SIMPLE',
+          "date": 1246,
         },
         "endDate": {
-          "value": new Date("1310"),
-          "certain": true,
+          "type": 'SIMPLE',
+          "date": 1310,
         },
       },
       {
-        "type": 'INTERVAL',
-        "endDate": {
-          "value": new Date("1403"),
-          "certain": true,
-        },
+        "type": 'BEFORE',
+        "date": 1403,
       }];
       // then
       expect(dates).toEqual(expected);

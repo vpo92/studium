@@ -29,46 +29,36 @@ export function parseDates(value: string): ?DateInformation{
     value = value.trim();
     let interval = value.split("-");
     if(interval.length > 1){
-      //FIXME : deal with :
       result = {
         "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date(interval[0]),
-          "certain": true,
-        },
-        "endDate": {
-          "value": new Date(interval[1]),
-          "certain": true,
-        }
+        "startDate":  parseDates(interval[0]),
+        "endDate": parseDates(interval[1])
       };
       //before
+    }else if(t = (/[:]([0-9]+)[:]/).exec(value)){
+      result = {
+        "type": 'NEAR',
+        "date": parseInt(t[1]),
+      };
     }else if(t = (/[:]([0-9]+)/).exec(value)){
       result = {
-        "type": 'INTERVAL',
-        "endDate": {
-          "value": new Date(t[1]),
-          "certain": true,
-        }
+        "type": 'BEFORE',
+        "date": parseInt(t[1]),
       };
       // after
     }else if(t = (/([0-9]+)[:]/).exec(value)){
       result = {
-        "type": 'INTERVAL',
-        "startDate": {
-          "value": new Date(t[1]),
-          "certain": true,
-        }
+        "type": 'AFTER',
+        "date": parseInt(t[1]),
       };
     }else if(t = (/([0-9]+)/).exec(value)){
       result = {
         "type": 'SIMPLE',
-        "startDate": {
-          "value": new Date(value),
-          "certain": true,
-        }
+        "date": parseInt(value),
       };
     }
   }
+  return result;
 }
 
 export function detectDates(value: ?string): ?DateInformation[] {
