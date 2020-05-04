@@ -1,5 +1,6 @@
 //@flow
 import type {Prosopography,ProsopographyRow} from '../types';
+import {parseMS} from './ms.parser';
 
 function buildProsopography(record: ProsopographyRow): Prosopography{
   let result : Prosopography = {
@@ -196,6 +197,15 @@ export function finalyzeOpus(opus: any){
   if(opus && opus.title){
     let s = new String(opus.title[0].value);
     opus.mainTitle = s.replace(/[()&]/g, '');
+  }
+  if(opus && opus.manuscrits && opus.manuscrits.length > 0){
+    for(let i = 0; i < opus.manuscrits.length; i++){
+      let d = parseMS(opus.manuscrits[i].value);
+      if(d){
+        opus.manuscrits[i].meta.manuscrit = d;
+      }
+
+    }
   }
   return opus;
 }
