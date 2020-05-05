@@ -36,4 +36,12 @@ router.get('/me',auth.isAuthenticated, (req, res, next) => {
   res.send(profile);
 });
 
+router.get('/', auth.isAuthenticated, (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: GET all users`);
+  userService.findAll()
+  .then(user => {res.send(user)})
+  .catch(error => {next(error)});
+});
+
 export default router;
