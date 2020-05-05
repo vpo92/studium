@@ -33,7 +33,7 @@ function drawOpus($opusList){
         echo "<ul>";
         drawProperties($opus);
         //Version
-        if($opus->versions){
+        if(isset($opus->versions)){
             drawVersion($opus->versions);
         }
 
@@ -65,11 +65,98 @@ function drawVersion($versionList){
 }
 
 function drawValue($item){
-    if($item->meta && $item->meta->isComment){
-        echo "<li class=\"app-comment\">Commentaire : ".$item->value."</li>";
-    }else{
-        echo "<li class=\"app-value\">".$item->value."</li>";
+    echo "<li class=\"app-value\">".valueToText($item->value)."</li>";
+    if(isset($item->meta->names)){
+        drawNames($item->meta->names);
     }
+    if(isset($item->meta->dates)){
+        drawDates($item->meta->dates);
+    }
+    if(isset($item->meta->places)){
+        drawPlaces($item->meta->places);
+    }
+    if(isset($item->meta->titles)){
+        drawTitles($item->meta->titles);
+    }
+    if(isset($item->meta->institutions)){
+        drawInstitutions($item->meta->institutions);
+    }
+    if(isset($item->meta->manuscrit)){
+        drawMS($item->meta->manuscrit);
+    }
+}
+
+function valueToText($v){
+    return preg_replace("/[$&:£*%]/","",$v);
+}
+
+function dateToText($d){
+    switch($d->type){
+        case "SIMPLE":{
+            return $d->date;
+        }
+        case "AFTER":{
+            return ">".$d->date;
+        }
+        case "BEFORE":{
+            return "<".$d->date;
+        }
+        case "NEAR":{
+            return "~".$d->date;
+        }
+        case "INTERVAL":{
+            return dateToText($d->startDate)." - ".dateToText($d->endDate);
+        }
+    }
+}
+
+function drawDates($dates){
+    foreach($dates as $d){
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-calendar\"></i> ";
+        echo dateToText($d);
+        echo "</li>";
+    }
+}
+
+function drawPlaces($places){
+    foreach($places as $p){
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-map-marker-alt\"></i> $p</li>";
+    }
+}
+
+function drawNames($names){
+    foreach($names as $n){
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-tag\"></i> $n</li>";
+    }
+}
+
+function drawTitles($titles){
+    foreach($titles as $t){
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-heading\"></i> $t</li>";
+    }
+}
+
+function drawInstitutions($institutions){
+    foreach($institutions as $i){
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-university\"></i> $i</li>";
+    }
+}
+
+function drawMS($ms){
+    echo "<li style=\"list-style:none\">";
+    if(isset($ms->place)){
+        echo "<i class=\"fas fa-map-marker-alt\"></i> ".$ms->place."&nbsp;";
+    }
+    if(isset($ms->placeType)){
+        echo "<i class=\"fas fa-university\"></i> ".$ms->placeType."&nbsp;";
+    }
+    if(isset($ms->cote)){
+        echo "<i class=\"fas fa-book\"></i> ".$ms->cote."&nbsp;";
+    }
+    if(isset($ms->page)){
+        echo "<i class=\"fas fa-sticky-note\"></i> ".$ms->page."&nbsp;";
+    }
+    echo "</li>";
 }
 
 function drawProperties($prop){
