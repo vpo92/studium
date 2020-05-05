@@ -81,8 +81,8 @@ const createIndex = () => {
 const mongoexport = (collection, outputFile) =>
 {
   return new Promise((resolve, reject) => {
-    //let cmd = "mongoexport --db studium --collection "+collection+" --type json --out "+outputFile;
-    let cmd = "/Users/vincent/mongodb-4.2.2/bin/mongoexport --db studium --collection "+collection+" --type json --out "+outputFile;
+    let cmd = "mongoexport --db studium --collection "+collection+" --type json --out "+outputFile;
+    //let cmd = "/Users/vincent/mongodb-4.2.2/bin/mongoexport --db studium --collection "+collection+" --type json --out "+outputFile;
     try{
       exec(cmd, function (error, stdout, stderr){
         if (error !== null) {
