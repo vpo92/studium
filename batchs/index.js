@@ -1,12 +1,23 @@
 #!/usr/bin/env babel-node
 
 import { auth } from './src/rawFilesParser/restService.js';
-import { runBackupAll,runReIndex,runImportFile } from './src/studium.cli.js';
+import { help, version,runBackupAll,runReIndex,runImportFile } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
-  if(argv && argv._ && argv._[0]){
-    let command = argv._[0];
+
+  let command = null;
+  if (argv.version || argv.v) {
+    command = 'version';
+  }
+
+  if (argv.help || argv.h) {
+    command = 'help';
+  }
+
+  if(command || (argv && argv._ && argv._[0])){
+
+
     let host = argv.host;
     let username = argv.username;
     let password = argv.password;
@@ -36,6 +47,14 @@ async function main(){
           console.log("Studium CLI : backup");
           token = await auth(host,username,password);
           runBackupAll(host,token);
+          break;
+        }
+        case 'help':{
+          help();
+          break;
+        }
+        case 'version':{
+          version();
           break;
         }
         default:{

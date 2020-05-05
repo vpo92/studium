@@ -1,5 +1,6 @@
 //@flow
 
+import chalk from 'chalk';
 import { backupAll,saveRecord,createIndex,getAllIds, reIndex } from './rawFilesParser/RestService';
 import { processFile } from './rawFilesParser/simpleParser';
 
@@ -60,4 +61,37 @@ export function runReIndex(api,tk) {
     console.log("ERROR");
     console.log(error);
   });
+}
+
+export function version(){
+  const packageJson = require('../package.json');
+  console.log("Studium CLI v"+packageJson.version);
+}
+
+export function help(){
+  version();
+  const menus = {
+    main: `
+${chalk.green('studium [command] <options>')}
+    ${chalk.blue('auth')} ............... auth to API and get token
+    ${chalk.blue('backup')} ............. backup prosopography data
+    ${chalk.blue('import-file')}......... import raw file in JPG format
+    ${chalk.blue('re-index')}............ re-index all prosopography from raw
+    ${chalk.blue('version')} ............ show package version
+    ${chalk.blue('help')} ............... show help menu for a command
+
+    ${chalk.cyan('--host')} ............. studium api host in format http://mydomain.com
+    ${chalk.cyan('--username')} ......... username used to log in
+    ${chalk.cyan('--password')} ......... password used to log in
+    ${chalk.cyan('--file')} ............. import file path
+  `,
+
+    auth: `//...
+          `,
+    forecast: `//...
+          `,
+    config: `//...
+          `,
+  };
+  console.log(menus.main)
 }

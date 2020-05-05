@@ -1,6 +1,6 @@
 {
   "name": "studium-batch",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Studium batch application",
   "bin": {
     "studium": "index.js"
@@ -23,6 +23,7 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
+    "chalk": "^4.0.0",
     "minimist": "^1.2.5",
     "mongodb": "^2.2.33",
     "omit-empty": "^0.4.1",
