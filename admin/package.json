@@ -1,6 +1,6 @@
 {
   "name": "studium",
-  "version":"0.2.0",
+  "version":"0.2.2",
   "description": "Studium web application",
   "author": "vpo92",
   "dependencies": {

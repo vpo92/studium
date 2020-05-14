@@ -66,6 +66,7 @@ function drawVersion($versionList){
 
 function drawValue($item){
     echo "<li class=\"app-value\">".valueToText($item->value)."</li>";
+    /**
     if(isset($item->meta->names)){
         drawNames($item->meta->names);
     }
@@ -84,6 +85,7 @@ function drawValue($item){
     if(isset($item->meta->manuscrit)){
         drawMS($item->meta->manuscrit);
     }
+     */
 }
 
 function valueToText($v){
