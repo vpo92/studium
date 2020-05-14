@@ -9,7 +9,7 @@
 function drawComment($comList){
     //echo "<ul>";
     foreach($comList as $com){
-        echo "<li class=\"app-comment\">Commentaire : ".$com."</li>";
+        echo "<li class=\"app-comment\">Commentaire : ".valueToText($com)."</li>";
     }
     //echo "</ul>";
 }
@@ -17,7 +17,7 @@ function drawComment($comList){
 function drawReference($refList){
     //echo "<ul>";
     foreach($refList as $ref){
-        echo "<li class=\"app-reference\">Référence : $ref</li>";
+        echo "<li class=\"app-reference\">Référence : ".valueToText($ref)."</li>";
     }
     //echo "</ul>";
 }
