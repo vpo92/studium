@@ -109,7 +109,7 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
       philosophy	:	record.philosophy,
       philosophyExtended	:	record.philosophyExtended,
       science	:	record.science,
-      medicine	:	record.medicine,
+      medicineOpus	:	record.medicineOpus,
       litterature	:	record.litterature,
       justice	:	record.justice,
       pratical	:	record.pratical,

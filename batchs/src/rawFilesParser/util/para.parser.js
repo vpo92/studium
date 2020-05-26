@@ -76,7 +76,7 @@ const dataLineTypes = {
   '21' : 'philosophy',
   '22' : 'philosophyExtended',
   '23' : 'science',
-  '24' : 'medicine',
+  '24' : 'medicineOpus',
   '25' : 'litterature',
   '26' : 'justice',
   '27' : 'pratical',
