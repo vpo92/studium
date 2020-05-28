@@ -161,19 +161,31 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
-
+/*
   if(searchRequest.name){
     criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
+  }*/
+
+
+  if (searchRequest.activity.from){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.from)};
+    criterions.push(res);
   }
-  /**
-  //FIXME : RULES ?
-  if(searchRequest.grades){
-    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.grades,'CONTAINS'));
+
+  if (searchRequest.activity.to){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.to) };
+    criterions.push(res);
   }
-  if(searchRequest.status){
-    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.status,'CONTAINS'));
+
+  if(searchRequest.grade && searchRequest.grade!=="ALL"){
+    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.grade,'CONTAINS'));
   }
-  if(searchRequest.discipline){
+  if(searchRequest.status && searchRequest.status!=="ALL"){
+    criterions.push(generateSeachClause('identity.status.value',searchRequest.status,'CONTAINS'));
+  }
+  /*if(searchRequest.discipline){
     criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
   }
 */
@@ -181,7 +193,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   if(searchRequest.prosopography){
     let pCrit = [];
     for(let i in searchRequest.prosopography){
-      console.log(searchRequest.prosopography[i]);
+     // console.log(searchRequest.prosopography[i]);
       let crit = searchRequest.prosopography[i];
       pCrit.push(generateSeachClause(crit.section+'.'+crit.subSection+'.value',crit.value,crit.matchType));
     }
@@ -192,7 +204,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
     }
   }
 
-  if(criterions.length == 1){
+  if(criterions.length === 1){
     return criterions[0];
   }else{
     return {
@@ -214,6 +226,7 @@ function generateSeachClause(field, value, matchType){
       res[field] = new RegExp(value,"i");
       break;
   }
+
   return res;
 }
 

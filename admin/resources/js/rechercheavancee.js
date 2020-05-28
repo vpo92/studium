@@ -305,7 +305,9 @@ fetch(resourceUrl+'/messages.json')
                         },
                         'body': JSON.stringify(this.searchRequest),
                     });
+
                     this.results = await result.json();
+                    console.log(this.results);
                 }
             },
             // mounted() {

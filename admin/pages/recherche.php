@@ -98,12 +98,13 @@
                         <tbody>
                             <tr v-for="record in results">
                                 <th scope="row">{{record.reference}}</th>
-                                <td>{{record.identity.name?record.identity.name.value:'-'}}</td>
-                                <td>{{record.identity.status?record.identity.status.value:'-'}}</td>
-                                <td>{{record.identity.shortDescription?record.identity.shortDescription.value:'-'}}</td>
-                                <td><a class="btn btn-primary"
-                                       :href="'.'+record.link">voir la
-                                        fiche</a></td>
+                                <td>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
+                                <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
+                                <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
+                                <td>
+                                    <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
+                                    <button class="btn btn-secondary">Télecharger la fiche</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

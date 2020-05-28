@@ -81,6 +81,7 @@ router.post('/search/advanced', async(req, res, next) => {
     //TODO Check searchRequest
     const searchRequest = req.body;
     const prosopographies = await service.search(searchRequest,pagination);
+    logger.info(prosopographies.length);
     res.send(prosopographies);
   } catch (err) {
     logger.error(
