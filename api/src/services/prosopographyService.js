@@ -1,5 +1,4 @@
 // @flow
-
 import db from '../utils/db';
 //import { type Prosopography } from '../../types/Prosopography';
 import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
@@ -24,24 +23,24 @@ async function findAll(pagination: any): Promise<Prosopography[]> {
   const pg = readPagination(pagination);
 
   return await db
-    .get()
-    .collection('prosopography')
-    .find()
-    .skip(pg.skip)
-    .limit(pg.limit)
-    .toArray();
+      .get()
+      .collection('prosopography')
+      .find()
+      .skip(pg.skip)
+      .limit(pg.limit)
+      .toArray();
 }
 
 
 async function getAllIds(){
   //FIXME : add controls
   return db
-    .get()
-    .collection('prosopography')
-    .find({},{_id:0,reference:1})
-    .limit(0)
-    .map((item) => {return item.reference;})
-    .toArray();
+      .get()
+      .collection('prosopography')
+      .find({},{_id:0,reference:1})
+      .limit(0)
+      .map((item) => {return item.reference;})
+      .toArray();
 
 }
 
@@ -49,45 +48,45 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
   const pg = readPagination(pagination);
 
   return await db
-    .get()
-    .collection('prosopography')
-    .find(
-      { $text: { $search: searchText } },
-      { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
-    )
-    .sort({ score: { $meta: 'textScore' } })
-    .skip(pg.skip)
-    .limit(pg.limit)
-    .toArray();
+      .get()
+      .collection('prosopography')
+      .find(
+          { $text: { $search: searchText } },
+          { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
+      )
+      .sort({ score: { $meta: 'textScore' } })
+      .skip(pg.skip)
+      .limit(pg.limit)
+      .toArray();
 }
 
 function indexSearch(letter: string): Promise<Prosopography[]> {
   const regex = new RegExp(`^${letter}`, 'g');
   return db
-    .get()
-    .collection('prosopography')
-    .find(
-      { 'identity.name.value': { $regex: regex, $options: '-i' } },
-      { reference: true, link: true, title: true},
-    )
-    .limit(0)
-    .sort({title:1})
-    .toArray();
+      .get()
+      .collection('prosopography')
+      .find(
+          { 'identity.name.value': { $regex: regex, $options: '-i' } },
+          { reference: true, link: true, title: true},
+      )
+      .limit(0)
+      .sort({title:1})
+      .toArray();
 }
 
 function findByReference(reference: string): Promise<Prosopography> {
   return db
-    .get()
-    .collection('prosopography')
-    .findOne({ reference: reference });
+      .get()
+      .collection('prosopography')
+      .findOne({ reference: reference });
 }
 
 function indexDB(){
   console.log(`create index`);
-    return db
-    .get()
-    .collection('prosopography')
-    .createIndex({ '$**': 'text' },{ language_override: "dummy" });
+  return db
+      .get()
+      .collection('prosopography')
+      .createIndex({ '$**': 'text' },{ language_override: "dummy" });
 }
 
 async function create(prosopography: Prosopography): Promise<Any> {
@@ -97,9 +96,9 @@ async function create(prosopography: Prosopography): Promise<Any> {
     throw "Reference already exists";
   }else{
     return db
-      .get()
-      .collection('prosopography')
-      .insert(prosopography);
+        .get()
+        .collection('prosopography')
+        .insert(prosopography);
   }
 
 }
@@ -107,18 +106,18 @@ async function create(prosopography: Prosopography): Promise<Any> {
 async function update(prosopography: Prosopography): Promise<Any> {
   //FIXME : add controls
   return db
-    .get()
-    .collection('prosopography')
-    .save(prosopography);
+      .get()
+      .collection('prosopography')
+      .save(prosopography);
 }
 
 
 async function remove(reference: string): Promise<Any> {
   //FIXME : add controls
   return db
-    .get()
-    .collection('prosopography')
-    .remove({ reference: reference });
+      .get()
+      .collection('prosopography')
+      .remove({ reference: reference });
 }
 
 async function convertFromText(text: string): Promise<Prosopography> {
@@ -147,24 +146,45 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
   console.log(mongodbRequest);
   return db
-    .get()
-    .collection('prosopography')
-    .find(
-      mongodbRequest,
-      { reference: true, identity: true, link: true, title: true }
-    )
-    .skip(pg.skip)
-    .limit(pg.limit)
-    .toArray();
+      .get()
+      .collection('prosopography')
+      .find(
+          mongodbRequest,
+          {reference: true, identity: true, link: true, title: true}
+      )
+
+      .skip(pg.skip)
+      .limit(pg.limit)
+      .toArray()
+      .then(data => {
+
+        return data.filter(function (item) {
+          let startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
+          let endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
+          let medianeDate = (startDate + endDate) / 2;
+          if (medianeDate<1300){
+            console.log(medianeDate);
+          }
+
+
+          if (searchRequest.activityMediane.from && searchRequest.activityMediane.to) {
+            return medianeDate >= searchRequest.activityMediane.from && medianeDate <= searchRequest.activityMediane.to;
+          } else if (searchRequest.activityMediane.from) {
+            return medianeDate >= searchRequest.activityMediane.from;
+          } else {
+            return medianeDate <= searchRequest.activityMediane.to;
+          }
+        })
+      });
 }
 
 function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
-/*
-  if(searchRequest.name){
-    criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
-  }*/
+  /*
+    if(searchRequest.name){
+      criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
+    }*/
 
 
   if (searchRequest.activity.from){
@@ -172,6 +192,21 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
     res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.from)};
     criterions.push(res);
   }
+
+  /*if (searchRequest.activityMediane.to){
+    let res = {};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = { $lte : {$divide : [{ $add: ["$identity.datesOfActivity.meta.startDate.date", "$identity.datesOfActivity.meta.endDate.date"]}, 2]}};
+    criterions.push(res);
+
+  }
+
+  if (searchRequest.activityMediane.from){
+    let res ={};
+    // (startDate + endDate) / 2
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = { $gte : {$divide : [{ $add: ["$identity.datesOfActivity.meta.startDate.date", "$identity.datesOfActivity.meta.endDate.date"]}, 2]}};
+    criterions.push(res);
+
+  }*/
 
   if (searchRequest.activity.to){
     let res={};
@@ -193,7 +228,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
   if(searchRequest.prosopography){
     let pCrit = [];
     for(let i in searchRequest.prosopography){
-     // console.log(searchRequest.prosopography[i]);
+      // console.log(searchRequest.prosopography[i]);
       let crit = searchRequest.prosopography[i];
       pCrit.push(generateSeachClause(crit.section+'.'+crit.subSection+'.value',crit.value,crit.matchType));
     }
@@ -233,18 +268,18 @@ function generateSeachClause(field, value, matchType){
 async function getCurrentReference(){
   //FIXME : add controls
   return db
-    .get()
-    .collection('prosopography_seq')
-    .findOne()
+      .get()
+      .collection('prosopography_seq')
+      .findOne()
 }
 
 
 async function updateCurrentReference(){
   //FIXME : add controls
   return db
-    .get()
-    .collection('prosopography_seq')
-    .update({},{$inc : {'seq':1}})
+      .get()
+      .collection('prosopography_seq')
+      .update({},{$inc : {'seq':1}})
 }
 
 async function backupAll(){

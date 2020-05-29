@@ -185,52 +185,53 @@ Vue.component('search-criterion', {
         }
     },
     template: `<div class="form-inline">
-                <div class="form-group">
-                    <select v-model="prosopography.operator">
-                        <option v-for="option in operatorList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.section" @change="handleChapterChange()">
-                        <option v-for="option in chapterList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.subSection">
-                        <option v-for="option in subChapterList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.matchType">
-                        <option v-for="option in searchOptionList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" v-model="prosopography.value">
-                </div>
-                <div>
-                    <button v-if="rows > 1" v-on:click="$emit('remove-row')">
-                        <i class="fas fa-minus-circle"></i>
-                    </button>
-                    <button v-on:click="$emit('add-row')">
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
+        <div class="form-group">
+            <select v-model="prosopography.operator">
+                <option v-for="option in operatorList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.section" @change="handleChapterChange()">
+                <option v-for="option in chapterList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.subSection">
+                <option v-for="option in subChapterList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.matchType">
+                <option v-for="option in searchOptionList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" v-model="prosopography.value">
+        </div>
+        <div>
+            <button v-if="rows > 1" v-on:click="$emit('remove-row')">
+                <i class="fas fa-minus-circle"></i>
+            </button>
+            <button v-on:click="$emit('add-row')">
+                <i class="fas fa-plus-circle"></i>
+            </button>
 
-                </div>
+        </div>
 
-            </div>`
+    </div>`
 })
+
 
 
 Vue.component('prosopography-row', {
     props: ['record'],
     template: `<tr>
-                <th scope="row">{{record.reference}}</th>
-                <td>{{record.identity.name.value}}</td>
-                <td>{{record.identity.status.value}}</td>
-                <td>{{record.identity.shortDescription.value}}</td>
-                <td><a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a></td>
-            </tr>`
+        <th scope="row">{{record.reference}}</th>
+        <td>{{record.identity.name.value}}</td>
+        <td>{{record.identity.status.value}}</td>
+        <td>{{record.identity.shortDescription.value}}</td>
+        <td><a class="btn btn-primary" :href="'.'+record.link">voir la fiche </a></td>
+    </tr>`
 })
 
 var messages = null;
@@ -243,7 +244,7 @@ fetch(resourceUrl+'/messages.json')
     })
     .then(function(){
 
-        var app = new Vue({
+        new Vue({
             el: '#app',
             data: {
                 searchRequest: {
@@ -271,6 +272,7 @@ fetch(resourceUrl+'/messages.json')
                 disciplineList:disciplines,
                 gradeList:grades,
                 results: null,
+                rows: [],
                 dataTable: null,
 
             },
@@ -297,25 +299,51 @@ fetch(resourceUrl+'/messages.json')
                     }
                 },
                 search: async function(){
-
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
                         'method':'POST',
                         'headers':{
                             'Content-Type':'application/json',
                         },
                         'body': JSON.stringify(this.searchRequest),
-                    });
+                    });/*.then(res => {
+                        this.results = res.json();
+                        //this.initDatatable()
+                    });*/
 
-                    this.results = await result.json();
+
+                    this.results = await result.json()
+                   /* if (this.searchRequest.activityMediane.from){
+                        this.results.forEach( item => {
+                            console.log(item);
+                        })
+                    }*/
                     console.log(this.results);
-                }
-            },
-            // mounted() {
-            //     let users = [];
-            //
-            //     this.dataTable = $('#resultTable').DataTable({});
-            // }
-        });
+                    /*await this.$nextTick(function () {
+                       $("resultTable2").DataTable({
+                           dom:'Bfrtip',
+                           buttons: buttons,
+                           language: lang
+                       });
+
+                        console.log("ok");
+                   });*/
+
+
+                },
+                /* mounted() {
+                     let fiche = [];
+
+                     this.dataTable = $('#resultTable2').DataTable({});
+                 }*/
+                /* watch : {
+                     results: {
+                     }
+                 }*/
+
+            }
+
+        })
+
     });
 
 

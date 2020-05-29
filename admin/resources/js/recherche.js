@@ -63,4 +63,10 @@ $(document).ready(function() {
       buttons: buttons,
       language: lang
   });
+
+  $("#resultTable2").DataTable({
+      dom: 'Bfrtip',
+      buttons : buttons,
+      language: lang
+  });
 } );
