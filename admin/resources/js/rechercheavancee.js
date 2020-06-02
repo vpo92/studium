@@ -311,17 +311,10 @@ fetch(resourceUrl+'/messages.json')
                             'Content-Type':'application/json',
                         },
                         'body': JSON.stringify(this.searchRequest),
-                    });/*.then(res => {
-                        this.results = res.json();
-                        //this.initDatatable()
-                    });*/
+                    });
 
                     this.results = await result.json()
-                   /* if (this.searchRequest.activityMediane.from){
-                        this.results.forEach( item => {
-                            console.log(item);
-                        })
-                    }*/
+
                     this.$nextTick(function () {
                         $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
@@ -331,34 +324,9 @@ fetch(resourceUrl+'/messages.json')
                     });
 
                     console.log(this.results);
-                    /*await this.$nextTick(function () {
-                       $("resultTable2").DataTable({
-                           dom:'Bfrtip',
-                           buttons: buttons,
-                           language: lang
-                       });
-
-                        console.log("ok");
-                   });*/
-
-
                 },
-
-
-                /*mounted() {
-                     let fiche = [];
-
-                     this.dataTable = $('#resultTable2').DataTable({});
-                 }*/
-                /* watch : {
-                     results: {
-                     }
-                 }*/
-
             }
-
         })
-
     });
 
 
