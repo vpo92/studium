@@ -301,6 +301,8 @@ fetch(resourceUrl+'/messages.json')
                 },
                 search: async function(){
 
+                    this.dataTable = $('#resultTable2').DataTable();
+                    this.dataTable.destroy();
 
 
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
@@ -313,13 +315,6 @@ fetch(resourceUrl+'/messages.json')
                         this.results = res.json();
                         //this.initDatatable()
                     });*/
-                    this.$nextTick(function () {
-                        $("resultTable2").DataTable({
-                            dom: 'Bfrtip',
-                            buttons: buttons,
-                            language: lang
-                        });
-                    });
 
                     this.results = await result.json()
                    /* if (this.searchRequest.activityMediane.from){
@@ -327,6 +322,14 @@ fetch(resourceUrl+'/messages.json')
                             console.log(item);
                         })
                     }*/
+                    this.$nextTick(function () {
+                        $("#resultTable2").DataTable({
+                            dom: 'Bfrtip',
+                            buttons: buttons,
+                            language: lang
+                        });
+                    });
+
                     console.log(this.results);
                     /*await this.$nextTick(function () {
                        $("resultTable2").DataTable({

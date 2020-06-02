@@ -58,16 +58,10 @@ var lang = {
 };
 
 $(document).ready(function() {
-  $("#resultTable").DataTable({
-      dom: 'Bfrtip',
-      buttons: buttons,
-      language: lang
-  });
+    $("#resultTable").DataTable({
+        dom: 'Bfrtip',
+        buttons: buttons,
+        language: lang
+    });
 
-  $("#resultTable2").DataTable({
-      dom: 'Bfrtip',
-      buttons : buttons,
-      language: lang
-  });
-
-} );
+});

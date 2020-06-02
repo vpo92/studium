@@ -183,8 +183,8 @@ $pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.
 $pageScripts .='<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>';
 $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>';
 
+$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
-$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 
  ?>
