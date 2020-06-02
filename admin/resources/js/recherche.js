@@ -69,4 +69,5 @@ $(document).ready(function() {
       buttons : buttons,
       language: lang
   });
+
 } );

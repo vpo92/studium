@@ -13,17 +13,17 @@ const grades = [
     {code:"ALL",label:"Tous"},
     {code:"MAGIS",label:"Magister"},
     {code:"DR",label:"Docteur"},
-    {code:"MAITRE",label:"Maître"},
+    {code:"MA",label:"Maître"},
     {code:"LIC",label:"Licencié"},
     {code:"BAC",label:"Bachelier"},
-    {code:"ETU",label:"Étudiant"},
+    {code:"TUD",label:"Étudiant"},
 ];
 
 const status = [
     {code:"ALL",label:"Tous"},
-    {code:"MAITRE",label:"Maître"},
-    {code:"GRADUE",label:"Gradué"},
-    {code:"ETU",label:"Étudiant"},
+    {code:"MA",label:"Maître"},
+    {code:"GRAD",label:"Gradué"},
+    {code:"TUD",label:"Étudiant"},
     {code:"SUP",label:"Suppôt"},
     {code:"EXT",label:"Extérieur"},
     {code:"INC",label:"Incertain"},
@@ -259,6 +259,7 @@ fetch(resourceUrl+'/messages.json')
                     status: null,
                     grade: null,
                     discipline: null,
+                    name: null,
                     prosopography: [{
                         section: null,
                         subSection: null,
@@ -299,6 +300,9 @@ fetch(resourceUrl+'/messages.json')
                     }
                 },
                 search: async function(){
+
+
+
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
                         'method':'POST',
                         'headers':{
@@ -309,7 +313,13 @@ fetch(resourceUrl+'/messages.json')
                         this.results = res.json();
                         //this.initDatatable()
                     });*/
-
+                    this.$nextTick(function () {
+                        $("resultTable2").DataTable({
+                            dom: 'Bfrtip',
+                            buttons: buttons,
+                            language: lang
+                        });
+                    });
 
                     this.results = await result.json()
                    /* if (this.searchRequest.activityMediane.from){
@@ -330,7 +340,9 @@ fetch(resourceUrl+'/messages.json')
 
 
                 },
-                /* mounted() {
+
+
+                /*mounted() {
                      let fiche = [];
 
                      this.dataTable = $('#resultTable2').DataTable({});

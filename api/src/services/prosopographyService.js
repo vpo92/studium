@@ -121,7 +121,7 @@ async function remove(reference: string): Promise<Any> {
 }
 
 async function convertFromText(text: string): Promise<Prosopography> {
-  var s = new Readable();
+  let s = new Readable();
   s.push(text);
   s.push(null);
   let result = [];
@@ -158,13 +158,14 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       .toArray()
       .then(data => {
 
+        if (!searchRequest.activityMediane.to && !searchRequest.activityMediane.from){
+          return data;
+        }
+
         return data.filter(function (item) {
           let startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
           let endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
           let medianeDate = (startDate + endDate) / 2;
-          if (medianeDate<1300){
-            console.log(medianeDate);
-          }
 
 
           if (searchRequest.activityMediane.from && searchRequest.activityMediane.to) {
@@ -178,7 +179,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       });
 }
 
-function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
+function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
   /*
@@ -193,25 +194,15 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
     criterions.push(res);
   }
 
-  /*if (searchRequest.activityMediane.to){
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = { $lte : {$divide : [{ $add: ["$identity.datesOfActivity.meta.startDate.date", "$identity.datesOfActivity.meta.endDate.date"]}, 2]}};
-    criterions.push(res);
-
-  }
-
-  if (searchRequest.activityMediane.from){
-    let res ={};
-    // (startDate + endDate) / 2
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = { $gte : {$divide : [{ $add: ["$identity.datesOfActivity.meta.startDate.date", "$identity.datesOfActivity.meta.endDate.date"]}, 2]}};
-    criterions.push(res);
-
-  }*/
 
   if (searchRequest.activity.to){
     let res={};
     res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.to) };
     criterions.push(res);
+  }
+
+  if (searchRequest.name){
+    criterions.push(generateSeachClause('identity.name.value', searchRequest.name, 'CONTAINS'));
   }
 
   if(searchRequest.grade && searchRequest.grade!=="ALL"){
@@ -232,7 +223,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
       let crit = searchRequest.prosopography[i];
       pCrit.push(generateSeachClause(crit.section+'.'+crit.subSection+'.value',crit.value,crit.matchType));
     }
-    if(pCrit.length == 1){
+    if(pCrit.length === 1){
       criterions.push(pCrit[0]);
     }else{
       criterions.push({"$and":pCrit});
@@ -243,7 +234,7 @@ function convertSearchRequestToMongoRequest(searchRequest : SearchRequest): any{
     return criterions[0];
   }else{
     return {
-      "$and":criterions
+      "$and":criterions,
     }
   }
 }
@@ -252,7 +243,7 @@ function generateSeachClause(field, value, matchType){
   let res = {};
   switch(matchType){
     case 'EQUALS':
-      res[field] = new RegExp('^'+value+'$',"i");;
+      res[field] = new RegExp('^'+value+'$',"i");
       break;
     case 'STARTS':
       res[field] = new RegExp('^'+value,"i");

@@ -71,6 +71,13 @@
         <br>
         <div id="app">
 
+            <h5>Nom</h5>
+            <div class="form-inline">
+                <div class="form-group">
+                    <input type="text" v-model="searchRequest.name">
+                </div>
+            </div>
+
             <h5>Activité</h5>
             <div class="form-inline">
                 <div class="form-group">
@@ -134,6 +141,7 @@
                             <th scope="col">Nom</th>
                             <th scope="col">Statut</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Date (TEST)</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -143,6 +151,7 @@
                                 <td>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                                 <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                                 <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
+                                <td>{{record.identity.datesOfActivity[0].meta.dates[0].startDate.date}}-{{record.identity.datesOfActivity[0].meta.dates[0].endDate.date}}</td>
                                 <td>
                                     <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
                                     <button class="btn btn-secondary">Télecharger la fiche</button>
