@@ -35,11 +35,11 @@ describe('Parser', () => {
     });
     it('should detect cote among string when institutions is present', () => {
       // given
-      const line = "<22> MS. *Paris, |BM #25";
+      const line = "<<c>> MS. *Paris, |BnF lat. #14927, f.164-175 ;";
       // when
       const cotes = parseLine(line);
       // expected
-      const expected = {"data": {"isOpus": false, "name": "philosophyExtended", "value": "MS. *Paris, |BM #25"}, "meta": {"dates": null, "institutions": ["BM"], "cotes": ["25"],"isComment": false, "isLink": false, "names": null, "places": ["Paris,"], "titles": null}, "typeOfLine": "DATA"};
+      const expected = {"data": {"isOpus": false, "name": "manuscrits", "value": "MS. *Paris, |BnF lat. #14927, f.164-175 ;"}, "meta": {"cotes": ["14927,"], "dates": null, "institutions": ["BnF"], "isComment": false, "isLink": false, "names": null, "places": ["Paris,"], "titles": null}, "typeOfLine": "OPUSDATA"};
       // then
       expect(cotes).toEqual(expected);
     });

@@ -330,6 +330,7 @@ function handleOpusFirstLine(record,parsingContext,raw,saveRecord){
         places: detectPlaces(raw.data.value),
         titles: detectTitles(raw.data.value),
         institutions: detectInstitutions(raw.data.value),
+        cotes: detectCotes(raw.data.value),
         isComment: isComment(raw.data.value),
         isLink: isLink(raw.data.value),
       },

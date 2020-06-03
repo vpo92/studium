@@ -5,6 +5,7 @@ import {detectNames} from './util/name.parser';
 import {detectPlaces} from './util/place.parser';
 import {detectTitles} from './util/title.parser';
 import {detectInstitutions} from './util/institution.parser';
+import {detectCotes} from './util/cote.parser';
 import {isComment} from './util/comment.parser';
 import {isLink} from './util/comment.parser';
 import {getDataLineNameByCode, getOpusLineNameByCode,getVersionLineNameByCode} from './util/para.parser';
@@ -119,6 +120,7 @@ function getMeta(data){
         places: detectPlaces(data),
         titles: detectTitles(data),
         institutions: detectInstitutions(data),
+        cotes: detectCotes(data),
         isComment: isComment(data),
         isLink: isLink(data),
     };
