@@ -39,5 +39,4 @@ describe('MS Parser', () => {
       expect(ms).toEqual(exptected);
     });
   });
-
 });

@@ -198,6 +198,7 @@ export function finalyzeOpus(opus: any){
     let s = new String(opus.title[0].value);
     opus.mainTitle = s.replace(/[()&]/g, '');
   }
+  /** replace by classical meta data
   if(opus && opus.manuscrits && opus.manuscrits.length > 0){
     for(let i = 0; i < opus.manuscrits.length; i++){
       let d = parseMS(opus.manuscrits[i].value);
@@ -206,7 +207,7 @@ export function finalyzeOpus(opus: any){
       }
 
     }
-  }
+  }*/
   return opus;
 }
 

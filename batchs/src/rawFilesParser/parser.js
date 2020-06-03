@@ -5,6 +5,7 @@ import {detectNames} from './util/name.parser';
 import {detectPlaces} from './util/place.parser';
 import {detectTitles} from './util/title.parser';
 import {detectInstitutions} from './util/institution.parser';
+import {detectCotes} from './util/cote.parser';
 import {isComment} from './util/comment.parser';
 import {isLink} from './util/comment.parser';
 import {finalyseProsopography,finalyzeOpus} from './util/special.prop.parser';
@@ -234,7 +235,10 @@ function detectParagraphe(line){
   return null;
 }
 
-function parseLine(line){
+export function parseLine(line){
+  if(line === null || line === ""){
+    return {typeOfLine:'IGNORE'};
+  }
   let raw = {};
   let typeOfLine = detectTypeOfLine(line);
   raw.typeOfLine = typeOfLine;
@@ -249,6 +253,7 @@ function parseLine(line){
         places: detectPlaces(para.value),
         titles: detectTitles(para.value),
         institutions: detectInstitutions(para.value),
+        cotes: detectCotes(para.value),
         isComment: isComment(para.value),
         isLink: isLink(para.value),
       };
