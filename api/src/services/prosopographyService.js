@@ -154,28 +154,54 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       )
 
       .skip(pg.skip)
-      .limit(pg.limit)
+      .limit(0)
       .toArray()
       .then(data => {
 
-        if (!searchRequest.activityMediane.to && !searchRequest.activityMediane.from){
-          return data;
-        }
-
         return data.filter(function (item) {
-          let startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
-          let endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
-          let medianeDate = (startDate + endDate) / 2;
 
+          // MAYBE TO REPLACE; THIS PART OF CODE IS BECAUSE OF HETEROGENEOUS DATA
+          if (item.identity.datesOfActivity === undefined || item.identity.datesOfActivity[0].meta.dates === undefined){
+            console.log("undefined");
+            return item;
+          }
+
+          if (item.identity.datesOfActivity[0].meta.dates.length === 0){
+            console.log("not in datesActivity[0]");
+            console.log(item._id);
+            if (item.identity.datesOfActivity[1]===undefined || item.identity.datesOfActivity[1].meta.dates ===null ){
+              return item;
+            }
+            item.startDate = item.identity.datesOfActivity[1].meta.dates[0].startDate.date;
+            item.endDate = item.identity.datesOfActivity[1].meta.dates[0].endDate.date;
+            item.mediane = (item.startDate + item.endDate) / 2;
+          } else {
+            if(item.identity.datesOfActivity[0].meta.dates[0].date !== undefined ){
+              console.log("in date simple");
+              item.mediane = (item.startDate = (item.endDate = item.identity.datesOfActivity[0].meta.dates.date));
+            } else {
+              console.log("ok");
+              item.startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
+              if (item.identity.datesOfActivity[0].meta.dates[0].endDate === null){
+                return item;
+              }
+              item.endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
+              item.mediane = (item.startDate + item.endDate) / 2;
+            }
+          }
+
+          if (!searchRequest.activityMediane.to && !searchRequest.activityMediane.from){
+            return item;
+          }
 
           if (searchRequest.activityMediane.from && searchRequest.activityMediane.to) {
-            return medianeDate >= searchRequest.activityMediane.from && medianeDate <= searchRequest.activityMediane.to;
+            return item.mediane >= searchRequest.activityMediane.from && item.mediane <= searchRequest.activityMediane.to;
           } else if (searchRequest.activityMediane.from) {
-            return medianeDate >= searchRequest.activityMediane.from;
+            return item.mediane >= searchRequest.activityMediane.from;
           } else {
-            return medianeDate <= searchRequest.activityMediane.to;
+            return item.mediane <= searchRequest.activityMediane.to;
           }
-        })
+        });
       });
 }
 
@@ -187,6 +213,12 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
       criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
     }*/
 
+  if (searchRequest.activityMediane.from || searchRequest.activityMediane.to){
+    let res = {};
+    res['$or'] = [{'identity.datesOfActivity.meta.dates.date':{$exists:true}},{'identity.datesOfActivity.meta.dates.startDate':{$exists: true}}];
+    res['identity.datesOfActivity.meta.dates.endDate.date']= {$ne:null};
+    criterions.push(res);
+  }
 
   if (searchRequest.activity.from){
     let res={};
@@ -211,10 +243,10 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   if(searchRequest.status && searchRequest.status!=="ALL"){
     criterions.push(generateSeachClause('identity.status.value',searchRequest.status,'CONTAINS'));
   }
-  /*if(searchRequest.discipline){
+  if(searchRequest.discipline && searchRequest.discipline !== "ALL"){
     criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
   }
-*/
+
   //CRITERIONS
   if(searchRequest.prosopography){
     let pCrit = [];

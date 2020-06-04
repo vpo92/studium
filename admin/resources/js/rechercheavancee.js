@@ -5,7 +5,7 @@ const disciplines = [
     {code:"DROIT",label:"Droit"},
     {code:"DROIT_CANON",label:"Droit canon"},
     {code:"DROIT_CIVIL",label:"Droit civil"},
-    {code:"MEDECINE",label:"Médecine"},
+    {code:"DECINE",label:"Médecine"},
     {code:"MUSIQUE",label:"Musique"},
 ];
 
@@ -234,6 +234,11 @@ Vue.component('prosopography-row', {
     </tr>`
 })
 
+
+
+
+
+
 var messages = null;
 fetch(resourceUrl+'/messages.json')
     .then(function(response) { return response.json(); })
@@ -315,6 +320,8 @@ fetch(resourceUrl+'/messages.json')
 
                     this.results = await result.json()
 
+
+
                     this.$nextTick(function () {
                         $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
@@ -328,5 +335,4 @@ fetch(resourceUrl+'/messages.json')
             }
         })
     });
-
 

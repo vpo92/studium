@@ -142,16 +142,19 @@
                             <th scope="col">Statut</th>
                             <th scope="col">Description</th>
                             <th scope="col">Date (TEST)</th>
+                            <th scope="col">Mediane</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr v-for="record in results" >
-                                <th scope="row">{{record.reference}}</th>
+                                <td scope="row">{{record.reference}}</td>
                                 <td>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                                 <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                                 <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                                <td>{{record.identity.datesOfActivity[0].meta.dates[0].startDate.date}}-{{record.identity.datesOfActivity[0].meta.dates[0].endDate.date}}</td>
+                                <td>{{record.startDate?record.startDate:'?'}}-{{record.endDate?record.endDate:'?'}}</td>
+                                <td>{{record.mediane?record.mediane:"-" }}</td>
+
                                 <td>
                                     <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
                                     <button class="btn btn-secondary">Télecharger la fiche</button>
@@ -182,6 +185,8 @@ $pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.
 $pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>';
 $pageScripts .='<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>';
 $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>';
+$pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
+$pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 

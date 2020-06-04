@@ -216,3 +216,14 @@ li.app-value{
      color:black;
      font-size: 0.8em;
  }
+
+/*
+            BUILT-IN BUTTON COLVIS BUTTON DATATABLE (VISIBILITY COLUMNS)
+ */
+
+button.dt-button.active {
+    margin-top: 40px;
+    background: #777777;
+    color: white;
+    border-radius: 2px;
+}
