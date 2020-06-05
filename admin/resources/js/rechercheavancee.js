@@ -236,9 +236,6 @@ Vue.component('prosopography-row', {
 
 
 
-
-
-
 var messages = null;
 fetch(resourceUrl+'/messages.json')
     .then(function(response) { return response.json(); })
@@ -306,6 +303,11 @@ fetch(resourceUrl+'/messages.json')
                 },
                 search: async function(){
 
+                    if (this.checkFields()){
+                        alert("Autant telecharger la BDD");
+                        return;
+                    }
+
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
 
@@ -323,15 +325,40 @@ fetch(resourceUrl+'/messages.json')
 
 
                     this.$nextTick(function () {
-                        $("#resultTable2").DataTable({
+                        this.dataTable = $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
                             buttons: buttons,
                             language: lang
                         });
+
+
                     });
+
+
 
                     console.log(this.results);
                 },
+                checkFields: function () {
+
+                    let empty = true;
+
+                    console.log(this.searchRequest);
+
+                    if (this.searchRequest.name==null && this.searchRequest.activityMediane.to==null &&
+                        this.searchRequest.activityMediane.from==null && this.searchRequest.grade==null &&
+                        this.searchRequest.activity.to==null && this.searchRequest.discipline==null &&
+                        this.searchRequest.status==null && this.searchRequest.activity.from==null){
+                        for (let i in this.searchRequest.prosopography) {
+                            let prosec = this.searchRequest.prosopography[i];
+                            if (prosec.section != null){
+                                empty = false;
+                            }
+                        }
+                        } else {
+                        empty = false
+                    }
+                    return empty;
+                }
             }
         })
     });

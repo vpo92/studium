@@ -162,31 +162,29 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 
           // MAYBE TO REPLACE; THIS PART OF CODE IS BECAUSE OF HETEROGENEOUS DATA
           if (item.identity.datesOfActivity === undefined || item.identity.datesOfActivity[0].meta.dates === undefined){
-            console.log("undefined");
             return item;
           }
 
           if (item.identity.datesOfActivity[0].meta.dates.length === 0){
-            console.log("not in datesActivity[0]");
-            console.log(item._id);
+            //console.log("not in datesActivity[0]");
             if (item.identity.datesOfActivity[1]===undefined || item.identity.datesOfActivity[1].meta.dates ===null ){
               return item;
             }
             item.startDate = item.identity.datesOfActivity[1].meta.dates[0].startDate.date;
             item.endDate = item.identity.datesOfActivity[1].meta.dates[0].endDate.date;
-            item.mediane = (item.startDate + item.endDate) / 2;
+            item.mediane = Math.floor((item.startDate + item.endDate) / 2);
           } else {
             if(item.identity.datesOfActivity[0].meta.dates[0].date !== undefined ){
-              console.log("in date simple");
-              item.mediane = (item.startDate = (item.endDate = item.identity.datesOfActivity[0].meta.dates.date));
+              //console.log("in date simple");
+              item.mediane = Math.floor(item.startDate = (item.endDate = item.identity.datesOfActivity[0].meta.dates.date));
             } else {
-              console.log("ok");
+              //console.log("ok");
               item.startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
               if (item.identity.datesOfActivity[0].meta.dates[0].endDate === null){
                 return item;
               }
               item.endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
-              item.mediane = (item.startDate + item.endDate) / 2;
+              item.mediane = Math.floor((item.startDate + item.endDate) / 2);
             }
           }
 
@@ -235,6 +233,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
 
   if (searchRequest.name){
     criterions.push(generateSeachClause('identity.name.value', searchRequest.name, 'CONTAINS'));
+    criterions.push(generateSeachClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' ))
   }
 
   if(searchRequest.grade && searchRequest.grade!=="ALL"){
@@ -250,26 +249,79 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   //CRITERIONS
   if(searchRequest.prosopography){
     let pCrit = [];
+    let pCritOr = [];
     for(let i in searchRequest.prosopography){
-      // console.log(searchRequest.prosopography[i]);
+
       let crit = searchRequest.prosopography[i];
-      pCrit.push(generateSeachClause(crit.section+'.'+crit.subSection+'.value',crit.value,crit.matchType));
+      let field = crit.section+'.'+crit.subSection+'.value';
+
+      // Si la valeur est null on veut que le champs existe sinon on traite le critère
+      if (crit.value === null && crit.section!==null){
+        let res = {};
+        if (crit.subSection){
+          res[crit.section+"."+crit.subSection] = {$exists : true};
+        } else {
+          res[crit.section] = {$exists : true};
+        }
+        criterions.push(res);
+
+      } else if (crit.section !== null && crit.subSection !== null ) {
+
+        switch (crit.operator) {
+          case "OR" :
+            pCritOr.push(generateSeachClause(field,crit.value,crit.matchType));
+            break;
+          case "NOT" :
+            let res = {};
+            res[field] = {$not: generateRegexNotOperator(crit.value, crit.matchType)} ;
+            criterions.push(res);
+            break;
+          default :
+            pCrit.push(generateSeachClause(field,crit.value,crit.matchType));
+            break;
+        }
+
+      } else {
+        continue;
+      }
     }
-    if(pCrit.length === 1){
+    /*if(pCrit.length === 1){
       criterions.push(pCrit[0]);
-    }else{
+    }else{*/
+    if (pCritOr.length !== 0){
+      criterions.push({"$or": pCritOr});
+    }
+    if (pCrit.length !== 0){
       criterions.push({"$and":pCrit});
+    }
+    //}
+  }
+
+  if (criterions.length === 0){
+    return;
+  } else {
+    if(criterions.length === 1){
+      return criterions[0];
+    }else{
+      return {
+        "$and":criterions,
+      }
     }
   }
 
-  if(criterions.length === 1){
-    return criterions[0];
-  }else{
-    return {
-      "$and":criterions,
-    }
+}
+
+function generateRegexNotOperator(value, matchType){
+  switch (matchType) {
+    case 'EQUALS':
+      return new RegExp('^'+value+'$',"i");
+    case 'STARTS':
+      return new RegExp('^'+value,"i");
+    case 'CONTAINS':
+      return new RegExp(value,"i");
   }
 }
+
 
 function generateSeachClause(field, value, matchType){
   let res = {};

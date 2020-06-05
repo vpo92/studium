@@ -147,19 +147,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="record in results" >
+                            <tr v-for="record in results"  >
                                 <td scope="row">{{record.reference}}</td>
                                 <td>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                                 <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                                 <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
                                 <td>{{record.startDate?record.startDate:'?'}}-{{record.endDate?record.endDate:'?'}}</td>
                                 <td>{{record.mediane?record.mediane:"-" }}</td>
-
                                 <td>
                                     <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
-                                    <button class="btn btn-secondary">Télecharger la fiche</button>
+                                    <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
+                                    <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
+                                    <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
