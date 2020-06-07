@@ -5,7 +5,7 @@ const disciplines = [
     {code:"DROIT",label:"Droit"},
     {code:"DROIT_CANON",label:"Droit canon"},
     {code:"DROIT_CIVIL",label:"Droit civil"},
-    {code:"MEDECINE",label:"Médecine"},
+    {code:"DECINE",label:"Médecine"},
     {code:"MUSIQUE",label:"Musique"},
 ];
 
@@ -13,17 +13,17 @@ const grades = [
     {code:"ALL",label:"Tous"},
     {code:"MAGIS",label:"Magister"},
     {code:"DR",label:"Docteur"},
-    {code:"MAITRE",label:"Maître"},
+    {code:"MA",label:"Maître"},
     {code:"LIC",label:"Licencié"},
     {code:"BAC",label:"Bachelier"},
-    {code:"ETU",label:"Étudiant"},
+    {code:"TUD",label:"Étudiant"},
 ];
 
 const status = [
     {code:"ALL",label:"Tous"},
-    {code:"MAITRE",label:"Maître"},
-    {code:"GRADUE",label:"Gradué"},
-    {code:"ETU",label:"Étudiant"},
+    {code:"MA",label:"Maître"},
+    {code:"GRAD",label:"Gradué"},
+    {code:"TUD",label:"Étudiant"},
     {code:"SUP",label:"Suppôt"},
     {code:"EXT",label:"Extérieur"},
     {code:"INC",label:"Incertain"},
@@ -185,53 +185,56 @@ Vue.component('search-criterion', {
         }
     },
     template: `<div class="form-inline">
-                <div class="form-group">
-                    <select v-model="prosopography.operator">
-                        <option v-for="option in operatorList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.section" @change="handleChapterChange()">
-                        <option v-for="option in chapterList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.subSection">
-                        <option v-for="option in subChapterList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select v-model="prosopography.matchType">
-                        <option v-for="option in searchOptionList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" v-model="prosopography.value">
-                </div>
-                <div>
-                    <button v-if="rows > 1" v-on:click="$emit('remove-row')">
-                        <i class="fas fa-minus-circle"></i>
-                    </button>
-                    <button v-on:click="$emit('add-row')">
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
+        <div class="form-group">
+            <select v-model="prosopography.operator">
+                <option v-for="option in operatorList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.section" @change="handleChapterChange()">
+                <option v-for="option in chapterList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.subSection">
+                <option v-for="option in subChapterList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select v-model="prosopography.matchType">
+                <option v-for="option in searchOptionList" v-bind:value="option.code" >{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" v-model="prosopography.value">
+        </div>
+        <div>
+            <button v-if="rows > 1" v-on:click="$emit('remove-row')">
+                <i class="fas fa-minus-circle"></i>
+            </button>
+            <button v-on:click="$emit('add-row')">
+                <i class="fas fa-plus-circle"></i>
+            </button>
 
-                </div>
+        </div>
 
-            </div>`
+    </div>`
 })
+
 
 
 Vue.component('prosopography-row', {
     props: ['record'],
     template: `<tr>
-                <th scope="row">{{record.reference}}</th>
-                <td>{{record.identity.name.value}}</td>
-                <td>{{record.identity.status.value}}</td>
-                <td>{{record.identity.shortDescription.value}}</td>
-                <td><a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a></td>
-            </tr>`
+        <th scope="row">{{record.reference}}</th>
+        <td>{{record.identity.name.value}}</td>
+        <td>{{record.identity.status.value}}</td>
+        <td>{{record.identity.shortDescription.value}}</td>
+        <td><a class="btn btn-primary" :href="'.'+record.link">voir la fiche </a></td>
+    </tr>`
 })
+
+
 
 var messages = null;
 fetch(resourceUrl+'/messages.json')
@@ -243,7 +246,7 @@ fetch(resourceUrl+'/messages.json')
     })
     .then(function(){
 
-        var app = new Vue({
+        new Vue({
             el: '#app',
             data: {
                 searchRequest: {
@@ -258,6 +261,7 @@ fetch(resourceUrl+'/messages.json')
                     status: null,
                     grade: null,
                     discipline: null,
+                    name: null,
                     prosopography: [{
                         section: null,
                         subSection: null,
@@ -271,6 +275,7 @@ fetch(resourceUrl+'/messages.json')
                 disciplineList:disciplines,
                 gradeList:grades,
                 results: null,
+                rows: [],
                 dataTable: null,
 
             },
@@ -298,6 +303,15 @@ fetch(resourceUrl+'/messages.json')
                 },
                 search: async function(){
 
+                    if (this.checkFields()){
+                        alert("Autant telecharger la BDD");
+                        return;
+                    }
+
+                    this.dataTable = $('#resultTable2').DataTable();
+                    this.dataTable.destroy();
+
+
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
                         'method':'POST',
                         'headers':{
@@ -305,15 +319,47 @@ fetch(resourceUrl+'/messages.json')
                         },
                         'body': JSON.stringify(this.searchRequest),
                     });
-                    this.results = await result.json();
-                }
-            },
-            // mounted() {
-            //     let users = [];
-            //
-            //     this.dataTable = $('#resultTable').DataTable({});
-            // }
-        });
-    });
 
+                    this.results = await result.json()
+
+
+
+                    this.$nextTick(function () {
+                        this.dataTable = $("#resultTable2").DataTable({
+                            dom: 'Bfrtip',
+                            buttons: buttons,
+                            language: lang
+                        });
+
+
+                    });
+
+
+
+                    console.log(this.results);
+                },
+                checkFields: function () {
+
+                    let empty = true;
+
+                    console.log(this.searchRequest);
+
+                    if (this.searchRequest.name==null && this.searchRequest.activityMediane.to==null &&
+                        this.searchRequest.activityMediane.from==null && this.searchRequest.grade==null &&
+                        this.searchRequest.activity.to==null && this.searchRequest.discipline==null &&
+                        this.searchRequest.status==null && this.searchRequest.activity.from==null){
+                        for (let i in this.searchRequest.prosopography) {
+                            let prosec = this.searchRequest.prosopography[i];
+                            if (prosec.section != null){
+                                empty = false;
+                            }
+                        }
+                        } else {
+                        empty = false
+                    }
+                    return empty;
+                }
+            }
+        })
+    });
 
