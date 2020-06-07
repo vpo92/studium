@@ -5,7 +5,7 @@ import { help, version,runBackupAll,runReIndex,runImportFile } from './src/studi
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
-
+  
   let command = null;
   if (argv.version || argv.v) {
     command = 'version';
@@ -16,7 +16,10 @@ async function main(){
   }
 
   if(command || (argv && argv._ && argv._[0])){
-
+    if(!command){
+      command = argv._[0];
+      command = command.trim();
+    }
 
     let host = argv.host;
     let username = argv.username;
