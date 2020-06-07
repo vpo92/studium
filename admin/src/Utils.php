@@ -9,8 +9,7 @@ function getPublicAPIUrl(){
 }
 
 function getApplicationUrl(){
-    return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/studium/admin";
-    //return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin";
+    return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin";
 }
 
 function getResourcesWebDirectory(){
