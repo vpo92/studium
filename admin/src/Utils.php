@@ -1,15 +1,15 @@
 <?php
 
 function getAPIUrl(){
-    return isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000";
+    return isset($_SERVER["API_URL"])?$_SERVER["API_URL"]:(isset($_ENV["API_URL"] )?$_ENV["API_URL"]:"http://localhost:3000");
 }
 
 function getPublicAPIUrl(){
-    return isset($_ENV["PUBLIC_API_URL"] )?$_ENV["PUBLIC_API_URL"]:getAPIUrl();
+    return isset($_SERVER["PUBLIC_API_URL"])?$_SERVER["PUBLIC_API_URL"]:(isset($_ENV["PUBLIC_API_URL"] )?$_ENV["PUBLIC_API_URL"]:getAPIUrl());
 }
 
 function getApplicationUrl(){
-    return  isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin";
+    return  isset($_SERVER["APPLICATION_URL"])?$_SERVER["APPLICATION_URL"]:(isset($_ENV["APPLICATION_URL"])?$_ENV["APPLICATION_URL"]:"http://localhost/admin");
 }
 
 function getResourcesWebDirectory(){
