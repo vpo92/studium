@@ -36,6 +36,30 @@ router.get('/', async (req, res, next) => {
 });
 
 
+router.post('/seq/init', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: initCurrentReference`);
+  try {
+    const result = await service.getCurrentReference();
+    if(result){
+      logger.info(`${id}: getCurrentReference seq ${result.seq}`);
+      //res.send({'seq':result.seq});
+      res.status(400).json({'error':'KO','message' : `sequence already exists`});
+    }else{
+      await service.initReferenceSeq();
+      logger.info(`${id}: initCurrentReference OK`);
+      res.send({'message':'OK'});
+    }
+
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to get sequence - ${err}`
+    );
+    next(err);
+  }
+});
+
+
 router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: getCurrentReference`);

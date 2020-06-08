@@ -340,6 +340,13 @@ function generateSeachClause(field, value, matchType){
   return res;
 }
 
+async function initReferenceSeq(){
+  return db
+    .get()
+    .collection('prosopography_seq')
+    .insertOne({'seq':50000})
+}
+
 async function getCurrentReference(){
   //FIXME : add controls
   return db
@@ -381,4 +388,5 @@ module.exports = {
   getCurrentReference,
   updateCurrentReference,
   backupAll,
+  initReferenceSeq,
 };

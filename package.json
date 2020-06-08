@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Studium application",
   "scripts": {
-    "test": "yarn run jest",
+    "test": "yarn run jest --testPathIgnorePatterns web/src/**",
     "prettier-check": "prettier --list-different --single-quote --trailing-comma es5 --parser babylon",
     "prettier-debug": "prettier --debug-check --single-quote --trailing-comma es5 --parser babylon",
     "prettier-write": "prettier --write --single-quote --trailing-comma es5 --parser babylon",
