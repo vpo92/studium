@@ -61,12 +61,12 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
 }
 
 function indexSearch(letter: string): Promise<Prosopography[]> {
-  const regex = new RegExp(`^${letter}`, 'g');
+  const regex = new RegExp(`^${letter}`, 'gi');
   return db
       .get()
       .collection('prosopography')
       .find(
-          { 'identity.name.value': { $regex: regex, $options: '-i' } },
+          { 'identity.name.value': { $regex: regex } },
           { reference: true, link: true, title: true},
       )
       .limit(0)
