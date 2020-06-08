@@ -1,7 +1,7 @@
 //@flow
 
 import chalk from 'chalk';
-import { backupAll,saveRecord,createIndex,getAllIds, reIndex } from './rawFilesParser/RestService';
+import { backupAll,saveRecord,createIndex,getAllIds, reIndex, indexDB } from './rawFilesParser/RestService';
 import { processFile } from './rawFilesParser/simpleParser';
 
 //Backup
@@ -63,6 +63,17 @@ export function runReIndex(api,tk) {
   });
 }
 
+export function runIndexDB(api,tk) {
+  indexDB(api,tk)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch( (error) => {
+    console.log("ERROR");
+    console.log(error);
+  });
+}
+
 export function version(){
   const packageJson = require('../package.json');
   console.log("Studium CLI v"+packageJson.version);
@@ -77,6 +88,7 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.blue('backup')} ............. backup prosopography data
     ${chalk.blue('import-file')}......... import raw file in JPG format
     ${chalk.blue('re-index')}............ re-index all prosopography from raw
+    ${chalk.blue('update-db-index')}..... update mongodb text index for search
     ${chalk.blue('version')} ............ show package version
     ${chalk.blue('help')} ............... show help menu for a command
 

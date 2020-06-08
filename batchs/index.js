@@ -1,11 +1,11 @@
 #!/usr/bin/env babel-node
 
 import { auth } from './src/rawFilesParser/restService.js';
-import { help, version,runBackupAll,runReIndex,runImportFile } from './src/studium.cli.js';
+import { help, version,runBackupAll,runReIndex,runImportFile, runIndexDB } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
-  
+
   let command = null;
   if (argv.version || argv.v) {
     command = 'version';
@@ -50,6 +50,12 @@ async function main(){
           console.log("Studium CLI : backup");
           token = await auth(host,username,password);
           runBackupAll(host,token);
+          break;
+        }
+        case 'update-db-index':{
+          console.log("Studium CLI : update-db-index");
+          token = await auth(host,username,password);
+          runIndexDB(host,token);
           break;
         }
         case 'help':{

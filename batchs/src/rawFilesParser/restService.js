@@ -184,6 +184,36 @@ const auth = (apiUrl, username, password) => {
   });
 };
 
+
+const indexDB = (apiUrl, token) => {
+  console.log(`RestService.indexDB`);
+  let auth = `Bearer ${token}`;
+  let uri = `${apiUrl}/prosopography/indexDB`;
+  
+  return new Promise((resolve, reject) => {
+  request.post({
+      uri: uri,
+      headers: {'Authorization':auth},
+      method: 'POST',
+      json: true,
+      body: {},
+    }, function (error, response, body) {
+      if(error){
+        reject(error);
+      }else{
+        //console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+          //console.log(body) // Print the shortened url.
+          resolve(body);
+        }else{
+          reject("HTTP ERROR : "+response.statusCode);
+        }
+      }
+    });
+  });
+};
+
+
 export {
-  saveRecord, createIndex, getAllIds, reIndex, backupAll, auth
+  saveRecord, createIndex, getAllIds, reIndex, backupAll, auth, indexDB
 };

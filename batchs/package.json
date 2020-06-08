@@ -26,7 +26,9 @@
     "chalk": "^4.0.0",
     "minimist": "^1.2.5",
     "mongodb": "^2.2.33",
+    "node-gyp": "^7.0.0",
     "omit-empty": "^0.4.1",
-    "sleep": "^6.1.0"
+    "rebuild": "^0.1.2",
+    "sleep": "^6.2.0"
   }
 }
