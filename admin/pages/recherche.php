@@ -69,7 +69,7 @@
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <br>
-        <div id="app">
+        <div ref="formContainer" id="app">
 
             <h5>Nom</h5>
             <div class="form-inline">
@@ -78,35 +78,61 @@
                 </div>
             </div>
 
-            <h5>Activité</h5>
-            <div class="form-inline">
-                <div class="form-group">
-                    <label>Médianne d'activité entre</label>
-                    <input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100">
-                    <label> et </label>
-                    <input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100">
-                </div>
+            <fieldset>
+                <legend>Activité</legend>
+                <div>
+                    <div class="form-group">
+                        <label>Médianne d'activité entre : </label>
+                        <input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100">
+                        <label> et </label>
+                        <input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100">
+                    </div>
 
-                <div class="form-group">
-                    <label>Début d'activité :</label>
-                    <input type="number" v-model="searchRequest.activity.from" step="100">
-                </div>
+                    <div class="form-group">
+                        <label>Début d'activité entre : </label>
+                        <input type="number" v-model="searchRequest.activity.start.from" step="100">
+                        <label>et</label>
+                        <input type="number" v-model="searchRequest.activity.start.to" step="100">
+                    </div>
 
-                <div class="form-group">
-                    <label>Fin d'activité :</label>
-                    <input type="number" v-model="searchRequest.activity.to" step="100">
+
+                    <div class="form-group">
+                        <label>Fin d'activité entre : </label>
+                        <input type="number" v-model="searchRequest.activity.end.from" step="100">
+                        <label>et</label>
+                        <input type="number" v-model="searchRequest.activity.end.to" step="100">
+                    </div>
                 </div>
+            </fieldset>
+
+
+            <div class="form-group">
+                <fieldset>
+                    <legend>Statut</legend>
+                    <span style="margin: 20px" v-for="option in statusList">
+                        <input type="checkbox" v-bind:id="option.label" v-bind:value="option.code"
+                               v-model="searchRequest.status"/>
+                        <label v-bind:for="option.label">{{ option.label }}</label>
+                    </span>
+                </fieldset>
             </div>
+
+            <div class="form-group">
+                <fieldset>
+                    <legend>Sexe</legend>
+                    <span style="margin: 20px" v-for="option in sexeList">
+                        <input type="checkbox" v-bind:id="option.label" v-bind:value="option.code"
+                               v-model="searchRequest.sexe"/>
+                        <label v-bind:for="option.label">{{ option.label }}</label>
+                    </span>
+                </fieldset>
+            </div>
+
 
             <h5>Cursus</h5>
             <div class="form-inline">
 
-                <div class="form-group">
-                    <label>Statut :</label>
-                    <select v-model="searchRequest.status">
-                        <option v-for="option in statusList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
+
                 <div class="form-group">
                     <label>Grade obtenu :</label>
                     <select v-model="searchRequest.grade">
@@ -134,6 +160,7 @@
 
             <div id="resultArea" v-if="results != null">
                 <div v-if="results.length > 0">
+                    <h2>Nombre de résultats : {{results.length}}</h2>
                     <table class="table" id="resultTable2">
                         <thead>
                         <tr>
@@ -141,26 +168,35 @@
                             <th scope="col">Nom</th>
                             <th scope="col">Statut</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Date (TEST)</th>
+                            <th scope="col">Date d'activité</th>
                             <th scope="col">Mediane</th>
+                            <th scope="col">Dernier grade</th>
+                            <th scope="col">Nombre de grades</th>
+                            <th scope="col">Diocèse d'origine</th>
+                            <th scope="col">Dérnière actualisation</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="record in results"  >
-                                <td scope="row">{{record.reference}}</td>
-                                <td>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
-                                <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
-                                <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                                <td>{{record.startDate?record.startDate:'?'}}-{{record.endDate?record.endDate:'?'}}</td>
-                                <td>{{record.mediane?record.mediane:"-" }}</td>
-                                <td>
-                                    <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
-                                    <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
-                                    <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
-                                    <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
-                                </td>
-                            </tr>
+                        <tr v-for="record in results"  >
+                            <td scope="row">{{record.reference}}</td>
+                            <td v-if="record.auteur===true" style="color: red">{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
+                            <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
+                            <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
+                            <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
+                            <td>{{record.startDate?record.startDate:'?'}}-{{record.endDate?record.endDate:'?'}}</td>
+                            <td>{{record.mediane?record.mediane:"-" }}</td>
+                            <td></td>
+                            <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
+                            <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
+                            <td></td>
+                            <td>
+                                <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
+                                <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
+                                <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
+                                <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
+                            </td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -177,6 +213,7 @@
 
 
 <?php
+
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>';
 $pageScripts .='<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>';
 $pageScripts .='<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>';
@@ -190,8 +227,8 @@ $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></scr
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 
-$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
+$pageScripts .='<script type="module" src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 
- ?>
+?>
