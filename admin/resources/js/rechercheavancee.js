@@ -1,8 +1,3 @@
-/*import Vue from '../../../node_modules/vue';
-import Loading from '../../../node_modules/vue-loading-overlay';
-
-Vue.use(Loading);*/
-
 const disciplines = [
     {code:"ALL",label:"Tous"},
     {code:"ART",label:"Art"},
@@ -46,7 +41,9 @@ const addOption = [
 
 const searchOption = [
     {code: 'CONTAINS',label: 'contient'},
-    {code: 'EQUALS',label: 'égale à'}
+    {code: 'EQUALS',label: 'égale à'},
+    {code: 'STARTS', label: 'commence par'},
+    {code: 'END', label: 'termine par'}
 ];
 
 const prosopographyEntries = {
@@ -288,7 +285,7 @@ fetch(resourceUrl+'/messages.json')
                         value: null,
                     }]
                 },
-
+                searching: false,
                 statusList:status,
                 sexeList:sexe,
                 disciplineList:disciplines,
@@ -327,6 +324,7 @@ fetch(resourceUrl+'/messages.json')
                         return;
                     }
 
+                    this.searching = true;
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
 
@@ -342,6 +340,7 @@ fetch(resourceUrl+'/messages.json')
                     this.results = await result.json()
 
 
+                    this.searching = false;
 
                     this.$nextTick(function () {
                         this.dataTable = $("#resultTable2").DataTable({

@@ -8,6 +8,9 @@
     <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Recherche avancée</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphics" role="tab" aria-controls="profile" aria-selected="false">Recherche graphique</a>
+    </li>
 </ul>
 
 
@@ -155,10 +158,14 @@
                                   v-on:remove-row="handleRemoveProsopographyRow(item)"/>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" @click="search()">Rechercher</button>
+                <button v-if="!searching" type="submit" class="btn btn-primary" @click="search()">Rechercher</button>
+                <button v-else class="btn btn-secondary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Recherche en cours...
+                </button>
             </div>
 
-            <div id="resultArea" v-if="results != null">
+            <div id="resultArea" v-if="!searching && results != null">
                 <div v-if="results.length > 0">
                     <h2>Nombre de résultats : {{results.length}}</h2>
                     <table class="table" id="resultTable2">
@@ -205,9 +212,25 @@
                     Aucun résultat
                 </div>
             </div>
+            <div v-else-if="searching" class="text-center" >
+                <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-danger" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+            </div>
 
         </div>
 
+    </div>
+    <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab">
     </div>
 </div>
 

@@ -219,13 +219,15 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
+  let criterionsOr = [];
 
   //Permet d'enlever les fiches ne possèdant pas de date lors de la recherche par mediane
   if (searchRequest.activityMediane.from || searchRequest.activityMediane.to){
     let res = {};
-    res['$or'] = [{'identity.datesOfActivity.meta.dates.date':{$exists:true}},{'identity.datesOfActivity.meta.dates.startDate':{$exists: true}}];
+    res['identity.datesOfActivity.meta.dates.date'] = {$exists:true} ;
+    res['identity.datesOfActivity.meta.dates.startDate'] = {$exists: true};
     res['identity.datesOfActivity.meta.dates.endDate.date']= {$ne:null};
-    criterions.push(res);
+    criterionsOr.push(res);
   }
 
   if (searchRequest.activity.start.from && searchRequest.activity.start.to){
@@ -258,7 +260,8 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   }
 
   if (searchRequest.name){
-    criterions.push({$or : [generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'), generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' )]});
+    criterionsOr.push(generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'))
+    criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' ));
   }
 
   if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL'){
@@ -276,28 +279,30 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   }
 
   if(searchRequest.status.length !== 0){
-    let critStatus = [];
-    for (let i in searchRequest.status){
-      let status = searchRequest.status[i];
-      critStatus.push(generateSearchClause('identity.status.value',status,'CONTAINS'));
+    if (searchRequest.status.length>1){
+      for (let i in searchRequest.status){
+        let status = searchRequest.status[i];
+        criterionsOr.push(generateSearchClause('identity.status.value',status,'CONTAINS'));
+      }
+    } else {
+      criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
     }
-    criterions.push({$or: critStatus});
   }
 
   if(searchRequest.sexe.length !== 0){
-    let critSexe = [];
-    for (let i in searchRequest.sexe){
-      let sexe = searchRequest.sexe[i];
-      critSexe.push(generateSearchClause('identity.gender.value',sexe,'CONTAINS'));
+    if (searchRequest.sexe.length > 1){
+      for (let i in searchRequest.sexe){
+        let sexe = searchRequest.sexe[i];
+        criterionsOr.push(generateSearchClause('identity.gender.value',sexe,'CONTAINS'));
+      }
+    } else {
+      criterions.push(generateSearchClause('identity.gender.value', searchRequest.sexe[0], 'CONTAINS'));
     }
-    criterions.push({$or: critSexe});
   }
 
 
   //CRITERIONS
   if(searchRequest.prosopography){
-    let pCrit = [];
-    let pCritOr = [];
     for(let i in searchRequest.prosopography){
 
       let crit = searchRequest.prosopography[i];
@@ -317,7 +322,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
 
         switch (crit.operator) {
           case "OR" :
-            pCritOr.push(generateSearchClause(field,crit.value,crit.matchType));
+            criterionsOr.push(generateSearchClause(field,crit.value,crit.matchType));
             break;
           case "NOT" :
             let res = {};
@@ -325,7 +330,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
             criterions.push(res);
             break;
           default :
-            pCrit.push(generateSearchClause(field,crit.value,crit.matchType));
+            criterions.push(generateSearchClause(field,crit.value,crit.matchType));
             break;
         }
 
@@ -333,28 +338,21 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
         continue;
       }
     }
-    /*if(pCrit.length === 1){
-      criterions.push(pCrit[0]);
-    }else{*/
-
-    if (pCritOr.length !== 0){
-      criterions.push({"$or": pCritOr});
-    }
-    if (pCrit.length !== 0){
-      criterions.push({"$and":pCrit});
-    }
-
-    //}
   }
 
-  if (criterions.length === 0){
+  if (criterions.length === 0 && criterionsOr === 0){
     return;
   } else {
-    if(criterions.length === 1){
+    if(criterions.length === 1 && criterionsOr.length ===0){
       return criterions[0];
+    } else if (criterionsOr.length >= 1 && criterions.length === 0){
+      return {
+        "$or" : criterionsOr,
+      }
     }else{
       return {
         "$and":criterions,
+        "$or":criterionsOr,
       }
     }
   }
@@ -385,6 +383,8 @@ function generateSearchClause(field, value, matchType){
     case 'CONTAINS':
       res[field] = new RegExp(value,"i");
       break;
+    case 'END' :
+      res[field] = new RegExp('.*'+value+'$', "i");
   }
 
   return res;
