@@ -50,7 +50,7 @@
     "jsonwebtoken": "^8.4.0",
     "method-override": "^2.1.2",
     "mongodb": "^2.2.36",
-    "mongoose": "^5.3.15",
+    "mongoose": "^5.7.5",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "uuid": "^3.2.1",
