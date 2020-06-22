@@ -10,6 +10,7 @@ import {isComment} from './util/comment.parser';
 import {isLink} from './util/comment.parser';
 import {getDataLineNameByCode, getOpusLineNameByCode,getVersionLineNameByCode} from './util/para.parser';
 import {finalyzeProsopography,finalyzeOpus} from './util/special.prop.parser';
+import {addActivityMediane,addExtraData} from './util/extradata';
 
 /**
 Detecte le type de ligne en cours d'analyse
@@ -330,6 +331,9 @@ function endProso(ctx,saveRecord){
       //console.log(ctx.currentRecord);
       //FIXME : finalyse with comment and reference
       ctx.currentRecord = finalyzeProsopography(ctx.currentRecord);
+      //Add extra
+      let extras = [addActivityMediane];
+      ctx.currentRecord = addExtraData(ctx.currentRecord,extras);
     }catch(e){
       console.log("ERROR finalyzeProsopography:"+e);
     }

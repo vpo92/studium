@@ -223,7 +223,7 @@ function finalyzeTextualProduction(record){
         res[key] = {
           value:opusType[0].value,
           meta:opusType[0].meta,
-          opus:opusType[0].opus
+          opus:opusType[0].opus,
         }
       //Sinon on ignore
       }else{
@@ -239,7 +239,7 @@ function finalyzeTextualProduction(record){
   return record;
 }
 
-export function finalyzeProsopography(record: ProsopographyRow): Prosopography {
+export function finalyzeProsopography(record: ProsopographyRow): ?Prosopography{
   if(record.reference){
 
     record = finalizeReference(record);
@@ -260,8 +260,6 @@ export function finalyzeProsopography(record: ProsopographyRow): Prosopography {
         delete result[key]
       }
     });
-
-    //FIXME clean all meta
 
     return result;
   }

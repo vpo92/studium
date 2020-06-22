@@ -281,6 +281,7 @@ export type Prosopography = {
   library: any,
   title: string,
   link: string,
+  extras: any,
   raw: any,
 }
 
