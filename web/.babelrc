@@ -1,4 +1,0 @@
-{
-  "presets": ["env", "react", "babel-preset-flow"],
-  "plugins": ["transform-runtime", "transform-object-rest-spread", "transform-class-properties"]
-}
