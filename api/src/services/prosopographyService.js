@@ -150,7 +150,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       .collection('prosopography')
       .find(
           mongodbRequest,
-          {reference: true, identity: true, link: true, title: true}
+          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, textualProduction: true}
       )
 
       .skip(pg.skip)
@@ -165,6 +165,19 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
             return item;
           }
 
+          if (item.curriculum !== undefined && item.curriculum.grades !== undefined){
+            item.nbGrades = item.curriculum.grades.length;
+          }
+
+          if (item.origin !== undefined && item.origin.diocese !== undefined && item.origin.diocese[0].value){
+            item.originDiocese = item.origin.diocese[0].value;
+          }
+
+          if (item.textualProduction !== undefined){
+            item.auteur = true;
+          }
+
+          // ALL THIS IF BLOCK IS FOR LOOKING WHERE THE DATES ARE *
           if (item.identity.datesOfActivity[0].meta.dates.length === 0){
             //console.log("not in datesActivity[0]");
             if (item.identity.datesOfActivity[1]===undefined || item.identity.datesOfActivity[1].meta.dates ===null ){
@@ -206,50 +219,90 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
-  /*
-    if(searchRequest.name){
-      criterions.push(generateSeachClause('identity.name.value',searchRequest.name,'STARTS'));
-    }*/
+  let criterionsOr = [];
 
+  //Permet d'enlever les fiches ne possèdant pas de date lors de la recherche par mediane
   if (searchRequest.activityMediane.from || searchRequest.activityMediane.to){
     let res = {};
-    res['$or'] = [{'identity.datesOfActivity.meta.dates.date':{$exists:true}},{'identity.datesOfActivity.meta.dates.startDate':{$exists: true}}];
+    res['identity.datesOfActivity.meta.dates.date'] = {$exists:true} ;
+    res['identity.datesOfActivity.meta.dates.startDate'] = {$exists: true};
     res['identity.datesOfActivity.meta.dates.endDate.date']= {$ne:null};
+    criterionsOr.push(res);
+  }
+
+  if (searchRequest.activity.start.from && searchRequest.activity.start.to){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from), $lte: parseInt(searchRequest.activity.start.to)};
+    criterions.push(res);
+  } else if (searchRequest.activity.start.from){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from)};
+    criterions.push(res);
+  } else if (searchRequest.activity.start.to){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$lte: parseInt(searchRequest.activity.start.to)};
     criterions.push(res);
   }
 
-  if (searchRequest.activity.from){
+
+  if (searchRequest.activity.end.from && searchRequest.activity.end.to){
     let res={};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.from)};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to), $gte : parseInt(searchRequest.activity.end.from)};
     criterions.push(res);
-  }
-
-
-  if (searchRequest.activity.to){
+  } else if (searchRequest.activity.end.from){
     let res={};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.to) };
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$gte: parseInt(searchRequest.activity.end.from) };
+    criterions.push(res);
+  } else if (searchRequest.activity.end.to){
+    let res={};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to) };
     criterions.push(res);
   }
 
   if (searchRequest.name){
-    criterions.push(generateSeachClause('identity.name.value', searchRequest.name, 'CONTAINS'));
-    criterions.push(generateSeachClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' ))
+    criterionsOr.push(generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'))
+    criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' ));
   }
 
-  if(searchRequest.grade && searchRequest.grade!=="ALL"){
-    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.grade,'CONTAINS'));
+  if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL'){
+    criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.grade+".*"+searchRequest.discipline, 'CONTAINS'));
+  } else {
+
+    if(searchRequest.grade && searchRequest.grade!=="ALL"){
+      criterions.push(generateSearchClause('curriculum.grades.value',searchRequest.grade,'CONTAINS'));
+    }
+
+    if(searchRequest.discipline && searchRequest.discipline !== "ALL"){
+      criterions.push(generateSearchClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
+    }
+
   }
-  if(searchRequest.status && searchRequest.status!=="ALL"){
-    criterions.push(generateSeachClause('identity.status.value',searchRequest.status,'CONTAINS'));
+
+  if(searchRequest.status.length !== 0){
+    if (searchRequest.status.length>1){
+      for (let i in searchRequest.status){
+        let status = searchRequest.status[i];
+        criterionsOr.push(generateSearchClause('identity.status.value',status,'CONTAINS'));
+      }
+    } else {
+      criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
+    }
   }
-  if(searchRequest.discipline && searchRequest.discipline !== "ALL"){
-    criterions.push(generateSeachClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
+
+  if(searchRequest.sexe.length !== 0){
+    if (searchRequest.sexe.length > 1){
+      for (let i in searchRequest.sexe){
+        let sexe = searchRequest.sexe[i];
+        criterionsOr.push(generateSearchClause('identity.gender.value',sexe,'CONTAINS'));
+      }
+    } else {
+      criterions.push(generateSearchClause('identity.gender.value', searchRequest.sexe[0], 'CONTAINS'));
+    }
   }
+
 
   //CRITERIONS
   if(searchRequest.prosopography){
-    let pCrit = [];
-    let pCritOr = [];
     for(let i in searchRequest.prosopography){
 
       let crit = searchRequest.prosopography[i];
@@ -269,7 +322,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
 
         switch (crit.operator) {
           case "OR" :
-            pCritOr.push(generateSeachClause(field,crit.value,crit.matchType));
+            criterionsOr.push(generateSearchClause(field,crit.value,crit.matchType));
             break;
           case "NOT" :
             let res = {};
@@ -277,7 +330,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
             criterions.push(res);
             break;
           default :
-            pCrit.push(generateSeachClause(field,crit.value,crit.matchType));
+            criterions.push(generateSearchClause(field,crit.value,crit.matchType));
             break;
         }
 
@@ -285,26 +338,21 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
         continue;
       }
     }
-    /*if(pCrit.length === 1){
-      criterions.push(pCrit[0]);
-    }else{*/
-    if (pCritOr.length !== 0){
-      criterions.push({"$or": pCritOr});
-    }
-    if (pCrit.length !== 0){
-      criterions.push({"$and":pCrit});
-    }
-    //}
   }
 
-  if (criterions.length === 0){
+  if (criterions.length === 0 && criterionsOr === 0){
     return;
   } else {
-    if(criterions.length === 1){
+    if(criterions.length === 1 && criterionsOr.length ===0){
       return criterions[0];
+    } else if (criterionsOr.length >= 1 && criterions.length === 0){
+      return {
+        "$or" : criterionsOr,
+      }
     }else{
       return {
         "$and":criterions,
+        "$or":criterionsOr,
       }
     }
   }
@@ -323,7 +371,7 @@ function generateRegexNotOperator(value, matchType){
 }
 
 
-function generateSeachClause(field, value, matchType){
+function generateSearchClause(field, value, matchType){
   let res = {};
   switch(matchType){
     case 'EQUALS':
@@ -335,6 +383,8 @@ function generateSeachClause(field, value, matchType){
     case 'CONTAINS':
       res[field] = new RegExp(value,"i");
       break;
+    case 'END' :
+      res[field] = new RegExp('.*'+value+'$', "i");
   }
 
   return res;

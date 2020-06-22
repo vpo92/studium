@@ -1,4 +1,3 @@
-
 const disciplines = [
     {code:"ALL",label:"Tous"},
     {code:"ART",label:"Art"},
@@ -9,18 +8,22 @@ const disciplines = [
     {code:"MUSIQUE",label:"Musique"},
 ];
 
+const sexe = [
+    {code:"male", label:"Homme"},
+    {code:"female", label:"Femme"},
+]
+
 const grades = [
     {code:"ALL",label:"Tous"},
     {code:"MAGIS",label:"Magister"},
     {code:"DR",label:"Docteur"},
-    {code:"MA",label:"Maître"},
+    {code:"MA.TRE",label:"Maître"},
     {code:"LIC",label:"Licencié"},
     {code:"BAC",label:"Bachelier"},
     {code:"TUD",label:"Étudiant"},
 ];
 
 const status = [
-    {code:"ALL",label:"Tous"},
     {code:"MA",label:"Maître"},
     {code:"GRAD",label:"Gradué"},
     {code:"TUD",label:"Étudiant"},
@@ -38,7 +41,9 @@ const addOption = [
 
 const searchOption = [
     {code: 'CONTAINS',label: 'contient'},
-    {code: 'EQUALS',label: 'égale à'}
+    {code: 'EQUALS',label: 'égale à'},
+    {code: 'STARTS', label: 'commence par'},
+    {code: 'END', label: 'termine par'}
 ];
 
 const prosopographyEntries = {
@@ -141,6 +146,9 @@ const prosopographyEntries = {
 
 };
 
+
+
+
 const getChapter = () => {
     return Object.keys(prosopographyEntries).map( item => {
         console.log(messages[item]);
@@ -172,7 +180,7 @@ Vue.component('search-criterion', {
             chapterList: getChapter(),
             subChapterList: [],
             searchOptionList: searchOption,
-            selectedOperator:null,
+            selectedOperator: "AND",
             selectedChapter:null,
             selectedSubChapter:null,
             selectedSearchOption:null
@@ -187,7 +195,7 @@ Vue.component('search-criterion', {
     template: `<div class="form-inline">
         <div class="form-group">
             <select v-model="prosopography.operator">
-                <option v-for="option in operatorList" v-bind:value="option.code" >{{ option.label }}</option>
+                <option v-for="option in operatorList" v-bind:value="option.code" selected="selected">{{ option.label }}</option>
             </select>
         </div>
         <div class="form-group">
@@ -255,23 +263,31 @@ fetch(resourceUrl+'/messages.json')
                         to: null,
                     },
                     activity: {
-                        from: null,
-                        to: null,
+                        start: {
+                            from : null,
+                            to : null,
+                        },
+                        end: {
+                            from : null,
+                            to : null,
+                        }
                     },
-                    status: null,
+                    status: [],
+                    sexe: [],
                     grade: null,
                     discipline: null,
                     name: null,
                     prosopography: [{
                         section: null,
                         subSection: null,
-                        operator: null,
+                        operator: "AND",
                         matchType: null,
                         value: null,
                     }]
                 },
-
+                searching: false,
                 statusList:status,
+                sexeList:sexe,
                 disciplineList:disciplines,
                 gradeList:grades,
                 results: null,
@@ -287,7 +303,7 @@ fetch(resourceUrl+'/messages.json')
                     this.searchRequest.prosopography.push({
                         section: null,
                         subSection: null,
-                        operator: null,
+                        operator: "AND",
                         matchType: null,
                         value: null,
                     });
@@ -308,6 +324,7 @@ fetch(resourceUrl+'/messages.json')
                         return;
                     }
 
+                    this.searching = true;
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
 
@@ -323,6 +340,7 @@ fetch(resourceUrl+'/messages.json')
                     this.results = await result.json()
 
 
+                    this.searching = false;
 
                     this.$nextTick(function () {
                         this.dataTable = $("#resultTable2").DataTable({
@@ -346,8 +364,10 @@ fetch(resourceUrl+'/messages.json')
 
                     if (this.searchRequest.name==null && this.searchRequest.activityMediane.to==null &&
                         this.searchRequest.activityMediane.from==null && this.searchRequest.grade==null &&
-                        this.searchRequest.activity.to==null && this.searchRequest.discipline==null &&
-                        this.searchRequest.status==null && this.searchRequest.activity.from==null){
+                        this.searchRequest.activity.start.from==null && this.searchRequest.activity.start.to ==null
+                        && this.searchRequest.discipline==null && this.searchRequest.activity.end.from==null &&
+                        this.searchRequest.status.length===0 && this.searchRequest.activity.end.to==null &&
+                        this.searchRequest.sexe.length===0){
                         for (let i in this.searchRequest.prosopography) {
                             let prosec = this.searchRequest.prosopography[i];
                             if (prosec.section != null){
