@@ -1,0 +1,25 @@
+{
+  "name": "studium-cli",
+  "version": "0.0.1",
+  "description": "Studium cli application",
+  "bin": {
+    "studium": "index.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vpo92/studium.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "minimist": "^1.2.5",
+    "sleep": "^6.2.0"
+  }
+}
