@@ -13,11 +13,10 @@
     "url": "https://github.com/vpo92/studium.git"
   },
   "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "jest": "^23.6.0"
-  },
   "dependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-flow": "^7.10.1",
     "chalk": "^4.1.0",
     "minimist": "^1.2.5",
     "sleep": "^6.2.0"
