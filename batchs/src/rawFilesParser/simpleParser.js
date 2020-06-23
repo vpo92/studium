@@ -11,7 +11,7 @@ import {isLink} from './util/comment.parser';
 import {getDataLineNameByCode, getOpusLineNameByCode,getVersionLineNameByCode} from './util/para.parser';
 import {finalyzeProsopography,finalyzeOpus} from './util/special.prop.parser';
 import {addActivityMediane,addExtraData} from './util/extradata';
-
+import logger from '../util/logger';
 /**
 Detecte le type de ligne en cours d'analyse
 */
@@ -132,7 +132,7 @@ function getMeta(data){
     });
     return meta;
   }catch(error){
-    console.log(error);
+    logger.error(error);
   }
   return {};
 
@@ -335,7 +335,7 @@ function endProso(ctx,saveRecord){
       let extras = [addActivityMediane];
       ctx.currentRecord = addExtraData(ctx.currentRecord,extras);
     }catch(e){
-      console.log("ERROR finalyzeProsopography:"+e);
+      logger.info("ERROR finalyzeProsopography:"+e);
     }
     ctx.currentRecord.raw = ctx.currentRecordRaw;
     let saveR = ctx.currentRecord;
@@ -469,7 +469,7 @@ export function processStream(stream, saveRecord){
           }
         }catch(e){
 
-          console.log("ERROR PARSING LINE "+ctx.currentLine);
+          logger.error("ERROR PARSING LINE "+ctx.currentLine);
           //console.log(ctx);
           //console.log(e);
         }
@@ -486,16 +486,16 @@ export function processStream(stream, saveRecord){
           //Finalise la proso en cours
           ctx = endProso(ctx,saveRecord);
         }catch(e){
-          console.log("ERROR PARSING LINE "+ctx.currentLine);
+          logger.error("ERROR PARSING LINE "+ctx.currentLine);
           //console.log(ctx);
           //console.log(e.message);
         }
-        console.log("END OF FILE. Nb ELEM: "+ctx.recordCount);
+        logger.error("END OF FILE. Nb ELEM: "+ctx.recordCount);
         resolve();
       });
 
     }catch(e){
-      console.log("ERROR READING FILE");
+      logger.error("ERROR READING FILE");
       reject(e);
     }
   });

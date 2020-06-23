@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "mongodb": "^2.2.33",
-    "sleep": "^6.2.0"
+    "sleep": "^6.2.0",
+    "winston": "^3.3.2"
   }
 }

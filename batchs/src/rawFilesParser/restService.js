@@ -1,11 +1,12 @@
-import type { SaveRecordFunction } from './types';
+
 import request from 'request';
 import sleep from 'sleep';
+import logger from '../util/logger';
 
 
 const saveRecord =  (apiUrl, token, record) => {
   let uri = `${apiUrl}/prosopography`;
-  console.log(`RestService.saveRecord ref ${record.reference} to ${uri}`);
+  logger.info(`RestService.saveRecord ref ${record.reference} to ${uri}`);
 
   //Tempo : wait
   sleep.msleep(200);
@@ -37,7 +38,7 @@ const saveRecord =  (apiUrl, token, record) => {
 };
 
 const createIndex = (apiUrl, token) => {
-  console.log(`RestService.createIndex`);
+  logger.info(`RestService.createIndex`);
   let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography/indexDB`;
 
@@ -66,7 +67,7 @@ const createIndex = (apiUrl, token) => {
 
 
 const getAllIds = (apiUrl, token) => {
-  console.log(`RestService.getAllIds`);
+  logger.info(`RestService.getAllIds`);
   let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography/all-ids`;
 
@@ -98,7 +99,7 @@ const reIndex = (apiUrl, token, reference) => {
 
   let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography/re-index-from-raw/${reference}`;
-  console.log(`RestService.reIndex ref ${reference} to ${uri}`);
+  logger.info(`RestService.reIndex ref ${reference} to ${uri}`);
 
   return new Promise((resolve, reject) => {
   request.post({
@@ -128,7 +129,7 @@ const backupAll = (apiUrl, token) => {
 
   let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography/backup/`;
-  console.log(`RestService.backupAll`);
+  logger.info(`RestService.backupAll`);
 
   return new Promise((resolve, reject) => {
   request.post({
@@ -157,7 +158,7 @@ const backupAll = (apiUrl, token) => {
 const auth = (apiUrl, username, password) => {
 
   let uri = `${apiUrl}/auth/login`;
-  console.log(`RestService.auth for user ${username}`);
+  logger.info(`RestService.auth for user ${username}`);
 
   return new Promise((resolve, reject) => {
   request.post({
@@ -186,10 +187,10 @@ const auth = (apiUrl, username, password) => {
 
 
 const indexDB = (apiUrl, token) => {
-  console.log(`RestService.indexDB`);
+  logger.info(`RestService.indexDB`);
   let auth = `Bearer ${token}`;
   let uri = `${apiUrl}/prosopography/indexDB`;
-  
+
   return new Promise((resolve, reject) => {
   request.post({
       uri: uri,
