@@ -5,6 +5,18 @@ Studium is a rich web application that allow to browse and request prosopographi
 ## API Documentation :
 https://app.swaggerhub.com/apis-docs/studium/StudiumAPI/0.0.3
 
+## API
+./api -> nodejs API
+
+## PARSER
+./batchs -> nodejs utility class to convert raw prosopography to JSON prosopography
+
+## WEB SITE
+./admin -> PHP 7 website to interact with the API
+
+## CLI
+./cli -> nodejs cli to interact with the API
+
 ## Launch in local
 - `npm install`
 
