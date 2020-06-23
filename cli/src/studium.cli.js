@@ -1,7 +1,7 @@
 //@flow
 
 import chalk from 'chalk';
-import { backupAll,saveRecord,createIndex,getAllIds, reIndex, indexDB } from '../../batchs/src/rawFilesParser/RestService';
+import { backupAll,saveRecord,createIndex,getAllIds, reIndex, indexDB } from './rest.service';
 import { processFile } from '../../batchs/src/rawFilesParser/simpleParser';
 
 //Backup
