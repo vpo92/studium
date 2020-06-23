@@ -5,7 +5,7 @@ import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
 import { type SearchRequest } from '../../types/SearchRequest';
 //import { processStream } from '../../../batchs/src/rawFilesParser/parser';
 import { processStream } from '../../../batchs/src/rawFilesParser/simpleParser';
-import { backup } from '../../../batchs/src/rawFilesParser/mongoService';
+import { backup } from './mongoService';
 import {Readable} from 'stream';
 
 const readPagination = function(pagination){
@@ -15,7 +15,6 @@ const readPagination = function(pagination){
     "skip" : (page-1)*rows,
     "limit" : rows,
   }
-
 }
 
 
