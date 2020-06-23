@@ -1,5 +1,5 @@
 // @flow
-
+import {expect} from 'chai';
 import { isComment, isLink } from '../../src/rawFilesParser/util/comment.parser';
 
 describe('Comment Parser', () => {
@@ -12,7 +12,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isComment(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when empty string is provided', () => {
       // given
@@ -20,7 +20,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isComment(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when no comment', () => {
       // given
@@ -28,7 +28,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isComment(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when http link', () => {
       // given
@@ -36,7 +36,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isComment(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return true when comment is present', () => {
       // given
@@ -44,7 +44,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isComment(line);
       // then
-      expect(comment).toEqual(true);
+      expect(comment).to.eql(true);
     });
   });
 
@@ -56,7 +56,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isLink(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when empty string is provided', () => {
       // given
@@ -64,7 +64,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isLink(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when no link', () => {
       // given
@@ -72,7 +72,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isLink(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return false when comment', () => {
       // given
@@ -80,7 +80,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isLink(line);
       // then
-      expect(comment).toEqual(false);
+      expect(comment).to.eql(false);
     });
     it('should return true when link is present', () => {
       // given
@@ -88,7 +88,7 @@ describe('Comment Parser', () => {
       // when
       const comment = isLink(line);
       // then
-      expect(comment).toEqual(true);
+      expect(comment).to.eql(true);
     });
   });
 

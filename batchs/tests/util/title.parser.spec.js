@@ -1,5 +1,6 @@
 // @flow
 
+import {expect} from 'chai';
 import { Readable } from 'stream';
 import fs from 'fs';
 
@@ -15,7 +16,7 @@ describe('Name Parser', () => {
       // when
       const titles = detectTitles(line);
       // then
-      expect(titles).toEqual(null);
+      expect(titles).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -23,7 +24,7 @@ describe('Name Parser', () => {
       // when
       const titles = detectTitles(line);
       // then
-      expect(titles).toEqual(null);
+      expect(titles).to.eql(null);
     });
     it('should detect no name among string when no name is present', () => {
       // given
@@ -31,7 +32,7 @@ describe('Name Parser', () => {
       // when
       const titles = detectTitles(line);
       // then
-      expect(titles).toEqual(null);
+      expect(titles).to.eql(null);
     });
     it('should detect name among string when name is present', () => {
       // given
@@ -41,7 +42,7 @@ describe('Name Parser', () => {
       // expected
       const expected = ["Le rouge et le noir"];
       // then
-      expect(titles).toEqual(expected);
+      expect(titles).to.eql(expected);
     });
     it('should detect titles among string when many titles are present', () => {
       // given
@@ -51,7 +52,7 @@ describe('Name Parser', () => {
       // expected
       const expected = ["titre 1", "titre 2"];
       // then
-      expect(titles).toEqual(expected);
+      expect(titles).to.eql(expected);
     });
   });
 

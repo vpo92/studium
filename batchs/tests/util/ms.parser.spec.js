@@ -1,5 +1,6 @@
 // @flow
 
+import {expect} from 'chai';
 import { parseMS } from '../../src/rawFilesParser/util/ms.parser';
 
 describe('MS Parser', () => {
@@ -12,7 +13,7 @@ describe('MS Parser', () => {
       // when
       const titles = parseMS(line);
       // then
-      expect(titles).toEqual(null);
+      expect(titles).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -20,7 +21,7 @@ describe('MS Parser', () => {
       // when
       const titles = parseMS(line);
       // then
-      expect(titles).toEqual(null);
+      expect(titles).to.eql(null);
     });
     it('should parse OK', () => {
       // given
@@ -36,7 +37,7 @@ describe('MS Parser', () => {
       };
 
       // then
-      expect(ms).toEqual(exptected);
+      expect(ms).to.eql(exptected);
     });
   });
 });

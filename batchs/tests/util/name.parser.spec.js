@@ -1,5 +1,6 @@
 // @flow
 
+import {expect} from 'chai';
 import { Readable } from 'stream';
 import fs from 'fs';
 
@@ -15,7 +16,7 @@ describe('Name Parser', () => {
       // when
       const names = detectNames(line);
       // then
-      expect(names).toEqual(null);
+      expect(names).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -23,7 +24,7 @@ describe('Name Parser', () => {
       // when
       const names = detectNames(line);
       // then
-      expect(names).toEqual(null);
+      expect(names).to.eql(null);
     });
     it('should detect no name among string when no name is present', () => {
       // given
@@ -31,7 +32,7 @@ describe('Name Parser', () => {
       // when
       const names = detectNames(line);
       // then
-      expect(names).toEqual(null);
+      expect(names).to.eql(null);
     });
 
     it('should detect name among string when only name is present', () => {
@@ -42,7 +43,7 @@ describe('Name Parser', () => {
       // expected
       const expected = ["ACCURSIUS"];
       // then
-      expect(names).toEqual(expected);
+      expect(names).to.eql(expected);
     });
     it('should detect name among string when name is present', () => {
       // given
@@ -52,7 +53,7 @@ describe('Name Parser', () => {
       // expected
       const expected = ["Helluinus de FOSSICO"];
       // then
-      expect(names).toEqual(expected);
+      expect(names).to.eql(expected);
     });
     it('should detect names among string when many names are present', () => {
       // given
@@ -62,7 +63,7 @@ describe('Name Parser', () => {
       // expected
       const expected = ["Helluinus de FOSSICO","CHARLES VII, roi de £France"];
       // then
-      expect(names).toEqual(expected);
+      expect(names).to.eql(expected);
     });
   });
 

@@ -1,5 +1,6 @@
 // @flow
 
+import {expect} from 'chai';
 import { Readable } from 'stream';
 import fs from 'fs';
 
@@ -15,7 +16,7 @@ describe('Place Parser', () => {
       // when
       const places = detectPlaces(line);
       // then
-      expect(places).toEqual(null);
+      expect(places).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -23,7 +24,7 @@ describe('Place Parser', () => {
       // when
       const places = detectPlaces(line);
       // then
-      expect(places).toEqual(null);
+      expect(places).to.eql(null);
     });
     it('should detect no place among string when no place is present', () => {
       // given
@@ -31,7 +32,7 @@ describe('Place Parser', () => {
       // when
       const places = detectPlaces(line);
       // then
-      expect(places).toEqual(null);
+      expect(places).to.eql(null);
     });
     it('should detect place among string when places is present', () => {
       // given
@@ -41,7 +42,7 @@ describe('Place Parser', () => {
       // expected
       const expected = ["Paris"];
       // then
-      expect(places).toEqual(expected);
+      expect(places).to.eql(expected);
     });
     it('should detect places among string when many places are present', () => {
       // given
@@ -51,7 +52,7 @@ describe('Place Parser', () => {
       // expected
       const expected = ["Paris","Marseille"];
       // then
-      expect(places).toEqual(expected);
+      expect(places).to.eql(expected);
     });
   });
 

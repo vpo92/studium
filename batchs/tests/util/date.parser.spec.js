@@ -1,5 +1,6 @@
 // @flow
 
+import {expect} from 'chai';
 import { detectDates, isolateDates, parseDates } from '../../src/rawFilesParser/util/date.parser';
 
 describe('Date Parser', () => {
@@ -11,7 +12,7 @@ describe('Date Parser', () => {
       // when
       const dates = parseDates(null);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -19,7 +20,7 @@ describe('Date Parser', () => {
       // when
       const dates = parseDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should detect dates among string when dates is present', () => {
       // given
@@ -32,7 +33,7 @@ describe('Date Parser', () => {
         "date": 1223,
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - before', () => {
       // given
@@ -45,7 +46,7 @@ describe('Date Parser', () => {
         "date": 1403,
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - before with blanks', () => {
       // given
@@ -58,7 +59,7 @@ describe('Date Parser', () => {
         "date": 1196,
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
 
     });
     it('should detect dates among string when dates is present - after', () => {
@@ -72,7 +73,7 @@ describe('Date Parser', () => {
         "date": 1223,
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - near single', () => {
       // given
@@ -85,7 +86,7 @@ describe('Date Parser', () => {
         "date": 1223,
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - interval', () => {
       // given
@@ -105,7 +106,7 @@ describe('Date Parser', () => {
         },
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - near', () => {
       // given
@@ -125,7 +126,7 @@ describe('Date Parser', () => {
         },
       };
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
   });
 
@@ -136,7 +137,7 @@ describe('Date Parser', () => {
       // when
       const dates = isolateDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -144,7 +145,7 @@ describe('Date Parser', () => {
       // when
       const dates = isolateDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should detect no dates among string when no dates is present', () => {
       // given
@@ -152,7 +153,7 @@ describe('Date Parser', () => {
       // when
       const dates = isolateDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should detect dates among string when dates is present', () => {
       // given
@@ -162,7 +163,7 @@ describe('Date Parser', () => {
       // expected
       const expected = ["1403"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - before', () => {
       // given
@@ -172,7 +173,7 @@ describe('Date Parser', () => {
       // expected
       const expected = [":1403"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - after', () => {
       // given
@@ -182,7 +183,7 @@ describe('Date Parser', () => {
       // expected
       const expected = ["1223:"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - interval', () => {
       // given
@@ -192,7 +193,7 @@ describe('Date Parser', () => {
       // expected
       const expected = ["1246-1310"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - near', () => {
       // given
@@ -202,7 +203,7 @@ describe('Date Parser', () => {
       // expected
       const expected = [":1246:-:1310:"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when many dates are present', () => {
       // given
@@ -212,7 +213,7 @@ describe('Date Parser', () => {
       // expected
       const expected = [":1246:-:1310:", ":1403"];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
   });
 
@@ -224,7 +225,7 @@ describe('Date Parser', () => {
       // when
       const dates = detectDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -232,7 +233,7 @@ describe('Date Parser', () => {
       // when
       const dates = detectDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should detect no dates among string when no dates is present', () => {
       // given
@@ -240,7 +241,7 @@ describe('Date Parser', () => {
       // when
       const dates = detectDates(line);
       // then
-      expect(dates).toEqual(null);
+      expect(dates).to.eql(null);
     });
     it('should detect dates among string when dates is present', () => {
       // given
@@ -253,7 +254,7 @@ describe('Date Parser', () => {
         "date": 1403,
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - before', () => {
       // given
@@ -266,7 +267,7 @@ describe('Date Parser', () => {
         "date": 1403,
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - after', () => {
       // given
@@ -279,7 +280,7 @@ describe('Date Parser', () => {
         "date": 1223,
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - interval', () => {
       // given
@@ -299,7 +300,7 @@ describe('Date Parser', () => {
         },
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when dates is present - near', () => {
       // given
@@ -319,7 +320,7 @@ describe('Date Parser', () => {
         },
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
     it('should detect dates among string when many dates are present', () => {
       // given
@@ -343,7 +344,7 @@ describe('Date Parser', () => {
         "date": 1403,
       }];
       // then
-      expect(dates).toEqual(expected);
+      expect(dates).to.eql(expected);
     });
   });
 });

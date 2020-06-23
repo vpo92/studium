@@ -1,7 +1,6 @@
 // @flow
 
-import { Readable } from 'stream';
-import fs from 'fs';
+import { expect } from 'chai';
 
 import { detectCotes } from '../../src/rawFilesParser/util/cote.parser';
 
@@ -15,7 +14,7 @@ describe('Cote Parser', () => {
       // when
       const cotes = detectCotes(line);
       // then
-      expect(cotes).toEqual(null);
+      expect(cotes).to.eql(null);
     });
     it('should return null when empty string is provided', () => {
       // given
@@ -23,7 +22,7 @@ describe('Cote Parser', () => {
       // when
       const cotes = detectCotes(line);
       // then
-      expect(cotes).toEqual(null);
+      expect(cotes).to.eql(null);
     });
     it('should detect no cote among string when no place is present', () => {
       // given
@@ -31,7 +30,7 @@ describe('Cote Parser', () => {
       // when
       const cotes = detectCotes(line);
       // then
-      expect(cotes).toEqual(null);
+      expect(cotes).to.eql(null);
     });
     it('should detect cote among string when institutions is present', () => {
       // given
@@ -41,7 +40,7 @@ describe('Cote Parser', () => {
       // expected
       const expected = ["25"];
       // then
-      expect(cotes).toEqual(expected);
+      expect(cotes).to.eql(expected);
     });
     it('should detect cote among string when many institutions are present', () => {
       // given
@@ -51,7 +50,7 @@ describe('Cote Parser', () => {
       // expected
       const expected = ["25","35B"];
       // then
-      expect(cotes).toEqual(expected);
+      expect(cotes).to.eql(expected);
     });
   });
 
