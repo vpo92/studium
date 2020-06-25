@@ -231,12 +231,12 @@
 
     </div>
     <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab">
+        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
 </div>
 
 
 <?php
-
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>';
 $pageScripts .='<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>';
 $pageScripts .='<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>';
@@ -249,9 +249,10 @@ $pageScripts .='<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons
 $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
+$pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
 
+$pageScripts .='<script type="text/javascript" src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
 $pageScripts .='<script type="module" src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
-
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 
 ?>
