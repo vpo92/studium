@@ -1,13 +1,13 @@
 {
   "name": "studium-batch",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "Studium batch application",
   "bin": {
     "studium": "index.js"
   },
   "scripts": {
     "test": "jest",
-    "start": "babel-node src/rawFilesParser/run.js",
+    "start": "babel-node index.js",
     "start-web": "babel-node src/rawFilesParser/run-web.js",
     "re-index": "babel-node src/rawFilesParser/run-re-index.js",
     "backup": "babel-node src/rawFilesParser/run-backup.js",
@@ -20,6 +20,17 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-runtime": "^6.11.6",
     "jest": "^23.6.0"
   },
   "dependencies": {
