@@ -109,8 +109,12 @@ function getVersionLineInformations(line){
 }
 
 //remove special char
-function formatData(data){
-  return data.trim();
+function getDataValue(data){
+  let value = data.trim();
+  //Remove special char for place £ and *
+  value = value.split('£').join('');
+  value = value.split('*').join('');
+  return value.trim();
 }
 
 function getMeta(data){
@@ -144,7 +148,7 @@ function buildDataLine(ctx,line){
   //Si mm data
   if(ctx.currentData && ctx.currentData.code === info.code){
     ctx.currentData.data.push({
-      value: formatData(info.data),
+      value: getDataValue(info.data),
       meta: getMeta(info.data),
     });
 
@@ -159,7 +163,7 @@ function buildDataLine(ctx,line){
       code: info.code,
       name: getDataLineNameByCode(info.code),
       data: [{
-          value: formatData(info.data),
+          value: getDataValue(info.data),
           meta: getMeta(info.data),
         },
       ],
@@ -174,7 +178,7 @@ function buildOpusLine(ctx,line){
   //Si mm data
   if(ctx.currentOpusData && ctx.currentOpusData.code === info.code){
     ctx.currentOpusData.data.push({
-        value: formatData(info.data),
+        value: getDataValue(info.data),
         meta: getMeta(info.data),
       });
   }else{
@@ -188,7 +192,7 @@ function buildOpusLine(ctx,line){
       code: info.code,
       name: getOpusLineNameByCode(info.code),
       data: [{
-          value: formatData(info.data),
+          value: getDataValue(info.data),
           meta: getMeta(info.data),
         },
       ],
@@ -202,7 +206,7 @@ function buildVersionLine(ctx,line){
   //Si mm data
   if(ctx.currentVersionData && ctx.currentVersionData.code === info.code){
     ctx.currentVersionData.data.push({
-        value: formatData(info.data),
+        value: getDataValue(info.data),
         meta: getMeta(info.data),
       });
   }else{
@@ -216,7 +220,7 @@ function buildVersionLine(ctx,line){
       code: info.code,
       name: getVersionLineNameByCode(info.code),
       data: [{
-          value: formatData(info.data),
+          value: getDataValue(info.data),
           meta: getMeta(info.data),
         },
       ],
