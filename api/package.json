@@ -1,6 +1,6 @@
 {
   "name": "studium-api",
-  "version":"0.1.13",
+  "version": "0.1.14",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.0.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^6.2.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.15.0",
