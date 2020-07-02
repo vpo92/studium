@@ -85,7 +85,7 @@
                 <legend>Activité</legend>
                 <div>
                     <div class="form-group">
-                        <label>Médianne d'activité entre : </label>
+                        <label>Médiane d'activité entre : </label>
                         <input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100">
                         <label> et </label>
                         <input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100">
@@ -158,7 +158,7 @@
                                   v-on:remove-row="handleRemoveProsopographyRow(item)"/>
             </div>
             <div class="form-group">
-                <button v-if="!searching" type="submit" class="btn btn-primary" @click="search()">Rechercher</button>
+                <button v-if="!searching" type="submit" class="btn btn-primary" @click="searchs()">Rechercher</button>
                 <button v-else class="btn btn-secondary" type="button" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Recherche en cours...
@@ -191,8 +191,8 @@
                             <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                             <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                             <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                            <td>{{record.startDate?record.startDate:'?'}}-{{record.endDate?record.endDate:'?'}}</td>
-                            <td>{{record.mediane?record.mediane:"-" }}</td>
+                            <td>{{record.identity.datesOfActivity[0].value?record.identity.datesOfActivity[0].value:'?-?'}}</td>
+                            <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
                             <td></td>
                             <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
                             <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
@@ -212,7 +212,30 @@
                     Aucun résultat
                 </div>
             </div>
-            <div v-else-if="searching" class="text-center" >
+
+
+
+
+            <!--<div>
+                <table class="table" id="resultTable3">
+                    <thead>
+                    <tr>
+                        <th>Ref</th>
+                        <th>Nom</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Dates d'activités</th>
+                        <th>Mediane</th>
+                        <th>Dernier grade</th>
+                        <th>Nombre de grades</th>
+                        <th>Diocése d'origine</th>
+                        <th>Dernière actualisation</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>-->
+            <div v-if="searching" class="text-center" >
                 <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
                     <span class="sr-only">Recherche...</span>
                 </div>
@@ -231,7 +254,56 @@
 
     </div>
     <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab">
-        <canvas id="myChart" width="400" height="400"></canvas>
+
+        <div id="graphe">
+
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <div id="resultArea" v-if=" resultsGraph !== null && resultsGraph.length > 0">
+                <h2>Nombre de résultats : {{resultsGraph.length}}</h2>
+                <table class="table" id="resultTable3">
+                    <thead>
+                    <tr>
+                        <th scope="col">Référence</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date d'activité</th>
+                        <th scope="col">Mediane</th>
+                        <th scope="col">Dernier grade</th>
+                        <th scope="col">Nombre de grades</th>
+                        <th scope="col">Diocèse d'origine</th>
+                        <th scope="col">Dérnière actualisation</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="record in resultsGraph"  >
+                        <td scope="row">{{record.reference}}</td>
+                        <td v-if="record.auteur===true" style="color: red">{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
+                        <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
+                        <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
+                        <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
+                        <td>{{record.identity.datesOfActivity[0].value?record.identity.datesOfActivity[0].value:'?-?'}}</td>
+                        <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
+                        <td></td>
+                        <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
+                        <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
+                            <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
+                            <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
+                            <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div v-else>
+                Aucun résultat
+            </div>
+        </div>
     </div>
 </div>
 
@@ -251,8 +323,8 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/b
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
 
-$pageScripts .='<script type="text/javascript" src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
-$pageScripts .='<script type="module" src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
+$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
+$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 
 ?>

@@ -19,7 +19,7 @@ const readPagination = function(pagination){
 }
 
 
-async function findAll(pagination: any): Promise<Prosopography[]> {
+ async function findAll(pagination: any): Promise<Prosopography[]> {
   const pg = readPagination(pagination);
 
   return await db
@@ -27,7 +27,6 @@ async function findAll(pagination: any): Promise<Prosopography[]> {
       .collection('prosopography')
       .find()
       .skip(pg.skip)
-      .limit(pg.limit)
       .toArray();
 }
 
@@ -139,6 +138,16 @@ async function convertFromText(text: string): Promise<Prosopography> {
   return result[0];
 }
 
+
+async function initGraph(): Promise<Array> {
+  console.log(`prosopographyService.initGraph`);
+  return db
+      .get()
+      .collection('prosopography')
+      .aggregate([{$group : { _id : "$extras.activityMediane", count: {$sum : 1}}},{$sort:{_id:1}}])
+      .toArray();
+}
+
 async function search(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
   console.log(`prosopographyService.search`);
   console.log(searchRequest);
@@ -150,7 +159,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       .collection('prosopography')
       .find(
           mongodbRequest,
-          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, textualProduction: true}
+          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
       )
 
       .skip(pg.skip)
@@ -160,11 +169,11 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 
         return data.filter(function (item) {
 
-          // MAYBE TO REPLACE; THIS PART OF CODE IS BECAUSE OF HETEROGENEOUS DATA
+          /*// MAYBE TO REPLACE; THIS PART OF CODE IS BECAUSE OF HETEROGENEOUS DATA
           if (item.identity.datesOfActivity === undefined || item.identity.datesOfActivity[0].meta.dates === undefined){
             return item;
           }
-
+*/
           if (item.curriculum !== undefined && item.curriculum.grades !== undefined){
             item.nbGrades = item.curriculum.grades.length;
           }
@@ -177,123 +186,103 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
             item.auteur = true;
           }
 
-          // ALL THIS IF BLOCK IS FOR LOOKING WHERE THE DATES ARE *
-          if (item.identity.datesOfActivity[0].meta.dates.length === 0){
-            //console.log("not in datesActivity[0]");
-            if (item.identity.datesOfActivity[1]===undefined || item.identity.datesOfActivity[1].meta.dates ===null ){
-              return item;
-            }
-            item.startDate = item.identity.datesOfActivity[1].meta.dates[0].startDate.date;
-            item.endDate = item.identity.datesOfActivity[1].meta.dates[0].endDate.date;
-            item.mediane = Math.floor((item.startDate + item.endDate) / 2);
-          } else {
-            if(item.identity.datesOfActivity[0].meta.dates[0].date !== undefined ){
-              //console.log("in date simple");
-              item.mediane = Math.floor(item.startDate = (item.endDate = item.identity.datesOfActivity[0].meta.dates.date));
-            } else {
-              //console.log("ok");
-              item.startDate = item.identity.datesOfActivity[0].meta.dates[0].startDate.date;
-              if (item.identity.datesOfActivity[0].meta.dates[0].endDate === null){
-                return item;
-              }
-              item.endDate = item.identity.datesOfActivity[0].meta.dates[0].endDate.date;
-              item.mediane = Math.floor((item.startDate + item.endDate) / 2);
-            }
-          }
-
-          if (!searchRequest.activityMediane.to && !searchRequest.activityMediane.from){
-            return item;
-          }
-
-          if (searchRequest.activityMediane.from && searchRequest.activityMediane.to) {
-            return item.mediane >= searchRequest.activityMediane.from && item.mediane <= searchRequest.activityMediane.to;
-          } else if (searchRequest.activityMediane.from) {
-            return item.mediane >= searchRequest.activityMediane.from;
-          } else {
-            return item.mediane <= searchRequest.activityMediane.to;
-          }
+          return item;
         });
       });
 }
 
-function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
+function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
   console.log('convertSearchRequestToMongoRequest');
   let criterions = [];
   let criterionsOr = [];
 
-  //Permet d'enlever les fiches ne possèdant pas de date lors de la recherche par mediane
-  if (searchRequest.activityMediane.from || searchRequest.activityMediane.to){
+  if (searchRequest.activity.start.from && searchRequest.activity.start.to) {
     let res = {};
-    res['identity.datesOfActivity.meta.dates.date'] = {$exists:true} ;
-    res['identity.datesOfActivity.meta.dates.startDate'] = {$exists: true};
-    res['identity.datesOfActivity.meta.dates.endDate.date']= {$ne:null};
-    criterionsOr.push(res);
-  }
-
-  if (searchRequest.activity.start.from && searchRequest.activity.start.to){
-    let res={};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from), $lte: parseInt(searchRequest.activity.start.to)};
+    res['identity.datesOfActivity.meta.dates.startDate.date'] = {
+      $gte: parseInt(searchRequest.activity.start.from),
+      $lte: parseInt(searchRequest.activity.start.to),
+    };
     criterions.push(res);
-  } else if (searchRequest.activity.start.from){
-    let res={};
+  } else if (searchRequest.activity.start.from) {
+    let res = {};
     res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from)};
     criterions.push(res);
-  } else if (searchRequest.activity.start.to){
-    let res={};
+  } else if (searchRequest.activity.start.to) {
+    let res = {};
     res['identity.datesOfActivity.meta.dates.startDate.date'] = {$lte: parseInt(searchRequest.activity.start.to)};
     criterions.push(res);
   }
 
 
-  if (searchRequest.activity.end.from && searchRequest.activity.end.to){
-    let res={};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to), $gte : parseInt(searchRequest.activity.end.from)};
+  if (searchRequest.activity.end.from && searchRequest.activity.end.to) {
+    let res = {};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {
+      $lte: parseInt(searchRequest.activity.end.to),
+      $gte: parseInt(searchRequest.activity.end.from)
+    };
     criterions.push(res);
-  } else if (searchRequest.activity.end.from){
-    let res={};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$gte: parseInt(searchRequest.activity.end.from) };
+  } else if (searchRequest.activity.end.from) {
+    let res = {};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$gte: parseInt(searchRequest.activity.end.from)};
     criterions.push(res);
-  } else if (searchRequest.activity.end.to){
-    let res={};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to) };
+  } else if (searchRequest.activity.end.to) {
+    let res = {};
+    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to)};
     criterions.push(res);
   }
 
-  if (searchRequest.name){
+  if (searchRequest.activityMediane.to && searchRequest.activityMediane.from){
+    let res = {};
+    res['extras.activityMediane'] = {
+      $lte: parseInt(searchRequest.activityMediane.to),
+      $gte: parseInt(searchRequest.activityMediane.from),
+    };
+    criterions.push(res);
+  } else if (searchRequest.activityMediane.from){
+    let res = {};
+    res['extras.activityMediane'] = {$gte: parseInt(searchRequest.activityMediane.from)};
+    criterions.push(res);
+  } else if (searchRequest.activityMediane.to) {
+    let res = {};
+    res['extras.activityMediane'] = {$lte: parseInt(searchRequest.activityMediane.to)}
+    criterions.push(res);
+  }
+
+  if (searchRequest.name) {
     criterionsOr.push(generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'))
-    criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS' ));
+    criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS'));
   }
-
-  if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL'){
-    criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.grade+".*"+searchRequest.discipline, 'CONTAINS'));
+  if (searchRequest.grade === "AUCUN"){
+    let res = {};
+    res['curriculum.grades'] = {$exists : false};
+    criterions.push(res);
+  } else if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL') {
+    criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.grade + ".*" + searchRequest.discipline, 'CONTAINS'));
   } else {
-
-    if(searchRequest.grade && searchRequest.grade!=="ALL"){
-      criterions.push(generateSearchClause('curriculum.grades.value',searchRequest.grade,'CONTAINS'));
+    if (searchRequest.grade && searchRequest.grade !== "ALL") {
+      criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.grade, 'CONTAINS'));
     }
-
-    if(searchRequest.discipline && searchRequest.discipline !== "ALL"){
-      criterions.push(generateSearchClause('curriculum.grades.value',searchRequest.discipline,'CONTAINS'));
+    if (searchRequest.discipline && searchRequest.discipline !== "ALL") {
+      criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.discipline, 'CONTAINS'));
     }
-
   }
 
-  if(searchRequest.status.length !== 0){
-    if (searchRequest.status.length>1){
-      for (let i in searchRequest.status){
+  if (searchRequest.status.length !== 0) {
+    if (searchRequest.status.length > 1) {
+      for (let i in searchRequest.status) {
         let status = searchRequest.status[i];
-        criterionsOr.push(generateSearchClause('identity.status.value',status,'CONTAINS'));
+        criterionsOr.push(generateSearchClause('identity.status.value', status, 'CONTAINS'));
       }
     } else {
       criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
     }
   }
 
-  if(searchRequest.sexe.length !== 0){
-    if (searchRequest.sexe.length > 1){
-      for (let i in searchRequest.sexe){
+  if (searchRequest.sexe.length !== 0) {
+    if (searchRequest.sexe.length > 1) {
+      for (let i in searchRequest.sexe) {
         let sexe = searchRequest.sexe[i];
-        criterionsOr.push(generateSearchClause('identity.gender.value',sexe,'CONTAINS'));
+        criterionsOr.push(generateSearchClause('identity.gender.value', sexe, 'CONTAINS'));
       }
     } else {
       criterions.push(generateSearchClause('identity.gender.value', searchRequest.sexe[0], 'CONTAINS'));
@@ -302,35 +291,35 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
 
 
   //CRITERIONS
-  if(searchRequest.prosopography){
-    for(let i in searchRequest.prosopography){
+  if (searchRequest.prosopography) {
+    for (let i in searchRequest.prosopography) {
 
       let crit = searchRequest.prosopography[i];
-      let field = crit.section+'.'+crit.subSection+'.value';
+      let field = crit.section + '.' + crit.subSection + '.value';
 
       // Si la valeur est null on veut que le champs existe sinon on traite le critère
-      if (crit.value === null && crit.section!==null){
+      if (crit.value === null && crit.section !== null) {
         let res = {};
-        if (crit.subSection){
-          res[crit.section+"."+crit.subSection] = {$exists : true};
+        if (crit.subSection) {
+          res[crit.section + "." + crit.subSection] = {$exists: true};
         } else {
-          res[crit.section] = {$exists : true};
+          res[crit.section] = {$exists: true};
         }
         criterions.push(res);
 
-      } else if (crit.section !== null && crit.subSection !== null ) {
+      } else if (crit.section !== null && crit.subSection !== null) {
 
         switch (crit.operator) {
           case "OR" :
-            criterionsOr.push(generateSearchClause(field,crit.value,crit.matchType));
+            criterionsOr.push(generateSearchClause(field, escapeRegExp(crit.value), crit.matchType));
             break;
           case "NOT" :
             let res = {};
-            res[field] = {$not: generateRegexNotOperator(crit.value, crit.matchType)} ;
+            res[field] = {$not: generateRegexNotOperator( escapeRegExp(crit.value), crit.matchType)};
             criterions.push(res);
             break;
           default :
-            criterions.push(generateSearchClause(field,crit.value,crit.matchType));
+            criterions.push(generateSearchClause(field, escapeRegExp(crit.value), crit.matchType));
             break;
         }
 
@@ -340,29 +329,32 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any{
     }
   }
 
-  if (criterions.length === 0 && criterionsOr === 0){
+  if (criterions.length === 0 && criterionsOr.length === 0) {
     return;
-  } else {
-    if(criterions.length === 1 && criterionsOr.length ===0){
+  } else if (criterionsOr.length === 0 && criterions.length >= 1) {
+    if (criterions.length === 1) {
       return criterions[0];
-    } else if (criterionsOr.length >= 1 && criterions.length === 0){
+    } else {
       return {
-        "$or" : criterionsOr,
-      }
-    }else{
-      return {
-        "$and":criterions,
-        "$or":criterionsOr,
+        "$and": criterions,
       }
     }
+  } else if (criterions.length === 0 && criterionsOr.length >= 1) {
+    return {
+      "$or": criterionsOr,
+    }
+  } else {
+    return {
+      "$and": criterions,
+      "$or": criterionsOr,
+    }
   }
-
 }
-
 function generateRegexNotOperator(value, matchType){
   switch (matchType) {
     case 'EQUALS':
       return new RegExp('^'+value+'$',"i");
+
     case 'STARTS':
       return new RegExp('^'+value,"i");
     case 'CONTAINS':
@@ -370,6 +362,11 @@ function generateRegexNotOperator(value, matchType){
   }
 }
 
+function escapeRegExp(string){
+  // $& correspond à la chaîne correspondante
+  // dans son intégralité
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 function generateSearchClause(field, value, matchType){
   let res = {};
@@ -392,9 +389,9 @@ function generateSearchClause(field, value, matchType){
 
 async function initReferenceSeq(){
   return db
-    .get()
-    .collection('prosopography_seq')
-    .insertOne({'seq':50000})
+      .get()
+      .collection('prosopography_seq')
+      .insertOne({'seq':50000})
 }
 
 async function getCurrentReference(){
@@ -433,6 +430,7 @@ module.exports = {
   update,
   remove,
   convertFromText,
+  initGraph,
   search,
   convertSearchRequestToMongoRequest,
   getCurrentReference,

@@ -2,10 +2,11 @@ const disciplines = [
     {code:"ALL",label:"Tous"},
     {code:"ART",label:"Art"},
     {code:"DROIT",label:"Droit"},
-    {code:"DROIT_CANON",label:"Droit canon"},
-    {code:"DROIT_CIVIL",label:"Droit civil"},
+    {code:"DROIT.*CANON",label:"Droit canon"},
+    {code:"DROIT.*CIVIL",label:"Droit civil"},
     {code:"DECINE",label:"Médecine"},
-    {code:"MUSIQUE",label:"Musique"},
+    {code:"TH.OLOGIE",label:"Théologie"},
+    {code:"UTROQUE", label:"In utroque jure"}
 ];
 
 const sexe = [
@@ -16,11 +17,12 @@ const sexe = [
 const grades = [
     {code:"ALL",label:"Tous"},
     {code:"MAGIS",label:"Magister"},
-    {code:"DR",label:"Docteur"},
+    {code:"DOC",label:"Docteur"},
     {code:"MA.TRE",label:"Maître"},
     {code:"LIC",label:"Licencié"},
     {code:"BAC",label:"Bachelier"},
     {code:"TUD",label:"Étudiant"},
+    {code:"AUCUN", label:"Aucun"},
 ];
 
 const status = [
@@ -242,8 +244,6 @@ Vue.component('prosopography-row', {
     </tr>`
 })
 
-
-
 var messages = null;
 fetch(resourceUrl+'/messages.json')
     .then(function(response) { return response.json(); })
@@ -290,7 +290,7 @@ fetch(resourceUrl+'/messages.json')
                 sexeList:sexe,
                 disciplineList:disciplines,
                 gradeList:grades,
-                results: null,
+                results: [],
                 rows: [],
                 dataTable: null,
 
@@ -317,7 +317,7 @@ fetch(resourceUrl+'/messages.json')
                         }
                     }
                 },
-                search: async function(){
+                searchs: async function(){
 
                     if (this.checkFields()){
                         alert("Autant telecharger la BDD");
@@ -327,7 +327,6 @@ fetch(resourceUrl+'/messages.json')
                     this.searching = true;
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
-
 
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
                         'method':'POST',
@@ -346,10 +345,8 @@ fetch(resourceUrl+'/messages.json')
                         this.dataTable = $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
                             buttons: buttons,
-                            language: lang
+                            language: lang,
                         });
-
-
                     });
 
 
@@ -378,7 +375,12 @@ fetch(resourceUrl+'/messages.json')
                         empty = false
                     }
                     return empty;
-                }
+                },
+
+            },
+            mounted : function () {
+
+
             }
         })
     });

@@ -115,6 +115,24 @@ router.post('/search/advanced', async(req, res, next) => {
   }
 
 });
+
+
+router.post('/initGraph', async(req, res, next) => {
+  const id = uuid.v4();
+  logger.info(`${id}: search graph`);
+  try {
+    const labels = await service.initGraph();
+    logger.info(labels.length);
+    res.send(labels);
+  } catch (err) {
+    logger.error(
+        `${id}: Failed to load all labels init graph - ${err}`
+    );
+    next(err);
+  }
+
+});
+
 router.get('/index/:letter', async (req, res, next) => {
   const id = uuid.v4();
   const letter = req.params.letter;

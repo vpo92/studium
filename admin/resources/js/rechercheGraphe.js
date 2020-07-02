@@ -1,27 +1,135 @@
-var ctx = document.getElementById('myChart');
-
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: 'Nombre de fiches',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: "rgba(50,200,100,1)",
-            borderColor : "rgba(14,72,100,1)",
-            borderWidth: 3
-        }]
+new Vue ({
+    el : '#graphe',
+    data : {
+        chartLabels : null,
+        chartCounts : null,
+        resultsGraph: null,
+        dataTable : null,
     },
-    options: {
-        onClick : function () {
-            console.log("Affiche le tableau");
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
+    methods : {
+        createChart() {
+            const ctx = document.getElementById('myChart');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: this.chartLabels,
+                    datasets: [{
+                        label: 'Nombre de fiches',
+                        data: this.chartCounts,
+                        backgroundColor: "rgba(50,200,100,1)",
+                        borderColor : "rgba(14,72,100,1)",
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    onClick : async (evt) => {
+
+                        this.dataTable = $('#resultTable3').DataTable();
+                        this.dataTable.destroy();
+
+                        const activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
+                        const firstPoint = activePoints[0];
+                        const label = myChart.data.labels[firstPoint._index];
+                        const value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+
+                        let searchRequest = {
+                            activityMediane: {
+                                from: label,
+                                to: label,
+                            },
+                            activity: {
+                                start: {
+                                    from: null,
+                                    to: null,
+                                },
+                                end: {
+                                    from: null,
+                                    to: null,
+                                }
+                            },
+                            status: [],
+                            sexe: [],
+                            grade: null,
+                            discipline: null,
+                            name: null,
+                            prosopography: [{
+                                section: null,
+                                subSection: null,
+                                operator: "AND",
+                                matchType: null,
+                                value: null,
+                            }]
+                        };
+
+                        const result = await fetch(`${apiUrl}/prosopography/search/advanced`, {
+                            'method': 'POST',
+                            'headers': {
+                                'Content-Type': 'application/json',
+                            },
+                            'body': JSON.stringify(searchRequest)
+                        });
+
+                        this.resultsGraph = await result.json();
+                        this.redraw();
+
+
+                    },
+                    responsive : true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }]
+            });
+        },
+        async initData(){
+
+            const resultLabel = await fetch(`${apiUrl}/prosopography/initGraph`,{
+                'method':'POST',
+                'headers':{
+                    'Content-Type':'application/json',
+                },
+                'body': JSON.stringify(this.searchRequest),
+            });
+
+            let mediane = [];
+            let counts = [];
+            this.chartLabels = await resultLabel.json();
+
+            this.chartLabels.forEach(element => {
+                mediane.push(element._id);
+                counts.push(element.count);
+            })
+            this.chartLabels = mediane;
+            this.chartCounts = counts;
+        },
+        redraw : function () {
+            this.$nextTick(function () {
+                this.dataTable = $("#resultTable3").DataTable({
+                    dom: 'Bfrtip',
+                    buttons: buttons,
+                    language: lang,
+                });
+            })
         }
+
+    },
+    mounted : function(){
+        this.initData().then( data => {
+            this.createChart();
+        });
+
+        this.$nextTick(function () {
+            this.dataTable = $("#resultTable3").DataTable({
+                dom: 'Bfrtip',
+                buttons: buttons,
+                language: lang,
+            });
+        });
     }
-});
+
+})
+
