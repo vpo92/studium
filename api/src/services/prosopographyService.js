@@ -186,6 +186,11 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
             item.auteur = true;
           }
 
+          if (item.identity.datesOfActivity !== undefined && item.identity.datesOfActivity[0] !== undefined &&
+          item.identity.datesOfActivity[0].value ){
+            item.datesOfActivity = item.identity.datesOfActivity[0].value;
+          }
+
           return item;
         });
       });

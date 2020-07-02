@@ -191,7 +191,7 @@
                             <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                             <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                             <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                            <td>{{record.identity.datesOfActivity[0].value?record.identity.datesOfActivity[0].value:'?-?'}}</td>
+                            <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
                             <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
                             <td></td>
                             <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
@@ -283,7 +283,7 @@
                         <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
                         <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                         <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                        <td>{{record.identity.datesOfActivity[0].value?record.identity.datesOfActivity[0].value:'?-?'}}</td>
+                        <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
                         <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
                         <td></td>
                         <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
