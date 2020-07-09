@@ -159,9 +159,8 @@
             </div>
             <div>
                 <button class="btn btn-primary" @click="constructRequest">Visualiser la requete</button>
-                <button v-if="requestString != ''" class="btn btn-success" @click="constructRequest">Actualiser</button>
-                <div v-if="requestString != ''" style="background: black">
-                    <p style="color: white">{{this.requestString}}</p>
+                <button v-if="requestString != null" class="btn btn-success" @click="constructRequest">Actualiser</button>
+                <div style="background: black; color: white" id ="test">
                 </div>
             </div>
             <div class="form-group">
@@ -329,6 +328,7 @@ $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></scr
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
+$pageScripts .='<script type="text/javascript" src="../node_modules/renderjson/renderjson.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
