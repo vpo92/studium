@@ -294,6 +294,7 @@ fetch(resourceUrl+'/messages.json')
                 results: [],
                 rows: [],
                 dataTable: null,
+                requestString : "",
 
             },
             methods: {
@@ -375,6 +376,150 @@ fetch(resourceUrl+'/messages.json')
                     }
                     return empty;
                 },
+                viewRequest : function () {
+                },
+                constructRequest : function () {
+                    let request = " Et : [ ";
+                    let requestAux = " Ou : [ ";
+
+                    if (this.searchRequest.name) {
+                        request +=  "Nom ou Variante de nom contient : " +  this.searchRequest.name + ", ";
+                    }
+
+                    if (this.searchRequest.activityMediane.from && this.searchRequest.activityMediane.to){
+                        request += "Médiane d'activité comprise entre " + this.searchRequest.activityMediane.from + " et " + this.searchRequest.activityMediane.to+ ", ";
+                    } else if (this.searchRequest.activityMediane.from && !this.searchRequest.activityMediane.to) {
+                        request += "Médiane d'activité est plus grande que " + this.searchRequest.activityMediane.from+ ", ";
+                    } else if (this.searchRequest.activityMediane.to && !this.searchRequest.activityMediane.from) {
+                        request += "Médiane d'activité est inférieure à " + this.searchRequest.activityMediane.to+ ", ";
+                    }
+
+                    if (this.searchRequest.activity.start.from && this.searchRequest.activity.start.to){
+                        request += "Début de la date d'activité comprise entre " + this.searchRequest.activity.start.from +" et "+ this.searchRequest.activity.start.to+ ", ";
+                    } else if (this.searchRequest.activity.start.from && !this.searchRequest.activity.start.to){
+                        request += "Début de la date d'activité plus grand que " + this.searchRequest.activity.start.from+ ", ";
+                    } else if (this.searchRequest.activity.start.to && !this.searchRequest.activity.start.from){
+                        request += "Début de la date d'activité plus petit que " + this.searchRequest.activity.start.to+ ", ";
+                    }
+
+                    if (this.searchRequest.activity.end.to && this.searchRequest.activity.end.from) {
+                        request += "Fin de la date d'activité comprise entre " + this.searchRequest.activity.end.from +" et "+ this.searchRequest.activity.end.to+ ", ";
+                    } else if (this.searchRequest.activity.end.from && !this.searchRequest.activity.end.to){
+                        request += "Fin de la date d'activité plus grand que " + this.searchRequest.activity.end.from+ ", ";
+                    } else if (this.searchRequest.activity.end.to && !this.searchRequest.activity.end.from){
+                        request += "Fin de la date d'activité plus petit que " + this.searchRequest.activity.end.to+ ", ";
+                    }
+
+                    if (this.searchRequest.sexe.length === 1){
+                        request += "Sexe : " + this.searchRequest.sexe[0]+ ", ";
+                    } else if (this.searchRequest.sexe.length > 1) {
+                        requestAux += "Sexe : [ " + this.searchRequest.sexe[0];
+                        for (let i in this.searchRequest.sexe){
+                            if (i!=0){
+                                let sexe = this.searchRequest.sexe[i];
+                                requestAux += ", " + sexe;
+                            }
+                        }
+                        requestAux += " ], ";
+                    }
+
+                    if (this.searchRequest.status.length === 1){
+                        request += "Status : " + this.searchRequest.status[0]+ ", ";
+                    } else if (this.searchRequest.status.length > 1) {
+                        requestAux += "Status : [ " + this.searchRequest.status[0];
+                        for (let i in this.searchRequest.status){
+                            if (i!=0){
+                                let status = this.searchRequest.status[i];
+                                requestAux += ", " + status;
+                            }
+                        }
+                        requestAux += " ], ";
+                    }
+
+                    if (this.searchRequest.grade) {
+                        request += "Grade : " + this.searchRequest.grade+ ", ";
+                    }
+
+                    if (this.searchRequest.discipline){
+                        request += "Discipline : " + this.searchRequest.discipline+ ", ";
+                    }
+
+                    requestAux += " ], ";
+                    request += " ], ";
+                    request = request + requestAux;
+                    requestAux = "";
+
+                    if (this.searchRequest.prosopography.length >= 0){
+                        for (let i in this.searchRequest.prosopography){
+                            let crit = this.searchRequest.prosopography[i];
+                            if (crit.value === null){
+                                if (crit.subSection && crit.section){
+                                    if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                        requestAux += "Le champs " + crit.section + " " + crit.subSection + " n'existe pas";
+                                    } else {
+                                        requestAux += "Le champs " + crit.section + " " + crit.subSection + " existe";
+                                    }
+                                } else if (crit.section) {
+                                    if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                        requestAux += "Le champs " + crit.section + " n'existe pas";
+                                    } else {
+                                        requestAux += "Le champs " + crit.section + " existe";
+                                    }
+                                }
+                            } else {
+                                requestAux += "Le champs " + crit.section + " " + crit.subSection;
+                                if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                    switch (crit.matchType) {
+                                        case "CONTAINS":
+                                            requestAux += " ne contient pas la chaine : " + crit.value;
+                                            break;
+                                        case "EQUALS":
+                                            requestAux += " n'est pas égal à la chaîne : " + crit.value;
+                                            break;
+                                        case "END":
+                                            requestAux += " ne se termine pas par la chaîne : " + crit.value;
+                                            break;
+                                        case "STARTS":
+                                            requestAux += " ne commence pas par la chaîne : " + crit.value;
+                                            break;
+                                    }
+                                } else {
+                                    switch (crit.matchType) {
+                                        case "CONTAINS":
+                                            requestAux += " contient la chaine : " + crit.value;
+                                            break;
+                                        case "EQUALS":
+                                            requestAux += " est égal à la chaîne : " + crit.value;
+                                            break;
+                                        case "END":
+                                            requestAux += " se termine par la chaîne : " + crit.value;
+                                            break;
+                                        case "STARTS":
+                                            requestAux += " commence par la chaîne : " + crit.value;
+                                            break;
+                                    }
+                                }
+
+                            }
+
+                            switch (crit.operator) {
+                                case "OR":
+                                case "OR NOT":
+                                    request = "Ou : [ " + requestAux + ", {" + request + "} ],";
+                                    break;
+                                case "AND NOT" :
+                                case "AND" :
+                                    request = "Et : [ " + requestAux + ", {" + request + "} ],";
+                                    break;
+                            }
+
+                            requestAux = "";
+                        }
+                    }
+
+                    this.requestString = request;
+                    
+                }
 
             },
             mounted : function () {

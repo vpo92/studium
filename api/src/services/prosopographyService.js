@@ -328,10 +328,12 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
         }
 
         switch (crit.operator) {
-          case 'AND' || 'AND NOT' :
+          case "AND NOT" :
+          case 'AND' :
             res = { "$and" : [resAux, res]};
             break;
-          case 'OR' || 'OR NOT' :
+          case "OR NOT" :
+          case 'OR' :
             res = {"$or": [resAux, res]};
             break;
         }
@@ -368,7 +370,6 @@ function generateRegexNotOperator(value, matchType){
   switch (matchType) {
     case 'EQUALS':
       return new RegExp('^'+value+'$',"i");
-
     case 'STARTS':
       return new RegExp('^'+value,"i");
     case 'CONTAINS':

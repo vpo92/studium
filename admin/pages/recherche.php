@@ -157,6 +157,13 @@
                                   v-on:add-row="handleAddProsopographyRow()"
                                   v-on:remove-row="handleRemoveProsopographyRow(item)"/>
             </div>
+            <div>
+                <button class="btn btn-primary" @click="constructRequest">Visualiser la requete</button>
+                <button v-if="requestString != ''" class="btn btn-success" @click="constructRequest">Actualiser</button>
+                <div v-if="requestString != ''" style="background: black">
+                    <p style="color: white">{{this.requestString}}</p>
+                </div>
+            </div>
             <div class="form-group">
                 <button v-if="!searching" type="submit" class="btn btn-primary" @click="searchs()">Rechercher</button>
                 <button v-else class="btn btn-secondary" type="button" disabled>
