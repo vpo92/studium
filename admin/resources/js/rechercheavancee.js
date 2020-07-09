@@ -38,7 +38,8 @@ const status = [
 const addOption = [
     {code: 'AND',label: 'et'},
     {code: 'OR',label: 'ou'},
-    {code: 'NOT',label: 'différent de'}
+    {code: 'OR NOT',label: 'ou différent de'},
+    {code: 'AND NOT',label: 'et différent de'}
 ];
 
 const searchOption = [
@@ -323,7 +324,6 @@ fetch(resourceUrl+'/messages.json')
                         alert("Autant telecharger la BDD");
                         return;
                     }
-
                     this.searching = true;
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
@@ -341,15 +341,14 @@ fetch(resourceUrl+'/messages.json')
 
                     this.searching = false;
 
-                    this.$nextTick(function () {
+                    this.$nextTick( () => {
                         this.dataTable = $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
                             buttons: buttons,
                             language: lang,
                         });
+
                     });
-
-
 
                     console.log(this.results);
                 },
@@ -371,7 +370,7 @@ fetch(resourceUrl+'/messages.json')
                                 empty = false;
                             }
                         }
-                        } else {
+                    } else {
                         empty = false
                     }
                     return empty;
@@ -384,4 +383,3 @@ fetch(resourceUrl+'/messages.json')
             }
         })
     });
-

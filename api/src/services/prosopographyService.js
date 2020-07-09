@@ -19,7 +19,7 @@ const readPagination = function(pagination){
 }
 
 
- async function findAll(pagination: any): Promise<Prosopography[]> {
+async function findAll(pagination: any): Promise<Prosopography[]> {
   const pg = readPagination(pagination);
 
   return await db
@@ -162,7 +162,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
           {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
       )
 
-      .skip(pg.skip)
+
       .limit(0)
       .toArray()
       .then(data => {
@@ -187,7 +187,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
           }
 
           if (item.identity.datesOfActivity !== undefined && item.identity.datesOfActivity[0] !== undefined &&
-          item.identity.datesOfActivity[0].value ){
+              item.identity.datesOfActivity[0].value ){
             item.datesOfActivity = item.identity.datesOfActivity[0].value;
           }
 
@@ -223,7 +223,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     let res = {};
     res['identity.datesOfActivity.meta.dates.endDate.date'] = {
       $lte: parseInt(searchRequest.activity.end.to),
-      $gte: parseInt(searchRequest.activity.end.from)
+      $gte: parseInt(searchRequest.activity.end.from),
     };
     criterions.push(res);
   } else if (searchRequest.activity.end.from) {
@@ -294,37 +294,64 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     }
   }
 
+  let res = {};
+
+  if (criterionsOr.length >= 1 && criterions.length >= 1){
+    res = { "$and" : criterions, "$or" : criterions};
+  } else if (criterions.length === 0 && criterionsOr.length > 0){
+    res = { "$or" : criterionsOr};
+  } else if (criterionsOr.length === 0 && criterions.length > 0){
+    res = { "$and" : criterions}
+  }
+
 
   //CRITERIONS
   if (searchRequest.prosopography) {
     for (let i in searchRequest.prosopography) {
-
       let crit = searchRequest.prosopography[i];
       let field = crit.section + '.' + crit.subSection + '.value';
-
       // Si la valeur est null on veut que le champs existe sinon on traite le critère
       if (crit.value === null && crit.section !== null) {
-        let res = {};
+        let resAux = {};
         if (crit.subSection) {
-          res[crit.section + "." + crit.subSection] = {$exists: true};
+          if (crit.operator === "OR NOT" || crit.operator === "AND NOT"){
+            resAux[crit.section + "." + crit.subSection] = {$exists: false};
+          } else {
+            resAux[crit.section + "." + crit.subSection] = {$exists: true};
+          }
         } else {
-          res[crit.section] = {$exists: true};
+          if (crit.operator === "OR NOT" || crit.operator === "AND NOT"){
+            resAux[crit.section] = {$exists: false};
+          } else {
+            resAux[crit.section] = {$exists: true};
+          }
         }
-        criterions.push(res);
-
-      } else if (crit.section !== null && crit.subSection !== null) {
 
         switch (crit.operator) {
-          case "OR" :
-            criterionsOr.push(generateSearchClause(field, escapeRegExp(crit.value), crit.matchType));
+          case 'AND' || 'AND NOT' :
+            res = { "$and" : [resAux, res]};
             break;
-          case "NOT" :
-            let res = {};
-            res[field] = {$not: generateRegexNotOperator( escapeRegExp(crit.value), crit.matchType)};
-            criterions.push(res);
+          case 'OR' || 'OR NOT' :
+            res = {"$or": [resAux, res]};
+            break;
+        }
+      } else if (crit.section !== null && crit.subSection !== null) {
+        switch (crit.operator) {
+          case "OR" :
+            res = {"$or" : [ generateSearchClause(field, escapeRegExp(crit.value), crit.matchType) , res]};
+            break;
+          case "AND NOT" :
+            let resAux1 = {};
+            resAux1[field] = {$not: generateRegexNotOperator( escapeRegExp(crit.value), crit.matchType)};
+            res = {"$and": [resAux1, res]};
+            break;
+          case "OR NOT":
+            let resAux2 = {};
+            resAux2[field] = {$not: generateRegexNotOperator( escapeRegExp(crit.value), crit.matchType)};
+            res = {"$or": [resAux2, res]};
             break;
           default :
-            criterions.push(generateSearchClause(field, escapeRegExp(crit.value), crit.matchType));
+            res = {"$and" : [ generateSearchClause(field, escapeRegExp(crit.value), crit.matchType) , res]};
             break;
         }
 
@@ -334,26 +361,8 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     }
   }
 
-  if (criterions.length === 0 && criterionsOr.length === 0) {
-    return;
-  } else if (criterionsOr.length === 0 && criterions.length >= 1) {
-    if (criterions.length === 1) {
-      return criterions[0];
-    } else {
-      return {
-        "$and": criterions,
-      }
-    }
-  } else if (criterions.length === 0 && criterionsOr.length >= 1) {
-    return {
-      "$or": criterionsOr,
-    }
-  } else {
-    return {
-      "$and": criterions,
-      "$or": criterionsOr,
-    }
-  }
+  console.log(res);
+  return res;
 }
 function generateRegexNotOperator(value, matchType){
   switch (matchType) {

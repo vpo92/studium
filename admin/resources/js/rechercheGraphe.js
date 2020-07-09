@@ -23,56 +23,56 @@ new Vue ({
                 },
                 options: {
                     onClick : async (evt) => {
-
-                        this.dataTable = $('#resultTable3').DataTable();
-                        this.dataTable.destroy();
-
                         const activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
                         const firstPoint = activePoints[0];
-                        const label = myChart.data.labels[firstPoint._index];
-                        const value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+                        if (firstPoint !== undefined){
 
-                        let searchRequest = {
-                            activityMediane: {
-                                from: label,
-                                to: label,
-                            },
-                            activity: {
-                                start: {
-                                    from: null,
-                                    to: null,
+                            this.dataTable = $('#resultTable3').DataTable();
+                            this.dataTable.destroy();
+
+                            const label = myChart.data.labels[firstPoint._index];
+                            const value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+
+                            let searchRequest = {
+                                activityMediane: {
+                                    from: label,
+                                    to: label,
                                 },
-                                end: {
-                                    from: null,
-                                    to: null,
-                                }
-                            },
-                            status: [],
-                            sexe: [],
-                            grade: null,
-                            discipline: null,
-                            name: null,
-                            prosopography: [{
-                                section: null,
-                                subSection: null,
-                                operator: "AND",
-                                matchType: null,
-                                value: null,
-                            }]
-                        };
+                                activity: {
+                                    start: {
+                                        from: null,
+                                        to: null,
+                                    },
+                                    end: {
+                                        from: null,
+                                        to: null,
+                                    }
+                                },
+                                status: [],
+                                sexe: [],
+                                grade: null,
+                                discipline: null,
+                                name: null,
+                                prosopography: [{
+                                    section: null,
+                                    subSection: null,
+                                    operator: "AND",
+                                    matchType: null,
+                                    value: null,
+                                }]
+                            };
 
-                        const result = await fetch(`${apiUrl}/prosopography/search/advanced`, {
-                            'method': 'POST',
-                            'headers': {
-                                'Content-Type': 'application/json',
-                            },
-                            'body': JSON.stringify(searchRequest)
-                        });
+                            const result = await fetch(`${apiUrl}/prosopography/search/advanced`, {
+                                'method': 'POST',
+                                'headers': {
+                                    'Content-Type': 'application/json',
+                                },
+                                'body': JSON.stringify(searchRequest)
+                            });
 
-                        this.resultsGraph = await result.json();
-                        this.redraw();
-
-
+                            this.resultsGraph = await result.json();
+                            this.redraw();
+                        }
                     },
                     responsive : true,
                     scales: {
