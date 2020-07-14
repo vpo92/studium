@@ -7,6 +7,7 @@ new Vue ({
         dataTable : null,
     },
     methods : {
+        //permet de créer le graphique et défini ses options
         createChart() {
             const ctx = document.getElementById('myChart');
             const myChart = new Chart(ctx, {
@@ -33,6 +34,8 @@ new Vue ({
                             const label = myChart.data.labels[firstPoint._index];
                             const value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
 
+                            // on recréer l'objet searchRequest pour appeler l'api via advanced searched
+                            // seule la médiane est définie
                             let searchRequest = {
                                 activityMediane: {
                                     from: label,
@@ -85,6 +88,8 @@ new Vue ({
                 }
             });
         },
+
+        //initialise le graphique avec les données de médiane de chaques fiches
         async initData(){
 
             const resultLabel = await fetch(`${apiUrl}/prosopography/initGraph`,{
@@ -118,10 +123,12 @@ new Vue ({
 
     },
     mounted : function(){
+        // on initialise le graphe puis on l'affiche
         this.initData().then( data => {
             this.createChart();
         });
 
+        // créer la datatable pour le graphe
         this.$nextTick(function () {
             this.dataTable = $("#resultTable3").DataTable({
                 dom: 'Bfrtip',

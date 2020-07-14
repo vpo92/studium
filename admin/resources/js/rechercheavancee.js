@@ -317,13 +317,20 @@ fetch(resourceUrl+'/messages.json')
                         }
                     }
                 },
+                //recherche dans la BDD les documents qui matchent la recherche de l'utilisateur
                 searchs: async function(){
 
+
+                    // on regarde si aucun des champs n'est rempli si c'est le cas on affiche un message
                     if (this.checkFields()){
                         alert("Autant telecharger la BDD");
                         return;
                     }
+
+                    // Booléen pour le chargement des données (animation)
                     this.searching = true;
+
+                    // on detruit la datatable pour que DataTable s'affiche correctement
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
 
@@ -340,6 +347,7 @@ fetch(resourceUrl+'/messages.json')
 
                     this.searching = false;
 
+                    // on appelle cette méthode pour mettre à jour la DataTable
                     this.$nextTick( () => {
                         this.dataTable = $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
@@ -351,6 +359,8 @@ fetch(resourceUrl+'/messages.json')
 
                     console.log(this.results);
                 },
+
+                // fonction pour vérifier si les champs sont vides dans la recherche avancée
                 checkFields: function () {
 
                     let empty = true;
@@ -374,9 +384,11 @@ fetch(resourceUrl+'/messages.json')
                     }
                     return empty;
                 },
-                viewRequest : function () {
-                },
+
+                // permet d'afficher le json de la requete (prévisu) à l'aide
+                // du plugin renderjson
                 constructRequest : function () {
+                    // pour voir tout les noeuds du JSON on set à all
                     renderjson.set_show_to_level("all");
                     let request = {};
                     let requestAux = {};

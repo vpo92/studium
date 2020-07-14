@@ -163,17 +163,13 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       )
 
 
-      .limit(0)
+      .limit(1000)
       .toArray()
       .then(data => {
 
         return data.filter(function (item) {
 
-          /*// MAYBE TO REPLACE; THIS PART OF CODE IS BECAUSE OF HETEROGENEOUS DATA
-          if (item.identity.datesOfActivity === undefined || item.identity.datesOfActivity[0].meta.dates === undefined){
-            return item;
-          }
-*/
+          // Cette partie du code permet de simplifier la vue
           if (item.curriculum !== undefined && item.curriculum.grades !== undefined){
             item.nbGrades = item.curriculum.grades.length;
           }
