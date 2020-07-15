@@ -217,6 +217,28 @@ li.app-value{
      font-size: 0.8em;
  }
 
+.renderjson {font-size: 150%}
+
+.renderjson a  {text-decoration: none; color: white}
+
+.renderjson .disclosure {color: crimson;}
+
+.renderjson .syntax {color: grey}
+
+.renderjson .string {color: red}
+
+.renderjson .number {color: cyan}
+
+.renderjson .boolean {color: plum}
+
+.renderjson .key {color: lightblue}
+
+.renderjson .keyword {color: lightgoldenrodyellow}
+
+.renderjson .object.syntax {color: lightseagreen}
+
+.renderjson .array.syntax {color: lightsalmon}
+
 /*
             BUILT-IN BUTTON COLVIS BUTTON DATATABLE (VISIBILITY COLUMNS)
  */

@@ -2,10 +2,11 @@ const disciplines = [
     {code:"ALL",label:"Tous"},
     {code:"ART",label:"Art"},
     {code:"DROIT",label:"Droit"},
-    {code:"DROIT_CANON",label:"Droit canon"},
-    {code:"DROIT_CIVIL",label:"Droit civil"},
+    {code:"DROIT.*CANON",label:"Droit canon"},
+    {code:"DROIT.*CIVIL",label:"Droit civil"},
     {code:"DECINE",label:"Médecine"},
-    {code:"MUSIQUE",label:"Musique"},
+    {code:"TH.OLOGIE",label:"Théologie"},
+    {code:"UTROQUE", label:"In utroque jure"}
 ];
 
 const sexe = [
@@ -16,11 +17,12 @@ const sexe = [
 const grades = [
     {code:"ALL",label:"Tous"},
     {code:"MAGIS",label:"Magister"},
-    {code:"DR",label:"Docteur"},
+    {code:"DOC",label:"Docteur"},
     {code:"MA.TRE",label:"Maître"},
     {code:"LIC",label:"Licencié"},
     {code:"BAC",label:"Bachelier"},
     {code:"TUD",label:"Étudiant"},
+    {code:"AUCUN", label:"Aucun"},
 ];
 
 const status = [
@@ -36,7 +38,8 @@ const status = [
 const addOption = [
     {code: 'AND',label: 'et'},
     {code: 'OR',label: 'ou'},
-    {code: 'NOT',label: 'différent de'}
+    {code: 'OR NOT',label: 'ou différent de'},
+    {code: 'AND NOT',label: 'et différent de'}
 ];
 
 const searchOption = [
@@ -242,8 +245,6 @@ Vue.component('prosopography-row', {
     </tr>`
 })
 
-
-
 var messages = null;
 fetch(resourceUrl+'/messages.json')
     .then(function(response) { return response.json(); })
@@ -290,10 +291,9 @@ fetch(resourceUrl+'/messages.json')
                 sexeList:sexe,
                 disciplineList:disciplines,
                 gradeList:grades,
-                results: null,
+                results: [],
                 rows: [],
                 dataTable: null,
-
             },
             methods: {
                 handleChapterChange: function(){
@@ -317,17 +317,22 @@ fetch(resourceUrl+'/messages.json')
                         }
                     }
                 },
-                search: async function(){
+                //recherche dans la BDD les documents qui matchent la recherche de l'utilisateur
+                searchs: async function(){
 
+
+                    // on regarde si aucun des champs n'est rempli si c'est le cas on affiche un message
                     if (this.checkFields()){
                         alert("Autant telecharger la BDD");
                         return;
                     }
 
+                    // Booléen pour le chargement des données (animation)
                     this.searching = true;
+
+                    // on detruit la datatable pour que DataTable s'affiche correctement
                     this.dataTable = $('#resultTable2').DataTable();
                     this.dataTable.destroy();
-
 
                     const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
                         'method':'POST',
@@ -342,20 +347,20 @@ fetch(resourceUrl+'/messages.json')
 
                     this.searching = false;
 
-                    this.$nextTick(function () {
+                    // on appelle cette méthode pour mettre à jour la DataTable
+                    this.$nextTick( () => {
                         this.dataTable = $("#resultTable2").DataTable({
                             dom: 'Bfrtip',
                             buttons: buttons,
-                            language: lang
+                            language: lang,
                         });
-
 
                     });
 
-
-
                     console.log(this.results);
                 },
+
+                // fonction pour vérifier si les champs sont vides dans la recherche avancée
                 checkFields: function () {
 
                     let empty = true;
@@ -374,12 +379,148 @@ fetch(resourceUrl+'/messages.json')
                                 empty = false;
                             }
                         }
-                        } else {
+                    } else {
                         empty = false
                     }
                     return empty;
+                },
+
+                // permet d'afficher le json de la requete (prévisu) à l'aide
+                // du plugin renderjson
+                constructRequest : function () {
+                    // pour voir tout les noeuds du JSON on set à all
+                    renderjson.set_show_to_level("all");
+                    let request = {};
+                    let requestAux = {};
+
+                    if (this.searchRequest.name) {
+                        request["Nom ou Variante de nom"] = "contient : " +  this.searchRequest.name + ", ";
+                    }
+
+                    if (this.searchRequest.activityMediane.from && this.searchRequest.activityMediane.to){
+                        request["Médiane d'activité"] = "comprise entre " + this.searchRequest.activityMediane.from + " et " + this.searchRequest.activityMediane.to+ ", ";
+                    } else if (this.searchRequest.activityMediane.from && !this.searchRequest.activityMediane.to) {
+                        request["Médiane d'activité"] = "est plus grande que " + this.searchRequest.activityMediane.from+ ", ";
+                    } else if (this.searchRequest.activityMediane.to && !this.searchRequest.activityMediane.from) {
+                        request["Médiane d'activité"] = "est inférieure à " + this.searchRequest.activityMediane.to+ ", ";
+                    }
+
+                    if (this.searchRequest.activity.start.from && this.searchRequest.activity.start.to){
+                        request["Début de la date d'activité"] = " comprise entre " + this.searchRequest.activity.start.from +" et "+ this.searchRequest.activity.start.to+ ", ";
+                    } else if (this.searchRequest.activity.start.from && !this.searchRequest.activity.start.to){
+                        request["Début de la date d'activité"] =" plus grand que " + this.searchRequest.activity.start.from+ ", ";
+                    } else if (this.searchRequest.activity.start.to && !this.searchRequest.activity.start.from){
+                        request["Début de la date d'activité"] = " plus petit que " + this.searchRequest.activity.start.to+ ", ";
+                    }
+
+                    if (this.searchRequest.activity.end.to && this.searchRequest.activity.end.from) {
+                        request["Fin de la date d'activité"] = " comprise entre " + this.searchRequest.activity.end.from +" et "+ this.searchRequest.activity.end.to+ ", ";
+                    } else if (this.searchRequest.activity.end.from && !this.searchRequest.activity.end.to){
+                        request["Fin de la date d'activité"]= " plus grand que " + this.searchRequest.activity.end.from+ ", ";
+                    } else if (this.searchRequest.activity.end.to && !this.searchRequest.activity.end.from){
+                        request["Fin de la date d'activité"] =" plus petit que " + this.searchRequest.activity.end.to+ ", ";
+                    }
+
+                    if (this.searchRequest.sexe.length === 1){
+                        request["Sexe"] = this.searchRequest.sexe[0];
+                    } else if (this.searchRequest.sexe.length > 1) {
+                        requestAux["Sexe"] =  this.searchRequest.sexe;
+                    }
+
+                    if (this.searchRequest.status.length === 1){
+                        request["Status"] = this.searchRequest.status[0];
+                    } else if (this.searchRequest.status.length > 1) {
+                        requestAux["Status"] =  this.searchRequest.status;
+                    }
+
+                    if (this.searchRequest.grade) {
+                        request["Grade"] = this.searchRequest.grade;
+                    }
+
+                    if (this.searchRequest.discipline){
+                        request["Discipline"] = this.searchRequest.discipline;
+                    }
+
+                    request = { "et" : request , "ou" : requestAux};
+                    requestAux = {};
+
+                    if (this.searchRequest.prosopography.length >= 0){
+                        for (let i in this.searchRequest.prosopography){
+                            let crit = this.searchRequest.prosopography[i];
+                            if (crit.value === null){
+                                if (crit.subSection && crit.section){
+                                    if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                        requestAux[crit.section + " " + crit.subSection] = "n'existe pas";
+                                    } else {
+                                        requestAux[crit.section + " " + crit.subSection] = "existe";
+                                    }
+                                } else if (crit.section) {
+                                    if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                        requestAux[crit.section] = "n'existe pas";
+                                    } else {
+                                        requestAux[crit.section] = "existe";
+                                    }
+                                }
+                            } else {
+                                if (crit.operator === 'OR NOT' || crit.operator === 'AND NOT'){
+                                    switch (crit.matchType) {
+                                        case "CONTAINS":
+                                            requestAux[crit.section + " " + crit.subSection] ="ne contient pas la chaine : " + crit.value;
+                                            break;
+                                        case "EQUALS":
+                                            requestAux[crit.section + " " + crit.subSection] ="n'est pas égal à la chaîne : " + crit.value;
+                                            break;
+                                        case "END":
+                                            requestAux[crit.section + " " + crit.subSection] ="ne se termine pas par la chaîne : " + crit.value;
+                                            break;
+                                        case "STARTS":
+                                            requestAux[crit.section + " " + crit.subSection] ="ne commence pas par la chaîne : " + crit.value;
+                                            break;
+                                    }
+                                } else {
+                                    switch (crit.matchType) {
+                                        case "CONTAINS":
+                                            requestAux[crit.section + " " + crit.subSection] = " contient la chaine : " + crit.value;
+                                            break;
+                                        case "EQUALS":
+                                            requestAux[crit.section + " " + crit.subSection] =" est égal à la chaîne : " + crit.value;
+                                            break;
+                                        case "END":
+                                            requestAux[crit.section + " " + crit.subSection] = " se termine par la chaîne : " + crit.value;
+                                            break;
+                                        case "STARTS":
+                                            requestAux[crit.section + " " + crit.subSection] =" commence par la chaîne : " + crit.value;
+                                            break;
+                                    }
+                                }
+
+                            }
+
+                            switch (crit.operator) {
+                                case "OR":
+                                case "OR NOT":
+                                    request = { "ou" : [ requestAux, request ]};
+                                    break;
+                                case "AND NOT" :
+                                case "AND" :
+                                    request = { "et" : [ requestAux , request]};
+                                    break;
+                            }
+
+                            requestAux = {};
+                        }
+                    }
+
+                    document.getElementById("test").innerHTML = "";
+                    document.getElementById("test").appendChild( renderjson(request));
+                    ;
+                    
                 }
+
+            },
+            mounted : function () {
+
+
             }
         })
     });
-

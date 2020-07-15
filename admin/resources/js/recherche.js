@@ -1,5 +1,5 @@
 
-var buttons =      [
+var buttons = [
     {
         extend: 'copyHtml5',
         text:      'Copier <i class="fas fa-copy"></i>',
@@ -48,7 +48,7 @@ var buttons =      [
 var lang = {
     "sProcessing":     "Traitement en cours...",
     "sSearch":         "Rechercher&nbsp;:",
-    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+    "slengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
     "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
     "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
     "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
@@ -82,6 +82,27 @@ $(document).ready(function() {
         language: lang
     });
 
-
-
+    /*$("#resultTable3").DataTable({
+        dom: 'Bfrtip',
+        buttons: buttons,
+        language: lang,
+        ajax: {
+            url: `${apiUrl}/prosopography/`,
+            type: 'GET',
+            async: false
+        },
+        columns : [
+            {data: 'reference' },
+            {data: 'identity.name[0].value' },
+            {data: 'identity.status[0].value'},
+            {data: 'identity.shortDescription[0].value' },
+            {data: 'reference'},
+            {data: 'reference'},
+            {data: 'reference'},
+            {data: 'reference'},
+            {data: 'reference'},
+            {data: 'reference'},
+            {data: 'reference'},
+        ]
+    })*/
 });
