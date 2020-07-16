@@ -328,7 +328,7 @@ $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></scr
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
-$pageScripts .='<script type="text/javascript" src="../node_modules/renderjson/renderjson.js"></script>';
+$pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson@1.4.0/renderjson.min.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';

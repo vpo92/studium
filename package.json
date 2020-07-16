@@ -52,7 +52,6 @@
   },
   "dependencies": {
     "mongodb": "^3.5.9",
-    "renderjson": "^1.4.0",
     "vue-loading-overlay": "^3.3.2",
     "vue-loading-spinner": "^1.0.11"
   }
