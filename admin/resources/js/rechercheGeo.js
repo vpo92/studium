@@ -48,7 +48,7 @@ new Vue({
     },
     mounted : function () {
 
-        var myMap = L.map('myMap').setView([48, 12], 4);
+        /*var myMap = L.map('myMap').setView([48, 12], 4);
 
         myMap.invalidateSize(true);
 
@@ -60,7 +60,7 @@ new Vue({
 
         this.findManuscrits().then( () => {
             this.addMarkers(myMap);
-        });
+        });*/
 
     },
    /* onMapReady : function(map: L.Map) {

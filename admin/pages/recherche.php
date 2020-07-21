@@ -11,9 +11,9 @@
     <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphics" role="tab" aria-controls="profile" aria-selected="false">Recherche graphique</a>
     </li>
-    <li class="nav-item">
+    <!--<li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#map" role="tab" aria-controls="profile" aria-selected="false">Recherche géographique</a>
-    </li>
+    </li>-->
 </ul>
 
 
