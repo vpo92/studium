@@ -249,3 +249,6 @@ button.dt-button.active {
     color: white;
     border-radius: 2px;
 }
+
+
+#myMap { height: 50em; width: 100em }

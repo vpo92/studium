@@ -153,7 +153,6 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
   console.log(searchRequest);
   const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
-  console.log(mongodbRequest);
   return db
       .get()
       .collection('prosopography')
@@ -232,7 +231,11 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     criterions.push(res);
   }
 
-  if (searchRequest.activityMediane.to && searchRequest.activityMediane.from){
+  if (searchRequest.graph){
+    let res = {};
+    res['extras.activityMediane'] = null;
+    criterions.push(res);
+  } else if (searchRequest.activityMediane.to && searchRequest.activityMediane.from){
     let res = {};
     res['extras.activityMediane'] = {
       $lte: parseInt(searchRequest.activityMediane.to),
@@ -293,7 +296,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
   let res = {};
 
   if (criterionsOr.length >= 1 && criterions.length >= 1){
-    res = { "$and" : criterions, "$or" : criterions};
+    res = { "$and" : criterions, "$or" : criterionsOr};
   } else if (criterions.length === 0 && criterionsOr.length > 0){
     res = { "$or" : criterionsOr};
   } else if (criterionsOr.length === 0 && criterions.length > 0){

@@ -5,6 +5,7 @@ new Vue ({
         chartCounts : null,
         resultsGraph: null,
         dataTable : null,
+        searching : false,
     },
     methods : {
         //permet de créer le graphique et défini ses options
@@ -24,6 +25,8 @@ new Vue ({
                 },
                 options: {
                     onClick : async (evt) => {
+
+                        this.searching = true;
                         const activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
                         const firstPoint = activePoints[0];
                         if (firstPoint !== undefined){
@@ -36,6 +39,9 @@ new Vue ({
 
                             // on recréer l'objet searchRequest pour appeler l'api via advanced searched
                             // seule la médiane est définie
+
+
+
                             let searchRequest = {
                                 activityMediane: {
                                     from: label,
@@ -53,6 +59,7 @@ new Vue ({
                                 },
                                 status: [],
                                 sexe: [],
+                                graph: true,
                                 grade: null,
                                 discipline: null,
                                 name: null,
@@ -74,6 +81,7 @@ new Vue ({
                             });
 
                             this.resultsGraph = await result.json();
+                            this.searching = false;
                             this.redraw();
                         }
                     },
