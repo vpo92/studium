@@ -11,6 +11,9 @@
     <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphics" role="tab" aria-controls="profile" aria-selected="false">Recherche graphique</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#map" role="tab" aria-controls="profile" aria-selected="false">Recherche géographique</a>
+    </li>
 </ul>
 
 
@@ -159,7 +162,7 @@
             </div>
             <div>
                 <button class="btn btn-primary" @click="constructRequest">Visualiser la requete</button>
-                <button v-if="requestString != null" class="btn btn-success" @click="constructRequest">Actualiser</button>
+                <button v-if="vizualisation" class="btn btn-danger" @click="closeRequestVizualisation">Fermer la visualisation</button>
                 <div style="background: black; color: white" id ="test">
                 </div>
             </div>
@@ -222,25 +225,6 @@
 
 
 
-            <!--<div>
-                <table class="table" id="resultTable3">
-                    <thead>
-                    <tr>
-                        <th>Ref</th>
-                        <th>Nom</th>
-                        <th>Status</th>
-                        <th>Description</th>
-                        <th>Dates d'activités</th>
-                        <th>Mediane</th>
-                        <th>Dernier grade</th>
-                        <th>Nombre de grades</th>
-                        <th>Diocése d'origine</th>
-                        <th>Dernière actualisation</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>-->
             <div v-if="searching" class="text-center" >
                 <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
                     <span class="sr-only">Recherche...</span>
@@ -264,7 +248,7 @@
         <div id="graphe">
 
             <canvas id="myChart" width="400" height="400"></canvas>
-            <div id="resultArea" v-if=" resultsGraph !== null && resultsGraph.length > 0">
+            <div id="resultArea" v-if=" resultsGraph !== null && resultsGraph.length > 0 && !searching">
                 <h2>Nombre de résultats : {{resultsGraph.length}}</h2>
                 <table class="table" id="resultTable3">
                     <thead>
@@ -306,10 +290,30 @@
                     </tbody>
                 </table>
             </div>
-            <div v-else>
+            <div v-else-if="!searching">
                 Aucun résultat
             </div>
+
+
+            <div v-if="searching" class="text-center" >
+                <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+                <div class="spinner-grow text-danger" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Recherche...</span>
+                </div>
+            </div>
+
         </div>
+    </div>
+    <div class="tab-pane fade" id="map">
+        <div id="myMap"></div>
     </div>
 </div>
 
@@ -329,9 +333,12 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/b
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson@1.4.0/renderjson.min.js"></script>';
+$pageScripts .='<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
+$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGeo.js"></script>';
+
 
 ?>

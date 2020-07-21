@@ -293,6 +293,7 @@ fetch(resourceUrl+'/messages.json')
                 gradeList:grades,
                 results: [],
                 rows: [],
+                vizualisation : false,
                 dataTable: null,
             },
             methods: {
@@ -513,8 +514,13 @@ fetch(resourceUrl+'/messages.json')
 
                     document.getElementById("test").innerHTML = "";
                     document.getElementById("test").appendChild( renderjson(request));
-                    ;
+                    this.vizualisation = true;
+
                     
+                },
+                closeRequestVizualisation(){
+                    document.getElementById("test").innerHTML = "";
+                    this.vizualisation = false;
                 }
 
             },

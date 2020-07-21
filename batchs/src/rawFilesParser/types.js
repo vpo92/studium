@@ -285,6 +285,22 @@ export type Prosopography = {
   raw: any,
 }
 
+export type ville = {
+  ville: any,
+  pays: any,
+  xl93: any,
+  yl93: any,
+  xwgs84: any,
+  ywgs84: any,
+  data_base: any
+}
+
+export type manuscrit = {
+  idbdd: any,
+  places: any,
+  cote: any
+}
+
 export type Line = 'BIBLIOGRAPHY_START' | 'DATA' | 'EMPTY' | 'ERROR' | 'FIRST_LINE';
 
 export type ParsedLine = { type: Line, value?: $Shape<ProsopographyRow> };
