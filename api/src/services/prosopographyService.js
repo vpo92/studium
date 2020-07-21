@@ -231,7 +231,11 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     criterions.push(res);
   }
 
-  if (searchRequest.activityMediane.to && searchRequest.activityMediane.from){
+  if (searchRequest.graph){
+    let res = {};
+    res['extras.activityMediane'] = null;
+    criterions.push(res);
+  } else if (searchRequest.activityMediane.to && searchRequest.activityMediane.from){
     let res = {};
     res['extras.activityMediane'] = {
       $lte: parseInt(searchRequest.activityMediane.to),

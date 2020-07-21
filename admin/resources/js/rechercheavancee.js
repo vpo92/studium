@@ -275,6 +275,7 @@ fetch(resourceUrl+'/messages.json')
                     },
                     status: [],
                     sexe: [],
+                    graph: false,
                     grade: null,
                     discipline: null,
                     name: null,

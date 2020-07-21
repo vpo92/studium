@@ -40,9 +40,7 @@ new Vue ({
                             // on recréer l'objet searchRequest pour appeler l'api via advanced searched
                             // seule la médiane est définie
 
-                            if (label == "null"){
-                                console.log("null");
-                            }
+
 
                             let searchRequest = {
                                 activityMediane: {
@@ -61,6 +59,7 @@ new Vue ({
                                 },
                                 status: [],
                                 sexe: [],
+                                graph: true,
                                 grade: null,
                                 discipline: null,
                                 name: null,
