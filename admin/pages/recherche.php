@@ -201,7 +201,7 @@
                             <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                             <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
                             <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
-                            <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
+                            <td>{{(record.extras!=undefined)?record.extras.activityMediane?record.extras.activityMediane:"-":"-"}}</td>
                             <td></td>
                             <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
                             <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
@@ -274,7 +274,7 @@
                         <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
                         <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
                         <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
-                        <td>{{record.extras.activityMediane?record.extras.activityMediane:"-" }}</td>
+                        <td>{{(record.extras!=undefined)?record.extras.activityMediane?record.extras.activityMediane:'-':'-' }}</td>
                         <td></td>
                         <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
                         <td>{{record.originDiocese?record.originDiocese:'?'}}</td>

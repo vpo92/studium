@@ -231,7 +231,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     criterions.push(res);
   }
 
-  if (searchRequest.graph){
+  if (searchRequest.graph && searchRequest.activityMediane.from == null){
     let res = {};
     res['extras.activityMediane'] = null;
     criterions.push(res);
