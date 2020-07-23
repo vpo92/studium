@@ -26,10 +26,11 @@ new Vue ({
                 options: {
                     onClick : async (evt) => {
 
-                        this.searching = true;
+
                         const activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
                         const firstPoint = activePoints[0];
                         if (firstPoint !== undefined){
+                            this.searching = true;
 
                             this.dataTable = $('#resultTable3').DataTable();
                             this.dataTable.destroy();
@@ -92,8 +93,43 @@ new Vue ({
                                 beginAtZero: true
                             }
                         }]
+                    },
+                    plugins: {
+                        zoom: {
+                            // Container for pan options
+                            pan: {
+                                // Boolean to enable panning
+                                enabled: true,
+
+                                // Panning directions. Remove the appropriate direction to disable
+                                // Eg. 'y' would only allow panning in the y direction
+                                mode: 'xy',
+                                rangeMin: {
+                                    // Format of min zoom range depends on scale type
+                                    x: 0,
+                                    y: 0
+                                },
+                            },
+
+                            // Container for zoom options
+                            zoom: {
+                                // Boolean to enable zooming
+                                enabled: true,
+
+                                // Zooming directions. Remove the appropriate direction to disable
+                                // Eg. 'y' would only allow zooming in the y direction
+                                mode: 'xy',
+
+                                rangeMin: {
+                                    // Format of min zoom range depends on scale type
+                                    x: 0,
+                                    y: 0
+                                },
+                            }
+                        }
                     }
-                }
+                },
+
             });
         },
 

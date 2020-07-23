@@ -247,7 +247,9 @@
 
         <div id="graphe">
 
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <div id="myChartDiv">
+                <canvas id="myChart"></canvas>
+            </div>
             <div id="resultArea" v-if=" resultsGraph !== null && resultsGraph.length > 0 && !searching">
                 <h2>Nombre de résultats : {{resultsGraph.length}}</h2>
                 <table class="table" id="resultTable3">
@@ -334,6 +336,9 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/b
 $pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson@1.4.0/renderjson.min.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>';
+
+$pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>';
+$pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.7"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
