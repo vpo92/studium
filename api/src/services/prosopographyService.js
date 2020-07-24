@@ -339,7 +339,14 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
       } else if (crit.section !== null && crit.subSection !== null) {
         switch (crit.operator) {
           case "OR" :
-            res = {"$or" : [ generateSearchClause(field, escapeRegExp(crit.value), crit.matchType) , res]};
+            if (searchRequest.graph){
+              let fieldAux = crit.section + '.' + crit.subSection
+              let resAux1 = {};
+              resAux1[fieldAux] = crit.value;
+              res = {"$or" : [resAux1, res]};
+            } else {
+              res = {"$or" : [ generateSearchClause(field, escapeRegExp(crit.value), crit.matchType) , res]};
+            }
             break;
           case "AND NOT" :
             let resAux1 = {};

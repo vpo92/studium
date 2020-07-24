@@ -251,7 +251,15 @@ button.dt-button.active {
 }
 
 
-#myMap { height: 50em; width: 100em }
+html, body, .tab-content, #map  {
+    height: 100%;
+}
+
+#myMap {
+    width: 100em;
+    height: 70em;
+}
+
 
 #myChartDiv {
     width: 60%;

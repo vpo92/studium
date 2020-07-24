@@ -1,3 +1,39 @@
+var circleStyle = function(point, item) {
+    return {
+        id: point,
+        listText: item
+    };
+};
+
+var clickAction = function(eid) {
+    alert("element " + eid + " clicked");
+};
+
+var options = {
+    labelFn: function(el, ei, cluster) {
+        return (
+            '<p style="cursor: pointer" onclick="clickAction(' +
+            el.options.id +
+            ')">[' +
+            ei +
+            "] " +
+            el.options.listText +
+            "</p>"
+        );
+    },
+    headerFn: function(els, cluster) {
+        return "<p> " + els.length + " elements</p>";
+    },
+    sortFn: function(m1, m2) {
+        return m1.options.id > m2.options.id ? 1 : -1;
+    },
+    showHeader: true,
+    sidePanel: false,
+    sidePanelWidth: "200px",
+    centerOnChange: true,
+    showCoverageOnHover: false
+};
+
 new Vue({
     el : "#map",
     data : {
@@ -24,23 +60,28 @@ new Vue({
         addMarkers : function (map) {
 
             console.log("add markers");
-            var markers = L.markerClusterGroup();
+            var markers = L.markerClusterGroup.withList(options);
             this.results.forEach( async function (item) {
-                    const aux = await fetch(`${apiUrl}/carto/ville/${item["Places"]}`, {
-                        'method': 'GET',
-                        'headers': {
-                            'Content-Type': 'application/json',
-                        },
-                    });
+                const aux = await fetch(`${apiUrl}/carto/ville/${item["Places"]}`, {
+                    'method': 'GET',
+                    'headers': {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-                    this.resultVille = await aux.json();
+                this.resultVille = await aux.json();
 
-
-                var marker = L.marker([this.resultVille["YWGS84"], this.resultVille["XWGS84"]]);
-                marker.bindPopup(item["cote"]);
+                let style = circleStyle(item._id, item['cote']);
+                var marker = L.markerClusterGroup.listMarker([this.resultVille["YWGS84"], this.resultVille["XWGS84"]], style);
                 markers.addLayer(marker);
 
             });
+
+            markers.on("click", function(m) {
+                clickAction(m.layer.options.id);
+            });
+
+
             map.addLayer(markers);
 
         }
@@ -58,15 +99,21 @@ new Vue({
             maxZoom: 20
         }).addTo(myMap);
 
+        L.control
+            .zoom({
+                position: "bottomleft"
+            })
+            .addTo(myMap);
+
         this.findManuscrits().then( () => {
             this.addMarkers(myMap);
         });*/
 
     },
-   /* onMapReady : function(map: L.Map) {
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 0);
-    }*/
+    /* onMapReady : function(map: L.Map) {
+         setTimeout(() => {
+             map.invalidateSize();
+         }, 0);
+     }*/
 })
 

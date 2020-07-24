@@ -11,7 +11,7 @@
     <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphics" role="tab" aria-controls="profile" aria-selected="false">Recherche graphique</a>
     </li>
-    <!--<li class="nav-item">
+   <!-- <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#map" role="tab" aria-controls="profile" aria-selected="false">Recherche géographique</a>
     </li>-->
 </ul>
@@ -243,14 +243,16 @@
         </div>
 
     </div>
-    <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab" style="width: 100%">
 
-        <div id="graphe">
+        <div id="graphe" style="height: 100%; width: 100%">
 
-            <div id="myChartDiv">
+           <!-- <div id="myChartDiv">
                 <canvas id="myChart"></canvas>
-            </div>
-            <div id="resultArea" v-if=" resultsGraph !== null && resultsGraph.length > 0 && !searching">
+            </div>-->
+
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <div id="resultArea" v-if=" arrayMediane.length !== 0 && resultsGraph !== null && resultsGraph.length > 0 && !searching">
                 <h2>Nombre de résultats : {{resultsGraph.length}}</h2>
                 <table class="table" id="resultTable3">
                     <thead>
@@ -333,12 +335,18 @@ $pageScripts .='<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons
 $pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.js"></script>';
-$pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
+//$pageScripts .='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>';
+$pageScripts .='<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson@1.4.0/renderjson.min.js"></script>';
 $pageScripts .='<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>';
 
 $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>';
 $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.7"></script>';
+$pageScripts .='<script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster.list@0.4.4/dist/leaflet-markercluster-list.js"></script>';
+
+
+$pageScripts .='<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>';
+$pageScripts .='<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
