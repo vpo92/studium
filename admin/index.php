@@ -25,6 +25,7 @@ $liste = null;
 $reference = null;
 $error_msg = null;
 $info_msg = null;
+$pageCSS = "";
 $pageScripts = "";
 
 //Recuperer les parametres

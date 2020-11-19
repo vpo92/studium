@@ -1,22 +1,5 @@
 <h3>Rechercher une fiche par mot clé</h3>
 
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Recherche rapide</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Recherche avancée</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphics" role="tab" aria-controls="profile" aria-selected="false">Recherche graphique</a>
-    </li>
-   <!-- <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#map" role="tab" aria-controls="profile" aria-selected="false">Recherche géographique</a>
-    </li>-->
-</ul>
-
-
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <br>
@@ -52,8 +35,17 @@
             foreach ($result as $fiche) {
                 $name = $ficheService->getFicheTitle($fiche);
                 $viewLink =  $ficheService->getFicheUrl($fiche)."?mode=SEARCH&keyword=$keyword";;
-                $status = getPropertieValue($fiche->identity->status);
-                $description = getPropertieValue($fiche->identity->shortDescription);
+
+                $status = "";
+                if(isset($fiche->identity->shortDescription)){
+                    $status =  getPropertieValue($fiche->identity->status);
+                }
+
+                $description = "";
+                if(isset($fiche->identity->shortDescription)){
+                    $description = getPropertieValue($fiche->identity->shortDescription);
+                }
+
                 ?>
                 <tr>
                     <th scope="row"><?php echo $fiche->reference ?></th>
@@ -71,253 +63,6 @@
             }?>
             </tbody>
         </table>
-    </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-        <br>
-        <div ref="formContainer" id="app">
-
-            <h5>Nom</h5>
-            <div class="form-inline">
-                <div class="form-group">
-                    <input type="text" v-model="searchRequest.name">
-                </div>
-            </div>
-
-            <fieldset>
-                <legend>Activité</legend>
-                <div>
-                    <div class="form-group">
-                        <label>Médiane d'activité entre : </label>
-                        <input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100">
-                        <label> et </label>
-                        <input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Début d'activité entre : </label>
-                        <input type="number" v-model="searchRequest.activity.start.from" step="100">
-                        <label>et</label>
-                        <input type="number" v-model="searchRequest.activity.start.to" step="100">
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Fin d'activité entre : </label>
-                        <input type="number" v-model="searchRequest.activity.end.from" step="100">
-                        <label>et</label>
-                        <input type="number" v-model="searchRequest.activity.end.to" step="100">
-                    </div>
-                </div>
-            </fieldset>
-
-
-            <div class="form-group">
-                <fieldset>
-                    <legend>Statut</legend>
-                    <span style="margin: 20px" v-for="option in statusList">
-                        <input type="checkbox" v-bind:id="option.label" v-bind:value="option.code"
-                               v-model="searchRequest.status"/>
-                        <label v-bind:for="option.label">{{ option.label }}</label>
-                    </span>
-                </fieldset>
-            </div>
-
-            <div class="form-group">
-                <fieldset>
-                    <legend>Sexe</legend>
-                    <span style="margin: 20px" v-for="option in sexeList">
-                        <input type="checkbox" v-bind:id="option.label" v-bind:value="option.code"
-                               v-model="searchRequest.sexe"/>
-                        <label v-bind:for="option.label">{{ option.label }}</label>
-                    </span>
-                </fieldset>
-            </div>
-
-
-            <h5>Cursus</h5>
-            <div class="form-inline">
-
-
-                <div class="form-group">
-                    <label>Grade obtenu :</label>
-                    <select v-model="searchRequest.grade">
-                        <option v-for="option in gradeList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Discipline :</label>
-                    <select v-model="searchRequest.discipline">
-                        <option v-for="option in disciplineList" v-bind:value="option.code" >{{ option.label }}</option>
-                    </select>
-                </div>
-            </div>
-            <h5>Biographie</h5>
-            <div>
-                <search-criterion v-for="item in searchRequest.prosopography"
-                                  v-bind:prosopography="item"
-                                  v-bind:rows="searchRequest.prosopography.length"
-                                  v-on:add-row="handleAddProsopographyRow()"
-                                  v-on:remove-row="handleRemoveProsopographyRow(item)"/>
-            </div>
-            <div>
-                <button class="btn btn-primary" @click="constructRequest">Visualiser la requete</button>
-                <button v-if="vizualisation" class="btn btn-danger" @click="closeRequestVizualisation">Fermer la visualisation</button>
-                <div style="background: black; color: white" id ="test">
-                </div>
-            </div>
-            <div class="form-group">
-                <button v-if="!searching" type="submit" class="btn btn-primary" @click="searchs()">Rechercher</button>
-                <button v-else class="btn btn-secondary" type="button" disabled>
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Recherche en cours...
-                </button>
-            </div>
-
-            <div id="resultArea" v-if="!searching && results != null">
-                <div v-if="results.length > 0">
-                    <h2>Nombre de résultats : {{results.length}}</h2>
-                    <table class="table" id="resultTable2">
-                        <thead>
-                        <tr>
-                            <th scope="col">Référence</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Statut</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Date d'activité</th>
-                            <th scope="col">Mediane</th>
-                            <th scope="col">Dernier grade</th>
-                            <th scope="col">Nombre de grades</th>
-                            <th scope="col">Diocèse d'origine</th>
-                            <th scope="col">Dérnière actualisation</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="record in results"  >
-                            <td scope="row">{{record.reference}}</td>
-                            <td v-if="record.auteur===true" style="color: red">{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
-                            <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
-                            <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
-                            <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                            <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
-                            <td>{{(record.extras!=undefined)?record.extras.activityMediane?record.extras.activityMediane:"-":"-"}}</td>
-                            <td></td>
-                            <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
-                            <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
-                            <td></td>
-                            <td>
-                                <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
-                                <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
-                                <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
-                                <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div v-else>
-                    Aucun résultat
-                </div>
-            </div>
-
-
-
-
-            <div v-if="searching" class="text-center" >
-                <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-danger" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="profile-tab" style="width: 100%">
-
-        <div id="graphe" style="height: 100%; width: 100%">
-
-           <!-- <div id="myChartDiv">
-                <canvas id="myChart"></canvas>
-            </div>-->
-
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-            <div id="resultArea" v-if=" arrayMediane.length !== 0 && resultsGraph !== null && resultsGraph.length > 0 && !searching">
-                <h2>Nombre de résultats : {{resultsGraph.length}}</h2>
-                <table class="table" id="resultTable3">
-                    <thead>
-                    <tr>
-                        <th scope="col">Référence</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Statut</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Date d'activité</th>
-                        <th scope="col">Mediane</th>
-                        <th scope="col">Dernier grade</th>
-                        <th scope="col">Nombre de grades</th>
-                        <th scope="col">Diocèse d'origine</th>
-                        <th scope="col">Dérnière actualisation</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="record in resultsGraph"  >
-                        <td scope="row">{{record.reference}}</td>
-                        <td v-if="record.auteur===true" style="color: red">{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
-                        <td v-else>{{record.identity.name?record.identity.name[0].value+"":'-'}}</td>
-                        <td>{{record.identity.status?record.identity.status[0].value:'-'}}</td>
-                        <td>{{record.identity.shortDescription?record.identity.shortDescription[0].value:'-'}}</td>
-                        <td>{{record.datesOfActivity?record.datesOfActivity:'?-?'}}</td>
-                        <td>{{(record.extras!=undefined)?record.extras.activityMediane?record.extras.activityMediane:'-':'-' }}</td>
-                        <td></td>
-                        <td>{{record.nbGrades?record.nbGrades:'?'}}</td>
-                        <td>{{record.originDiocese?record.originDiocese:'?'}}</td>
-                        <td></td>
-                        <td>
-                            <a class="btn btn-primary" :href="'.'+record.link">voir la fiche</a>
-                            <button class="btn btn-secondary"><i class="fas fa-copy"></i></button>
-                            <button class="btn btn-secondary"><i class="fas fa-file-word"></i></button>
-                            <button class="btn btn-secondary"><i class="fas fa-file-pdf"></i></button>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <div v-else-if="!searching">
-                Aucun résultat
-            </div>
-
-
-            <div v-if="searching" class="text-center" >
-                <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-                <div class="spinner-grow text-danger" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Recherche...</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="tab-pane fade" id="map">
-        <div id="myMap"></div>
     </div>
 </div>
 
@@ -349,7 +94,7 @@ $pageScripts .='<script src="https://canvasjs.com/assets/script/canvasjs.min.js"
 $pageScripts .='<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>';
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
-$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
+//$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGeo.js"></script>';
 

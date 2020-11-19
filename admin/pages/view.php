@@ -11,6 +11,8 @@ $name = is_object($fiche->identity->name)?$fiche->identity->name->value:$fiche->
 $backLink = getApplicationUrl()."?action=index&letter=$name[0]";
 if(isset($mode) && $mode == "SEARCH") {
     $backLink = getApplicationUrl()."?action=search&keyword=$keyword";
+}else if(isset($mode) && $mode == "FULLSEARCH") {
+    $backLink = getApplicationUrl()."?page=recherche-avancee";
 }
 $removeRedirect = "&mode=$mode&letter=$name[0]&keyword=$keyword"
 ?>
