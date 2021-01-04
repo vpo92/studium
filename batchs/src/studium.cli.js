@@ -3,6 +3,8 @@
 import chalk from 'chalk';
 import { backupAll,saveRecord,createIndex,getAllIds, reIndex, indexDB } from './rawFilesParser/RestService';
 import { processFile } from './rawFilesParser/simpleParser';
+import { importJsonFile } from './fileImporter/fileImport';
+
 
 //Backup
 
@@ -15,7 +17,6 @@ export function runBackupAll(api,tk) {
 }
 
 //File Import
-
 export function runImportFile(file: string, api: string,tk: string) {
   let localSaveRecord = (record) => {
     return saveRecord(api, tk, record);
@@ -74,6 +75,10 @@ export function runIndexDB(api,tk) {
   });
 }
 
+export function runImportJsonFile(file, dbUrl, collection) {
+  importJsonFile(file,dbUrl,collection);
+}
+
 export function version(){
   const packageJson = require('../package.json');
   console.log("Studium CLI v"+packageJson.version);
@@ -86,7 +91,8 @@ export function help(){
 ${chalk.green('studium [command] <options>')}
     ${chalk.blue('auth')} ............... auth to API and get token
     ${chalk.blue('backup')} ............. backup prosopography data
-    ${chalk.blue('import-file')}......... import raw file in JPG format
+    ${chalk.blue('import-file')}......... import raw TXT file in JPG format
+    ${chalk.blue('import-json-file')}.... import csv file to mongoDB
     ${chalk.blue('re-index')}............ re-index all prosopography from raw
     ${chalk.blue('update-db-index')}..... update mongodb text index for search
     ${chalk.blue('version')} ............ show package version

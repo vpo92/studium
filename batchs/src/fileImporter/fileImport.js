@@ -13,10 +13,10 @@ const importJSON = (db,collection,json) => {
   });
 }
 
-const saveFileInDatabase = (collection,json) => {
+const saveFileInDatabase = (dbUrl,collection,json) => {
   console.log(`saveFileInDatabase collection : ${collection}`);
 
-  MongoClient.connect('mongodb://localhost/studium')
+  MongoClient.connect(dbUrl)
   .then(function(db){
     importJSON(db,collection,json);
   })
@@ -24,7 +24,7 @@ const saveFileInDatabase = (collection,json) => {
     console.log(`saveFileInDatabase : Error saving file : ${e}.`);
   });
 };
-
+/*
 const file = process.argv[2];
 const collection = process.argv[3];
 console.log(`csvImporter will process file ${file} in collection ${collection}`);
@@ -38,3 +38,17 @@ fs.readFile(file, 'utf8', (err, data) => {
     saveFileInDatabase(collection,json);
   }
 } );
+*/
+
+export function importJsonFile(file, dbUrl, collection){
+  console.log(`csvImporter will process file ${file} in collection ${collection}`);
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }else{
+      //console.log(data);
+      const json = JSON.parse(data);
+      saveFileInDatabase(dbUrl,collection,json);
+    }
+  } );
+}
