@@ -28,6 +28,11 @@ async function importList(manuscritList){
         .get()
         .collection('manus')
         .drop()
+        .catch(() => {
+          db.get()
+          .collection('manus')
+          .insertMany(manuscritList);
+          })
         .then(() => {
           db.get()
           .collection('manus')
