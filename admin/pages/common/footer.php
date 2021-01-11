@@ -11,6 +11,12 @@
 <!-- Dark Overlay element -->
 <div class="overlay"></div>
 
+
+<!-- Page CSS -->
+<?php
+echo $pageCSS;
+?>
+
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 
 <!--https://code.jquery.com/jquery-3.5.1.js-->

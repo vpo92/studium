@@ -6,11 +6,13 @@ require_once "src/LoggerService.php";
 require_once "src/Utils.php";
 require_once "src/UserService.php";
 require_once "src/FicheService.php";
+require_once "src/ManuscritService.php";
 require_once "src/MessageUtils.php";
 
 $loggerService = new LoggerService();
 $userService = new UserService();
 $ficheService = new FicheService();
+$manuscritService = new ManuscritService();
 
 
 $mock = false;

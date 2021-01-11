@@ -5,6 +5,7 @@
  * Date: 2019-06-20
  * Time: 08:58
  */
+$GLOBALS['globalOpusList'] = [];
 
 function drawComment($comList){
     //echo "<ul>";
@@ -27,6 +28,7 @@ function drawOpus($opusList){
     $i = 0;
     echo "<ul>";
     foreach($opusList as $opus){
+
         echo "<li>";
         echo "<a class=\"app-opusCollapseLink\" data-toggle=\"collapse\" href=\"#collapseOpus$id$i\">".$opus->mainTitle."</a>";
         echo "<div id=\"collapseOpus$id$i\" class=\"collapse\">";
@@ -164,6 +166,24 @@ function drawMS($ms){
 function drawProperties($prop){
     foreach($prop as $k => $v){
         if($k != "mainTitle" && $k != "versions"){
+            if($k ==="manuscrits"){
+
+                if(is_object($v)){
+                    $GLOBALS['globalOpusList'][] = $v;
+                    //if(substr_compare($v->value, "MS", 0, strlen("MS")) === 0){
+                    //    $GLOBALS['globalOpusList'][] = $v->value;
+                    //}
+                }else if(is_array($v)){
+                    foreach($v as $item){
+                        $GLOBALS['globalOpusList'][] = $item;
+                        //if(substr_compare($item->value, "MS", 0, strlen("MS")) === 0){
+                        //$GLOBALS['globalOpusList'][] = $item->value;
+                        //}
+                    }
+                }
+
+
+            }
             echo "<li><b>".MessageUtils::getMessage('fr',$k).":</b> ";
 
             if(is_object($v)){
@@ -235,4 +255,21 @@ function drawFiche($fiche){
         }
     }
     echo "</ul>";
+
+    $srv = $GLOBALS['msSrv'];
+
+    echo "<script type='application/javascript'>";
+    echo "var globalOpusList = [];";
+    foreach($GLOBALS['globalOpusList'] as $k => $v){
+        if(isset($v->meta) && isset($v->meta->id)){
+            $m = $srv->findById($v->meta->id);
+            $s = json_encode($m);
+            echo "globalOpusList.push(".$s.");";
+        }
+
+    }
+    echo "</script>";
+
+    $GLOBALS['msSrv'] = null;
+
 }
