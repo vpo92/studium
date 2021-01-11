@@ -1,10 +1,11 @@
 //@flow
 
 import chalk from 'chalk';
-import { backupAll,saveRecord,createIndex,getAllIds, reIndex, indexDB } from './rawFilesParser/RestService';
+import fs from 'fs';
+import { backupAll,saveRecord,createIndex,getAllIds, reIndex, reIndexManus, indexDB } from './rawFilesParser/RestService';
 import { processFile } from './rawFilesParser/simpleParser';
 import { importJsonFile } from './fileImporter/fileImport';
-
+import { createManuscrit, importManuscritList } from './rawFilesParser/restService';
 
 //Backup
 
@@ -53,10 +54,38 @@ function recurviceReIndex(api,tk,ids){
   }
 }
 
+
+function recurciveReIndexManus(api,tk,ids){
+  if(ids && ids.length > 0){
+    if(ids[0]){
+      reIndexManus(api,tk,ids[0])
+      .then(() => {
+        recurciveReIndexManus(api,tk,ids.slice(1));
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+    }else{
+      recurciveReIndexManus(api,tk,ids.slice(1));
+    }
+  }
+}
+
 export function runReIndex(api,tk) {
   getAllIds(api,tk)
   .then((ids) => {
     recurviceReIndex(api,tk,ids);
+  })
+  .catch( (error) => {
+    console.log("ERROR");
+    console.log(error);
+  });
+}
+
+export function runReIndexManus(api,tk) {
+  getAllIds(api,tk)
+  .then((ids) => {
+    recurciveReIndexManus(api,tk,ids);
   })
   .catch( (error) => {
     console.log("ERROR");
@@ -79,6 +108,23 @@ export function runImportJsonFile(file, dbUrl, collection) {
   importJsonFile(file,dbUrl,collection);
 }
 
+export async function runImportManusFromFile(apiUrl, tk, file){
+  console.log(`runImportManusFromFile will process file ${file}`);
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }else{
+      const json = JSON.parse(data);
+      console.log('Will import '+json.length+' manuscrits');
+      importManuscritList(apiUrl, tk, json)
+        .catch( (error) => {
+          console.log("ERROR runImportManusFromFile");
+          console.log(JSON.stringify(error));
+        });
+    }
+  });
+}
+
 export function version(){
   const packageJson = require('../package.json');
   console.log("Studium CLI v"+packageJson.version);
@@ -92,9 +138,10 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.blue('auth')} ............... auth to API and get token
     ${chalk.blue('backup')} ............. backup prosopography data
     ${chalk.blue('import-file')}......... import raw TXT file in JPG format
-    ${chalk.blue('import-json-file')}.... import csv file to mongoDB
     ${chalk.blue('re-index')}............ re-index all prosopography from raw
+    ${chalk.blue('re-index-manus')}...... re-index manus info
     ${chalk.blue('update-db-index')}..... update mongodb text index for search
+    ${chalk.blue('import-manuscrit')}.... import manuscrit from file
     ${chalk.blue('version')} ............ show package version
     ${chalk.blue('help')} ............... show help menu for a command
 
@@ -113,3 +160,5 @@ ${chalk.green('studium [command] <options>')}
   };
   console.log(menus.main)
 }
+
+//${chalk.blue('import-json-file')}.... import csv file to mongoDB

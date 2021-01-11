@@ -1,7 +1,7 @@
 #!/usr/bin/env babel-node
 
 import { auth } from './src/rawFilesParser/restService.js';
-import { help, version,runBackupAll,runReIndex,runImportFile, runIndexDB, runImportJsonFile } from './src/studium.cli.js';
+import { help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
@@ -39,11 +39,24 @@ async function main(){
           runReIndex(host,token);
           break;
         }
+        case 're-index-manus':{
+          console.log("Studium CLI : re-index-manus");
+          token = await auth(host,username,password);
+          runReIndexManus(host,token);
+          break;
+        }
         case 'import-file':{
           console.log("Studium CLI : import-file");
           let file = argv.file;
           token = await auth(host,username,password);
           runImportFile(file,host,token);
+          break;
+        }
+        case 'import-manuscrit':{
+          console.log("Studium CLI : import-manuscrit");
+          let file = argv.file;
+          token = await auth(host,username,password);
+          await runImportManusFromFile(host,token,file);
           break;
         }
         case 'backup':{
