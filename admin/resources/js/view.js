@@ -1,4 +1,5 @@
-var map = L.map('map').setView([48.8534, 2.3488], 11);
+var map = L.map('map').setView([47.4700, 6.8116], 7);
+
 //var marker = [];
 //var markerClusters = L.markerClusterGroup();
 
@@ -6,20 +7,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+var latLngs = [];
 
 for(var i = 0; i < globalOpusList.length; i++){
+
     var m  = globalOpusList[i];
-    L.marker([m.x, m.y]).addTo(map)
+    console.log(m);
+    var mar = L.marker([m.x, m.y]);
+    mar.addTo(map)
         .bindPopup(m.Ville)
         .openPopup();
+    latLngs.push(mar.getLatLng());
 
-    /**
-    var marker = L.marker([m.x, m.y]); // pas de addTo(macarte), l'affichage sera géré par la bibliothèque des clusters
-    marker.bindPopup(m.Ville);
-    //markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes
-    markers.push(marker); // Nous ajoutons le marqueur à la liste des marqueurs
-     */
 }
+
+var markerBounds = L.latLngBounds(latLngs);
+map.fitBounds(markerBounds)
 
 //var group = new L.featureGroup(markers);
 //map.fitBounds(group.getBounds().pad(0.5));
