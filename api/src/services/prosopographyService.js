@@ -436,6 +436,50 @@ async function backupAll(){
   return backup("/tmp/");
 }
 
+async function updateGeoMS(prosopography){
+  console.log("updateGeoMS");
+  if(prosopography.textualProduction){
+    console.log("has textualProduction");
+    for(let t in prosopography.textualProduction){
+      console.log(t);
+      let theme = prosopography.textualProduction[t];
+      if(theme.opus){
+        console.log("has opus");
+        for(let o in theme.opus){
+          let opus = theme.opus[o];
+          if(opus.manuscrits){
+            console.log("has manuscrits");
+            for(let m in opus.manuscrits){
+              let ms = opus.manuscrits[m];
+              if(ms){
+                await db.get()
+                  .collection('manus')
+                  .findOne({ REFERENCES_SOURCES: ms.value.slice(0, -1) })
+                  .then( (ma) => {
+                    if(ma){
+                      prosopography.textualProduction[t].opus[o].manuscrits[m].meta['id'] = ma['Num'];
+                    }
+                  });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //console.log(prosopography);
+  return update(prosopography);
+
+
+  //recuperer les manuscrits
+  //textualProduction --> [] --> opus [] --> manuscrits --> [] --> value
+  //boucler dessus
+  //puor chaque manus, on fait une recherche dans la table des manus
+  //Si on trouve, on ajoute le num de manus dans la prosopogrphy en metatdonne "msId"
+  //sinon rien
+  //on update en base
+}
+
 /** *********************
  * Export               *
  ************************
@@ -458,4 +502,5 @@ module.exports = {
   updateCurrentReference,
   backupAll,
   initReferenceSeq,
+  updateGeoMS,
 };

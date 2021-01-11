@@ -346,7 +346,6 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
   }
 });
 
-//FIXME : add auth
 router.post('/re-index-from-raw/:reference', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
@@ -403,5 +402,26 @@ router.delete('/:reference', auth.isAuthenticated, async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/re-index-manus/:reference', auth.isAuthenticated, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: reIndexManus on ${reference}`);
+  try {
+    const prosopography = await service.findByReference(reference);
+    if(prosopography){
+      let p = await service.updateGeoMS(prosopography);
+      res.send(p);
+    }else{
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
+
+  }catch(error){
+    next(error);
+  }
+});
+
+
+
 
 export default router;

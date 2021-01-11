@@ -9,8 +9,9 @@ auth.setup();
 
 import prosopographyRoutes from './prosopographyRoutes';
 import authRoutes from './authRoutes';
-import cartoRoutes from './testCartoRoutes';
+//import cartoRoutes from './testCartoRoutes';
 import userRoutes from './userRoutes';
+import manuscritRoutes from './manuscritRoutes';
 
 const pkg = require("../../package.json");
 const router = express.Router();
@@ -19,7 +20,8 @@ const mode = process.env.APP_MODE || 'dev';
 router.use('/prosopography', prosopographyRoutes);
 router.use('/user', userRoutes);
 router.use('/auth', authRoutes);
-router.use('/carto', cartoRoutes);
+//router.use('/carto', cartoRoutes);
+router.use('/manuscrit', manuscritRoutes);
 router.get('/docs', (req,res) => {
     let p = mode === 'PROD'?'/app/docs/index.html':path.join(__dirname,"../../docs/index.html");
     res.sendFile(p);
