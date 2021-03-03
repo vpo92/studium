@@ -22,6 +22,12 @@ function getApplicationVersion(){
     return $conf->version;
 }
 
+function getFeatures(){
+    $response = file_get_contents("./features.json");
+    $features = json_decode($response);
+    return $features;
+}
+
 function getFieldFromForm($name, $default = null){
     return isset($_POST[$name])?$_POST[$name]:(isset($_GET[$name])?$_GET[$name]:$default);
 }

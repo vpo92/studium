@@ -57,16 +57,22 @@
             <li class="active">
                 <a href="<?php echo getApplicationUrl()?>/home">Accueil</a>
             </li>
+            <?php if(getFeatures()->indexSearch){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?action=index">Index</a>
             </li>
+            <?php }
+            if(getFeatures()->textSearch){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche">Recherche</a>
             </li>
+            <?php }
+            if(getFeatures()->advancedSearch){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-avancee">Recherche avancée</a>
             </li>
-            <?php if(isAuthenticated()){?>
+            <?php }
+            if(getFeatures()->mongoSearch && isAuthenticated()){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-mongo">Recherche Mongo</a>
             </li>

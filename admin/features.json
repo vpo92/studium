@@ -1,0 +1,6 @@
+{
+  "indexSearch" : true,
+  "textSearch" : true,
+  "advancedSearch" : false,
+  "mongoSearch": true
+}
