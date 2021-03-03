@@ -12,6 +12,7 @@ import authRoutes from './authRoutes';
 //import cartoRoutes from './testCartoRoutes';
 import userRoutes from './userRoutes';
 import manuscritRoutes from './manuscritRoutes';
+import mongoRoutes from './mongoRoutes';
 
 const pkg = require("../../package.json");
 const router = express.Router();
@@ -22,6 +23,7 @@ router.use('/user', userRoutes);
 router.use('/auth', authRoutes);
 //router.use('/carto', cartoRoutes);
 router.use('/manuscrit', manuscritRoutes);
+router.use('/mongo', mongoRoutes);
 router.get('/docs', (req,res) => {
     let p = mode === 'PROD'?'/app/docs/index.html':path.join(__dirname,"../../docs/index.html");
     res.sendFile(p);

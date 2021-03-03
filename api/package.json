@@ -1,6 +1,6 @@
 {
   "name": "studium-api",
-  "version": "0.1.15",
+  "version": "0.2.0",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
@@ -47,6 +47,7 @@
     "errorhandler": "^1.1.1",
     "expect": "^21.2.1",
     "express": "^4.16.2",
+    "json2csv": "^5.0.6",
     "jsonwebtoken": "^8.4.0",
     "method-override": "^2.1.2",
     "mongodb": "^2.2.36",
