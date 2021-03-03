@@ -95,7 +95,7 @@ $pageScripts .='<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/recherche.js"></script>';
 //$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGraphe.js"></script>';
-$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
+//$pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheavancee.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/rechercheGeo.js"></script>';
 
 

@@ -66,12 +66,18 @@
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-avancee">Recherche avancée</a>
             </li>
+            <?php if(isAuthenticated()){?>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=recherche-mongo">Recherche Mongo</a>
+            </li>
+            <?php }?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>
             </li>
             <li>
                 <a href="<?php echo getApplicationUrl()?>/aide">Aide</a>
             </li>
+
             <!--
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Admin</a>
