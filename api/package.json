@@ -1,11 +1,12 @@
 {
   "name": "studium-api",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
     "test": "jest --config=jest.config.json",
     "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
+    "startwin": "$NODE_ENV=dev babel-watch ./src/server.js -w .",
     "build": "webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "predocker:build": "npm -q run build",

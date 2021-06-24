@@ -8,7 +8,7 @@ import service from '../services/prosopographyService';
 import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
-
+import { Parser,  transforms } from 'json2csv';
 
 const router = express.Router();
 
@@ -19,11 +19,15 @@ const getPagination = function(req){
   };
 }
 
+const getFormat = function(req){
+    return req.query.format?req.query.format:"json";
+}
+
 router.get('/', async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: findAll`);
   let pagination = getPagination(req);
-
+  console.log(`${id}: findAll pagination:`+JSON.stringify(pagination));
   try {
     const prosopographies = await service.findAll(pagination);
     logger.info(`${id}: findAll done`);
@@ -84,11 +88,48 @@ router.get('/search/:searchText', async (req, res, next) => {
   const id = uuid.v4();
   const searchText = req.params.searchText;
   logger.info(`${id}: textSearch on ${searchText}`);
+
+  let format = getFormat(req);
   let pagination = getPagination(req);
+
+  logger.info(`${id}: textSearch format : ${format}`);
+
+  if(format!='json'){
+    pagination={
+      "page": 1,
+      "rows": -1,
+    };
+  }
+
+  logger.info(`${id}: textSearch pagination : ${JSON.stringify(pagination)}`);
+
   try {
+    const totalCount = await service.textSearchTotalCount(searchText,pagination);
     const prosopographies = await service.textSearch(searchText,pagination);
     logger.info(`${id}: textSearch done`);
-    res.send(prosopographies);
+
+    switch(format){
+
+      case 'csv':
+        logger.info(`${id}: textSearch format : ${format}`);
+        const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
+        const csv = parser.parse(prosopographies);
+        res.header('Content-Type', 'text/csv');
+        res.header('Content-disposition', 'attachment; filename=search-'+searchText+'.csv');
+        res.send(csv);
+        break;
+      case 'xls':
+        logger.info(`${id}: textSearch format : ${format}`);
+        break;
+      case 'pdf':
+        logger.info(`${id}: textSearch format : ${format}`);
+        break;
+      default:
+        logger.info(`${id}: textSearch format : default=json`);
+        res.header('X-Total-Count',totalCount);
+        res.send(prosopographies);
+    }
+
   } catch (err) {
     logger.error(
       `${id}: Failed to load all prosopographies from textSearch on ${searchText} - ${err}`
@@ -100,13 +141,51 @@ router.get('/search/:searchText', async (req, res, next) => {
 router.post('/search/advanced', async(req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: search advanced`);
+
+  let format = getFormat(req);
   let pagination = getPagination(req);
+
+  logger.info(`${id}: search format : ${format}`);
+
+  if(format!='json'){
+    pagination={
+      "page": 1,
+      "rows": -1,
+    };
+  }
+
+  logger.info(`${id}: search pagination : ${JSON.stringify(pagination)}`);
+
   try {
     //TODO Check searchRequest
     const searchRequest = req.body;
+    const totalCount = await service.searchTotalCount(searchRequest,pagination);
     const prosopographies = await service.search(searchRequest,pagination);
-    logger.info(prosopographies.length);
-    res.send(prosopographies);
+
+    switch(format){
+
+      case 'csv':
+        logger.info(`${id}: search format : ${format}`);
+        const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
+        const csv = parser.parse(prosopographies);
+        res.header('Content-Type', 'text/csv');
+        res.header('Content-disposition', 'attachment; filename=search.csv');
+        res.send(csv);
+        break;
+      case 'xls':
+        logger.info(`${id}: search format : ${format}`);
+        break;
+      case 'pdf':
+        logger.info(`${id}: search format : ${format}`);
+        break;
+      default:
+        logger.info(`${id}: search format : default=json`);
+        res.header("Access-Control-Expose-Headers","*");
+        res.header('X-Total-Count',totalCount);
+        res.send(prosopographies);
+    }
+
+
   } catch (err) {
     logger.error(
       `${id}: Failed to load all prosopographies search advanced - ${err}`

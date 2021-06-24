@@ -9,8 +9,17 @@ import { backup } from '../../../batchs/src/rawFilesParser/mongoService';
 import {Readable} from 'stream';
 
 const readPagination = function(pagination){
+
+  if(pagination.rows === -1){
+    return {
+      "skip" : 0,
+      "limit" : 0,
+    }
+  }
+
   let page = (pagination && pagination.page?pagination.page:1);
   let rows = (pagination && pagination.rows?pagination.rows:50);
+
   return {
     "skip" : (page-1)*rows,
     "limit" : rows,
@@ -27,6 +36,7 @@ async function findAll(pagination: any): Promise<Prosopography[]> {
       .collection('prosopography')
       .find()
       .skip(pg.skip)
+      .limit(pg.limit)
       .toArray();
 }
 
@@ -53,10 +63,22 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
           { $text: { $search: searchText } },
           { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
       )
-      .sort({ score: { $meta: 'textScore' } })
+      //.sort({ score: { $meta: 'textScore' } })
       .skip(pg.skip)
       .limit(pg.limit)
       .toArray();
+}
+
+
+async function textSearchTotalCount(searchText: string, pagination: any): Promise<Prosopography[]> {
+  const pg = readPagination(pagination);
+
+  return db.get()
+  .collection('prosopography')
+  .find(
+      { $text: { $search: searchText } },
+      { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
+  ).count();
 }
 
 function indexSearch(letter: string): Promise<Prosopography[]> {
@@ -150,7 +172,7 @@ async function initGraph(): Promise<Array> {
 
 async function search(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
   console.log(`prosopographyService.search`);
-  console.log(searchRequest);
+  //console.log(searchRequest);
   const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
   return db
@@ -160,9 +182,8 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
           mongodbRequest,
           {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
       )
-
-
-      .limit(1000)
+      .skip(pg.skip)
+      .limit(pg.limit)
       .toArray()
       .then(data => {
 
@@ -189,6 +210,20 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
           return item;
         });
       });
+}
+
+
+async function searchTotalCount(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
+  console.log(`prosopographyService.search`);
+  const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
+  return db
+      .get()
+      .collection('prosopography')
+      .find(
+          mongodbRequest,
+          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
+      )
+      .count();
 }
 
 function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
@@ -369,7 +404,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     }
   }
 
-  console.log(res);
+  //console.log(res);
   return res;
 }
 function generateRegexNotOperator(value, matchType){
@@ -490,6 +525,7 @@ module.exports = {
   indexSearch,
   findByReference,
   textSearch,
+  textSearchTotalCount,
   indexDB,
   create,
   update,
@@ -497,6 +533,7 @@ module.exports = {
   convertFromText,
   initGraph,
   search,
+  searchTotalCount,
   convertSearchRequestToMongoRequest,
   getCurrentReference,
   updateCurrentReference,
