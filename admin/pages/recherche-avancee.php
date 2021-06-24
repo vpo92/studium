@@ -23,33 +23,33 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
         <h5>Nom</h5>
         <div class="form-inline">
             <div class="form-group">
-                <input type="text" v-model="searchRequest.name">
+                <input type="text" v-model="searchRequest.name" size="50">
             </div>
         </div>
 
         <fieldset>
             <legend>Activité</legend>
             <div>
-                <div class="form-group">
-                    <label>Médiane d'activité entre : </label>
-                    <input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100">
-                    <label> et </label>
-                    <input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100">
+                <div class="row">
+                    <div class="col-3"><label>Médiane d'activité entre : </label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activityMediane.from" placeholder="1100" step="100"></div>
+                    <div class="col-1"><label> et </label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activityMediane.to" placeholder="1600" step="100"></div>
                 </div>
 
-                <div class="form-group">
-                    <label>Début d'activité entre : </label>
-                    <input type="number" v-model="searchRequest.activity.start.from" step="100">
-                    <label>et</label>
-                    <input type="number" v-model="searchRequest.activity.start.to" step="100">
+                <div class="row">
+                    <div class="col-3"><label>Début d'activité entre : </label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activity.start.from" step="100"></div>
+                    <div class="col-1"><label>et</label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activity.start.to" step="100"></div>
                 </div>
 
 
-                <div class="form-group">
-                    <label>Fin d'activité entre : </label>
-                    <input type="number" v-model="searchRequest.activity.end.from" step="100">
-                    <label>et</label>
-                    <input type="number" v-model="searchRequest.activity.end.to" step="100">
+                <div class="row">
+                    <div class="col-3"><label>Fin d'activité entre : </label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activity.end.from" step="100"></div>
+                    <div class="col-1"><label>et</label></div>
+                    <div class="col-2"><input type="number" v-model="searchRequest.activity.end.to" step="100"></div>
                 </div>
             </div>
         </fieldset>
@@ -79,17 +79,17 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
 
 
         <h5>Cursus</h5>
-        <div class="form-inline">
-
-
-            <div class="form-group">
-                <label>Grade obtenu :</label>
+        <div class="row">
+            <div class="col-3"><label>Grade obtenu :</label></div>
+            <div class="col-3">
                 <select v-model="searchRequest.grade">
                     <option v-for="option in gradeList" v-bind:value="option.code" >{{ option.label }}</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Discipline :</label>
+        </div>
+        <div class="row">
+            <div class="col-3"><label>Discipline :</label></div>
+            <div class="col-3">
                 <select v-model="searchRequest.discipline">
                     <option v-for="option in disciplineList" v-bind:value="option.code" >{{ option.label }}</option>
                 </select>
@@ -118,25 +118,51 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
         </div>
     </div>
 
-    <div id="resultArea" v-if="!searching && items != null">
-        <div v-if="items.length > 0">
-            <h2>Nombre de résultats : {{items.length}}</h2>
+    <div id="resultArea" v-if="!searching">
+        <div v-if="totalCount > 0">
+            <h2>Nombre de résultats : {{totalCount}}</h2>
 
+            <b-row>
+                <b-col lg="6" class="my-1">
+                    <div v-if="nbPage < 10">
+                        <span> Page : </span>
+                        <button v-for="index in nbPage" :key="index" @click="goToPage(index)" class="btn btn-primary">{{index}}</button>
+                    </div>
+                    <div v-else>
+                        <span> Page : </span>
+                        <select v-model="currentPage" @change="search()">
+                            <option v-for="index in nbPage">{{ index }}</option>
+                        </select>
+                    </div>
+                    <span> Nombre d'enregistrements par page : </span>
+                    <select v-model="perPage" @change="search()">
+                        <option v-for="optionPerPage in pageOptions" v-bind:value="optionPerPage" >{{ optionPerPage }}</option>
+                    </select>
+                </b-col>
+            </b-row>
+            <b-row>
+                <button class="btn btn-primary" @click="exportFormat('csv')" target="_blank">Export CSV</button>
+<!--                <button class="btn btn-primary" @click="exportFormat('xls')" target="_blank">Export Excel</button>-->
+            </b-row>
+
+
+<!--
+            <button class="btn btn-primary" @click="export('csv')">Export CSV</button>
+            <button class="btn btn-primary" @click="export('xls')">Export Excel</button>
+-->
             <!-- Main table element -->
             <b-table
-                show-empty
-                small
-                stacked="md"
-                :items="items"
-                :fields="fields"
-                :current-page="currentPage"
-                :per-page="perPage"
-                :filter="filter"
-                :filter-included-fields="filterOn"
-                :sort-by.sync="sortBy"
-                :sort-desc.sync="sortDesc"
-                :sort-direction="sortDirection"
-                @filtered="onFiltered"
+                    show-empty
+                    small
+                    stacked="md"
+                    :items="items"
+                    :fields="fields"
+                    :filter="filter"
+                    :filter-included-fields="filterOn"
+                    :sort-by.sync="sortBy"
+                    :sort-desc.sync="sortDesc"
+                    :sort-direction="sortDirection"
+                    @filtered="onFiltered"
             >
                 <template #cell(name)="row">
                     {{ row.value.first }} {{ row.value.last }}
@@ -149,19 +175,6 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
                 </template>
 
             </b-table>
-            <b-row>
-                <b-col lg="6" class="my-1">
-                    <b-pagination
-                        v-model="currentPage"
-                        :total-rows="totalRows"
-                        :per-page="perPage"
-                        align="fill"
-                        size="sm"
-                        class="my-0"
-                    ></b-pagination>
-                </b-col>
-            </b-row>
-
         </div>
         <div v-else>
             Aucun résultat

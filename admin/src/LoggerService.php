@@ -14,13 +14,16 @@ class LoggerService
 
 
     function log($string){
-        $this->applicationLog[] = $string;
+        $t = explode("\n",$string);
+        for($i = 0; $i < sizeof($t);$i++){
+            $this->applicationLog[] = $t[$i];
+        }
     }
 
     function generateJSConsoleOutput(){
-        echo "<script>";
+        echo "<script>\n";
         foreach ($this->applicationLog as $log){
-            echo "console.log('##BACK## ".addslashes($log)."');";
+            echo "console.log('### Backend says ### ".addslashes($log)."');\n";
         }
         echo "</script>";
     }

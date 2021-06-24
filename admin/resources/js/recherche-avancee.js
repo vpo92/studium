@@ -195,31 +195,31 @@ Vue.component('search-criterion', {
             this.subChapterList = getSubChapter(prosopographyEntries[this.prosopography.section]);
         }
     },
-    template: `<div class="form-inline">
-        <div class="form-group">
+    template: `<div class="row">
+        <div class="col">
             <select v-model="prosopography.operator">
                 <option v-for="option in operatorList" v-bind:value="option.code" selected="selected">{{ option.label }}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="col">
             <select v-model="prosopography.section" @change="handleChapterChange()">
                 <option v-for="option in chapterList" v-bind:value="option.code" >{{ option.label }}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="col">
             <select v-model="prosopography.subSection">
                 <option v-for="option in subChapterList" v-bind:value="option.code" >{{ option.label }}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="col">
             <select v-model="prosopography.matchType">
                 <option v-for="option in searchOptionList" v-bind:value="option.code" >{{ option.label }}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="col">
             <input type="text" v-model="prosopography.value">
         </div>
-        <div>
+        <div class="col">
             <button v-if="rows > 1" v-on:click="$emit('remove-row')">
                 <i class="fas fa-minus-circle"></i>
             </button>
@@ -306,9 +306,11 @@ fetch(resourceUrl+'/messages.json')
                     { key: 'actions', label: 'Actions' }
                 ],
                 totalRows: 0,
+                totalCount: 0,
                 currentPage: 1,
+                nbPage:0,
                 perPage: 10,
-                pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
+                pageOptions: [5, 10, 15, 100],
                 sortBy: '',
                 sortDesc: false,
                 sortDirection: 'asc',
@@ -349,21 +351,66 @@ fetch(resourceUrl+'/messages.json')
                     this.currentPage = 1
                 },
                 search : async function(){
-
+                    console.log("search");
                     // Booléen pour le chargement des données (animation)
                     this.searching = true;
 
-                    const result = await fetch(`${apiUrl}/prosopography/search/advanced`,{
+                    let url = `${apiUrl}/prosopography/search/advanced`;
+                    url+="?page="+this.currentPage+"&rows="+this.perPage;
+                    const result = await fetch(url,{
                         'method':'POST',
                         'headers':{
                             'Content-Type':'application/json',
                         },
                         'body': JSON.stringify(this.searchRequest),
                     });
-                    this.items = await result.json()
-                    this.totalRows = this.items.length;
 
+                    this.items = await result.json();
+                    this.totalCount = result.headers.get('X-Total-Count');
+                    this.totalRows = this.items.length;
+                    this.nbPage = Math.ceil(this.totalCount / this.perPage);
                     this.searching = false;
+                    console.log("search done");
+
+                },
+                /**
+                exportCSV : async function(){
+                    console.log("exportCSV");
+                    // Booléen pour le chargement des données (animation)
+
+                    let url = `${apiUrl}/prosopography/search/advanced?format=csv`;
+                    fetch(url,{
+                        'method':'POST',
+                        'headers':{
+                            'Content-Type':'application/json',
+                        },
+                        'body': JSON.stringify(this.searchRequest),
+                        })
+                        .then( res => res.blob() )
+                        .then( blob => {
+                            var file = window.URL.createObjectURL(blob);
+                            window.location.assign(file);
+                        });
+                    console.log("exportCSV");
+                },*/
+                exportFormat : async function(format){
+                    console.log("export format: "+format);
+                    // Booléen pour le chargement des données (animation)
+
+                    let url = `${apiUrl}/prosopography/search/advanced?format=`+format;
+                    fetch(url,{
+                        'method':'POST',
+                        'headers':{
+                            'Content-Type':'application/json',
+                        },
+                        'body': JSON.stringify(this.searchRequest),
+                    })
+                        .then( res => res.blob() )
+                        .then( blob => {
+                            var file = window.URL.createObjectURL(blob);
+                            window.location.assign(file);
+                        });
+                    console.log("export");
                 },
 
                 //FIXME : supprimer les chaines en dur !!!

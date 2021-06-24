@@ -14,20 +14,35 @@ class FicheService
     {
         //$headers = array('Accept' => 'application/json');
         $response = callAPI('GET', "/prosopography/index/$letter");
-        return json_decode($response);
+        $res = json_decode($response["data"]);
+        return isset($res->message)?[]:$res;
     }
 
     public function searchByReference($reference)
     {
         //$headers = array('Accept' => 'application/json');
         $response = callAPI('GET', "/prosopography/$reference");
-        return json_decode($response);
+        $res = json_decode($response["data"]);
+        return isset($res->message)?[]:$res;
     }
 
-    public function searchByKeyWord($keyword){
-        $response = callAPI('GET', "/prosopography/search/$keyword");
-        $res = json_decode($response);
-        return isset($res->message)?[]:$res;
+    public function searchByKeyWord($keyword,$page,$rows){
+        $url = "/prosopography/search/$keyword";
+        if($page){
+            $url.="?page=$page";
+            if($rows){
+                $url.="&rows=$rows";
+            }else{
+                $url.="&rows=20";
+            }
+        }
+
+        $response = callAPI('GET', $url);
+        $res = json_decode($response["data"]);
+        if(isset($response["headers"]["X-Total-Count"])){
+            $totalRows = $response["headers"]["X-Total-Count"][0];
+        }
+        return isset($res->message)?[]:(array("data"=>$res,"totalCount"=>$totalRows));
     }
 
     public function saveFicheFromText($reference,$prosopography)

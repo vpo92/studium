@@ -94,12 +94,25 @@ function callAPI($method, $url, $headers = false, $data = false)
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    //deal with headers
+    $headers = [];
+
+    curl_setopt($curl, CURLOPT_HEADERFUNCTION, function ($ch, $header) use (&$headers) {
+        $matches = array();
+
+        if ( preg_match('/^([^:]+)\s*:\s*([^\x0D\x0A]*)\x0D?\x0A?$/', $header, $matches) )
+        {
+            $headers[$matches[1]][] = $matches[2];
+        }
+
+        return strlen($header);
+    });
+
 
     $result = curl_exec($curl);
-
     curl_close($curl);
 
-    return $result;
+    return array("data"=>$result, "headers"=>$headers);
 }
 
 /**
