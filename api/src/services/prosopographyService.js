@@ -61,7 +61,7 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
       .collection('prosopography')
       .find(
           { $text: { $search: searchText } },
-          { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
+          { score: { $meta: 'textScore' }, reference: 1, identity: 1, link: 1, title: 1, raw: 1}
       )
       //.sort({ score: { $meta: 'textScore' } })
       .skip(pg.skip)
@@ -76,8 +76,7 @@ async function textSearchTotalCount(searchText: string, pagination: any): Promis
   return db.get()
   .collection('prosopography')
   .find(
-      { $text: { $search: searchText } },
-      { score: { $meta: 'textScore' }, reference: true, identity: true, link: true, title: true }
+      { $text: { $search: searchText } }
   ).count();
 }
 
@@ -180,7 +179,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
       .collection('prosopography')
       .find(
           mongodbRequest,
-          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
+          {reference: 1, identity: 1, link: 1, title: 1, curriculum: 1, "origin.diocese.value": 1, extras: 1, raw: 1}
       )
       .skip(pg.skip)
       .limit(pg.limit)
@@ -219,10 +218,7 @@ async function searchTotalCount(searchRequest: SearchRequest, pagination: any): 
   return db
       .get()
       .collection('prosopography')
-      .find(
-          mongodbRequest,
-          {reference: true, identity: true, link: true, title: true, curriculum: true, "origin.diocese.value": true, extras: true}
-      )
+      .find(mongodbRequest)
       .count();
 }
 

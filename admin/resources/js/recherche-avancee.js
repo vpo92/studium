@@ -373,26 +373,6 @@ fetch(resourceUrl+'/messages.json')
                     console.log("search done");
 
                 },
-                /**
-                exportCSV : async function(){
-                    console.log("exportCSV");
-                    // Booléen pour le chargement des données (animation)
-
-                    let url = `${apiUrl}/prosopography/search/advanced?format=csv`;
-                    fetch(url,{
-                        'method':'POST',
-                        'headers':{
-                            'Content-Type':'application/json',
-                        },
-                        'body': JSON.stringify(this.searchRequest),
-                        })
-                        .then( res => res.blob() )
-                        .then( blob => {
-                            var file = window.URL.createObjectURL(blob);
-                            window.location.assign(file);
-                        });
-                    console.log("exportCSV");
-                },*/
                 exportFormat : async function(format){
                     console.log("export format: "+format);
                     // Booléen pour le chargement des données (animation)
@@ -407,8 +387,16 @@ fetch(resourceUrl+'/messages.json')
                     })
                         .then( res => res.blob() )
                         .then( blob => {
-                            var file = window.URL.createObjectURL(blob);
-                            window.location.assign(file);
+                            var url = window.URL.createObjectURL(blob);
+
+                            // Create a new anchor element
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'studium-search';
+                            a.click();
+
+                            return a;
+
                         });
                     console.log("export");
                 },

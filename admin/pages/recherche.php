@@ -112,6 +112,7 @@
                 </tfoot>
 
                 <a href="<?php echo getPublicAPIUrl()."/prosopography/search/$keyword?format=csv"?>" class="btn btn-primary" target="_blank">Export CSV</a>
+                <a href="<?php echo getPublicAPIUrl()."/prosopography/search/$keyword?format=txt"?>" class="btn btn-primary" target="_blank">Export TXT</a>
                 <!--
                 <a href="<?php echo getPublicAPIUrl()."/prosopography/search/$keyword?format=xls"?>" class="btn btn-primary" target="_blank">Export Excel</a>
                 <a href="<?php echo getPublicAPIUrl()."/prosopography/search/$keyword?format=pdf"?>" class="btn btn-primary" target="_blank">Export PDF</a>

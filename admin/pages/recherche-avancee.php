@@ -141,6 +141,7 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
                 </span>
                 <span>
                     <button class="btn btn-primary" @click="exportFormat('csv')" target="_blank">Export CSV</button>
+                    <button class="btn btn-primary" @click="exportFormat('txt')" target="_blank">Export TXT</button>
                 </span>
             </div>
 

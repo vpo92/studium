@@ -8,7 +8,7 @@ import service from '../services/prosopographyService';
 import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
-import { Parser,  transforms } from 'json2csv';
+import exporter from '../utils/exporter';
 
 const router = express.Router();
 
@@ -112,17 +112,11 @@ router.get('/search/:searchText', async (req, res, next) => {
 
       case 'csv':
         logger.info(`${id}: textSearch format : ${format}`);
-        const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
-        const csv = parser.parse(prosopographies);
-        res.header('Content-Type', 'text/csv');
-        res.header('Content-disposition', 'attachment; filename=search-'+searchText+'.csv');
-        res.send(csv);
+        exporter.sendCSVFile(res,prosopographies,'search-'+searchText);
         break;
-      case 'xls':
+      case 'txt':
         logger.info(`${id}: textSearch format : ${format}`);
-        break;
-      case 'pdf':
-        logger.info(`${id}: textSearch format : ${format}`);
+        exporter.sendTXTFile(res,prosopographies,'search-'+searchText);
         break;
       default:
         logger.info(`${id}: textSearch format : default=json`);
@@ -166,14 +160,11 @@ router.post('/search/advanced', async(req, res, next) => {
 
       case 'csv':
         logger.info(`${id}: search format : ${format}`);
-        const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
-        const csv = parser.parse(prosopographies);
-        res.header('Content-Type', 'text/csv');
-        res.header('Content-disposition', 'attachment; filename=search.csv');
-        res.send(csv);
+        exporter.sendCSVFile(res,prosopographies,'search');
         break;
-      case 'xls':
+      case 'txt':
         logger.info(`${id}: search format : ${format}`);
+        exporter.sendTXTFile(res,prosopographies,'search');
         break;
       case 'pdf':
         logger.info(`${id}: search format : ${format}`);
