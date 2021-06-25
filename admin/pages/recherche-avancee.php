@@ -122,28 +122,27 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
         <div v-if="totalCount > 0">
             <h2>Nombre de résultats : {{totalCount}}</h2>
 
-            <b-row>
-                <b-col lg="6" class="my-1">
-                    <div v-if="nbPage < 10">
-                        <span> Page : </span>
-                        <button v-for="index in nbPage" :key="index" @click="goToPage(index)" class="btn btn-primary">{{index}}</button>
-                    </div>
-                    <div v-else>
-                        <span> Page : </span>
-                        <select v-model="currentPage" @change="search()">
-                            <option v-for="index in nbPage">{{ index }}</option>
-                        </select>
-                    </div>
+            <div class=row">
+                <span v-if="nbPage < 10">
+                    <span> Page : </span>
+                    <button v-for="index in nbPage" :key="index" @click="goToPage(index)" class="btn btn-primary">{{index}}</button>
+                </span>
+                <span v-else>
+                    <span> Page : </span>
+                    <select v-model="currentPage" @change="search()">
+                        <option v-for="index in nbPage">{{ index }}</option>
+                    </select>
+                </span>
+                <span>
                     <span> Nombre d'enregistrements par page : </span>
                     <select v-model="perPage" @change="search()">
                         <option v-for="optionPerPage in pageOptions" v-bind:value="optionPerPage" >{{ optionPerPage }}</option>
                     </select>
-                </b-col>
-            </b-row>
-            <b-row>
-                <button class="btn btn-primary" @click="exportFormat('csv')" target="_blank">Export CSV</button>
-<!--                <button class="btn btn-primary" @click="exportFormat('xls')" target="_blank">Export Excel</button>-->
-            </b-row>
+                </span>
+                <span>
+                    <button class="btn btn-primary" @click="exportFormat('csv')" target="_blank">Export CSV</button>
+                </span>
+            </div>
 
 
 <!--
