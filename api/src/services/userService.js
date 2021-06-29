@@ -24,10 +24,33 @@ async function findAll(){
   return await User.find({},{_id:1,name:1,email:1,role:1});
 }
 
+/**
+* Remove an User
+*/
+async function remove(userId){
+  logger.info("userService.remove");
+  return await User.deleteOne({_id:userId});
+}
+
+
+/**
+* Update Pwd of an User
+*/
+async function initPwd(userId, newPwd){
+  logger.info("userService.initPwd");
+  let cUser = await User.findOne({_id:userId}).exec();
+  logger.info(cUser);
+  let user = new User(cUser);
+  user.password = newPwd;
+  return await user.save();
+
+
+  //return await User.updateOne({_id:userId},{$set:{password: newUser.encryptPassword(newPwd)}});
+}
 /** *********************
  * Export               *
  ************************
  */
 module.exports = {
-  create, findAll
+  create, findAll,remove, initPwd
 };

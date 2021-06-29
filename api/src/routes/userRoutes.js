@@ -44,4 +44,29 @@ router.get('/', auth.isAuthenticated, (req, res, next) => {
   .catch(error => {next(error)});
 });
 
+//FIXME : is root OR userId = connectedUserId
+router.post('/init-pwd/:userId', auth.isAuthenticated, (req, res, next) => {
+  const id = uuid.v4();
+  const userId = req.params.userId;
+  logger.info(`${id}: init-pwd for user ${userId}`);
+  userService.initPwd(userId,req.body.newPwd)
+  .then(user => {res.send({message:'OK'})})
+  .catch(error => {
+    logger.error(
+      `${id}: Failed to init-pwd with userId ${userId} - ${error}`
+    );
+    next(error);
+  });
+});
+
+router.delete('/:userId', auth.isAuthenticated, (req, res, next) => {
+  const id = uuid.v4();
+  const userId = req.params.userId;
+  logger.info(`${id}: delete user ${userId}`);
+  userService.remove(userId)
+  .then(user => {res.send({message:'OK'})})
+  .catch(error => {next(error)});
+});
+
+
 export default router;
