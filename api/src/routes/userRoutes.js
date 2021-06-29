@@ -10,7 +10,7 @@ import auth from '../services/authService';
 
 const router = express.Router();
 
-router.post('/', (req, res, next) => {
+router.post('/', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: createUser`);
   userService.create(req.body)
@@ -45,7 +45,7 @@ router.get('/', auth.isAuthenticated, (req, res, next) => {
 });
 
 //FIXME : is root OR userId = connectedUserId
-router.post('/init-pwd/:userId', auth.isAuthenticated, (req, res, next) => {
+router.post('/init-pwd/:userId', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   const userId = req.params.userId;
   logger.info(`${id}: init-pwd for user ${userId}`);
@@ -59,7 +59,7 @@ router.post('/init-pwd/:userId', auth.isAuthenticated, (req, res, next) => {
   });
 });
 
-router.delete('/:userId', auth.isAuthenticated, (req, res, next) => {
+router.delete('/:userId', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   const userId = req.params.userId;
   logger.info(`${id}: delete user ${userId}`);

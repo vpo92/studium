@@ -39,7 +39,6 @@ async function remove(userId){
 async function initPwd(userId, newPwd){
   logger.info("userService.initPwd");
   let cUser = await User.findOne({_id:userId}).exec();
-  logger.info(cUser);
   let user = new User(cUser);
   user.password = newPwd;
   return await user.save();

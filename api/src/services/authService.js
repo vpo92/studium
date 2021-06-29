@@ -26,9 +26,52 @@ const getUser = async (req,res,next) => {
   }
 };
 
+const hasRole = (roles) => {
+  return async (req, res, next) => {
+    console.log('hasRole'+roles);
+    try{
+      await getAuth(req, res, next);
+      const userEmail = req.user.email?req.user.email.trim().toLowerCase():null;
+      const user = await User.findOneAsync({email:userEmail});
+
+      if (!user) {
+        return res.status(401).end();
+      }else{
+        req.user = user;
+      }
+
+      const filteredArray = roles.filter(value => user.role.includes(value));
+      if (filteredArray == []) {
+        console.log("hasRole : not granted");
+        return res.status(403).send({error: { status:403, message:'Access denied.'}});
+      }
+      next();
+    }catch(err){
+      return next(err);
+    }
+  }
+}
+
+const getRoleAdmin = async (req,res,next) => {
+  try{
+    let user = req.user;
+    console.log("getRoleAdmin");
+    if (!user || !user.role.includes('admin')) {
+      console.log("hasRole : not granted");
+      return res.status(403).send({error: { status:403, message:'Access denied.'}});
+    }
+    next();
+  }catch(err){
+    return next(err);
+  }
+}
+
 const isAuthenticated = [
   getAuth, getUser
 ]
+
+const isAdmin = [getAuth, getUser, getRoleAdmin];
+
 const authenticate = async (email, password)  => {
   try{
     const user = await User.findOneAsync({email:email.trim().toLowerCase()});
@@ -67,4 +110,7 @@ module.exports = {
   authenticate,
   isAuthenticated,
   getUser,
+  hasRole,
+  isAdmin,
+  getRoleAdmin,
 };
