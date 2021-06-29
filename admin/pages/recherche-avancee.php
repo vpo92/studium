@@ -13,11 +13,11 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
 
 
 
+<h3>Recherche avancée</h3>
 
 <!-- Our application root element -->
-<div id="app">
+<div id="app"  v-cloak>
 
-    <h3>Recherche avancée</h3>
     <div>
 
         <h5>Nom</h5>

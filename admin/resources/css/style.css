@@ -265,3 +265,7 @@ html, body, .tab-content, #map  {
     width: 60%;
     height: 40%;
 }
+
+[v-cloak] {
+    display: none;
+}

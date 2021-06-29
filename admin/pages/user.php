@@ -8,7 +8,7 @@ $pageScripts .='<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstr
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/user.js"></script>';
 ?>
 <h3>Gestion des utilisateurs</h3>
-<div id="app">
+<div id="app" v-cloak>
 
     <h4>Liste des utilisateurs ({{items.length}})</h4>
 
@@ -33,10 +33,6 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/user.js"></script
         </template>
 
         <template #cell(actions)="row">
-
-            <a v-bind:href="'<?php echo getApplicationUrl()?>/'+ row.item.link +'?mode=FULLSEARCH'" size="sm" class="btn btn-primary">
-                Voir la fiche
-            </a>
             <button class="btn btn-danger" @click="reinitPwd(row.item._id)">Réinitialiser le mot de passe</button>
             <button class="btn btn-danger" @click="remove(row.item._id)">Supprimer le compte</button>
         </template>

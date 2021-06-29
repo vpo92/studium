@@ -114,29 +114,42 @@ fetch(resourceUrl+'/messages.json')
 
                 },
                 reinitPwd : async function(id){
-                    console.log("reinitPwd :"+id);
-                    const request = {
-                        "newPwd": "password"
+                    if(confirm("Confirmez-vous la réinitialisation du mot de passe ?")){
+                        var pwd = prompt("Veuillez saisir le nouveau mot de passe");
+                        if(pwd != null){
+                            console.log("reinitPwd :"+id);
+                            const request = {
+                                "newPwd": pwd
+                            }
+                            const result = await fetch(`${apiUrl}/user/init-pwd/`+id,{
+                                'method':'POST',
+                                'headers':{
+                                    'Content-Type':'application/json',
+                                    'Authorization':'Bearer'+sessionToken,
+                                },
+                                body:JSON.stringify(request)
+                            });
+                            alert("Mot de passe changé !");
+                        }else{
+                            alert("Mot de passe invalide !");
+                        }
+
                     }
-                    const result = await fetch(`${apiUrl}/user/init-pwd/`+id,{
-                        'method':'POST',
-                        'headers':{
-                            'Content-Type':'application/json',
-                            'Authorization':'Bearer'+sessionToken,
-                        },
-                        body:JSON.stringify(request)
-                    });
+
                 },
                 remove : async function(id){
-                    console.log("remove :"+id);
-                    const result = await fetch(`${apiUrl}/user/`+id,{
-                        'method':'DELETE',
-                        'headers':{
-                            'Content-Type':'application/json',
-                            'Authorization':'Bearer'+sessionToken,
-                        },
-                    });
-                    this.list();
+                    if(confirm("Confirmez-vous la suppression du compte ?")){
+                        console.log("remove :"+id);
+                        const result = await fetch(`${apiUrl}/user/`+id,{
+                            'method':'DELETE',
+                            'headers':{
+                                'Content-Type':'application/json',
+                                'Authorization':'Bearer'+sessionToken,
+                            },
+                        });
+                        this.list();
+                    }
+
                 }
             },
             created() {
