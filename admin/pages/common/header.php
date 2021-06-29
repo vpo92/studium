@@ -76,6 +76,9 @@
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-mongo">Recherche Mongo</a>
             </li>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=user">Gestion des utilisateurs</a>
+            </li>
             <?php }?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>
