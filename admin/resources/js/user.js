@@ -107,6 +107,9 @@ fetch(resourceUrl+'/messages.json')
                             password:'',
                             role:[]
                     };
+                    if(result.status != 200){
+                        alert("Erreur technique");
+                    }
                     this.list();
 
                 },
@@ -129,7 +132,12 @@ fetch(resourceUrl+'/messages.json')
                                 },
                                 body:JSON.stringify(request)
                             });
-                            alert("Mot de passe changé !");
+                            if(result.status == 200){
+                                alert("Mot de passe changé !");
+                            }else{
+                                alert("Erreur technique");
+                            }
+
                         }else{
                             alert("Mot de passe invalide !");
                         }
@@ -147,6 +155,9 @@ fetch(resourceUrl+'/messages.json')
                                 'Authorization':'Bearer'+sessionToken,
                             },
                         });
+                        if(result.status != 200){
+                            alert("Erreur technique");
+                        }
                         this.list();
                     }
 
