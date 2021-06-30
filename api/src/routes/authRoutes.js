@@ -20,9 +20,11 @@ router.post("/login", async (req, res, next)  => {
     logger.info(`${id}: POST /login OK for ${email}`);
     //TTL 1h
     let opts = {expiresIn: config.auth.expiresIn};
+    const role = user.role;
 
     const secret = config.auth.secrets.session; //FIXME normally stored in process.env.secret
-    const token = jwt.sign({ email }, secret, opts);
+    const token = jwt.sign({ email, role }, secret, opts);
+
     return res.status(200).json({
         message: "Auth Passed",
         token,
