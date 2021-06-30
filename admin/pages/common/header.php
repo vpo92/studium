@@ -72,7 +72,7 @@
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-avancee">Recherche avancée</a>
             </li>
             <?php }
-            if(getFeatures()->mongoSearch && isAuthenticated()){?>
+            if(getFeatures()->mongoSearch && isAdmin()){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=recherche-mongo">Recherche Mongo</a>
             </li>

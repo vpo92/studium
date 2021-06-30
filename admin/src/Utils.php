@@ -40,6 +40,17 @@ function isAuthenticated(){
     return isset($_SESSION["connected"]) && $_SESSION["connected"];
 }
 
+function isAdmin(){
+    if(isAuthenticated() && isset($_SESSION["role"])){
+        foreach ($_SESSION["role"] as $i => $role){
+            if($role == "admin"){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function getSessionUserName(){
     return $_SESSION["username"];
 }

@@ -78,11 +78,18 @@ try{
             $password = getFieldFromForm("password");
             $token  = $userService->authenticate($pseudo,$password);
             if($token){
+                //decode token
+                $tokenParts = explode(".", $token);
+                $tokenHeader = base64_decode($tokenParts[0]);
+                $tokenPayload = base64_decode($tokenParts[1]);
+                $jwtHeader = json_decode($tokenHeader);
+                $jwtPayload = json_decode($tokenPayload);
 
                 //Stockage des infos en session
                 $_SESSION["connected"] = true;
                 $_SESSION["token"] = $token;
                 $_SESSION["username"] = $pseudo;
+                $_SESSION["role"] = $jwtPayload->role;
 
                 $page = "home";
             }else{
