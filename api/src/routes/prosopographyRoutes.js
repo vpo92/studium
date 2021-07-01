@@ -3,10 +3,8 @@
 import express from 'express';
 import uuid from 'uuid';
 import passport from 'passport';
-
 import service from '../services/prosopographyService';
 import auth from '../services/authService';
-//auth.setup();
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
 
@@ -23,6 +21,9 @@ const getFormat = function(req){
     return req.query.format?req.query.format:"json";
 }
 
+/**
+* Get All prosopography
+*/
 router.get('/', async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: findAll`);
@@ -39,7 +40,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-
+/**
+* Init pg reference seq
+*/
 router.post('/seq/init', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: initCurrentReference`);
@@ -63,7 +66,9 @@ router.post('/seq/init', auth.isAuthenticated, async (req, res, next) => {
   }
 });
 
-
+/**
+* Get current reference seq
+*/
 router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: getCurrentReference`);
@@ -84,6 +89,9 @@ router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
   }
 });
 
+/*
+* Search by keyword
+*/
 router.get('/search/:searchText', async (req, res, next) => {
   const id = uuid.v4();
   const searchText = req.params.searchText;
@@ -132,6 +140,9 @@ router.get('/search/:searchText', async (req, res, next) => {
   }
 });
 
+/*
+* Search by criteria
+*/
 router.post('/search/advanced', async(req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: search advanced`);
@@ -186,7 +197,9 @@ router.post('/search/advanced', async(req, res, next) => {
 
 });
 
-
+/*
+* ???
+*/
 router.post('/initGraph', async(req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: search graph`);
@@ -203,6 +216,9 @@ router.post('/initGraph', async(req, res, next) => {
 
 });
 
+/**
+* Get pg by Index
+*/
 router.get('/index/:letter', async (req, res, next) => {
   const id = uuid.v4();
   const letter = req.params.letter;
@@ -219,7 +235,9 @@ router.get('/index/:letter', async (req, res, next) => {
   }
 });
 
-
+/**
+* Get all pg Ids
+*/
 router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
@@ -237,6 +255,9 @@ router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
   }
 });
 
+/**
+* Get pg by Reference
+*/
 router.get('/:reference', async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
@@ -268,7 +289,10 @@ router.get('/:reference', async (req, res, next) => {
   }
 });
 
-router.post('/', auth.isAuthenticated, async (req, res, next) => {
+/**
+* Create pg in json format
+*/
+router.post('/', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography`);
   logger.info(`${id}: POST prosopography user ${req.user.name}`);
@@ -287,9 +311,50 @@ router.post('/', auth.isAuthenticated, async (req, res, next) => {
 });
 
 /**
+* Parse pg from text
+*/
+router.post('/parse-text', async (req, res) => {
+  const id = uuid.v4();
+  logger.info(`${id}: POST prosopography parse-text`);
+
+  const proso = req.body;
+  try{
+    let p = await service.convertFromText(proso);
+    logger.info(`${id} POST prosopography parse-text : Parsing OK`);
+    return res.send(p);
+  }catch(err){
+    logger.error(err);
+    return res.status(500).json({
+        message: "Error",
+        error: err,
+    });
+  }
+});
+
+/**
+* Delete by reference
+*/
+router.delete('/:reference', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: deleteByReference on ${reference}`);
+  try {
+    await service.remove(reference);
+    logger.info(`${id}: deleteByReference done`);
+    res.send({'message':'OK'});
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to delete with reference ${reference} - ${err}`
+    );
+    next(err);
+  }
+});
+
+
+/**
 * Handle prosopography creation from text format
 * @deprecated
-*/
+
 router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography create-from-text`);
@@ -325,9 +390,9 @@ router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) =>
   }
 });
 
-/*
-* @deprecated
-*/
+
+@deprecated
+
 router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography from-text`);
@@ -370,9 +435,6 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
           error: err,
       });
     }
-
-
-
   }else{
     let err = 'missing reference';
     logger.error(err);
@@ -382,118 +444,8 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
     });
   }
 });
+*/
 
-
-router.post('/parse-text', async (req, res) => {
-  const id = uuid.v4();
-  logger.info(`${id}: POST prosopography parse-text`);
-
-  const proso = req.body;
-  try{
-    let p = await service.convertFromText(proso);
-    logger.info(`${id} POST prosopography parse-text : Parsing OK`);
-    return res.send(p);
-  }catch(err){
-    logger.error(err);
-    return res.status(500).json({
-        message: "Error",
-        error: err,
-    });
-  }
-});
-
-
-router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
-  const id = uuid.v4();
-  logger.info(`${id}: indexDB`);
-  logger.info(`${id}: indexDB user ${req.user.name}`);
-
-  try {
-    service.indexDB();
-    logger.info(`${id}: indexDB done`);
-    res.send({'message':'OK'});
-  } catch (err) {
-    logger.error(
-      `${id}: Failed to indexDB`
-    );
-    next(err);
-  }
-});
-
-router.post('/re-index-from-raw/:reference', auth.isAuthenticated, async (req, res, next) => {
-  const id = uuid.v4();
-  const reference = req.params.reference;
-  logger.info(`${id}: reIndexFromRaw on ${reference}`);
-  try {
-    const prosopography = await service.findByReference(reference);
-    if(prosopography){
-      const raw = prosopography.raw.join("\n");
-      let p = await service.convertFromText(raw);
-      p._id = prosopography._id;
-      await service.update(p);
-      res.send(p);
-    }else{
-      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
-    }
-
-  }catch(error){
-    next(error);
-  }
-});
-
-
-//FIXME : implement backup
-router.post('/backup', auth.isAuthenticated, async (req, res, next) => {
-//
-  const id = uuid.v4();
-  logger.info(`${id}: backup`);
-  logger.info(`${id}: backup user ${req.user.name}`);
-
-  try{
-    await service.backupAll();
-    logger.info(`${id}: backup done`);
-    res.send({'message':'OK'});
-  }catch(error){
-    console.log(error);
-    next(error);
-  }
-
-});
-
-
-router.delete('/:reference', auth.isAuthenticated, async (req, res, next) => {
-  const id = uuid.v4();
-  const reference = req.params.reference;
-  logger.info(`${id}: deleteByReference on ${reference}`);
-  try {
-    await service.remove(reference);
-    logger.info(`${id}: deleteByReference done`);
-    res.send({'message':'OK'});
-  } catch (err) {
-    logger.error(
-      `${id}: Failed to delete with reference ${reference} - ${err}`
-    );
-    next(err);
-  }
-});
-
-router.post('/re-index-manus/:reference', auth.isAuthenticated, async (req, res, next) => {
-  const id = uuid.v4();
-  const reference = req.params.reference;
-  logger.info(`${id}: reIndexManus on ${reference}`);
-  try {
-    const prosopography = await service.findByReference(reference);
-    if(prosopography){
-      let p = await service.updateGeoMS(prosopography);
-      res.send(p);
-    }else{
-      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
-    }
-
-  }catch(error){
-    next(error);
-  }
-});
 
 
 

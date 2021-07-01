@@ -14,7 +14,7 @@ import userRoutes from './userRoutes';
 import manuscritRoutes from './manuscritRoutes';
 import mongoRoutes from './mongoRoutes';
 import draftRoutes from './draftRoutes';
-
+import adminRoutes from './adminRoutes';
 const pkg = require("../../package.json");
 const router = express.Router();
 const mode = process.env.APP_MODE || 'dev';
@@ -26,6 +26,7 @@ router.use('/auth', authRoutes);
 router.use('/manuscrit', manuscritRoutes);
 router.use('/mongo', mongoRoutes);
 router.use('/draft', draftRoutes);
+router.use('/admin', adminRoutes);
 router.get('/docs', (req,res) => {
     let p = mode === 'PROD'?'/app/docs/index.html':path.join(__dirname,"../../docs/index.html");
     res.sendFile(p);

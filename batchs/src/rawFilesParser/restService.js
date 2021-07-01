@@ -39,7 +39,7 @@ const saveRecord =  (apiUrl, token, record) => {
 const createIndex = (apiUrl, token) => {
   console.log(`RestService.createIndex`);
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/indexDB`;
+  let uri = `${apiUrl}/admin/indexDB`;
 
   return new Promise((resolve, reject) => {
   request.post({
@@ -68,7 +68,7 @@ const createIndex = (apiUrl, token) => {
 const getAllIds = (apiUrl, token) => {
   console.log(`RestService.getAllIds`);
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/all-ids`;
+  let uri = `${apiUrl}/admin/all-ids`;
 
   return new Promise((resolve, reject) => {
   request.get({
@@ -97,7 +97,7 @@ const getAllIds = (apiUrl, token) => {
 const reIndex = (apiUrl, token, reference) => {
 
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/re-index-from-raw/${reference}`;
+  let uri = `${apiUrl}/admin/re-index-from-raw/${reference}`;
   console.log(`RestService.reIndex ref ${reference} to ${uri}`);
 
   return new Promise((resolve, reject) => {
@@ -127,7 +127,7 @@ const reIndex = (apiUrl, token, reference) => {
 const reIndexManus = (apiUrl, token, reference) => {
 
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/re-index-manus/${reference}`;
+  let uri = `${apiUrl}/admin/re-index-manus/${reference}`;
   console.log(`RestService.reIndexManus ref ${reference} to ${uri}`);
 
   return new Promise((resolve, reject) => {
@@ -158,7 +158,7 @@ const reIndexManus = (apiUrl, token, reference) => {
 const backupAll = (apiUrl, token) => {
 
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/backup/`;
+  let uri = `${apiUrl}/admin/backup/`;
   console.log(`RestService.backupAll`);
 
   return new Promise((resolve, reject) => {
@@ -289,11 +289,10 @@ const auth = (apiUrl, username, password) => {
   });
 };
 
-
 const indexDB = (apiUrl, token) => {
   console.log(`RestService.indexDB`);
   let auth = `Bearer ${token}`;
-  let uri = `${apiUrl}/prosopography/indexDB`;
+  let uri = `${apiUrl}/admin/indexDB`;
 
   return new Promise((resolve, reject) => {
   request.post({

@@ -1,5 +1,3 @@
-// @flow
-
 import express from 'express';
 import uuid from 'uuid';
 import passport from 'passport';
@@ -24,7 +22,7 @@ const getFormat = function(req){
 }
 
 
-router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
+router.get('/all-ids', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   logger.info(`${id}: all-id`);
@@ -41,7 +39,7 @@ router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
   }
 });
 
-router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
+router.post('/indexDB', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: indexDB`);
   logger.info(`${id}: indexDB user ${req.user.name}`);
@@ -58,9 +56,7 @@ router.post('/indexDB', auth.isAuthenticated, (req, res, next) => {
   }
 });
 
-
-//FIXME : implement backup
-router.post('/backup', auth.isAuthenticated, async (req, res, next) => {
+router.post('/backup', auth.isAdmin, async (req, res, next) => {
 //
   const id = uuid.v4();
   logger.info(`${id}: backup`);
@@ -77,9 +73,28 @@ router.post('/backup', auth.isAuthenticated, async (req, res, next) => {
 
 });
 
+router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  logger.info(`${id}: reIndexFromRaw on ${reference}`);
+  try {
+    const prosopography = await service.findByReference(reference);
+    if(prosopography){
+      const raw = prosopography.raw.join("\n");
+      let p = await service.convertFromText(raw);
+      p._id = prosopography._id;
+      await service.update(p);
+      res.send(p);
+    }else{
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
 
+  }catch(error){
+    next(error);
+  }
+});
 
-router.post('/re-index-manus/:reference', auth.isAuthenticated, async (req, res, next) => {
+router.post('/re-index-manus/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   logger.info(`${id}: reIndexManus on ${reference}`);
@@ -96,8 +111,5 @@ router.post('/re-index-manus/:reference', auth.isAuthenticated, async (req, res,
     next(error);
   }
 });
-
-
-
 
 export default router;
