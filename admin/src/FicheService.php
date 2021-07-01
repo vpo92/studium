@@ -26,6 +26,14 @@ class FicheService
         return isset($res->message)?[]:$res;
     }
 
+    public function getDraftByReference($reference)
+    {
+        //$headers = array('Accept' => 'application/json');
+        $response = callAPI('GET', "/draft/$reference");
+        $res = json_decode($response["data"]);
+        return isset($res->message)?[]:$res;
+    }
+
     public function searchByKeyWord($keyword,$page,$rows){
         $url = "/prosopography/search/$keyword";
         if($page){
@@ -52,9 +60,9 @@ class FicheService
         if($reference){
             //update
             $data["reference"] = $reference;
-            $res = postJSON("/prosopography/from-text", json_encode($data), getSessionToken());
+            $res = postJSON("/draft/from-text", json_encode($data), getSessionToken());
         }else{
-            $res = postJSON("/prosopography/create-from-text", json_encode($data), getSessionToken());
+            $res = postJSON("/draft/create-from-text", json_encode($data), getSessionToken());
         }
 
         $response = json_decode($res);

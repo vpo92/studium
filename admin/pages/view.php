@@ -3,7 +3,7 @@ $GLOBALS['msSrv'] = $manuscritService;
 include "view/view_properties.php"
 ?>
 
-<h3>Fiche <?php echo $fiche->reference ?> - <?php echo $fiche->title ?></h3>
+<h3><?php if(isset($action) && $action == "view-draft"){ echo "BROUILLON - "; }?>Fiche <?php echo $fiche->reference ?> - <?php echo $fiche->title ?></h3>
 <h6>permalien : <a href="<?php echo getApplicationUrl().$fiche->link ?>"><?php echo getApplicationUrl().$fiche->link ?></a></h6>
 
 <?php
@@ -16,7 +16,10 @@ if(isset($mode) && $mode == "SEARCH") {
     $backLink = getApplicationUrl()."?action=search&keyword=$keyword";
 }else if(isset($mode) && $mode == "FULLSEARCH") {
     $backLink = getApplicationUrl()."?page=recherche-avancee";
+}else if(isset($mode) && $mode == "DRAFTLIST") {
+    $backLink = getApplicationUrl()."?page=draft";
 }
+$keyword= isset($keyword)?$keyword:"";
 $removeRedirect = "&mode=$mode&letter=$name[0]&keyword=$keyword";
 
 
@@ -32,15 +35,23 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/view.js"></script
 <a href="<?php echo $backLink ?>" class="btn btn-secondary">
     Retourner à la liste
 </a>
-<a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-primary" target="_blank">
+<a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-success" target="_blank">
     Voir la fiche au format JSON
 </a>
 <?php
 if(isAuthenticated()){?>
+<?php if($action != "view-draft"){?>
+<a href="<?php echo getApplicationUrl()?>?action=view-draft&reference=<?php echo $fiche->reference ?>" class="btn btn-success">
+    Voir le brouillon
+</a>
+<?php }else{ ?>
+<a href="<?php echo getApplicationUrl()?>?action=view&reference=<?php echo $fiche->reference ?>" class="btn btn-success">
+    Retour à la fiche public
+</a>
+<?php    } ?>
 <a href="<?php echo getApplicationUrl()?>?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
     Modifier la fiche
 </a>
-
 <a href="<?php echo getApplicationUrl()?>?action=prepare-delete&reference=<?php echo $fiche->reference ?>&redirect=<?php echo $removeRedirect?>" class="btn btn-danger">
     Supprimer la fiche
 </a>

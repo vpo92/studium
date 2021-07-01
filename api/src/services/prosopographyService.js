@@ -1,5 +1,6 @@
 // @flow
 import db from '../utils/db';
+import logger from '../utils/logger';
 //import { type Prosopography } from '../../types/Prosopography';
 import { type Prosopography } from '../../../batchs/src/rawFilesParser/types';
 import { type SearchRequest } from '../../types/SearchRequest';
@@ -110,6 +111,7 @@ function indexDB(){
 }
 
 async function create(prosopography: Prosopography): Promise<Any> {
+  logger.info('ProsopographyService create');
   const p = await findByReference(prosopography.reference);
   if(p){
     //throw

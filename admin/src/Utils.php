@@ -52,11 +52,11 @@ function isAdmin(){
 }
 
 function getSessionUserName(){
-    return $_SESSION["username"];
+    return isset($_SESSION["username"])?$_SESSION["username"]:"";
 }
 
 function getSessionToken(){
-    return $_SESSION["token"];
+    return isset($_SESSION["token"])?$_SESSION["token"]:"";
 }
 
 function formatErrorMsgReqired($error){

@@ -14,7 +14,7 @@ $targetAction = $mode == "EDIT"?"process-edit":"process-create";
         <?php }else{?>
             <a href="<?php echo getApplicationUrl()?>?action=index&letter=A" class="btn btn-secondary">Annuler</a>
         <?php }?>
-        <button name="saveChange" type="submit" class="btn btn-primary">Enregistrer</button>
+        <button name="saveChange" type="submit" class="btn btn-primary">Enregistrer les modifications</button>
     </div>
     <input type="hidden" name="reference" value="<?php echo $fiche->reference ?>" />
     <input type="hidden" name="action" value="<?php echo $targetAction ?>" />

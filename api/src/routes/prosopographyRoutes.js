@@ -288,6 +288,7 @@ router.post('/', auth.isAuthenticated, async (req, res, next) => {
 
 /**
 * Handle prosopography creation from text format
+* @deprecated
 */
 router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
@@ -324,6 +325,9 @@ router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) =>
   }
 });
 
+/*
+* @deprecated
+*/
 router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   logger.info(`${id}: POST prosopography from-text`);

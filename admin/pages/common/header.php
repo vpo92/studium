@@ -57,6 +57,11 @@
             <li class="active">
                 <a href="<?php echo getApplicationUrl()?>/home">Accueil</a>
             </li>
+            <?php if(isAuthenticated()){?>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?action=prepare-create">+ Créer une fiche</a>
+            </li>
+            <?php } ?>
             <?php if(getFeatures()->indexSearch){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?action=index">Index</a>
@@ -78,6 +83,9 @@
             </li>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=user">Gestion des utilisateurs</a>
+            </li>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=draft">Gestion des brouillons</a>
             </li>
             <?php }?>
             <li>

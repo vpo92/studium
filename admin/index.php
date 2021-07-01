@@ -129,9 +129,25 @@ try{
 
             break;
 
+        case "view-draft" :
+            $reference = getFieldFromForm("reference");
+            $loggerService->log("reference : ".$reference);
+            $mode = getFieldFromForm("mode");
+            $keyword = getFieldFromForm("keyword");
+            $fiche = $ficheService->getDraftByReference($reference);
+            if(isset($fiche) && isset($fiche->reference)){
+                $page = "view";
+            }else{
+                $page = "nontrouve";
+            }
+
+            break;
         case "prepare-edit" :
             $reference = getFieldFromForm("reference");
-            $fiche = $ficheService->searchByReference($reference);
+            $fiche = $ficheService->getDraftByReference($reference);
+            if(!$fiche){
+                $fiche = $ficheService->searchByReference($reference);
+            }
             $page = "edit";
             $mode = "EDIT";
             break;
@@ -144,6 +160,7 @@ try{
                 $info_msg = "Enregistrement OK";
                 $fiche = $ficheService->searchByReference($reference);
                 $page = "view";
+                $mode = getFieldFromForm("mode");
             }else{
                 $loggerService->log("$result : ".$result);
                 $error_msg = "Erreur lors de l'enregistrement : ".$result->error;
