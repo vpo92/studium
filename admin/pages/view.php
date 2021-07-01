@@ -52,10 +52,12 @@ if(isAuthenticated()){?>
 <a href="<?php echo getApplicationUrl()?>?action=prepare-edit&reference=<?php echo $fiche->reference ?>" class="btn btn-primary">
     Modifier la fiche
 </a>
+<?php if(isAdmin()){?>
 <a href="<?php echo getApplicationUrl()?>?action=prepare-delete&reference=<?php echo $fiche->reference ?>&redirect=<?php echo $removeRedirect?>" class="btn btn-danger">
     Supprimer la fiche
 </a>
-<?php } ?>
+<?php }
+} ?>
 
 <br>
 <br>
