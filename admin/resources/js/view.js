@@ -8,21 +8,23 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var latLngs = [];
+if(globalOpusList!=null){
+    for(var i = 0; i < globalOpusList.length; i++){
 
-for(var i = 0; i < globalOpusList.length; i++){
+        var m  = globalOpusList[i];
+        console.log(m);
+        var mar = L.marker([m.x, m.y]);
+        mar.addTo(map)
+            .bindPopup(m.Ville)
+            .openPopup();
+        latLngs.push(mar.getLatLng());
 
-    var m  = globalOpusList[i];
-    console.log(m);
-    var mar = L.marker([m.x, m.y]);
-    mar.addTo(map)
-        .bindPopup(m.Ville)
-        .openPopup();
-    latLngs.push(mar.getLatLng());
+    }
 
+    var markerBounds = L.latLngBounds(latLngs);
+    map.fitBounds(markerBounds);
 }
 
-var markerBounds = L.latLngBounds(latLngs);
-map.fitBounds(markerBounds)
 
 //var group = new L.featureGroup(markers);
 //map.fitBounds(group.getBounds().pad(0.5));

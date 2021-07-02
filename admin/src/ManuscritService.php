@@ -13,7 +13,7 @@ class ManuscritService
     public function findById($id)
     {
         $response = callAPI('GET', "/manuscrit/$id");
-        return json_decode($response);
+        return json_decode($response["data"]);
     }
 
 }
