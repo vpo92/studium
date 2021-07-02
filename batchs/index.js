@@ -1,7 +1,6 @@
 #!/usr/bin/env babel-node
 
-import { auth } from './src/rawFilesParser/restService.js';
-import { help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile } from './src/studium.cli.js';
+import { cliAuth as auth, help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
@@ -24,50 +23,51 @@ async function main(){
     let host = argv.host;
     let username = argv.username;
     let password = argv.password;
+    let tokenName = "tk";
     let token = null;
     try{
       switch(command){
         case 'auth':{
           console.log("Studium CLI : auth");
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           console.log(token);
           break;
         }
         case 're-index':{
           console.log("Studium CLI : re-index");
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           runReIndex(host,token);
           break;
         }
         case 're-index-manus':{
           console.log("Studium CLI : re-index-manus");
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           runReIndexManus(host,token);
           break;
         }
         case 'import-file':{
           console.log("Studium CLI : import-file");
           let file = argv.file;
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           runImportFile(file,host,token);
           break;
         }
         case 'import-manuscrit':{
           console.log("Studium CLI : import-manuscrit");
           let file = argv.file;
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           await runImportManusFromFile(host,token,file);
           break;
         }
         case 'backup':{
           console.log("Studium CLI : backup");
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           runBackupAll(host,token);
           break;
         }
         case 'update-db-index':{
           console.log("Studium CLI : update-db-index");
-          token = await auth(host,username,password);
+          token = await auth(host,username,password,tokenName);
           runIndexDB(host,token);
           break;
         }
