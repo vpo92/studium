@@ -11,7 +11,6 @@
 <!-- Dark Overlay element -->
 <div class="overlay"></div>
 
-
 <!-- Page CSS -->
 <?php
 echo $pageCSS;
