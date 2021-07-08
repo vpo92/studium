@@ -1,6 +1,7 @@
 //@flow
 import type { SaveRecordFunction } from './types';
 import { MongoClient } from 'mongodb';
+const crypto =require('crypto');
 
 const exec = require('child_process').exec;
 //const util = require('util');
@@ -135,7 +136,36 @@ const backup = (out: string) =>
   });
 };
 
+const createAdmin = async (username,email,password,mongoUrl) => {
+  try{
+    //MAKE SALT
+    const byteSize = 16;
+    const saltBrut = crypto.randomBytes(byteSize).toString('base64');
+
+    //MAKE PWD
+    const defaultIterations = 10000;
+    const defaultKeyLength = 64;
+    const salt = new Buffer(saltBrut, 'base64');
+    const pwd = crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength,null).toString('base64');
+
+    console.log(salt);
+    console.log(pwd);
+    let user = {
+      "name":username,
+      "email":email,
+      "role":["ROLE_USER","ROLE_ADMIN"],
+      "password":pwd,
+      "salt":saltBrut
+    }
+    let db = await MongoClient.connect(mongoUrl);
+    await db.collection('users').insertOne(user);
+    await db.close();
+    return;
+  }catch(error){
+    console.log(error);
+  }
+}
 
 export {
-  saveRecordInDatabase, createIndex, mongoexport, backup
+  saveRecordInDatabase, createIndex, mongoexport, backup, createAdmin
 };

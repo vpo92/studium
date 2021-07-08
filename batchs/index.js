@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 
-import { cliAuth as auth, help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile } from './src/studium.cli.js';
+import { cliAuth as auth, help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile, runCreateAdmin } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
@@ -79,6 +79,11 @@ async function main(){
           //runIndexDB(host,token);
           const dbUrl = 'mongodb://localhost/studium';
           runImportJsonFile(file,dbUrl,collection);
+          break;
+        }
+        case 'create-admin':{
+          console.log("Studium CLI : create-admin");
+          runCreateAdmin("administrator","admin@studium.dev","pass","mongodb://localhost/studium");
           break;
         }
         case 'help':{

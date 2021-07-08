@@ -3,6 +3,7 @@
 import chalk from 'chalk';
 import fs from 'fs';;
 import { auth, backupAll,saveRecord,createIndex,getAllIds, reIndex, reIndexManus, indexDB } from './rawFilesParser/RestService';
+import { createAdmin } from './rawFilesParser/MongoService';
 import { processFile } from './rawFilesParser/simpleParser';
 import { importJsonFile } from './fileImporter/fileImport';
 import { createManuscrit, importManuscritList } from './rawFilesParser/restService';
@@ -138,6 +139,11 @@ export async function runImportManusFromFile(apiUrl, tk, file){
   });
 }
 
+export async function runCreateAdmin(username,email,password,mongoUrl){
+  console.log(`runCreateAdmin`);
+  await createAdmin(username,email,password,mongoUrl);
+}
+
 export function version(){
   const packageJson = require('../package.json');
   console.log("Studium CLI v"+packageJson.version);
@@ -155,6 +161,7 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.blue('re-index-manus')}...... re-index manus info
     ${chalk.blue('update-db-index')}..... update mongodb text index for search
     ${chalk.blue('import-manuscrit')}.... import manuscrit from file
+    ${chalk.blue('create-admin')}........ create an admin user to local Mongo Database
     ${chalk.blue('version')} ............ show package version
     ${chalk.blue('help')} ............... show help menu for a command
 
