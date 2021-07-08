@@ -151,7 +151,7 @@ const createAdmin = async (username,email,password,mongoUrl) => {
     let user = {
       "name":username,
       "email":email,
-      "role":["ROLE_USER","ROLE_ADMIN"],
+      "role":["user","admin"],
       "password":pwd,
       "salt":saltBrut
     }
