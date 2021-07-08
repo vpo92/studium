@@ -15,3 +15,6 @@ static
 *.log*
 test-report.xml
 coverage
+scripts/**.csv
+scripts/**.xml
+scripts/**.zip
