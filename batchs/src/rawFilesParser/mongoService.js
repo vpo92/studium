@@ -146,10 +146,8 @@ const createAdmin = async (username,email,password,mongoUrl) => {
     const defaultIterations = 10000;
     const defaultKeyLength = 64;
     const salt = new Buffer(saltBrut, 'base64');
-    const pwd = crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength,null).toString('base64');
+    const pwd = crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength,'sha1').toString('base64');
 
-    console.log(salt);
-    console.log(pwd);
     let user = {
       "name":username,
       "email":email,
