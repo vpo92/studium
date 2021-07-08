@@ -5,18 +5,15 @@ language: node_js
 node_js:
   - "node"
   - "11.10.1"
+  - "12"
 
 addons:
   sonarcloud:
     organization: "vpo92-github"
 
-jdk:
-  - oraclejdk8
 script:
   - npm test
   - sonar-scanner
-  - sh ./build.sh
-  - sh ./push.sh
 cache:
   directories:
     - '$HOME/.sonar/cache'
