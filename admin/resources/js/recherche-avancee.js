@@ -350,6 +350,37 @@ fetch(resourceUrl+'/messages.json')
                     this.totalRows = filteredItems.length
                     this.currentPage = 1
                 },
+                initSearch : async function(){
+                  this.searchRequest= {
+                      activityMediane: {
+                          from: null,
+                          to: null,
+                      },
+                      activity: {
+                          start: {
+                              from : null,
+                              to : null,
+                          },
+                          end: {
+                              from : null,
+                              to : null,
+                          }
+                      },
+                      status: [],
+                      sexe: [],
+                      graph: false,
+                      grade: null,
+                      discipline: null,
+                      name: null,
+                      prosopography: [{
+                          section: null,
+                          subSection: null,
+                          operator: "AND",
+                          matchType: null,
+                          value: null,
+                      }]
+                  };
+                },
                 search : async function(){
                     console.log("search");
                     // Booléen pour le chargement des données (animation)
@@ -551,5 +582,3 @@ fetch(resourceUrl+'/messages.json')
             }
         })
     });
-
-

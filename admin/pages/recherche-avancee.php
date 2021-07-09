@@ -110,6 +110,7 @@ $pageScripts .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm
             </div>
         </div>
         <div class="form-group">
+            <button v-if="!searching" type="submit" class="btn btn-secondary" @click="initSearch()">Vider la recherche</button>
             <button v-if="!searching" type="submit" class="btn btn-primary" @click="search()">Rechercher</button>
             <button v-else class="btn btn-secondary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
