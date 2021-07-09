@@ -43,17 +43,16 @@ describe('prosopographyService', () => {
       const expected = {
         reference : 30,
         identity : {
-          name : {
+          name : [{
             value:"VINCENTUS",
-          },
+          }],
         },
       };
       try{
         let prosopography = await service.convertFromText(txt);
-        console.log(prosopography);
         expect(prosopography).toBeDefined();
         expect(prosopography.reference).toEqual(tag);
-        expect(prosopography.identity.name.value).toEqual("VINCENTUS");
+        expect(prosopography.identity.name[0].value).toEqual("VINCENTUS");
         //expect(prosopography).toEqual(expected);
       }catch(err){
         expect(err).toBeUndefined();
@@ -80,9 +79,7 @@ describe('prosopographyService', () => {
       let searchRequest = {
           name:"roma",
       };
-      let expected = {
-        'identity.name.value': /^roma/i,
-      };
+      let expected = {"$or":[{'identity.name.value': /roma/i},{'identity.nameVariant.value': /roma/i}]};
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
     });
@@ -92,7 +89,7 @@ describe('prosopographyService', () => {
           name:"roma",
           grades:"ETU",
       };
-      let expected = {"$and":[{'identity.name.value': /^roma/i},{'curriculum.grades.value': /ETU/i}]};
+      let expected = {"$or":[{'identity.name.value': /roma/i},{'identity.nameVariant.value': /roma/i}]};
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
     });
@@ -120,7 +117,7 @@ describe('prosopographyService', () => {
             },
           ],
       };
-      let expected = {'identity.gender.value': /^male$/i};
+      let expected = {"$and":[{'identity.gender.value': /^male$/i},{}]};
       let res = service.convertSearchRequestToMongoRequest(searchRequest);
       expect(res).toEqual(expected);
     });
@@ -146,8 +143,11 @@ describe('prosopographyService', () => {
       };
       let expected =
         {"$and":[
-          {'identity.gender.value': /^male$/i},
           {'curriculum.university.value': /Paris/i},
+          {"$and":[
+            {'identity.gender.value': /^male$/i},
+            {}
+          ]}
         ]};
 
       let res = service.convertSearchRequestToMongoRequest(searchRequest);

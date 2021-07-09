@@ -11,7 +11,7 @@ import {Readable} from 'stream';
 
 const readPagination = function(pagination){
 
-  if(pagination.rows === -1){
+  if(pagination == null || (pagination && pagination.rows === -1)){
     return {
       "skip" : 0,
       "limit" : 0,
@@ -229,41 +229,45 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
   let criterions = [];
   let criterionsOr = [];
 
-  if (searchRequest.activity.start.from && searchRequest.activity.start.to) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = {
-      $gte: parseInt(searchRequest.activity.start.from),
-      $lte: parseInt(searchRequest.activity.start.to),
-    };
-    criterions.push(res);
-  } else if (searchRequest.activity.start.from) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from)};
-    criterions.push(res);
-  } else if (searchRequest.activity.start.to) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.startDate.date'] = {$lte: parseInt(searchRequest.activity.start.to)};
-    criterions.push(res);
+  //Handle activity
+  if(searchRequest.activity && searchRequest.activity.start){
+    if ( searchRequest.activity.start.from && searchRequest.activity.start.to) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.startDate.date'] = {
+        $gte: parseInt(searchRequest.activity.start.from),
+        $lte: parseInt(searchRequest.activity.start.to),
+      };
+      criterions.push(res);
+    } else if (searchRequest.activity.start.from) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.startDate.date'] = {$gte: parseInt(searchRequest.activity.start.from)};
+      criterions.push(res);
+    } else if (searchRequest.activity.start.to) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.startDate.date'] = {$lte: parseInt(searchRequest.activity.start.to)};
+      criterions.push(res);
+    }
   }
 
-
-  if (searchRequest.activity.end.from && searchRequest.activity.end.to) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {
-      $lte: parseInt(searchRequest.activity.end.to),
-      $gte: parseInt(searchRequest.activity.end.from),
-    };
-    criterions.push(res);
-  } else if (searchRequest.activity.end.from) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$gte: parseInt(searchRequest.activity.end.from)};
-    criterions.push(res);
-  } else if (searchRequest.activity.end.to) {
-    let res = {};
-    res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to)};
-    criterions.push(res);
+  if(searchRequest.activity && searchRequest.activity.end){
+    if (searchRequest.activity.end.from && searchRequest.activity.end.to) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.endDate.date'] = {
+        $lte: parseInt(searchRequest.activity.end.to),
+        $gte: parseInt(searchRequest.activity.end.from),
+      };
+      criterions.push(res);
+    } else if (searchRequest.activity.end.from) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.endDate.date'] = {$gte: parseInt(searchRequest.activity.end.from)};
+      criterions.push(res);
+    } else if (searchRequest.activity.end.to) {
+      let res = {};
+      res['identity.datesOfActivity.meta.dates.endDate.date'] = {$lte: parseInt(searchRequest.activity.end.to)};
+      criterions.push(res);
+    }
   }
-
+if(searchRequest.activityMediane) {
   if (searchRequest.graph && searchRequest.activityMediane.from == null){
     let res = {};
     res['extras.activityMediane'] = null;
@@ -284,7 +288,7 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     res['extras.activityMediane'] = {$lte: parseInt(searchRequest.activityMediane.to)}
     criterions.push(res);
   }
-
+}
   if (searchRequest.name) {
     criterionsOr.push(generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'))
     criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS'));
@@ -304,25 +308,29 @@ function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
     }
   }
 
-  if (searchRequest.status.length !== 0) {
-    if (searchRequest.status.length > 1) {
-      for (let i in searchRequest.status) {
-        let status = searchRequest.status[i];
-        criterionsOr.push(generateSearchClause('identity.status.value', status, 'CONTAINS'));
+  if(searchRequest.status){
+    if (searchRequest.status.length !== 0) {
+      if (searchRequest.status.length > 1) {
+        for (let i in searchRequest.status) {
+          let status = searchRequest.status[i];
+          criterionsOr.push(generateSearchClause('identity.status.value', status, 'CONTAINS'));
+        }
+      } else {
+        criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
       }
-    } else {
-      criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
     }
   }
 
-  if (searchRequest.sexe.length !== 0) {
-    if (searchRequest.sexe.length > 1) {
-      for (let i in searchRequest.sexe) {
-        let sexe = searchRequest.sexe[i];
-        criterionsOr.push(generateSearchClause('identity.gender.value', sexe, 'CONTAINS'));
+  if(searchRequest.sexe){
+    if (searchRequest.sexe.length !== 0) {
+      if (searchRequest.sexe.length > 1) {
+        for (let i in searchRequest.sexe) {
+          let sexe = searchRequest.sexe[i];
+          criterionsOr.push(generateSearchClause('identity.gender.value', sexe, 'CONTAINS'));
+        }
+      } else {
+        criterions.push(generateSearchClause('identity.gender.value', searchRequest.sexe[0], 'CONTAINS'));
       }
-    } else {
-      criterions.push(generateSearchClause('identity.gender.value', searchRequest.sexe[0], 'CONTAINS'));
     }
   }
 
