@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import passport from 'passport';
 
 import service from '../services/prosopographyService';
+import logService from '../services/logService';
 import auth from '../services/authService';
 //auth.setup();
 import logger from '../utils/logger';
@@ -107,6 +108,23 @@ router.post('/re-index-manus/:reference', auth.isAdmin, async (req, res, next) =
       res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
     }
 
+  }catch(error){
+    next(error);
+  }
+});
+//FIX ME auth.isAdmin
+router.get('/logs', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  let pagination = getPagination(req);
+  logger.info(`${id}: GET /logs`);
+  try {
+    const logs = await logService.getLogs();
+    if(logs){
+      res.send(logs);
+    }else{
+      res.status(404).json({'message' : `no logs found`});
+    }
   }catch(error){
     next(error);
   }

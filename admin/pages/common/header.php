@@ -87,6 +87,9 @@
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=draft">Gestion des brouillons</a>
             </li>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=supervision">Supervision</a>
+            </li>
             <?php }?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>
