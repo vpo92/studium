@@ -173,9 +173,10 @@ async function initGraph(): Promise<Array> {
 
 async function search(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
   logger.debug(`prosopographyService.search`);
-  //logger.debug(searchRequest);
+  logger.debug(searchRequest);
   const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
+  logger.debug(mongodbRequest);
   return db
       .get()
       .collection('prosopography')
