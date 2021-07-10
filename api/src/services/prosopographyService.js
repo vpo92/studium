@@ -103,7 +103,7 @@ function findByReference(reference: string): Promise<Prosopography> {
 }
 
 function indexDB(){
-  console.log(`create index`);
+  logger.debug(`create index`);
   return db
       .get()
       .collection('prosopography')
@@ -163,7 +163,7 @@ async function convertFromText(text: string): Promise<Prosopography> {
 
 
 async function initGraph(): Promise<Array> {
-  console.log(`prosopographyService.initGraph`);
+  logger.debug(`prosopographyService.initGraph`);
   return db
       .get()
       .collection('prosopography')
@@ -172,8 +172,8 @@ async function initGraph(): Promise<Array> {
 }
 
 async function search(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
-  console.log(`prosopographyService.search`);
-  //console.log(searchRequest);
+  logger.debug(`prosopographyService.search`);
+  //logger.debug(searchRequest);
   const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
   return db
@@ -215,7 +215,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
 
 
 async function searchTotalCount(searchRequest: SearchRequest, pagination: any): Promise<Prosopography[]> {
-  console.log(`prosopographyService.search`);
+  logger.debug(`prosopographyService.search`);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
   return db
       .get()
@@ -225,7 +225,7 @@ async function searchTotalCount(searchRequest: SearchRequest, pagination: any): 
 }
 
 function convertSearchRequestToMongoRequest(searchRequest: SearchRequest): any {
-  console.log('convertSearchRequestToMongoRequest');
+  logger.debug('convertSearchRequestToMongoRequest');
   let criterions = [];
   let criterionsOr = [];
 
@@ -410,7 +410,7 @@ if(searchRequest.activityMediane) {
     }
   }
 
-  //console.log(res);
+  //logger.debug(res);
   return res;
 }
 function generateRegexNotOperator(value, matchType){
@@ -478,18 +478,18 @@ async function backupAll(){
 }
 
 async function updateGeoMS(prosopography){
-  console.log("updateGeoMS");
+  logger.debug("updateGeoMS");
   if(prosopography.textualProduction){
-    console.log("has textualProduction");
+    logger.debug("has textualProduction");
     for(let t in prosopography.textualProduction){
-      console.log(t);
+      logger.debug(t);
       let theme = prosopography.textualProduction[t];
       if(theme.opus){
-        console.log("has opus");
+        logger.debug("has opus");
         for(let o in theme.opus){
           let opus = theme.opus[o];
           if(opus.manuscrits){
-            console.log("has manuscrits");
+            logger.debug("has manuscrits");
             for(let m in opus.manuscrits){
               let ms = opus.manuscrits[m];
               if(ms){
@@ -508,7 +508,7 @@ async function updateGeoMS(prosopography){
       }
     }
   }
-  //console.log(prosopography);
+  //logger.debug(prosopography);
   return update(prosopography);
 
 

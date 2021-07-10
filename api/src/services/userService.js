@@ -7,8 +7,8 @@ import logger from '../utils/logger';
  * Creates a new user
  */
 async function create(body){
-  logger.info("userService.create");
-  logger.info(`userService.create user ${body}`);
+  logger.debug("userService.create");
+  logger.debug(`userService.create user ${body}`);
   let newUser = new User(body);
   if(newUser.email){
     newUser.email = newUser.email.trim().toLowerCase()
@@ -20,7 +20,7 @@ async function create(body){
 * Find All User
 */
 async function findAll(){
-  logger.info("userService.findAll");
+  logger.debug("userService.findAll");
   return await User.find({},{_id:1,name:1,email:1,role:1});
 }
 
@@ -28,7 +28,7 @@ async function findAll(){
 * Remove an User
 */
 async function remove(userId){
-  logger.info("userService.remove");
+  logger.debug("userService.remove");
   return await User.deleteOne({_id:userId});
 }
 
@@ -37,7 +37,7 @@ async function remove(userId){
 * Update Pwd of an User
 */
 async function initPwd(userId, newPwd){
-  logger.info("userService.initPwd");
+  logger.debug("userService.initPwd");
   let cUser = await User.findOne({_id:userId}).exec();
   let user = new User(cUser);
   user.password = newPwd;

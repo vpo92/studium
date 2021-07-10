@@ -26,12 +26,12 @@ const getFormat = function(req){
 */
 router.get('/', async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: findAll`);
+  logger.debug(`${id}: GET / findAll`);
   let pagination = getPagination(req);
-  console.log(`${id}: findAll pagination:`+JSON.stringify(pagination));
+  logger.debug(`${id}: findAll pagination:`+JSON.stringify(pagination));
   try {
     const prosopographies = await service.findAll(pagination);
-    logger.info(`${id}: findAll done`);
+    logger.debug(`${id}: findAll done`);
     res.set("X-Total-Count", prosopographies.length);
     res.send(prosopographies);
   } catch (err) {
@@ -45,16 +45,16 @@ router.get('/', async (req, res, next) => {
 */
 router.post('/seq/init', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: initCurrentReference`);
+  logger.debug(`${id}: POST /seq/init initCurrentReference`);
   try {
     const result = await service.getCurrentReference();
     if(result){
-      logger.info(`${id}: getCurrentReference seq ${result.seq}`);
+      logger.debug(`${id}: getCurrentReference seq ${result.seq}`);
       //res.send({'seq':result.seq});
       res.status(400).json({'error':'KO','message' : `sequence already exists`});
     }else{
       await service.initReferenceSeq();
-      logger.info(`${id}: initCurrentReference OK`);
+      logger.debug(`${id}: initCurrentReference OK`);
       res.send({'message':'OK'});
     }
 
@@ -71,11 +71,11 @@ router.post('/seq/init', auth.isAuthenticated, async (req, res, next) => {
 */
 router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: getCurrentReference`);
+  logger.debug(`${id}: GET /sec/current getCurrentReference`);
   try {
     const result = await service.getCurrentReference();
     if(result){
-      logger.info(`${id}: getCurrentReference seq ${result.seq}`);
+      logger.debug(`${id}: getCurrentReference seq ${result.seq}`);
       res.send({'seq':result.seq});
     }else{
       res.status(500).json({'error':'KO','message' : `can't find sequence`});
@@ -95,12 +95,12 @@ router.get('/seq/current', auth.isAuthenticated, async (req, res, next) => {
 router.get('/search/:searchText', async (req, res, next) => {
   const id = uuid.v4();
   const searchText = req.params.searchText;
-  logger.info(`${id}: textSearch on ${searchText}`);
+  logger.debug(`${id}: GET /search/:searchText on ${searchText}`);
 
   let format = getFormat(req);
   let pagination = getPagination(req);
 
-  logger.info(`${id}: textSearch format : ${format}`);
+  logger.debug(`${id}: textSearch format : ${format}`);
 
   if(format!='json'){
     pagination={
@@ -109,25 +109,25 @@ router.get('/search/:searchText', async (req, res, next) => {
     };
   }
 
-  logger.info(`${id}: textSearch pagination : ${JSON.stringify(pagination)}`);
+  logger.debug(`${id}: textSearch pagination : ${JSON.stringify(pagination)}`);
 
   try {
     const totalCount = await service.textSearchTotalCount(searchText,pagination);
     const prosopographies = await service.textSearch(searchText,pagination);
-    logger.info(`${id}: textSearch done`);
+    logger.debug(`${id}: textSearch done`);
 
     switch(format){
 
       case 'csv':
-        logger.info(`${id}: textSearch format : ${format}`);
+        logger.debug(`${id}: textSearch format : ${format}`);
         exporter.sendCSVFile(res,prosopographies,'search-'+searchText);
         break;
       case 'txt':
-        logger.info(`${id}: textSearch format : ${format}`);
+        logger.debug(`${id}: textSearch format : ${format}`);
         exporter.sendTXTFile(res,prosopographies,'search-'+searchText);
         break;
       default:
-        logger.info(`${id}: textSearch format : default=json`);
+        logger.debug(`${id}: textSearch format : default=json`);
         res.header('X-Total-Count',totalCount);
         res.send(prosopographies);
     }
@@ -145,12 +145,12 @@ router.get('/search/:searchText', async (req, res, next) => {
 */
 router.post('/search/advanced', async(req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: search advanced`);
+  logger.debug(`${id}: search advanced`);
 
   let format = getFormat(req);
   let pagination = getPagination(req);
 
-  logger.info(`${id}: search format : ${format}`);
+  logger.debug(`${id}: search format : ${format}`);
 
   if(format!='json'){
     pagination={
@@ -159,7 +159,7 @@ router.post('/search/advanced', async(req, res, next) => {
     };
   }
 
-  logger.info(`${id}: search pagination : ${JSON.stringify(pagination)}`);
+  logger.debug(`${id}: search pagination : ${JSON.stringify(pagination)}`);
 
   try {
     //TODO Check searchRequest
@@ -170,18 +170,18 @@ router.post('/search/advanced', async(req, res, next) => {
     switch(format){
 
       case 'csv':
-        logger.info(`${id}: search format : ${format}`);
+        logger.debug(`${id}: search format : ${format}`);
         exporter.sendCSVFile(res,prosopographies,'search');
         break;
       case 'txt':
-        logger.info(`${id}: search format : ${format}`);
+        logger.debug(`${id}: search format : ${format}`);
         exporter.sendTXTFile(res,prosopographies,'search');
         break;
       case 'pdf':
-        logger.info(`${id}: search format : ${format}`);
+        logger.debug(`${id}: search format : ${format}`);
         break;
       default:
-        logger.info(`${id}: search format : default=json`);
+        logger.debug(`${id}: search format : default=json`);
         res.header("Access-Control-Expose-Headers","*");
         res.header('X-Total-Count',totalCount);
         res.send(prosopographies);
@@ -202,10 +202,10 @@ router.post('/search/advanced', async(req, res, next) => {
 */
 router.post('/initGraph', async(req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: search graph`);
+  logger.debug(`${id}: search graph`);
   try {
     const labels = await service.initGraph();
-    logger.info(labels.length);
+    logger.debug(labels.length);
     res.send(labels);
   } catch (err) {
     logger.error(
@@ -222,10 +222,10 @@ router.post('/initGraph', async(req, res, next) => {
 router.get('/index/:letter', async (req, res, next) => {
   const id = uuid.v4();
   const letter = req.params.letter;
-  logger.info(`${id}: indexSearch on ${letter}`);
+  logger.debug(`${id}: indexSearch on ${letter}`);
   try {
     const prosopographies = await service.indexSearch(letter);
-    logger.info(`${id}: indexSearch done`);
+    logger.debug(`${id}: indexSearch done`);
     res.send(prosopographies);
   } catch (err) {
     logger.error(
@@ -241,7 +241,7 @@ router.get('/index/:letter', async (req, res, next) => {
 router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: all-id`);
+  logger.debug(`${id}: all-id`);
   try {
     const ids = await service.getAllIds();
     if(ids){
@@ -262,10 +262,10 @@ router.get('/:reference', async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   const format = req.query.format?req.query.format:'json';
-  logger.info(`${id}: findByReference on ${reference}`);
+  logger.debug(`${id}: findByReference on ${reference}`);
   try {
     const prosopography = await service.findByReference(reference);
-    logger.info(`${id}: findByReference done`);
+    logger.debug(`${id}: findByReference done`);
     if(prosopography){
       switch(format){
         case 'raw':
@@ -294,15 +294,15 @@ router.get('/:reference', async (req, res, next) => {
 */
 router.post('/', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST prosopography`);
-  logger.info(`${id}: POST prosopography user ${req.user.name}`);
+  logger.debug(`${id}: POST prosopography`);
+  logger.debug(`${id}: POST prosopography user ${req.user.name}`);
   //FIXME : add controls via mongoose ? or swagger ?
   const proso = req.body;
   try{
     const result = await service.create(proso);
     return res.send({'message':'OK'});
   }catch(err){
-    console.log(`${id}: POST prosopography ERROR ${err}`);
+    logger.debug(`${id}: POST prosopography ERROR ${err}`);
     return res.status(500).json({
         message: "Error",
         error: err,
@@ -315,12 +315,12 @@ router.post('/', auth.isAdmin, async (req, res, next) => {
 */
 router.post('/parse-text', async (req, res) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST prosopography parse-text`);
+  logger.debug(`${id}: POST prosopography parse-text`);
 
   const proso = req.body;
   try{
     let p = await service.convertFromText(proso);
-    logger.info(`${id} POST prosopography parse-text : Parsing OK`);
+    logger.debug(`${id} POST prosopography parse-text : Parsing OK`);
     return res.send(p);
   }catch(err){
     logger.error(err);
@@ -337,10 +337,10 @@ router.post('/parse-text', async (req, res) => {
 router.delete('/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: deleteByReference on ${reference}`);
+  logger.debug(`${id}: deleteByReference on ${reference}`);
   try {
     await service.remove(reference);
-    logger.info(`${id}: deleteByReference done`);
+    logger.debug(`${id}: deleteByReference done`);
     res.send({'message':'OK'});
   } catch (err) {
     logger.error(
@@ -357,21 +357,21 @@ router.delete('/:reference', auth.isAdmin, async (req, res, next) => {
 
 router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST prosopography create-from-text`);
-  logger.info(`${id}: POST prosopography create-from-text user ${req.user.name}`);
+  logger.debug(`${id}: POST prosopography create-from-text`);
+  logger.debug(`${id}: POST prosopography create-from-text user ${req.user.name}`);
 
   let proso = req.body.prosopography;
   //Auto Generate <1a> fragment
   let seq = await service.getCurrentReference();
   let ref = parseInt(seq.seq);
   proso = `<1a> ${ref} \n`+proso;
-  logger.info(proso);
+  logger.debug(proso);
 
   try{
     let p = await service.convertFromText(proso);
     const prosopography = await service.findByReference(p.reference);
     if(prosopography){
-      logger.info(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
+      logger.debug(`POST prosopography from-text : ERROR prosopography ${p.reference} already exists`);
       return res.status(409).json({
           message: "Error",
           error: "prosopography reference already exists",
@@ -395,19 +395,19 @@ router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) =>
 
 router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST prosopography from-text`);
-  logger.info(`${id}: POST prosopography from-text user ${req.user.name}`);
+  logger.debug(`${id}: POST prosopography from-text`);
+  logger.debug(`${id}: POST prosopography from-text user ${req.user.name}`);
 
   const proso = req.body.prosopography;
   const reference = req.body.reference;
-  logger.info(proso);
+  logger.debug(proso);
   if(reference){
-    logger.info(`${id}: POST prosopography from-text update ${reference}`);
+    logger.debug(`${id}: POST prosopography from-text update ${reference}`);
     try{
       let p = await service.convertFromText(proso);
       const prosopography = await service.findByReference(p.reference);
       if(prosopography){
-        logger.info(`${id}: POST prosopography from-text found ${prosopography.reference}`);
+        logger.debug(`${id}: POST prosopography from-text found ${prosopography.reference}`);
         //Update
         if( parseInt(reference) === parseInt(prosopography.reference)){
           p = {

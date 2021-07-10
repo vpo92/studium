@@ -24,12 +24,12 @@ const getFormat = function(req){
 
 router.get('/', async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: GET /draft findAll`);
+  logger.debug(`${id}: GET /draft findAll`);
   let pagination = getPagination(req);
-  console.log(`${id}: GET /draft findAll pagination:`+JSON.stringify(pagination));
+  logger.debug(`${id}: GET /draft findAll pagination:`+JSON.stringify(pagination));
   try {
     const prosopographies = await service.findAll(pagination);
-    logger.info(`${id}: findAll done`);
+    logger.debug(`${id}: findAll done`);
     res.set("X-Total-Count", prosopographies.length);
     res.send(prosopographies);
   } catch (err) {
@@ -43,10 +43,10 @@ router.get('/:reference', async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   const format = req.query.format?req.query.format:'json';
-  logger.info(`${id}: GET /draft findByReference on ${reference}`);
+  logger.debug(`${id}: GET /draft findByReference on ${reference}`);
   try {
     const prosopography = await service.findByReference(reference);
-    logger.info(`${id}: GET /draft findByReference done`);
+    logger.debug(`${id}: GET /draft findByReference done`);
     if(prosopography){
       switch(format){
         case 'raw':
@@ -73,10 +73,10 @@ router.get('/:reference', async (req, res, next) => {
 router.delete('/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: DELETE /draft deleteByReference on ${reference}`);
+  logger.debug(`${id}: DELETE /draft deleteByReference on ${reference}`);
   try {
     await service.remove(reference);
-    logger.info(`${id}: DELETE /draft deleteByReference done`);
+    logger.debug(`${id}: DELETE /draft deleteByReference done`);
     res.send({'message':'OK'});
   } catch (err) {
     logger.error(
@@ -93,22 +93,22 @@ router.delete('/:reference', auth.isAdmin, async (req, res, next) => {
 */
 router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST /draft/create-from-text`);
-  logger.info(`${id}: POST /draft/create-from-text user ${req.user.name}`);
+  logger.debug(`${id}: POST /draft/create-from-text`);
+  logger.debug(`${id}: POST /draft/create-from-text user ${req.user.name}`);
 
   let proso = req.body.prosopography;
   //Auto Generate <1a> fragment
   let seq = await pgService.getCurrentReference();
   let ref = parseInt(seq.seq);
   proso = `<1a> ${ref} \n`+proso;
-  logger.info(proso);
+  logger.debug(proso);
 
   try{
     let p = await pgService.convertFromText(proso);
     const prosopography = await pgService.findByReference(p.reference);
     const draft = await service.findByReference(p.reference);
     if(prosopography || draft){
-      logger.info(`POST /draft/create-from-text : ERROR prosopography ${p.reference} already exists`);
+      logger.debug(`POST /draft/create-from-text : ERROR prosopography ${p.reference} already exists`);
       return res.status(409).json({
           message: "Error",
           error: "prosopography reference already exists",
@@ -132,19 +132,19 @@ router.post('/create-from-text', auth.isAuthenticated, async (req, res, next) =>
 */
 router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: POST /draft/from-text`);
-  logger.info(`${id}: POST /draft/from-text user ${req.user.name}`);
+  logger.debug(`${id}: POST /draft/from-text`);
+  logger.debug(`${id}: POST /draft/from-text user ${req.user.name}`);
 
   const proso = req.body.prosopography;
   const reference = req.body.reference;
-  logger.info(proso);
+  logger.debug(proso);
   if(reference){
-    logger.info(`${id}: POST /draft/from-text update ${reference}`);
+    logger.debug(`${id}: POST /draft/from-text update ${reference}`);
     try{
       let p = await pgService.convertFromText(proso);
       const prosopography = await pgService.findByReference(p.reference);
       if(prosopography){
-        logger.info(`${id}: POST /draft/from-text found ${prosopography.reference}`);
+        logger.debug(`${id}: POST /draft/from-text found ${prosopography.reference}`);
         //Update
         if( parseInt(reference) === parseInt(prosopography.reference)){
           const draft = await service.findByReference(p.reference);
@@ -194,8 +194,8 @@ router.post('/from-text', auth.isAuthenticated, async (req, res, next) => {
 router.post('/publish/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: POST /draft/publish ${reference}`);
-  logger.info(`${id}: POST /draft/publish user ${req.user.name}`);
+  logger.debug(`${id}: POST /draft/publish ${reference}`);
+  logger.debug(`${id}: POST /draft/publish user ${req.user.name}`);
   const draft = await service.findByReference(reference);
   if(draft){
     const prosopography = await pgService.findByReference(reference);
@@ -203,7 +203,7 @@ router.post('/publish/:reference', auth.isAdmin, async (req, res, next) => {
     const {[removeProp]: remove, ...rest} = draft;
     //update
     if(prosopography){
-      logger.info(`${id}: POST /draft/publish will update`);
+      logger.debug(`${id}: POST /draft/publish will update`);
       let p = {
         _id:prosopography._id,
         ...rest
@@ -211,13 +211,13 @@ router.post('/publish/:reference', auth.isAdmin, async (req, res, next) => {
       await pgService.update(p);
     //create
     }else{
-      logger.info(`${id}: POST /draft/publish will create`);
+      logger.debug(`${id}: POST /draft/publish will create`);
       await pgService.create(rest);
     }
     await service.remove(reference);
     return res.send({'message':'OK'});
   }else{
-    logger.info(`${id}: POST /draft/publish draft not found`);
+    logger.debug(`${id}: POST /draft/publish draft not found`);
     res.status(404).json({'message' : `draft not found for reference ${reference}`});
   }
 

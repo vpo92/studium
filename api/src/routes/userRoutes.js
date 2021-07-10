@@ -12,10 +12,10 @@ const router = express.Router();
 
 router.post('/', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: createUser`);
+  logger.debug(`${id}: POST /user`);
   userService.create(req.body)
     .then(function(user){
-      logger.info(`${id}: createUser user : ${user}`);
+      logger.debug(`${id}: POST /user : ${user}`);
       res.send({message:"OK"});
       })
     .catch(function(err){
@@ -26,7 +26,7 @@ router.post('/', auth.isAdmin, (req, res, next) => {
 
 router.get('/me',auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: GET me from-text user ${req.user.name}`);
+  logger.debug(`${id}: GET /me user ${req.user.name}`);
   const profile = {
     _id: req.user.id,
     name : req.user.name,
@@ -38,7 +38,7 @@ router.get('/me',auth.isAuthenticated, (req, res, next) => {
 
 router.get('/', auth.isAuthenticated, (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: GET all users`);
+  logger.debug(`${id}: GET / all users`);
   userService.findAll()
   .then(user => {res.send(user)})
   .catch(error => {next(error)});
@@ -48,7 +48,7 @@ router.get('/', auth.isAuthenticated, (req, res, next) => {
 router.post('/init-pwd/:userId', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   const userId = req.params.userId;
-  logger.info(`${id}: init-pwd for user ${userId}`);
+  logger.debug(`${id}: POST /init-pwd for user ${userId}`);
   userService.initPwd(userId,req.body.newPwd)
   .then(user => {res.send({message:'OK'})})
   .catch(error => {
@@ -62,7 +62,7 @@ router.post('/init-pwd/:userId', auth.isAdmin, (req, res, next) => {
 router.delete('/:userId', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
   const userId = req.params.userId;
-  logger.info(`${id}: delete user ${userId}`);
+  logger.debug(`${id}: DELETE /user ${userId}`);
   userService.remove(userId)
   .then(user => {res.send({message:'OK'})})
   .catch(error => {next(error)});

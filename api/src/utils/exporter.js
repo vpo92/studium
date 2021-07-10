@@ -6,7 +6,7 @@ import logger from './logger';
 convert jsonDATA to CSV and send it threw response
 */
 function sendCSVFile(response,jsonData,title){
-  logger.info("sendCSVFile");
+  logger.debug("sendCSVFile");
   const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
   const csv = parser.parse(jsonData);
   response.header('Content-Type', 'text/csv');
@@ -18,7 +18,7 @@ function sendCSVFile(response,jsonData,title){
 convert jsonDATA to jpg TXT File and send it threw response
 */
 function sendTXTFile(response, jsonData, title){
-  logger.info("sendTXTFile");
+  logger.debug("sendTXTFile");
 
   response.writeHead(200, {
                      "Content-Type": "text/plain",
@@ -27,10 +27,10 @@ function sendTXTFile(response, jsonData, title){
  let count = jsonData.length;
   for(var i=0; i < count; i++){
     let p = jsonData[i];
-    //logger.info(p.raw.length);
+    //logger.debug(p.raw.length);
     for(var j in p.raw){
       let line = p.raw[j];
-      //logger.info(line);
+      //logger.debug(line);
       response.write(line+"\n");
 
       if(i == count-1 && j == (p.raw.length-1)){

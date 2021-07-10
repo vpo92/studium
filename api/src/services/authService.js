@@ -10,11 +10,11 @@ import uuid from 'uuid';
 const getAuth = passport.authenticate('jwt', { session: false });
 const getUser = async (req,res,next) => {
   const id = uuid.v4();
-  logger.info(`${id}:getUser`);
+  logger.debug(`${id}:getUser`);
   try{
     const userEmail = req.user.email?req.user.email.trim().toLowerCase():null;
     const user = await User.findOneAsync({email:userEmail});
-    logger.info(`${id}:getUser user found ${user.name}`);
+    logger.debug(`${id}:getUser user found ${user.name}`);
     if (!user) {
       return res.status(401).end();
     }else{
@@ -28,7 +28,7 @@ const getUser = async (req,res,next) => {
 
 const hasRole = (roles) => {
   return async (req, res, next) => {
-    console.log('hasRole'+roles);
+    logger.debug('hasRole'+roles);
     try{
       await getAuth(req, res, next);
       const userEmail = req.user.email?req.user.email.trim().toLowerCase():null;
@@ -42,7 +42,7 @@ const hasRole = (roles) => {
 
       const filteredArray = roles.filter(value => user.role.includes(value));
       if (filteredArray == []) {
-        console.log("hasRole : not granted");
+        logger.debug("hasRole : not granted");
         return res.status(403).send({error: { status:403, message:'Access denied.'}});
       }
       next();
@@ -55,9 +55,9 @@ const hasRole = (roles) => {
 const getRoleAdmin = async (req,res,next) => {
   try{
     let user = req.user;
-    console.log("getRoleAdmin");
+    logger.debug("getRoleAdmin");
     if (!user || !user.role.includes('admin')) {
-      console.log("hasRole : not granted");
+      logger.debug("hasRole : not granted");
       return res.status(403).send({error: { status:403, message:'Access denied.'}});
     }
     next();
@@ -87,7 +87,7 @@ const authenticate = async (email, password)  => {
 };
 
 const setup = () => {
-  logger.info('authService.setup');
+  logger.debug('authService.setup');
   let opts = {}
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
   opts.secretOrKey = config.auth.secrets.session;

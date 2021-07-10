@@ -12,12 +12,12 @@ const router = express.Router();
 
 router.post("/login", async (req, res, next)  => {
   const id = uuid.v4();
-  logger.info(`${id}: POST /login`);
+  logger.debug(`${id}: POST /login`);
 
   let { email, password } = req.body;
   try{
     let user = await auth.authenticate(email, password);
-    logger.info(`${id}: POST /login OK for ${email}`);
+    logger.debug(`${id}: POST /login OK for ${email}`);
     //TTL 1h
     let opts = {expiresIn: config.auth.expiresIn};
     const role = user.role;
@@ -30,7 +30,7 @@ router.post("/login", async (req, res, next)  => {
         token,
     })
   }catch(err){
-    logger.info(`${id}: POST /login failed for ${email}`);
+    logger.debug(`${id}: POST /login failed for ${email}`);
     return res.status(401).json({ message: "Auth Failed" });
   }
 });

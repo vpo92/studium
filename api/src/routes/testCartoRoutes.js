@@ -13,11 +13,11 @@ const router = express.Router();
 
 router.get('/' ,async (req, res, next) => {
     const id = uuid.v4();
-    logger.info(`${id}: findAllVilles`);
+    logger.debug(`${id}: findAllVilles`);
 
     try {
         const villes = await service.findAllVilles();
-        logger.info(`${id}: findAllVilles done`);
+        logger.debug(`${id}: findAllVilles done`);
         res.set("X-Total-Count", villes.length);
         res.send(villes);
     } catch (err) {
@@ -28,13 +28,13 @@ router.get('/' ,async (req, res, next) => {
 
 router.get('/ville/:searchText', async (req, res, next) => {
     const id = uuid.v4();
-    logger.info(`${id}: findVille`);
+    logger.debug(`${id}: findVille`);
     const searchText = req.params.searchText;
-    logger.info(`${id}: textSearch on ${searchText}`);
+    logger.debug(`${id}: textSearch on ${searchText}`);
 
     try {
         const villes = await service.findVille(searchText);
-        logger.info(`${id}: findVille done`);
+        logger.debug(`${id}: findVille done`);
         res.set("X-Total-Count", villes.length);
         res.send(villes);
     } catch (err) {
@@ -45,12 +45,12 @@ router.get('/ville/:searchText', async (req, res, next) => {
 
 router.get("/manuscrits", async (req, res, next) => {
     const id = uuid.v4();
-    logger.info(`${id}: findAllManuscrits`);
+    logger.debug(`${id}: findAllManuscrits`);
 
     try {
         const manuscrits = await service.findAllManuscrits();
-        logger.info(`${id}: findAllManuscrits done`);
-        logger.info(manuscrits.length);
+        logger.debug(`${id}: findAllManuscrits done`);
+        logger.debug(manuscrits.length);
         res.set("X-Total-Count", manuscrits.length);
         res.send(manuscrits);
     } catch (err) {

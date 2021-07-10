@@ -15,23 +15,23 @@ const router = express.Router();
 //auth.isAuthenticated,
 router.post('/executeQuery',  (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: executeQuery`);
-  //logger.info(`${id}: executeQuery by user ${req.user.name}`);
-  logger.info(req.body);
-  logger.info(req.body.collection);
+  logger.debug(`${id}: executeQuery`);
+  //logger.debug(`${id}: executeQuery by user ${req.user.name}`);
+  logger.debug(req.body);
+  logger.debug(req.body.collection);
   //let query = JSON.parse(req.body);
   let query = req.body;
-  logger.info(query.collection);
-  logger.info(query.find);
-  logger.info(query.projection);
-  logger.info(query.skip);
-  logger.info(query.limit);
-  logger.info(query.format);
+  logger.debug(query.collection);
+  logger.debug(query.find);
+  logger.debug(query.projection);
+  logger.debug(query.skip);
+  logger.debug(query.limit);
+  logger.debug(query.format);
   mongoService.executeQuery(query.collection,query.find,query.projection,query.skip, query.limit)
     .then(function(results){
-      logger.info(`${id}: executeQuery OK count ${results.length}`);
+      logger.debug(`${id}: executeQuery OK count ${results.length}`);
         if(query.format ==="csv"){
-          logger.info(`${id}: executeQuery CSV conversion`);
+          logger.debug(`${id}: executeQuery CSV conversion`);
           try {
             const parser = new Parser({ transforms: [ transforms.flatten({ objects: true, arrays: true })] });
             const csv = parser.parse(results);

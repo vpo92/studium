@@ -26,7 +26,7 @@ const getFormat = function(req){
 router.get('/all-ids', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: all-id`);
+  logger.debug(`${id}: all-id`);
   try {
     const ids = await service.getAllIds();
     if(ids){
@@ -42,12 +42,12 @@ router.get('/all-ids', auth.isAdmin, async (req, res, next) => {
 
 router.post('/indexDB', auth.isAdmin, (req, res, next) => {
   const id = uuid.v4();
-  logger.info(`${id}: indexDB`);
-  logger.info(`${id}: indexDB user ${req.user.name}`);
+  logger.debug(`${id}: indexDB`);
+  logger.debug(`${id}: indexDB user ${req.user.name}`);
 
   try {
     service.indexDB();
-    logger.info(`${id}: indexDB done`);
+    logger.debug(`${id}: indexDB done`);
     res.send({'message':'OK'});
   } catch (err) {
     logger.error(
@@ -60,15 +60,15 @@ router.post('/indexDB', auth.isAdmin, (req, res, next) => {
 router.post('/backup', auth.isAdmin, async (req, res, next) => {
 //
   const id = uuid.v4();
-  logger.info(`${id}: backup`);
-  logger.info(`${id}: backup user ${req.user.name}`);
+  logger.debug(`${id}: backup`);
+  logger.debug(`${id}: backup user ${req.user.name}`);
 
   try{
     await service.backupAll();
-    logger.info(`${id}: backup done`);
+    logger.debug(`${id}: backup done`);
     res.send({'message':'OK'});
   }catch(error){
-    console.log(error);
+    logger.error(error);
     next(error);
   }
 
@@ -77,7 +77,7 @@ router.post('/backup', auth.isAdmin, async (req, res, next) => {
 router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: reIndexFromRaw on ${reference}`);
+  logger.debug(`${id}: reIndexFromRaw on ${reference}`);
   try {
     const prosopography = await service.findByReference(reference);
     if(prosopography){
@@ -98,7 +98,7 @@ router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next
 router.post('/re-index-manus/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
-  logger.info(`${id}: reIndexManus on ${reference}`);
+  logger.debug(`${id}: reIndexManus on ${reference}`);
   try {
     const prosopography = await service.findByReference(reference);
     if(prosopography){
@@ -117,7 +117,7 @@ router.get('/logs', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   let pagination = getPagination(req);
-  logger.info(`${id}: GET /logs`);
+  logger.debug(`${id}: GET /logs`);
   try {
     const logs = await logService.getLogs();
     if(logs){

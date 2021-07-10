@@ -26,9 +26,15 @@ mongoose.connect(mongoUrl,{ useNewUrlParser: true });
 
 const app = express();
 
+
+const logMiddle = function(request, response, next) {
+  logger.info(request.method+" "+request.path);
+  next();
+}
+
 app.set('env', environment);
 app.set('port', 3000);
-
+app.use(logMiddle);
 app.use(cors());
 app.use(methodOverride());
 app.use(bodyParser.json({limit: '50mb'}));
@@ -36,6 +42,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
 app.use(errorHandler);
+
 
 const server_port = app.get('port');
 const server_ip_address = '0.0.0.0';
