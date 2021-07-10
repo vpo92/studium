@@ -94,8 +94,8 @@ const setup = () => {
   //opts.issuer = 'accounts.examplesoft.com';
   //opts.audience = 'yoursite.net';
   passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    logger.info(`jwt_payload : ${jwt_payload}`);
-    logger.info(jwt_payload);
+    //logger.info(`jwt_payload : ${jwt_payload}`);
+    //logger.info(jwt_payload);
     //FIXME return user
     return done(null,{email:jwt_payload.email});
   }));
