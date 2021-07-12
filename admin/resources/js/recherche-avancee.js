@@ -10,8 +10,8 @@ const disciplines = [
 ];
 
 const sexe = [
-    {code:"male", label:"Homme"},
-    {code:"female", label:"Femme"},
+    {code:"^male", label:"Homme"},
+    {code:"^female", label:"Femme"},
 ]
 
 const grades = [
