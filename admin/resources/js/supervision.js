@@ -48,7 +48,7 @@ fetch(resourceUrl+'/messages.json')
                 list : async function(){
                     console.log("list");
                     let url = `${apiUrl}/admin/logs`;
-                    url+="?page=1&rows=500";
+                    url+="?page=1&rows=50";
                     const result = await fetch(url,{
                         'method':'GET',
                         'headers':{
