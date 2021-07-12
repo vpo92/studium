@@ -64,7 +64,8 @@ async function textSearch(searchText: string, pagination: any): Promise<Prosopog
           { $text: { $search: searchText } },
           { score: { $meta: 'textScore' }, reference: 1, identity: 1, link: 1, title: 1, raw: 1}
       )
-      //.sort({ score: { $meta: 'textScore' } })
+      .project({ score: { $meta: "textScore" } })
+      .sort({ score: { $meta: 'textScore' } })
       .skip(pg.skip)
       .limit(pg.limit)
       .toArray();
@@ -184,6 +185,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
           mongodbRequest,
           {reference: 1, identity: 1, link: 1, title: 1, curriculum: 1, "origin.diocese.value": 1, extras: 1, raw: 1}
       )
+      .sort({title: 1})
       .skip(pg.skip)
       .limit(pg.limit)
       .toArray()
