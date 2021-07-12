@@ -176,7 +176,7 @@ async function search(searchRequest: SearchRequest, pagination: any): Promise<Pr
   logger.debug(searchRequest);
   const pg = readPagination(pagination);
   const mongodbRequest = convertSearchRequestToMongoRequest(searchRequest);
-  logger.debug(mongodbRequest);
+  logger.debug(JSON.stringify(mongodbRequest));
   return db
       .get()
       .collection('prosopography')
@@ -294,11 +294,16 @@ if(searchRequest.activityMediane) {
     criterionsOr.push(generateSearchClause('identity.name.value', searchRequest.name, 'CONTAINS'))
     criterionsOr.push(generateSearchClause('identity.nameVariant.value', searchRequest.name, 'CONTAINS'));
   }
+  //Gestion des grades
   if (searchRequest.grade === "AUCUN"){
     let res = {};
     res['curriculum.grades'] = {$exists : false};
     criterions.push(res);
-  } else if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL') {
+  }else if(searchRequest.grade === "ALL"){ 
+    let res = {};
+    res['curriculum.grades'] = {$exists : true};
+    criterions.push(res);
+  }else if (searchRequest.discipline && searchRequest.discipline !== 'ALL' && searchRequest.grade && searchRequest.grade !== 'ALL') {
     criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.grade + ".*" + searchRequest.discipline, 'CONTAINS'));
   } else {
     if (searchRequest.grade && searchRequest.grade !== "ALL") {
@@ -307,6 +312,7 @@ if(searchRequest.activityMediane) {
     if (searchRequest.discipline && searchRequest.discipline !== "ALL") {
       criterions.push(generateSearchClause('curriculum.grades.value', searchRequest.discipline, 'CONTAINS'));
     }
+
   }
 
   if(searchRequest.status){
