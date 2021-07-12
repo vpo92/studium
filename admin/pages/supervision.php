@@ -13,6 +13,7 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/supervision.js"><
     <h4>Logs</h4>
 
     <button class="btn btn-primary" @click="list()">Rafraichir</button>
+    <button class="btn btn-danger" @click="clear()">Purger les logs</button>
 
     <b-table
         show-empty

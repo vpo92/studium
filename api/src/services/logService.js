@@ -21,7 +21,7 @@ const readPagination = function(pagination){
 }
 
 async function getLogs(pagination){
-  logger.debug("logService.getLogs()")
+  logger.debug("logService.getLogs()");
   const pg = readPagination(pagination);
 
   return await db
@@ -34,10 +34,20 @@ async function getLogs(pagination){
       .toArray();
 }
 
+async function clearLogs(n){
+  logger.debug("logService.clearLogs()");
+
+  return await db
+      .get()
+      .collection('logs')
+      .drop();
+}
+
 /** *********************
  * Export               *
  ************************
  */
 module.exports = {
-  getLogs
+  getLogs,
+  clearLogs
 };

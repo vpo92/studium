@@ -63,6 +63,19 @@ fetch(resourceUrl+'/messages.json')
                     console.log("list done");
 
                 },
+                clear : async function(){
+                    console.log("clear");
+                    let url = `${apiUrl}/admin/logs/clear`;
+                    const result = await fetch(url,{
+                        'method':'POST',
+                        'headers':{
+                            'Content-Type':'application/json',
+                            'Authorization':'Bearer'+sessionToken,
+                        },
+                    });
+                    console.log("clear done");
+                    this.list();
+                },
                 add : async function(){
                     console.log("add :"+JSON.stringify(this.newUser));
                     const result = await fetch(`${apiUrl}/user`,{

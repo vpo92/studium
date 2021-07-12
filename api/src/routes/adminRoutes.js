@@ -112,7 +112,7 @@ router.post('/re-index-manus/:reference', auth.isAdmin, async (req, res, next) =
     next(error);
   }
 });
-//FIX ME auth.isAdmin
+
 router.get('/logs', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
@@ -125,6 +125,17 @@ router.get('/logs', auth.isAdmin, async (req, res, next) => {
     }else{
       res.status(404).json({'message' : `no logs found`});
     }
+  }catch(error){
+    next(error);
+  }
+});
+
+router.post('/logs/clear', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.debug(`${id}: GET /logs`);
+  try {
+    await logService.clearLogs();
+    res.send({'message':'OK'});
   }catch(error){
     next(error);
   }
