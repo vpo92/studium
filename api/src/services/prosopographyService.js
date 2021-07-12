@@ -299,7 +299,7 @@ if(searchRequest.activityMediane) {
     let res = {};
     res['curriculum.grades'] = {$exists : false};
     criterions.push(res);
-  }else if(searchRequest.grade === "ALL"){ 
+  }else if(searchRequest.grade === "ALL"){
     let res = {};
     res['curriculum.grades'] = {$exists : true};
     criterions.push(res);
@@ -315,15 +315,30 @@ if(searchRequest.activityMediane) {
 
   }
 
+  //Gestion des statuts
   if(searchRequest.status){
     if (searchRequest.status.length !== 0) {
       if (searchRequest.status.length > 1) {
         for (let i in searchRequest.status) {
-          let status = searchRequest.status[i];
-          criterionsOr.push(generateSearchClause('identity.status.value', status, 'CONTAINS'));
+          if(searchRequest.status[i]=="NR"){
+            let res = {};
+            res['identity.status.value'] = {$exists : false};
+            criterionsOr.push(res);
+          }else{
+            let status = searchRequest.status[i];
+            criterionsOr.push(generateSearchClause('identity.status.value', status, 'CONTAINS'));
+          }
+
         }
       } else {
-        criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
+        if(searchRequest.status[0]=="NR"){
+          let res = {};
+          res['identity.status.value'] = {$exists : false};
+          criterions.push(res);
+        }else{
+          criterions.push(generateSearchClause('identity.status.value', searchRequest.status[0], 'CONTAINS'));
+        }
+
       }
     }
   }

@@ -32,6 +32,7 @@ const status = [
     {code:"SUP",label:"Suppôt"},
     {code:"EXT",label:"Extérieur"},
     {code:"INC",label:"Incertain"},
+    {code:"NR",label:"Non renseigné"},
 ];
 
 
