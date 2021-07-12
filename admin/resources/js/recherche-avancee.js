@@ -1,12 +1,12 @@
 const disciplines = [
     {code:"ALL",label:"Tous"},
-    {code:"ART",label:"Art"},
-    {code:"DROIT",label:"Droit"},
-    {code:"DROIT.*CANON",label:"Droit canon"},
-    {code:"DROIT.*CIVIL",label:"Droit civil"},
+    {code:"ART",label:"Arts"},
     {code:"DECINE",label:"Médecine"},
-    {code:"TH.OLOGIE",label:"Théologie"},
-    {code:"UTROQUE", label:"In utroque jure"}
+    {code:"DROIT",label:"Droit"},
+    {code:"DROIT.*CIVIL",label:"Droit civil"},
+    {code:"DROIT.*CANON",label:"Droit canon"},
+    {code:"UTROQUE", label:"In utroque jure"},
+    {code:"TH.OLOGIE",label:"Théologie"}
 ];
 
 const sexe = [
