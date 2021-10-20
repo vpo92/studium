@@ -2,6 +2,8 @@
 import type {Prosopography,ProsopographyRow} from '../types';
 import {parseMS} from './ms.parser';
 
+const statusList = ["Maître", "Étudiant","Extérieur","Suppôt","Incertain","Gradué"];
+
 function buildProsopography(record: ProsopographyRow): Prosopography{
   let result : Prosopography = {
     reference: record.reference,
@@ -146,6 +148,25 @@ function buildProsopography(record: ProsopographyRow): Prosopography{
   return result;
 }
 
+ function finalizeStatus(record: ProsopographyRow): ProsopographyRow {
+
+   if(record.status){
+     let status = record.status;
+     let valid = false;
+     //on parcours la liste
+     for(var i = 0; i < statusList.length; i++){
+       if(status[0].value && (status[0].value.indexOf(statusList[i]) >= 0 )){
+         status[0].value = statusList[i];
+         valid = true;
+       }
+     }
+     if(!valid){
+       record.status[0].value = "Incertain";
+     }
+   }
+   return record;
+ }
+
  function finalizeReference(record: ProsopographyRow): ProsopographyRow {
 
    const ref = record.reference[0].value;
@@ -246,6 +267,7 @@ export function finalyzeProsopography(record: ProsopographyRow): ?Prosopography{
     record = finalizeGender(record);
     record = finalizeTitle(record);
     record = finalizeLink(record);
+    record = finalizeStatus(record);
 
 
     let result = buildProsopography(record);
