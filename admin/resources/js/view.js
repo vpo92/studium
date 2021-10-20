@@ -1,14 +1,13 @@
-var map = L.map('map').setView([47.4700, 6.8116], 7);
+if(globalOpusList!=null && globalOpusList.length > 0){
 
-//var marker = [];
-//var markerClusters = L.markerClusterGroup();
+  var map = L.map('map').setView([47.4700, 6.8116], 7);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-var latLngs = [];
-if(globalOpusList!=null){
+  var latLngs = [];
+
     for(var i = 0; i < globalOpusList.length; i++){
 
         var m  = globalOpusList[i];
@@ -23,15 +22,6 @@ if(globalOpusList!=null){
 
     var markerBounds = L.latLngBounds(latLngs);
     map.fitBounds(markerBounds);
+}else{
+  document.getElementById("visuGeo").style.display = 'none';
 }
-
-
-//var group = new L.featureGroup(markers);
-//map.fitBounds(group.getBounds().pad(0.5));
-//map.addLayer(markerClusters);
-
-
-//var group = new L.featureGroup(markers);
-//map.fitBounds(group.getBounds().pad(0.5));
-
-

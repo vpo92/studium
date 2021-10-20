@@ -90,16 +90,12 @@ if(isAuthenticated()){?>
                 </div>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm" id="visuGeo">
             <h5>Visualisation géographique</h5>
             <div id="map">
                 <!-- Ici s'affichera la carte -->
             </div>
-
-
         </div>
     </div>
 
 </div>
-
-
