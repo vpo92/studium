@@ -1,6 +1,6 @@
 {
   "name": "studium-batch",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Studium batch application",
   "bin": {
     "studium": "index.js"

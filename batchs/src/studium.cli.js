@@ -107,6 +107,17 @@ export function runReIndexManus(api,tk) {
   });
 }
 
+export function runReIndexManusById(api,id,tk) {
+  reIndexManus(api,tk,id)
+  .then((res) => {
+    //console.log(res);
+  })
+  .catch( (error) => {
+    console.log("ERROR");
+    console.log(error);
+  });
+}
+
 export function runIndexDB(api,tk) {
   indexDB(api,tk)
   .then((res) => {
@@ -158,7 +169,7 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.blue('backup')} ............. backup prosopography data
     ${chalk.blue('import-file')}......... import raw TXT file in JPG format
     ${chalk.blue('re-index')}............ re-index all prosopography from raw
-    ${chalk.blue('re-index-manus')}...... re-index manus info
+    ${chalk.blue('re-index-manus')}...... re-index all manus or manus for prosopography --reference=[reference] 
     ${chalk.blue('update-db-index')}..... update mongodb text index for search
     ${chalk.blue('import-manuscrit')}.... import manuscrit from file
     ${chalk.blue('create-admin')}........ create an admin user to local Mongo Database
@@ -169,6 +180,7 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.cyan('--username')} ......... username used to log in
     ${chalk.cyan('--password')} ......... password used to log in
     ${chalk.cyan('--file')} ............. import file path
+    ${chalk.cyan('--reference')} ........ specify a reference
   `,
 
     auth: `//...

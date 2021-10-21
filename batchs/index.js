@@ -1,6 +1,6 @@
 #!/usr/bin/env babel-node
 
-import { cliAuth as auth, help, version,runBackupAll,runReIndex,runReIndexManus, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile, runCreateAdmin } from './src/studium.cli.js';
+import { cliAuth as auth, help, version,runBackupAll,runReIndex,runReIndexManus,runReIndexManusById, runImportFile, runIndexDB, runImportJsonFile, runImportManusFromFile, runCreateAdmin } from './src/studium.cli.js';
 let argv = require('minimist')(process.argv.slice(2));
 
 async function main(){
@@ -23,6 +23,7 @@ async function main(){
     let host = argv.host;
     let username = argv.username;
     let password = argv.password;
+    let reference = argv.id;
     let tokenName = "tk";
     let token = null;
     try{
@@ -42,7 +43,12 @@ async function main(){
         case 're-index-manus':{
           console.log("Studium CLI : re-index-manus");
           token = await auth(host,username,password,tokenName);
-          runReIndexManus(host,token);
+          if(reference){
+            runReIndexManusById(host,reference,token);
+          }else{
+            runReIndexManus(host,token);
+          }
+
           break;
         }
         case 'import-file':{
