@@ -30,6 +30,7 @@ router.post("/login", async (req, res, next)  => {
         token,
     })
   }catch(err){
+    logger.debug(err);
     logger.debug(`${id}: POST /login failed for ${email}`);
     return res.status(401).json({ message: "Auth Failed" });
   }
