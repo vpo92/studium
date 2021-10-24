@@ -250,7 +250,7 @@ function drawChapter($name,$block){
 function drawFiche($fiche){
     echo "<ul>";
     foreach($fiche as $k => $v){
-        if (!in_array( $k, array("_id","reference","title","link","raw"))) {
+        if (!in_array( $k, array("_id","reference","title","link","raw","extras"))) {
             drawChapter($k, $v);
         }
     }
