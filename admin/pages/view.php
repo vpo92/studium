@@ -35,9 +35,11 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/view.js"></script
 <a href="<?php echo $backLink ?>" class="btn btn-secondary">
     Retourner à la liste
 </a>
+<!--
 <a href="<?php echo getPublicAPIUrl()?>/prosopography/<?php echo $fiche->reference ?>" class="btn btn-success" target="_blank">
     Voir la fiche au format JSON
 </a>
+-->
 <?php
 if(isAuthenticated()){?>
 <?php if($action != "view-draft"){?>
