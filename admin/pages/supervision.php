@@ -3,7 +3,7 @@
 $pageCSS .='<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>';
 
 // Required scripts
-$pageScripts .='<script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>';
+$pageScripts .='<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>';
 $pageScripts .='<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/supervision.js"></script>';
 ?>
