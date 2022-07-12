@@ -13,7 +13,8 @@
         "session": "dsopu343dosihdoshdsos"
       },
       "iss":"studium.fr"
-    }
+    },
+    "dumpFileName" : "/home/vpoupet/tmp/bkp"
   },
   "dev": {
     "mongooseDB": "mongodb://localhost/studium",
@@ -29,7 +30,8 @@
         "session": "sofhfsoih343dohis43dsoj"
       },
       "iss":"studium.fr"
-    }
+    },
+    "dumpFileName" : "/home/vpoupet/tmp/bkp"
   },
   "production": {
     "mongooseDB": "mongodb://localhost/studium",
@@ -45,6 +47,7 @@
         "session": "apoudrjbcxtosdsjsgucsgiupmdryjhgdsuns"
       },
       "iss":"studium.univ-paris1.fr"
-    }
+    },
+    "dumpFileName" : "/home/vpoupet/tmp/bkp"
   }
 }

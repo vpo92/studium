@@ -5,9 +5,11 @@ import passport from 'passport';
 import service from '../services/prosopographyService';
 import logService from '../services/logService';
 import auth from '../services/authService';
+import mongoService from '../services/mongoService';
 //auth.setup();
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
+import config from '../../config';
 
 const router = express.Router();
 
@@ -73,6 +75,23 @@ router.post('/backup', auth.isAdmin, async (req, res, next) => {
   }
 
 });
+
+router.post('/dump', auth.isAdmin, async (req, res, next) => {
+  //
+    const id = uuid.v4();
+    logger.debug(`${id}: dump`);
+    logger.debug(`${id}: dump user ${req.user.name}`);
+  
+    try{
+      await serviceMongo.dump(config.mongooseDB, config.dumpFileName);
+      logger.debug(`${id}: dump done`);
+      res.send({'message':'OK'});
+    }catch(error){
+      logger.error(error);
+      next(error);
+    }
+  
+  });
 
 router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
