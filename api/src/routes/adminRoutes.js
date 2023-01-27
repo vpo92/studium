@@ -79,12 +79,12 @@ router.post('/backup', auth.isAdmin, async (req, res, next) => {
 router.post('/dump', auth.isAdmin, async (req, res, next) => {
   //
     const id = uuid.v4();
-    logger.debug(`${id}: dump`);
-    logger.debug(`${id}: dump user ${req.user.name}`);
+    logger.debug(`${id}: new dump`);
+    logger.debug(`${id}: new dump user ${req.user.name}`);
   
     try{
       await serviceMongo.dump(config.mongooseDB, config.dumpFileName);
-      logger.debug(`${id}: dump done`);
+      logger.debug(`${id}: new dump done`);
       res.send({'message':'OK'});
     }catch(error){
       logger.error(error);
@@ -92,6 +92,42 @@ router.post('/dump', auth.isAdmin, async (req, res, next) => {
     }
   
   });
+
+router.get('/dump', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.debug(`${id}: list dump`);
+  logger.debug(`${id}: list dump user ${req.user.name}`);
+  try{
+    //FIXME : use real service
+    res.send([
+      {"name":"studium-20230126113200110"},
+      {"name":"studium-20230126113200110"},
+      {"name":"studium-20230126113200110"},
+      {"name":"studium-20230126113200110"}
+    ]);
+  }catch(error){
+    logger.error(error);
+    next(error);
+  }
+
+
+});
+
+
+router.get('/dump/:dumpId', auth.isAdmin, async (req, res, next) => {
+  const id = uuid.v4();
+  logger.debug(`${id}: download dump ${dumpId}`);
+  logger.debug(`${id}: download dump ${dumpId} user ${req.user.name}`);
+  try{
+    //FIXME : use real service
+    res.send({"message":"OK for"+dumpId});
+  }catch(error){
+    logger.error(error);
+    next(error);
+  }
+
+
+});
 
 router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
