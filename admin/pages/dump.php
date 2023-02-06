@@ -13,7 +13,7 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/dump.js"></script
     <h4>Historique</h4>
 
     <button class="btn btn-primary" @click="list()">Rafraichir</button>
-    <button class="btn btn-danger" @click="new()">Créer un dump</button>
+    <button class="btn btn-danger" @click="createNew()">Créer un dump</button>
 
     <b-table
         show-empty

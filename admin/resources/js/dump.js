@@ -61,10 +61,11 @@ fetch(resourceUrl+'/messages.json')
                     this.totalCount = this.items.length;;//3;//result.headers.get('X-Total-Count');
                     this.totalRows = this.items.length;
                     this.nbPage = 1;//Math.ceil(this.totalCount / this.perPage);
+                    console.log(this.items);
                     console.log("list done");
 
                 },
-                new : async function(){
+                createNew : async function(){
                     console.log("new dump");
                     const result = await fetch(`${apiUrl}/admin/dump`,{
                         'method':'POST',
