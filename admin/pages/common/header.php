@@ -91,7 +91,7 @@
                 <a href="<?php echo getApplicationUrl()?>?page=supervision">Supervision</a>
             </li>
             <?php }
-            if(getFeatures()->mongoDump){?>
+            if(getFeatures()->mongoDump && isAdmin()){?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=dump">Gestion des backups</a>
             </li>
