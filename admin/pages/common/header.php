@@ -90,7 +90,12 @@
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=supervision">Supervision</a>
             </li>
-            <?php }?>
+            <?php }
+            if(getFeatures()->mongoDump){?>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=dump">Gestion des backups</a>
+            </li>
+            <?php }
             <li>
                 <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>
             </li>
