@@ -12,7 +12,8 @@ fetch(resourceUrl+'/messages.json')
                 items: [],
                 fields: [
                     { key: '_id', label: '#'},
-                    { key: 'name', label: 'Nom'}
+                    { key: 'name', label: 'Nom'},
+                    { key: 'actions', label: 'Actions' }
                 ],
                 totalRows: 0,
                 totalCount: 0,
@@ -82,6 +83,9 @@ fetch(resourceUrl+'/messages.json')
                     this.list();
 
                 },
+                download : async function(currentRowId){
+                    console.log("download "+currentRowId);
+                }
             },
             created() {
                 this.list();

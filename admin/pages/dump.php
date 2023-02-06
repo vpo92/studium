@@ -29,12 +29,10 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/dump.js"></script
         @filtered="onFiltered"
     >
 
-        <template #cell(role)="row">
-            <ul>
-                <li v-for="rLabel in row.item.name">{{name}}</li>
-                <li><button class="btn btn-primary">Télécharger</button></li>
-            </ul>
-        </template>
+    <template #cell(actions)="row">
+        <button class="btn btn-danger" @click="download(row.item._id)">Télécharger</button>
+    </template>
+
 
     </b-table>
 
