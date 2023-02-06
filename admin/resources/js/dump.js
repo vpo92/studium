@@ -44,8 +44,11 @@ fetch(resourceUrl+'/messages.json')
                     this.currentPage = 1
                 },
                 list : async function(){
+                    
                     console.log("list");
-                    let url = `${apiUrl}/admin/dump`;
+                    //let url = `${apiUrl}/admin/dump`;
+                    //mode mock
+                    let url =`${publicUrl}/mock/dump.json`;
                     url+="?page=1&rows=50";
                     const result = await fetch(url,{
                         'method':'GET',
