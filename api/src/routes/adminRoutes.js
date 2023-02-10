@@ -10,7 +10,7 @@ import mongoService from '../services/mongoService';
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
 import config from '../../config';
-
+import fs from 'fs';
 const router = express.Router();
 
 const getPagination = function(req){
@@ -81,16 +81,16 @@ router.post('/dump', auth.isAdmin, async (req, res, next) => {
     const id = uuid.v4();
     logger.debug(`${id}: new dump`);
     logger.debug(`${id}: new dump user ${req.user.name}`);
-  
+
     try{
-      await serviceMongo.dump(config.mongooseDB, config.dumpFileName);
+      await mongoService.dumpStudium(config.mongooseDB, config.dumpFileName);
       logger.debug(`${id}: new dump done`);
       res.send({'message':'OK'});
     }catch(error){
       logger.error(error);
       next(error);
     }
-  
+
   });
 
 router.get('/dump', auth.isAdmin, async (req, res, next) => {
@@ -98,13 +98,7 @@ router.get('/dump', auth.isAdmin, async (req, res, next) => {
   logger.debug(`${id}: list dump`);
   logger.debug(`${id}: list dump user ${req.user.name}`);
   try{
-    //FIXME : use real service
-    res.send([
-      {"name":"studium-20230126113200110"},
-      {"name":"studium-20230126113200110"},
-      {"name":"studium-20230126113200110"},
-      {"name":"studium-20230126113200110"}
-    ]);
+    res.send(await mongoService.listDump(config.dumpFileName));
   }catch(error){
     logger.error(error);
     next(error);
@@ -114,19 +108,17 @@ router.get('/dump', auth.isAdmin, async (req, res, next) => {
 });
 
 
-router.get('/dump/:dumpId', auth.isAdmin, async (req, res, next) => {
+router.get('/dump/:dumpName', async (req, res, next) => {
   const id = uuid.v4();
-  logger.debug(`${id}: download dump ${dumpId}`);
-  logger.debug(`${id}: download dump ${dumpId} user ${req.user.name}`);
+  logger.debug(`${id}: download dump ${req.params.dumpName}`);
   try{
-    //FIXME : use real service
-    res.send({"message":"OK for"+dumpId});
+    let fileName = config.dumpFileName+"/"+req.params.dumpName;
+    res.writeHead( 200, { 'Content-Type': 'application/octet-stream ' } );
+      fs.createReadStream( fileName ).pipe( res );
   }catch(error){
     logger.error(error);
     next(error);
   }
-
-
 });
 
 router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {

@@ -31,7 +31,7 @@
       },
       "iss":"studium.fr"
     },
-    "dumpFileName" : "/home/vpoupet/tmp/bkp"
+    "dumpFileName" : "/Users/vincent/tmp/bkp"
   },
   "production": {
     "mongooseDB": "mongodb://localhost/studium",
