@@ -11,7 +11,6 @@ fetch(resourceUrl+'/messages.json')
             data: {
                 items: [],
                 fields: [
-                    { key: '_id', label: '#'},
                     { key: 'name', label: 'Nom'},
                     { key: 'actions', label: 'Actions' }
                 ],
@@ -45,11 +44,10 @@ fetch(resourceUrl+'/messages.json')
                     this.currentPage = 1
                 },
                 list : async function(){
-                    
+
                     console.log("list");
                     let url = `${apiUrl}/admin/dump`;
-                    //mode mock
-                    //let url =`${applicationUrl}/mock/dump.json`;
+
                     url+="?page=1&rows=50";
                     const result = await fetch(url,{
                         'method':'GET',
@@ -74,9 +72,8 @@ fetch(resourceUrl+'/messages.json')
                             'Content-Type':'application/json',
                             'Authorization':'Bearer'+sessionToken,
                         },
-                        'body': {},
                     });
-                    
+
                     if(result.status != 200){
                         alert("Erreur technique");
                     }
@@ -85,6 +82,7 @@ fetch(resourceUrl+'/messages.json')
                 },
                 download : async function(currentRowId){
                     console.log("download "+currentRowId);
+
                 }
             },
             created() {

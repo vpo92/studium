@@ -30,7 +30,7 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/dump.js"></script
     >
 
     <template #cell(actions)="row">
-        <button class="btn btn-danger" @click="download(row.item._id)">Télécharger</button>
+        <a class="btn btn-danger" v-bind:href="'http://localhost:3000/admin/dump/'+row.item.name" target="_blank"> Télécharger</a>
     </template>
 
 
