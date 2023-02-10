@@ -1,0 +1,13 @@
+
+//Import d'un fichier
+npm start -- import-file --file="/Users/vincent/projects/studium/batchs/tests/data/simple_studium_input.txt" --username="vincent.poupet@gmail.com" --password="pass" --host="http://localhost:3000"
+
+//RE indexation de la base
+npm start -- re-index --username="vincent.poupet@gmail.com" --password="pass" --host="http://localhost:3000"
+
+
+//Import des manuscrits depuis un fichier
+npm start -- import-manuscrit --username="vincent.poupet@gmail.com" --password="pass" --host="http://studium-parisiense.univ-paris1.fr/api" --file="./data/geo_manus.json"
+
+//index les manuscrit
+npm start -- re-index-manus --username="vincent.poupet@gmail.com" --password="pass" --host="http://studium-parisiense.univ-paris1.fr/api"
