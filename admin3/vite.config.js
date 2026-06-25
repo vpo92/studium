@@ -3,10 +3,10 @@ import vue from '@vitejs/plugin-vue'
 
 const PROXY_PREFIX = '/proxy/8000'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
-    {
+    mode !== 'production' && {
       name: 'proxy-prefix-rewrite',
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
@@ -18,7 +18,7 @@ export default defineConfig({
       }
     }
   ],
-  base: PROXY_PREFIX + '/',
+  base: mode === 'production' ? './' : PROXY_PREFIX + '/',
   server: {
     host: '0.0.0.0',
     port: 8000,
@@ -31,4 +31,4 @@ export default defineConfig({
       }
     }
   }
-})
+}))
