@@ -1,0 +1,15 @@
+{
+  "name": "studium-api",
+  "version": "0.3.0",
+  "description": "API for Studium Prosopography - generated from DAG specs",
+  "main": "src/server.js",
+  "scripts": {
+    "import": "node scripts/import.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

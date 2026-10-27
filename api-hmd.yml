@@ -1,0 +1,594 @@
+openapi: 3.0.0
+info:
+  title: External Adherent API - Used APIs (COMPLETE)
+  version: 2026.10.7-SNAPSHOT
+
+paths:
+  # ============================================================================
+  # CLIENT DATA APIS - API CLIENT PERSONNE PHYSIQUE
+  # ============================================================================
+  
+  /api-client/personnephysique/{idPp}:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get physical person complete data
+      operationId: getPersonnePhysique
+      parameters:
+        - name: idPp
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Complete physical person data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonnePhysiqueDto'
+
+  /api-client/personnephysique/{idPp}/adresses:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get addresses by person ID
+      operationId: getAdressesByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdressePpDto'
+
+  /api-client/personnephysique/{idPp}/telephones:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get phone numbers by person ID
+      operationId: getTelephonesByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TelephonePersonnePpDto'
+
+  /api-client/personnephysique/{idPp}/emails:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get main email
+      operationId: getMailPrincipalByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailDto'
+
+  /api-client/personnephysique/{idPp}/foyer:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get household information
+      operationId: getFoyerByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoyerPpDto'
+
+  /api-client/personnephysique/{idPp}/groupeassures:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get assurance group
+      operationId: getGroupeAssuresByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupeAssuresDto'
+
+  /api-client/personnephysique/{idPp}/contrats-individuels:
+    get:
+      tags:
+        - Client Data - API Client
+      summary: Get individual contracts
+      operationId: getContratsIndividuelsByPpId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContratIndivDto'
+
+  /api-client/personnephysique/search:
+    post:
+      tags:
+        - Client Data - API Client
+      summary: Search person by criteria
+      operationId: searchPersonnePhysique
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PpSearchDto'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonnePhysiqueDto'
+
+  # ============================================================================
+  # DATAHUB APIs - ELIGIBILITE
+  # ============================================================================
+  
+  /api/datahub/eligibilite/v1:
+    post:
+      tags:
+        - DataHub - Eligibilité
+      summary: Get eligibility information
+      description: |
+        Récupère les informations d'éligibilité pour un service
+        Appelé par EligibiliteRepository.getEligibiliteV1()
+      operationId: getEligibiliteV1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EligibiliteCriteriaDTO'
+      parameters:
+        - name: x-bilan-cardio-information
+          in: header
+          schema:
+            type: boolean
+        - name: x-sharecare-information
+          in: header
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Eligibility information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibiliteInformationDTO'
+
+  # ============================================================================
+  # DATAHUB APIs - LIEN COMPTE UTILISATEUR (CUT)
+  # ============================================================================
+  
+  /api/datahub/lien-compte-utilisateur/search:
+    post:
+      tags:
+        - DataHub - Lien Compte Utilisateur
+      summary: Search user account link
+      description: |
+        Recherche les liens entre compte utilisateur et personne
+        Appelé par LienCompteUtilisateurRepository
+      operationId: searchLienCompteUtilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RechercheCompteUtilisateurDto'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /api/datahub/lien-compte-utilisateur:
+    post:
+      tags:
+        - DataHub - Lien Compte Utilisateur
+      summary: Create user account link
+      operationId: createLienCompteUtilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Link created
+
+    put:
+      tags:
+        - DataHub - Lien Compte Utilisateur
+      summary: Update user account link
+      operationId: updateLienCompteUtilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompteUtilisateurDto'
+      responses:
+        '200':
+          description: Link updated
+
+  # ============================================================================
+  # DATAHUB APIs - CONFIGURATION
+  # ============================================================================
+  
+  /api/datahub/configuration/parametrage:
+    get:
+      tags:
+        - DataHub - Configuration
+      summary: Get parametrage configuration
+      operationId: getParametrageConfiguration
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParametrageActivationDTO'
+
+  /api/datahub/configuration/preferences-dematerialisation:
+    get:
+      tags:
+        - DataHub - Configuration
+      summary: Get dematerialization preferences
+      operationId: getPreferencesDematerialisation
+      parameters:
+        - name: idPpDatahub
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrefDematDTO'
+
+  # ============================================================================
+  # DATAHUB AUTH
+  # ============================================================================
+  
+  /api/datahub/auth/token:
+    post:
+      tags:
+        - DataHub - Authentication
+      summary: Get DataHub API authentication token
+      operationId: getDataHubToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiAuthRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDatahubAuthResponse'
+
+  # ============================================================================
+  # OTHER CLIENT APIs
+  # ============================================================================
+  
+  /api/interaction:
+    get:
+      tags:
+        - Client APIs - Interaction
+      summary: Get interaction data
+      operationId: getInteraction
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/consentement:
+    get:
+      tags:
+        - Client APIs - Consentement
+      summary: Get consent information
+      operationId: getConsentement
+      parameters:
+        - name: idPp
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FicheDTO'
+
+  /api/organisation-collaboration:
+    get:
+      tags:
+        - Client APIs - Organisation
+      summary: Get organization collaboration info
+      operationId: getOrgaCollab
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  schemas:
+    PersonnePhysiqueDto:
+      type: object
+      properties:
+        id:
+          type: string
+        idPPApiClient:
+          type: string
+        civilite:
+          type: string
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateNaissance:
+          type: string
+          format: date
+        dateDeces:
+          type: string
+          format: date
+        numAdherent:
+          type: string
+        typeRo:
+          type: string
+        communeNaissance:
+          type: string
+        departementNaissance:
+          type: string
+        paysNaissance:
+          type: string
+        nomNaissance:
+          type: string
+
+    AdressePpDto:
+      type: object
+      properties:
+        line2:
+          type: string
+        line3:
+          type: string
+        line4:
+          type: string
+        line5:
+          type: string
+        line6:
+          type: string
+        codePostal:
+          type: string
+        cedex:
+          type: string
+        ville:
+          type: string
+        pays:
+          type: string
+
+    EmailDto:
+      type: object
+      properties:
+        adresse:
+          type: string
+        type:
+          type: string
+
+    TelephonePersonnePpDto:
+      type: object
+      properties:
+        numero:
+          type: string
+        type:
+          type: string
+        indicatifPays:
+          type: string
+
+    FoyerPpDto:
+      type: object
+      properties:
+        foyerId:
+          type: string
+        typeLien:
+          type: string
+
+    GroupeAssuresDto:
+      type: object
+      properties:
+        numero:
+          type: string
+
+    ContratIndivDto:
+      type: object
+      properties:
+        numeroContrat:
+          type: string
+        typeContrat:
+          type: string
+        etatContrat:
+          type: string
+
+    PpSearchDto:
+      type: object
+      properties:
+        numeroAdherent:
+          type: string
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateNaissance:
+          type: string
+
+    EligibiliteCriteriaDTO:
+      type: object
+      required:
+        - service
+      properties:
+        service:
+          type: string
+          description: Service name for eligibility check
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateNaissance:
+          type: string
+        codePostal:
+          type: string
+        numeroAdherent:
+          type: string
+        idPP:
+          type: string
+        numeroContrat:
+          type: string
+
+    EligibiliteInformationDTO:
+      type: object
+      properties:
+        service:
+          type: string
+        eligible:
+          type: boolean
+        profils:
+          type: array
+          items:
+            type: object
+
+    RechercheCompteUtilisateurDto:
+      type: object
+      properties:
+        typeCompte:
+          type: string
+        keycloakId:
+          type: string
+        cle:
+          type: string
+        valeur:
+          type: string
+
+    UpdateCompteUtilisateurDto:
+      type: object
+      properties:
+        id:
+          type: string
+        parametrages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParametrageDto'
+
+    ParametrageDto:
+      type: object
+      properties:
+        id:
+          type: string
+        cle:
+          type: string
+        valeur:
+          type: string
+
+    ParametrageActivationDTO:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: boolean
+
+    PrefDematDTO:
+      type: object
+      properties:
+        objetPrefDemat:
+          type: string
+        preference:
+          type: string
+
+    ApiAuthRequest:
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+
+    ApiDatahubAuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiresIn:
+          type: integer
+        tokenType:
+          type: string
+
+    FicheDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        libelle:
+          type: string
+        description:
+          type: string
+        flagActif:
+          type: boolean
+
+tags:
+  - name: Client Data - API Client
+    description: "API Client Personne Physique - Données complètes du client (adresses, téléphones, emails, contrats, etc.)"
+  
+  - name: DataHub - Eligibilité
+    description: "API DataHub Eligibilité - Vérification de l'éligibilité à des services"
+  
+  - name: DataHub - Lien Compte Utilisateur
+    description: "API DataHub CUT - Gestion des liens entre comptes utilisateur et personnes physiques"
+  
+  - name: DataHub - Configuration
+    description: "API DataHub Configuration - Récupération des configurations paramétrées et préférences"
+  
+  - name: DataHub - Authentication
+    description: "API DataHub Auth - Authentification pour accéder aux APIs DataHub"
+  
+  - name: Client APIs - Interaction
+    description: "API Client Interaction - Gestion des interactions client"
+  
+  - name: Client APIs - Consentement
+    description: "API Client Consentement - Gestion des consentements et fiches de collecte"
+  
+  - name: Client APIs - Organisation
+    description: "API Client Organisation/Collaboration - Données d'organisation"

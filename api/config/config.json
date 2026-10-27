@@ -1,6 +1,6 @@
 {
   "default": {
-    "mongooseDB": "mongodb://localhost/studium",
+    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"prod",
     "auth": {
       "expiresIn":"4h",
@@ -17,7 +17,7 @@
     "dumpFileName" : "/home/vpoupet/tmp/bkp"
   },
   "dev": {
-    "mongooseDB": "mongodb://localhost/studium",
+    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"dev",
     "auth": {
       "expiresIn":"4h",
@@ -34,7 +34,7 @@
     "dumpFileName" : "/Users/vincent/tmp/bkp"
   },
   "production": {
-    "mongooseDB": "mongodb://localhost/studium",
+    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"prod",
     "auth": {
       "expiresIn":"4h",

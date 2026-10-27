@@ -1,15 +1,27 @@
 <?php
 
 function getAPIUrl(){
-    return getenv("API_URL")!=""?getenv("API_URL"):"http://localhost:3000";
+    $apiUrl = getenv("API_URL");
+    if ($apiUrl === false || $apiUrl === '') {
+        return "http://host.docker.internal:3000";
+    }
+    return $apiUrl;
 }
 
 function getPublicAPIUrl(){
-    return getenv("PUBLIC_API_URL")!=""?getenv("PUBLIC_API_URL"):getAPIUrl();
+    $publicApiUrl = getenv("PUBLIC_API_URL");
+    if ($publicApiUrl === false || $publicApiUrl === '') {
+        return getAPIUrl();
+    }
+    return $publicApiUrl;
 }
 
 function getApplicationUrl(){
-  return getenv("APPLICATION_URL")!=""?getenv("APPLICATION_URL"):"http://localhost/admin";
+  $appUrl = getenv("APPLICATION_URL");
+  if ($appUrl === false || $appUrl === '') {
+      return "http://localhost/admin";
+  }
+  return $appUrl;
 }
 
 function getResourcesWebDirectory(){
@@ -105,6 +117,8 @@ function callAPI($method, $url, $headers = false, $data = false)
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
     //deal with headers
     $headers = [];
 

@@ -170,6 +170,9 @@ try{
             break;
 
         case "prepare-create" :
+            if (!is_object($fiche)) {
+                $fiche = new stdClass();
+            }
             $fiche->reference = null;
             $fiche->raw = [];
             $page = "edit";
@@ -177,15 +180,22 @@ try{
             break;
 
         case "process-create":
+            if (!is_object($fiche)) {
+                $fiche = new stdClass();
+            }
             $raw = getFieldFromForm("raw");
             $result = $ficheService->saveFicheFromText(null,$raw);
-            if($result->message == "OK"){
+            if(is_object($result) && isset($result->message) && $result->message == "OK"){
                 $info_msg = "Enregistrement OK";
                 $page = "index";
             }else{
+                if (!is_object($fiche)) {
+                    $fiche = new stdClass();
+                }
                 $fiche->reference = null;
-                $fiche->raw = explode("\n",$raw);
-                $error_msg = "Erreur lors de l'enregistrement : ".$result->error;
+                $fiche->raw = is_string($raw) ? explode("\n",$raw) : [];
+                $errorMsg = is_object($result) && isset($result->error) ? $result->error : (is_string($result) ? $result : 'Erreur inconnue');
+                $error_msg = "Erreur lors de l'enregistrement : ".$errorMsg;
                 $page = "edit";
                 $mode = "CREATE";
             }
@@ -236,9 +246,10 @@ try{
     }
 
 
-}catch (Exception $e){
+}catch (Throwable $e){
     $error_msg = "Une erreur est survenue";
-    $loggerService->log($e);
+    $loggerService->log($e->getMessage());
+    $loggerService->log($e->getTraceAsString());
 }
 
 

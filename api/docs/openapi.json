@@ -55,6 +55,10 @@
     {
       "name": "Data",
       "description": "Raw data file endpoints"
+    },
+    {
+      "name": "Mongo",
+      "description": "Raw MongoDB query endpoints"
     }
   ],
   "paths": {
@@ -1371,6 +1375,45 @@
                   "properties": {
                     "message": { "type": "string" }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mongo/executeQuery": {
+      "post": {
+        "tags": ["Mongo"],
+        "summary": "Execute raw MongoDB query",
+        "description": "Execute a raw MongoDB query against any collection. Supports optional CSV format output via the request body 'format' field.",
+        "operationId": "executeMongoQuery",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["collection"],
+                "properties": {
+                  "collection": { "type": "string", "description": "MongoDB collection name" },
+                  "find": { "type": "object", "description": "MongoDB query filter" },
+                  "projection": { "type": "object", "description": "Fields to include/exclude" },
+                  "skip": { "type": "integer", "description": "Number of documents to skip" },
+                  "limit": { "type": "integer", "description": "Maximum number of documents to return" },
+                  "format": { "type": "string", "enum": ["json", "csv"], "default": "json", "description": "Response format" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query results (JSON array or CSV)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
                 }
               }
             }

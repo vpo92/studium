@@ -12,11 +12,11 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=production
+      - MONGODB_CONNECTION_STRING=mongodb://host.docker.internal:27017/studium
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     links:
-      - mongodb
       - studium_web
-    depends_on:
-      - mongodb
     restart: always
     networks:
      - default

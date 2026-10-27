@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studium - Prosopographie</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.5; }
+header { background: #1a237e; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+header h1 { font-size: 1.4rem; font-weight: 500; }
+.controls { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.controls input { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; }
+.controls button { padding: 0.5rem 1rem; background: #3949ab; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+.controls button:hover { background: #303f9f; }
+.controls select { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; }
+.index-bar { display: flex; flex-wrap: wrap; gap: 2px; padding: 0.5rem 2rem; background: #e8eaf6; }
+.index-bar a { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; text-decoration: none; color: #1a237e; font-weight: 600; border-radius: 3px; font-size: 0.85rem; }
+.index-bar a:hover { background: #c5cae9; }
+.index-bar a.active { background: #1a237e; color: #fff; }
+.content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+.person-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.person-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem; cursor: pointer; transition: box-shadow 0.15s; }
+.person-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.person-card h3 { color: #1a237e; font-size: 1rem; }
+.person-card .meta { font-size: 0.85rem; color: #666; margin-top: 0.25rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 1rem 0; }
+.pagination button { padding: 0.4rem 0.8rem; background: #3949ab; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+.pagination button:disabled { background: #ccc; cursor: default; }
+.pagination span { font-size: 0.9rem; color: #666; }
+.person-count { font-size: 0.85rem; color: #666; margin: 0.5rem 0; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto; }
+.modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; padding: 2rem; }
+.modal { background: #fff; border-radius: 8px; max-width: 800px; width: 100%; padding: 2rem; position: relative; }
+.modal h2 { color: #1a237e; margin-bottom: 1rem; }
+.modal .close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #999; }
+.modal .close:hover { color: #333; }
+.modal section { margin-bottom: 1.5rem; }
+.modal h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; border-bottom: 1px solid #e0e0e0; padding-bottom: 0.3rem; margin-bottom: 0.5rem; }
+.modal .field { margin: 0.25rem 0; font-size: 0.9rem; }
+.modal .field-label { font-weight: 600; color: #555; display: inline; }
+.modal .field-value { display: inline; }
+.modal .field-value:after { content: '; '; }
+.modal .field-value:last-child:after { content: ''; }
+.modal .opu { margin: 0.5rem 0 0.5rem 1rem; padding-left: 0.5rem; border-left: 2px solid #e0e0e0; }
+.loading { text-align: center; padding: 2rem; color: #666; }
+.error { color: #c62828; padding: 1rem; background: #ffebee; border-radius: 4px; margin: 1rem 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Studium — Prosopographie</h1>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Recherche plein texte..." onkeydown="if(event.key==='Enter') searchText()">
+    <button onclick="searchText()">Rechercher</button>
+    <button onclick="clearSearch()">Effacer</button>
+    <select id="rows-select" onchange="loadList(1)"><option value="10">10/page</option><option value="20" selected>20/page</option><option value="50">50/page</option></select>
+  </div>
+</header>
+<div class="index-bar" id="index-bar"></div>
+<div class="content">
+  <div class="person-count" id="count"></div>
+  <div class="person-list" id="list"></div>
+  <div class="pagination" id="pagination"></div>
+</div>
+<div class="modal-overlay" id="modal"><div class="modal"><button class="close" onclick="closeModal()">&times;</button><div id="modal-body"></div></div></div>
+<script>
+const API = '/proxy/3003/api';
+let currentPage = 1, currentRows = 20, currentQuery = '', currentLetter = '';
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+document.getElementById('index-bar').innerHTML = '<a href="#" onclick="loadIndex(\'\');return false" class="active">Tous</a>' +
+  alphabet.map(l => `<a href="#" onclick="loadIndex('${l}');return false">${l}</a>`).join('');
+
+let totalRecords = 0;
+
+async function loadList(page) {
+  currentPage = page;
+  currentRows = parseInt(document.getElementById('rows-select').value);
+  const list = document.getElementById('list');
+  const pag = document.getElementById('pagination');
+  const cnt = document.getElementById('count');
+  list.innerHTML = '<div class="loading">Chargement...</div>';
+  pag.innerHTML = '';
+  cnt.textContent = '';
+  try {
+    let url;
+    if (currentLetter) {
+      const data = await (await fetch(`${API}/prosopography/index/${currentLetter}`)).json();
+      totalRecords = data.length;
+      const paged = data.slice((page-1)*currentRows, page*currentRows);
+      renderList(paged);
+      renderPagination(page, Math.ceil(data.length/currentRows));
+      cnt.textContent = `${data.length} personne(s) (lettre ${currentLetter})`;
+      return;
+    }
+    if (currentQuery) {
+      const data = await (await fetch(`${API}/prosopography/search/${encodeURIComponent(currentQuery)}?page=${page}&rows=${currentRows}`)).json();
+      const total = parseInt(response.headers.get('X-Total-Count')) || data.length;
+      renderList(data);
+      renderPagination(page, Math.ceil(total/currentRows));
+      cnt.textContent = `${total} résultat(s) pour "${currentQuery}"`;
+      return;
+    }
+    const resp = await fetch(`${API}/prosopography?page=${page}&rows=${currentRows}`);
+    const total = parseInt(resp.headers.get('X-Total-Count')) || 0;
+    const data = await resp.json();
+    totalRecords = total || data.length;
+    renderList(data);
+    renderPagination(page, Math.ceil((total||data.length)/currentRows));
+    cnt.textContent = `${total || data.length} personne(s)`;
+  } catch(e) { list.innerHTML = `<div class="error">Erreur: ${e.message}</div>`; }
+}
+
+function renderList(data) {
+  const list = document.getElementById('list');
+  if (!data || data.length === 0) { list.innerHTML = '<div class="loading">Aucun résultat</div>'; return; }
+  list.innerHTML = data.map(p => `<div class="person-card" onclick="openDetail(${p.reference})"><h3>${p.reference}. ${esc(p.identity?.name?.value||'')}</h3><div class="meta">${[
+    p.identity?.description?.value ? esc(p.identity.description.value) : '',
+    p.identity?.status?.value ? `(${p.identity.status.value})` : '',
+    p.identity?.datesOfLife ? `${p.identity.datesOfLife.from||'?'}-${p.identity.datesOfLife.to||'?'}` : '',
+    p.identity?.datesOfActivity ? `activité: ${p.identity.datesOfActivity.from||'?'}-${p.identity.datesOfActivity.to||'?'}` : '',
+    p.origin?.birthPlace?.value ? `né à ${esc(p.origin.birthPlace.value)}` : ''
+  ].filter(Boolean).join(' · ')}</div></div>`).join('');
+}
+
+function renderPagination(page, totalPages) {
+  const pag = document.getElementById('pagination');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+  pag.innerHTML = `<button onclick="loadList(1)" ${page===1?'disabled':''}>&laquo;</button><button onclick="loadList(${page-1})" ${page===1?'disabled':''}>&lsaquo;</button><span>Page ${page} / ${totalPages}</span><button onclick="loadList(${page+1})" ${page>=totalPages?'disabled':''}>&rsaquo;</button><button onclick="loadList(${totalPages})" ${page>=totalPages?'disabled':''}>&raquo;</button>`;
+}
+
+function searchText() {
+  const q = document.getElementById('search').value.trim();
+  currentLetter = '';
+  if (!q) { currentQuery = ''; loadList(1); return; }
+  currentQuery = q;
+  loadList(1);
+}
+
+function clearSearch() {
+  document.getElementById('search').value = '';
+  currentQuery = '';
+  currentLetter = '';
+  loadList(1);
+}
+
+function loadIndex(letter) {
+  document.querySelectorAll('.index-bar a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.index-bar a').forEach(a => { if(a.textContent === letter || (letter === '' && a.textContent === 'Tous')) a.classList.add('active'); });
+  currentLetter = letter;
+  currentQuery = '';
+  document.getElementById('search').value = '';
+  loadList(1);
+}
+
+async function openDetail(ref) {
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  body.innerHTML = '<div class="loading">Chargement...</div>';
+  modal.classList.add('open');
+  try {
+    const p = await (await fetch(`${API}/prosopography/${ref}`)).json();
+    body.innerHTML = renderProsopography(p);
+  } catch(e) { body.innerHTML = `<div class="error">Erreur: ${e.message}</div>`; }
+}
+
+function renderProsopography(p) {
+  const s = (v) => v ? esc(v) : '';
+  const arr = (a) => Array.isArray(a) ? a : (a ? [a] : []);
+  const f = (v, label) => v ? `<div class="field"><span class="field-label">${label}: </span><span class="field-value">${s(v)}</span></div>` : '';
+  const fa = (items, labelFn) => items.map((item, i) => {
+    if (typeof item === 'string') return `<div class="field"><span class="field-value">${s(item)}</span></div>`;
+    const vals = [];
+    for (const [k, v] of Object.entries(item)) {
+      if (v && typeof v === 'object' && v.value) vals.push(`${labelFn ? labelFn(k) : k}: ${s(v.value)}`);
+      else if (v && typeof v === 'object') { for (const [k2, v2] of Object.entries(v)) { if (v2 && v2.value) vals.push(`${k2}: ${s(v2.value)}`); } }
+      else if (v && typeof v !== 'object') vals.push(`${k}: ${s(v)}`);
+    }
+    return vals.length ? `<div class="field"><span class="field-value">${vals.join(', ')}</span></div>` : '';
+  }).join('');
+
+  let html = `<h2>${p.reference}. ${s(p.identity?.name?.value)}</h2>`;
+  if (p.identity) {
+    html += `<section><h3>Identité</h3>${f(p.identity.name?.value, 'Nom')}${f(p.identity.description?.value, 'Description')}${f(p.identity.status?.value, 'Statut')}${f(p.identity.gender?.value, 'Genre')}`;
+    if (p.identity.datesOfLife) html += f(`${p.identity.datesOfLife.from||'?'} - ${p.identity.datesOfLife.to||'?'}`, 'Dates de vie');
+    if (p.identity.datesOfActivity) html += f(`${p.identity.datesOfActivity.from||'?'} - ${p.identity.datesOfActivity.to||'?'}`, 'Dates d\'activité');
+    if (p.identity.activityMediane) html += f(p.identity.activityMediane.value, 'Activité médiane');
+    if (p.identity.nameVariant) html += '<div class="field"><span class="field-label">Variantes: </span>' + p.identity.nameVariant.map(v => `<span class="field-value">${s(v.value)}</span>`).join('') + '</div>';
+    html += `</section>`;
+  }
+  if (p.origin) html += `<section><h3>Origine</h3>${f(p.origin.birthPlace?.value, 'Lieu de naissance')}${f(p.origin.diosese?.value, 'Diocèse')}${fa(arr(p.origin.movesInOutParis), () => 'Mouvement')}</section>`;
+  if (p.relationalInsertion) {
+    const r = p.relationalInsertion;
+    html += `<section><h3>Insertion relationnelle</h3>${f(r.socialClassOrigin?.value, 'Classe sociale')}${fa(arr(r.familyNetwork), () => 'Famille')}${fa(arr(r.personalServicesRelationship), () => 'Service')}${fa(arr(r.friends), () => 'Amitié')}${fa(arr(r.controversyOrDebates), () => 'Controverse')}${fa(arr(r.studentProfessorRelationships), () => 'Relation étudiant/prof')}</section>`;
+  }
+  if (p.curriculum) {
+    const c = p.curriculum;
+    html += `<section><h3>Curriculum</h3>${fa(arr(c.preUniversity), () => 'Avant l\'université')}${fa(arr(c.university), () => 'Université')}${fa(arr(c.grades), () => 'Grades')}${fa(arr(c.universityCollege), () => 'Collège')}${fa(arr(c.collegeFundations), () => 'Fondation')}</section>`;
+  }
+  if (p.ecclesiasticalCareer) {
+    const e = p.ecclesiasticalCareer;
+    html += `<section><h3>Carrière ecclésiastique</h3>${fa(arr(e.secularPosition), () => 'Position séculière')}${fa(arr(e.regularOrder), () => 'Ordre régulier')}${fa(arr(e.regularFunctions), () => 'Fonctions régulières')}${fa(arr(e.popFunctions), () => 'Fonctions pop')}</section>`;
+  }
+  if (p.professionalCareer) html += `<section><h3>Carrière professionnelle</h3>${fa(p.professionalCareer, (k) => k)}</section>`;
+  if (p.politicalCareer) html += `<section><h3>Carrière politique</h3>${fa(p.politicalCareer, (k) => k)}</section>`;
+  if (p.travels) html += `<section><h3>Voyages</h3>${fa(p.travels.map(t => ({value: t.value})), () => 'Voyage')}</section>`;
+  if (p.commissions) html += `<section><h3>Commissions</h3>${fa(p.commissions, (k) => k)}</section>`;
+  if (p.textualProduction) {
+    html += `<section><h3>Production textuelle</h3>`;
+    for (const op of arr(p.textualProduction.opus)) {
+      html += `<div class="opu"><div class="field"><strong>${s(op.title?.value||'Œuvre')}</strong></div>`;
+      if (op.date?.value) html += f(op.date.value, 'Date');
+      if (op.language?.value) html += f(op.language.value, 'Langue');
+      if (op.editing?.value) html += f(op.editing.value, 'Édition');
+      if (op.manuscript) html += fa(op.manuscript.map(m => ({cote: m.shelfmark?.value||''})), (k)=>k);
+      html += `</div>`;
+    }
+    html += `</section>`;
+  }
+  if (p.library) html += `<section><h3>Bibliothèque</h3>${fa(p.library, () => 'Ouvrage')}</section>`;
+  if (p.assets) html += `<section><h3>Biens</h3>${fa(p.assets, (k) => k)}</section>`;
+  if (p.orality) html += `<section><h3>Oralité</h3>${fa(p.orality.map(o => ({value: o.value})), () => '')}</section>`;
+  if (p.otherActivities) html += `<section><h3>Autres activités</h3>${fa(p.otherActivities, () => '')}</section>`;
+  return html;
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+loadList(1);
+</script>
+</body>
+</html>
