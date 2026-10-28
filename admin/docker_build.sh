@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t studium/admin . -f Dockerfile
+docker build --platform linux/amd64 -t studium/admin . -f Dockerfile

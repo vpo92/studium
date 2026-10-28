@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${ADMIN_IMAGE:-studium/admin:latest}
+    container_name: studium_admin
+    restart: unless-stopped
+
+    # Le conteneur partage le reseau de la VM : "localhost" pointe donc bien
+    # vers l'API et MongoDB qui tournent sur la machine.
+    # Apache ecoute sur le port 3002 (voir Dockerfile).
+    network_mode: host
+
+    environment:
+      # Mode production (convention ; le vrai mode prod PHP vient du Dockerfile)
+      APP_ENV: production
+
+      # API sur la VM, via le localhost de l'hote.
+      API_URL: ${API_URL:-http://localhost:3000}
+      PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:3000}
+
+      # URL publique de l'admin.
+      APPLICATION_URL: ${APPLICATION_URL:-http://localhost:3002}
+
+      TZ: ${TZ:-Europe/Paris}
+
+    healthcheck:
+      test: ["CMD-SHELL", "php -r 'exit(@fsockopen(\"127.0.0.1\", 3002) ? 0 : 1);'"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
