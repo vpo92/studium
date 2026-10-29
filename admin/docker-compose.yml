@@ -20,10 +20,10 @@ services:
 
       # API sur la VM, via le localhost de l'hote.
       API_URL: ${API_URL:-http://localhost:3000}
-      PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:3000}
+      PUBLIC_API_URL: ${PUBLIC_API_URL:-http://studium-parisiense.univ-paris1.fr/api}
 
       # URL publique de l'admin.
-      APPLICATION_URL: ${APPLICATION_URL:-http://localhost:3002}
+      APPLICATION_URL: ${APPLICATION_URL:-http://studium-parisiense.univ-paris1.fr}
 
       TZ: ${TZ:-Europe/Paris}
 
