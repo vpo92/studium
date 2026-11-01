@@ -19,22 +19,23 @@
 
 FROM node:8.17.0 AS build
 
-WORKDIR /app
+# Copy sources to /app/api and /app/batchs
+# The build context is the repository root (.).
+COPY api /app/api
+COPY batchs /app/batchs
 
-# Install the toolchain first so this layer is cached when only source changes.
-COPY api/package.json api/package-lock.json ./api/
-RUN cd api && npm install --no-audit --no-fund
+# Set the working directory to the API directory inside the container.
+WORKDIR /app/api
 
-# API sources + the batch sources imported by prosopographyService/draftService.
-COPY api ./api
-COPY batchs ./batchs
+# Install the toolchain. Now package.json is directly in the WORKDIR.
+COPY package.json package-lock.json ./
+RUN npm install --no-audit --no-fund
 
-# batchs/.babelrc resolves its Babel plugins from batchs/node_modules.
-# Reuse the API toolchain instead of installing a second dependency tree.
+# Link batchs node_modules. This needs to be relative to /app/api.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
 
-# webpack -> api/docker/build/server.js (+ docs/ and resources/)
-RUN cd api && npm run build
+# webpack build.
+RUN npm run build
 
 
 # ---------------------------------------------------------------------------
@@ -45,9 +46,10 @@ FROM node:8.17.0 AS runtime
 ENV NODE_ENV=production \
     APP_MODE=PROD
 
-WORKDIR /app
+WORKDIR /app/api
 
-COPY api/package.json api/package-lock.json ./
+# Copy package.json and install production dependencies.
+COPY package.json package-lock.json ./
 RUN npm install --production --no-audit --no-fund \
     && npm cache clean --force
 
