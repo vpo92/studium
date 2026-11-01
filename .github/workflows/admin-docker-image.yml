@@ -1,9 +1,6 @@
 name: Build and Push Admin Docker Image
 
 on:
-  push:
-    branches:
-      - main # Se déclenche automatiquement à chaque push sur main
   workflow_dispatch: # Permet aussi de lancer le build manuellement depuis l'interface GitHub
 
 env:
