@@ -26,7 +26,7 @@ COPY batchs /app/batchs
 
 # Install the toolchain. Now package.json is directly in the WORKDIR.
 COPY package.json package-lock.json ./
-RUN npm install --no-audit --no-fund
+RUN npm install --include=dev --no-audit --no-fund
 
 # Link batchs node_modules. This needs to be relative to /app/api.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
