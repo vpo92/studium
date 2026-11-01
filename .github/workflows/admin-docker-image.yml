@@ -1,0 +1,51 @@
+name: Build and Push Admin Docker Image
+
+on:
+  push:
+    branches:
+      - main # Se déclenche automatiquement à chaque push sur main
+  workflow_dispatch: # Permet aussi de lancer le build manuellement depuis l'interface GitHub
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: vpo92/studium/admin
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    
+    # Donne les droits au jeton GitHub Actions de pousser sur le registre de paquets
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          # Utilise le jeton natif généré automatiquement pour chaque exécution
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./admin/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
