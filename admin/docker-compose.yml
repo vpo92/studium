@@ -2,10 +2,7 @@ version: "3.8"
 
 services:
   admin:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: ${ADMIN_IMAGE:-studium/admin:latest}
+    image: ghcr.io/vpo92/studium/admin:latest
     container_name: studium_admin
     restart: unless-stopped
 
