@@ -1,61 +1,52 @@
-version: "3"
-
-networks:
-  public:
-    external:
-      name: public
-
 services:
-  studium_api:
-    image: studium/api
-    ports:
-      - 3000:3000
-    environment:
-      - NODE_ENV=production
-      - MONGODB_CONNECTION_STRING=mongodb://host.docker.internal:27017/studium
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    links:
-      - studium_web
-    restart: always
-    networks:
-     - default
-     - public
-    labels:
-      - "traefik.frontend.rule=Host:studium-api.vincentpoupet.fr"
-#  studium_web:
-#    image: studium/web
-#    environment:
-#      - API_URL=http://studium-api.vincentpoupet.fr
-#    ports:
-#      - 3001:3001
-#    networks:
-#     - default
-#     - public
-#    labels:
-#      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
+
   mongodb:
-    image: mongo:latest
+    image: mongo:4.2.22
     container_name: "mongodb"
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     volumes:
-      - ./data/db:/data/db
+      - mongodb_data:/data/db
     networks:
-     - default
+      - default
+      - npm-net
     ports:
       - 27017:27017
-  studium_admin:
-    image: studium/admin
-    environment:
-      - API_URL=http://studium_api:3000
-      - PUBLIC_API_URL=http://studium-api.vincentpoupet.fr
-      - APPLICATION_URL=http://studium.vincentpoupet.fr
+
+
+  studium_api:
+    image: ghcr.io/vpo92/studium/api:latest
     ports:
-      - 3002:80
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - APP_MODE=PROD
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/studium      
+      - MONGO_URL=mongodb://mongodb/studium
+    restart: always
     networks:
      - default
-     - public
-    labels:
-      - "traefik.frontend.rule=Host:studium.vincentpoupet.fr"
+     - npm-net
+    
+
+  studium_admin:
+    image: ghcr.io/vpo92/studium/admin:latest
+    environment:
+      - API_URL=${API_URL:-http://localhost:3000}
+      - PUBLIC_API_URL=${PUBLIC_API_URL:-http://studium-parisiense.univ-paris1.fr/api}
+      - APPLICATION_URL=${APPLICATION_URL:-http://studium-parisiense.univ-paris1.fr}
+
+    ports:
+      - 3002:3002
+
+    networks:
+     - default
+     - npm-net
+
+volumes:
+  mongodb_data: null
+
+networks:
+  npm-net:
+    external: true
