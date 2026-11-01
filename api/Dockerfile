@@ -24,9 +24,6 @@ FROM node:8.17.0 AS build
 COPY api /app/api
 COPY batchs /app/batchs
 
-# Set the working directory to the API directory inside the container.
-WORKDIR /app/api
-
 # Install the toolchain. Now package.json is directly in the WORKDIR.
 COPY package.json package-lock.json ./
 RUN npm install --no-audit --no-fund
@@ -45,8 +42,6 @@ FROM node:8.17.0 AS runtime
 
 ENV NODE_ENV=production \
     APP_MODE=PROD
-
-WORKDIR /app/api
 
 # Copy package.json and install production dependencies.
 COPY package.json package-lock.json ./

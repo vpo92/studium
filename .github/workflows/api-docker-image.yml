@@ -37,9 +37,6 @@ jobs:
             type=raw,value=latest
             type=sha
 
-      - name: Debug: List files in build context
-        run: ls -R .
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
