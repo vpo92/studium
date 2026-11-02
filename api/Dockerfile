@@ -6,7 +6,7 @@
 # The API imports source files from ../batchs at build time, so the build
 # context MUST be the repository root:
 #
-#   docker build -f api/docker/Dockerfile.api -t studium/api:latest .
+#   docker build -f api/Dockerfile -t studium/api:latest .
 #
 # or, from the api/ directory:
 #
@@ -19,28 +19,22 @@
 
 FROM node:8.17.0 AS build
 
-# Copy sources to /app/api and /app/batchs
-# The build context is the repository root (.).
-COPY api /app/api
-COPY batchs /app/batchs
+WORKDIR /app
 
-# Set the working directory to the API directory inside the container.
-WORKDIR /app/api
+# Install the toolchain first so this layer is cached when only source changes.
+COPY api/package.json api/package-lock.json ./api/
+RUN cd api && npm install --no-audit --no-fund
 
-# Install the toolchain.
-COPY package.json package-lock.json ./
-RUN ls -la
+# API sources + the batch sources imported by prosopographyService/draftService.
+COPY api ./api
+COPY batchs ./batchs
 
-RUN npm install --saveDev --no-audit --no-fund --ignore-scripts
-RUN npm install -g webpack@3.8.1
-RUN npm install -g babel-cli@6.26.0
-RUN npm install --save-dev babel-register
-
-# Link batchs node_modules. This needs to be relative to /app/api.
+# batchs/.babelrc resolves its Babel plugins from batchs/node_modules.
+# Reuse the API toolchain instead of installing a second dependency tree.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
 
-# webpack build.
-RUN npm run build
+# webpack build -> api/docker/build/server.js (+ docs/ and resources/)
+RUN cd api && npm run build
 
 
 # ---------------------------------------------------------------------------
@@ -51,8 +45,10 @@ FROM node:8.17.0 AS runtime
 ENV NODE_ENV=production \
     APP_MODE=PROD
 
+WORKDIR /app
+
 # Copy package.json and install production dependencies.
-COPY package.json package-lock.json ./
+COPY api/package.json api/package-lock.json ./
 RUN npm install --production --no-audit --no-fund \
     && npm cache clean --force
 

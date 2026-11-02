@@ -1,5 +1,5 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+import path from 'path';
+import nodeExternals from 'webpack-node-externals';
 
 const config = {
   entry: './src/server.js',
