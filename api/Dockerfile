@@ -30,7 +30,7 @@ COPY batchs /app/batchs
 # Install the toolchain. Now package.json is directly in the WORKDIR.
 COPY package.json package-lock.json ./
 RUN npm install --include=dev --no-audit --no-fund
-RUN npm install -g webpack@3.8.1 webpack-cli@3.8.1
+RUN npm install -g webpack@3.8.1
 
 # Link batchs node_modules. This needs to be relative to /app/api.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
