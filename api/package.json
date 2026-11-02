@@ -7,13 +7,12 @@
     "test": "jest --config=jest.config.json",
     "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
     "startwin": "$NODE_ENV=dev babel-watch ./src/server.js -w .",
-    "build": "webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
+    "build": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack.js -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
-    "predocker:build": "npm -q run build",
-    "docker:build": "rm -rf build && npm -q run build && docker build -t studium/api docker -f docker/Dockerfile.api",
+    "docker:build": "docker build -t studium/api:latest -f docker/Dockerfile.api ..",
     "docker:run": "docker-compose -f ./docker/docker-compose.yml up",
     "docker:push": "./docker/tag_push.sh",
-    "release": "yarn build && yarn docker:build && yarn docker:push"
+    "release": "yarn docker:build && yarn docker:push"
   },
   "author": "vpo92",
   "devDependencies": {
