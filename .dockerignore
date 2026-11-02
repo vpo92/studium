@@ -1,0 +1,24 @@
+# Keep the API build context small. The Dockerfile only needs:
+#   api/package.json, api/package-lock.json, api/ sources, batchs/ sources
+.git
+.gitignore
+.travis.yml
+
+**/node_modules
+**/npm-debug.log*
+**/yarn-error.log
+
+# Generated build output
+api/docker/build
+
+# Other applications / large data not needed to build the API
+admin
+admin3
+api3
+scripts
+flow-typed
+web
+
+*.pdf
+*.log
+*.tmp
