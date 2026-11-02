@@ -25,14 +25,11 @@ COPY api /app/api
 COPY batchs /app/batchs
 
 # Set the working directory to the API directory inside the container.
-#WORKDIR /app/api
-
-# Set the working directory to the API directory inside the container.
 WORKDIR /app/api
 
 # Install the toolchain.
 COPY package.json package-lock.json ./
-RUN npm install --include=dev --no-audit --no-fund
+RUN npm install --saveDev --no-audit --no-fund --ignore-scripts
 RUN npm install -g webpack@3.8.1
 RUN npm install -g babel-cli@6.26.0
 
