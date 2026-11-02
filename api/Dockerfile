@@ -34,6 +34,7 @@ WORKDIR /app/api
 COPY package.json package-lock.json ./
 RUN npm install --include=dev --no-audit --no-fund
 RUN npm install -g webpack@3.8.1
+RUN npm install -g babel-cli@6.26.0
 
 # Link batchs node_modules. This needs to be relative to /app/api.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
