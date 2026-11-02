@@ -29,6 +29,8 @@ WORKDIR /app/api
 
 # Install the toolchain.
 COPY package.json package-lock.json ./
+RUN ls -la
+
 RUN npm install --saveDev --no-audit --no-fund --ignore-scripts
 RUN npm install -g webpack@3.8.1
 RUN npm install -g babel-cli@6.26.0
