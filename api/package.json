@@ -7,7 +7,7 @@
     "test": "jest --config=jest.config.json",
     "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
     "startwin": "$NODE_ENV=dev babel-watch ./src/server.js -w .",
-    "build": "NODE_ENV=production node ./node_modules/webpack/bin/webpack.js -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
+    "build": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack.js -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "docker:build": "docker build -t vpo92/studium/api:latest -f docker/Dockerfile.api ..",
     "docker:run": "docker-compose -f ./docker/docker-compose.yml up",
