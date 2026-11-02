@@ -32,6 +32,7 @@ COPY package.json package-lock.json ./
 RUN npm install --saveDev --no-audit --no-fund --ignore-scripts
 RUN npm install -g webpack@3.8.1
 RUN npm install -g babel-cli@6.26.0
+RUN npm install --save-dev babel-register
 
 # Link batchs node_modules. This needs to be relative to /app/api.
 RUN ln -s /app/api/node_modules /app/batchs/node_modules
