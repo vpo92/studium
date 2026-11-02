@@ -27,7 +27,10 @@ COPY batchs /app/batchs
 # Set the working directory to the API directory inside the container.
 #WORKDIR /app/api
 
-# Install the toolchain. Now package.json is directly in the WORKDIR.
+# Set the working directory to the API directory inside the container.
+WORKDIR /app/api
+
+# Install the toolchain.
 COPY package.json package-lock.json ./
 RUN npm install --include=dev --no-audit --no-fund
 RUN npm install -g webpack@3.8.1
