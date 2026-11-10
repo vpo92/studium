@@ -1,0 +1,9 @@
+admin3/
+api3/
+.bundle
+dist/
+.git/
+package-lock.json
+*.log
+
+api/node_modules/

@@ -7,36 +7,124 @@
  */
 $GLOBALS['globalOpusList'] = [];
 
-function drawComment($comList){
-    //echo "<ul>";
-    foreach($comList as $com){
-        echo "<li class=\"app-comment\">Commentaire : ".valueToText($com)."</li>";
+/**
+ * Normalise une valeur en tableau, afin de pouvoir parcourir aussi bien
+ * une valeur unique qu'une liste de valeurs.
+ */
+function asList($value){
+    if($value === null){
+        return [];
     }
-    //echo "</ul>";
+    return is_array($value) ? $value : [$value];
 }
 
-function drawReference($refList){
-    //echo "<ul>";
-    foreach($refList as $ref){
-        echo "<li class=\"app-reference\">Référence : ".valueToText($ref)."</li>";
+/**
+ * Transforme une valeur (chaîne, objet {value/data}, liste) en texte affichable.
+ */
+function valueToText($v){
+    if(is_object($v)){
+        if(isset($v->value)){
+            return valueToText($v->value);
+        }
+        if(isset($v->data)){
+            return valueToText($v->data);
+        }
+        return '';
     }
-    //echo "</ul>";
+    if(is_array($v)){
+        $parts = [];
+        foreach($v as $part){
+            $text = valueToText($part);
+            if($text !== ''){
+                $parts[] = $text;
+            }
+        }
+        return implode(', ', $parts);
+    }
+    if($v === null){
+        return '';
+    }
+    return preg_replace("/[$&:£*%]/","",(string)$v);
+}
+
+/**
+ * Affiche les commentaires d'une valeur.
+ * Les <li> sont destinés à être placés dans la liste .app-annotations
+ * de la valeur concernée.
+ */
+function drawComment($comList){
+    foreach(asList($comList) as $com){
+        $text = valueToText($com);
+        if($text === ''){
+            continue;
+        }
+        echo "<li class=\"app-comment\">Commentaire : ".$text."</li>";
+    }
+}
+
+/**
+ * Affiche les références d'une valeur.
+ * Les <li> sont destinés à être placés dans la liste .app-annotations
+ * de la valeur concernée.
+ */
+function drawReference($refList){
+    foreach(asList($refList) as $ref){
+        $text = valueToText($ref);
+        if($text === ''){
+            continue;
+        }
+        echo "<li class=\"app-reference\">Référence : ".$text."</li>";
+    }
+}
+
+/**
+ * Affiche les commentaires et références rattachés à une valeur.
+ * Le bloc est imbriqué dans le <li class="app-value-item"> de la valeur,
+ * ce qui garantit qu'il reste visuellement et structurellement avec elle.
+ */
+function drawAnnotations($item){
+    if(!is_object($item)){
+        return;
+    }
+
+    $references = isset($item->reference) ? asList($item->reference) : [];
+    $comments = isset($item->comment) ? asList($item->comment) : [];
+
+    if(count($references) === 0 && count($comments) === 0){
+        return;
+    }
+
+    echo "<ul class=\"app-annotations\">";
+    drawReference($references);
+    drawComment($comments);
+    echo "</ul>";
 }
 
 function drawOpus($opusList){
+    $opusList = asList($opusList);
+    if(count($opusList) === 0){
+        return;
+    }
+
     $id = uniqid();
     $i = 0;
-    echo "<ul>";
+    echo "<ul class=\"app-opus-list\">";
     foreach($opusList as $opus){
+        if(!is_object($opus)){
+            continue;
+        }
 
+        $mainTitle = isset($opus->mainTitle) ? $opus->mainTitle : '';
         echo "<li>";
-        echo "<a class=\"app-opusCollapseLink\" data-toggle=\"collapse\" href=\"#collapseOpus$id$i\">".$opus->mainTitle."</a>";
+        echo "<a class=\"app-opusCollapseLink\" data-toggle=\"collapse\" href=\"#collapseOpus$id$i\">".$mainTitle."</a>";
         echo "<div id=\"collapseOpus$id$i\" class=\"collapse\">";
         echo "<ul>";
         drawProperties($opus);
         //Version
         if(isset($opus->versions)){
+            echo "<li class=\"app-versions\">";
             drawVersion($opus->versions);
+            echo "</li>";
         }
 
         echo "</ul>";
@@ -49,10 +137,19 @@ function drawOpus($opusList){
 
 
 function drawVersion($versionList){
+    $versionList = asList($versionList);
+    if(count($versionList) === 0){
+        return;
+    }
+
     $id = uniqid();
     $i = 1;
-    echo "<ul>";
+    echo "<ul class=\"app-version-list\">";
     foreach($versionList as $version){
+        if(!is_object($version)){
+            continue;
+        }
+
         echo "<li>";
         echo "<a class=\"app-versionCollapseLink\" data-toggle=\"collapse\" href=\"#collapseVersion$id$i\">Autre version ".$i."</a>";
         echo "<div id=\"collapseVersion$id$i\" class=\"collapse\">";
@@ -66,32 +163,28 @@ function drawVersion($versionList){
     echo "</ul>";
 }
 
+/**
+ * Affiche une valeur et, à l'intérieur de son propre <li>, ses opus,
+ * ses références puis ses commentaires.
+ */
 function drawValue($item){
-    echo "<li class=\"app-value\">".valueToText($item->value)."</li>";
-    /**
-    if(isset($item->meta->names)){
-        drawNames($item->meta->names);
-    }
-    if(isset($item->meta->dates)){
-        drawDates($item->meta->dates);
-    }
-    if(isset($item->meta->places)){
-        drawPlaces($item->meta->places);
-    }
-    if(isset($item->meta->titles)){
-        drawTitles($item->meta->titles);
-    }
-    if(isset($item->meta->institutions)){
-        drawInstitutions($item->meta->institutions);
-    }
-    if(isset($item->meta->manuscrit)){
-        drawMS($item->meta->manuscrit);
-    }
-     */
-}
+    echo "<li class=\"app-value-item\">";
 
-function valueToText($v){
-    return preg_replace("/[$&:£*%]/","",$v);
+    if(is_object($item)){
+        echo "<span class=\"app-value\">".valueToText(isset($item->value) ? $item->value : $item)."</span>";
+
+        //OPUS
+        if(isset($item->opus)){
+            drawOpus($item->opus);
+        }
+
+        //REFERENCE + COMMENTAIRE
+        drawAnnotations($item);
+    }else{
+        echo "<span class=\"app-value\">".valueToText($item)."</span>";
+    }
+
+    echo "</li>";
 }
 
 function dateToText($d){
@@ -164,97 +257,64 @@ function drawMS($ms){
 }
 
 function drawProperties($prop){
+    if(is_object($prop)){
+        $prop = get_object_vars($prop);
+    }
+    if(!is_array($prop)){
+        return;
+    }
+
     foreach($prop as $k => $v){
-        if($k != "mainTitle" && $k != "versions"){
-            if($k ==="manuscrits"){
-
-                if(is_object($v)){
-                    $GLOBALS['globalOpusList'][] = $v;
-                    //if(substr_compare($v->value, "MS", 0, strlen("MS")) === 0){
-                    //    $GLOBALS['globalOpusList'][] = $v->value;
-                    //}
-                }else if(is_array($v)){
-                    foreach($v as $item){
-                        $GLOBALS['globalOpusList'][] = $item;
-                        //if(substr_compare($item->value, "MS", 0, strlen("MS")) === 0){
-                        //$GLOBALS['globalOpusList'][] = $item->value;
-                        //}
-                    }
-                }
-
-
-            }
-            echo "<li><b>".MessageUtils::getMessage('fr',$k).":</b> ";
-
-            if(is_object($v)){
-
-                drawValue($v);//echo $v->value;
-
-                //OPUS
-                if(isset($v->opus)){
-                    drawOpus($v->opus);
-                }
-
-                //REFERENCE
-                if(isset($v->reference)){
-                    drawReference($v->reference);
-                }
-
-                //COMMENTAIRE
-                if(isset($v->comment)){
-                    drawComment($v->comment);
-                }
-
-                //If multiple value
-            }else if(is_array($v)){
-                echo "<ul>";
-                foreach($v as $item){
-                    //echo "<li>$item->value</li>";
-                    drawValue($item);
-
-                    //OPUS
-                    if(isset($item->opus)){
-                        drawOpus($item->opus);
-                    }
-
-                    //REFERENCE
-
-                    if(isset($item->reference)){
-                        drawReference($item->reference);
-                    }
-
-                    //COMMENTAIRE
-                    if(isset($item->comment)){
-                        drawComment($item->comment);
-                    }
-                }
-                echo "</ul>";
-            }
-            echo "</li>";
+        if($k === "mainTitle" || $k === "versions"){
+            continue;
         }
 
+        if($k === "manuscrits"){
+            foreach(asList($v) as $item){
+                if(is_object($item)){
+                    $GLOBALS['globalOpusList'][] = $item;
+                }
+            }
+        }
+
+        echo "<li class=\"app-property\">";
+        echo "<b>".MessageUtils::getMessage('fr',$k).":</b> ";
+
+        if(is_object($v)){
+            echo "<ul class=\"app-values\">";
+            drawValue($v);
+            echo "</ul>";
+        }else if(is_array($v)){
+            echo "<ul class=\"app-values\">";
+            foreach($v as $item){
+                drawValue($item);
+            }
+            echo "</ul>";
+        }else{
+            echo "<ul class=\"app-values\"><li class=\"app-value-item\"><span class=\"app-value\">".valueToText($v)."</span></li></ul>";
+        }
+
+        echo "</li>";
     }
 }
 
 function drawChapter($name,$block){
-
     echo "<h6>".MessageUtils::getMessage('fr',$name)."</h6>";
     if(is_object($block) || is_array($block)){
-        echo "<ul>";
+        echo "<ul class=\"app-properties\">";
         drawProperties($block);
         echo "</ul>";
     }
-
 }
 
 function drawFiche($fiche){
-    echo "<ul>";
+    echo "<div class=\"app-fiche\">";
     foreach($fiche as $k => $v){
         if (!in_array( $k, array("_id","reference","title","link","raw","extras"))) {
             drawChapter($k, $v);
         }
     }
-    echo "</ul>";
+    echo "</div>";
 
     $srv = $GLOBALS['msSrv'];
 
