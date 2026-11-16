@@ -12,7 +12,14 @@
     "docker:build": "docker build -t vpo92/studium/api:latest -f Dockerfile ..",
     "docker:run": "docker-compose -f ./docker/docker-compose.yml up",
     "docker:push": "./docker/tag_push.sh",
-    "release": "yarn docker:build && yarn docker:push"
+    "release": "yarn docker:build && yarn docker:push",
+    "graph:import": "node scripts/import-neo4j.js",
+    "graph:import:487": "node scripts/import-neo4j.js --file ../neo4j/487.json --verify",
+    "graph:import:50875": "node scripts/import-neo4j.js --file ../neo4j/50875.json --verify",
+    "graph:import:all": "MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING:-mongodb://studium_mongo:27017/studium} node scripts/import-neo4j.js --mongo",
+    "graph:import:all:verify": "MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING:-mongodb://studium_mongo:27017/studium} node scripts/import-neo4j.js --mongo --verify",
+    "graph:dry-run": "node scripts/import-neo4j.js --dry-run",
+    "graph:test": "jest --config=jest.config.json tests/services/graph/graph.spec.js --runInBand"
   },
   "author": "vpo92",
   "devDependencies": {
@@ -52,6 +59,7 @@
     "method-override": "^2.1.2",
     "mongodb": "^2.2.36",
     "mongoose": "^5.3.15",
+    "neo4j-driver": "^4.4.11",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "uuid": "^3.2.1",

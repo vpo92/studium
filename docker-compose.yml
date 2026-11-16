@@ -50,6 +50,33 @@ services:
      - default
      - npm-net
 
+  studium_neo4j:
+    image: neo4j:5-community
+    container_name: studium_neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474" # Interface web (Neo4j Browser)
+      - "7687:7687" # Protocole Bolt (API Node.js)
+    environment:
+      - NEO4J_AUTH=neo4j/nAqwzs!12
+      - NEO4J_server_memory_heap_initial__size=512m
+      - NEO4J_server_memory_heap_max__size=1G
+      - NEO4J_server_memory_pagecache_size=1G
+      - NEO4J_db_tx__log_rotation_retention__policy=100M size
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - default
+      - npm-net
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+
+
+
   studium_nginx:
     image: nginx:alpine
     container_name: "studium_nginx"
@@ -96,6 +123,28 @@ services:
                 proxy_set_header X-Forwarded-Proto $$scheme;
             }
 
+            location = /graph {
+                return 301 /graph/;
+            }
+
+            location /graph/ {
+                proxy_pass http://studium_neo4j:7474/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+
+                # Réécriture des chemins racine de Neo4j Browser
+                proxy_set_header Accept-Encoding "";
+                sub_filter_types text/html application/javascript;
+                sub_filter 'href="/' 'href="/graph/';
+                sub_filter 'src="/' 'src="/graph/';
+                sub_filter_once off;
+            }
+
             # Admin application
             location / {
                 proxy_pass http://studium_admin:3002;
@@ -113,6 +162,8 @@ services:
 
 volumes:
   mongodb_data: null
+  neo4j_data: null
+  neo4j_logs: null
 
 networks:
   npm-net:

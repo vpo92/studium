@@ -1,6 +1,10 @@
 *.DS_STORE*
 node_modules
 
+# Secrets locaux (identifiants Neo4j, etc.)
+.env
+api/.env
+
 batchs/node_modules
 
 web/node_modules
