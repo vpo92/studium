@@ -23,6 +23,9 @@ noeuds intermédiaires `Participate`, `Named` et `TimeInterval`.
 | `discussed*` | même projection, avec `attribution = 'rejected'` et relation `PRODUCED {attribution:'rejected'}` |
 | `bibliography` | `(:Document {doc_type:'SOURCE'})` + relation `HAS_BIBLIOGRAPHY` |
 
+La documentation détaillée de chaque label de nœud, type de relation et
+propriété est disponible dans [`graph_model.md`](graph_model.md).
+
 Règles appliquées :
 
 - nettoyage des balises FJPG (`$`, `£`, `%`, `*`, `&`, tabulations) et des
