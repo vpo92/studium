@@ -27,6 +27,7 @@ $removeRedirect = "&mode=$mode&letter=$name[0]&keyword=$keyword";
 
 
 $pageScripts .='<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>';
+$pageScripts .='<script src="https://cdn.jsdelivr.net/npm/cytoscape@3.35.0/dist/cytoscape.min.js"></script>';
 $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/view.js"></script>';
 
 
@@ -73,6 +74,9 @@ if(isAuthenticated()){?>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Format brut</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph" aria-selected="false">Graphe</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class=" tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -87,6 +91,20 @@ if(isAuthenticated()){?>
                             echo "<li class=\"list-group-item\">".htmlspecialchars($r)."</li>";
                         } ?>
                     </ul>
+                </div>
+                <div class="tab-pane fade" id="graph" role="tabpanel" aria-labelledby="graph-tab">
+                    <div class="app-graph-toolbar">
+                        <span class="app-graph-hint">Graphe Neo4j de la fiche (relations directes).</span>
+                        <span class="app-graph-actions">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="prosopography-graph-fit" disabled>Recentrer</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="prosopography-graph-reload">Recharger</button>
+                        </span>
+                    </div>
+                    <div class="alert alert-info" id="prosopography-graph-status" role="status">
+                        Le graphe sera chargé à l'ouverture de cet onglet.
+                    </div>
+                    <div id="prosopography-graph" data-reference="<?php echo htmlspecialchars($fiche->reference, ENT_QUOTES, 'UTF-8'); ?>"></div>
+                    <div class="app-graph-legend" id="prosopography-graph-legend"></div>
                 </div>
             </div>
         </div>
