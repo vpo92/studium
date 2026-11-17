@@ -4,6 +4,7 @@ import express from 'express';
 import uuid from 'uuid';
 import passport from 'passport';
 import service from '../services/prosopographyService';
+import graphService from '../services/graph';
 import auth from '../services/authService';
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
@@ -252,6 +253,30 @@ router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
 
   }catch(error){
     next(error);
+  }
+});
+
+/**
+* Get pg graph from Neo4j by Reference
+*/
+router.get('/:reference/graph', async (req, res, next) => {
+  const id = uuid.v4();
+  const reference = req.params.reference;
+  const depth = req.query.depth;
+  logger.debug(`${id}: findGraphByReference on ${reference} (depth ${depth || graphService.DEFAULT_DEPTH})`);
+  try {
+    const graph = await graphService.findGraphByReference(reference, { depth: depth });
+    logger.debug(`${id}: findGraphByReference done`);
+    if (graph) {
+      res.send(graph);
+    } else {
+      res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
+    }
+  } catch (err) {
+    logger.error(
+      `${id}: Failed to load graph from findGraphByReference on ${reference} - ${err}`
+    );
+    next(err);
   }
 });
 

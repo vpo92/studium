@@ -611,6 +611,7 @@ flowchart LR
 | **Prosopography** | `GET` | `/prosopography` | Liste toutes les fiches |
 | | `POST` | `/prosopography` | Crée une fiche |
 | | `GET` | `/prosopography/:reference` | Récupère une fiche |
+| | `GET` | `/prosopography/:reference/graph` | Graphe Neo4j de la personne (profondeur 1, `?depth=` optionnel) |
 | | `DELETE` | `/prosopography/:reference` | Supprime une fiche |
 | | `GET` | `/prosopography/search/:text` | Recherche textuelle |
 | | `POST` | `/prosopography/search/advanced` | Recherche avancée |
