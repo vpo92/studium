@@ -49,7 +49,9 @@ try{
     $requestURI = $_SERVER['REQUEST_URI'];
 
     //Si mode dev
-    $route = str_replace("/admin","",$requestURI);
+    //$route = str_replace("/admin","",$requestURI);
+    $route = str_replace("/proxy/8000","",$requestURI);
+    
 
     $loggerService->log("requestURI : ".$requestURI);
     $loggerService->log("route : ".$route);
