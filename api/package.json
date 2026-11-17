@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --config=jest.config.json",
-    "start": "NODE_ENV=dev babel-watch ./src/server.js -w .",
+    "start": "NODE_ENV=dev babel-watch ./src/server.js -w src",
     "startwin": "$NODE_ENV=dev babel-watch ./src/server.js -w .",
     "build": "NODE_ENV=production webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",

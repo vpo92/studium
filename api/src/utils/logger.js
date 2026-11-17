@@ -14,7 +14,7 @@ const logger = createLogger({
       prettyPrint: true,
       showLevel: 'debug',
       timestamp:true,
-      db : 'mongodb://localhost:27017/studium',
+      db : process.env.MONGODB_CONNECTION_STRING || (config.mongooseDB ||'mongodb://localhost:27017/studium'),
       collection : 'logs',
       level : 'debug',
       capped : true

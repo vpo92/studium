@@ -110,7 +110,21 @@ function getConfig(env) {
   };
 }
 
+/**
+ * Compatibilité Node 8 : le driver neo4j 4.4 utilise `EventEmitter#off`,
+ * ajouté dans Node 10. Sur Node 8, la connexion Bolt échoue alors sur un
+ * `TypeError` silencieux et la promesse de session ne se résout jamais.
+ * L'image API (`node:8.17.0`) est concernée, tout comme `npm start` en local.
+ */
+function ensureEventEmitterOff() {
+  const { EventEmitter } = require('events');
+  if (typeof EventEmitter.prototype.off !== 'function') {
+    EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+  }
+}
+
 function createDriver(config) {
+  ensureEventEmitterOff();
   const neo4j = require('neo4j-driver');
   return neo4j.driver(
     config.uri,
