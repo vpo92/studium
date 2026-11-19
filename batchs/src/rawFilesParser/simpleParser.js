@@ -19,17 +19,18 @@ function detectTypeOfLine(line){
   if(line.match(/^<[a-zA-Z0-9\.]+>[ \t]+\//g)){
     return 'COMMENTAIRE';
   }else
-  if(line.match(/^<<<[a-zA-Z0-9\.]+>>>/g)){
-    return 'VERSION_DATA';
-  }else if(line.match(/^<<k[a-zA-Z0-9\.]+a[a-zA-Z0-9\.]+>>/g)){
-    return 'NEW_VERSION';
-  }else if(line.match(/^<<[a-zA-Z0-9\.]+>>/g)){
-    return 'OPUS_DATA';
-  }else if(line.match(/^<1a>/g)){
-    return 'NEW_PROSO';
-  }else if(line.match(/^<r>/g)){
+  if(line.match(/^<<?r>+/g)){
     return 'REFERENCE';
-  }else if(line.match(/^<[a-zA-Z0-9\.]+a[a-zA-Z0-9\.]+>/g)){
+  }else
+  if(line.match(/^<<<[a-zA-Z0-9\.]+>+/g)){
+    return 'VERSION_DATA';
+  }else if(line.match(/^<<k[a-zA-Z0-9\.]+>+/g)){
+    return 'NEW_VERSION';
+  }else if(line.match(/^<<[a-zA-Z0-9\.]+>+/g)){
+    return 'OPUS_DATA';
+  }else if(line.match(/^<1a>+/g)){
+    return 'NEW_PROSO';
+  }else if(line.match(/^<[a-zA-Z0-9\.]+a[a-zA-Z0-9\.]+>+/g)){
     return 'NEW_OPUS';
   }else if(line.match(/^</g)){
     return 'DATA';
@@ -43,7 +44,7 @@ function detectTypeOfLine(line){
 }
 
 function getLineInformations(line){
-  const regex = /^<<?<?([a-zA-Z0-9\.]*)>>?>?(.*)/g;
+  const regex = /^<<?<?([a-zA-Z0-9\.]*)>+(.*)/g;
   let t=null;
   if((t =regex.exec(line))){
     return {
@@ -142,6 +143,14 @@ function getMeta(data){
 
 }
 
+function appendValues(target,name,values){
+  if(!target[name]){
+    target[name] = [];
+  }
+  target[name] = target[name].concat(values);
+  return target;
+}
+
 function buildDataLine(ctx,line){
   let info = getLineInformations(line);
 
@@ -156,7 +165,7 @@ function buildDataLine(ctx,line){
     //Si nouvelle data avec data existante
     //On enregistre la data et on en crée une nouvelle
     if(ctx.currentData){
-      ctx.currentRecord[ctx.currentData.name] = ctx.currentData.data;
+      ctx.currentRecord = appendValues(ctx.currentRecord,ctx.currentData.name,ctx.currentData.data);
     }
     //Traitement nouvelle donnée
     ctx.currentData = {
@@ -185,7 +194,7 @@ function buildOpusLine(ctx,line){
     //Si nouvelle data avec data existante
     //On enregistre la data et on en crée une nouvelle
     if(ctx.currentOpusData){
-      ctx.currentOpus[ctx.currentOpusData.name] = ctx.currentOpusData.data;
+      ctx.currentOpus = appendValues(ctx.currentOpus,ctx.currentOpusData.name,ctx.currentOpusData.data);
     }
     //Traitement nouvelle donnée
     ctx.currentOpusData = {
@@ -213,7 +222,7 @@ function buildVersionLine(ctx,line){
     //Si nouvelle data avec data existante
     //On enregistre la data et on en crée une nouvelle
     if(ctx.currentVersionData){
-      ctx.currentVersion[ctx.currentVersionData.name] = ctx.currentVersionData.data;
+      ctx.currentVersion = appendValues(ctx.currentVersion,ctx.currentVersionData.name,ctx.currentVersionData.data);
     }
     //Traitement nouvelle donnée
     ctx.currentVersionData = {
@@ -329,7 +338,7 @@ function endProso(ctx,saveRecord){
   //FIXME
   if(ctx.currentRecord){
     if(ctx.currentData){
-      ctx.currentRecord[ctx.currentData.name] = ctx.currentData.data;
+      ctx.currentRecord = appendValues(ctx.currentRecord,ctx.currentData.name,ctx.currentData.data);
     }
     try{
       //console.log(ctx.currentRecord);
@@ -360,7 +369,7 @@ function endOpus(ctx){
   if(ctx.currentOpus){
     //Ajoute l'opus à la data en cours
     if(ctx.currentOpusData){
-      ctx.currentOpus[ctx.currentOpusData.name] = ctx.currentOpusData.data;
+      ctx.currentOpus = appendValues(ctx.currentOpus,ctx.currentOpusData.name,ctx.currentOpusData.data);
     }
     ctx.currentOpus = finalyzeOpus(ctx.currentOpus);
     if(ctx.currentData && ctx.currentData.data){
@@ -371,6 +380,9 @@ function endOpus(ctx){
     }
   }
   ctx.currentOpus = null;
+  //La donnée d'opus ne doit pas rester active une fois l'opus terminé,
+  //sinon les références suivantes viendraient s'y rattacher à tort.
+  ctx.currentOpusData = null;
   return ctx;
 }
 
@@ -378,13 +390,16 @@ function endVersion(ctx){
   if(ctx.currentVersion){
     //Ajoute l'opus à la data en cours
     if(ctx.currentVersionData){
-      ctx.currentVersion[ctx.currentVersionData.name] = ctx.currentVersionData.data;
+      ctx.currentVersion = appendValues(ctx.currentVersion,ctx.currentVersionData.name,ctx.currentVersionData.data);
     }
     if(ctx.currentOpus && ctx.currentOpus.versions){
       ctx.currentOpus.versions.push(ctx.currentVersion);
     }
   }
   ctx.currentVersion = null;
+  //Idem pour les données de version : sans cette remise à zéro,
+  //les références suivantes sont ajoutées à la dernière donnée de la version.
+  ctx.currentVersionData = null;
   return ctx;
 }
 

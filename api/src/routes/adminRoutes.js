@@ -129,10 +129,32 @@ router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next
     const prosopography = await service.findByReference(reference);
     if(prosopography){
       const raw = prosopography.raw.join("\n");
-      let p = await service.convertFromText(raw);
-      p._id = prosopography._id;
-      await service.update(p);
-      res.send(p);
+      let parsed = await service.convertFromText(raw);
+      parsed._id = prosopography._id;
+
+      // Une fiche peut avoir un champ `raw` incomplet (import partiel,
+      // ancienne sauvegarde...). Dans ce cas, le parsing ne contient pas
+      // toutes les sections déjà présentes en base : on les conserve pour
+      // ne pas perdre de données lors de la réindexation.
+      const parsedKeys = Object.keys(parsed);
+      const missingSections = Object.keys(prosopography).filter((key) => {
+        return key !== '_id' && parsedKeys.indexOf(key) === -1;
+      });
+      const merged = Object.assign({}, prosopography, parsed, { _id: prosopography._id });
+
+      // Ne jamais remplacer un raw complet par un raw plus court.
+      const currentRaw = Array.isArray(prosopography.raw) ? prosopography.raw : [];
+      const parsedRaw = Array.isArray(parsed.raw) ? parsed.raw : [];
+      if(currentRaw.length > parsedRaw.length){
+        merged.raw = prosopography.raw;
+      }
+
+      if(missingSections.length > 0){
+        logger.warn(`${id}: reIndexFromRaw ${reference} - sections conservées car absentes du raw : ${missingSections.join(', ')}`);
+      }
+
+      await service.update(merged);
+      res.send(merged);
     }else{
       res.status(404).json({'message' : `prosopography not found for reference ${reference}`});
     }

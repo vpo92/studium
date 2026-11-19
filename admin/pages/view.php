@@ -3,8 +3,8 @@ $GLOBALS['msSrv'] = $manuscritService;
 include "view/view_properties.php"
 ?>
 
-<h3><?php if(isset($action) && $action == "view-draft"){ echo "BROUILLON - "; }?>Fiche <?php echo $fiche->reference ?> - <?php echo $fiche->title ?></h3>
-<h6>permalien : <a href="<?php echo getApplicationUrl().$fiche->link ?>"><?php echo getApplicationUrl().$fiche->link ?></a></h6>
+<h3><?php if(isset($action) && $action == "view-draft"){ echo "BROUILLON - "; }?>Fiche <?php echo htmlspecialchars($fiche->reference, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?> - <?php echo htmlspecialchars($fiche->title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h3>
+<h6>permalien : <a href="<?php echo htmlspecialchars(getApplicationUrl().$fiche->link, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>"><?php echo htmlspecialchars(getApplicationUrl().$fiche->link, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></a></h6>
 
 <?php
 
@@ -54,6 +54,21 @@ if(isAuthenticated()){?>
     Modifier la fiche
 </a>
 <?php if(isAdmin()){?>
+<?php if($action != "view-draft"){?>
+<form method="post" action="<?php echo getApplicationUrl()?>" class="d-inline">
+    <input type="hidden" name="action" value="re-index">
+    <input type="hidden" name="reference" value="<?php echo htmlspecialchars($fiche->reference, ENT_QUOTES, 'UTF-8'); ?>">
+    <?php if(isset($mode)){ ?>
+    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
+    <?php } ?>
+    <?php if(isset($keyword)){ ?>
+    <input type="hidden" name="keyword" value="<?php echo htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8'); ?>">
+    <?php } ?>
+    <button type="submit" class="btn btn-warning" onclick="return confirm('Réindexer la fiche <?php echo htmlspecialchars($fiche->reference, ENT_QUOTES, 'UTF-8'); ?> à partir du format brut ?');">
+        Re-index
+    </button>
+</form>
+<?php } ?>
 <a href="<?php echo getApplicationUrl()?>?action=prepare-delete&reference=<?php echo $fiche->reference ?>&redirect=<?php echo $removeRedirect?>" class="btn btn-danger">
     Supprimer la fiche
 </a>

@@ -5,6 +5,9 @@ npm start -- import-file --file="/Users/vincent/projects/studium/batchs/tests/da
 //RE indexation de la base
 npm start -- re-index --username="vincent.poupet@gmail.com" --password="pass" --host="http://localhost:3000"
 
+//RE indexation d'une seule fiche (ici la fiche 60565)
+npm run re-index -- --reference="60565" --username="vincent.poupet@gmail.com" --password="pass" --host="http://localhost:3000"
+
 
 //Import des manuscrits depuis un fichier
 npm start -- import-manuscrit --username="vincent.poupet@gmail.com" --password="pass" --host="http://studium-parisiense.univ-paris1.fr/api" --file="./data/geo_manus.json"

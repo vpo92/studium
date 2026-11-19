@@ -2,8 +2,8 @@
 
 import chalk from 'chalk';
 import fs from 'fs';;
-import { auth, backupAll,saveRecord,createIndex,getAllIds, reIndex, reIndexManus, indexDB } from './rawFilesParser/RestService';
-import { createAdmin } from './rawFilesParser/MongoService';
+import { auth, backupAll,saveRecord,createIndex,getAllIds, reIndex, reIndexManus, indexDB } from './rawFilesParser/restService';
+import { createAdmin } from './rawFilesParser/mongoService';
 import { processFile } from './rawFilesParser/simpleParser';
 import { importJsonFile } from './fileImporter/fileImport';
 import { createManuscrit, importManuscritList } from './rawFilesParser/restService';
@@ -96,6 +96,17 @@ export function runReIndex(api,tk) {
   });
 }
 
+export function runReIndexById(api,id,tk) {
+  reIndex(api,tk,id)
+  .then((res) => {
+    //console.log(res);
+  })
+  .catch( (error) => {
+    console.log("ERROR");
+    console.log(error);
+  });
+}
+
 export function runReIndexManus(api,tk) {
   getAllIds(api,tk)
   .then((ids) => {
@@ -168,7 +179,7 @@ ${chalk.green('studium [command] <options>')}
     ${chalk.blue('auth')} ............... auth to API and get token
     ${chalk.blue('backup')} ............. backup prosopography data
     ${chalk.blue('import-file')}......... import raw TXT file in JPG format
-    ${chalk.blue('re-index')}............ re-index all prosopography from raw
+    ${chalk.blue('re-index')}............ re-index all prosopography from raw, or one prosopography --reference=[reference]
     ${chalk.blue('re-index-manus')}...... re-index all manus or manus for prosopography --reference=[reference] 
     ${chalk.blue('update-db-index')}..... update mongodb text index for search
     ${chalk.blue('import-manuscrit')}.... import manuscrit from file

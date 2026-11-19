@@ -19,7 +19,21 @@ function asList($value){
 }
 
 /**
+ * Supprime les marqueurs de structure du format source qui peuvent subsister
+ * dans certaines valeurs (par exemple <<l>>, <<c>>, <<<b>>>).
+ * Sans cela, le navigateur les interprète comme des balises HTML et la fin
+ * de la fiche n'est plus rendue correctement.
+ */
+function stripSourceMarkup($text){
+    $text = preg_replace('/<<<[a-zA-Z0-9\.]+>>>/', ' ', $text);
+    $text = preg_replace('/<<[a-zA-Z0-9\.]+>>/', ' ', $text);
+    $text = preg_replace('/<[a-zA-Z0-9\.]+>/', ' ', $text);
+    return $text;
+}
+
+/**
  * Transforme une valeur (chaîne, objet {value/data}, liste) en texte affichable.
+ * Le texte est nettoyé puis échappé pour être injecté sans risque dans le HTML.
  */
 function valueToText($v){
     if(is_object($v)){
@@ -44,7 +58,20 @@ function valueToText($v){
     if($v === null){
         return '';
     }
-    return preg_replace("/[$&:£*%]/","",(string)$v);
+
+    // str_replace est volontairement utilisé à la place de preg_replace :
+    // sans le modificateur /u, une classe de caractères coupait les octets
+    // UTF-8 (les « ° » devenaient « � » par exemple).
+    // Le « : » n'est pas retiré : il fait partie des références et des URL.
+    $text = str_replace(['$', '&', '£', '*', '%'], ' ', (string)$v);
+    $text = stripSourceMarkup($text);
+    $text = trim(preg_replace('/\s+/', ' ', $text));
+
+    if($text === ''){
+        return '';
+    }
+
+    return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
 /**
@@ -95,8 +122,8 @@ function drawAnnotations($item){
     }
 
     echo "<ul class=\"app-annotations\">";
-    drawReference($references);
     drawComment($comments);
+    drawReference($references);
     echo "</ul>";
 }
 
@@ -114,7 +141,7 @@ function drawOpus($opusList){
             continue;
         }
 
-        $mainTitle = isset($opus->mainTitle) ? $opus->mainTitle : '';
+        $mainTitle = isset($opus->mainTitle) ? valueToText($opus->mainTitle) : '';
         echo "<li>";
         echo "<a class=\"app-opusCollapseLink\" data-toggle=\"collapse\" href=\"#collapseOpus$id$i\">".$mainTitle."</a>";
         echo "<div id=\"collapseOpus$id$i\" class=\"collapse\">";
@@ -210,48 +237,48 @@ function dateToText($d){
 function drawDates($dates){
     foreach($dates as $d){
         echo "<li style=\"list-style:none\"><i class=\"fas fa-calendar\"></i> ";
-        echo dateToText($d);
+        echo valueToText(dateToText($d));
         echo "</li>";
     }
 }
 
 function drawPlaces($places){
     foreach($places as $p){
-        echo "<li style=\"list-style:none\"><i class=\"fas fa-map-marker-alt\"></i> $p</li>";
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-map-marker-alt\"></i> ".valueToText($p)."</li>";
     }
 }
 
 function drawNames($names){
     foreach($names as $n){
-        echo "<li style=\"list-style:none\"><i class=\"fas fa-tag\"></i> $n</li>";
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-tag\"></i> ".valueToText($n)."</li>";
     }
 }
 
 function drawTitles($titles){
     foreach($titles as $t){
-        echo "<li style=\"list-style:none\"><i class=\"fas fa-heading\"></i> $t</li>";
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-heading\"></i> ".valueToText($t)."</li>";
     }
 }
 
 function drawInstitutions($institutions){
     foreach($institutions as $i){
-        echo "<li style=\"list-style:none\"><i class=\"fas fa-university\"></i> $i</li>";
+        echo "<li style=\"list-style:none\"><i class=\"fas fa-university\"></i> ".valueToText($i)."</li>";
     }
 }
 
 function drawMS($ms){
     echo "<li style=\"list-style:none\">";
     if(isset($ms->place)){
-        echo "<i class=\"fas fa-map-marker-alt\"></i> ".$ms->place."&nbsp;";
+        echo "<i class=\"fas fa-map-marker-alt\"></i> ".valueToText($ms->place)."&nbsp;";
     }
     if(isset($ms->placeType)){
-        echo "<i class=\"fas fa-university\"></i> ".$ms->placeType."&nbsp;";
+        echo "<i class=\"fas fa-university\"></i> ".valueToText($ms->placeType)."&nbsp;";
     }
     if(isset($ms->cote)){
-        echo "<i class=\"fas fa-book\"></i> ".$ms->cote."&nbsp;";
+        echo "<i class=\"fas fa-book\"></i> ".valueToText($ms->cote)."&nbsp;";
     }
     if(isset($ms->page)){
-        echo "<i class=\"fas fa-sticky-note\"></i> ".$ms->page."&nbsp;";
+        echo "<i class=\"fas fa-sticky-note\"></i> ".valueToText($ms->page)."&nbsp;";
     }
     echo "</li>";
 }
@@ -278,7 +305,7 @@ function drawProperties($prop){
         }
 
         echo "<li class=\"app-property\">";
-        echo "<b>".MessageUtils::getMessage('fr',$k).":</b> ";
+        echo "<b>".htmlspecialchars(MessageUtils::getMessage('fr',$k), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8').":</b> ";
 
         if(is_object($v)){
             echo "<ul class=\"app-values\">";
@@ -299,7 +326,7 @@ function drawProperties($prop){
 }
 
 function drawChapter($name,$block){
-    echo "<h6>".MessageUtils::getMessage('fr',$name)."</h6>";
+    echo "<h6>".htmlspecialchars(MessageUtils::getMessage('fr',$name), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')."</h6>";
     if(is_object($block) || is_array($block)){
         echo "<ul class=\"app-properties\">";
         drawProperties($block);

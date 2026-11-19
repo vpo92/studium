@@ -144,6 +144,34 @@ try{
             }
 
             break;
+        case "re-index" :
+            $reference = getFieldFromForm("reference");
+            $mode = getFieldFromForm("mode");
+            $keyword = getFieldFromForm("keyword");
+            if(!isAdmin()){
+                $error_msg = "Vous n'avez pas l'autorisation de réindexer cette fiche";
+            }elseif(!$reference){
+                $error_msg = "Référence de fiche manquante";
+            }else{
+                $result = $ficheService->reIndexFromRaw($reference);
+                if(is_object($result) && isset($result->reference) && $result->reference == $reference){
+                    $info_msg = "Réindexation de la fiche $reference terminée";
+                }else{
+                    $loggerService->log("re-index error : ".json_encode($result));
+                    $error_msg = "Erreur lors de la réindexation de la fiche $reference";
+                }
+            }
+
+            if($reference){
+                $fiche = $ficheService->searchByReference($reference);
+            }
+            if(isset($fiche) && isset($fiche->reference)){
+                $page = "view";
+            }else{
+                $page = "nontrouve";
+            }
+            break;
+
         case "prepare-edit" :
             $reference = getFieldFromForm("reference");
             $fiche = $ficheService->getDraftByReference($reference);

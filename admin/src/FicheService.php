@@ -69,6 +69,12 @@ class FicheService
         return $response;
     }
 
+    public function reIndexFromRaw($reference)
+    {
+        $res = postJSON("/admin/re-index-from-raw/".rawurlencode($reference), json_encode(new stdClass()), getSessionToken());
+        return json_decode($res);
+    }
+
     public function removeFicheByReference($reference)
     {
         if($reference){

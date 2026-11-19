@@ -9,7 +9,7 @@
     "test": "jest",
     "start": "babel-node index.js",
     "start-web": "babel-node src/rawFilesParser/run-web.js",
-    "re-index": "babel-node src/rawFilesParser/run-re-index.js",
+    "re-index": "babel-node index.js re-index",
     "backup": "babel-node src/rawFilesParser/run-backup.js",
     "import-json": "babel-node src/jsonImporter/run.js",
     "extractor:places": "babel-node src/placesextractor/runPlacesExtractor.js",
