@@ -1157,6 +1157,35 @@
         }
       }
     },
+    "/admin/jobs/backups": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "List backup archives",
+        "description": "List the backup archives available in BACKUP_DIR, newest first; input for the \"restore\" job. Admin only.",
+        "operationId": "listBackupArchives",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "responses": {
+          "200": {
+            "description": "Available archives",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "size": { "type": "integer" },
+                      "modifiedAt": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/jobs/types": {
       "get": {
         "tags": ["Admin"],
@@ -1177,7 +1206,8 @@
                       "type": { "type": "string" },
                       "label": { "type": "string" },
                       "description": { "type": "string" },
-                      "allowConcurrent": { "type": "boolean" }
+                      "allowConcurrent": { "type": "boolean" },
+                      "unitLabel": { "type": "string" }
                     }
                   }
                 }

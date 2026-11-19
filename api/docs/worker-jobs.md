@@ -6,7 +6,7 @@
 > - Worker : [`api/src/worker.js`](../src/worker.js)
 > - Persistance / machine à états : [`api/src/services/jobService.js`](../src/services/jobService.js)
 > - Routes REST : [`api/src/routes/jobRoutes.js`](../src/routes/jobRoutes.js)
-> - Registre des traitements : [`api/src/services/jobs/index.js`](../src/services/jobs/index.js) (exemples : [`reindexJob.js`](../src/services/jobs/reindexJob.js), [`backupJob.js`](../src/services/jobs/backupJob.js))
+> - Registre des traitements : [`api/src/services/jobs/index.js`](../src/services/jobs/index.js) (exemples : [`reindexJob.js`](../src/services/jobs/reindexJob.js), [`backupJob.js`](../src/services/jobs/backupJob.js), [`restoreJob.js`](../src/services/jobs/restoreJob.js) ; primitives partagées : [`backupLib.js`](../src/services/jobs/backupLib.js))
 > - Front admin : [`admin/pages/administration.php`](../../admin/pages/administration.php) + [`admin/resources/js/administration.js`](../../admin/resources/js/administration.js)
 
 ---
@@ -331,6 +331,15 @@ flowchart TD
 - Des échecs ⇒ **aucune archive** et job `failed` : « Relancer les erreurs » relance uniquement les collections en échec (via `params.references`) et produit une archive `…-partiel.tar`.
 - Ignorées par défaut : `system.*`, `logs`, `jobs`, `job_failures` (param `params.excludedCollections` pour en ajouter).
 - L'ancienne route HTTP `POST /admin/backup` (utilisée par le CLI) empile désormais ce job au lieu d'exécuter le dump dans le processus API.
+
+### Exemple : `restoreJob.js` — restauration depuis une archive
+
+- ⚠ **Destructif** : remplace toutes les données de la base courante par le contenu d'une archive produite par `backup` ; le job refuse de démarrer sans `params.confirm = 'RESTAURER'`.
+- Trois phases : préparation **non destructive** (dump de sécurité de l'état courant → `studium-pre-restore-<horodatage>.tar`, puis extraction de l'archive), restauration par collection (drop → réinsertion des documents BSON par lots, types conservés grâce à une désérialisation stricte → recréation des index décrits par les `.metadata.json.gz`), puis suppression des collections vivantes absentes du dump.
+- `jobs`, `job_failures`, `logs` et `system.*` ne sont **jamais supprimés** : la restauration ne détruit pas la file qui la pilote.
+- Idempotent et reprenable (curseur `r:<collection>`) ; en revanche une annulation en phase destructive laisse un état mixte — c'est le rôle de la sauvegarde de sécurité de permettre le retour en arrière.
+- La liste des archives exploitables est exposée par `GET /admin/jobs/backups` et présentée dans la carte « Restauration de la base » de l'IHM admin (sélection de l'archive, option de pre-backup, confirmation par saisie du mot `RESTAURER`).
+- Primitives de dump partagées avec `backupJob` dans [`services/jobs/backupLib.js`](../src/services/jobs/backupLib.js).
 
 ---
 

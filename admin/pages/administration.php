@@ -78,6 +78,40 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
     </div>
 </div>
 
+<div class="card mb-4" id="restore-card" hidden>
+    <div class="card-body">
+        <h4 class="card-title text-danger">Restauration de la base</h4>
+        <div class="alert alert-danger py-2">
+            <strong>Opération destructrice :</strong> toutes les données
+            actuelles seront supprimées et remplacées par le contenu de
+            l'archive choisie. Une sauvegarde de sécurité de l'état courant
+            est produite avant toute écriture (fortement recommandé de la
+            laisser activée).
+        </div>
+        <div class="form-group">
+            <label for="restore-archive">Archive de sauvegarde</label>
+            <select id="restore-archive" class="form-control">
+                <option value="">Chargement…</option>
+            </select>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="restore-prebackup" checked>
+            <label class="form-check-label" for="restore-prebackup">
+                Sauvegarde de sécurité avant restauration
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="restore-confirm">Tapez <strong>RESTAURER</strong> pour confirmer</label>
+            <input type="text" class="form-control" id="restore-confirm"
+                   autocomplete="off" placeholder="RESTAURER">
+        </div>
+        <button id="restore-start" type="button" class="btn btn-danger" disabled>
+            Restaurer la base
+        </button>
+        <div id="restore-status" class="mt-3" role="status" aria-live="polite"></div>
+    </div>
+</div>
+
 <div class="card mb-4">
     <div class="card-body">
         <h4 class="card-title">Index de recherche</h4>

@@ -51,6 +51,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.5.2",
+    "bson": "^1.0.9",
     "composable-middleware": "^0.3.0",
     "cors": "~2.7.1",
     "errorhandler": "^1.1.1",

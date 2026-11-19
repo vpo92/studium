@@ -335,11 +335,15 @@
                 });
                 updateTypeDescription();
 
-                // La carte « Sauvegarde de la base » n'a de sens que si le
-                // traitement existe côté API.
+                // Les cartes « Sauvegarde » et « Restauration » n'ont de sens
+                // que si le traitement existe côté API.
                 var backupCard = document.getElementById('backup-card');
                 if (backupCard) {
                     backupCard.hidden = !typesByType.backup;
+                }
+                var restoreCard = document.getElementById('restore-card');
+                if (restoreCard) {
+                    restoreCard.hidden = !typesByType.restore;
                 }
             } catch (error) {
                 typeSelect.innerHTML = '<option value="">Erreur de chargement</option>';
@@ -416,13 +420,13 @@
          * Réutilisable par d'autres boutons de la page (sauvegarde…).
          * Résout { job, reused } ; rejette l'erreur (déjà affichée via setStatus).
          */
-        async function launch(type, setStatus) {
+        async function launch(type, setStatus, params) {
             setStatus('Démarrage…', 'info');
             startButton.disabled = true;
             try {
                 var job = await apiFetch('/admin/jobs', {
                     method: 'POST',
-                    body: JSON.stringify({ type: type, params: {} })
+                    body: JSON.stringify({ type: type, params: params || {} })
                 });
                 setStatus('Traitement démarré en arrière-plan.', 'success');
                 attachToJob(job);
@@ -578,7 +582,123 @@
         });
     }
 
+    /* ------------------------------------------------------------------ *
+     *  Restauration de la base (job « restore » — opération destructive)
+     * ------------------------------------------------------------------ */
+
+    function setupRestore() {
+        var card = document.getElementById('restore-card');
+        var archiveSelect = document.getElementById('restore-archive');
+        var preBackupCheck = document.getElementById('restore-prebackup');
+        var confirmInput = document.getElementById('restore-confirm');
+        var button = document.getElementById('restore-start');
+        var status = document.getElementById('restore-status');
+
+        if (!card || !archiveSelect || !confirmInput || !button || !status) {
+            return;
+        }
+
+        function setStatus(message, type) {
+            status.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
+            status.textContent = message || '';
+        }
+
+        function formatSize(bytes) {
+            if (bytes === null || bytes === undefined) {
+                return '';
+            }
+            var units = ['o', 'Ko', 'Mo', 'Go', 'To'];
+            var value = bytes;
+            var unit = 0;
+            while (value >= 1024 && unit < units.length - 1) {
+                value /= 1024;
+                unit += 1;
+            }
+            return (unit === 0 ? value : Math.round(value * 10) / 10) + ' ' + units[unit];
+        }
+
+        function updateButtonState() {
+            var ready = confirmInput.value.trim() === 'RESTAURER'
+                && archiveSelect.value !== '';
+            button.disabled = !ready;
+        }
+
+        async function loadArchives() {
+            try {
+                var archives = await apiFetch('/admin/jobs/backups');
+                archiveSelect.innerHTML = '';
+
+                if (!archives || archives.length === 0) {
+                    var empty = document.createElement('option');
+                    empty.value = '';
+                    empty.textContent = 'Aucune archive disponible';
+                    archiveSelect.appendChild(empty);
+                    return;
+                }
+
+                archives.forEach(function (archive) {
+                    var option = document.createElement('option');
+                    option.value = archive.name;
+                    option.textContent = archive.name +
+                        ' — ' + formatSize(archive.size) +
+                        ' (' + formatDate(archive.modifiedAt) + ')';
+                    archiveSelect.appendChild(option);
+                });
+            } catch (error) {
+                archiveSelect.innerHTML = '<option value="">Erreur de chargement</option>';
+                if (error.status !== 401 && error.status !== 403) {
+                    setStatus('Archives indisponibles : ' + error.message, 'warning');
+                }
+            } finally {
+                updateButtonState();
+            }
+        }
+
+        confirmInput.addEventListener('input', updateButtonState);
+        archiveSelect.addEventListener('change', updateButtonState);
+
+        button.addEventListener('click', async function () {
+            var archive = archiveSelect.value;
+            if (!archive || confirmInput.value.trim() !== 'RESTAURER') {
+                return;
+            }
+            if (!confirm('Toutes les données actuelles seront remplacées par le contenu de « '
+                + archive + ' ». Confirmer la restauration ?')) {
+                return;
+            }
+            if (typeof launchJobType !== 'function') {
+                setStatus('Panneau des traitements longs indisponible.', 'danger');
+                return;
+            }
+
+            button.disabled = true;
+            try {
+                var result = await launchJobType('restore', setStatus, {
+                    archive: archive,
+                    preBackup: preBackupCheck ? preBackupCheck.checked : true,
+                    confirm: 'RESTAURER'
+                });
+                if (!result.reused) {
+                    setStatus(
+                        'Restauration lancée : suivez sa progression dans le panneau '
+                        + '« Traitements longs » ci-dessus. Ne redémarrez pas le worker '
+                        + 'pendant la phase de restauration.',
+                        'warning'
+                    );
+                }
+                confirmInput.value = '';
+            } catch (error) {
+                // Déjà affiché par launch().
+            } finally {
+                updateButtonState();
+            }
+        });
+
+        loadArchives();
+    }
+
     setupIndexDb();
     setupJobs();
     setupBackup();
+    setupRestore();
 })();

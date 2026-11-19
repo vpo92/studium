@@ -7,11 +7,14 @@
  * par le worker (`src/worker.js`).
  */
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
 import uuid from 'uuid';
 
 import auth from '../services/authService';
 import jobService from '../services/jobService';
 import jobs from '../services/jobs';
+import * as backupLib from '../services/jobs/backupLib';
 import logger from '../utils/logger';
 
 const router = express.Router();
@@ -25,6 +28,41 @@ auth.isAdmin.forEach((middleware) => router.use(middleware));
  */
 router.get('/types', (req, res) => {
   res.send(jobs.list());
+});
+
+/**
+ * Liste les archives de sauvegarde disponibles dans BACKUP_DIR (productibles
+ * par le job "restore"). Lecture seule du répertoire du serveur.
+ */
+router.get('/backups', async (req, res, next) => {
+  try {
+    const dir = backupLib.getBackupDir();
+    let files = [];
+    try {
+      files = fs.readdirSync(dir);
+    } catch (error) {
+      files = []; // répertoire pas encore créé : aucune archive
+    }
+    const archives = files
+      .filter((name) => backupLib.ARCHIVE_NAME_RE.test(name))
+      .map((name) => {
+        let stat = null;
+        try {
+          stat = fs.statSync(path.join(dir, name));
+        } catch (error) {
+          return null;
+        }
+        if (!stat.isFile()) {
+          return null;
+        }
+        return { name: name, size: stat.size, modifiedAt: stat.mtime };
+      })
+      .filter((archive) => archive !== null)
+      .sort((a, b) => new Date(b.modifiedAt) - new Date(a.modifiedAt));
+    res.send(archives);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**

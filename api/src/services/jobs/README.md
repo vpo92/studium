@@ -98,6 +98,7 @@ Les handlers ne doivent pas écrire directement dans la collection `jobs` :
 |---|---|---|
 | `reindex` | Réindexation des fiches (RAW → JSON) | Re-parse le `raw` de chaque fiche et met à jour son JSON. |
 | `backup` | Sauvegarde de la base (dump + archive) | Dump BSON complet par collection puis archive tar (voir ci-dessous). |
+| `restore` | Restauration de la base (depuis une archive) | ⚠ Destructif : remplace toutes les données par le contenu d'une archive produite par `backup` (voir ci-dessous). |
 
 ### `backup` — sauvegarde de la base
 
@@ -131,6 +132,34 @@ d'administration ; le suivi reste le panneau commun des traitements longs.
 L'ancienne route `POST /admin/backup` (CLI) empile désormais le même job
 au lieu de sauvegarder dans le processus HTTP.
 
+### `restore` — restauration depuis une archive
+
+Opération **destructrice** : supprime toutes les données de la base courante
+et les remplace par le contenu d'une archive du job `backup`.
+
+- Paramètres requis : `{ archive: "studium-<horodatage>.tar",
+  confirm: "RESTAURER" }` ; option `preBackup` (défaut `true`).
+- Le nom d'archive est validé (fichier simple de BACKUP_DIR, liste exposée
+  par `GET /admin/jobs/backups`) ; une archive d'une autre base source est
+  acceptée (le répertoire `<db>` interne importe peu, la restauration vise
+  la base de connexion du worker).
+- Déroulé par collection : **sauvegarde de sécurité préalable**
+  (`studium-pre-restore-<horodatage>.tar`, produite avant toute écriture),
+  extraction, puis par collection : drop → réinsertion des documents BSON
+  (types conservés à l'octet près) → recréation des index du
+  `.metadata.json.gz` (formats mongodump anciens et récents) ; enfin
+  suppression des collections vivantes absentes du dump.
+- Collections **jamais supprimées** : `jobs`, `job_failures`, `logs`,
+  `system.*` (la restauration ne doit pas détruire la file qui la pilote).
+- Reprise idempotente : curseur `r:<collection>` ; une annulation ou un
+  échec en phase destructive laisse la base dans un état mixte — d'où la
+  sauvegarde de sécurité, restaurable à son tour.
+- Ne pas lancer `backup` et `restore` simultanément (workers multiples).
+
+L'IHM admin a une carte dédiée « Restauration de la base » (sélection de
+l'archive, option de sauvegarde de sécurité, confirmation par saisie du mot
+`RESTAURER`).
+
 ## Routes API
 
 Toutes réservées aux administrateurs (`auth.isAdmin`) :
@@ -138,6 +167,7 @@ Toutes réservées aux administrateurs (`auth.isAdmin`) :
 | Méthode | Route | Description |
 |---|---|---|
 | `GET` | `/admin/jobs/types` | Types de traitement disponibles. |
+| `GET` | `/admin/jobs/backups` | Archives de sauvegarde disponibles dans `BACKUP_DIR`. |
 | `GET` | `/admin/jobs?limit=20` | Derniers jobs. |
 | `POST` | `/admin/jobs` | Crée un job `{type, params}` → `202` + job. |
 | `GET` | `/admin/jobs/:id` | État détaillé + dernières erreurs. |

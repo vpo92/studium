@@ -12,10 +12,12 @@
  */
 import reindexJob from './reindexJob';
 import backupJob from './backupJob';
+import restoreJob from './restoreJob';
 
 const handlers = {
   [reindexJob.type]: reindexJob,
   [backupJob.type]: backupJob,
+  [restoreJob.type]: restoreJob,
 };
 
 function get(type: string): any {
