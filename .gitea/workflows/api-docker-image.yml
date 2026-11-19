@@ -33,7 +33,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ gitea.actor }}
           # Utilise le jeton natif généré automatiquement pour chaque exécution sur Gitea
-          password: ${{ secrets.GITEA_TOKEN }}
+          password: ${{ secrets.TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
