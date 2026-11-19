@@ -13,9 +13,8 @@ ENV APP_ENV=production
 RUN a2enmod rewrite
 
 # L'extension curl est déjà compilée dans l'image officielle php:8.3-apache
-# (pas besoin d'apt-get, qui échoue parfois sur les signatures Debian en
-# build multi-arch/QEMU). On vérifie juste qu'elle est bien disponible.
-RUN php -m | grep -qi '^curl$'
+# (flag --with-curl) : aucun apt-get n'est nécessaire ici. On évite aussi
+# d'exécuter PHP au build, qui segfault sous l'émulation QEMU du build amd64.
 
 COPY index.php /var/www/html/
 COPY .htaccess /var/www/html/
