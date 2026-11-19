@@ -12,13 +12,10 @@ ENV APP_ENV=production
 
 RUN a2enmod rewrite
 
-RUN apt-get update && apt-get install -y \
-    libcurl4-openssl-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    && docker-php-ext-install curl \
-    && rm -rf /var/lib/apt/lists/*
+# L'extension curl est déjà compilée dans l'image officielle php:8.3-apache
+# (pas besoin d'apt-get, qui échoue parfois sur les signatures Debian en
+# build multi-arch/QEMU). On vérifie juste qu'elle est bien disponible.
+RUN php -m | grep -qi '^curl$'
 
 COPY index.php /var/www/html/
 COPY .htaccess /var/www/html/
