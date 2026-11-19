@@ -282,6 +282,12 @@ try{
     $loggerService->log($e->getTraceAsString());
 }
 
+//Pages reservees aux administrateurs
+$adminPages = ["administration", "user", "draft", "supervision", "dump", "recherche-mongo"];
+if(in_array($page, $adminPages, true) && !isAdmin()){
+    $error_msg = "Vous n'avez pas l'autorisation d'accéder à cette page";
+    $page = "home";
+}
 
 if($page == "_redirect"){
     header("Location: $redirect");

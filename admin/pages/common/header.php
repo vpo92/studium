@@ -95,6 +95,11 @@
             <li>
                 <a href="<?php echo getApplicationUrl()?>?page=dump">Gestion des backups</a>
             </li>
+            <?php }
+            if(isAdmin()){?>
+            <li>
+                <a href="<?php echo getApplicationUrl()?>?page=administration">Administration</a>
+            </li>
             <?php } ?>
             <li>
                 <a href="<?php echo getApplicationUrl()?>/contact">Contact</a>

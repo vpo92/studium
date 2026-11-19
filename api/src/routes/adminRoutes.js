@@ -42,13 +42,13 @@ router.get('/all-ids', auth.isAdmin, async (req, res, next) => {
   }
 });
 
-router.post('/indexDB', auth.isAdmin, (req, res, next) => {
+router.post('/indexDB', auth.isAdmin, async (req, res, next) => {
   const id = uuid.v4();
   logger.debug(`${id}: indexDB`);
   logger.debug(`${id}: indexDB user ${req.user.name}`);
 
   try {
-    service.indexDB();
+    await service.indexDB();
     logger.debug(`${id}: indexDB done`);
     res.send({'message':'OK'});
   } catch (err) {
