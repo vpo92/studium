@@ -14,6 +14,7 @@ import userRoutes from './userRoutes';
 import manuscritRoutes from './manuscritRoutes';
 import mongoRoutes from './mongoRoutes';
 import draftRoutes from './draftRoutes';
+import jobRoutes from './jobRoutes';
 import adminRoutes from './adminRoutes';
 const pkg = require("../../package.json");
 const router = express.Router();
@@ -26,6 +27,9 @@ router.use('/auth', authRoutes);
 router.use('/manuscrit', manuscritRoutes);
 router.use('/mongo', mongoRoutes);
 router.use('/draft', draftRoutes);
+// Les routes /admin/jobs doivent être montées avant /admin pour que
+// Express ne délègue pas la sous-route au routeur admin générique.
+router.use('/admin/jobs', jobRoutes);
 router.use('/admin', adminRoutes);
 router.get('/docs', (req,res) => {
     let p = mode === 'PROD'?'/app/docs/index.html':path.join(__dirname,"../../docs/index.html");

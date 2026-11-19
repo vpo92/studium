@@ -35,6 +35,28 @@ services:
     networks:
      - default
      - npm-net
+
+  # Exécute les traitements longs (réindexation, dump, indexation Neo4j...)
+  # en dehors du processus HTTP de l'API. Voir api/src/services/jobs/.
+  studium_worker:
+    image: ghcr.io/vpo92/studium/api:latest
+    command: ["node", "worker.js"]
+    depends_on:
+      - studium_mongo
+    environment:
+      - NODE_ENV=production
+      - APP_MODE=PROD
+      - MONGODB_CONNECTION_STRING=mongodb://studium_mongo:27017/studium
+      - MONGO_URL=mongodb://studium_mongo/studium
+      - WORKER_POLL_INTERVAL_MS=2000
+      - WORKER_HEARTBEAT_MS=5000
+      - WORKER_STALE_MS=60000
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["NONE"]
+    restart: unless-stopped
+    networks:
+      - default
     
 
   studium_admin:

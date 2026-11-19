@@ -2,6 +2,7 @@
 
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, label, prettyPrint } = format;
+const config = require('../../config');
 require('winston-mongodb');
 
 const logger = createLogger({

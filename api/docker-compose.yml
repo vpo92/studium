@@ -11,3 +11,19 @@ services:
       - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/studium
       - MONGO_URL=mongodb://mongodb/studium
       - FEAT_GRAPH=${FEAT_GRAPH:-false}
+
+  studium_worker:
+    image: ghcr.io/vpo92/studium/api:latest
+    command: ["node", "worker.js"]
+    environment:
+      - NODE_ENV=production
+      - APP_MODE=PROD
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/studium
+      - MONGO_URL=mongodb://mongodb/studium
+      - WORKER_POLL_INTERVAL_MS=2000
+      - WORKER_HEARTBEAT_MS=5000
+      - WORKER_STALE_MS=60000
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["NONE"]
+    restart: unless-stopped

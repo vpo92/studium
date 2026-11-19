@@ -163,6 +163,93 @@ async function convertFromText(text: string): Promise<Prosopography> {
 }
 
 
+/**
+ * Re-parse le champ `raw` d'une fiche et met à jour son JSON.
+ *
+ * Cette logique est partagée par la route unitaire
+ * `/admin/re-index-from-raw/:reference` et par le worker de réindexation.
+ *
+ * Comportement volontairement conservateur : les sections présentes en base
+ * mais absentes du raw sont conservées, et un raw plus court n'écrase pas le
+ * raw existant.
+ *
+ * @return {Promise<{status: string, reference: string, prosopography?: any, missingSections?: Array<string>}>}
+ */
+async function reindexFromRaw(reference: string): Promise<any> {
+  const prosopography = await findByReference(reference);
+  if (!prosopography) {
+    return { status: 'not_found', reference: reference };
+  }
+
+  const raw = Array.isArray(prosopography.raw) ? prosopography.raw.join("\n") : '';
+  const parsed = await convertFromText(raw);
+  if (!parsed) {
+    throw new Error(`Le parsing du raw n'a produit aucun document pour ${reference}`);
+  }
+  parsed._id = prosopography._id;
+
+  // Une fiche peut avoir un champ `raw` incomplet (import partiel,
+  // ancienne sauvegarde...). Dans ce cas, le parsing ne contient pas
+  // toutes les sections déjà présentes en base : on les conserve pour
+  // ne pas perdre de données lors de la réindexation.
+  const parsedKeys = Object.keys(parsed);
+  const missingSections = Object.keys(prosopography).filter((key) => {
+    return key !== '_id' && parsedKeys.indexOf(key) === -1;
+  });
+  const merged = Object.assign({}, prosopography, parsed, { _id: prosopography._id });
+
+  // Ne jamais remplacer un raw complet par un raw plus court.
+  const currentRaw = Array.isArray(prosopography.raw) ? prosopography.raw : [];
+  const parsedRaw = Array.isArray(parsed.raw) ? parsed.raw : [];
+  if (currentRaw.length > parsedRaw.length) {
+    merged.raw = prosopography.raw;
+  }
+
+  if (missingSections.length > 0) {
+    logger.warn(`reindexFromRaw ${reference} - sections conservées car absentes du raw : ${missingSections.join(', ')}`);
+  }
+
+  await update(merged);
+  return {
+    status: 'updated',
+    reference: reference,
+    prosopography: merged,
+    missingSections: missingSections,
+  };
+}
+
+
+/**
+ * Renvoie une page de références triées, pour permettre au worker de
+ * reprendre une réindexation à partir d'un curseur (`reference > after`).
+ */
+function getReferencesPage(after: ?string, limit: number): Promise<Array<string>> {
+  const filter: any = { reference: { $exists: true, $ne: null } };
+  if (after) {
+    filter.reference.$gt = after;
+  }
+  return db
+      .get()
+      .collection('prosopography')
+      .find(filter, { _id: 0, reference: 1 })
+      .sort({ reference: 1 })
+      .limit(limit)
+      .map((item) => { return item.reference; })
+      .toArray();
+}
+
+
+/**
+ * Nombre de fiches référencées (utilisé comme total de progression).
+ */
+function countAll(): Promise<number> {
+  return db
+      .get()
+      .collection('prosopography')
+      .count({ reference: { $exists: true, $ne: null } });
+}
+
+
 async function initGraph(): Promise<Array> {
   logger.debug(`prosopographyService.initGraph`);
   return db
@@ -561,6 +648,9 @@ module.exports = {
   update,
   remove,
   convertFromText,
+  reindexFromRaw,
+  getReferencesPage,
+  countAll,
   initGraph,
   search,
   searchTotalCount,

@@ -61,6 +61,7 @@ COPY --from=build /app/api/node_modules/regenerator-runtime ./node_modules/regen
 
 # Bundle + static files served by routes.js when APP_MODE=PROD.
 COPY --from=build /app/api/docker/build/server.js ./server.js
+COPY --from=build /app/api/docker/build/worker.js ./worker.js
 COPY --from=build /app/api/docker/build/docs ./docs
 COPY --from=build /app/api/docker/build/resources ./resources
 

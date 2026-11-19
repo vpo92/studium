@@ -2,14 +2,17 @@ import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 
 const config = {
-  entry: './src/server.js',
+  entry: {
+    server: './src/server.js',
+    worker: './src/worker.js',
+  },
 
   target: 'node',
   externals: [nodeExternals({ modulesDir: './node_modules' })],
 
   output: {
     path: path.resolve(__dirname, './docker/build'),
-    filename: 'server.js',
+    filename: '[name].js',
   },
 
   module: {

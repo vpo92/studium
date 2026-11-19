@@ -1,64 +1,505 @@
 (function () {
-    var button = document.getElementById('reindex-db');
-    var status = document.getElementById('reindex-status');
+    'use strict';
 
-    if (!button || !status) {
-        return;
+    var STATUS_LABELS = {
+        queued: 'En attente',
+        running: 'En cours',
+        done: 'Terminé',
+        failed: 'Échec',
+        cancelled: 'Annulé'
+    };
+
+    var typesByType = {};
+    var currentJobId = null;
+    var pollTimer = null;
+
+    function baseUrl() {
+        return String(apiUrl).trim().replace(/\/+$/, '');
     }
 
-    function setStatus(message, type) {
-        status.className = 'mt-3 alert alert-' + type;
-        status.textContent = message;
+    function sessionTokenValue() {
+        return String(sessionToken).trim();
     }
 
-    function clearStatus() {
-        status.className = 'mt-3';
-        status.textContent = '';
+    function escapeHtml(value) {
+        return String(value === null || value === undefined ? '' : value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
-    function setBusy(busy) {
-        button.disabled = busy;
-        button.textContent = busy
-            ? 'Réindexation en cours...'
-            : 'Re-indexation complète de la base';
+    async function apiFetch(path, options) {
+        var opts = options || {};
+        var headers = Object.assign({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionTokenValue()
+        }, opts.headers || {});
+
+        var response = await fetch(baseUrl() + path, Object.assign({}, opts, { headers: headers }));
+        var data = null;
+        try {
+            data = await response.json();
+        } catch (error) {
+            data = null;
+        }
+
+        if (!response.ok) {
+            var message = data && data.message ? data.message : ('HTTP ' + response.status);
+            var error = new Error(message);
+            error.status = response.status;
+            error.data = data;
+            throw error;
+        }
+
+        return data;
     }
 
-    button.addEventListener('click', async function () {
-        if (!confirm('Confirmez-vous la réindexation complète de la base ?')) {
+    function formatDate(value) {
+        if (!value) {
+            return '—';
+        }
+        var date = new Date(value);
+        if (isNaN(date.getTime())) {
+            return '—';
+        }
+        return date.toLocaleString('fr-FR');
+    }
+
+    function formatDuration(durationMs) {
+        if (durationMs === null || durationMs === undefined) {
+            return '';
+        }
+        var seconds = Math.round(durationMs / 1000);
+        if (seconds < 60) {
+            return seconds + ' s';
+        }
+        var minutes = Math.floor(seconds / 60);
+        var remaining = seconds % 60;
+        if (minutes < 60) {
+            return minutes + ' min ' + remaining + ' s';
+        }
+        var hours = Math.floor(minutes / 60);
+        return hours + ' h ' + (minutes % 60) + ' min';
+    }
+
+    function statusLabel(job) {
+        return STATUS_LABELS[job.status] || job.status;
+    }
+
+    function statusBadgeClass(job) {
+        if (job.status === 'running') {
+            return 'badge-primary';
+        }
+        if (job.status === 'done') {
+            return job.failedCount > 0 ? 'badge-warning' : 'badge-success';
+        }
+        if (job.status === 'failed') {
+            return 'badge-danger';
+        }
+        if (job.status === 'cancelled') {
+            return 'badge-dark';
+        }
+        return 'badge-secondary';
+    }
+
+    function progressBarClass(job) {
+        if (job.status === 'running') {
+            return 'bg-primary progress-bar-striped progress-bar-animated';
+        }
+        if (job.status === 'done') {
+            return job.failedCount > 0 ? 'bg-warning' : 'bg-success';
+        }
+        if (job.status === 'failed') {
+            return 'bg-danger';
+        }
+        if (job.status === 'cancelled') {
+            return 'bg-dark';
+        }
+        return 'bg-secondary';
+    }
+
+    function typeLabel(type) {
+        return typesByType[type] ? typesByType[type].label : type;
+    }
+
+    /* ------------------------------------------------------------------ *
+     *  Index de recherche (opération rapide, sans worker)
+     * ------------------------------------------------------------------ */
+
+    function setupIndexDb() {
+        var button = document.getElementById('reindex-db');
+        var status = document.getElementById('reindex-status');
+
+        if (!button || !status) {
             return;
         }
 
-        clearStatus();
-        setBusy(true);
+        function setStatus(message, type) {
+            status.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
+            status.textContent = message || '';
+        }
 
-        try {
-            var baseUrl = String(apiUrl).trim();
-            var token = String(sessionToken).trim();
+        function setBusy(busy) {
+            button.disabled = busy;
+            button.textContent = busy
+                ? 'Mise à jour en cours...'
+                : "Mettre à jour l'index de recherche";
+        }
 
-            var response = await fetch(baseUrl + '/admin/indexDB', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-                body: '{}'
-            });
-
-            if (response.status === 401 || response.status === 403) {
-                setStatus("Vous n'avez pas l'autorisation de réindexer la base.", 'danger');
+        button.addEventListener('click', async function () {
+            if (!confirm("Confirmez-vous la mise à jour de l'index de recherche ?")) {
                 return;
             }
 
-            if (!response.ok) {
-                throw new Error('HTTP ' + response.status);
+            setStatus('', null);
+            setBusy(true);
+
+            try {
+                await apiFetch('/admin/indexDB', {
+                    method: 'POST',
+                    body: '{}'
+                });
+                setStatus("Index de recherche mis à jour.", 'success');
+            } catch (error) {
+                if (error.status === 401 || error.status === 403) {
+                    setStatus("Vous n'avez pas l'autorisation de réindexer la base.", 'danger');
+                } else {
+                    console.error('reindex error', error);
+                    setStatus("Erreur lors de la mise à jour de l'index de recherche.", 'danger');
+                }
+            } finally {
+                setBusy(false);
+            }
+        });
+    }
+
+    /* ------------------------------------------------------------------ *
+     *  Traitements longs (jobs exécutés par le worker)
+     * ------------------------------------------------------------------ */
+
+    function setupJobs() {
+        var typeSelect = document.getElementById('job-type');
+        var typeDescription = document.getElementById('job-type-description');
+        var startButton = document.getElementById('job-start');
+        var startStatus = document.getElementById('job-start-status');
+        var panel = document.getElementById('job-panel');
+        var title = document.getElementById('job-title');
+        var badge = document.getElementById('job-status-badge');
+        var bar = document.getElementById('job-progress-bar');
+        var progressText = document.getElementById('job-progress-text');
+        var failuresBox = document.getElementById('job-failures');
+        var cancelButton = document.getElementById('job-cancel');
+        var retryButton = document.getElementById('job-retry');
+        var historyBody = document.getElementById('job-history');
+
+        if (!typeSelect || !startButton || !panel) {
+            return;
+        }
+
+        function setStartStatus(message, type) {
+            startStatus.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
+            startStatus.textContent = message || '';
+        }
+
+        function stopPolling() {
+            if (pollTimer) {
+                clearTimeout(pollTimer);
+                pollTimer = null;
+            }
+        }
+
+        function renderFailures(failures) {
+            if (!failures || failures.length === 0) {
+                failuresBox.innerHTML = '';
+                return;
             }
 
-            setStatus('Réindexation de la base terminée.', 'success');
-        } catch (error) {
-            console.error('reindex error', error);
-            setStatus('Erreur lors de la réindexation de la base.', 'danger');
-        } finally {
-            setBusy(false);
+            var items = failures.map(function (failure) {
+                return '<li><code>' + escapeHtml(failure.reference) + '</code> — ' +
+                    escapeHtml(failure.message) + '</li>';
+            }).join('');
+
+            failuresBox.innerHTML =
+                '<div class="alert alert-warning mb-0">' +
+                '<strong>' + failures.length + ' erreur(s)</strong>' +
+                '<ul class="mb-0 mt-2 pl-4">' + items + '</ul>' +
+                '</div>';
         }
-    });
+
+        function renderJob(job) {
+            panel.hidden = false;
+
+            title.textContent = typeLabel(job.type);
+            badge.textContent = statusLabel(job);
+            badge.className = 'badge ' + statusBadgeClass(job);
+
+            var percent = job.percent || 0;
+            bar.style.width = percent + '%';
+            bar.setAttribute('aria-valuenow', String(percent));
+            bar.className = 'progress-bar ' + progressBarClass(job);
+            bar.textContent = percent + ' %';
+
+            var parts = [];
+            parts.push(job.processed + ' / ' + (job.total || '?') + ' fiche(s)');
+            parts.push(job.succeeded + ' réussie(s)');
+            parts.push(job.failedCount + ' erreur(s)');
+            if (job.durationMs !== null && job.durationMs !== undefined) {
+                parts.push('durée : ' + formatDuration(job.durationMs));
+            }
+            progressText.textContent = parts.join(' · ') + (job.message ? ' — ' + job.message : '');
+
+            cancelButton.disabled = !job.isActive || job.cancelRequested;
+            cancelButton.textContent = job.cancelRequested ? 'Annulation…' : 'Annuler';
+            retryButton.hidden = !(job.failedCount > 0 && !job.isActive);
+
+            renderFailures(job.failures);
+        }
+
+        function schedulePoll(jobId, delay) {
+            stopPolling();
+            pollTimer = setTimeout(function () {
+                poll(jobId);
+            }, delay || 2000);
+        }
+
+        async function poll(jobId) {
+            if (currentJobId !== jobId) {
+                return;
+            }
+            try {
+                var job = await apiFetch('/admin/jobs/' + encodeURIComponent(jobId));
+                if (currentJobId !== jobId) {
+                    return;
+                }
+                renderJob(job);
+                if (job.isActive) {
+                    schedulePoll(jobId);
+                } else {
+                    loadHistory();
+                }
+            } catch (error) {
+                if (error.status === 401 || error.status === 403) {
+                    setStartStatus("Vous n'avez pas l'autorisation de suivre ce traitement.", 'danger');
+                    return;
+                }
+                setStartStatus('Suivi impossible : ' + error.message, 'danger');
+                schedulePoll(jobId, 5000);
+            }
+        }
+
+        function attachToJob(job) {
+            currentJobId = job.id;
+            renderJob(job);
+            if (job.isActive) {
+                schedulePoll(job.id);
+            } else {
+                stopPolling();
+            }
+        }
+
+        async function loadTypes() {
+            try {
+                var types = await apiFetch('/admin/jobs/types');
+                typeSelect.innerHTML = '';
+
+                if (!types || types.length === 0) {
+                    var empty = document.createElement('option');
+                    empty.value = '';
+                    empty.textContent = 'Aucun traitement disponible';
+                    typeSelect.appendChild(empty);
+                    startButton.disabled = true;
+                    return;
+                }
+
+                types.forEach(function (type) {
+                    typesByType[type.type] = type;
+                    var option = document.createElement('option');
+                    option.value = type.type;
+                    option.textContent = type.label;
+                    option.title = type.description || '';
+                    typeSelect.appendChild(option);
+                });
+                updateTypeDescription();
+            } catch (error) {
+                typeSelect.innerHTML = '<option value="">Erreur de chargement</option>';
+                startButton.disabled = true;
+                if (error.status === 401 || error.status === 403) {
+                    setStartStatus("Vous n'avez pas l'autorisation de lancer des traitements.", 'danger');
+                } else {
+                    setStartStatus('Impossible de charger les traitements : ' + error.message, 'danger');
+                }
+            }
+        }
+
+        function updateTypeDescription() {
+            var type = typesByType[typeSelect.value];
+            typeDescription.textContent = type && type.description ? type.description : '';
+        }
+
+        async function loadHistory() {
+            try {
+                var list = await apiFetch('/admin/jobs?limit=10');
+                historyBody.innerHTML = '';
+
+                if (!list || list.length === 0) {
+                    historyBody.innerHTML =
+                        '<tr><td colspan="5" class="text-muted">Aucun traitement lancé.</td></tr>';
+                    return;
+                }
+
+                list.forEach(function (job) {
+                    var row = document.createElement('tr');
+                    var percent = job.percent || 0;
+                    row.innerHTML =
+                        '<td>' + escapeHtml(typeLabel(job.type)) + '</td>' +
+                        '<td><span class="badge ' + statusBadgeClass(job) + '">' +
+                        escapeHtml(statusLabel(job)) + '</span>' +
+                        (job.failedCount > 0 ? ' <small class="text-danger">' + job.failedCount + '</small>' : '') +
+                        '</td>' +
+                        '<td style="min-width:120px;">' +
+                        '<div class="progress" style="height:12px;">' +
+                        '<div class="progress-bar ' + progressBarClass(job) + '" role="progressbar" ' +
+                        'style="width:' + percent + '%;" aria-valuenow="' + percent + '" ' +
+                        'aria-valuemin="0" aria-valuemax="100"></div>' +
+                        '</div>' +
+                        '<small class="text-muted">' + job.processed + ' / ' + (job.total || '?') + '</small>' +
+                        '</td>' +
+                        '<td><small>' + escapeHtml(formatDate(job.createdAt)) + '</small></td>' +
+                        '<td class="text-right">' +
+                        '<button type="button" class="btn btn-sm btn-outline-secondary" ' +
+                        'data-job-id="' + escapeHtml(job.id) + '">' +
+                        (job.isActive ? 'Suivre' : 'Détails') + '</button>' +
+                        '</td>';
+                    historyBody.appendChild(row);
+                });
+
+                // Au chargement de la page, se rattacher automatiquement au
+                // traitement actif s'il y en a un.
+                if (!currentJobId) {
+                    var active = list.filter(function (job) { return job.isActive; })[0];
+                    if (active) {
+                        attachToJob(active);
+                    }
+                }
+            } catch (error) {
+                historyBody.innerHTML =
+                    '<tr><td colspan="5" class="text-danger">Impossible de charger l\'historique : ' +
+                    escapeHtml(error.message) + '</td></tr>';
+            }
+        }
+
+        typeSelect.addEventListener('change', updateTypeDescription);
+
+        startButton.addEventListener('click', async function () {
+            var type = typeSelect.value;
+            if (!type) {
+                return;
+            }
+
+            var label = typeLabel(type);
+            if (!confirm('Confirmez-vous le lancement de « ' + label + ' » ?')) {
+                return;
+            }
+
+            setStartStatus('Démarrage…', 'info');
+            startButton.disabled = true;
+
+            try {
+                var job = await apiFetch('/admin/jobs', {
+                    method: 'POST',
+                    body: JSON.stringify({ type: type, params: {} })
+                });
+                setStartStatus('Traitement démarré en arrière-plan.', 'success');
+                attachToJob(job);
+                loadHistory();
+            } catch (error) {
+                if (error.status === 409 && error.data && error.data.job) {
+                    setStartStatus(error.message + ' Suivi du traitement existant.', 'warning');
+                    attachToJob(error.data.job);
+                    loadHistory();
+                } else if (error.status === 401 || error.status === 403) {
+                    setStartStatus("Vous n'avez pas l'autorisation de lancer ce traitement.", 'danger');
+                } else {
+                    setStartStatus('Erreur : ' + error.message, 'danger');
+                }
+            } finally {
+                startButton.disabled = false;
+            }
+        });
+
+        cancelButton.addEventListener('click', async function () {
+            if (!currentJobId) {
+                return;
+            }
+            if (!confirm('Confirmez-vous l\'annulation du traitement ?')) {
+                return;
+            }
+
+            cancelButton.disabled = true;
+            try {
+                var job = await apiFetch(
+                    '/admin/jobs/' + encodeURIComponent(currentJobId) + '/cancel',
+                    { method: 'POST', body: '{}' }
+                );
+                setStartStatus('Annulation demandée.', 'warning');
+                renderJob(job);
+                schedulePoll(currentJobId, 1000);
+            } catch (error) {
+                setStartStatus('Annulation impossible : ' + error.message, 'danger');
+                cancelButton.disabled = false;
+            }
+        });
+
+        retryButton.addEventListener('click', async function () {
+            if (!currentJobId) {
+                return;
+            }
+            if (!confirm('Relancer uniquement les fiches en erreur ?')) {
+                return;
+            }
+
+            retryButton.disabled = true;
+            try {
+                var job = await apiFetch(
+                    '/admin/jobs/' + encodeURIComponent(currentJobId) + '/retry-failed',
+                    { method: 'POST', body: '{}' }
+                );
+                setStartStatus('Relance des erreurs démarrée.', 'success');
+                attachToJob(job);
+                loadHistory();
+            } catch (error) {
+                if (error.status === 409) {
+                    setStartStatus(error.message, 'warning');
+                } else {
+                    setStartStatus('Relance impossible : ' + error.message, 'danger');
+                }
+            } finally {
+                retryButton.disabled = false;
+            }
+        });
+
+        historyBody.addEventListener('click', function (event) {
+            var button = event.target.closest ? event.target.closest('button[data-job-id]') : null;
+            if (!button) {
+                return;
+            }
+            var jobId = button.getAttribute('data-job-id');
+            apiFetch('/admin/jobs/' + encodeURIComponent(jobId))
+                .then(function (job) {
+                    setStartStatus('', null);
+                    attachToJob(job);
+                })
+                .catch(function (error) {
+                    setStartStatus('Impossible de charger ce traitement : ' + error.message, 'danger');
+                });
+        });
+
+        loadTypes();
+        loadHistory();
+    }
+
+    setupIndexDb();
+    setupJobs();
 })();

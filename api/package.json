@@ -1,12 +1,14 @@
 {
   "name": "studium-api",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "API for Studium Prosopography",
   "main": "server.js",
   "scripts": {
     "test": "jest --config=jest.config.json",
     "start": "NODE_ENV=dev babel-watch ./src/server.js -w src",
     "startwin": "$NODE_ENV=dev babel-watch ./src/server.js -w .",
+    "worker": "NODE_ENV=dev babel-node ./src/worker.js",
+    "worker:watch": "NODE_ENV=dev babel-watch ./src/worker.js -w src",
     "build": "NODE_ENV=production webpack -p && mkdir -p docker/build/docs && cp docs/index.html docker/build/docs/ && cp -r resources docker/build/",
     "postbuild": "cp ./package.json ./package-lock.json docker/build",
     "docker:build": "docker build -t vpo92/studium/api:latest -f Dockerfile ..",

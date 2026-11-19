@@ -1157,6 +1157,187 @@
         }
       }
     },
+    "/admin/jobs/types": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "List long-running job types",
+        "description": "List the treatments registered in the jobs registry. Admin only.",
+        "operationId": "listJobTypes",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "responses": {
+          "200": {
+            "description": "Available job types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": { "type": "string" },
+                      "label": { "type": "string" },
+                      "description": { "type": "string" },
+                      "allowConcurrent": { "type": "boolean" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/jobs": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "List long-running jobs",
+        "description": "Return the most recent background jobs. Admin only.",
+        "operationId": "listJobs",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 20, "maximum": 100 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Job" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Create a long-running job",
+        "description": "Enqueue a background treatment. Returns immediately with 202; the worker executes it asynchronously. Admin only.",
+        "operationId": "createJob",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": { "type": "string", "example": "reindex" },
+                  "params": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Job queued",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Job" }
+              }
+            }
+          },
+          "409": {
+            "description": "A job of the same type is already active"
+          }
+        }
+      }
+    },
+    "/admin/jobs/{id}": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Get a long-running job",
+        "description": "Return the job state, progress and the last unit failures. Admin only.",
+        "operationId": "getJob",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job state",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Job" }
+              }
+            }
+          },
+          "404": { "description": "Job not found" }
+        }
+      }
+    },
+    "/admin/jobs/{id}/cancel": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Cancel a long-running job",
+        "description": "Cancel a queued job immediately, or request cancellation of a running job. Admin only.",
+        "operationId": "cancelJob",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job state",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Job" }
+              }
+            }
+          },
+          "404": { "description": "Job not found" },
+          "409": { "description": "Job already finished" }
+        }
+      }
+    },
+    "/admin/jobs/{id}/retry-failed": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Retry failed units of a job",
+        "description": "Create a new job that only processes the units that failed in the given job. Admin only.",
+        "operationId": "retryFailedJob",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Retry job queued",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Job" }
+              }
+            }
+          },
+          "404": { "description": "Job not found" },
+          "409": { "description": "No failed unit or job still active" }
+        }
+      }
+    },
     "/admin/backup": {
       "post": {
         "tags": ["Admin"],
@@ -1432,6 +1613,40 @@
       }
     },
     "schemas": {
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "params": { "type": "object" },
+          "status": {
+            "type": "string",
+            "enum": ["queued", "running", "done", "failed", "cancelled"]
+          },
+          "total": { "type": "integer" },
+          "processed": { "type": "integer" },
+          "succeeded": { "type": "integer" },
+          "failedCount": { "type": "integer" },
+          "percent": { "type": "integer" },
+          "message": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "startedAt": { "type": "string", "format": "date-time" },
+          "finishedAt": { "type": "string", "format": "date-time" },
+          "durationMs": { "type": "integer", "nullable": true },
+          "isActive": { "type": "boolean" },
+          "failures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reference": { "type": "string" },
+                "message": { "type": "string" },
+                "createdAt": { "type": "string", "format": "date-time" }
+              }
+            }
+          }
+        }
+      },
       "User": {
         "type": "object",
         "properties": {
