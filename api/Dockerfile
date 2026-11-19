@@ -65,7 +65,14 @@ COPY --from=build /app/api/docker/build/worker.js ./worker.js
 COPY --from=build /app/api/docker/build/docs ./docs
 COPY --from=build /app/api/docker/build/resources ./resources
 
-RUN chown -R node:node /app
+# Répertoires de sauvegarde : volume `backups` monté sur le worker
+# (voir docker-compose.yml et BACKUP_DIR). Le job "backup" n'utilise que
+# Node + tar (présent dans la base Debian) — aucun binaire externe.
+# Créé ici avec le bon propriétaire pour que le volume nommé hérite des droits
+# de l'image.
+RUN mkdir -p /var/backups/studium
+
+RUN chown -R node:node /app /var/backups
 USER node
 
 EXPOSE 3000

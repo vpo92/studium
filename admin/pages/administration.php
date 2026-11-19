@@ -62,6 +62,22 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
     </div>
 </div>
 
+<div class="card mb-4" id="backup-card" hidden>
+    <div class="card-body">
+        <h4 class="card-title">Sauvegarde de la base</h4>
+        <p class="card-text">
+            Produit un dump complet de la base MongoDB sur le serveur
+            (collections compressées puis archive <code>tar</code>), exécuté
+            en arrière-plan par le worker. Suivez la progression dans le
+            panneau « Traitements longs » ci-dessus.
+        </p>
+        <button id="backup-start" type="button" class="btn btn-success">
+            Lancer la sauvegarde
+        </button>
+        <div id="backup-status" class="mt-3" role="status" aria-live="polite"></div>
+    </div>
+</div>
+
 <div class="card mb-4">
     <div class="card-body">
         <h4 class="card-title">Index de recherche</h4>

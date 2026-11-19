@@ -6,6 +6,7 @@ import service from '../services/prosopographyService';
 import logService from '../services/logService';
 import auth from '../services/authService';
 import mongoService from '../services/mongoService';
+import jobService from '../services/jobService';
 //auth.setup();
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
@@ -60,16 +61,20 @@ router.post('/indexDB', auth.isAdmin, async (req, res, next) => {
 });
 
 router.post('/backup', auth.isAdmin, async (req, res, next) => {
-//
+  // Ne fait plus exécuter la sauvegarde dans le processus HTTP : empile le
+  // job "backup" que le worker traitera (voir services/jobs/backupJob.js).
   const id = uuid.v4();
   logger.debug(`${id}: backup`);
   logger.debug(`${id}: backup user ${req.user.name}`);
 
   try{
-    await service.backupAll();
-    logger.debug(`${id}: backup done`);
-    res.send({'message':'OK'});
+    const job = await jobService.create('backup', {}, req.user, {});
+    logger.debug(`${id}: backup job ${job._id} queued`);
+    res.send({'message':'OK', 'job': jobService.serialize(job)});
   }catch(error){
+    if(error.status === 409){
+      return res.status(409).json({message: error.message, job: error.job || null});
+    }
     logger.error(error);
     next(error);
   }

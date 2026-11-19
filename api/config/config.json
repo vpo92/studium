@@ -14,7 +14,8 @@
       },
       "iss":"studium.fr"
     },
-    "dumpFileName" : "/home/vpoupet/tmp/bkp"
+    "dumpFileName" : "/home/vpoupet/tmp/bkp",
+    "backupDir" : "/var/backups/studium"
   },
   "dev": {
     "mongooseDB": "mongodb://host.docker.internal:27017/studium",
@@ -31,7 +32,8 @@
       },
       "iss":"studium.fr"
     },
-    "dumpFileName" : "/Users/vincent/tmp/bkp"
+    "dumpFileName" : "/Users/vincent/tmp/bkp",
+    "backupDir" : "/tmp/studium-backups"
   },
   "production": {
     "mongooseDB": "mongodb://host.docker.internal:27017/studium",
@@ -48,6 +50,7 @@
       },
       "iss":"studium.univ-paris1.fr"
     },
-    "dumpFileName" : "/home/vpoupet/tmp/bkp"
+    "dumpFileName" : "/home/vpoupet/tmp/bkp",
+    "backupDir" : "/var/backups/studium"
   }
 }

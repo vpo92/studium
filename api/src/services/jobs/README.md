@@ -33,6 +33,8 @@ const monTraitementJob = {
   label: 'Mon traitement',            // libellé affiché dans l'IHM
   description: 'Ce que fait le traitement.',
   // allowConcurrent: false,           // true pour autoriser 2 jobs du même type
+  // unitLabel: 'collection',          // unité affichée dans l'IHM (défaut : « fiche »)
+  // finalMessage: (ctx) => '…',       // message de clôture personnalisé (sinon générique)
   run: async (ctx) => {
     // Optionnel : nombre total d'unités pour la barre de progression.
     await ctx.setTotal(42);
@@ -89,6 +91,45 @@ routes n'est nécessaire.
 
 Les handlers ne doivent pas écrire directement dans la collection `jobs` :
 `ctx.step` garantit la cohérence de la progression et de la reprise.
+
+## Traitements livrés
+
+| Type | Libellé | Ce qu'il fait |
+|---|---|---|
+| `reindex` | Réindexation des fiches (RAW → JSON) | Re-parse le `raw` de chaque fiche et met à jour son JSON. |
+| `backup` | Sauvegarde de la base (dump + archive) | Dump BSON complet par collection puis archive tar (voir ci-dessous). |
+
+### `backup` — sauvegarde de la base
+
+- Le worker parcourt les collections (hors `system.*`, `logs`, `jobs`,
+  `job_failures`) et écrit pour chacune un dump **au format mongodump** :
+  documents transmis bruts par le serveur (`find({}, {raw:true})`), concaténés
+  et gzipés dans `<BACKUP_DIR>/studium-<horodatage>/<db>/<collection>.bson.gz`,
+  accompagné du `<collection>.metadata.json.gz` (index).
+- Une fois toutes les collections réussies, l'ensemble est empaqueté en
+  `<BACKUP_DIR>/studium-<horodatage>.tar` et le répertoire intermédiaire est
+  supprimé. En cas d'échec : aucune archive, erreurs unitaires listées dans le
+  panneau et « Relancer les erreurs » produit une archive `…-partiel.tar`.
+- Reprise : le curseur (dernière collection terminée) est persisté ; un arrêt
+  du worker ou une annulation laisse le répertoire de travail en place, le job
+  remis en file ne re-dump que ce qui manque.
+
+**Restauration** :
+
+```bash
+tar -xf studium-<horodatage>.tar
+mongorestore --gzip --dir .            # ou par collection : --nsInclude
+```
+
+**Configuration** : `BACKUP_DIR` (env, sinon `backupDir` dans
+`api/config/config.json`, sinon `/var/backups/studium`). En production,
+le volume docker `backups` est monté sur `/var/backups/studium` dans le
+service `studium_worker`. Aucun binaire externe requis sur le worker.
+
+L'IHM admin expose un raccourci « Sauvegarde de la base » sur la page
+d'administration ; le suivi reste le panneau commun des traitements longs.
+L'ancienne route `POST /admin/backup` (CLI) empile désormais le même job
+au lieu de sauvegarder dans le processus HTTP.
 
 ## Routes API
 

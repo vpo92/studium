@@ -51,6 +51,9 @@ services:
       - WORKER_POLL_INTERVAL_MS=2000
       - WORKER_HEARTBEAT_MS=5000
       - WORKER_STALE_MS=60000
+      - BACKUP_DIR=/var/backups/studium
+    volumes:
+      - backups:/var/backups/studium
     stop_grace_period: 30s
     healthcheck:
       test: ["NONE"]
@@ -188,6 +191,7 @@ volumes:
   mongodb_data: null
   neo4j_data: null
   neo4j_logs: null
+  backups: null
 
 networks:
   npm-net:

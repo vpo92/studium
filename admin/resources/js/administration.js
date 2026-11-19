@@ -13,6 +13,10 @@
     var currentJobId = null;
     var pollTimer = null;
 
+    // Exposé par setupJobs() : permet à d'autres cartes de la page (ex.
+    // « Sauvegarde de la base ») de lancer un job via le panneau de suivi.
+    var launchJobType = null;
+
     function baseUrl() {
         return String(apiUrl).trim().replace(/\/+$/, '');
     }
@@ -122,6 +126,13 @@
 
     function typeLabel(type) {
         return typesByType[type] ? typesByType[type].label : type;
+    }
+
+    // Libellé de l'unité de travail (« fiche », « collection », …) fourni
+    // par le registre des traitements (GET /admin/jobs/types).
+    function typeUnitLabel(type) {
+        var known = typesByType[type];
+        return (known && known.unitLabel) ? known.unitLabel : 'fiche';
     }
 
     /* ------------------------------------------------------------------ *
@@ -242,7 +253,8 @@
             bar.textContent = percent + ' %';
 
             var parts = [];
-            parts.push(job.processed + ' / ' + (job.total || '?') + ' fiche(s)');
+            parts.push(job.processed + ' / ' + (job.total || '?') + ' ' +
+                typeUnitLabel(job.type) + '(s)');
             parts.push(job.succeeded + ' réussie(s)');
             parts.push(job.failedCount + ' erreur(s)');
             if (job.durationMs !== null && job.durationMs !== undefined) {
@@ -322,6 +334,13 @@
                     typeSelect.appendChild(option);
                 });
                 updateTypeDescription();
+
+                // La carte « Sauvegarde de la base » n'a de sens que si le
+                // traitement existe côté API.
+                var backupCard = document.getElementById('backup-card');
+                if (backupCard) {
+                    backupCard.hidden = !typesByType.backup;
+                }
             } catch (error) {
                 typeSelect.innerHTML = '<option value="">Erreur de chargement</option>';
                 startButton.disabled = true;
@@ -392,40 +411,54 @@
 
         typeSelect.addEventListener('change', updateTypeDescription);
 
-        startButton.addEventListener('click', async function () {
-            var type = typeSelect.value;
-            if (!type) {
-                return;
-            }
-
-            var label = typeLabel(type);
-            if (!confirm('Confirmez-vous le lancement de « ' + label + ' » ?')) {
-                return;
-            }
-
-            setStartStatus('Démarrage…', 'info');
+        /**
+         * Lance un traitement par son type et rattache le panneau de suivi.
+         * Réutilisable par d'autres boutons de la page (sauvegarde…).
+         * Résout { job, reused } ; rejette l'erreur (déjà affichée via setStatus).
+         */
+        async function launch(type, setStatus) {
+            setStatus('Démarrage…', 'info');
             startButton.disabled = true;
-
             try {
                 var job = await apiFetch('/admin/jobs', {
                     method: 'POST',
                     body: JSON.stringify({ type: type, params: {} })
                 });
-                setStartStatus('Traitement démarré en arrière-plan.', 'success');
+                setStatus('Traitement démarré en arrière-plan.', 'success');
                 attachToJob(job);
                 loadHistory();
+                return { job: job, reused: false };
             } catch (error) {
                 if (error.status === 409 && error.data && error.data.job) {
-                    setStartStatus(error.message + ' Suivi du traitement existant.', 'warning');
+                    setStatus(error.message + ' Suivi du traitement existant.', 'warning');
                     attachToJob(error.data.job);
                     loadHistory();
-                } else if (error.status === 401 || error.status === 403) {
-                    setStartStatus("Vous n'avez pas l'autorisation de lancer ce traitement.", 'danger');
-                } else {
-                    setStartStatus('Erreur : ' + error.message, 'danger');
+                    return { job: error.data.job, reused: true };
                 }
+                if (error.status === 401 || error.status === 403) {
+                    setStatus("Vous n'avez pas l'autorisation de lancer ce traitement.", 'danger');
+                } else {
+                    setStatus('Erreur : ' + error.message, 'danger');
+                }
+                throw error;
             } finally {
                 startButton.disabled = false;
+            }
+        }
+        launchJobType = launch;
+
+        startButton.addEventListener('click', async function () {
+            var type = typeSelect.value;
+            if (!type) {
+                return;
+            }
+            if (!confirm('Confirmez-vous le lancement de « ' + typeLabel(type) + ' » ?')) {
+                return;
+            }
+            try {
+                await launch(type, setStartStatus);
+            } catch (error) {
+                // Déjà affiché par launch().
             }
         });
 
@@ -500,6 +533,52 @@
         loadHistory();
     }
 
+    /* ------------------------------------------------------------------ *
+     *  Sauvegarde de la base (raccourci du job « backup »)
+     * ------------------------------------------------------------------ */
+
+    function setupBackup() {
+        var card = document.getElementById('backup-card');
+        var button = document.getElementById('backup-start');
+        var status = document.getElementById('backup-status');
+
+        if (!card || !button || !status) {
+            return;
+        }
+
+        function setStatus(message, type) {
+            status.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
+            status.textContent = message || '';
+        }
+
+        button.addEventListener('click', async function () {
+            if (!confirm('Confirmez-vous le lancement de la sauvegarde de la base ?')) {
+                return;
+            }
+            if (typeof launchJobType !== 'function') {
+                setStatus('Panneau des traitements longs indisponible.', 'danger');
+                return;
+            }
+
+            button.disabled = true;
+            try {
+                var result = await launchJobType('backup', setStatus);
+                if (!result.reused) {
+                    setStatus(
+                        'Sauvegarde lancée : suivez sa progression dans le panneau '
+                        + '« Traitements longs » ci-dessus.',
+                        'success'
+                    );
+                }
+            } catch (error) {
+                // Déjà affiché par launch().
+            } finally {
+                button.disabled = false;
+            }
+        });
+    }
+
     setupIndexDb();
     setupJobs();
+    setupBackup();
 })();

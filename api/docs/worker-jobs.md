@@ -6,7 +6,7 @@
 > - Worker : [`api/src/worker.js`](../src/worker.js)
 > - Persistance / machine à états : [`api/src/services/jobService.js`](../src/services/jobService.js)
 > - Routes REST : [`api/src/routes/jobRoutes.js`](../src/routes/jobRoutes.js)
-> - Registre des traitements : [`api/src/services/jobs/index.js`](../src/services/jobs/index.js) (exemple : [`reindexJob.js`](../src/services/jobs/reindexJob.js))
+> - Registre des traitements : [`api/src/services/jobs/index.js`](../src/services/jobs/index.js) (exemples : [`reindexJob.js`](../src/services/jobs/reindexJob.js), [`backupJob.js`](../src/services/jobs/backupJob.js))
 > - Front admin : [`admin/pages/administration.php`](../../admin/pages/administration.php) + [`admin/resources/js/administration.js`](../../admin/resources/js/administration.js)
 
 ---
@@ -112,7 +112,7 @@ Machine à états et persistance, utilisées **des deux côtés** :
 
 ### 2.5 Registre des handlers (`services/jobs/`)
 
-- Chaque traitement est un fichier exportant `{ type, label, description, allowConcurrent?, run(ctx) }`.
+- Chaque traitement est un fichier exportant `{ type, label, description, allowConcurrent?, unitLabel?, finalMessage?, run(ctx) }` (`unitLabel` : nom de l'unité de travail affiché par l'IHM ; `finalMessage` : message de clôture personnalisé).
 - `index.js` l'enregistre dans `handlers`. **Rien d'autre à modifier** : l'API l'expose via `GET /admin/jobs/types` (donc dans le sélecteur du front), et le worker le résout par `jobs.get(job.type)`.
 - Les handlers ne touchent **jamais** directement à la collection `jobs` : tout passe par `ctx`, ce qui garantit la cohérence compteurs + curseur.
 
@@ -315,13 +315,22 @@ flowchart TD
 | `ctx.isCancelled()` | `true` pour annulation utilisateur uniquement. |
 | `ctx.counters()` | Compteurs + curseurs courants (message final personnalisé). |
 
-### Exemple : `reindexJob.js` (le seul handler livré)
+### Exemple : `reindexJob.js`
 
 - Deux modes selon `params.references` :
   - **scan complet** (`runAll`) : pagination par lots de 100 références triées, `cursor` = dernière référence traitée → la reprise reprend *après* ;
   - **liste ciblée** (`runReferences`, produit de `retry-failed`) : `cursorIndex` = index de la prochaine unité.
 - Chaque fiche : `service.reindexFromRaw(reference)` avec **3 tentatives** et backoff linéaire (500 ms, 1 s), `ctx.step` appelé même en cas d'échec définitif (pour ne pas bloquer la reprise sur une fiche cassée).
 - Vérifie `ctx.shouldStop()` avant chaque page et chaque fiche.
+
+### Exemple : `backupJob.js` — sauvegarde de la base
+
+- **Unité de travail = collection** (`unitLabel: 'collection'`) : le type apparaît dans le sélecteur de la page d'administration, et le panneau de suivi affiche « *n* collection(s) ».
+- Dump **natif Node** : `find({}, { raw: true })` renvoie les octets BSON stockés par le serveur (vérifiés **identiques octet à octet** à ceux d'un `mongodump` officiel) ; chaque collection est écrite gzipée dans `<BACKUP_DIR>/studium-<horodatage>/<db>/<coll>.bson.gz` (+ `.metadata.json.gz` pour les index), format lisible tel quel par `mongorestore --gzip`. Aucun binaire externe à installer sur le worker.
+- Collection terminée → `ctx.step({ reference, cursor })` ; échec → erreur unitaire, **curseur non avancé** (la reprise la retentera). Une fois tout réussi, `tar -cf` produit `studium-<horodatage>.tar`, le répertoire intermédiaire est supprimé et `finalMessage` affiche le chemin et la taille de l'archive.
+- Des échecs ⇒ **aucune archive** et job `failed` : « Relancer les erreurs » relance uniquement les collections en échec (via `params.references`) et produit une archive `…-partiel.tar`.
+- Ignorées par défaut : `system.*`, `logs`, `jobs`, `job_failures` (param `params.excludedCollections` pour en ajouter).
+- L'ancienne route HTTP `POST /admin/backup` (utilisée par le CLI) empile désormais ce job au lieu d'exécuter le dump dans le processus API.
 
 ---
 
@@ -386,6 +395,13 @@ Variables d'environnement du worker :
 | `WORKER_POLL_INTERVAL_MS` | `2000` | pause entre deux `claimNext` quand la file est vide |
 | `WORKER_HEARTBEAT_MS` | `5000` | période de heartbeat → latence max d'une annulation |
 | `WORKER_STALE_MS` | `60000` | seuil au-delà duquel un `running` est considéré orphelin |
+| `BACKUP_DIR` | `backupDir` de `config.json`, puis `/var/backups/studium` | destination des dumps et archives du job `backup` |
+
+Le `docker-compose.yml` monte le volume nommé `backups` sur
+`/var/backups/studium` dans `studium_worker` : les sauvegardes survivent aux
+reconstructions du conteneur (et peuvent être copiées/snapshotées depuis ce
+volume). L'archive n'étant pas chiffrée, la rétention et la sortie hors site
+relèvent de l'exploitation (cron de copie, chiffrement, etc.).
 
 En développement : `npm run worker` (babel-node) ou `npm run worker:watch` — à lancer **à côté** de l'API.
 

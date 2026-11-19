@@ -151,11 +151,23 @@ async function runJob(job: any, handler: any): Promise<void> {
       await jobService.requeue(job._id, 'Interrompu par l\'arrêt du worker, reprise automatique');
     } else {
       const counts = ctx.counters();
-      let message = counts.processed === 0
-        ? 'Terminé : aucune fiche à traiter'
-        : `Terminé : ${counts.succeeded} fiche(s) traitée(s)`;
-      if (counts.failedCount > 0) {
-        message += `, ${counts.failedCount} erreur(s)`;
+      const unit = handler.unitLabel || 'fiche';
+      let message;
+      if (typeof handler.finalMessage === 'function') {
+        // Message personnalisé du handler (ex. sauvegarde : chemin de l'archive).
+        try {
+          message = handler.finalMessage(ctx);
+        } catch (error) {
+          logger.error(`worker: finalMessage(${handler.type}) failed: ${messageOf(error)}`);
+        }
+      }
+      if (!message) {
+        message = counts.processed === 0
+          ? `Terminé : aucune ${unit} à traiter`
+          : `Terminé : ${counts.succeeded} ${unit}(s) traitée(s)`;
+        if (counts.failedCount > 0) {
+          message += `, ${counts.failedCount} erreur(s)`;
+        }
       }
       await jobService.finish(job._id, 'done', message);
     }

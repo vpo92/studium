@@ -1342,23 +1342,25 @@
       "post": {
         "tags": ["Admin"],
         "summary": "Backup database",
-        "description": "Trigger a full backup of the prosopography collection. Admin only.",
+        "description": "Queue a full database backup as a background job (type \"backup\"), executed by the worker. Progress is monitored through /admin/jobs/{id}. Admin only. Kept as HTTP 200 for CLI backward compatibility; the work itself is asynchronous.",
         "operationId": "backupDB",
         "security": [{ "bearerAuth": ["admin"] }],
         "responses": {
           "200": {
-            "description": "Backup completed",
+            "description": "Backup job queued",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": { "type": "string" }
+                    "message": { "type": "string" },
+                    "job": { "$ref": "#/components/schemas/Job" }
                   }
                 }
               }
             }
-          }
+          },
+          "409": { "description": "A backup job is already running" }
         }
       }
     },

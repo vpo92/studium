@@ -11,9 +11,11 @@
  * `GET /admin/jobs/types` et le worker le prend en charge au démarrage.
  */
 import reindexJob from './reindexJob';
+import backupJob from './backupJob';
 
 const handlers = {
   [reindexJob.type]: reindexJob,
+  [backupJob.type]: backupJob,
 };
 
 function get(type: string): any {
@@ -32,6 +34,7 @@ function list(): Array<any> {
       label: handler.label,
       description: handler.description || '',
       allowConcurrent: !!handler.allowConcurrent,
+      unitLabel: handler.unitLabel || 'fiche',
     };
   });
 }
