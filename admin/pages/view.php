@@ -69,7 +69,7 @@ if(isAuthenticated()){?>
     <input type="hidden" name="keyword" value="<?php echo htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8'); ?>">
     <?php } ?>
     <button type="submit" class="btn btn-warning" onclick="return confirm('Réindexer la fiche <?php echo htmlspecialchars($fiche->reference, ENT_QUOTES, 'UTF-8'); ?> à partir du format brut ?');">
-        Re-index
+        Regénérer le JSON depuis la fiche brute
     </button>
 </form>
 <?php } ?>
