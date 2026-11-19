@@ -8,8 +8,21 @@ import graphService from '../services/graph';
 import auth from '../services/authService';
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
+import features from '../utils/features';
 
 const router = express.Router();
+
+/**
+ * Bloque les endpoints de graphe lorsque FEAT_GRAPH n'est pas activé.
+ */
+const requireGraphFeature = function(req, res, next) {
+  if (!features.isGraphEnabled()) {
+    logger.debug('graph feature is disabled (FEAT_GRAPH)');
+    res.status(404).json({ message: 'graph feature is disabled' });
+    return;
+  }
+  next();
+};
 
 const getPagination = function(req){
   return {
@@ -201,7 +214,7 @@ router.post('/search/advanced', async(req, res, next) => {
 /*
 * ???
 */
-router.post('/initGraph', async(req, res, next) => {
+router.post('/initGraph', requireGraphFeature, async(req, res, next) => {
   const id = uuid.v4();
   logger.debug(`${id}: search graph`);
   try {
@@ -259,7 +272,7 @@ router.get('/all-ids', auth.isAuthenticated, async (req, res, next) => {
 /**
 * Get pg graph from Neo4j by Reference
 */
-router.get('/:reference/graph', async (req, res, next) => {
+router.get('/:reference/graph', requireGraphFeature, async (req, res, next) => {
   const id = uuid.v4();
   const reference = req.params.reference;
   const depth = req.query.depth;

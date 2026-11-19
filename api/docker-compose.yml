@@ -10,3 +10,4 @@ services:
       - APP_MODE=PROD
       - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/studium
       - MONGO_URL=mongodb://mongodb/studium
+      - FEAT_GRAPH=${FEAT_GRAPH:-false}

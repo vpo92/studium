@@ -22,6 +22,9 @@ services:
       # URL publique de l'admin.
       APPLICATION_URL: ${APPLICATION_URL:-http://studium-parisiense.univ-paris1.fr}
 
+      # Active/désactive les fonctions de graphe (onglet Graphe des fiches).
+      FEAT_GRAPH: ${FEAT_GRAPH:-false}
+
       TZ: ${TZ:-Europe/Paris}
 
     healthcheck:

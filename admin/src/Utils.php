@@ -40,6 +40,25 @@ function getFeatures(){
     return $features;
 }
 
+/**
+ * Retourne l'état d'une fonctionnalité pilotée par la variable
+ * d'environnement FEAT_<NOM> (true/false, 1/0, yes/no, on/off).
+ * Une valeur absente ou non reconnue laisse la fonctionnalité désactivée.
+ */
+function isFeatureEnabled($name, $default = false){
+    $envName = "FEAT_".strtoupper($name);
+    $value = getenv($envName);
+    if ($value === false || trim($value) === '') {
+        return $default;
+    }
+    $parsed = filter_var(trim($value), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+    return $parsed === null ? $default : $parsed;
+}
+
+function isGraphEnabled(){
+    return isFeatureEnabled("GRAPH");
+}
+
 function getFieldFromForm($name, $default = null){
     return isset($_POST[$name])?$_POST[$name]:(isset($_GET[$name])?$_GET[$name]:$default);
 }

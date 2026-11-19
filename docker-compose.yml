@@ -30,6 +30,7 @@ services:
       - APP_MODE=PROD
       - MONGODB_CONNECTION_STRING=mongodb://studium_mongo:27017/studium      
       - MONGO_URL=mongodb://studium_mongo/studium
+      - FEAT_GRAPH=${FEAT_GRAPH:-false}
     restart: always
     networks:
      - default
@@ -42,6 +43,7 @@ services:
       - API_URL=${API_URL:-http://studium_api:3000}
       - PUBLIC_API_URL=${PUBLIC_API_URL:-http://localhost:3003/api}
       - APPLICATION_URL=${APPLICATION_URL:-http://localhost:3003}
+      - FEAT_GRAPH=${FEAT_GRAPH:-false}
 
     expose:
       - 3002

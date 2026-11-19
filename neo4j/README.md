@@ -55,6 +55,20 @@ Un modèle est fourni dans `api/.env.example`. Le script charge
 automatiquement `api/.env`, puis les variables d'environnement déjà définies
 ont priorité. Un fichier alternatif peut être passé avec `--env-file`.
 
+## Feature flag `FEAT_GRAPH`
+
+Les fonctions de graphe de l'API et de l'admin sont pilotées par la variable
+d'environnement `FEAT_GRAPH` :
+
+- `FEAT_GRAPH=true` : active `GET /prosopography/:reference/graph`,
+  `POST /prosopography/initGraph` et l'onglet « Graphe » des fiches ;
+- `FEAT_GRAPH=false` (ou variable absente) : désactive ces fonctions
+  (l'onglet est masqué et les endpoints répondent `404`).
+
+La variable doit être définie dans l'environnement du processus (Docker
+Compose, systemd, shell, ...). En local, elle peut aussi être placée dans
+`api/.env` pour l'API ; l'admin lit directement l'environnement d'Apache.
+
 Depuis `api/`, la commande la plus courte importe directement une fiche :
 
 ```bash
