@@ -1,5 +1,7 @@
-// Spec de la route POST /admin/jobs/backups (téléversement d'archives,
-// ticket #6). Les dépendances étrangères (auth, registre de jobs, mongo,
+// Spec des routes de gestion des archives de sauvegarde (ticket #5 et #6) :
+// POST /admin/jobs/backups (téléversement) et DELETE
+// /admin/jobs/backups/:name (suppression). Les dépendances étrangères
+// (auth, registre de jobs, mongo,
 // logs) sont simulées ; la route réelle est servie par une app express
 // éphémère et exercée par de vraies requêtes HTTP. L'exécution de `tar`
 // suppose un binaire tar accessible (images Debian, postes de dev).
@@ -18,6 +20,7 @@ jest.mock('../../src/services/authService', () => ({
 }));
 jest.mock('../../src/services/jobService', () => ({
   create: jest.fn(),
+  findActiveByType: jest.fn(),
   list: jest.fn(),
   get: jest.fn(),
   serialize: (job) => job,
@@ -40,6 +43,7 @@ process.env.MONGODB_CONNECTION_STRING = 'mongodb://fake-host:27099/studium-test'
 const express = require('express');
 const jobRoutes = require('../../src/routes/jobRoutes').default;
 const backupLib = require('../../src/services/jobs/backupLib');
+const jobService = require('../../src/services/jobService');
 
 // fabrique un dump au format mongodump (studium/fiches.bson.gz + metadata)
 function buildValidDump(dir) {
@@ -117,6 +121,8 @@ beforeEach(() => {
   workDir = fs.mkdtempSync(path.join(os.tmpdir(), 'studium-upload-work-'));
   validDump = buildValidDump(workDir);
   process.env.BACKUP_DIR = backupDir;
+  // par défaut : aucun traitement de restauration actif dans les parages
+  jobService.findActiveByType.mockResolvedValue(null);
 });
 
 afterEach(() => {
@@ -234,5 +240,78 @@ describe('POST /admin/jobs/backups (téléversement)', () => {
     expect(second.status).toBe(201);
     expect(second.body.name).toMatch(/-2\.tar$/);
     expect(fs.readdirSync(backupDir).length).toBe(2);
+  });
+});
+
+describe('DELETE /admin/jobs/backups/:name (suppression)', () => {
+  it('supprime une archive existante', async () => {
+    const archive = 'studium-20261120-120000-a-jeter.tar';
+    fs.writeFileSync(path.join(backupDir, archive), 'tar');
+
+    const response = await request(
+      { port: port }, 'DELETE', '/admin/jobs/backups/' + archive, null, {}
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.body.deleted).toBe(archive);
+    expect(fs.existsSync(path.join(backupDir, archive))).toBe(false);
+  });
+
+  it('retourne 404 pour une archive inexistante', async () => {
+    const response = await request(
+      { port: port }, 'DELETE', '/admin/jobs/backups/studium-20261120-120000.pdf.tar', null, {}
+    );
+
+    expect(response.status).toBe(404);
+  });
+
+  it('retourne 400 pour un nom invalide, sans toucher au disque', async () => {
+    const victim = 'studium-20261120-120000-victime.tar';
+    fs.writeFileSync(path.join(backupDir, victim), 'tar');
+
+    const sneaky = encodeURIComponent('evil/' + victim);
+    const response = await request(
+      { port: port }, 'DELETE', '/admin/jobs/backups/' + sneaky, null, {}
+    );
+
+    expect(response.status).toBe(400);
+    expect(fs.existsSync(path.join(backupDir, victim))).toBe(true);
+  });
+
+  it('refuse (409) de supprimer l\'archive d\'une restauration encore active', async () => {
+    const archive = 'studium-20261120-120000-en-cours.tar';
+    fs.writeFileSync(path.join(backupDir, archive), 'tar');
+    jobService.findActiveByType.mockResolvedValue({
+      _id: 'job1',
+      type: 'restore',
+      status: 'running',
+      params: { archive: archive, confirm: 'RESTAURER' },
+    });
+
+    const response = await request(
+      { port: port }, 'DELETE', '/admin/jobs/backups/' + archive, null, {}
+    );
+
+    expect(response.status).toBe(409);
+    expect(response.body.message).toMatch(/restauration/i);
+    expect(fs.existsSync(path.join(backupDir, archive))).toBe(true);
+  });
+
+  it('laisse passer la suppression si la restauration active vise une autre archive', async () => {
+    const archive = 'studium-20261120-120000-libre.tar';
+    fs.writeFileSync(path.join(backupDir, archive), 'tar');
+    jobService.findActiveByType.mockResolvedValue({
+      _id: 'job2',
+      type: 'restore',
+      status: 'queued',
+      params: { archive: 'studium-20261120-115959-autre.tar' },
+    });
+
+    const response = await request(
+      { port: port }, 'DELETE', '/admin/jobs/backups/' + archive, null, {}
+    );
+
+    expect(response.status).toBe(200);
+    expect(fs.existsSync(path.join(backupDir, archive))).toBe(false);
   });
 });

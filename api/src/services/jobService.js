@@ -346,6 +346,7 @@ module.exports = {
   ACTIVE_STATUSES,
   ensureIndexes,
   create,
+  findActiveByType,
   get,
   list,
   claimNext,

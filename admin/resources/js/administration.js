@@ -654,7 +654,10 @@
                         '<td class="text-right">' +
                         '<button type="button" class="btn btn-sm btn-outline-primary" ' +
                         'data-archive-name="' + escapeHtml(archive.name) + '">' +
-                        'Télécharger</button>' +
+                        'Télécharger</button> ' +
+                        '<button type="button" class="btn btn-sm btn-danger ml-1" ' +
+                        'data-archive-delete="' + escapeHtml(archive.name) + '">' +
+                        'Supprimer</button>' +
                         '</td>';
                     tbody.appendChild(row);
                 });
@@ -712,12 +715,50 @@
             }
         }
 
-        tbody.addEventListener('click', function (event) {
-            var button = event.target.closest ? event.target.closest('button[data-archive-name]') : null;
-            if (!button) {
+        async function removeArchive(button) {
+            var name = button.getAttribute('data-archive-delete');
+            var label = button.textContent;
+
+            if (!confirm('Supprimer définitivement l\'archive « ' + name + ' » ?\n'
+                + 'Opération irréversible : le dump sera perdu (téléchargez-le avant si besoin).')) {
                 return;
             }
-            download(button);
+
+            button.disabled = true;
+            button.textContent = 'Suppression…';
+            setStatus('', null);
+
+            try {
+                await apiFetch('/admin/jobs/backups/' + encodeURIComponent(name), { method: 'DELETE' });
+                setStatus('Archive « ' + name + ' » supprimée.', 'success');
+                if (refreshRestoreArchives) {
+                    refreshRestoreArchives();
+                }
+                await load();
+            } catch (error) {
+                if (error.status === 401 || error.status === 403) {
+                    setStatus("Vous n'avez pas l'autorisation de supprimer des archives.", 'danger');
+                } else {
+                    setStatus('Suppression de « ' + name + ' » impossible : ' + error.message, 'danger');
+                }
+                button.disabled = false;
+                button.textContent = label;
+            }
+        }
+
+        tbody.addEventListener('click', function (event) {
+            if (!event.target.closest) {
+                return;
+            }
+            var deleteButton = event.target.closest('button[data-archive-delete]');
+            if (deleteButton) {
+                removeArchive(deleteButton);
+                return;
+            }
+            var downloadButton = event.target.closest('button[data-archive-name]');
+            if (downloadButton) {
+                download(downloadButton);
+            }
         });
 
         refreshBackupDownloads = load;

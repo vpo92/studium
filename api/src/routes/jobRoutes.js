@@ -243,6 +243,48 @@ router.get('/backups/:name/download', (req, res, next) => {
 });
 
 /**
+ * Supprime une archive de sauvegarde de BACKUP_DIR. Le nom est validé
+ * (aucun chemin) et l'archive doit exister ; sinon 400/404. Refus (409) si
+ * un traitement de restauration encore actif (en file ou en cours) utilise
+ * cette archive : on ne coupe pas les pieds d'un restore en cours.
+ */
+router.delete('/backups/:name', async (req, res, next) => {
+  let file = null;
+  try {
+    file = backupLib.getArchivePath(req.params.name);
+  } catch (error) {
+    if (error.status === 400) {
+      return res.status(400).json({ message: error.message });
+    }
+    return next(error);
+  }
+  if (!file) {
+    return res.status(404).json({ message: 'Archive introuvable.' });
+  }
+
+  try {
+    const active = await jobService.findActiveByType('restore');
+    if (active && active.params && active.params.archive === req.params.name) {
+      return res.status(409).json({
+        message: 'Une restauration en cours (ou en file) utilise cette archive : '
+          + 'suppression impossible tant que le traitement est actif.',
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+
+  try {
+    fs.unlinkSync(file);
+    logger.info(`jobs/backups: archive ${req.params.name} supprimée par ${req.user.email}`);
+    res.send({ deleted: req.params.name });
+  } catch (error) {
+    next(error);
+  }
+  return undefined;
+});
+
+/**
  * Liste les derniers jobs (du plus récent au plus ancien).
  */
 router.get('/', async (req, res, next) => {

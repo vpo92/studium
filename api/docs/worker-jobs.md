@@ -340,6 +340,7 @@ flowchart TD
 - Idempotent et reprenable (curseur `r:<collection>`) ; en revanche une annulation en phase destructive laisse un état mixte — c'est le rôle de la sauvegarde de sécurité de permettre le retour en arrière.
 - La liste des archives exploitables est exposée par `GET /admin/jobs/backups` et présentée dans la carte « Restauration de la base » de l'IHM admin (sélection de l'archive, option de pre-backup, confirmation par saisie du mot `RESTAURER`).
 - Des dumps produits hors du serveur (autre environnement, export manuel) peuvent être importés via `POST /admin/jobs/backups` (bouton « Téléverser une archive… » de la carte « Sauvegarde de la base ») : binaire en corps de requête brut, renommé `studium-upload-…tar` et vérifié (`tar -tf` + présence de `.bson.gz`) avant d'atterrir dans `BACKUP_DIR`, donc immédiatement restaurable. Le volume `backups` est à ce titre monté en écriture dans `studium_api` (voir `docker-compose.yml`).
+- Les archives sont supprimables via `DELETE /admin/jobs/backups/:name` (bouton rouge « Supprimer », avec confirmation, dans la liste « Sauvegardes disponibles » de la carte « Sauvegarde de la base ») ; la suppression est refusée (409) tant qu'un traitement `restore` en file ou en cours référence l'archive.
 - Primitives de dump partagées avec `backupJob` dans [`services/jobs/backupLib.js`](../src/services/jobs/backupLib.js).
 
 ---

@@ -1229,6 +1229,70 @@
         }
       }
     },
+    "/admin/jobs/backups/{name}": {
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Delete a backup archive",
+        "description": "Remove an archive from BACKUP_DIR, irreversibly. Refused (409) while a queued or running \"restore\" job references this archive. Admin only.",
+        "operationId": "deleteBackupArchive",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Archive name, as listed by GET /admin/jobs/backups.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Archive deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "deleted": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid archive name" },
+          "404": { "description": "Unknown archive" },
+          "409": { "description": "Archive in use by an active restore job" }
+        }
+      }
+    },
+    "/admin/jobs/backups/{name}/download": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Download a backup archive",
+        "description": "Stream a tar archive stored in BACKUP_DIR as an attachment. Admin only.",
+        "operationId": "downloadBackupArchive",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Archive name, as listed by GET /admin/jobs/backups.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Archive content",
+            "content": {
+              "application/x-tar": {
+                "schema": { "type": "string", "format": "binary" }
+              }
+            }
+          },
+          "400": { "description": "Invalid archive name" },
+          "404": { "description": "Unknown archive" }
+        }
+      }
+    },
     "/admin/jobs/types": {
       "get": {
         "tags": ["Admin"],

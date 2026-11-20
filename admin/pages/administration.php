@@ -82,7 +82,8 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
         <p class="small text-muted mb-2">
             Archives produites sur le serveur (sauvegardes et sauvegardes de
             sécurité précédant une restauration). Cliquez sur
-            « Télécharger » pour récupérer l'archive.
+            « Télécharger » pour récupérer l'archive, ou sur le bouton rouge
+            « Supprimer » pour la retirer définitivement du serveur.
         </p>
         <div class="table-responsive">
             <table class="table table-sm table-hover mb-0">
