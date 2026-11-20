@@ -41,7 +41,14 @@ router.get('/backups', async (req, res, next) => {
     try {
       files = fs.readdirSync(dir);
     } catch (error) {
-      files = []; // répertoire pas encore créé : aucune archive
+      if (error.code === 'ENOENT') {
+        files = []; // répertoire pas encore créé : aucune archive
+      } else {
+        // Permissions, montage manquant, BACKUP_DIR hors volume… : afficher
+        // la vraie erreur plutôt qu'une liste vide trompeuse.
+        logger.error(`jobs/backups: lecture de ${dir} impossible: ${error.message}`);
+        throw error;
+      }
     }
     const archives = files
       .filter((name) => backupLib.ARCHIVE_NAME_RE.test(name))

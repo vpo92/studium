@@ -11,6 +11,14 @@ services:
       - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/studium
       - MONGO_URL=mongodb://mongodb/studium
       - FEAT_GRAPH=${FEAT_GRAPH:-false}
+      - BACKUP_DIR=/var/backups/studium
+    # Le worker écrit les archives dans le volume partagé « backups » ;
+    # l'API le monte en lecture seule pour lister/télécharger les dumps
+    # (GET /admin/jobs/backups et /backups/:name/download). Sans ce montage,
+    # chaque conteneur a son propre /var/backups/studium et l'API ne voit
+    # jamais les archives produites par le worker.
+    volumes:
+      - backups:/var/backups/studium:ro
 
   # L'image "worker" (cible worker du Dockerfile) embarque déjà
   # CMD ["node", "worker.js"] et HEALTHCHECK NONE : rien à surcharger ici.
@@ -24,5 +32,11 @@ services:
       - WORKER_POLL_INTERVAL_MS=2000
       - WORKER_HEARTBEAT_MS=5000
       - WORKER_STALE_MS=60000
+      - BACKUP_DIR=/var/backups/studium
+    volumes:
+      - backups:/var/backups/studium
     stop_grace_period: 30s
     restart: unless-stopped
+
+volumes:
+  backups: null
