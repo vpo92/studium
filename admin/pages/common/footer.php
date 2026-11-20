@@ -1,7 +1,7 @@
 </div>
 <footer>
     <hr/>
-    2019 - Studium <?php echo getApplicationVersion()?>
+    2019-2026 • Studium <?php echo getApplicationVersion()?>
 </footer>
 
 </div>
