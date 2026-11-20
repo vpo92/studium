@@ -72,6 +72,12 @@ COPY --from=build /app/api/docker/build/resources ./resources
 # de l'image.
 RUN mkdir -p /var/backups/studium
 
+# Log des variables d'environnement au demarrage (api et worker, CMD node
+# server.js / node worker.js est conserve via l'entrypoint d'origine node).
+COPY api/docker/entrypoint.sh /usr/local/bin/app-entrypoint.sh
+RUN chmod +x /usr/local/bin/app-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/app-entrypoint.sh"]
+
 RUN chown -R node:node /app /var/backups
 USER node
 
