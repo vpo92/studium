@@ -7,6 +7,9 @@
 
     function setDark(dark) {
         root.classList.toggle('dark', dark);
+        // Bootstrap >= 5.3 : thème natif (variables --bs-*) + thème sombre
+        // des composants (navbar, tableaux, formulaires, etc.).
+        root.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
         try {
             localStorage.setItem(STORAGE_KEY, dark ? '1' : '0');
         } catch (error) {

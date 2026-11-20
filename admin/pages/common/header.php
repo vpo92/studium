@@ -8,10 +8,12 @@
     <title>Studium</title>
 
     <!-- Applique le thème sombre avant le rendu (pas de flash) ; la
-         préférence est mémorisée dans localStorage par dark-mode.js -->
+         préférence est mémorisée dans localStorage par dark-mode.js.
+         data-bs-theme pilote le thème sombre natif de Bootstrap 5.3. -->
     <script>
         if (localStorage.getItem('studium-dark-mode') === '1') {
             document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
         }
     </script>
 
@@ -114,13 +116,8 @@
 
         <!-- Switch du mode sombre : en bas du menu, après la rubrique Aide -->
         <div class="sidebar-dark-toggle">
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="dark-mode-switch"
-                       aria-label="Activer le mode sombre">
-                <label class="custom-control-label" for="dark-mode-switch">
-                    <i class="fas fa-moon"></i> Mode sombre
-                </label>
-            </div>
+            <input type="checkbox" id="dark-mode-switch" aria-label="Activer le mode sombre">
+            <label for="dark-mode-switch"><i class="fas fa-moon"></i> Mode sombre</label>
         </div>
     </nav>
 

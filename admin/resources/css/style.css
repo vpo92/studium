@@ -271,9 +271,36 @@ html, body, .tab-content, #map  {
 }
 /* ---------------------------------------------------
     DARK MODE
-    Appliqué par la classe « dark » sur <html> (voir
-    header.php + js/dark-mode.js, préférence en localStorage).
+    Appliqué par la classe « dark » et l'attribut
+    data-bs-theme="dark" sur <html> (voir header.php +
+    js/dark-mode.js, préférence en localStorage).
+    Bootstrap 5.3 est piloté par variables CSS : on les
+    redéfinit ici, les overrides ci-dessous ne concernent
+    que la palette maison et les classes du projet.
 ----------------------------------------------------- */
+
+html.dark {
+    color-scheme: dark;
+    --bs-body-bg: #16181d;
+    --bs-body-color: #dee2e6;
+    --bs-emphasis-color: #f1f3f5;
+    --bs-secondary-color: #8d95a1;
+    --bs-secondary-bg: #1d2129;
+    --bs-tertiary-bg: #232838;
+    --bs-border-color: #2c3140;
+    --bs-link-color: #9fb3ff;
+    --bs-link-hover-color: #c6d1ff;
+    --bs-primary: #3f51b5;
+    --bs-primary-rgb: 63, 81, 181;
+}
+
+/* Navbar : marque et texte toujours lisibles sur l'indigo / le gris foncé
+   (Bootstrap 5 colore .navbar-brand en « emphasis color », quasi noir). */
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover,
+.navbar .navbar-text {
+    color: #fff;
+}
 
 html.dark body {
     background: #16181d;
@@ -342,32 +369,76 @@ html.dark ul ul a {
     color: #dee2e6;
 }
 
-/* Switch « Mode sombre » en bas du menu */
+/* Switch « Mode sombre » en bas du menu (style autonome, indépendant
+   de la version de Bootstrap) */
 .sidebar-dark-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 20px;
-    margin-top: auto;
+    border-top: 1px solid #e3e6ef;
+}
+
+.sidebar-dark-toggle label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.sidebar-dark-toggle input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 22px;
+    margin: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #c3c8d4;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sidebar-dark-toggle input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: left 0.2s;
+}
+
+.sidebar-dark-toggle input[type="checkbox"]:checked {
+    background: #3f51b5;
+    border-color: #3f51b5;
+}
+
+.sidebar-dark-toggle input[type="checkbox"]:checked::after {
+    left: 22px;
+}
+
+.sidebar-dark-toggle input[type="checkbox"]:focus-visible {
+    outline: 2px solid #7986cb;
+    outline-offset: 2px;
 }
 
 html.dark .sidebar-dark-toggle {
-    border-top: 1px solid #2c3140;
+    border-top-color: #2c3140;
 }
 
-.custom-switch .custom-control-label {
-    cursor: pointer;
-}
-
-html.dark .custom-control-label::before {
-    background-color: #454c5c;
+html.dark .sidebar-dark-toggle input[type="checkbox"] {
+    background: #454c5c;
     border-color: #5b6373;
 }
 
-html.dark .custom-switch .custom-control-label::after {
-    background-color: #ced4da;
-}
-
-html.dark .custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #3f51b5;
-    border-color: #3f51b5;
+html.dark .sidebar-dark-toggle input[type="checkbox"]:checked {
+    background: #3f51b5;
+    border-color: #5c6bc0;
 }
 
 /* Cartes */
@@ -391,26 +462,40 @@ html.dark .card-text {
     color: #adb5bd;
 }
 
-/* Tableaux */
+/* Tableaux : sous Bootstrap 5, le fond des cellules vient de
+   --bs-table-bg (= --bs-body-bg par défaut), d'où les variables. */
 html.dark .table {
+    --bs-table-color: #dee2e6;
+    --bs-table-bg: #1d2129;
+    --bs-table-border-color: #2c3140;
+    --bs-table-striped-color: #dee2e6;
+    --bs-table-striped-bg: #20242e;
+    --bs-table-hover-color: #f1f3f5;
+    --bs-table-hover-bg: #262b38;
+    --bs-table-accent-bg: transparent;
     color: #dee2e6;
 }
 
 html.dark .table td,
 html.dark .table th {
-    border-top-color: #2c3140;
+    background-color: var(--bs-table-bg);
+    border-color: #2c3140;
 }
 
 html.dark .table thead th {
+    background: #232838;
+    color: #f1f3f5;
     border-bottom-color: #3a4152;
 }
 
-html.dark .table-hover tbody tr:hover {
+html.dark .table-hover tbody tr:hover td,
+html.dark .table-hover tbody tr:hover th {
     background: #262b38;
     color: #f1f3f5;
 }
 
-html.dark .table-striped tbody tr:nth-of-type(odd) {
+html.dark .table-striped tbody tr:nth-of-type(odd) td,
+html.dark .table-striped tbody tr:nth-of-type(odd) th {
     background: #20242e;
 }
 
