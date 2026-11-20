@@ -2,10 +2,11 @@
 import mongoose from 'mongoose';
 import auth from '../../src/services/authService';
 import User from '../../src/models/userModel';
+import mongoUri from '../mongoUri';
 const mail = 'authService-'+(new Date().toUTCString().toLowerCase())+'@mail.com';
 
 beforeAll( async () => {
-  await mongoose.connect('mongodb://localhost/studium-test');
+  await mongoose.connect(mongoUri);
   //JDD
 
   let user = new User({

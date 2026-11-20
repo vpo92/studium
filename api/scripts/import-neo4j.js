@@ -125,7 +125,8 @@ function parsePositiveInt(value, fallback) {
 
 function defaultMongoUrl() {
   try {
-    // Même source de configuration que l'API (api/config/config.json).
+    // Même source de configuration que l'API (variables d'environnement,
+    // relayées par api/config/index.js).
     const config = require('../config');
     if (config && config.mongooseDB) {
       return config.mongooseDB;
@@ -133,14 +134,21 @@ function defaultMongoUrl() {
   } catch (error) {
     // La configuration de l'API est optionnelle pour l'import.
   }
-  return 'mongodb://localhost:27017/studium';
+  return null;
 }
 
 function resolveMongoUrl(args) {
-  return args['mongo-url']
+  const url = args['mongo-url']
     || process.env.MONGODB_CONNECTION_STRING
     || process.env.MONGO_URL
     || defaultMongoUrl();
+  if (!url) {
+    throw new Error(
+      'URL MongoDB manquante : definir MONGODB_CONNECTION_STRING (ou MONGO_URL), '
+      + 'ou passer --mongo-url <url>.'
+    );
+  }
+  return url;
 }
 
 function databaseFromUrl(url) {

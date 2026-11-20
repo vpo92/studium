@@ -5,22 +5,32 @@ const { combine, timestamp, label, prettyPrint } = format;
 const config = require('../../config');
 require('winston-mongodb');
 
-const logger = createLogger({
-  level: 'info',
-  format: combine(timestamp(),prettyPrint()),
-  defaultMeta: { service: 'user-service' },
-  transports: [
-    new transports.Console({ prettyPrint: true, showLevel: 'debug', 'timestamp':true }),
+const transports = [
+  new transports.Console({ prettyPrint: true, showLevel: 'debug', 'timestamp':true }),
+];
+
+// L'URL Mongo vient des variables d'environnement (voir api/config) ;
+// le transport MongoDB n'est ajouté que si une URL est configurée.
+const mongoUrl = process.env.MONGODB_CONNECTION_STRING || process.env.MONGO_URL || config.mongooseDB;
+if (mongoUrl) {
+  transports.push(
     new transports.MongoDB({
       prettyPrint: true,
       showLevel: 'debug',
       timestamp:true,
-      db : process.env.MONGODB_CONNECTION_STRING || (config.mongooseDB ||'mongodb://localhost:27017/studium'),
+      db : mongoUrl,
       collection : 'logs',
       level : 'debug',
       capped : true
-     })
-  ],
+    })
+  );
+}
+
+const logger = createLogger({
+  level: 'info',
+  format: combine(timestamp(),prettyPrint()),
+  defaultMeta: { service: 'user-service' },
+  transports,
 });
 
 

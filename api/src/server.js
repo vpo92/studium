@@ -20,7 +20,10 @@ logger.info(`using environment : ${environment}`);
 logger.info('using config :');
 logger.info(JSON.stringify(config));
 
-const mongoUrl = process.env.MONGODB_CONNECTION_STRING || config.mongooseDB;
+const mongoUrl = process.env.MONGODB_CONNECTION_STRING || process.env.MONGO_URL || config.mongooseDB;
+if (!mongoUrl) {
+  throw new Error('Could not initialize server : MONGODB_CONNECTION_STRING (ou MONGO_URL) manquant.');
+}
 logger.info(`mongoUrl : ${mongoUrl}`);
 mongoose.connect(mongoUrl,{ useNewUrlParser: true });
 
@@ -53,7 +56,7 @@ if (!config.mongooseDB) {
   throw new Error('Could not initialize server : unknown mongo url.');
 }
 
-db.connect(config.mongooseDB, err => {
+db.connect(mongoUrl, err => {
   if (err) {
     logger.error(err);
     process.exit(1);

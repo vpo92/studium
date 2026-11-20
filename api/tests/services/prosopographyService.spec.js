@@ -1,11 +1,12 @@
 
 import db from '../../src/utils/db';
 import service from '../../src/services/prosopographyService';
+import mongoUri from '../mongoUri';
 const tag = 'ref-'+(new Date().toUTCString().toLowerCase());
 
 beforeAll( async () => {
   try{
-     await db.connectAsync("mongodb://localhost/studium-test");
+     await db.connectAsync(mongoUri);
   }catch(err){
     expect(err).toBeUndefined();
   }

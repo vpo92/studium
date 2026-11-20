@@ -2,11 +2,12 @@
 
 import mongoose from 'mongoose';
 import User from '../../src/models/userModel';
+import mongoUri from '../mongoUri';
 
 const tag = new Date().toUTCString().toLowerCase();
 
 beforeAll( async () => {
-  await mongoose.connect('mongodb://localhost/studium-test');
+  await mongoose.connect(mongoUri);
 });
 
 describe('userModel', () => {

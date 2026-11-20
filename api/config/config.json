@@ -1,6 +1,5 @@
 {
   "default": {
-    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"prod",
     "auth": {
       "expiresIn":"4h",
@@ -18,7 +17,6 @@
     "backupDir" : "/var/backups/studium"
   },
   "dev": {
-    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"dev",
     "auth": {
       "expiresIn":"4h",
@@ -36,7 +34,6 @@
     "backupDir" : "/tmp/studium-backups"
   },
   "production": {
-    "mongooseDB": "mongodb://host.docker.internal:27017/studium",
     "appMode":"prod",
     "auth": {
       "expiresIn":"4h",
