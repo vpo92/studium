@@ -75,6 +75,33 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
             Lancer la sauvegarde
         </button>
         <div id="backup-status" class="mt-3" role="status" aria-live="polite"></div>
+
+        <hr class="my-4">
+
+        <h5>Sauvegardes disponibles</h5>
+        <p class="small text-muted mb-2">
+            Archives produites sur le serveur (sauvegardes et sauvegardes de
+            sécurité précédant une restauration). Cliquez sur
+            « Télécharger » pour récupérer l'archive.
+        </p>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+                <thead>
+                <tr>
+                    <th>Archive</th>
+                    <th>Taille</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="backup-downloads">
+                <tr>
+                    <td colspan="4" class="text-muted">Chargement…</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="backup-downloads-status" class="mt-2" role="status" aria-live="polite"></div>
     </div>
 </div>
 

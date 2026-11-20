@@ -17,6 +17,10 @@
     // « Sauvegarde de la base ») de lancer un job via le panneau de suivi.
     var launchJobType = null;
 
+    // Exposé par setupBackupDownloads() : recharge la liste des archives
+    // téléchargeables (appelé notamment quand un traitement se termine).
+    var refreshBackupDownloads = null;
+
     function baseUrl() {
         return String(apiUrl).trim().replace(/\/+$/, '');
     }
@@ -69,6 +73,20 @@
             return '—';
         }
         return date.toLocaleString('fr-FR');
+    }
+
+    function formatSize(bytes) {
+        if (bytes === null || bytes === undefined) {
+            return '';
+        }
+        var units = ['o', 'Ko', 'Mo', 'Go', 'To'];
+        var value = bytes;
+        var unit = 0;
+        while (value >= 1024 && unit < units.length - 1) {
+            value /= 1024;
+            unit += 1;
+        }
+        return (unit === 0 ? value : Math.round(value * 10) / 10) + ' ' + units[unit];
     }
 
     function formatDuration(durationMs) {
@@ -290,6 +308,11 @@
                     schedulePoll(jobId);
                 } else {
                     loadHistory();
+                    // Une sauvegarde (ou une sauvegarde de sécurité) vient
+                    // peut-être de se terminer : rafraîchir les archives.
+                    if (refreshBackupDownloads) {
+                        refreshBackupDownloads();
+                    }
                 }
             } catch (error) {
                 if (error.status === 401 || error.status === 403) {
@@ -583,6 +606,118 @@
     }
 
     /* ------------------------------------------------------------------ *
+     *  Téléchargement des dumps (liste des archives de sauvegarde)
+     * ------------------------------------------------------------------ */
+
+    function setupBackupDownloads() {
+        var tbody = document.getElementById('backup-downloads');
+        var status = document.getElementById('backup-downloads-status');
+
+        if (!tbody || !status) {
+            return;
+        }
+
+        function setStatus(message, type) {
+            status.className = type ? 'mt-2 alert alert-' + type : 'mt-2';
+            status.textContent = message || '';
+        }
+
+        function renderMessage(message, type) {
+            tbody.innerHTML =
+                '<tr><td colspan="4" class="' + (type || 'text-muted') + '">' +
+                escapeHtml(message) + '</td></tr>';
+        }
+
+        async function load() {
+            try {
+                var archives = await apiFetch('/admin/jobs/backups');
+                tbody.innerHTML = '';
+
+                if (!archives || archives.length === 0) {
+                    renderMessage('Aucune archive disponible.');
+                    return;
+                }
+
+                archives.forEach(function (archive) {
+                    var row = document.createElement('tr');
+                    row.innerHTML =
+                        '<td><code>' + escapeHtml(archive.name) + '</code></td>' +
+                        '<td>' + escapeHtml(formatSize(archive.size)) + '</td>' +
+                        '<td><small>' + escapeHtml(formatDate(archive.modifiedAt)) + '</small></td>' +
+                        '<td class="text-right">' +
+                        '<button type="button" class="btn btn-sm btn-outline-primary" ' +
+                        'data-archive-name="' + escapeHtml(archive.name) + '">' +
+                        'Télécharger</button>' +
+                        '</td>';
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                if (error.status === 401 || error.status === 403) {
+                    renderMessage("Vous n'avez pas l'autorisation de lister les sauvegardes.", 'text-danger');
+                } else {
+                    renderMessage('Impossible de charger les sauvegardes : ' + error.message, 'text-danger');
+                }
+            }
+        }
+
+        async function download(button) {
+            var name = button.getAttribute('data-archive-name');
+            var label = button.textContent;
+
+            button.disabled = true;
+            button.textContent = 'Téléchargement…';
+            setStatus('', null);
+
+            try {
+                // Flux binaire authentifié par en-tête : on récupère l'archive
+                // en mémoire puis on déclenche l'enregistrement côté navigateur.
+                var response = await fetch(
+                    baseUrl() + '/admin/jobs/backups/' + encodeURIComponent(name) + '/download',
+                    { headers: { 'Authorization': 'Bearer ' + sessionTokenValue() } }
+                );
+                if (!response.ok) {
+                    var message = 'HTTP ' + response.status;
+                    try {
+                        var data = await response.json();
+                        if (data && data.message) {
+                            message = data.message;
+                        }
+                    } catch (error) {
+                        // réponse non JSON (proxy, erreur HTML…) : on garde le code HTTP
+                    }
+                    throw new Error(message);
+                }
+
+                var blob = await response.blob();
+                var url = window.URL.createObjectURL(blob);
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = name;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                setStatus('Téléchargement de « ' + name + ' » impossible : ' + error.message, 'danger');
+            } finally {
+                button.disabled = false;
+                button.textContent = label;
+            }
+        }
+
+        tbody.addEventListener('click', function (event) {
+            var button = event.target.closest ? event.target.closest('button[data-archive-name]') : null;
+            if (!button) {
+                return;
+            }
+            download(button);
+        });
+
+        refreshBackupDownloads = load;
+        load();
+    }
+
+    /* ------------------------------------------------------------------ *
      *  Restauration de la base (job « restore » — opération destructive)
      * ------------------------------------------------------------------ */
 
@@ -601,20 +736,6 @@
         function setStatus(message, type) {
             status.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
             status.textContent = message || '';
-        }
-
-        function formatSize(bytes) {
-            if (bytes === null || bytes === undefined) {
-                return '';
-            }
-            var units = ['o', 'Ko', 'Mo', 'Go', 'To'];
-            var value = bytes;
-            var unit = 0;
-            while (value >= 1024 && unit < units.length - 1) {
-                value /= 1024;
-                unit += 1;
-            }
-            return (unit === 0 ? value : Math.round(value * 10) / 10) + ' ' + units[unit];
         }
 
         function updateButtonState() {
@@ -700,5 +821,6 @@
     setupIndexDb();
     setupJobs();
     setupBackup();
+    setupBackupDownloads();
     setupRestore();
 })();
