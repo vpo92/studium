@@ -49,6 +49,9 @@ jobs:
         with:
           context: .
           file: api/Dockerfile
+          # Etape "runtime" = l'API (CMD node server.js). Sans target, docker
+          # construirait la derniere etape, "worker".
+          target: runtime
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}

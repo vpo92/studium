@@ -41,9 +41,10 @@ services:
 
   # Exécute les traitements longs (réindexation, dump, indexation Neo4j...)
   # en dehors du processus HTTP de l'API. Voir api/src/services/jobs/.
+  # L'image "worker" (cible worker du api/Dockerfile) embarque déjà
+  # CMD ["node", "worker.js"] et HEALTHCHECK NONE : rien à surcharger ici.
   studium_worker:
-    image: ghcr.io/vpo92/studium/api:latest
-    command: ["node", "worker.js"]
+    image: ghcr.io/vpo92/studium/worker:latest
     depends_on:
       - studium_mongo
     environment:
@@ -58,8 +59,6 @@ services:
     volumes:
       - backups:/var/backups/studium
     stop_grace_period: 30s
-    healthcheck:
-      test: ["NONE"]
     restart: unless-stopped
     networks:
       - default

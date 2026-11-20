@@ -12,9 +12,10 @@ services:
       - MONGO_URL=mongodb://mongodb/studium
       - FEAT_GRAPH=${FEAT_GRAPH:-false}
 
+  # L'image "worker" (cible worker du Dockerfile) embarque déjà
+  # CMD ["node", "worker.js"] et HEALTHCHECK NONE : rien à surcharger ici.
   studium_worker:
-    image: ghcr.io/vpo92/studium/api:latest
-    command: ["node", "worker.js"]
+    image: ghcr.io/vpo92/studium/worker:latest
     environment:
       - NODE_ENV=production
       - APP_MODE=PROD
@@ -24,6 +25,4 @@ services:
       - WORKER_HEARTBEAT_MS=5000
       - WORKER_STALE_MS=60000
     stop_grace_period: 30s
-    healthcheck:
-      test: ["NONE"]
     restart: unless-stopped
