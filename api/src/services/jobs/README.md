@@ -168,6 +168,8 @@ Toutes réservées aux administrateurs (`auth.isAdmin`) :
 |---|---|---|
 | `GET` | `/admin/jobs/types` | Types de traitement disponibles. |
 | `GET` | `/admin/jobs/backups` | Archives de sauvegarde disponibles dans `BACKUP_DIR`. |
+| `GET` | `/admin/jobs/backups/:name/download` | Télécharge une archive (flux binaire). |
+| `POST` | `/admin/jobs/backups` | Téléverse une archive (ticket #6) : binaire en corps de requête brut, nom d'origine en paramètre `filename`. Le fichier est renommé `studium-upload-<horodatage>-<nom>.tar`, vérifié (`tar -tf`, contenu `.bson.gz`) puis écrit dans `BACKUP_DIR`, où il devient téléchargeable et restaurable. Plafond : `BACKUP_UPLOAD_MAX_BYTES` (2 Go par défaut). |
 | `GET` | `/admin/jobs?limit=20` | Derniers jobs. |
 | `POST` | `/admin/jobs` | Crée un job `{type, params}` → `202` + job. |
 | `GET` | `/admin/jobs/:id` | État détaillé + dernières erreurs. |

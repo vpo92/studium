@@ -73,6 +73,141 @@ router.get('/backups', async (req, res, next) => {
 });
 
 /**
+ * Téléverse une archive de sauvegarde dans BACKUP_DIR (binaire en corps de
+ * requête brut, pas de multipart). Le nom d'origine passe par le paramètre
+ * « filename » ; il est nettoyé et le fichier est renommé au format
+ * `studium-upload-<horodatage>-<nom>.tar` pour être listé et restaurable.
+ * L'archive est d'abord écrite dans un « .part » (invisible de la liste),
+ * vérifiée (`tar -tf` + contenu mongodump) puis renommée. Taille plafonnée
+ * par BACKUP_UPLOAD_MAX_BYTES (2 Go par défaut).
+ * Réponse : 201 { name, size } ; 400 archive invalide ; 413 trop volumineux.
+ */
+router.post('/backups', async (req, res, next) => {
+  const dir = backupLib.getBackupDir();
+  const maxBytes = backupLib.getUploadMaxBytes();
+  let name = null;
+  let tmp = null;
+
+  // Content-Type qui ferait consommer le corps par les parsers globaux
+  // (json/urlencoded) avant d'arriver ici : l'archive doit partir en flux brut.
+  const contentType = String(req.headers['content-type'] || '').toLowerCase();
+  if (contentType.indexOf('application/json') !== -1
+    || contentType.indexOf('x-www-form-urlencoded') !== -1) {
+    return res.status(415).json({
+      message: 'Le corps de requête doit contenir l\'archive binaire brute '
+        + '(Content-Type : application/x-tar), pas du formulaire.',
+    });
+  }
+
+  const cleanup = () => {
+    if (tmp) {
+      fs.unlink(tmp, () => {});
+    }
+  };
+  const fail = (status: number, message: string) => {
+    cleanup();
+    if (!res.headersSent) {
+      // Connexion refermée une fois la réponse partie : détruire la requête
+      // avant couperait le socket (socket hang up côté client) alors qu'il
+      // reste du corps entrant non lu.
+      res.setHeader('Connection', 'close');
+      res.on('finish', () => {
+        try {
+          req.destroy();
+        } catch (error) {
+          // déjà refermée : sans importance.
+        }
+      });
+      try {
+        res.status(status).json({ message: message });
+      } catch (error) {
+        // Connexion déjà refermée par le navigateur : rien à signaler.
+        logger.warn(`jobs/backups: réponse impossible (${status}): ${message}`);
+      }
+    }
+  };
+
+  try {
+    backupLib.ensureDir(dir);
+  } catch (error) {
+    return next(error);
+  }
+
+  try {
+    const original = req.query.filename || req.get('x-file-name') || '';
+    const reserved = backupLib.reserveUploadName(
+      dir,
+      backupLib.buildUploadArchiveName(original)
+    );
+    if (!reserved) {
+      return fail(409, 'Trop d\'archives portent ce nom à la seconde près : réessayez.');
+    }
+    name = reserved;
+    // Suffixe uuid : deux téléversements simultanés (même seconde, même
+    // nom nettoyé) n'écrivent jamais dans le même fichier partiel.
+    tmp = path.join(dir, `${name}.${uuid.v4()}.part`);
+  } catch (error) {
+    if (error.status === 400) {
+      return fail(400, error.message);
+    }
+    return next(error);
+  }
+
+  let size = 0;
+  let listing = '';
+  try {
+    // keepSourceOpen : ne pas détruire la requête HTTP avant la réponse.
+    size = await backupLib.saveUploadStream(req, tmp, maxBytes, { keepSourceOpen: true });
+    if (!size) {
+      return fail(400, 'Archive vide : rien n\'a été reçu.');
+    }
+    try {
+      listing = (await backupLib.runCommand('tar', ['-tf', tmp])).stdout;
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        return fail(500, 'tar indisponible sur le serveur : import impossible.');
+      }
+      return fail(
+        400,
+        'Archive illisible : ' + error.message
+        + '. Téléversez une archive produite par le job « Sauvegarde de la base ».'
+      );
+    }
+    if (!backupLib.hasMongoDumpLayout(listing)) {
+      return fail(
+        400,
+        'Archive sans collections au format mongodump '
+        + '(fichiers <base>/<collection>.bson.gz) : téléversez une archive '
+        + 'produite par le job « Sauvegarde de la base ».'
+      );
+    }
+    const target = path.join(dir, name);
+    if (fs.existsSync(target)) {
+      // Un autre import a créé l'archive entre la réservation du nom et ici.
+      return fail(409, `Une archive « ${name} » vient d'apparaître : réessayez.`);
+    }
+    fs.renameSync(tmp, target);
+    logger.info(`jobs/backups: archive ${name} téléversée (${backupLib.formatBytes(size)}) par ${req.user.email}`);
+    res.status(201).json({ name: name, size: size });
+  } catch (error) {
+    if (error.status === 400 || error.status === 413) {
+      return fail(error.status, error.message);
+    }
+    if (error.code === 'EEXIST') {
+      // Le fichier temporaire appartenait à quelqu'un d'autre : on n'y
+      // touche pas, on demande juste de réessayer.
+      if (!res.headersSent) {
+        res.status(409).json({ message: 'Emplacement temporaire occupé : réessayez.' });
+      }
+      return undefined;
+    }
+    cleanup();
+    next(error);
+  }
+  return undefined;
+});
+
+/**
  * Télécharge une archive de sauvegarde présente dans BACKUP_DIR (flux binaire
  * servi en pièce jointe). Le nom est validé (aucun chemin) et l'archive doit
  * exister ; sinon 400/404.

@@ -21,6 +21,10 @@
     // téléchargeables (appelé notamment quand un traitement se termine).
     var refreshBackupDownloads = null;
 
+    // Exposé par setupRestore() : recharge la liste d'archives du sélecteur
+    // de restauration (notamment après un téléversement).
+    var refreshRestoreArchives = null;
+
     function baseUrl() {
         return String(apiUrl).trim().replace(/\/+$/, '');
     }
@@ -312,6 +316,9 @@
                     // peut-être de se terminer : rafraîchir les archives.
                     if (refreshBackupDownloads) {
                         refreshBackupDownloads();
+                    }
+                    if (refreshRestoreArchives) {
+                        refreshRestoreArchives();
                     }
                 }
             } catch (error) {
@@ -718,6 +725,115 @@
     }
 
     /* ------------------------------------------------------------------ *
+     *  Téléversement d'archives dans le répertoire des sauvegardes
+     * ------------------------------------------------------------------ */
+
+    // Doit rester ≤ BACKUP_UPLOAD_MAX_BYTES côté API (et client_max_body_size
+    // côté nginx) : au-delà, le navigateur verrait la connexion coupée.
+    var UPLOAD_MAX_BYTES = 2 * 1024 * 1024 * 1024;
+
+    function setupBackupUpload() {
+        var button = document.getElementById('backup-upload');
+        var input = document.getElementById('backup-upload-file');
+        var status = document.getElementById('backup-upload-status');
+
+        if (!button || !input || !status) {
+            return;
+        }
+
+        function setStatus(message, type) {
+            status.className = type ? 'mt-2 alert alert-' + type : 'mt-2';
+            status.textContent = message || '';
+        }
+
+        function parseResponse(text) {
+            try {
+                return JSON.parse(text);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function upload(file) {
+            if (file.size > UPLOAD_MAX_BYTES) {
+                setStatus('« ' + file.name + ' » dépasse la taille maximale (2 Go).', 'danger');
+                return;
+            }
+
+            button.disabled = true;
+            setStatus('Envoi de « ' + file.name + ' » (' + formatSize(file.size) + ')…', 'info');
+
+            // Le dump peut peser plusieurs centaines de Mo : envoi du fichier
+            // en corps de requête brut (l'API le lit en flux) via XMLHttpRequest
+            // pour bénéficier de la progression d'upload.
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', baseUrl() + '/admin/jobs/backups?filename=' + encodeURIComponent(file.name));
+            xhr.setRequestHeader('Authorization', 'Bearer ' + sessionTokenValue());
+
+            xhr.upload.addEventListener('progress', function (event) {
+                if (!event.lengthComputable) {
+                    return;
+                }
+                var percent = Math.round((event.loaded * 100) / event.total);
+                setStatus('Envoi de « ' + file.name + ' »… ' + percent
+                    + ' % (' + formatSize(event.loaded) + ' / ' + formatSize(event.total) + ')', 'info');
+            });
+
+            xhr.addEventListener('load', function () {
+                button.disabled = false;
+                var data = parseResponse(xhr.responseText);
+                if (xhr.status === 201) {
+                    setStatus(
+                        'Archive importée' + (data && data.name ? ' : ' + data.name : '')
+                        + (data && data.size ? ' (' + formatSize(data.size) + ')' : '')
+                        + '. Elle est disponible en téléchargement et pour la restauration.',
+                        'success'
+                    );
+                    if (refreshBackupDownloads) {
+                        refreshBackupDownloads();
+                    }
+                    if (refreshRestoreArchives) {
+                        refreshRestoreArchives();
+                    }
+                } else {
+                    var message;
+                    if (xhr.status === 401 || xhr.status === 403) {
+                        message = "Vous n'avez pas l'autorisation de téléverser des archives.";
+                    } else {
+                        message = data && data.message ? data.message : ('HTTP ' + xhr.status);
+                    }
+                    setStatus('Import impossible : ' + message, 'danger');
+                }
+            });
+
+            xhr.addEventListener('error', function () {
+                button.disabled = false;
+                setStatus('Import interrompu : la connexion a été perdue pendant l\'envoi '
+                    + '(taille refusée par le serveur ou réseau instable).', 'danger');
+            });
+
+            xhr.addEventListener('abort', function () {
+                button.disabled = false;
+                setStatus('Import annulé.', 'warning');
+            });
+
+            xhr.send(file);
+        }
+
+        button.addEventListener('click', function () {
+            input.value = '';
+            input.click();
+        });
+
+        input.addEventListener('change', function () {
+            var file = input.files && input.files[0];
+            if (file) {
+                upload(file);
+            }
+        });
+    }
+
+    /* ------------------------------------------------------------------ *
      *  Restauration de la base (job « restore » — opération destructive)
      * ------------------------------------------------------------------ */
 
@@ -815,6 +931,7 @@
             }
         });
 
+        refreshRestoreArchives = loadArchives;
         loadArchives();
     }
 
@@ -822,5 +939,6 @@
     setupJobs();
     setupBackup();
     setupBackupDownloads();
+    setupBackupUpload();
     setupRestore();
 })();

@@ -82,3 +82,126 @@ describe('getArchivePath', () => {
     expect(() => backupLib.getArchivePath(traversal)).toThrow(/invalide/);
   });
 });
+
+/* --------------------------------------------------------------------- *
+ *  Téléversement d'archives (POST /admin/jobs/backups)
+ * --------------------------------------------------------------------- */
+
+describe('buildUploadArchiveName', () => {
+  // 2026-11-20 12:00:00, local.
+  const date = new Date(2026, 10, 20, 12, 0, 0);
+
+  it('nettoie un nom courant et garde un nom reconnaissable', () => {
+    const name = backupLib.buildUploadArchiveName('ma sauvegarde du 29 oct.tar', date);
+
+    expect(name).toBe('studium-upload-20261120-120000-ma-sauvegarde-du-29-oct.tar');
+    expect(backupLib.ARCHIVE_NAME_RE.test(name)).toBe(true);
+  });
+
+  it('retire les extensions d\'archive (.tar.gz, .tgz, .gz)', () => {
+    const name = backupLib.buildUploadArchiveName('backup_studium_20261029.tar.gz', date);
+
+    expect(name).toBe('studium-upload-20261120-120000-backup_studium_20261029.tar');
+  });
+
+  it('ignore tout chemin contenu dans le nom fourni (traversée)', () => {
+    const name = backupLib.buildUploadArchiveName('../../etc/passwd', date);
+
+    expect(name).toBe('studium-upload-20261120-120000-passwd.tar');
+    expect(name.indexOf('/')).toBe(-1);
+  });
+
+  it('tronque les noms démesurés dans les bornes de l\'archive', () => {
+    const name = backupLib.buildUploadArchiveName(`${'a'.repeat(300)}.tar`, date);
+
+    expect(backupLib.ARCHIVE_NAME_RE.test(name)).toBe(true);
+    expect(name.length).toBeLessThanOrEqual('studium-'.length + 120 + '.tar'.length);
+  });
+
+  it('reste valide sans aucun nom d\'origine', () => {
+    const name = backupLib.buildUploadArchiveName(undefined, date);
+
+    expect(name).toBe('studium-upload-20261120-120000.tar');
+    expect(backupLib.ARCHIVE_NAME_RE.test(name)).toBe(true);
+  });
+});
+
+describe('reserveUploadName', () => {
+  it('retourne le nom tel quel quand il est libre', () => {
+    expect(backupLib.reserveUploadName(backupDir, VALID_ARCHIVE)).toBe(VALID_ARCHIVE);
+  });
+
+  it('ajoute un suffixe numéroté tant que le nom est pris', () => {
+    fs.writeFileSync(path.join(backupDir, VALID_ARCHIVE), 'tar');
+    fs.writeFileSync(path.join(backupDir, `${VALID_ARCHIVE.replace(/\.tar$/, '')}-2.tar`), 'tar');
+
+    const reserved = backupLib.reserveUploadName(backupDir, VALID_ARCHIVE);
+
+    expect(reserved).toBe(`${VALID_ARCHIVE.replace(/\.tar$/, '')}-3.tar`);
+    expect(backupLib.ARCHIVE_NAME_RE.test(reserved)).toBe(true);
+  });
+});
+
+describe('hasMongoDumpLayout', () => {
+  it('accepte une liste tar contenant des collections bson.gz', () => {
+    const listing = './\n./studium/\n./studium/fiches.bson.gz\n./studium/fiches.metadata.json.gz\n';
+
+    expect(backupLib.hasMongoDumpLayout(listing)).toBe(true);
+  });
+
+  it('refuse un tar sans contenu mongodump (bson non compressé seul)', () => {
+    expect(backupLib.hasMongoDumpLayout('./studium/fiches.bson\n')).toBe(false);
+  });
+
+  it('refuse une liste vide ou non textuelle', () => {
+    expect(backupLib.hasMongoDumpLayout('')).toBe(false);
+    expect(backupLib.hasMongoDumpLayout(null)).toBe(false);
+  });
+});
+
+describe('saveUploadStream', () => {
+  it('écrit tout le flux et renvoie la taille reçue', async () => {
+    const source = path.join(backupDir, 'source.bin');
+    fs.writeFileSync(source, 'x'.repeat(4096));
+    const tmp = path.join(backupDir, 'target.part');
+
+    const size = await backupLib.saveUploadStream(fs.createReadStream(source), tmp, 1024 * 1024);
+
+    expect(size).toBe(4096);
+    expect(fs.readFileSync(tmp).length).toBe(4096);
+  });
+
+  it('rejette avec 413 et nettoie le fichier partiel si la limite est dépassée', async () => {
+    const source = path.join(backupDir, 'gros.bin');
+    fs.writeFileSync(source, 'x'.repeat(64));
+    const tmp = path.join(backupDir, 'gros.part');
+
+    let error = null;
+    try {
+      await backupLib.saveUploadStream(fs.createReadStream(source), tmp, 16);
+    } catch (e) {
+      error = e;
+    }
+
+    expect(error).not.toBeNull();
+    expect(error.status).toBe(413);
+    expect(fs.existsSync(tmp)).toBe(false);
+  });
+
+  it('n\'écrase pas un fichier existant et le laisse intact (drapeau wx)', async () => {
+    const tmp = path.join(backupDir, 'occupé.part');
+    fs.writeFileSync(tmp, 'précieux');
+    const source = path.join(backupDir, 'autre.bin');
+    fs.writeFileSync(source, 'x'.repeat(32));
+
+    let error = null;
+    try {
+      await backupLib.saveUploadStream(fs.createReadStream(source), tmp, 1024);
+    } catch (e) {
+      error = e;
+    }
+
+    expect(error).not.toBeNull();
+    expect(fs.readFileSync(tmp).toString()).toBe('précieux');
+  });
+});

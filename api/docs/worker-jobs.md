@@ -339,6 +339,7 @@ flowchart TD
 - `jobs`, `job_failures`, `logs` et `system.*` ne sont **jamais supprimés** : la restauration ne détruit pas la file qui la pilote.
 - Idempotent et reprenable (curseur `r:<collection>`) ; en revanche une annulation en phase destructive laisse un état mixte — c'est le rôle de la sauvegarde de sécurité de permettre le retour en arrière.
 - La liste des archives exploitables est exposée par `GET /admin/jobs/backups` et présentée dans la carte « Restauration de la base » de l'IHM admin (sélection de l'archive, option de pre-backup, confirmation par saisie du mot `RESTAURER`).
+- Des dumps produits hors du serveur (autre environnement, export manuel) peuvent être importés via `POST /admin/jobs/backups` (bouton « Téléverser une archive… » de la carte « Sauvegarde de la base ») : binaire en corps de requête brut, renommé `studium-upload-…tar` et vérifié (`tar -tf` + présence de `.bson.gz`) avant d'atterrir dans `BACKUP_DIR`, donc immédiatement restaurable. Le volume `backups` est à ce titre monté en écriture dans `studium_api` (voir `docker-compose.yml`).
 - Primitives de dump partagées avec `backupJob` dans [`services/jobs/backupLib.js`](../src/services/jobs/backupLib.js).
 
 ---
@@ -405,12 +406,19 @@ Variables d'environnement du worker :
 | `WORKER_HEARTBEAT_MS` | `5000` | période de heartbeat → latence max d'une annulation |
 | `WORKER_STALE_MS` | `60000` | seuil au-delà duquel un `running` est considéré orphelin |
 | `BACKUP_DIR` | `backupDir` de `config.json`, puis `/var/backups/studium` | destination des dumps et archives du job `backup` |
+| `BACKUP_UPLOAD_MAX_BYTES` | `2147483648` (2 Go) | taille maximale acceptée par `POST /admin/jobs/backups` (API) |
 
 Le `docker-compose.yml` monte le volume nommé `backups` sur
-`/var/backups/studium` dans `studium_worker` : les sauvegardes survivent aux
+`/var/backups/studium` dans `studium_worker` (lecture/écriture, pour les
+dumps) et dans `studium_api` (écriture également, pour le téléversement
+d'archives) : les sauvegardes survivent aux
 reconstructions du conteneur (et peuvent être copiées/snapshotées depuis ce
 volume). L'archive n'étant pas chiffrée, la rétention et la sortie hors site
 relèvent de l'exploitation (cron de copie, chiffrement, etc.).
+
+Pour les téléversements, la taille est aussi bornée par le proxy :
+`client_max_body_size` du nginx de `docker-compose.yml` (`2g`) — et, s'il y a
+un reverse proxy externe devant l'app, sa propre limite est à aligner.
 
 En développement : `npm run worker` (babel-node) ou `npm run worker:watch` — à lancer **à côté** de l'API.
 

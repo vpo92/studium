@@ -33,7 +33,9 @@ services:
       - FEAT_GRAPH=${FEAT_GRAPH:-false}
       - BACKUP_DIR=/var/backups/studium
     volumes:
-      - backups:/var/backups/studium:ro
+      # Écriture nécessaire pour le téléversement d'archives (POST
+      # /admin/jobs/backups) ; la lecture seule ne suffisait plus.
+      - backups:/var/backups/studium
     restart: always
     networks:
      - default
@@ -127,7 +129,7 @@ services:
             listen 80;
             server_name localhost;
 
-            client_max_body_size 50M;
+            client_max_body_size 2g;  # téléversement des dumps (admin)
 
             # API endpoints
             location /api/ {

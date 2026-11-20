@@ -102,6 +102,25 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
             </table>
         </div>
         <div id="backup-downloads-status" class="mt-2" role="status" aria-live="polite"></div>
+
+        <hr class="my-4">
+
+        <h5>Téléverser une sauvegarde</h5>
+        <p class="small text-muted mb-2">
+            Importe une archive de dump existante dans le répertoire des
+            sauvegardes du serveur, où elle pourra être restaurée comme les
+            autres. Format attendu : archive <code>tar</code> au format
+            mongodump (<code>&lt;base&gt;/&lt;collection&gt;.bson.gz</code>),
+            produite notamment par <code>studium-cli backup</code>. Le fichier
+            sera renommé en <code>studium-upload-…tar</code>. Taille maximale :
+            2&nbsp;Go.
+        </p>
+        <button id="backup-upload" type="button" class="btn btn-outline-primary">
+            Téléverser une archive…
+        </button>
+        <input id="backup-upload-file" type="file" class="d-none"
+               accept=".tar,.tar.gz,.gz,.tgz,application/x-tar,application/gzip">
+        <div id="backup-upload-status" class="mt-2" role="status" aria-live="polite"></div>
     </div>
 </div>
 

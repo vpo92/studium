@@ -222,6 +222,185 @@ export function getArchivePath(name: any): string | null {
   return stat.isFile() ? file : null;
 }
 
+/* --------------------------------------------------------------------- *
+ *  Téléversement d'archives (POST /admin/jobs/backups)
+ * --------------------------------------------------------------------- */
+
+// Limite par défaut d'un téléversement : 2 Go (les dumps complets de la base
+// dépassent rarement quelques centaines de Mo). Ajustable via
+// BACKUP_UPLOAD_MAX_BYTES ; attention aussi au client_max_body_size du
+// proxy nginx placé devant l'API.
+export const DEFAULT_UPLOAD_MAX_BYTES = 2 * 1024 * 1024 * 1024;
+
+export function getUploadMaxBytes(): number {
+  const configured = parseInt(process.env.BACKUP_UPLOAD_MAX_BYTES, 10);
+  return configured > 0 ? configured : DEFAULT_UPLOAD_MAX_BYTES;
+}
+
+/** Horodatage local `AAAAMMJJ-HHMMSS` (même format que stampOf). */
+function nowStamp(date: Date): string {
+  const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
+  return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}`
+    + `-${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
+}
+
+/**
+ * Nom d'archive téléversée à partir du nom d'origine choisi par
+ * l'utilisateur : le nom est nettoyé (aucun chemin, aucun caractère hors
+ * [A-Za-z0-9._-], extensions .tar/.tar.gz/.tgz retirées) puis inséré dans le
+ * format imposé par ARCHIVE_NAME_RE, afin que le fichier apparaisse dans la
+ * liste et soit restaurable. Ne lève jamais d'erreur : tout nom se réduit à
+ * quelque chose de valide.
+ */
+export function buildUploadArchiveName(original: any, date?: Date): string {
+  let base = typeof original === 'string' ? path.basename(original) : '';
+  base = base
+    .replace(/\.(tar\.gz|tgz|tar|gz)$/i, '')
+    .replace(/[^A-Za-z0-9._-]+/g, '-')
+    .replace(/-{2,}/g, '-')
+    .replace(/^[-._]+/, '')
+    .replace(/[-._]+$/, '')
+    .slice(0, 64);
+
+  const stamp = nowStamp(date || new Date());
+  const middle = `${base ? `upload-${stamp}-${base}` : `upload-${stamp}`}`
+    .replace(/[-._]+$/, '')
+    .slice(0, 120);
+  const name = `studium-${middle}.tar`;
+  if (ARCHIVE_NAME_RE.test(name)) {
+    return name;
+  }
+  // Filet de sécurité (nom nettoyé devenu trop court) : horodatage seul.
+  return `studium-upload-${stamp}.tar`;
+}
+
+/**
+ * Rend le nom unique dans `dir` en ajoutant `-2`, `-3`… avant l'extension
+ * tant qu'un fichier existe déjà ; renvoie null après 1000 tentatives.
+ */
+export function reserveUploadName(dir: string, name: string): string | null {
+  if (!fs.existsSync(path.join(dir, name))) {
+    return name;
+  }
+  const middle = name.slice('studium-'.length, -'.tar'.length);
+  for (let attempt = 2; attempt <= 1000; attempt++) {
+    const suffix = `-${attempt}`;
+    const base = middle.slice(0, 120 - suffix.length).replace(/[-._]+$/, '');
+    if (base.length < 8) {
+      return null;
+    }
+    const candidate = `studium-${base}${suffix}.tar`;
+    if (!ARCHIVE_NAME_RE.test(candidate)) {
+      return null;
+    }
+    if (!fs.existsSync(path.join(dir, candidate))) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
+/**
+ * Vérifie la sortie d'un `tar -tf` : au moins une entrée `.bson.gz`, seule
+ * chose que le job restore sait exploiter (dump au format mongodump).
+ */
+export function hasMongoDumpLayout(listing: any): boolean {
+  if (typeof listing !== 'string') {
+    return false;
+  }
+  return listing
+    .split('\n')
+    .map((line: string) => line.trim())
+    .some((line: string) => /\.bson\.gz$/.test(line));
+}
+
+/**
+ * Écrit le flux `source` (corps de requête) dans `tmpPath` sans jamais
+ * dépasser `maxBytes` ; supprime le fichier partiel en cas d'échec. Le
+ * fichier cible ne doit pas exister (ouverture synchrone « wx » : erreur
+ * `code = EEXIST` sinon). Renvoie la taille écrite ; erreur `status = 413`
+ * si la limite est dépassée, `status = 400` si la connexion est interrompue.
+ * En succès, le fichier complet reste en place : c'est à l'appelant de le
+ * renommer.
+ *
+ * @param options.keepSourceOpen true pour ne pas détruire `source` en cas
+ *        d'échec (flux HTTP : détruire la requête avant l'envoi de la
+ *        réponse couperait la connexion) ; l'appelant doit alors refermer
+ *        lui-même le flux après avoir répondu.
+ */
+export function saveUploadStream(source: any, tmpPath: string, maxBytes: number,
+                                 options?: any): Promise<number> {
+  const keepSourceOpen = !!(options && options.keepSourceOpen);
+  return new Promise((resolve, reject) => {
+    // Ouverture synchrone : le fichier partiel existe dès que la promesse
+    // démarre, donc tout échec ultérieur le laisse exactement au même état.
+    let fd = null;
+    try {
+      fd = fs.openSync(tmpPath, 'wx');
+    } catch (error) {
+      return reject(error);
+    }
+
+    const out = fs.createWriteStream(undefined, { fd: fd });
+    let received = 0;
+    let settled = false;
+
+    const fail = (error: any) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      source.unpipe(out);
+      if (!keepSourceOpen && typeof source.destroy === 'function') {
+        source.destroy();
+      } else if (typeof source.pause === 'function') {
+        source.pause();
+      }
+      try {
+        out.destroy();
+      } catch (destroyError) {
+        // flux déjà fermé : sans importance.
+      }
+      try {
+        // Nettoyage synchrone : aucun demi-fichier ne traîne dans BACKUP_DIR
+        // une fois la promesse rejetée (en succès, rien n'est supprimé).
+        fs.unlinkSync(tmpPath);
+      } catch (unlinkError) {
+        // fichier déjà parti : sans importance.
+      }
+      reject(error);
+    };
+    const succeed = () => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      resolve(received);
+    };
+
+    source.on('data', (chunk: any) => {
+      received += chunk.length;
+      if (received > maxBytes) {
+        const error: any = new Error(
+          `Téléversement trop volumineux (limite : ${formatBytes(maxBytes)}).`
+        );
+        error.status = 413;
+        fail(error);
+      }
+    });
+    source.on('error', fail);
+    source.on('aborted', () => {
+      const error: any = new Error('Connexion interrompue pendant le téléversement.');
+      error.status = 400;
+      fail(error);
+    });
+    out.on('error', fail);
+    out.on('finish', succeed);
+    source.pipe(out);
+    return undefined;
+  });
+}
+
 export function collectionNamespace(dbName: string, collection: string): string {
   return `${dbName}.${collection}`;
 }

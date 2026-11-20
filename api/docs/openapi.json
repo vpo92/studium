@@ -1184,6 +1184,49 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Upload a backup archive",
+        "description": "Store an uploaded dump into BACKUP_DIR so the \"restore\" job can use it. The archive is sent as the raw request body (not multipart); the original name is passed as the \"filename\" query parameter and is sanitized into studium-upload-<timestamp>-<name>.tar. The file is verified (tar listing containing <db>/<collection>.bson.gz entries) before being made visible. Size capped by BACKUP_UPLOAD_MAX_BYTES (2 GiB default) and by the nginx client_max_body_size. Admin only.",
+        "operationId": "uploadBackupArchive",
+        "security": [{ "bearerAuth": ["admin"] }],
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "query",
+            "required": false,
+            "description": "Original file name, used to build the stored archive name.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-tar": {
+              "schema": { "type": "string", "format": "binary" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Archive stored",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "size": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Empty body, interrupted upload or unreadable archive" },
+          "409": { "description": "Name collision" },
+          "413": { "description": "Archive larger than BACKUP_UPLOAD_MAX_BYTES" }
+        }
       }
     },
     "/admin/jobs/types": {
