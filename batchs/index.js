@@ -93,7 +93,12 @@ async function main(){
         }
         case 'create-admin':{
           console.log("Studium CLI : create-admin");
-          runCreateAdmin("administrator","admin@studium.dev","pass","mongodb://localhost/studium");
+          runCreateAdmin(
+            argv.username || "administrator",
+            (argv.email || "admin@studium.dev").toLowerCase(),
+            argv.password || process.env.STUDIUM_ADMIN_PASSWORD || "pass",
+            argv.url || "mongodb://localhost/studium"
+          );
           break;
         }
         case 'help':{

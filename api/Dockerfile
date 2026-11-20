@@ -36,6 +36,15 @@ RUN ln -s /app/api/node_modules /app/batchs/node_modules
 # webpack build -> api/docker/build/server.js (+ docs/ and resources/)
 RUN cd api && npm run build
 
+# CLI embarquée : on ne transpile QUE mongoService.js (deps: crypto + mongodb,
+# toutes deux disponibles dans l'image runtime). batchs/index.js et
+# studium.cli.js ne sont pas embarqués : leur chaîne d'imports tire 'sleep'
+# (module natif), 'request' et chalk@4 (engines node>=10), incompatibles avec
+# le runtime node:8.17.0. Le lanceur CJS est api/docker/cli/studium-cli.js.
+RUN cd api && mkdir -p docker/build/cli \
+    && ./node_modules/.bin/babel ../batchs/src/rawFilesParser/mongoService.js \
+         --out-file docker/build/cli/mongoService.js
+
 
 # ---------------------------------------------------------------------------
 # Runtime image: production dependencies + the webpack bundle only.
@@ -64,6 +73,14 @@ COPY --from=build /app/api/docker/build/server.js ./server.js
 COPY --from=build /app/api/docker/build/worker.js ./worker.js
 COPY --from=build /app/api/docker/build/docs ./docs
 COPY --from=build /app/api/docker/build/resources ./resources
+
+# studium-cli : `docker exec <api> studium-cli create-admin ...`. Placé sous
+# /app/cli pour que require('mongodb')/require('babel-runtime') résolvent via
+# /app/node_modules. (Le chown -R plus bas donne les droits à l'user node.)
+COPY --from=build /app/api/docker/build/cli/mongoService.js ./cli/mongoService.js
+COPY api/docker/cli/studium-cli.js ./cli/studium-cli.js
+RUN printf '#!/bin/sh\nexec node /app/cli/studium-cli.js "$@"\n' > /usr/local/bin/studium-cli \
+    && chmod 755 /usr/local/bin/studium-cli
 
 # Répertoires de sauvegarde : volume `backups` monté sur le worker
 # (voir docker-compose.yml et BACKUP_DIR). Le job "backup" n'utilise que
