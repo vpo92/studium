@@ -294,11 +294,24 @@ html.dark {
     --bs-primary-rgb: 63, 81, 181;
 }
 
-/* Navbar : marque et texte toujours lisibles sur l'indigo / le gris foncé
-   (Bootstrap 5 colore .navbar-brand en « emphasis color », quasi noir). */
+/* Navbar : marque et liens toujours blancs (Bootstrap 5.3 les colore via
+   --bs-navbar-*-color, par défaut « emphasis color » = quasi noir ; la
+   règle .navbar-text a bat notre « a { color: inherit } »). */
+.navbar {
+    --bs-navbar-color: rgba(255, 255, 255, 0.85);
+    --bs-navbar-hover-color: #fff;
+    --bs-navbar-active-color: #fff;
+    --bs-navbar-brand-color: #fff;
+    --bs-navbar-brand-hover-color: #fff;
+}
+
 .navbar .navbar-brand,
 .navbar .navbar-brand:hover,
-.navbar .navbar-text {
+.navbar .navbar-brand:focus,
+.navbar .navbar-text,
+.navbar .navbar-text a,
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
     color: #fff;
 }
 
