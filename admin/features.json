@@ -2,6 +2,5 @@
   "indexSearch" : true,
   "textSearch" : true,
   "advancedSearch" : true,
-  "mongoSearch": true,
-  "mongoDump": true
+  "mongoSearch": true
 }

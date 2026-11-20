@@ -283,7 +283,7 @@ try{
 }
 
 //Pages reservees aux administrateurs
-$adminPages = ["administration", "user", "draft", "supervision", "dump", "recherche-mongo"];
+$adminPages = ["administration", "user", "draft", "supervision", "recherche-mongo"];
 if(in_array($page, $adminPages, true) && !isAdmin()){
     $error_msg = "Vous n'avez pas l'autorisation d'accéder à cette page";
     $page = "home";

@@ -251,7 +251,6 @@ flowchart TD
     ACTION -->|"create"| CREATE["pages/edit.php<br/>Création fiche"]
     ACTION -->|"recherche-avancee"| AV["pages/recherche-avancee.php"]
     ACTION -->|"recherche-mongo"| MONGO["pages/recherche-mongo.php"]
-    ACTION -->|"dump"| DUMP["pages/dump.php"]
     ACTION -->|"supervision"| SUP["pages/supervision.php"]
 
     VIEW --> VIEWPROPS["view/view_properties.php<br/>Rendu propriétés"]

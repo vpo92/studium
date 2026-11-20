@@ -5,13 +5,10 @@ import passport from 'passport';
 import service from '../services/prosopographyService';
 import logService from '../services/logService';
 import auth from '../services/authService';
-import mongoService from '../services/mongoService';
 import jobService from '../services/jobService';
 //auth.setup();
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
-import config from '../../config';
-import fs from 'fs';
 const router = express.Router();
 
 const getPagination = function(req){
@@ -79,51 +76,6 @@ router.post('/backup', auth.isAdmin, async (req, res, next) => {
     next(error);
   }
 
-});
-
-router.post('/dump', auth.isAdmin, async (req, res, next) => {
-  //
-    const id = uuid.v4();
-    logger.debug(`${id}: new dump`);
-    logger.debug(`${id}: new dump user ${req.user.name}`);
-
-    try{
-      await mongoService.dumpStudium(config.mongooseDB, config.dumpFileName);
-      logger.debug(`${id}: new dump done`);
-      res.send({'message':'OK'});
-    }catch(error){
-      logger.error(error);
-      next(error);
-    }
-
-  });
-
-router.get('/dump', auth.isAdmin, async (req, res, next) => {
-  const id = uuid.v4();
-  logger.debug(`${id}: list dump`);
-  logger.debug(`${id}: list dump user ${req.user.name}`);
-  try{
-    res.send(await mongoService.listDump(config.dumpFileName));
-  }catch(error){
-    logger.error(error);
-    next(error);
-  }
-
-
-});
-
-
-router.get('/dump/:dumpName', async (req, res, next) => {
-  const id = uuid.v4();
-  logger.debug(`${id}: download dump ${req.params.dumpName}`);
-  try{
-    let fileName = config.dumpFileName+"/"+req.params.dumpName;
-    res.writeHead( 200, { 'Content-Type': 'application/octet-stream ' } );
-      fs.createReadStream( fileName ).pipe( res );
-  }catch(error){
-    logger.error(error);
-    next(error);
-  }
 });
 
 router.post('/re-index-from-raw/:reference', auth.isAdmin, async (req, res, next) => {
