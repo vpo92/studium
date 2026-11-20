@@ -81,3 +81,16 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:3000/',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
 
 CMD ["node", "server.js"]
+
+
+# ---------------------------------------------------------------------------
+# Worker : meme runtime que l'API, mais demarre worker.js au lieu de
+# server.js (voir .gitea/workflows/worker-docker-image.yml, target: worker).
+# docker build -f api/Dockerfile --target worker -t studium/worker:latest .
+# ---------------------------------------------------------------------------
+FROM runtime AS worker
+
+# worker.js n'expose aucun port HTTP : le healthcheck de l'API n'a pas de sens ici.
+HEALTHCHECK NONE
+
+CMD ["node", "worker.js"]
