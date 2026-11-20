@@ -269,3 +269,320 @@ html, body, .tab-content, #map  {
 [v-cloak] {
     display: none;
 }
+/* ---------------------------------------------------
+    DARK MODE
+    Appliqué par la classe « dark » sur <html> (voir
+    header.php + js/dark-mode.js, préférence en localStorage).
+----------------------------------------------------- */
+
+html.dark body {
+    background: #16181d;
+    color: #dee2e6;
+}
+
+html.dark p {
+    color: #adb5bd;
+}
+
+html.dark footer {
+    color: #adb5bd;
+}
+
+html.dark hr {
+    border-top-color: #343a46;
+}
+
+html.dark code {
+    color: #f48fb1;
+}
+
+/* Barre supérieure */
+html.dark .navbar {
+    background: #232838;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Menu latéral */
+html.dark #sidebar {
+    background: #1d2129;
+    color: #dee2e6;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+html.dark #sidebar ul.components {
+    border-bottom-color: #2c3140;
+}
+
+html.dark #sidebar ul li a {
+    color: #dee2e6;
+}
+
+html.dark #sidebar ul li a:hover {
+    color: #9fb3ff;
+    background: #262b38;
+}
+
+html.dark #sidebar ul li.active > a,
+html.dark #sidebar a[aria-expanded="true"] {
+    color: #fff;
+    background: #33427f;
+}
+
+html.dark #dismiss {
+    background: #232838;
+}
+
+html.dark #dismiss:hover {
+    background: #2c3140;
+    color: #9fb3ff;
+}
+
+html.dark ul ul a {
+    background: #2c3140;
+    color: #dee2e6;
+}
+
+/* Switch « Mode sombre » en bas du menu */
+.sidebar-dark-toggle {
+    padding: 20px;
+    margin-top: auto;
+}
+
+html.dark .sidebar-dark-toggle {
+    border-top: 1px solid #2c3140;
+}
+
+.custom-switch .custom-control-label {
+    cursor: pointer;
+}
+
+html.dark .custom-control-label::before {
+    background-color: #454c5c;
+    border-color: #5b6373;
+}
+
+html.dark .custom-switch .custom-control-label::after {
+    background-color: #ced4da;
+}
+
+html.dark .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+}
+
+/* Cartes */
+html.dark .card {
+    background: #1d2129;
+    border-color: #2c3140;
+}
+
+html.dark .card-header,
+html.dark .card-footer {
+    background: #232838;
+    border-color: #2c3140;
+}
+
+html.dark .card-title,
+html.dark .card-subtitle {
+    color: #f1f3f5;
+}
+
+html.dark .card-text {
+    color: #adb5bd;
+}
+
+/* Tableaux */
+html.dark .table {
+    color: #dee2e6;
+}
+
+html.dark .table td,
+html.dark .table th {
+    border-top-color: #2c3140;
+}
+
+html.dark .table thead th {
+    border-bottom-color: #3a4152;
+}
+
+html.dark .table-hover tbody tr:hover {
+    background: #262b38;
+    color: #f1f3f5;
+}
+
+html.dark .table-striped tbody tr:nth-of-type(odd) {
+    background: #20242e;
+}
+
+/* Formulaires */
+html.dark .form-control,
+html.dark .custom-select,
+html.dark select,
+html.dark textarea,
+html.dark input[type="text"],
+html.dark input[type="password"],
+html.dark input[type="search"],
+html.dark input[type="number"] {
+    background: #232838;
+    color: #dee2e6;
+    border-color: #3a4152;
+}
+
+html.dark .form-control:focus,
+html.dark .custom-select:focus {
+    background: #262b38;
+    color: #f1f3f5;
+    border-color: #5c6bc0;
+    box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.35);
+}
+
+html.dark .form-control::placeholder {
+    color: #6c757d;
+}
+
+html.dark .form-control:disabled,
+html.dark .form-control[readonly] {
+    background: #1d2129;
+    color: #868e96;
+}
+
+html.dark label {
+    color: #dee2e6;
+}
+
+/* Boutons */
+html.dark .btn-light {
+    background: #2c3140;
+    color: #dee2e6;
+    border-color: #3a4152;
+}
+
+html.dark .btn-light:hover {
+    background: #3a4152;
+    color: #f1f3f5;
+}
+
+html.dark .btn-outline-secondary {
+    color: #ced4da;
+    border-color: #5b6373;
+}
+
+html.dark .btn-outline-secondary:hover {
+    background: #2c3140;
+    color: #f1f3f5;
+    border-color: #6c757d;
+}
+
+/* Alertes et badges */
+html.dark .alert-success {
+    background: #1b3325;
+    border-color: #245235;
+    color: #8bd5a4;
+}
+
+html.dark .alert-info {
+    background: #16303b;
+    border-color: #1f4d5e;
+    color: #7fd0e8;
+}
+
+html.dark .alert-warning {
+    background: #3a2f16;
+    border-color: #5c4a20;
+    color: #e6c57a;
+}
+
+html.dark .alert-danger {
+    background: #3a1d21;
+    border-color: #5c2c33;
+    color: #ef9a9a;
+}
+
+/* Listes et pagination */
+html.dark .list-group-item {
+    background: #1d2129;
+    color: #dee2e6;
+    border-color: #2c3140;
+}
+
+html.dark .page-link {
+    background: #232838;
+    color: #dee2e6;
+    border-color: #3a4152;
+}
+
+html.dark .page-item.disabled .page-link {
+    background: #1d2129;
+    color: #6c757d;
+}
+
+html.dark .page-link:hover {
+    background: #2c3140;
+    color: #f1f3f5;
+}
+
+/* Couleurs utilitaires */
+html.dark .text-muted {
+    color: #8d95a1 !important;
+}
+
+html.dark .dropdown-menu {
+    background: #232838;
+    border-color: #2c3140;
+}
+
+html.dark .dropdown-item {
+    color: #dee2e6;
+}
+
+html.dark .dropdown-item:hover,
+html.dark .dropdown-item:focus {
+    background: #2c3140;
+    color: #f1f3f5;
+}
+
+/* Spécifique Studium (fiches, index, graphe) */
+html.dark a.app-opusCollapseLink {
+    color: #dee2e6;
+}
+
+html.dark .app-value {
+    color: #dee2e6;
+}
+
+html.dark li.app-reference {
+    color: #9fb3ff;
+}
+
+html.dark .app-graph-hint {
+    color: #8d95a1;
+}
+
+html.dark #prosopography-graph {
+    background-color: #1d2129;
+    border-color: #2c3140;
+}
+
+html.dark ul.app-annotations {
+    border-left-color: #3a4152;
+}
+
+html.dark .app-graph-legend {
+    color: #adb5bd;
+}
+
+/* Cartes Leaflet : tuiles et habillage assombris */
+html.dark .leaflet-tile {
+    filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+}
+
+html.dark .leaflet-container {
+    background: #16181d;
+}
+
+html.dark .leaflet-bar a,
+html.dark .leaflet-control-layers {
+    background: #232838;
+    color: #dee2e6;
+    border-color: #3a4152;
+}

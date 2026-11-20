@@ -7,6 +7,14 @@
 
     <title>Studium</title>
 
+    <!-- Applique le thème sombre avant le rendu (pas de flash) ; la
+         préférence est mémorisée dans localStorage par dark-mode.js -->
+    <script>
+        if (localStorage.getItem('studium-dark-mode') === '1') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
     <!-- Load required Bootstrap and BootstrapVue CSS -->
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
@@ -103,7 +111,23 @@
                 <a href="<?php echo getApplicationUrl()?>/aide">Aide</a>
             </li>
         </ul>
+
+        <!-- Switch du mode sombre : en bas du menu, après la rubrique Aide -->
+        <div class="sidebar-dark-toggle">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="dark-mode-switch"
+                       aria-label="Activer le mode sombre">
+                <label class="custom-control-label" for="dark-mode-switch">
+                    <i class="fas fa-moon"></i> Mode sombre
+                </label>
+            </div>
+        </div>
     </nav>
+
+<?php
+// Chargé sur toutes les pages : pilote le switch « Mode sombre » du menu.
+$pageScripts .= '<script src="'.getResourcesWebDirectory().'/js/dark-mode.js"></script>';
+?>
 
     <!-- Page Content -->
     <div id="content">
