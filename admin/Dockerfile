@@ -24,4 +24,11 @@ COPY src/ /var/www/html/src/
 COPY pages/ /var/www/html/pages
 COPY resources/ /var/www/html/resources
 
+# Entrypoint : logge APPLICATION_URL, PUBLIC_API_URL et API_URL au demarrage
+# puis laisse la main a apache2-foreground (CMD par defaut de php:8.3-apache).
+COPY bin/docker-entrypoint.sh /usr/local/bin/admin-entrypoint.sh
+RUN chmod +x /usr/local/bin/admin-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/admin-entrypoint.sh"]
+CMD ["apache2-foreground"]
+
 EXPOSE 3002
