@@ -66,6 +66,41 @@ router.get('/backups', async (req, res, next) => {
 });
 
 /**
+ * Télécharge une archive de sauvegarde présente dans BACKUP_DIR (flux binaire
+ * servi en pièce jointe). Le nom est validé (aucun chemin) et l'archive doit
+ * exister ; sinon 400/404.
+ */
+router.get('/backups/:name/download', (req, res, next) => {
+  let file = null;
+  try {
+    file = backupLib.getArchivePath(req.params.name);
+  } catch (error) {
+    if (error.status === 400) {
+      return res.status(400).json({ message: error.message });
+    }
+    return next(error);
+  }
+  if (!file) {
+    return res.status(404).json({ message: 'Archive introuvable.' });
+  }
+
+  let stat = null;
+  try {
+    stat = fs.statSync(file);
+  } catch (error) {
+    return res.status(404).json({ message: 'Archive introuvable.' });
+  }
+
+  res.setHeader('Content-Type', 'application/x-tar');
+  res.setHeader('Content-Length', String(stat.size));
+  res.setHeader('Content-Disposition', `attachment; filename="${path.basename(file)}"`);
+  const stream = fs.createReadStream(file);
+  stream.on('error', next);
+  stream.pipe(res);
+  return undefined;
+});
+
+/**
  * Liste les derniers jobs (du plus récent au plus ancien).
  */
 router.get('/', async (req, res, next) => {

@@ -204,6 +204,24 @@ export function validateArchiveName(name: any): string {
   return name;
 }
 
+/**
+ * Chemin absolu d'une archive dans BACKUP_DIR, prêt à être lu (téléchargement,
+ * restauration). Valide le nom (aucun chemin autorisé) et vérifie que le
+ * fichier existe et est un fichier régulier ; renvoie null sinon.
+ * Lève une erreur `status = 400` si le nom est invalide.
+ */
+export function getArchivePath(name: any): string | null {
+  validateArchiveName(name);
+  const file = path.join(getBackupDir(), name);
+  let stat = null;
+  try {
+    stat = fs.statSync(file);
+  } catch (error) {
+    return null;
+  }
+  return stat.isFile() ? file : null;
+}
+
 export function collectionNamespace(dbName: string, collection: string): string {
   return `${dbName}.${collection}`;
 }
