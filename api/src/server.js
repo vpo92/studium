@@ -35,14 +35,34 @@ const logMiddle = function(request, response, next) {
   next();
 }
 
+// Les parsers globaux ne doivent jamais consommer le corps des uploads
+// d'archives (POST /admin/jobs/backups) : la route le lit en flux brut.
+// Sans cette garde, une archive envoyée en « formulaire » déclenchait une
+// erreur de parsing (« request entity too large » / « too many parameters »)
+// renvoyée en 500 sans message exploitable (ticket #10).
+function isRawArchiveUpload(req) {
+  return req.method === 'POST' && /\/admin\/jobs\/backups\/?$/.test(req.path || '');
+}
+function parseJson(req) {
+  return !isRawArchiveUpload(req)
+    && /application\/json/i.test(String(req.headers['content-type'] || ''));
+}
+function parseForm(req) {
+  return !isRawArchiveUpload(req)
+    && /x-www-form-urlencoded/i.test(String(req.headers['content-type'] || ''));
+}
+
 app.set('env', environment);
 app.set('port', 3000);
 app.use(logMiddle);
 app.use(cors());
 app.use(methodOverride());
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({ limit: '50mb', type: parseJson }));
 app.use(bodyParser.text());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Même plafond que le JSON : sans lui, toute requête urlencoded > 100 ko —
+// notamment les tentatives d'upload d'archive envoyées en formulaire —
+// partait en erreur « request entity too large » remontée en 500 (ticket #10).
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb', type: parseForm }));
 app.use('/', routes);
 app.use(errorHandler);
 
@@ -75,5 +95,12 @@ db.connect(mongoUrl, err => {
 
 // eslint-disable-next-line
 function errorHandler(err, req, res, next) {
-  res.status(500).send({ error: err.message });
+  // Ticket #10 : tout renvoyait un 500 muet au format {error}, incompréhensible
+  // pour l'IHM qui lit {message}. On propage le code réel (413 des parsers,
+  // 400 des validations, etc.), on journalise la cause, et on répond dans le
+  // format attendu côté client (message) en gardant `error` par compatibilité.
+  const status = err && (err.status || err.statusCode) ? (err.status || err.statusCode) : 500;
+  const message = (err && err.message) ? err.message : 'Erreur interne du serveur.';
+  logger.error(`${req.method} ${req.originalUrl || req.path} -> ${status}: ${message}`);
+  res.status(status).json({ message: message, error: message });
 }

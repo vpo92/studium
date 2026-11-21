@@ -221,6 +221,22 @@ function buildFixtureDump() {
   return { root: dir, users, notes };
 }
 
+/** Dump « contenu » : données métier seules, sans users. */
+function buildContenuDump() {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'studium-fixture-'));
+  const dbDir = path.join(dir, 'studium-src');
+  fs.mkdirSync(dbDir);
+  const notes = [{ _id: new bson.ObjectID(), text: 'note 1' }];
+  fs.writeFileSync(path.join(dbDir, 'notes.bson.gz'), bsonGzOf(notes));
+  return { root: dir, notes };
+}
+
+/** Écrit le manifeste de type à la racine d'une fixture (comme le job backup). */
+function addFixtureManifest(root, mode) {
+  fs.writeFileSync(path.join(root, 'studium-backup-info.json.gz'),
+    zlib.gzipSync(Buffer.from(JSON.stringify({ mode: mode, dbName: 'studium-src' }), 'utf8')));
+}
+
 beforeEach(() => {
   backupDir = fs.mkdtempSync(path.join(os.tmpdir(), 'studium-restore-test-'));
   process.env.BACKUP_DIR = backupDir;
@@ -334,6 +350,93 @@ describe('restoreJob — restauration complète', () => {
     expect(failed[0].cursor).toBeUndefined();
     // La suppression des hors-dump n'a pas eu lieu (échec avant).
     expect(calls.dropped.indexOf('old_stuff')).toBe(-1);
+  });
+});
+
+describe('restoreJob — types d\'archive (ticket #10)', () => {
+  it('archive manifestée « contenu » : users n\'est ni restauré ni supprimé', async () => {
+    const fixture = buildFixtureDump(); // contient users…
+    addFixtureManifest(fixture.root, 'contenu'); // …mais déclarée contenu.
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: ARCHIVE, confirm: 'RESTAURER', preBackup: false });
+    const ctx = makeCtx(job);
+
+    await restoreJob.run(ctx);
+
+    expect(ctx.steps.map((s) => s.reference)).toEqual(
+      ['extraction', 'notes', 'drop:old_stuff']
+    );
+    expect(calls.dropped.indexOf('users')).toBe(-1);
+    expect(calls.inserted.users).toBeUndefined();
+    expect(restoreJob.finalMessage(ctx)).toMatch(/comptes utilisateurs.*préservés/);
+  });
+
+  it('archive sans manifeste ni users : deviné « contenu », comptes vivants conservés', async () => {
+    const fixture = buildContenuDump();
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: ARCHIVE, confirm: 'RESTAURER', preBackup: false });
+    const ctx = makeCtx(job);
+
+    await restoreJob.run(ctx);
+
+    expect(ctx.steps.map((s) => s.reference)).toEqual(
+      ['extraction', 'notes', 'drop:old_stuff']
+    );
+    expect(calls.dropped.indexOf('users')).toBe(-1);
+  });
+
+  it('archive sans manifeste contenant users : comportement historique « full »', async () => {
+    const fixture = buildFixtureDump();
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: ARCHIVE, confirm: 'RESTAURER', preBackup: false });
+    const ctx = makeCtx(job);
+
+    await restoreJob.run(ctx);
+
+    expect(ctx.steps.map((s) => s.reference)).toContain('users');
+    expect(calls.dropped).toContain('users'); // droppée avant réinsertion
+  });
+
+  it('suffixe -full du nom : remplacement intégral, users vivant supprimé si absent du dump', async () => {
+    const fullArchive = 'studium-fullname-full.tar';
+    fs.writeFileSync(path.join(backupDir, fullArchive), 'archive-placeholder');
+    const fixture = buildContenuDump(); // sans users, mais déclarée full
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: fullArchive, confirm: 'RESTAURER', preBackup: false });
+    const ctx = makeCtx(job);
+
+    await restoreJob.run(ctx);
+
+    expect(ctx.steps.map((s) => s.reference)).toEqual(
+      ['extraction', 'notes', 'drop:old_stuff', 'drop:users']
+    );
+  });
+
+  it('params.mode force le type (contenu) même sur une archive contenant users', async () => {
+    const fixture = buildFixtureDump();
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: ARCHIVE, confirm: 'RESTAURER', preBackup: false, mode: 'contenu' });
+    const ctx = makeCtx(job);
+
+    await restoreJob.run(ctx);
+
+    expect(calls.dropped.indexOf('users')).toBe(-1);
+    expect(calls.inserted.users).toBeUndefined();
+  });
+
+  it('refuse un mode invalide avec un message explicite', async () => {
+    const fixture = buildFixtureDump();
+    extractedTree = fixture.root;
+
+    const job = makeJob({ archive: ARCHIVE, confirm: 'RESTAURER', mode: 'tout' });
+    const ctx = makeCtx(job);
+
+    await expect(restoreJob.run(ctx)).rejects.toThrow(/Type de sauvegarde invalide/);
   });
 });
 

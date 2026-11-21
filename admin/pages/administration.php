@@ -66,11 +66,33 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
     <div class="card-body">
         <h4 class="card-title">Sauvegarde de la base</h4>
         <p class="card-text">
-            Produit un dump complet de la base MongoDB sur le serveur
+            Produit un dump de la base MongoDB sur le serveur
             (collections compressées puis archive <code>tar</code>), exécuté
             en arrière-plan par le worker. Suivez la progression dans le
             panneau « Traitements longs » ci-dessus.
         </p>
+        <div class="form-group">
+            <label>Type de sauvegarde</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="backup-mode"
+                       id="backup-mode-contenu" value="contenu" checked>
+                <label class="form-check-label" for="backup-mode-contenu">
+                    <strong>Contenu</strong> (par défaut) — données métier
+                    uniquement : sans les comptes utilisateurs, les jobs ni
+                    les logs. Restaurable en recette/production sans écraser
+                    les comptes de l'environnement cible.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="backup-mode"
+                       id="backup-mode-full" value="full">
+                <label class="form-check-label" for="backup-mode-full">
+                    <strong>Full</strong> — intégralité de la base
+                    (comptes, jobs et logs compris) : sauvegarde technique
+                    complète.
+                </label>
+            </div>
+        </div>
         <button id="backup-start" type="button" class="btn btn-success">
             Lancer la sauvegarde
         </button>
@@ -81,7 +103,9 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
         <h5>Sauvegardes disponibles</h5>
         <p class="small text-muted mb-2">
             Archives produites sur le serveur (sauvegardes et sauvegardes de
-            sécurité précédant une restauration). Cliquez sur
+            sécurité précédant une restauration). Le type indiqué
+            (<em>Contenu</em>/<em>Full</em>) détermine ce qu'une restauration
+            écrase ou préserve. Cliquez sur
             « Télécharger » pour récupérer l'archive, ou sur le bouton rouge
             « Supprimer » pour la retirer définitivement du serveur.
         </p>
@@ -90,6 +114,7 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
                 <thead>
                 <tr>
                     <th>Archive</th>
+                    <th>Type</th>
                     <th>Taille</th>
                     <th>Date</th>
                     <th></th>
@@ -97,7 +122,7 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
                 </thead>
                 <tbody id="backup-downloads">
                 <tr>
-                    <td colspan="4" class="text-muted">Chargement…</td>
+                    <td colspan="5" class="text-muted">Chargement…</td>
                 </tr>
                 </tbody>
             </table>
@@ -129,17 +154,21 @@ $pageScripts .='<script src="'.getResourcesWebDirectory().'/js/administration.js
     <div class="card-body">
         <h4 class="card-title text-danger">Restauration de la base</h4>
         <div class="alert alert-danger py-2">
-            <strong>Opération destructrice :</strong> toutes les données
-            actuelles seront supprimées et remplacées par le contenu de
-            l'archive choisie. Une sauvegarde de sécurité de l'état courant
-            est produite avant toute écriture (fortement recommandé de la
-            laisser activée).
+            <strong>Opération destructrice :</strong> les collections sont
+            remplacées par le contenu de l'archive choisie. Une archive de
+            type <em>Contenu</em> préserve les comptes utilisateurs, les jobs
+            et les logs de cette installation ; une archive de type
+            <em>Full</em> (ou ancienne, sans type connu) remplace
+            intégralement la base — y compris vos comptes. Une sauvegarde de
+            sécurité de l'état courant est produite avant toute écriture
+            (fortement recommandé de la laisser activée).
         </div>
         <div class="form-group">
             <label for="restore-archive">Archive de sauvegarde</label>
             <select id="restore-archive" class="form-control">
                 <option value="">Chargement…</option>
             </select>
+            <small id="restore-mode-hint" class="form-text text-muted"></small>
         </div>
         <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="restore-prebackup" checked>

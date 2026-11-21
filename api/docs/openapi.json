@@ -1176,7 +1176,12 @@
                     "properties": {
                       "name": { "type": "string" },
                       "size": { "type": "integer" },
-                      "modifiedAt": { "type": "string", "format": "date-time" }
+                      "modifiedAt": { "type": "string", "format": "date-time" },
+                      "mode": {
+                        "type": "string",
+                        "enum": ["contenu", "full", "legacy"],
+                        "description": "Backup kind (ticket #10), from the archive name suffix; \"legacy\" = pre-ticket archive whose kind is decided at restore time from its actual content (users present = full)."
+                      }
                     }
                   }
                 }
@@ -1225,7 +1230,8 @@
           },
           "400": { "description": "Empty body, interrupted upload or unreadable archive" },
           "409": { "description": "Name collision" },
-          "413": { "description": "Archive larger than BACKUP_UPLOAD_MAX_BYTES" }
+          "413": { "description": "Archive larger than BACKUP_UPLOAD_MAX_BYTES" },
+          "415": { "description": "Body sent as a form (JSON/urlencoded) instead of the raw archive (explicit error instead of a silent 500, ticket #10)" }
         }
       }
     },
@@ -1368,7 +1374,10 @@
                 "required": ["type"],
                 "properties": {
                   "type": { "type": "string", "example": "reindex" },
-                  "params": { "type": "object" }
+                  "params": {
+                    "type": "object",
+                    "description": "Treatment parameters. For \"backup\": optional \"mode\" (\"contenu\" default — business data without users/jobs/logs — or \"full\"). For \"restore\": required \"archive\" and \"confirm\": \"RESTAURER\"; optional \"preBackup\" (default true) and \"mode\" to force the archive kind (otherwise manifest, then name suffix, then users presence)."
+                  }
                 }
               }
             }
@@ -1382,6 +1391,9 @@
                 "schema": { "$ref": "#/components/schemas/Job" }
               }
             }
+          },
+          "400": {
+            "description": "Missing/unknown type, or invalid params.mode for backup/restore (ticket #10)"
           },
           "409": {
             "description": "A job of the same type is already active"
@@ -1479,9 +1491,22 @@
       "post": {
         "tags": ["Admin"],
         "summary": "Backup database",
-        "description": "Queue a full database backup as a background job (type \"backup\"), executed by the worker. Progress is monitored through /admin/jobs/{id}. Admin only. Kept as HTTP 200 for CLI backward compatibility; the work itself is asynchronous.",
+        "description": "Queue a database backup as a background job (type \"backup\"), executed by the worker. Optional JSON body {\"mode\": \"contenu|full\"} selects the backup kind (\"contenu\" default: business data without user accounts, jobs and logs; \"full\": complete technical backup). Progress is monitored through /admin/jobs/{id}. Admin only. Kept as HTTP 200 for CLI backward compatibility; the work itself is asynchronous.",
         "operationId": "backupDB",
         "security": [{ "bearerAuth": ["admin"] }],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mode": { "type": "string", "enum": ["contenu", "full"], "default": "contenu" }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Backup job queued",
@@ -1497,6 +1522,7 @@
               }
             }
           },
+          "400": { "description": "Invalid mode (ticket #10)" },
           "409": { "description": "A backup job is already running" }
         }
       }

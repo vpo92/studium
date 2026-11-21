@@ -585,8 +585,18 @@
             status.textContent = message || '';
         }
 
+        // Type de sauvegarde (ticket #10) : « contenu » par défaut.
+        function selectedMode() {
+            var fullRadio = document.getElementById('backup-mode-full');
+            return fullRadio && fullRadio.checked ? 'full' : 'contenu';
+        }
+
         button.addEventListener('click', async function () {
-            if (!confirm('Confirmez-vous le lancement de la sauvegarde de la base ?')) {
+            var mode = selectedMode();
+            var label = mode === 'full'
+                ? 'la sauvegarde FULL (intégralité de la base, comptes et logs inclus)'
+                : 'la sauvegarde CONTENU (données métier, sans comptes ni jobs/logs)';
+            if (!confirm('Confirmez-vous le lancement de ' + label + ' ?')) {
                 return;
             }
             if (typeof launchJobType !== 'function') {
@@ -596,10 +606,10 @@
 
             button.disabled = true;
             try {
-                var result = await launchJobType('backup', setStatus);
+                var result = await launchJobType('backup', setStatus, { mode: mode });
                 if (!result.reused) {
                     setStatus(
-                        'Sauvegarde lancée : suivez sa progression dans le panneau '
+                        'Sauvegarde ' + mode + ' lancée : suivez sa progression dans le panneau '
                         + '« Traitements longs » ci-dessus.',
                         'success'
                     );
@@ -631,8 +641,19 @@
 
         function renderMessage(message, type) {
             tbody.innerHTML =
-                '<tr><td colspan="4" class="' + (type || 'text-muted') + '">' +
+                '<tr><td colspan="5" class="' + (type || 'text-muted') + '">' +
                 escapeHtml(message) + '</td></tr>';
+        }
+
+        // Libellé du type d'archive (ticket #10) : contenu | full | legacy.
+        function modeLabel(mode) {
+            if (mode === 'full') {
+                return 'Full';
+            }
+            if (mode === 'contenu') {
+                return 'Contenu';
+            }
+            return 'Indéterminé';
         }
 
         async function load() {
@@ -647,8 +668,11 @@
 
                 archives.forEach(function (archive) {
                     var row = document.createElement('tr');
+                    var isFull = archive.mode === 'full';
                     row.innerHTML =
                         '<td><code>' + escapeHtml(archive.name) + '</code></td>' +
+                        '<td><span class="badge badge-' + (isFull ? 'danger' : 'secondary') + '">' +
+                        escapeHtml(modeLabel(archive.mode)) + '</span></td>' +
                         '<td>' + escapeHtml(formatSize(archive.size)) + '</td>' +
                         '<td><small>' + escapeHtml(formatDate(archive.modifiedAt)) + '</small></td>' +
                         '<td class="text-right">' +
@@ -881,6 +905,7 @@
     function setupRestore() {
         var card = document.getElementById('restore-card');
         var archiveSelect = document.getElementById('restore-archive');
+        var modeHint = document.getElementById('restore-mode-hint');
         var preBackupCheck = document.getElementById('restore-prebackup');
         var confirmInput = document.getElementById('restore-confirm');
         var button = document.getElementById('restore-start');
@@ -890,21 +915,63 @@
             return;
         }
 
+        // Métadonnées d'archive par nom (type connu, renvoyé par /backups).
+        var archivesByName = {};
+
         function setStatus(message, type) {
             status.className = type ? 'mt-3 alert alert-' + type : 'mt-3';
             status.textContent = message || '';
+        }
+
+        function archiveModeLabel(mode) {
+            if (mode === 'full') {
+                return 'Full';
+            }
+            if (mode === 'contenu') {
+                return 'Contenu';
+            }
+            return 'Indéterminé';
+        }
+
+        function updateModeHint() {
+            if (!modeHint) {
+                return;
+            }
+            var archive = archivesByName[archiveSelect.value];
+            if (!archive) {
+                modeHint.textContent = '';
+                return;
+            }
+            if (archive.mode === 'contenu') {
+                modeHint.textContent =
+                    'Type Contenu : les comptes utilisateurs, jobs et logs de '
+                    + 'cette installation seront préservés.';
+                modeHint.className = 'form-text text-muted';
+            } else if (archive.mode === 'full') {
+                modeHint.textContent =
+                    'Type Full : remplacement intégral de la base, comptes '
+                    + 'utilisateurs compris (la session en cours peut être invalidée).';
+                modeHint.className = 'form-text text-danger';
+            } else {
+                modeHint.textContent =
+                    'Type non déclaré : la restauration décidera selon le contenu '
+                    + 'réel de l\'archive (users présent = remplacement intégral).';
+                modeHint.className = 'form-text text-warning';
+            }
         }
 
         function updateButtonState() {
             var ready = confirmInput.value.trim() === 'RESTAURER'
                 && archiveSelect.value !== '';
             button.disabled = !ready;
+            updateModeHint();
         }
 
         async function loadArchives() {
             try {
                 var archives = await apiFetch('/admin/jobs/backups');
                 archiveSelect.innerHTML = '';
+                archivesByName = {};
 
                 if (!archives || archives.length === 0) {
                     var empty = document.createElement('option');
@@ -917,10 +984,12 @@
                 archives.forEach(function (archive) {
                     var option = document.createElement('option');
                     option.value = archive.name;
-                    option.textContent = archive.name +
+                    option.textContent = '[' + archiveModeLabel(archive.mode) + '] ' +
+                        archive.name +
                         ' — ' + formatSize(archive.size) +
                         ' (' + formatDate(archive.modifiedAt) + ')';
                     archiveSelect.appendChild(option);
+                    archivesByName[archive.name] = archive;
                 });
             } catch (error) {
                 archiveSelect.innerHTML = '<option value="">Erreur de chargement</option>';
@@ -940,8 +1009,16 @@
             if (!archive || confirmInput.value.trim() !== 'RESTAURER') {
                 return;
             }
-            if (!confirm('Toutes les données actuelles seront remplacées par le contenu de « '
-                + archive + ' ». Confirmer la restauration ?')) {
+            var known = archivesByName[archive];
+            var warning = 'Le contenu de « ' + archive + ' » remplacera les données actuelles.';
+            if (known && known.mode === 'contenu') {
+                warning += '\nLes comptes utilisateurs, jobs et logs seront préservés.';
+            } else {
+                warning += '\nSi cette archive est de type Full (ou ancienne), '
+                    + 'VOTRE COMPTE UTILISATEUR PEUT ÊTRE REMPLACÉ : vérifiez '
+                    + 'qu\'un compte administrateur existe dans l\'archive.';
+            }
+            if (!confirm(warning + '\n\nConfirmer la restauration ?')) {
                 return;
             }
             if (typeof launchJobType !== 'function') {

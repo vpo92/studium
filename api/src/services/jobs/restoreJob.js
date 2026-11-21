@@ -1,10 +1,24 @@
 // @flow
 /**
  * Traitement de restauration de la base MongoDB depuis une archive produite
- * par le job `backup` (`studium-<horodatage>.tar`).
+ * par le job `backup` (`studium-<horodatage>-<type>.tar`).
  *
- * ⚠ Opération DESTRUCTRICE : toutes les collections de la base courante sont
- * supprimées puis remplacées par le contenu du dump. Protections :
+ * ⚠ Opération potentiellement DESTRUCTRICE, dont le périmètre dépend du
+ * type d'archive (ticket #10) :
+ *   - archive « Contenu » (défaut des sauvegardes récentes) : seules les
+ *     collections métier du dump sont remplacées. Les comptes `users`, ainsi
+ *     que `jobs`, `job_failures` et `logs`, ne sont NI écrasés NI supprimés
+ *     — restaurer un dump de production en recette ne peut plus casser la
+ *     session ni les comptes de l'environnement cible ;
+ *   - archive « Full » : toutes les collections du dump remplacent leur
+ *     équivalent courant (users compris) et les collections vivantes absentes
+ *     du dump sont supprimées, sauf `jobs`, `job_failures`, `logs`.
+ *   Le type est lu dans le manifeste `studium-backup-info.json.gz` de
+ *   l'archive, à défaut du suffixe du nom, à défaut de la présence réelle de
+ *   `users` dans le dump (les archives antérieures au ticket #10 contenaient
+ *   users : comportement « full » historique).
+ *
+ * Protections générales :
  *   - le job refuse de démarrer sans `params.confirm === 'RESTAURER'` ;
  *   - le nom d'archive est validé (nom simple, format backup) et doit exister
  *     dans BACKUP_DIR (liste via `GET /admin/jobs/backups`) ;
@@ -24,7 +38,8 @@
  *      sont conservés à l'octet près), puis recréation des index du
  *      `.metadata.json.gz` (formats mongodump anciens et récents acceptés) ;
  *   3. phase « nettoyage » : suppression des collections vivantes absentes du
- *      dump (« remplacer TOUTES les données »).
+ *      dump — en mode full (« remplacer TOUTES les données ») ; en mode
+ *      contenu, `users` est protégé au même titre que jobs/job_failures/logs.
  *
  * Repreneur : le curseur (`r:<collection>`) saute les phases déjà faites
  * après un requeue ; les collections étant restaurées par drop + recréation,
@@ -43,6 +58,7 @@ import bson from 'bson';
 
 import db from '../../utils/db';
 import {
+  CONTENT_EXCLUDED_COLLECTIONS,
   DEFAULT_EXCLUDED_COLLECTIONS,
   ensureDir,
   formatBytes,
@@ -52,17 +68,23 @@ import {
   getCollection,
   listCollections,
   messageOf,
+  modeFromArchiveName,
+  readBackupInfo,
   removeDir,
   runCommand,
   stampOf,
   createArchive,
   dumpCollection,
   validateArchiveName,
+  validateBackupMode,
 } from './backupLib';
 
 const CONFIRM_PHRASE = 'RESTAURER';
 const INSERT_BATCH = 1000;
 const BSON_DOC_MAX = 16 * 1024 * 1024;
+
+// Collection des comptes : jamais touchée par une restauration « contenu ».
+const USERS_COLLECTION = 'users';
 
 // Désérialisation stricte : les Int32/Long/Double restent des enveloppes
 // bson et le driver les réécrit tels quels (vérifié : round-trip identique
@@ -378,15 +400,40 @@ async function restoreCollection(ctx: any, client: any, dbName: string, extractS
   }
 }
 
+/**
+ * Type de la restauration (ticket #10) : priorité à params.mode (choix
+ * explicite de l'opérateur), puis au manifeste de l'archive, puis au suffixe
+ * du nom, puis à la présence réelle de `users` dans le dump — les archives
+ * antérieures au ticket contenaient users : comportement « full » historique.
+ */
+function detectRestoreMode(params: any, archiveName: string, extractDir: string,
+                           dumpCollections: Array<string>): string {
+  if (params.mode !== undefined && params.mode !== null && params.mode !== '') {
+    return validateBackupMode(params.mode);
+  }
+  const info = readBackupInfo(extractDir);
+  if (info) {
+    return info.mode;
+  }
+  const fromName = modeFromArchiveName(archiveName);
+  if (fromName) {
+    return fromName;
+  }
+  return dumpCollections.indexOf(USERS_COLLECTION) !== -1 ? 'full' : 'contenu';
+}
+
 const restoreJob = {
   type: 'restore',
   label: 'Restauration de la base (depuis une archive)',
   description:
-    '⚠ Destructif : supprime toutes les données de la base courante et les '
-    + 'remplace par le contenu d\'une archive produite par le job « Sauvegarde de la '
-    + 'base » (collections absentes du dump supprimées, sauf jobs/job_failures/logs). '
-    + 'Une sauvegarde de sécurité de l\'état courant est produite avant toute '
-    + 'écriture (désactivable). Nécessite params.confirm = « RESTAURER ».',
+    '⚠ Destructif pour les données métier : remplace le contenu des collections '
+    + 'de la base courante par celui d\'une archive produite par le job '
+    + '« Sauvegarde de la base ». Type contenu (défaut des archives récentes) : '
+    + 'les comptes utilisateurs, jobs et logs sont préservés. Type full : '
+    + 'remplacement intégral, collections absentes du dump supprimées '
+    + '(sauf jobs/job_failures/logs). Une sauvegarde de sécurité de l\'état '
+    + 'courant est produite avant toute écriture (désactivable). '
+    + 'Nécessite params.confirm = « RESTAURER ».',
   unitLabel: 'collection',
 
   run: async (ctx: any): Promise<void> => {
@@ -410,7 +457,7 @@ const restoreJob = {
 
     const dbName = getDbName(getMongoUrl());
     const paths = pathsOf(ctx.job);
-    const summary = { restored: 0, dropped: 0, preArchive: null };
+    const summary = { restored: 0, dropped: 0, preArchive: null, mode: null };
     ctx.restoreSummary = summary; // lu par finalMessage
 
     // ---------------------------------------------------------------
@@ -443,15 +490,27 @@ const restoreJob = {
       throw new Error(
         `Archive sans collections exploitables : ${archiveName} (restauration refusée).`);
     }
+    const mode = detectRestoreMode(params, archiveName, paths.extractDir, dumpCollections);
+    summary.mode = mode;
+
+    // En contenu, les comptes utilisateurs ne sont ni écrasés ni supprimés.
+    const protectedCollections = mode === 'full'
+      ? DEFAULT_EXCLUDED_COLLECTIONS : CONTENT_EXCLUDED_COLLECTIONS;
+
     const liveCollections = await listCollections();
     const extras = liveCollections
       .filter((name) => dumpCollections.indexOf(name) === -1)
-      .filter((name) => DEFAULT_EXCLUDED_COLLECTIONS.indexOf(name) === -1)
+      .filter((name) => protectedCollections.indexOf(name) === -1)
       .sort();
 
-    let collections = dumpCollections;
+    let collections = dumpCollections
+      .filter((name) => !(mode === 'contenu' && name === USERS_COLLECTION));
     if (ctx.job.cursor) {
-      collections = dumpCollections.filter((name) => `r:${name}` > ctx.job.cursor);
+      collections = collections.filter((name) => `r:${name}` > ctx.job.cursor);
+    }
+    if (mode === 'contenu' && dumpCollections.indexOf(USERS_COLLECTION) !== -1) {
+      await ctx.setMessage('Archive contenant « users » restaurée en mode contenu : '
+        + 'les comptes utilisateurs existants ne seront pas modifiés.');
     }
     // Le total inclut les unités déjà validées (pré-backup, extraction,
     // collections reprises) pour que la barre reste cohérente.
@@ -515,6 +574,11 @@ const restoreJob = {
     let message = `Restauration terminée : ${summary.restored || 0} collection(s) restaurée(s)`;
     if (summary.dropped) {
       message += `, ${summary.dropped} supprimée(s)`;
+    }
+    if (summary.mode === 'contenu') {
+      message += ' (type contenu : comptes utilisateurs, jobs et logs préservés)';
+    } else if (summary.mode === 'full') {
+      message += ' (type full : remplacement intégral de la base)';
     }
     if (summary.preArchive && fs.existsSync(summary.preArchive)) {
       message += ` — sauvegarde de sécurité : ${summary.preArchive}`

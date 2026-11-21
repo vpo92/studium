@@ -25,6 +25,80 @@ export const DEFAULT_DB_NAME = 'studium';
 // ne faut JAMAIS supprimer (le job de restauration vit dans `jobs`).
 export const DEFAULT_EXCLUDED_COLLECTIONS = ['logs', 'jobs', 'job_failures'];
 
+/* --------------------------------------------------------------------- *
+ *  Types de sauvegarde (ticket #10)
+ * --------------------------------------------------------------------- */
+
+// « Contenu » (défaut) : données métier seules — les comptes utilisateurs
+// s'ajoutent aux collections d'exploitation exclues. « Full » : intégralité
+// de la base (sauvegarde technique), y compris users/jobs/logs.
+export const BACKUP_MODES = ['contenu', 'full'];
+export const DEFAULT_BACKUP_MODE = 'contenu';
+export const CONTENT_EXCLUDED_COLLECTIONS =
+  DEFAULT_EXCLUDED_COLLECTIONS.concat(['users']);
+
+// Manifeste écrit à la racine de chaque archive : le job restore s'y fie en
+// priorité pour connaître le type (un renommage ou un téléversement ne
+// suffit pas à le déduire du seul nom de fichier).
+export const BACKUP_INFO_FILE = 'studium-backup-info.json.gz';
+
+/** Valide un mode de backup ; défaut : `contenu`. Erreur `status = 400`. */
+export function validateBackupMode(mode: any): string {
+  if (mode === undefined || mode === null || mode === '') {
+    return DEFAULT_BACKUP_MODE;
+  }
+  if (BACKUP_MODES.indexOf(mode) === -1) {
+    const error: any = new Error(
+      `Type de sauvegarde invalide : ${JSON.stringify(mode)} `
+      + `(valeurs acceptées : ${BACKUP_MODES.join(', ')}).`
+    );
+    error.status = 400;
+    throw error;
+  }
+  return mode;
+}
+
+/**
+ * Nom d'archive portant le type en suffixe :
+ * `studium-<horodatage>-contenu.tar`, `studium-<horodatage>-full.tar`,
+ * suffixe `-partiel` ajouté par les relances d'erreurs.
+ */
+export function archiveNameOf(stamp: string, mode: string, partial: boolean): string {
+  return `studium-${stamp}-${mode === 'full' ? 'full' : 'contenu'}${partial ? '-partiel' : ''}.tar`;
+}
+
+/** Type deviné d'un nom d'archive (suffixe), ou null si indéterminable. */
+export function modeFromArchiveName(name: string): string | null {
+  if (/-full(-partiel)?\.tar$/.test(name)) {
+    return 'full';
+  }
+  if (/-contenu(-partiel)?\.tar$/.test(name)) {
+    return 'contenu';
+  }
+  return null;
+}
+
+/** Écrit le manifeste `studium-backup-info.json.gz` dans `dir` (racine du dump). */
+export async function writeBackupInfo(dir: string, info: any): Promise<void> {
+  ensureDir(dir);
+  await gzipToFile(Buffer.from(JSON.stringify(info), 'utf8'),
+    path.join(dir, BACKUP_INFO_FILE));
+}
+
+/** Lit le manifeste d'un répertoire extrait ; null si absent ou illisible. */
+export function readBackupInfo(extractDir: string): any | null {
+  const file = path.join(extractDir, BACKUP_INFO_FILE);
+  try {
+    const parsed = JSON.parse(zlib.gunzipSync(fs.readFileSync(file)).toString('utf8'));
+    if (parsed && BACKUP_MODES.indexOf(parsed.mode) !== -1) {
+      return parsed;
+    }
+    return null;
+  } catch (error) {
+    return null; // archive ancienne ou téléversée sans manifeste
+  }
+}
+
 // Unité de travail correspondant à l'empaquetage tar.
 export const ARCHIVE_UNIT = 'archive';
 

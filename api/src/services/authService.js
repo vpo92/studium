@@ -14,13 +14,21 @@ const getUser = async (req,res,next) => {
   try{
     const userEmail = req.user.email?req.user.email.trim().toLowerCase():null;
     const user = await User.findOneAsync({email:userEmail});
-    logger.debug(`${id}:getUser user found ${user.name}`);
+    // Ticket #10 : une restauration pouvait écraser ou supprimer le compte
+    // de l'administrateur connecté ; l'accès à user.name avant le test de
+    // nullité plantait en erreur 500 muette. Un compte introuvable est
+    // désormais un simple 401 explicite.
     if (!user) {
-      return res.status(401).end();
-    }else{
-      req.user = user;
-      next();
+      logger.warn(`${id}:getUser compte introuvable pour le jeton ${userEmail}`);
+      return res.status(401).json({
+        message: 'Compte introuvable : votre session référence un utilisateur qui '
+          + 'n\'existe plus (une restauration a peut-être remplacé les comptes). '
+          + 'Reconnectez-vous avec un compte existant.',
+      });
     }
+    logger.debug(`${id}:getUser user found ${user.name}`);
+    req.user = user;
+    next();
   }catch(err){
     return next(err);
   }
@@ -35,15 +43,17 @@ const hasRole = (roles) => {
       const user = await User.findOneAsync({email:userEmail});
 
       if (!user) {
-        return res.status(401).end();
+        return res.status(401).json({
+          message: 'Compte introuvable : reconnectez-vous avec un compte existant.',
+        });
       }else{
         req.user = user;
       }
 
-      const filteredArray = roles.filter(value => user.role.includes(value));
-      if (filteredArray == []) {
+      const filteredArray = roles.filter(value => Array.isArray(user.role) && user.role.includes(value));
+      if (!filteredArray.length) {
         logger.debug("hasRole : not granted");
-        return res.status(403).send({error: { status:403, message:'Access denied.'}});
+        return res.status(403).send({message: 'Access denied.'});
       }
       next();
     }catch(err){
@@ -56,7 +66,7 @@ const getRoleAdmin = async (req,res,next) => {
   try{
     let user = req.user;
     logger.debug("getRoleAdmin");
-    if (!user || !user.role.includes('admin')) {
+    if (!user || !Array.isArray(user.role) || !user.role.includes('admin')) {
       logger.debug("hasRole : not granted");
       return res.status(403).send({error: { status:403, message:'Access denied.'}});
     }

@@ -6,6 +6,7 @@ import service from '../services/prosopographyService';
 import logService from '../services/logService';
 import auth from '../services/authService';
 import jobService from '../services/jobService';
+import * as backupLib from '../services/jobs/backupLib';
 //auth.setup();
 import logger from '../utils/logger';
 import exporter from '../utils/exporter';
@@ -65,12 +66,18 @@ router.post('/backup', auth.isAdmin, async (req, res, next) => {
   logger.debug(`${id}: backup user ${req.user.name}`);
 
   try{
-    const job = await jobService.create('backup', {}, req.user, {});
-    logger.debug(`${id}: backup job ${job._id} queued`);
+    // Type de sauvegarde (ticket #10) : contenu (défaut) ou full.
+    const body = req.body || {};
+    const mode = backupLib.validateBackupMode(body.mode);
+    const job = await jobService.create('backup', { mode: mode }, req.user, {});
+    logger.debug(`${id}: backup job ${job._id} queued (${mode})`);
     res.send({'message':'OK', 'job': jobService.serialize(job)});
   }catch(error){
     if(error.status === 409){
       return res.status(409).json({message: error.message, job: error.job || null});
+    }
+    if(error.status === 400){
+      return res.status(400).json({message: error.message});
     }
     logger.error(error);
     next(error);

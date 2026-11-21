@@ -17,12 +17,20 @@
  * Configuration :
  *   - `BACKUP_DIR` (env) ou `backupDir` (config.json) : répertoire de
  *     destination des archives. Défaut : `/var/backups/studium`.
+ *   - `params.mode` : `contenu` (défaut, ticket #10) ou `full`.
+ *       • Contenu : données métier uniquement — les comptes utilisateurs
+ *         s'ajoutent aux collections exclues (jobs, job_failures, logs).
+ *       • Full : intégralité de la base (sauvegarde technique complète).
  *   - `params.excludedCollections` : collections supplémentaires à ignorer.
  *   - Par défaut sont ignorées : `system.*`, `logs`, `jobs`, `job_failures`
- *     (données d'exploitation volatiles, pas les données métier).
+ *     (+ `users` en mode contenu).
+ *
+ * L'archive porte le type dans son nom (`studium-<horodatage>-contenu.tar` /
+ * `-full.tar`) et un manifeste `studium-backup-info.json.gz` à sa racine :
+ * le job `restore` s'y fie pour adapter son comportement.
  *
  * Restauration : job `restore` (depuis l'IHM admin) ou, manuellement :
- *   tar -xf studium-<horodatage>.tar              # -> <db>/<collection>.bson.gz
+ *   tar -xf studium-<horodatage>-<type>.tar         # -> <db>/<collection>.bson.gz
  *   mongorestore --gzip --nsInclude='<db>.*' <db>/
  */
 import fs from 'fs';
@@ -31,7 +39,10 @@ import path from 'path';
 import db from '../../utils/db';
 import {
   ARCHIVE_UNIT,
+  CONTENT_EXCLUDED_COLLECTIONS,
+  DEFAULT_BACKUP_MODE,
   DEFAULT_EXCLUDED_COLLECTIONS,
+  archiveNameOf,
   createArchive,
   dumpCollection,
   ensureDir,
@@ -42,19 +53,23 @@ import {
   listCollections,
   removeDir,
   stampOf,
+  validateBackupMode,
   validateCollectionNames,
+  writeBackupInfo,
 } from './backupLib';
 
 /** Chemins du job, stables entre deux exécutions (reprise après requeue). */
 function pathsOf(job: any): any {
   const backupDir = getBackupDir();
   const stamp = stampOf(job);
+  const mode = validateBackupMode(job.params && job.params.mode);
   const partial = Array.isArray(job.params && job.params.references)
     && job.params.references.length > 0;
   return {
     stamp: stamp,
+    mode: mode,
     workDir: path.join(backupDir, `studium-${stamp}`),
-    archive: path.join(backupDir, `studium-${stamp}${partial ? '-partiel' : ''}.tar`),
+    archive: path.join(backupDir, archiveNameOf(stamp, mode, partial)),
     partial: partial,
   };
 }
@@ -69,11 +84,14 @@ function archiveInfo(job: any): string | null {
   }
 }
 
-async function runScan(ctx: any, client: any, dbName: string, workDir: string): Promise<void> {
+async function runScan(ctx: any, client: any, dbName: string, workDir: string,
+                       mode: string): Promise<void> {
   const params = ctx.job.params || {};
   const extraExcluded = validateCollectionNames(
     params.excludedCollections || [], 'excludedCollections');
-  const excluded = DEFAULT_EXCLUDED_COLLECTIONS.concat(extraExcluded);
+  // Mode contenu : les comptes utilisateurs sont exclus ; mode full : tout.
+  const baseExcluded = mode === 'full' ? [] : CONTENT_EXCLUDED_COLLECTIONS;
+  const excluded = baseExcluded.concat(extraExcluded);
 
   let collections = (await listCollections())
     .filter((name) => excluded.indexOf(name) === -1)
@@ -118,11 +136,11 @@ const backupJob = {
   type: 'backup',
   label: 'Sauvegarde de la base (dump + archive)',
   description:
-    'Dump complet de la base (documents BSON compressés par collection, format '
+    'Dump de la base (documents BSON compressés par collection, format '
     + 'mongodump, lisible par mongorestore ou par le job « Restauration ») puis '
-    + 'archive tar dans le répertoire de sauvegarde du serveur. Traitement long '
-    + 'exécuté par le worker. '
-    + `Collections ignorées par défaut : system.*, ${DEFAULT_EXCLUDED_COLLECTIONS.join(', ')}.`,
+    + 'archive tar dans le répertoire de sauvegarde du serveur. Deux types : '
+    + '« Contenu » (défaut) = données métier seules (sans users, jobs, logs) ; '
+    + '« Full » = intégralité de la base. Traitement long exécuté par le worker.',
   unitLabel: 'collection',
 
   run: async (ctx: any): Promise<void> => {
@@ -142,7 +160,7 @@ const backupJob = {
         .filter((name) => name !== ARCHIVE_UNIT);
       await runReferences(ctx, client, dbName, paths.workDir, collections);
     } else {
-      await runScan(ctx, client, dbName, paths.workDir);
+      await runScan(ctx, client, dbName, paths.workDir, paths.mode);
     }
 
     if (ctx.shouldStop()) {
@@ -157,6 +175,15 @@ const backupJob = {
       );
     }
 
+    // Manifeste du type d'archive (lu par le job restore, même après un
+    // renommage ou un téléversement).
+    await writeBackupInfo(paths.workDir, {
+      mode: paths.mode,
+      dbName: dbName,
+      createdAt: new Date().toISOString(),
+      jobType: 'backup',
+    });
+
     await createArchive(ctx, paths.workDir, paths.archive, ARCHIVE_UNIT);
 
     // Le répertoire de travail intermédiaire n'est plus utile une fois
@@ -169,7 +196,8 @@ const backupJob = {
     const counts = ctx.counters();
     const collections = Math.max(0, counts.succeeded - 1); // hors unité « archive »
     const archive = archiveInfo(ctx.job);
-    let message = `Terminé : ${collections} collection(s) sauvegardée(s)`;
+    let message = `Terminé : ${collections} collection(s) sauvegardée(s)`
+      + ` (type ${pathsOf(ctx.job).mode})`;
     if (archive) {
       message += ` — archive : ${archive}`;
     }

@@ -205,3 +205,56 @@ describe('saveUploadStream', () => {
     expect(fs.readFileSync(tmp).toString()).toBe('précieux');
   });
 });
+
+describe('backupLib — types de sauvegarde (ticket #10)', () => {
+  it('valide le mode et prend « contenu » par défaut', () => {
+    expect(backupLib.validateBackupMode(undefined)).toBe('contenu');
+    expect(backupLib.validateBackupMode('')).toBe('contenu');
+    expect(backupLib.validateBackupMode('contenu')).toBe('contenu');
+    expect(backupLib.validateBackupMode('full')).toBe('full');
+    expect(() => backupLib.validateBackupMode('tout')).toThrow(/invalide/);
+    try {
+      backupLib.validateBackupMode('tout');
+    } catch (error) {
+      expect(error.status).toBe(400);
+    }
+  });
+
+  it('nomme les archives avec leur type (et « partiel » en relance)', () => {
+    expect(backupLib.archiveNameOf('20261121-101112', 'contenu', false))
+      .toBe('studium-20261121-101112-contenu.tar');
+    expect(backupLib.archiveNameOf('20261121-101112', 'full', false))
+      .toBe('studium-20261121-101112-full.tar');
+    expect(backupLib.archiveNameOf('20261121-101112', 'full', true))
+      .toBe('studium-20261121-101112-full-partiel.tar');
+    expect(backupLib.ARCHIVE_NAME_RE.test(backupLib.archiveNameOf('20261121-101112', 'contenu', true)))
+      .toBe(true);
+  });
+
+  it('reconnaît le type depuis le nom, null sinon (archive legacy)', () => {
+    expect(backupLib.modeFromArchiveName('studium-20261121-101112-contenu.tar')).toBe('contenu');
+    expect(backupLib.modeFromArchiveName('studium-20261121-101112-full.tar')).toBe('full');
+    expect(backupLib.modeFromArchiveName('studium-20261121-101112-full-partiel.tar')).toBe('full');
+    expect(backupLib.modeFromArchiveName('studium-20261121-101112.tar')).toBeNull();
+    expect(backupLib.modeFromArchiveName('studium-upload-mon-dump.tar')).toBeNull();
+  });
+
+  it('round-trip du manifeste d\'archive (writeBackupInfo / readBackupInfo)', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'studium-manifest-'));
+    await backupLib.writeBackupInfo(dir, { mode: 'contenu', dbName: 'studium' });
+    expect(backupLib.readBackupInfo(dir)).toMatchObject({ mode: 'contenu', dbName: 'studium' });
+  });
+
+  it('readBackupInfo tolère l\'absence ou un contenu invalide (legacy)', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'studium-manifest-'));
+    expect(backupLib.readBackupInfo(dir)).toBeNull();
+    fs.writeFileSync(path.join(dir, backupLib.BACKUP_INFO_FILE), 'pas du gzip');
+    expect(backupLib.readBackupInfo(dir)).toBeNull();
+  });
+
+  it('le mode « contenu » exclut bien comptes, jobs et logs', () => {
+    expect(backupLib.CONTENT_EXCLUDED_COLLECTIONS).toEqual(
+      ['logs', 'jobs', 'job_failures', 'users']);
+    expect(backupLib.CONTENT_EXCLUDED_COLLECTIONS.indexOf('prosopography')).toBe(-1);
+  });
+});

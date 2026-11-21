@@ -62,7 +62,15 @@ router.get('/backups', async (req, res, next) => {
         if (!stat.isFile()) {
           return null;
         }
-        return { name: name, size: stat.size, modifiedAt: stat.mtime };
+        return {
+          name: name,
+          size: stat.size,
+          modifiedAt: stat.mtime,
+          // Type d'archive (ticket #10) : déduit du suffixe du nom. Les
+          // archives « legacy » (aucun suffixe) contiennent users : le job
+          // restore les traite en « full », comme avant le ticket.
+          mode: backupLib.modeFromArchiveName(name) || 'legacy',
+        };
       })
       .filter((archive) => archive !== null)
       .sort((a, b) => new Date(b.modifiedAt) - new Date(a.modifiedAt));
@@ -315,6 +323,20 @@ router.post('/', async (req, res, next) => {
   const handler = jobs.get(type);
   if (!handler) {
     return res.status(400).json({ message: `Type de traitement inconnu : ${type}` });
+  }
+
+  // Ticket #10 : le type de sauvegarde/restauration est validé à la création
+  // (400 explicite) plutôt que de faire échouer le job plus tard dans le worker.
+  if (type === 'backup' || type === 'restore') {
+    try {
+      backupLib.validateBackupMode(params.mode);
+    } catch (error) {
+      if (error.status === 400) {
+        return res.status(400).json({ message: error.message });
+      }
+      next(error);
+      return undefined;
+    }
   }
 
   try {
